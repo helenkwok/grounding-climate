@@ -18,6 +18,7 @@ import {
   injectTamper,
   loadPreparedBuildingDataset,
   runBuildingMrv,
+  verifyPreparedArtifactDigests,
   runHourOfWeekBaseline,
 } from "../src/index.js";
 import type {
@@ -86,7 +87,11 @@ async function dataset(
       weatherMember:
         "buds-lab-building-data-genome-project-2-3d0cbaf/data/weather/weather.csv",
       preparedAt: "2026-09-29T00:00:00Z",
-      meterDigest: await digestMeterSeries(meter, provider),
+      meterDigest: {
+        algorithm: "SHA-256",
+        value: "prepared-meter-file",
+      },
+      meterSeriesDigest: await digestMeterSeries(meter, provider),
       metadataDigest: {
         algorithm: "SHA-256",
         value: "metadata-test",
@@ -300,4 +305,58 @@ test("prepared artifact loader preserves pinned BDG2 provenance", () => {
     loaded.source.publishedArchiveMd5,
     "44393dc4cf61e84dec105e955368c890",
   );
+});
+
+
+test("prepared artifact integrity fails when meter.csv is edited", async () => {
+  const provider = new InMemoryNodeCryptoProvider();
+  const meterCsv = "timestamp,meter_reading\n2017-01-01T00:00:00Z,100\n";
+  const metadataJson = JSON.stringify({
+    buildingId: "Panther_test_Building",
+    siteId: "Panther",
+  }) + "\n";
+
+  const meterDigest = await provider.hash(
+    new TextEncoder().encode(meterCsv),
+    "SHA-256",
+  );
+  const metadataDigest = await provider.hash(
+    new TextEncoder().encode(metadataJson),
+    "SHA-256",
+  );
+
+  const sourceJson = JSON.stringify({
+    sourceManifestId: "bdg2",
+    zenodoRecord: "https://zenodo.org/records/3887306",
+    doi: "10.5281/zenodo.3887306",
+    archiveName: "buds-lab/building-data-genome-project-2-v1.0.zip",
+    publishedArchiveMd5: "44393dc4cf61e84dec105e955368c890",
+    preparedAt: "2026-09-29T00:00:00Z",
+    members: {
+      meter: "electricity_cleaned.csv",
+      metadata: "metadata.csv",
+      weather: "weather.csv",
+    },
+    digests: {
+      meter: meterDigest,
+      metadata: metadataDigest,
+    },
+  });
+
+  const valid = await verifyPreparedArtifactDigests(
+    { meterCsv, metadataJson, sourceJson },
+    provider,
+  );
+  assert.equal(valid.valid, true);
+
+  const changed = await verifyPreparedArtifactDigests(
+    {
+      meterCsv: meterCsv.replace(",100", ",999"),
+      metadataJson,
+      sourceJson,
+    },
+    provider,
+  );
+  assert.equal(changed.valid, false);
+  assert.equal(changed.meter, false);
 });
