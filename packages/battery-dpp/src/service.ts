@@ -80,7 +80,7 @@ export class BatteryDppService implements ModuleCommandRouter {
           splits: this.options.benchmarkSplits,
         });
 
-      case "battery_build_passport": {
+      case "battery_build_passport_claim": {
         const built = await buildBatteryPassport({
           history: this.history,
           provider: this.options.provider,
