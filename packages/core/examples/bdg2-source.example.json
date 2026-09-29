@@ -53,10 +53,13 @@
         "retrievedAt": "2026-09-29T06:45:00Z"
       },
       "rights": {
-        "redistribution": "unclear",
-        "commercialUse": "unclear",
-        "derivedData": "unclear",
-        "attribution": "Preserve upstream attribution; complete the rights audit in issue #14 before redistributing data."
+        "sourceManifestId": "bdg2",
+        "licence": "CC-BY-SA-4.0",
+        "termsUri": "https://github.com/buds-lab/building-data-genome-project-2/blob/master/LICENSE",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attribution": "Building Data Genome Project 2 / BUDS Lab; CC-BY-SA-4.0; preserve source and licence notices."
       }
     }
   ],

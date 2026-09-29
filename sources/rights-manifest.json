@@ -1,0 +1,516 @@
+{
+  "schemaVersion": "climatechain.source-rights/0.1",
+  "auditedAt": "2026-09-29",
+  "policy": {
+    "unknownRightsDefault": "do-not-redistribute",
+    "externalDataRoot": "data/external",
+    "requireOriginalSourceUrl": true,
+    "requireAttribution": true
+  },
+  "sources": [
+    {
+      "id": "cadi-public-web",
+      "name": "Carbon Data Intelligence (CaDI)",
+      "component": "website",
+      "canonicalUrl": "https://www.carbondi.com/",
+      "upstreamPublisher": "Carbon Footprint Ltd",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "terms-restricted",
+        "name": "Carbon Footprint Ltd website Terms & Conditions",
+        "url": "https://www.carbonfootprint.com/termsandconditions.html"
+      },
+      "permissions": {
+        "use": "reference-only",
+        "redistribution": "prohibited",
+        "commercialUse": "prohibited",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "link-only",
+        "note": "Do not mirror CaDI pages or bulk data. Preserve source URLs and retrieve/display only what the demo is permitted to reference."
+      },
+      "attribution": "Carbon Data Intelligence (CaDI), brought to you by Carbon Footprint Ltd. Link to the original public record.",
+      "notes": [
+        "CaDI describes itself as free to use/free to disclose, but Carbon Footprint Ltd's website terms restrict distribution and commercial use of website material.",
+        "Treat public visibility as evidence availability, not as an open-data licence.",
+        "Request permission before bulk harvesting or redistribution."
+      ],
+      "evidence": [
+        {
+          "url": "https://www.carbondi.com/",
+          "finding": "CaDI presents itself as an open-access public carbon-data platform."
+        },
+        {
+          "url": "https://www.carbonfootprint.com/termsandconditions.html",
+          "finding": "Website material is stated to be for personal use and not for distribution or commercial use."
+        }
+      ]
+    },
+    {
+      "id": "bdg2",
+      "name": "Building Data Genome Project 2",
+      "component": "dataset",
+      "canonicalUrl": "https://github.com/buds-lab/building-data-genome-project-2",
+      "upstreamPublisher": "Building Data Genome Project / BUDS Lab",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "CC-BY-SA-4.0",
+        "name": "Creative Commons Attribution-ShareAlike 4.0",
+        "url": "https://github.com/buds-lab/building-data-genome-project-2/blob/master/LICENSE"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/bdg2",
+        "note": "Small fixtures may be committed with attribution and ShareAlike compliance; prefer upstream download scripts for full data."
+      },
+      "attribution": "Building Data Genome Project 2 / BUDS Lab; licensed under CC-BY-SA-4.0. Preserve source and licence notices.",
+      "notes": [
+        "ShareAlike obligations apply to adaptations of the licensed work.",
+        "Use only small fixtures in this repository; do not vendor the full dataset."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/buds-lab/building-data-genome-project-2/blob/master/LICENSE",
+          "finding": "Repository licence file identifies Attribution-ShareAlike 4.0."
+        }
+      ]
+    },
+    {
+      "id": "aldiplusplus-code",
+      "name": "ALDI++",
+      "component": "code",
+      "canonicalUrl": "https://github.com/buds-lab/aldiplusplus",
+      "upstreamPublisher": "BUDS Lab",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/buds-lab/aldiplusplus/blob/main/LICENSE"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "code-only",
+        "note": "MIT applies to the ALDI++ repository code. It does not grant rights to the ASHRAE/Kaggle input data used by the pipeline."
+      },
+      "attribution": "ALDI++ / BUDS Lab, MIT License.",
+      "notes": [
+        "Keep the ALDI++ code licence separate from competition-data terms."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/buds-lab/aldiplusplus/blob/main/LICENSE",
+          "finding": "Repository code is MIT licensed."
+        }
+      ]
+    },
+    {
+      "id": "ashrae-kaggle-data",
+      "name": "ASHRAE Great Energy Predictor III competition data",
+      "component": "benchmark-data",
+      "canonicalUrl": "https://www.kaggle.com/competitions/ashrae-energy-prediction/data",
+      "upstreamPublisher": "ASHRAE / Kaggle",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "terms-restricted",
+        "name": "Subject to Competition Rules",
+        "url": "https://www.kaggle.com/competitions/ashrae-energy-prediction/rules"
+      },
+      "permissions": {
+        "use": "unclear",
+        "redistribution": "prohibited",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "Never commit Kaggle competition files. Users must obtain them through Kaggle under the competition rules."
+      },
+      "attribution": "ASHRAE Great Energy Predictor III, hosted on Kaggle. Users must obtain competition data from Kaggle under its rules.",
+      "notes": [
+        "Kaggle labels the dataset licence as 'Subject to Competition Rules'.",
+        "Do not infer redistribution rights from public notebooks or from BDG2 licensing."
+      ],
+      "evidence": [
+        {
+          "url": "https://www.kaggle.com/competitions/ashrae-energy-prediction/data",
+          "finding": "Kaggle identifies the data licence as Subject to Competition Rules."
+        }
+      ]
+    },
+    {
+      "id": "energy-eva-code",
+      "name": "Energy-EVA benchmark code",
+      "component": "code",
+      "canonicalUrl": "https://github.com/antgroup/Energy-EVA",
+      "upstreamPublisher": "Ant Group",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "Apache-2.0",
+        "name": "Apache License 2.0",
+        "url": "https://github.com/antgroup/Energy-EVA/blob/main/LICENSE"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "code-only",
+        "note": "Apache-2.0 applies to the repository code; upstream energy datasets require their own audit."
+      },
+      "attribution": "Energy-EVA, Ant Group; Apache-2.0 for repository code.",
+      "notes": [
+        "LEGAL.md contains a language-governance notice for code comments.",
+        "Do not treat the repository licence as a blanket licence for every upstream dataset."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/antgroup/Energy-EVA/blob/main/LICENSE",
+          "finding": "Repository code is Apache-2.0 licensed."
+        },
+        {
+          "url": "https://github.com/antgroup/Energy-EVA/blob/main/LEGAL.md",
+          "finding": "Repository includes a separate legal disclaimer."
+        }
+      ]
+    },
+    {
+      "id": "energy-eva-datasets",
+      "name": "Energy-EVA standardized energy datasets",
+      "component": "benchmark-data",
+      "canonicalUrl": "https://github.com/antgroup/Energy-EVA",
+      "upstreamPublisher": "Multiple upstream publishers",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "source-specific",
+        "name": "Source-specific upstream terms",
+        "url": "https://github.com/antgroup/Energy-EVA"
+      },
+      "permissions": {
+        "use": "unclear",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "Use Energy-EVA download/source links and audit the selected sub-dataset before packaging any bytes."
+      },
+      "attribution": "Energy-EVA plus the original upstream dataset publisher for the selected sub-dataset.",
+      "notes": [
+        "Energy-EVA aggregates/standardizes data from several third-party sources such as AEMO, ENTSO-E and others.",
+        "The Apache-2.0 code licence does not settle rights for standardized or upstream data."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/antgroup/Energy-EVA",
+          "finding": "README lists multiple third-party source datasets."
+        }
+      ]
+    },
+    {
+      "id": "hls-burn-scars",
+      "name": "IBM/NASA HLS Burn Scar Scenes",
+      "component": "dataset",
+      "canonicalUrl": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+      "upstreamPublisher": "IBM/NASA Geospatial",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0",
+        "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/hls-burn-scars",
+        "note": "Small attributed fixtures may be committed; prefer upstream download for full imagery."
+      },
+      "attribution": "HLS Burn Scar Scenes, IBM/NASA Geospatial, CC-BY-4.0; retain dataset citation and original source references.",
+      "notes": [
+        "Dataset card identifies the licence as CC-BY-4.0.",
+        "Underlying HLS imagery and MTBS provenance should remain cited."
+      ],
+      "evidence": [
+        {
+          "url": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+          "finding": "Dataset metadata lists CC-BY-4.0."
+        }
+      ]
+    },
+    {
+      "id": "sen1floods11",
+      "name": "Sen1Floods11",
+      "component": "dataset",
+      "canonicalUrl": "https://github.com/cloudtostreet/Sen1Floods11",
+      "upstreamPublisher": "Cloud to Street (now Floodbase)",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "unclear",
+        "name": "No licence identified in original repository",
+        "url": "https://github.com/cloudtostreet/Sen1Floods11/issues/18"
+      },
+      "permissions": {
+        "use": "unclear",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "Do not commit original Sen1Floods11 data or code until the original project's licence is clarified."
+      },
+      "attribution": "Sen1Floods11; Bonafilia, Tellman, Anderson and Issenberg (2020); Cloud to Street/Floodbase.",
+      "notes": [
+        "The original repository documents public download and citation but has an open issue specifically noting a missing LICENSE file.",
+        "A later third-party/mirror repository carrying Apache-2.0 is not treated as authority to relicense the original dataset."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/cloudtostreet/Sen1Floods11",
+          "finding": "Original repository provides dataset access and citation instructions."
+        },
+        {
+          "url": "https://github.com/cloudtostreet/Sen1Floods11/issues/18",
+          "finding": "Open issue reports that the original repository lacks a LICENSE file."
+        }
+      ]
+    },
+    {
+      "id": "sustainbench-code",
+      "name": "SustainBench code",
+      "component": "code",
+      "canonicalUrl": "https://github.com/sustainlab-group/sustainbench",
+      "upstreamPublisher": "Stanford Sustainability and AI Lab",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/sustainlab-group/sustainbench/blob/main/LICENSE"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "code-only",
+        "note": "MIT applies to repository code; dataset licensing is tracked separately."
+      },
+      "attribution": "SustainBench code, Stanford Sustainability and AI Lab, MIT License.",
+      "notes": [],
+      "evidence": [
+        {
+          "url": "https://github.com/sustainlab-group/sustainbench/blob/main/LICENSE",
+          "finding": "Repository code is MIT licensed."
+        }
+      ]
+    },
+    {
+      "id": "sustainbench-data",
+      "name": "SustainBench released raw datasets",
+      "component": "dataset",
+      "canonicalUrl": "https://github.com/sustainlab-group/sustainbench",
+      "upstreamPublisher": "Stanford Sustainability and AI Lab",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "CC-BY-SA-4.0",
+        "name": "Creative Commons Attribution-ShareAlike 4.0",
+        "url": "https://github.com/sustainlab-group/sustainbench"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/sustainbench",
+        "note": "The project states its released raw data are CC-BY-SA-4.0; still preserve task-specific upstream attribution and keep fixtures small."
+      },
+      "attribution": "SustainBench, Stanford Sustainability and AI Lab, CC-BY-SA-4.0 for released raw data; preserve task/source citations.",
+      "notes": [
+        "Individual tasks can incorporate third-party upstream sources; retain task-specific citations even when the released raw-data bundle is CC-BY-SA-4.0."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/sustainlab-group/sustainbench",
+          "finding": "README states released raw data are under CC-BY-SA 4.0."
+        }
+      ]
+    },
+    {
+      "id": "batterylife-code",
+      "name": "BatteryLife benchmark code",
+      "component": "code",
+      "canonicalUrl": "https://github.com/Ruifeng-Tan/BatteryLife",
+      "upstreamPublisher": "BatteryLife authors",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/Ruifeng-Tan/BatteryLife/blob/main/LICENSE"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "code-only",
+        "note": "Benchmark code is MIT licensed."
+      },
+      "attribution": "BatteryLife benchmark code, Ruifeng Tan et al., MIT License.",
+      "notes": [],
+      "evidence": [
+        {
+          "url": "https://github.com/Ruifeng-Tan/BatteryLife/blob/main/LICENSE",
+          "finding": "Repository code is MIT licensed."
+        }
+      ]
+    },
+    {
+      "id": "batterylife-raw",
+      "name": "BatteryLife Raw dataset",
+      "component": "dataset",
+      "canonicalUrl": "https://huggingface.co/datasets/Battery-Life/BatteryLife_Raw",
+      "upstreamPublisher": "Battery-Life",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "MIT",
+        "name": "MIT License",
+        "url": "https://huggingface.co/datasets/Battery-Life/BatteryLife_Raw"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/batterylife-raw",
+        "note": "Hugging Face metadata lists MIT. Keep fixtures small and preserve original sub-dataset citations because BatteryLife aggregates multiple battery datasets."
+      },
+      "attribution": "BatteryLife Raw dataset, Battery-Life project, MIT; preserve citations to the original constituent battery datasets.",
+      "notes": [
+        "The aggregate dataset contains multiple original battery datasets; provenance should retain constituent source names/citations."
+      ],
+      "evidence": [
+        {
+          "url": "https://huggingface.co/datasets/Battery-Life/BatteryLife_Raw",
+          "finding": "Hugging Face dataset metadata lists MIT."
+        }
+      ]
+    },
+    {
+      "id": "carbonplan-offsets-code",
+      "name": "CarbonPlan OffsetsDB processing code",
+      "component": "code",
+      "canonicalUrl": "https://github.com/carbonplan/offsets-db-data",
+      "upstreamPublisher": "CarbonPlan",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/carbonplan/offsets-db-data/blob/main/LICENSE"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "code-only",
+        "note": "MIT covers code only; OffsetsDB data has separate access terms."
+      },
+      "attribution": "CarbonPlan OffsetsDB processing code, MIT License.",
+      "notes": [],
+      "evidence": [
+        {
+          "url": "https://github.com/carbonplan/offsets-db-data/blob/main/LICENSE",
+          "finding": "Repository code is MIT licensed."
+        }
+      ]
+    },
+    {
+      "id": "carbonplan-offsets-data",
+      "name": "CarbonPlan OffsetsDB registry data",
+      "component": "registry-data",
+      "canonicalUrl": "https://github.com/carbonplan/offsets-db-data",
+      "upstreamPublisher": "CarbonPlan and upstream carbon registries",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "source-specific",
+        "name": "CarbonPlan Terms of Data Access plus registry-specific terms",
+        "url": "https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS"
+      },
+      "permissions": {
+        "use": "unclear",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "Do not vendor OffsetsDB snapshots until the selected registries' terms are audited. Use source links and processing scripts."
+      },
+      "attribution": "CarbonPlan OffsetsDB and the relevant upstream carbon registry/registries.",
+      "notes": [
+        "CarbonPlan states that it does not claim copyright in the factual offset data.",
+        "CarbonPlan also expressly warns that registries may claim rights and use may be subject to registry terms or require a licence."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS",
+          "finding": "Data access terms distinguish CarbonPlan's position from possible upstream registry rights."
+        }
+      ]
+    }
+  ]
+}

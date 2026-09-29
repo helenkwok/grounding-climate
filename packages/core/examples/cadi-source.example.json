@@ -70,11 +70,12 @@
         "retrievedAt": "2026-09-29T06:45:00Z"
       },
       "rights": {
-        "termsUri": "https://www.carbonfootprint.com/",
-        "redistribution": "unclear",
-        "commercialUse": "unclear",
+        "sourceManifestId": "cadi-public-web",
+        "termsUri": "https://www.carbonfootprint.com/termsandconditions.html",
+        "redistribution": "prohibited",
+        "commercialUse": "prohibited",
         "derivedData": "unclear",
-        "attribution": "Carbon Footprint Ltd / CaDI; retain the original source URL."
+        "attribution": "Carbon Data Intelligence (CaDI), brought to you by Carbon Footprint Ltd; retain the original public record URL."
       }
     }
   ],

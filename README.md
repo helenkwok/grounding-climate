@@ -23,4 +23,19 @@ Development roadmap: see [#17](https://github.com/helenkwok/climatechain/issues/
 - [#8](https://github.com/helenkwok/climatechain/issues/8) — provenance/attestation lifecycle
 - [#7](https://github.com/helenkwok/climatechain/issues/7) — capability-aware WebMCP surface
 
+## External data policy
+
 Raw external datasets and reports are not committed unless redistribution rights are explicit.
+
+The authoritative project audit is [`sources/rights-manifest.json`](sources/rights-manifest.json). Unknown rights fail closed: use the upstream source, but do not redistribute its bytes.
+
+- [Source-rights policy](docs/source-rights.md)
+- [Generated source attribution](docs/source-attribution.md)
+
+Run:
+
+```bash
+npm run check
+```
+
+This builds/tests the core domain model, validates the source-rights manifest, rejects unauthorized content under `data/external/`, and checks that generated attribution is current.
