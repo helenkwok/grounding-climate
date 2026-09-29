@@ -52,7 +52,7 @@ fn negotiates_x25519_mlkem768_locally() {
         let (certificate, private_key) = self_signed_certificate();
 
         let mut acceptor =
-            SslAcceptor::mozilla_intermediate(SslMethod::tls()).unwrap();
+            SslAcceptor::mozilla_intermediate_v5(SslMethod::tls()).unwrap();
         acceptor.set_private_key(&private_key).unwrap();
         acceptor.set_certificate(&certificate).unwrap();
         acceptor.check_private_key().unwrap();
