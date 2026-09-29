@@ -9,11 +9,25 @@ import urllib.request
 import zipfile
 from pathlib import Path
 
-RECORD = "19688272"
-DOI = "10.5281/zenodo.19688272"
-FILES = {
-    "Life labels.zip": "cd0cc01a7211972be45e8e38d86cdeca",
-    "CALB.zip": "2b1006e96e0ca42765a732060f964687",
+RELEASES = {
+    "v4": {
+        "record": "14969822",
+        "doi": "10.5281/zenodo.14969822",
+        "version": "v4",
+        "files": {
+            "Life labels.zip": "75915ef17f86bf295ab272409a1317ea",
+            "CALB.zip": "b16c5fefced9dd46c320dcb66cb1d08b",
+        },
+    },
+    "v11": {
+        "record": "19688272",
+        "doi": "10.5281/zenodo.19688272",
+        "version": "v11",
+        "files": {
+            "Life labels.zip": "cd0cc01a7211972be45e8e38d86cdeca",
+            "CALB.zip": "2b1006e96e0ca42765a732060f964687",
+        },
+    },
 }
 DEFAULT_BATTERY = "CALB_0_B182.pkl"
 
@@ -24,10 +38,10 @@ def md5(path: Path) -> str:
             h.update(chunk)
     return h.hexdigest()
 
-def download(name: str, destination: Path) -> None:
+def download(record: str, name: str, destination: Path) -> None:
     url = (
         "https://zenodo.org/records/"
-        + RECORD
+        + record
         + "/files/"
         + urllib.parse.quote(name)
         + "?download=1"
@@ -62,7 +76,7 @@ def max_finite(values):
     finite = [float(v) for v in values if v is not None and float(v) == float(v)]
     return max(finite) if finite else None
 
-def export_history(pickle_path: Path, output_path: Path) -> dict:
+def export_history(pickle_path: Path, output_path: Path, release: dict) -> dict:
     with pickle_path.open("rb") as f:
         data = pickle.load(f)
 
@@ -99,10 +113,10 @@ def export_history(pickle_path: Path, output_path: Path) -> dict:
         "nominalCapacityAh": float(nominal),
         "cycles": exported,
         "source": {
-            "uri": "https://zenodo.org/records/" + RECORD,
+            "uri": "https://zenodo.org/records/" + release["record"],
             "sourceManifestId": "batterylife-processed",
             "dataset": "BatteryLife CALB",
-            "datasetVersion": "v11",
+            "datasetVersion": release["version"],
         },
     }
     output_path.write_text(json.dumps(history, indent=2) + "\n", encoding="utf-8")
@@ -110,20 +124,26 @@ def export_history(pickle_path: Path, output_path: Path) -> dict:
 
 def main():
     if len(sys.argv) < 2:
-        raise SystemExit("Usage: prepare-batterylife-calb.py <output-dir> [battery-file]")
+        raise SystemExit(
+            "Usage: prepare-batterylife-calb.py <output-dir> [release=v11] [battery-file]"
+        )
 
     root = Path(sys.argv[1]).resolve()
-    battery_file = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_BATTERY
+    release_name = sys.argv[2] if len(sys.argv) > 2 else "v11"
+    if release_name not in RELEASES:
+        raise RuntimeError("Unknown BatteryLife release: " + release_name)
+    release = RELEASES[release_name]
+    battery_file = sys.argv[3] if len(sys.argv) > 3 else DEFAULT_BATTERY
     root.mkdir(parents=True, exist_ok=True)
     downloads = root / "downloads"
     extracted = root / "extracted"
     downloads.mkdir(exist_ok=True)
     extracted.mkdir(exist_ok=True)
 
-    for name, expected_md5 in FILES.items():
+    for name, expected_md5 in release["files"].items():
         path = downloads / name
         if not path.exists():
-            download(name, path)
+            download(release["record"], name, path)
         actual = md5(path)
         if actual != expected_md5:
             raise RuntimeError(
@@ -147,17 +167,21 @@ def main():
     )
 
     battery_path = find_file(extracted / "CALB", battery_file)
-    history = export_history(battery_path, root / "battery-history.json")
+    history = export_history(
+        battery_path,
+        root / "battery-history.json",
+        release,
+    )
 
     manifest = {
         "schemaVersion": "climatechain.batterylife-prepared/0.1",
         "source": {
-            "zenodoRecord": "https://zenodo.org/records/" + RECORD,
-            "doi": DOI,
-            "version": "v11",
+            "zenodoRecord": "https://zenodo.org/records/" + release["record"],
+            "doi": release["doi"],
+            "version": release["version"],
             "files": [
                 {"name": name, "md5": checksum}
-                for name, checksum in FILES.items()
+                for name, checksum in release["files"].items()
             ],
         },
         "labelCount": len(labels),
