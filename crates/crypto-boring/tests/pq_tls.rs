@@ -8,7 +8,7 @@ use boring::hash::MessageDigest;
 use boring::pkey::{PKey, Private};
 use boring::rsa::Rsa;
 use boring::ssl::{
-    SslAcceptor, SslConnector, SslMethod, SslVerifyMode,
+    SslAcceptor, SslConnector, SslMethod, SslVerifyMode, SslVersion,
 };
 use boring::x509::{X509NameBuilder, X509};
 
@@ -57,6 +57,12 @@ fn negotiates_x25519_mlkem768_locally() {
         acceptor.set_certificate(&certificate).unwrap();
         acceptor.check_private_key().unwrap();
         acceptor
+            .set_min_proto_version(Some(SslVersion::TLS1_3))
+            .unwrap();
+        acceptor
+            .set_max_proto_version(Some(SslVersion::TLS1_3))
+            .unwrap();
+        acceptor
             .set_curves_list("X25519MLKEM768")
             .unwrap();
         let acceptor = acceptor.build();
@@ -74,6 +80,12 @@ fn negotiates_x25519_mlkem768_locally() {
 
     let mut connector = SslConnector::builder(SslMethod::tls()).unwrap();
     connector.set_verify(SslVerifyMode::NONE);
+    connector
+        .set_min_proto_version(Some(SslVersion::TLS1_3))
+        .unwrap();
+    connector
+        .set_max_proto_version(Some(SslVersion::TLS1_3))
+        .unwrap();
     connector
         .set_curves_list("X25519MLKEM768")
         .unwrap();
