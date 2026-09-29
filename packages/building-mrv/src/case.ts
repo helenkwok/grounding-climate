@@ -87,7 +87,15 @@ export function buildBuildingMrvCase(
       publisher: "Building Data Genome Project / BUDS Lab",
       retrievedAt: dataset.source.preparedAt,
     },
-    integrity: digestOrUndefined(dataset.source.meterDigest),
+    integrity: digestOrUndefined(
+      dataset.source.meterSeriesDigest ?? dataset.source.meterDigest,
+    ),
+    extensions: {
+      preparedMeterFileDigest:
+        dataset.source.meterDigest.algorithm +
+        ":" +
+        dataset.source.meterDigest.value,
+    },
     rights: {
       sourceManifestId: "bdg2",
       licence: "CC-BY-SA-4.0",
