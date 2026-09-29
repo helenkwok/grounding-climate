@@ -12,10 +12,17 @@ import {
   runBuildingMrv,
 } from "./analysis.js";
 import {
+  injectTamper,
+} from "./anomaly.js";
+import {
+  digestMeterSeries,
+} from "./integrity.js";
+import {
   buildBuildingMrvCase,
 } from "./case.js";
 import {
   loadPreparedBuildingDataset,
+  verifyPreparedArtifactDigests,
 } from "./prepared.js";
 import type {
   GridEmissionFactor,
@@ -32,6 +39,8 @@ interface CliArgs {
   factorRetrievedAt: string;
   anomalyThreshold: number;
   trainingFraction: number;
+  tamperIndex?: number;
+  tamperMultiplier: number;
 }
 
 function argsFrom(argv: string[]): CliArgs {
@@ -42,6 +51,7 @@ function argsFrom(argv: string[]): CliArgs {
     factorRetrievedAt: new Date().toISOString(),
     anomalyThreshold: 6,
     trainingFraction: 0.8,
+    tamperMultiplier: 20,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -78,6 +88,12 @@ function argsFrom(argv: string[]): CliArgs {
     } else if (key === "--training-fraction") {
       args.trainingFraction = Number(value);
       index += 1;
+    } else if (key === "--tamper-index") {
+      args.tamperIndex = Number(value);
+      index += 1;
+    } else if (key === "--tamper-multiplier") {
+      args.tamperMultiplier = Number(value);
+      index += 1;
     } else if (key === "--help") {
       console.log(
         [
@@ -92,6 +108,8 @@ function argsFrom(argv: string[]): CliArgs {
           "  --factor-retrieved-at <iso>    Retrieval timestamp",
           "  --training-fraction <0..1>     Temporal training share (default 0.8)",
           "  --anomaly-threshold <z>        Robust residual threshold (default 6)",
+          "  --tamper-index <row>            Deliberately modify one row after integrity verification",
+          "  --tamper-multiplier <n>         Demo tamper multiplier (default 20)",
         ].join("\n"),
       );
       process.exit(0);
@@ -141,12 +159,58 @@ async function main() {
       readFile(path.join(args.dir, "source.json"), "utf8"),
     ]);
 
-  const dataset = loadPreparedBuildingDataset({
+  const crypto = new InMemoryNodeCryptoProvider();
+  const preparedInput = {
     meterCsv,
     ...(weatherCsv ? { weatherCsv } : {}),
     metadataJson,
     sourceJson,
-  });
+  };
+  const sourceIntegrity = await verifyPreparedArtifactDigests(
+    preparedInput,
+    crypto,
+  );
+  if (!sourceIntegrity.valid) {
+    throw new Error(
+      "Prepared BDG2 source integrity check failed: " +
+        JSON.stringify(sourceIntegrity),
+    );
+  }
+
+  const loadedDataset = loadPreparedBuildingDataset(preparedInput);
+  const canonicalMeterDigest = await digestMeterSeries(
+    loadedDataset.meter,
+    crypto,
+  );
+  let dataset = {
+    ...loadedDataset,
+    source: {
+      ...loadedDataset.source,
+      meterSeriesDigest: canonicalMeterDigest,
+    },
+  };
+
+  if (args.tamperIndex !== undefined) {
+    if (!Number.isInteger(args.tamperIndex)) {
+      throw new Error("--tamper-index must be an integer.");
+    }
+    const tamperedMeter = injectTamper(
+      dataset.meter,
+      args.tamperIndex,
+      args.tamperMultiplier,
+    );
+    dataset = {
+      ...dataset,
+      meter: tamperedMeter,
+      source: {
+        ...dataset.source,
+        meterSeriesDigest: await digestMeterSeries(
+          tamperedMeter,
+          crypto,
+        ),
+      },
+    };
+  }
 
   const factor: GridEmissionFactor = {
     id: "factor:user-grid-electricity",
@@ -174,7 +238,6 @@ async function main() {
     analysis,
   });
 
-  const crypto = new InMemoryNodeCryptoProvider();
   const evidence = await createEvidenceRoot(
     climateCase,
     [
@@ -190,6 +253,14 @@ async function main() {
     caseId: climateCase.caseId,
     primaryUser: "building/facility energy manager",
     building: dataset.metadata,
+    sourceIntegrity,
+    demoTamper:
+      args.tamperIndex === undefined
+        ? null
+        : {
+            index: args.tamperIndex,
+            multiplier: args.tamperMultiplier,
+          },
     baseline: {
       method: analysis.baseline.method,
       split: analysis.baseline.split,
