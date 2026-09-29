@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - name: Install processed-data decoder dependency
+        run: python -m pip install --disable-pip-version-check numpy
       - name: Prepare pinned BatteryLife v11 CALB subset
         run: python scripts/prepare-batterylife-calb.py /tmp/batterylife
       - name: Build ClimateChain workspaces
