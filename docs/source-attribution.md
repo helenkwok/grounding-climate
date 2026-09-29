@@ -6,6 +6,7 @@ This table records the repository's current reuse decision; it is not legal advi
 
 | Source | Component | Licence / terms | Redistribution | Repository policy |
 | --- | --- | --- | --- | --- |
+| Active power load dataset - IEX data | dataset | CC-BY-4.0 | allowed | download-from-upstream |
 | ALDI++ | code | MIT | allowed | code-only |
 | ASHRAE Great Energy Predictor III competition data | benchmark-data | Subject to Competition Rules | prohibited | download-from-upstream |
 | BatteryLife benchmark code | code | MIT | allowed | code-only |
@@ -24,6 +25,14 @@ This table records the repository's current reuse decision; it is not legal advi
 | U.S. EPA eGRID Summary Tables 2016 | dataset | U.S. federal government publication / EPA site terms | unclear | link-only |
 
 ## Attributions
+
+### Active power load dataset - IEX data (dataset)
+
+Veeramsetty, Salkuti, Nikitha and Siddartha, Active power load dataset - IEX data, Mendeley Data v1, DOI 10.17632/jxm8d4w4cv.1, CC-BY-4.0.
+
+- Source: https://data.mendeley.com/datasets/jxm8d4w4cv/1
+- Terms/licence: https://data.mendeley.com/datasets/jxm8d4w4cv/1
+- Repository policy: Use the original Mendeley or Energy-EVA standardized source at runtime. Do not vendor the full dataset into ClimateChain.
 
 ### ALDI++ (code)
 

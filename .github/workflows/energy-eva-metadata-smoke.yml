@@ -1,0 +1,22 @@
+name: Energy-EVA metadata smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "packages/energy-forecast/**"
+      - "scripts/inspect-energy-eva-zenodo.mjs"
+      - ".github/workflows/energy-eva-metadata-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  zenodo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/inspect-energy-eva-zenodo.mjs

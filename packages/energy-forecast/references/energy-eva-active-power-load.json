@@ -1,0 +1,110 @@
+{
+  "dataset": "active_power_load",
+  "scenario": "load",
+  "upstreamData": {
+    "name": "Active power load dataset - IEX data",
+    "source": "https://data.mendeley.com/datasets/jxm8d4w4cv/1",
+    "doi": "10.17632/jxm8d4w4cv.1",
+    "license": "CC-BY-4.0",
+    "energyEvaZenodo": "https://zenodo.org/records/17099628"
+  },
+  "energyEva": {
+    "repository": "https://github.com/antgroup/Energy-EVA",
+    "horizon": 48,
+    "frequency": "30-minute standardized Energy-EVA task",
+    "rollingWindows": 5,
+    "contextLength": 512,
+    "metric": "LOAD_ACC",
+    "dummySemantics": "copy the immediately preceding horizon-length target values",
+    "sourceFiles": {
+      "task": "time_series_portal/benchmark_tasks.py",
+      "dummy": "time_series_portal/evaluation_methods/dummy_methods.py",
+      "metric": "time_series_portal/evaluation_utils/metric_extensions.py",
+      "dummyResults": "evaluation_results/load/dummy_model.csv",
+      "energyTsResults": "evaluation_results/load/EnergyTS_V3.0.csv"
+    },
+    "publishedResults": [
+      {
+        "model": "dummy_model",
+        "cutoff": -240,
+        "loadAcc": 0.6541815764756919,
+        "mae": 986.5416870117188,
+        "mape": 0.1751946955919265,
+        "rmse": 1248.2540283203125
+      },
+      {
+        "model": "dummy_model",
+        "cutoff": -192,
+        "loadAcc": 0.6024020617190764,
+        "mae": 968.2142944335938,
+        "mape": 0.1883271634578704,
+        "rmse": 1294.0782470703125
+      },
+      {
+        "model": "dummy_model",
+        "cutoff": -144,
+        "loadAcc": 0.6838674485620156,
+        "mae": 983.9984130859376,
+        "mape": 0.2025707364082336,
+        "rmse": 1233.4937744140625
+      },
+      {
+        "model": "dummy_model",
+        "cutoff": -96,
+        "loadAcc": 0.6196193054631517,
+        "mae": 911.0060424804688,
+        "mape": 0.186459794640541,
+        "rmse": 1172.994384765625
+      },
+      {
+        "model": "dummy_model",
+        "cutoff": -48,
+        "loadAcc": 0.6750032319520225,
+        "mae": 1105.62353515625,
+        "mape": 0.1777740269899368,
+        "rmse": 1396.9505615234375
+      },
+      {
+        "model": "EnergyTS_V3.0",
+        "cutoff": -240,
+        "loadAcc": 0.7978871321314731,
+        "mae": 607.1160888671875,
+        "mape": 0.1026888787746429,
+        "rmse": 752.25732421875
+      },
+      {
+        "model": "EnergyTS_V3.0",
+        "cutoff": -192,
+        "loadAcc": 0.7593642888617513,
+        "mae": 576.2540893554688,
+        "mape": 0.1135097667574882,
+        "rmse": 818.8121948242188
+      },
+      {
+        "model": "EnergyTS_V3.0",
+        "cutoff": -144,
+        "loadAcc": 0.7745632887957098,
+        "mae": 699.3442993164062,
+        "mape": 0.1260078847408294,
+        "rmse": 884.6475219726562
+      },
+      {
+        "model": "EnergyTS_V3.0",
+        "cutoff": -96,
+        "loadAcc": 0.7573271229799216,
+        "mae": 707.6145629882812,
+        "mape": 0.1272730380296707,
+        "rmse": 895.053466796875
+      },
+      {
+        "model": "EnergyTS_V3.0",
+        "cutoff": -48,
+        "loadAcc": 0.6811576841898017,
+        "mae": 1158.734375,
+        "mape": 0.1995498985052108,
+        "rmse": 1495.281005859375
+      }
+    ],
+    "reproducedByClimateChain": false
+  }
+}
