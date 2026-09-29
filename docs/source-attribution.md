@@ -21,6 +21,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | Sen1Floods11 | dataset | No licence identified in original repository | unclear | download-from-upstream |
 | SustainBench code | code | MIT | allowed | code-only |
 | SustainBench released raw datasets | dataset | CC-BY-SA-4.0 | allowed | redistributable |
+| U.S. EPA eGRID Summary Tables 2016 | dataset | U.S. federal government publication / EPA site terms | unclear | link-only |
 
 ## Attributions
 
@@ -143,4 +144,12 @@ SustainBench, Stanford Sustainability and AI Lab, CC-BY-SA-4.0 for released raw 
 - Source: https://github.com/sustainlab-group/sustainbench
 - Terms/licence: https://github.com/sustainlab-group/sustainbench
 - Repository policy: The project states its released raw data are CC-BY-SA-4.0; still preserve task-specific upstream attribution and keep fixtures small.
+
+### U.S. EPA eGRID Summary Tables 2016 (dataset)
+
+U.S. EPA, eGRID Summary Tables 2016, Table 1 Subregion Output Emission Rates.
+
+- Source: https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt
+- Terms/licence: https://www.epa.gov/web-policies-and-procedures
+- Repository policy: Use the published factor values with source attribution; do not mirror the EPA publication into ClimateChain.
 
