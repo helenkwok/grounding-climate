@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "climatechain.building-mrv-smoke/0.1",
+  "measuredAt": "2026-09-29T11:38:11Z",
+  "workflowRunId": 36562899649,
+  "workflowUrl": "https://github.com/helenkwok/climatechain/actions/runs/36562899649",
+  "headCommit": "aa3b55696a0da6e2ca1e1d5be1e3150ef7ef8e4d",
+  "source": {
+    "dataset": "Building Data Genome Project 2 v1.0",
+    "doi": "10.5281/zenodo.3887306",
+    "archive": "buds-lab/building-data-genome-project-2-v1.0.zip",
+    "archiveMd5": "44393dc4cf61e84dec105e955368c890"
+  },
+  "building": {
+    "buildingId": "Bear_assembly_Angel",
+    "siteId": "Bear",
+    "primarySpaceUsage": "Entertainment/public assembly",
+    "floorAreaM2": 22117
+  },
+  "subset": {
+    "meterRows": 2160,
+    "weatherRows": 2159,
+    "sourceIntegrity": {
+      "valid": true,
+      "meter": true,
+      "metadata": true,
+      "weather": true
+    }
+  },
+  "baseline": {
+    "method": "hour-of-week-mean",
+    "split": {
+      "trainingEndIndex": 1728,
+      "trainingRows": 1728,
+      "testRows": 432,
+      "trainingStart": "2016-01-01 00:00:00",
+      "trainingEnd": "2016-03-12 23:00:00",
+      "testStart": "2016-03-13 00:00:00",
+      "testEnd": "2016-03-30 23:00:00"
+    },
+    "metrics": {
+      "rmsle": 0.34198157328314377,
+      "mae": 70.88693563341745
+    }
+  },
+  "anomalyCheck": {
+    "method": "baseline-residual-mad",
+    "threshold": 6,
+    "flaggedCount": 3,
+    "flaggedEnergyKWh": 0
+  },
+  "tamperSmoke": {
+    "index": 1728,
+    "timestamp": "2016-03-13 00:00:00",
+    "originalValue": 295.3,
+    "multiplier": 20,
+    "tamperedValue": 5906,
+    "flaggedAfterTamper": true,
+    "cleanFlaggedCount": 3,
+    "tamperedFlaggedCount": 4,
+    "cleanDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "tamperedDigest": {
+      "algorithm": "SHA-256",
+      "value": "VCPYrmOehcTmKYZhZ8E_n3WXyDmc07K0aoPYqDV_-_k"
+    },
+    "digestChanged": true
+  },
+  "caveats": [
+    "This smoke does not apply a grid-emission factor because the anonymised BDG2 site label is not sufficient to choose a defensible geographic factor automatically.",
+    "The three clean-run flags are zero-energy residual anomalies; flaggedEnergyKWh is therefore zero.",
+    "The deliberately modified holdout row is a tamper demonstration, not a claim that the source dataset was maliciously altered."
+  ]
+}
