@@ -192,9 +192,9 @@ The Rust test creates a local self-signed TLS server and client, forces both end
 X25519MLKEM768
 ```
 
-using `set_curves_list()`, completes the handshake, exchanges an application byte, then checks `curve_name()` on both connections.
+using `set_curves_list()`, completes the handshake, exchanges an application byte, then checks the negotiated BoringSSL group ID (`0x11ec`) through `SslRef::curve()` on both connections.
 
-The test therefore checks the **negotiated key-exchange group**, not merely that the configuration string was accepted.
+The test therefore checks the **negotiated key-exchange group**, not merely that the configuration string was accepted. `boring` 5.2.0 can return no textual `curve_name()` for this hybrid group, so the test deliberately asserts the BoringSSL/IANA wire group ID instead.
 
 ## Browser/WebMCP boundary
 
