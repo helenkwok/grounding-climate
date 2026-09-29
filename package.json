@@ -12,6 +12,8 @@
     "check:rights": "node scripts/check-source-rights.mjs",
     "sources:attribution": "node scripts/render-source-attribution.mjs",
     "sources:attribution:check": "node scripts/render-source-attribution.mjs --check",
-    "check": "npm run build && npm run test && npm run check:rights && npm run sources:attribution:check"
+    "check": "npm run build && npm run test && npm run check:rights && npm run sources:attribution:check",
+    "building:prepare": "node scripts/prepare-bdg2-subset.mjs",
+    "building:analyze": "npm run analyze --workspace @climatechain/building-mrv --"
   }
 }
