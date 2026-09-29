@@ -151,7 +151,7 @@
       "id": "bdg2",
       "name": "Building Data Genome Project 2",
       "component": "dataset",
-      "canonicalUrl": "https://github.com/buds-lab/building-data-genome-project-2",
+      "canonicalUrl": "https://zenodo.org/records/3887306",
       "upstreamPublisher": "Building Data Genome Project / BUDS Lab",
       "retrievedAt": "2026-09-29",
       "licence": {
@@ -170,17 +170,23 @@
       "repository": {
         "mode": "redistributable",
         "path": "data/external/bdg2",
-        "note": "Small fixtures may be committed with attribution and ShareAlike compliance; prefer upstream download scripts for full data."
+        "note": "Small deterministic prepared subsets may be committed under data/external/bdg2 with attribution and ShareAlike compliance; the full v1.0 archive stays upstream on Zenodo."
       },
       "attribution": "Building Data Genome Project 2 / BUDS Lab; licensed under CC-BY-SA-4.0. Preserve source and licence notices.",
       "notes": [
         "ShareAlike obligations apply to adaptations of the licensed work.",
-        "Use only small fixtures in this repository; do not vendor the full dataset."
+        "The canonical v1.0 data release is Zenodo DOI 10.5281/zenodo.3887306.",
+        "The GitHub data paths are Git LFS pointers; preparation must fetch real data from the upstream release rather than treating pointer files as meter data.",
+        "Do not vendor the full ~595 MB release archive in ClimateChain."
       ],
       "evidence": [
         {
           "url": "https://github.com/buds-lab/building-data-genome-project-2/blob/master/LICENSE",
           "finding": "Repository licence file identifies Attribution-ShareAlike 4.0."
+        },
+        {
+          "url": "https://zenodo.org/records/3887306",
+          "finding": "Pinned BDG2 v1.0 release used by ClimateChain; archive buds-lab/building-data-genome-project-2-v1.0.zip with published MD5 44393dc4cf61e84dec105e955368c890."
         }
       ]
     },
