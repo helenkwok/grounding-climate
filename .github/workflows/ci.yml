@@ -37,4 +37,5 @@ jobs:
             ~/.cargo/git
             target
           key: ${{ runner.os }}-rust-1.85-${{ hashFiles('Cargo.toml', 'crates/**/Cargo.toml') }}
+          save-always: true
       - run: cargo test --workspace
