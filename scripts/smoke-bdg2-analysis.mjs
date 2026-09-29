@@ -6,6 +6,8 @@ import {
 } from "@climatechain/crypto-node";
 import {
   detectResidualAnomalies,
+  digestMeterSeries,
+  injectTamper,
   loadPreparedBuildingDataset,
   runHourOfWeekBaseline,
   verifyPreparedArtifactDigests,
@@ -65,6 +67,44 @@ const anomalies = detectResidualAnomalies(
   6,
 );
 
+const alreadyFlagged = new Set(
+  anomalies.points
+    .filter((point) => point.flagged)
+    .map((point) => point.timestamp),
+);
+const tamperIndex = dataset.meter.findIndex(
+  (point, index) =>
+    index >= baseline.split.trainingEndIndex &&
+    point.value > 0 &&
+    !alreadyFlagged.has(point.timestamp),
+);
+if (tamperIndex < 0) {
+  throw new Error("Could not find a non-zero unflagged holdout row for tamper smoke.");
+}
+
+const tamperedMeter = injectTamper(
+  dataset.meter,
+  tamperIndex,
+  20,
+);
+const tamperedBaseline = runHourOfWeekBaseline(
+  tamperedMeter,
+  0.8,
+);
+const tamperedAnomalies = detectResidualAnomalies(
+  tamperedMeter,
+  tamperedBaseline,
+  6,
+);
+const cleanDigest = await digestMeterSeries(
+  dataset.meter,
+  crypto,
+);
+const tamperedDigest = await digestMeterSeries(
+  tamperedMeter,
+  crypto,
+);
+
 console.log(
   "CLIMATECHAIN_BDG2_SMOKE=" +
     JSON.stringify({
@@ -87,6 +127,22 @@ console.log(
         threshold: anomalies.threshold,
         flaggedCount: anomalies.flaggedCount,
         flaggedEnergyKWh: anomalies.flaggedEnergyKWh,
+      },
+      tamperSmoke: {
+        index: tamperIndex,
+        timestamp: dataset.meter[tamperIndex]?.timestamp,
+        originalValue: dataset.meter[tamperIndex]?.value,
+        multiplier: 20,
+        tamperedValue: tamperedMeter[tamperIndex]?.value,
+        flaggedAfterTamper:
+          tamperedAnomalies.points[tamperIndex]?.flagged ?? false,
+        cleanFlaggedCount: anomalies.flaggedCount,
+        tamperedFlaggedCount: tamperedAnomalies.flaggedCount,
+        cleanDigest,
+        tamperedDigest,
+        digestChanged:
+          cleanDigest.algorithm !== tamperedDigest.algorithm ||
+          cleanDigest.value !== tamperedDigest.value,
       },
     }),
 );
