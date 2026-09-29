@@ -69,6 +69,12 @@ export function buildBuildingMrvCase(
   } = options;
 
   const anomalyFailed = analysis.anomalies.flaggedCount > 0;
+  const firstMeter = dataset.meter[0];
+  const lastMeter = dataset.meter.at(-1);
+  if (!firstMeter || !lastMeter) {
+    throw new Error("Building MRV case requires a non-empty meter series.");
+  }
+
   const meterEvidence: Evidence = {
     nodeType: "evidence",
     id: "evidence:bdg2-electricity",
@@ -94,8 +100,8 @@ export function buildBuildingMrvCase(
         "Building Data Genome Project 2 / BUDS Lab, CC-BY-SA-4.0.",
     },
     temporalCoverage: {
-      start: dataset.meter[0]?.timestamp,
-      end: dataset.meter.at(-1)?.timestamp,
+      start: firstMeter.timestamp,
+      end: lastMeter.timestamp,
     },
   };
 
@@ -138,8 +144,8 @@ export function buildBuildingMrvCase(
           },
         },
         temporalScope: {
-          start: dataset.meter[0]?.timestamp,
-          end: dataset.meter.at(-1)?.timestamp,
+          start: firstMeter.timestamp,
+          end: lastMeter.timestamp,
         },
         boundary: {
           scopes: ["Scope 2"],
@@ -243,7 +249,9 @@ export function buildBuildingMrvCase(
         value: factor.valueKgCo2ePerKwh,
         unit: "kgCO2e/kWh",
         geography: factor.geography,
-        effectivePeriod: factor.effectivePeriod,
+        ...(factor.effectivePeriod
+          ? { effectivePeriod: factor.effectivePeriod }
+          : {}),
         sourceOrganisation: factor.sourceOrganisation,
         sourceDocument: factor.sourceDocument ?? factor.sourceUri,
         method: "location-based",
