@@ -11,7 +11,7 @@
   "energyEva": {
     "repository": "https://github.com/antgroup/Energy-EVA",
     "horizon": 48,
-    "frequency": "30-minute standardized Energy-EVA task",
+    "frequency": "hourly standardized Energy-EVA task",
     "rollingWindows": 5,
     "contextLength": 512,
     "metric": "LOAD_ACC",
