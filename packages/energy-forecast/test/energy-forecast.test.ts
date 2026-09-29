@@ -22,21 +22,21 @@ import type {
   EnergySeries,
 } from "../src/index.js";
 
-function halfHourlySeries(days = 20): EnergySeries {
+function hourlySeries(days = 30): EnergySeries {
   const start = Date.UTC(2025, 0, 1, 0, 0, 0);
-  const count = days * 48;
+  const count = days * 24;
   return {
     itemId: "active-power-test",
     unit: "MW",
-    stepMinutes: 30,
+    stepMinutes: 60,
     points: Array.from({ length: count }, (_, index) => {
-      const halfHour = index % 48;
-      const day = Math.floor(index / 48);
+      const hour = index % 24;
+      const day = Math.floor(index / 24);
       return {
-        timestamp: new Date(start + index * 30 * 60 * 1000)
+        timestamp: new Date(start + index * 60 * 60 * 1000)
           .toISOString()
           .replace(".000Z", "Z"),
-        value: 1000 + halfHour * 10 + (day % 7) * 5,
+        value: 1000 + hour * 10 + (day % 7) * 5,
       };
     }),
     source: {
@@ -57,7 +57,7 @@ const policy: BoundedActionPolicy = {
 };
 
 test("Energy-EVA dummy baseline copies the immediately preceding horizon", () => {
-  const series = halfHourlySeries();
+  const series = hourlySeries();
   const result = runEnergyEvaDummy({
     series,
     horizon: 48,
@@ -76,7 +76,7 @@ test("Energy-EVA dummy baseline copies the immediately preceding horizon", () =>
 });
 
 test("Energy-EVA metric implementation produces finite LOAD_ACC, MAE and RMSE", () => {
-  const series = halfHourlySeries();
+  const series = hourlySeries();
   const result = runEnergyEvaDummy({
     series,
     horizon: 48,
@@ -99,7 +99,7 @@ test("Energy-EVA metric implementation produces finite LOAD_ACC, MAE and RMSE", 
 
 test("bounded action policy caps MWh and requires approval at threshold", async () => {
   const provider = new InMemoryNodeCryptoProvider();
-  const digest = await digestEnergySeries(halfHourlySeries(), provider);
+  const digest = await digestEnergySeries(hourlySeries(), provider);
 
   const decision = evaluateBoundedAction(
     {
@@ -120,7 +120,7 @@ test("bounded action policy caps MWh and requires approval at threshold", async 
 
 test("bounded action policy refuses low confidence and unlisted counterparty", async () => {
   const provider = new InMemoryNodeCryptoProvider();
-  const digest = await digestEnergySeries(halfHourlySeries(), provider);
+  const digest = await digestEnergySeries(hourlySeries(), provider);
 
   const decision = evaluateBoundedAction(
     {
@@ -141,7 +141,7 @@ test("bounded action policy refuses low confidence and unlisted counterparty", a
 
 test("kill switch refuses an otherwise valid action", async () => {
   const provider = new InMemoryNodeCryptoProvider();
-  const digest = await digestEnergySeries(halfHourlySeries(), provider);
+  const digest = await digestEnergySeries(hourlySeries(), provider);
 
   const decision = evaluateBoundedAction(
     {
@@ -160,7 +160,7 @@ test("kill switch refuses an otherwise valid action", async () => {
 
 test("input change produces a different forecast evidence root", async () => {
   const provider = new InMemoryNodeCryptoProvider();
-  const clean = halfHourlySeries();
+  const clean = hourlySeries();
   const cleanForecast = runEnergyEvaDummy({
     series: clean,
     horizon: 48,
@@ -218,7 +218,7 @@ test("input change produces a different forecast evidence root", async () => {
 
 test("Energy WebMCP tools use the same forecast and policy service", async () => {
   const provider = new InMemoryNodeCryptoProvider();
-  const series = halfHourlySeries();
+  const series = hourlySeries();
   const service = new EnergyForecastService({
     caseId: "case:energy:test",
     series,

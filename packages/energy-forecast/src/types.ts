@@ -84,3 +84,17 @@ export interface BoundedActionDecision {
   reasons: string[];
   request: BoundedActionRequest;
 }
+
+export interface EnergyEvaBenchmarkCutoffResult {
+  cutoff: number;
+  horizon: number;
+  itemCount: number;
+  metrics: ForecastMetrics;
+}
+
+export interface EnergyEvaBenchmarkResult {
+  method: "energy-eva-dummy";
+  horizon: number;
+  contextLength: number;
+  cutoffs: EnergyEvaBenchmarkCutoffResult[];
+}

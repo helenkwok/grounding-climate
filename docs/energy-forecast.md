@@ -10,7 +10,7 @@ The first Energy-EVA integration deliberately chooses the `active_power_load` lo
 
 Energy-EVA 2.0 defines the load task for `active_power_load` as:
 
-- horizon: 48
+- horizon: 48 hourly steps (two days)
 - target: `target`
 - rolling windows: 5
 - context lengths: 512 / 1024 / 2048

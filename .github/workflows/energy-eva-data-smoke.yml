@@ -1,0 +1,38 @@
+name: Energy-EVA data smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "packages/energy-forecast/**"
+      - "scripts/prepare-energy-eva-active-power.mjs"
+      - "scripts/inspect-energy-eva-parquet.py"
+      - "scripts/export-energy-eva-active-power.py"
+      - "scripts/smoke-energy-eva-analysis.mjs"
+      - ".github/workflows/energy-eva-data-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  active-power:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Stream standardized active-power parquet
+        run: node scripts/prepare-energy-eva-active-power.mjs /tmp/energy-eva
+      - name: Install Parquet reader
+        run: python -m pip install --disable-pip-version-check pyarrow
+      - name: Inspect standardized schema and aggregation
+        run: python scripts/inspect-energy-eva-parquet.py /tmp/energy-eva/active_power_load.parquet
+      - name: Export standardized series
+        run: python scripts/export-energy-eva-active-power.py /tmp/energy-eva/active_power_load.parquet /tmp/energy-eva/series.json
+      - name: Build workspace dependencies and Energy Forecast
+        run: |
+          npm install
+          npm run build
+      - name: Reproduce published Energy-EVA dummy baseline
+        run: node scripts/smoke-energy-eva-analysis.mjs /tmp/energy-eva/series.json
