@@ -59,7 +59,7 @@ class TestProvider implements CryptoProvider {
     payload: Uint8Array,
     key: SigningKeyRef,
   ): Promise<CryptoSignature> {
-    const digest = await this.hash(payload, "SHA-256");
+    const digest = await this.hash(payload);
     return {
       suite: key.suite,
       algorithm: key.algorithm,
