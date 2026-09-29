@@ -160,3 +160,84 @@ export function runEnergyEvaDummy(options: {
     },
   };
 }
+
+export function runEnergyEvaDummyBenchmark(options: {
+  series: readonly EnergySeries[];
+  horizon: number;
+  cutoffs: readonly number[];
+  contextLength: number;
+}): import("./types.js").EnergyEvaBenchmarkResult {
+  if (options.series.length === 0) {
+    throw new Error("Energy-EVA benchmark requires at least one series.");
+  }
+  if (!Number.isInteger(options.horizon) || options.horizon <= 0) {
+    throw new Error("Energy-EVA benchmark horizon must be a positive integer.");
+  }
+  if (!Number.isInteger(options.contextLength) || options.contextLength < options.horizon) {
+    throw new Error("Energy-EVA context length must be >= horizon.");
+  }
+
+  const cutoffs = options.cutoffs.map((cutoff) => {
+    const instanceResults = options.series.map((series) => {
+      validateSeries(series);
+      const absoluteCutoff =
+        cutoff < 0 ? series.points.length + cutoff : cutoff;
+
+      const result = runEnergyEvaDummy({
+        series,
+        horizon: options.horizon,
+        cutoffs: [absoluteCutoff],
+        maxContextLength: options.contextLength,
+      });
+      const window = result.windows[0];
+      if (!window) throw new Error("Energy-EVA benchmark produced no window.");
+      return { result, window };
+    });
+
+    const actual: number[] = [];
+    const predicted: number[] = [];
+    const loadAcc: number[] = [];
+
+    for (const item of instanceResults) {
+      actual.push(...item.window.actual.map((point) => point.value));
+      predicted.push(...item.window.predicted.map((point) => point.value));
+      if (item.result.metrics.loadAcc !== null) {
+        loadAcc.push(item.result.metrics.loadAcc);
+      }
+    }
+
+    if (actual.length === 0 || actual.length !== predicted.length) {
+      throw new Error("Energy-EVA benchmark produced unaligned values.");
+    }
+
+    const errors = actual.map((value, index) => {
+      const prediction = predicted[index];
+      if (prediction === undefined) throw new Error("Missing benchmark prediction.");
+      return prediction - value;
+    });
+    const mapeTerms = actual.flatMap((value, index) => {
+      const prediction = predicted[index];
+      if (prediction === undefined || value === 0) return [];
+      return [Math.abs((prediction - value) / value)];
+    });
+
+    return {
+      cutoff,
+      horizon: options.horizon,
+      itemCount: instanceResults.length,
+      metrics: {
+        loadAcc: loadAcc.length ? mean(loadAcc) : null,
+        mae: mean(errors.map(Math.abs)),
+        rmse: Math.sqrt(mean(errors.map((error) => error * error))),
+        mape: mapeTerms.length ? mean(mapeTerms) : null,
+      },
+    };
+  });
+
+  return {
+    method: "energy-eva-dummy",
+    horizon: options.horizon,
+    contextLength: options.contextLength,
+    cutoffs,
+  };
+}
