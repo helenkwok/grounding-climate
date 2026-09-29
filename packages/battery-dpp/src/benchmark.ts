@@ -58,9 +58,13 @@ export function runDummyLifeSplit(options: {
   const percentageErrors = testing.map(
     (actual) => Math.abs(prediction - actual) / actual,
   );
+  // BatteryLife's published Dummy implementation measures the 15%-accuracy
+  // threshold relative to the dummy prediction (the training-label mean),
+  // not relative to the ground-truth label. Preserve that exact convention
+  // here so the reproduction is comparable to the published table.
   const accuracyWithin15Percent =
     testing.filter(
-      (actual) => Math.abs(prediction - actual) / actual <= 0.15,
+      (actual) => Math.abs(prediction - actual) / prediction <= 0.15,
     ).length / testing.length;
 
   return {
