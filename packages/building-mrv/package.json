@@ -16,11 +16,11 @@
   },
   "dependencies": {
     "@climatechain/core": "*",
-    "@climatechain/webmcp": "*"
+    "@climatechain/webmcp": "*",
+    "@climatechain/crypto-node": "*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "typescript": "^5.9.0",
-    "@climatechain/crypto-node": "*"
+    "typescript": "^5.9.0"
   }
-}\n
+}
