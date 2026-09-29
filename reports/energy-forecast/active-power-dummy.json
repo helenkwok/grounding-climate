@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "climatechain.energy-eva-smoke/0.1",
+  "measuredAt": "2026-09-29T13:22:06Z",
+  "workflowRunId": 36574494949,
+  "source": {
+    "zenodoRecord": "https://zenodo.org/records/17099628",
+    "doi": "10.5281/zenodo.17099628",
+    "archive": "EnergyEVA_Timeseries_Dataset.zip",
+    "archiveMd5": "662cbf850ecd592d6ff534471460f3f1",
+    "standardizedMember": "load/active_power_load.parquet",
+    "standardizedMemberBytes": 81469,
+    "originalData": {
+      "source": "https://data.mendeley.com/datasets/jxm8d4w4cv/1",
+      "doi": "10.17632/jxm8d4w4cv.1",
+      "license": "CC-BY-4.0"
+    }
+  },
+  "standardizedData": {
+    "itemCount": 7,
+    "itemIds": [
+      "0",
+      "15",
+      "16",
+      "22",
+      "6",
+      "7",
+      "9"
+    ],
+    "seriesLengths": [
+      744,
+      720,
+      744,
+      720,
+      744,
+      744,
+      744
+    ],
+    "frequency": "hourly",
+    "columns": [
+      "item_id",
+      "datetime",
+      "target"
+    ]
+  },
+  "benchmark": {
+    "model": "dummy_model",
+    "semantics": "copy immediately preceding horizon-length target values",
+    "horizonHours": 48,
+    "contextLength": 512,
+    "cutoffs": [
+      {
+        "cutoff": -240,
+        "reproduced": {
+          "loadAcc": 0.6541815779025332,
+          "mae": 986.5415773809523,
+          "mape": 0.17519469527319936,
+          "rmse": 1248.2540629504565
+        },
+        "published": {
+          "loadAcc": 0.6541815764756919,
+          "mae": 986.5416870117188,
+          "mape": 0.1751946955919265,
+          "rmse": 1248.2540283203125
+        }
+      },
+      {
+        "cutoff": -192,
+        "reproduced": {
+          "loadAcc": 0.6024020663613492,
+          "mae": 968.2142261904753,
+          "mape": 0.18832717719917602,
+          "rmse": 1294.0783398166973
+        },
+        "published": {
+          "loadAcc": 0.6024020617190764,
+          "mae": 968.2142944335938,
+          "mape": 0.1883271634578704,
+          "rmse": 1294.0782470703125
+        }
+      },
+      {
+        "cutoff": -144,
+        "reproduced": {
+          "loadAcc": 0.6838674493655791,
+          "mae": 983.9984523809532,
+          "mape": 0.20257073479409515,
+          "rmse": 1233.493738681099
+        },
+        "published": {
+          "loadAcc": 0.6838674485620156,
+          "mae": 983.9984130859376,
+          "mape": 0.2025707364082336,
+          "rmse": 1233.4937744140625
+        }
+      },
+      {
+        "cutoff": -96,
+        "reproduced": {
+          "loadAcc": 0.6196193035878373,
+          "mae": 911.0059821428575,
+          "mape": 0.18645979186671593,
+          "rmse": 1172.9943266229309
+        },
+        "published": {
+          "loadAcc": 0.6196193054631517,
+          "mae": 911.0060424804688,
+          "mape": 0.186459794640541,
+          "rmse": 1172.994384765625
+        }
+      },
+      {
+        "cutoff": -48,
+        "reproduced": {
+          "loadAcc": 0.6750032100385644,
+          "mae": 1105.6235119047606,
+          "mape": 0.1777740437580276,
+          "rmse": 1396.9505522188836
+        },
+        "published": {
+          "loadAcc": 0.6750032319520225,
+          "mae": 1105.62353515625,
+          "mape": 0.1777740269899368,
+          "rmse": 1396.9505615234375
+        }
+      }
+    ],
+    "tolerances": {
+      "loadAcc": 0.000001,
+      "mae": 0.001,
+      "mape": 0.000001,
+      "rmse": 0.001
+    },
+    "reproducedAll": true,
+    "aggregation": {
+      "loadAcc": "mean of per-instance daily LOAD_ACC",
+      "mae": "global across all 7×48 forecast points",
+      "mape": "global across non-zero actual values",
+      "rmse": "global across all 7×48 forecast points"
+    }
+  },
+  "scope": {
+    "primaryUser": "microgrid operator",
+    "actionLayer": "policy-only preparation; no market submission or hardware dispatch",
+    "emissionsClaim": "none; forecast quality is not claimed as avoided emissions"
+  }
+}
