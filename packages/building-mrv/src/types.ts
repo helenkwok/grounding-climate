@@ -32,6 +32,7 @@ export interface PreparedBuildingDataset {
     weatherMember: string;
     preparedAt: string;
     meterDigest: ContentDigest;
+    meterSeriesDigest?: ContentDigest;
     metadataDigest: ContentDigest;
     weatherDigest?: ContentDigest;
   };
