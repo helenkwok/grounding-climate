@@ -60,9 +60,9 @@ BatteryLife Raw dataset, Battery-Life project, MIT; preserve citations to the or
 
 Building Data Genome Project 2 / BUDS Lab; licensed under CC-BY-SA-4.0. Preserve source and licence notices.
 
-- Source: https://github.com/buds-lab/building-data-genome-project-2
+- Source: https://zenodo.org/records/3887306
 - Terms/licence: https://github.com/buds-lab/building-data-genome-project-2/blob/master/LICENSE
-- Repository policy: Small fixtures may be committed with attribution and ShareAlike compliance; prefer upstream download scripts for full data.
+- Repository policy: Small deterministic prepared subsets may be committed under data/external/bdg2 with attribution and ShareAlike compliance; the full v1.0 archive stays upstream on Zenodo.
 
 ### Carbon Data Intelligence (CaDI) (website)
 

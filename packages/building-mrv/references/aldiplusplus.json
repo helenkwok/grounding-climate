@@ -1,0 +1,35 @@
+{
+  "source": "https://github.com/buds-lab/aldiplusplus",
+  "sourceType": "upstream-published-reference",
+  "reproducedByClimateChain": false,
+  "dataset": "ASHRAE Great Energy Predictor III / BDG2 competition subset",
+  "metric": "RMSLE",
+  "results": [
+    {
+      "label": "Kaggle winning team",
+      "value": 2.841,
+      "computationTimeMinutes": 480
+    },
+    {
+      "label": "2-Standard deviation",
+      "value": 2.835,
+      "computationTimeMinutes": 1
+    },
+    {
+      "label": "ALDI",
+      "value": 2.834,
+      "computationTimeMinutes": 40
+    },
+    {
+      "label": "VAE",
+      "value": 2.829,
+      "computationTimeMinutes": 32
+    },
+    {
+      "label": "ALDI++",
+      "value": 2.665,
+      "computationTimeMinutes": 8
+    }
+  ],
+  "note": "These are upstream ALDI++ README results. They are comparison targets, not ClimateChain-measured results."
+}
