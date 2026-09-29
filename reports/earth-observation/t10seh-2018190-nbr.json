@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "climatechain.hls-burn-scar-smoke/0.1",
+  "measuredAt": "2026-09-29T14:10:04Z",
+  "workflowRunId": 36580275620,
+  "workflowJobId": 109446296875,
+  "source": {
+    "dataset": "ibm-nasa-geospatial/hls_burn_scars",
+    "doi": "10.57967/hf/0956",
+    "license": "CC-BY-4.0",
+    "datasetRevision": "1864285e25010d346a842e4f068b1a1d4248ed6d",
+    "archive": {
+      "name": "hls_burn_scars.tar.gz",
+      "bytes": 2645552531,
+      "sha256": "4e6f99a75cb2c500547b20662a15cbd531dc421376f815e91846ea542798e8e6"
+    },
+    "sceneId": "T10SEH.2018190.v1",
+    "image": {
+      "member": "validation/subsetted_512x512_HLS.S30.T10SEH.2018190.v1.4_merged.tif",
+      "bytes": 6295168,
+      "sha256": "13bc592a5e569d837bd8bb3524bb0d2f28418830bcc7b0750e74033078f8b17e"
+    },
+    "mask": {
+      "member": "validation/subsetted_512x512_HLS.S30.T10SEH.2018190.v1.4.mask.tif",
+      "bytes": 525272,
+      "sha256": "67e92de848f4d90730bff525d3aa51fa7c02759e494f264c0d33dcc8c4f6e66a"
+    },
+    "width": 512,
+    "height": 512,
+    "pixelSizeMeters": 30,
+    "crsSummary": "UTM Zone 10, Northern Hemisphere"
+  },
+  "baseline": {
+    "method": "NBR threshold",
+    "formula": "(NIR - SWIR2) / (NIR + SWIR2)",
+    "threshold": 0,
+    "metrics": {
+      "validPixels": 262144,
+      "burnPixelsGroundTruth": 207373,
+      "burnPixelsPredicted": 133047,
+      "truePositive": 129810,
+      "trueNegative": 51534,
+      "falsePositive": 3237,
+      "falseNegative": 77563,
+      "iou": 0.6163524998812971,
+      "precision": 0.975670251865882,
+      "recall": 0.6259734873874613,
+      "f1": 0.7626461429998237,
+      "accuracy": 0.6917724609375,
+      "groundTruthHectares": 18663.57,
+      "predictedHectares": 11974.23,
+      "missedBurnHectares": 6980.67,
+      "falsePositiveHectares": 291.33,
+      "netUnderestimateHectares": 6689.34
+    }
+  },
+  "publishedPrithviReference": {
+    "model": "ibm-nasa-geospatial/Prithvi-EO-1.0-100M-burn-scar",
+    "burnClassIoU": 0.73,
+    "overallAccuracy": 0.96,
+    "locallyReproduced": false
+  },
+  "interpretation": {
+    "primaryUser": "wildfire / land-management analyst",
+    "use": "high-precision CPU triage baseline; not final burn-scar delineation",
+    "limitation": "Single pinned scene plus random dataset split does not establish held-out geographic/event generalisation."
+  },
+  "derivedArtifact": {
+    "workflowArtifactId": 11038393713,
+    "zipSha256": "2bf7724361acca57d7112c5720f526f516a82babf3d804bf812af5bded944edb",
+    "bytes": 664415,
+    "files": [
+      "report.json",
+      "comparison.png"
+    ]
+  }
+}
