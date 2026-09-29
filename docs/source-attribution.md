@@ -14,6 +14,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | Carbon Data Intelligence (CaDI) | website | Carbon Footprint Ltd website Terms & Conditions | prohibited | link-only |
 | CarbonPlan OffsetsDB processing code | code | MIT | allowed | code-only |
 | CarbonPlan OffsetsDB registry data | registry-data | CarbonPlan Terms of Data Access plus registry-specific terms | unclear | download-from-upstream |
+| Cloudflare boring | code | Apache-2.0 | allowed | code-only |
 | Energy-EVA benchmark code | code | Apache-2.0 | allowed | code-only |
 | Energy-EVA standardized energy datasets | benchmark-data | Source-specific upstream terms | unclear | download-from-upstream |
 | IBM/NASA HLS Burn Scar Scenes | dataset | CC-BY-4.0 | allowed | redistributable |
@@ -86,6 +87,14 @@ CarbonPlan OffsetsDB and the relevant upstream carbon registry/registries.
 - Source: https://github.com/carbonplan/offsets-db-data
 - Terms/licence: https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS
 - Repository policy: Do not vendor OffsetsDB snapshots until the selected registries' terms are audited. Use source links and processing scripts.
+
+### Cloudflare boring (code)
+
+Cloudflare boring Rust bindings, Apache-2.0 as declared by the boring crate.
+
+- Source: https://github.com/cloudflare/boring
+- Terms/licence: https://github.com/cloudflare/boring/blob/master/boring/Cargo.toml
+- Repository policy: Consumed as the pinned boring 5.2.0 Cargo dependency; no upstream source is vendored into ClimateChain.
 
 ### Energy-EVA benchmark code (code)
 
