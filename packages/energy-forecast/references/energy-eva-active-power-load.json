@@ -105,6 +105,37 @@
         "rmse": 1495.281005859375
       }
     ],
-    "reproducedByClimateChain": false
+    "reproducedByClimateChain": true,
+    "reproduction": {
+      "workflow": "Energy-EVA data smoke",
+      "measuredAt": "2026-09-29T13:22:06Z",
+      "standardizedMember": "load/active_power_load.parquet",
+      "standardizedMemberBytes": 81469,
+      "itemIds": [
+        "0",
+        "15",
+        "16",
+        "22",
+        "6",
+        "7",
+        "9"
+      ],
+      "seriesLengths": [
+        744,
+        720,
+        744,
+        720,
+        744,
+        744,
+        744
+      ],
+      "tolerance": {
+        "loadAcc": 0.000001,
+        "mae": 0.001,
+        "mape": 0.000001,
+        "rmse": 0.001
+      },
+      "allPublishedDummyWindowsMatched": true
+    }
   }
 }
