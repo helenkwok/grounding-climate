@@ -39,7 +39,7 @@ The pinned upstream values for `active_power_load` at context length 512 are sto
 
 `packages/energy-forecast/references/energy-eva-active-power-load.json`
 
-They are **references** until the standardized Energy-EVA parquet is executed locally/CI; the JSON marks them `reproducedByClimateChain: false`.
+The standardized Energy-EVA parquet has now been executed in the path-filtered CI smoke. The JSON marks the dummy baseline `reproducedByClimateChain: true` and records the exact five-window comparison.
 
 ## Original data
 
@@ -117,3 +117,43 @@ The current prototype may claim:
 - whether deterministic guardrails permit/cap/refuse that proposal
 
 It must not claim avoided tCO2e unless a separate causal dispatch/counterfactual calculation is supplied.
+
+
+## Measured real-data reproduction
+
+ClimateChain streams only the standardized member:
+
+`load/active_power_load.parquet`
+
+from Energy-EVA's pinned Zenodo record `10.5281/zenodo.17099628`; the full archive is not committed.
+
+Measured standardized data:
+
+- 7 item series
+- series lengths: 744, 720, 744, 720, 744, 744, 744 hourly points
+- forecast horizon: 48 hours
+- context length: 512
+- cutoffs: -240, -192, -144, -96, -48
+
+For all five windows, ClimateChain's independent dummy implementation matched the published Energy-EVA values within:
+
+- LOAD_ACC: 1e-6
+- MAE: 0.001
+- MAPE: 1e-6
+- RMSE: 0.001
+
+The measured record is:
+
+`reports/energy-forecast/active-power-dummy.json`
+
+The published EnergyTS V3.0 values remain an upstream comparison target. ClimateChain does not claim to have rerun the proprietary/large forecasting model merely because it reproduces the baseline.
+
+## Acceptance scope
+
+For the hackathon slice, "model metric against baseline" means:
+
+- the **baseline** is locally reproduced from the real standardized Energy-EVA data;
+- the selected advanced-model numbers are precisely attributed upstream benchmark results;
+- the operational policy consumes forecast confidence/result provenance but does not pretend the upstream model was locally trained or inferred.
+
+A later research run may swap in a locally executable forecasting model through the same service without changing the evidence/provenance or bounded-action architecture.
