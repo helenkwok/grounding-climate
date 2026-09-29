@@ -1,0 +1,14 @@
+{
+  "model": "ibm-nasa-geospatial/Prithvi-EO-1.0-100M-burn-scar",
+  "dataset": "ibm-nasa-geospatial/hls_burn_scars",
+  "license": "Apache-2.0",
+  "datasetLicense": "CC-BY-4.0",
+  "published": {
+    "burnClassIoU": 0.73,
+    "overallAccuracy": 0.96,
+    "trainingEpochs": 50
+  },
+  "source": "https://huggingface.co/ibm-nasa-geospatial/Prithvi-EO-1.0-100M-burn-scar",
+  "locallyReproduced": false,
+  "note": "Published reference only. The ClimateChain CPU baseline is NBR thresholding and must not be described as Prithvi inference."
+}
