@@ -7,14 +7,29 @@ import {
   runCalbDummyBenchmark,
 } from "../packages/battery-dpp/dist/src/index.js";
 
-const root = process.argv[2];
-if (!root) {
-  throw new Error("Usage: node scripts/smoke-batterylife-calb.mjs <prepared-dir>");
+const paperRoot = process.argv[2];
+const currentRoot = process.argv[3];
+if (!paperRoot || !currentRoot) {
+  throw new Error(
+    "Usage: node scripts/smoke-batterylife-calb.mjs <paper-v4-dir> <current-v11-dir>",
+  );
 }
 
-const labels = JSON.parse(await readFile(root + "/calb-labels.json", "utf8"));
-const history = JSON.parse(await readFile(root + "/battery-history.json", "utf8"));
-const manifest = JSON.parse(await readFile(root + "/manifest.json", "utf8"));
+const paperLabels = JSON.parse(
+  await readFile(paperRoot + "/calb-labels.json", "utf8"),
+);
+const currentLabels = JSON.parse(
+  await readFile(currentRoot + "/calb-labels.json", "utf8"),
+);
+const history = JSON.parse(
+  await readFile(currentRoot + "/battery-history.json", "utf8"),
+);
+const paperManifest = JSON.parse(
+  await readFile(paperRoot + "/manifest.json", "utf8"),
+);
+const currentManifest = JSON.parse(
+  await readFile(currentRoot + "/manifest.json", "utf8"),
+);
 const reference = JSON.parse(
   await readFile(
     new URL(
@@ -26,10 +41,16 @@ const reference = JSON.parse(
 );
 
 const benchmark = runCalbDummyBenchmark({
-  labels,
+  labels: paperLabels,
   splits: reference.splits,
 });
 const delta = compareDummyBenchmarkToPublished(benchmark);
+
+const currentBenchmark = runCalbDummyBenchmark({
+  labels: currentLabels,
+  splits: reference.splits,
+});
+const currentDelta = compareDummyBenchmarkToPublished(currentBenchmark);
 
 const tolerance = 0.0015;
 const benchmarkMatchesPublished =
@@ -76,10 +97,14 @@ if (clean.evidenceRoot.root.value === tampered.evidenceRoot.root.value) {
 
 const result = {
   schemaVersion: "climatechain.batterylife-smoke/0.1",
-  source: manifest.source,
+  source: {
+    paperBenchmarkRelease: paperManifest.source,
+    currentPassportRelease: currentManifest.source,
+  },
   benchmark: {
     dataset: "CALB",
-    labelCount: labels.length,
+    paperLabelCount: paperLabels.length,
+    currentLabelCount: currentLabels.length,
     runs: benchmark.runs,
     reproduced: {
       meanMape: benchmark.meanMape,
@@ -92,6 +117,20 @@ const result = {
     published: benchmark.published,
     delta,
     benchmarkMatchesPublished,
+    correctedV11: {
+      runs: currentBenchmark.runs,
+      reproduced: {
+        meanMape: currentBenchmark.meanMape,
+        stdMape: currentBenchmark.stdMape,
+        meanAccuracyWithin15Percent:
+          currentBenchmark.meanAccuracyWithin15Percent,
+        stdAccuracyWithin15Percent:
+          currentBenchmark.stdAccuracyWithin15Percent,
+      },
+      deltaFromPublishedTable: currentDelta,
+      note:
+        "BatteryLife v11 corrected labels are measured separately and are not expected to reproduce the historical paper-era table.",
+    },
   },
   passport: {
     batteryId: clean.passport.batteryId,
