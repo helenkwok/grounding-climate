@@ -1,0 +1,29 @@
+{
+  "id": "epa-egrid2016-camx-total-output-co2e",
+  "sourceManifestId": "epa-egrid2016-summary",
+  "geography": "CAMX / WECC California",
+  "accountingBasis": "location-based",
+  "sourceOrganisation": "U.S. Environmental Protection Agency",
+  "sourceUri": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt",
+  "sourceDocument": "eGRID Summary Tables 2016",
+  "sourceTable": "Table 1 — Subregion Output Emission Rates",
+  "sourceValue": {
+    "value": 529.9,
+    "unit": "lbCO2e/MWh"
+  },
+  "conversion": {
+    "poundToKilogram": 0.45359237,
+    "calculation": "529.9 lbCO2e/MWh × 0.45359237 kg/lb ÷ 1000 kWh/MWh",
+    "valueKgCo2ePerKwh": 0.240358596863
+  },
+  "effectivePeriod": {
+    "start": "2016-01-01",
+    "end": "2016-12-31",
+    "label": "eGRID2016"
+  },
+  "retrievedAt": "2026-09-29",
+  "notes": [
+    "Use only when the building/site is defensibly within the CAMX eGRID subregion.",
+    "This is the total-output CO2e rate, appropriate to a location-based inventory-style reconstruction; it is not a marginal/avoided-emissions factor."
+  ]
+}
