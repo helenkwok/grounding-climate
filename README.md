@@ -39,3 +39,18 @@ npm run check
 ```
 
 This builds/tests the core domain model, validates the source-rights manifest, rejects unauthorized content under `data/external/`, and checks that generated attribution is current.
+
+## Building MRV prototype
+
+The first analytical module is documented in [docs/building-mrv.md](docs/building-mrv.md).
+
+```bash
+npm run building:prepare -- --out data/external/bdg2/demo --hours 2160
+npm run building:analyze -- \
+  --dir data/external/bdg2/demo \
+  --factor <kgCO2e-per-kWh> \
+  --factor-geography "<matching geography>" \
+  --factor-source "<original source URL>"
+```
+
+The grid factor is deliberately not guessed from anonymised BDG2 site IDs. The CLI records the supplied factor source as provenance and produces a ClimateChain case, report, and evidence root.
