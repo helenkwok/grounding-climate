@@ -1,0 +1,30 @@
+name: BatteryLife CALB data smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "packages/battery-dpp/**"
+      - "scripts/prepare-batterylife-calb.py"
+      - "scripts/smoke-batterylife-calb.mjs"
+      - ".github/workflows/batterylife-calb-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  calb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Prepare pinned BatteryLife v11 CALB subset
+        run: python scripts/prepare-batterylife-calb.py /tmp/batterylife
+      - name: Build ClimateChain workspaces
+        run: |
+          npm install
+          npm run build
+      - name: Reproduce CALB dummy baseline and build passport
+        run: node scripts/smoke-batterylife-calb.mjs /tmp/batterylife
