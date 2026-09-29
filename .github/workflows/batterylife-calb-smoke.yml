@@ -22,11 +22,13 @@ jobs:
           node-version: 22
       - name: Install processed-data decoder dependency
         run: python -m pip install --disable-pip-version-check numpy
-      - name: Prepare pinned BatteryLife v11 CALB subset
-        run: python scripts/prepare-batterylife-calb.py /tmp/batterylife
+      - name: Prepare paper-era BatteryLife v4 CALB subset
+        run: python scripts/prepare-batterylife-calb.py /tmp/batterylife-v4 v4
+      - name: Prepare corrected BatteryLife v11 CALB subset
+        run: python scripts/prepare-batterylife-calb.py /tmp/batterylife-v11 v11
       - name: Build ClimateChain workspaces
         run: |
           npm install
           npm run build
-      - name: Reproduce CALB dummy baseline and build passport
-        run: node scripts/smoke-batterylife-calb.mjs /tmp/batterylife
+      - name: Reproduce paper CALB baseline and build current passport
+        run: node scripts/smoke-batterylife-calb.mjs /tmp/batterylife-v4 /tmp/batterylife-v11
