@@ -63,14 +63,13 @@ fn negotiates_x25519_mlkem768_locally() {
 
         let tcp = listener.accept().unwrap().0;
         let mut tls = acceptor.accept(tcp).unwrap();
-        let curve = tls
+        let group_id = tls
             .ssl()
-            .curve_name()
-            .expect("server negotiated no key-exchange group")
-            .to_owned();
+            .curve()
+            .expect("server negotiated no key-exchange group");
 
         tls.write_all(b"P").unwrap();
-        curve
+        group_id
     });
 
     let mut connector = SslConnector::builder(SslMethod::tls()).unwrap();
@@ -82,18 +81,23 @@ fn negotiates_x25519_mlkem768_locally() {
 
     let tcp = TcpStream::connect(address).unwrap();
     let mut tls = connector.connect("localhost", tcp).unwrap();
-    let client_curve = tls
+    let client_group_id = tls
         .ssl()
-        .curve_name()
-        .expect("client negotiated no key-exchange group")
-        .to_owned();
+        .curve()
+        .expect("client negotiated no key-exchange group");
 
     let mut byte = [0_u8; 1];
     tls.read_exact(&mut byte).unwrap();
 
-    let server_curve = server.join().unwrap();
+    let server_group_id = server.join().unwrap();
+
+    // BoringSSL defines SSL_GROUP_X25519_MLKEM768 as 0x11ec.
+    // boring 5.2.0 exposes the negotiated group through SslRef::curve();
+    // curve_name() may return None for hybrid groups even when negotiation
+    // succeeds, so assert the wire group ID directly.
+    const X25519_MLKEM768_GROUP_ID: u16 = 0x11ec;
 
     assert_eq!(byte, [b'P']);
-    assert_eq!(client_curve, "X25519MLKEM768");
-    assert_eq!(server_curve, "X25519MLKEM768");
+    assert_eq!(client_group_id, X25519_MLKEM768_GROUP_ID);
+    assert_eq!(server_group_id, X25519_MLKEM768_GROUP_ID);
 }
