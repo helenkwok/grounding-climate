@@ -133,6 +133,7 @@ export interface ContentDigest {
 }
 
 export interface RightsMetadata {
+  sourceManifestId?: string;
   licence?: string;
   termsUri?: string;
   redistribution: "allowed" | "prohibited" | "unclear";
