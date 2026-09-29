@@ -145,7 +145,7 @@ export function registerClimateWebMcp(
 }
 
 export class DynamicClimateWebMcp {
-  private current?: RegisteredWebMcpSurface;
+  private current: RegisteredWebMcpSurface | undefined;
 
   constructor(
     private readonly base: Omit<
