@@ -1,0 +1,130 @@
+{
+  "schemaVersion": "climatechain.case/0.1",
+  "caseId": "case:cadi-carbon-footprint-ltd-source",
+  "title": "CaDI public disclosure source discovery",
+  "capabilities": [
+    "public-disclosure",
+    "claim-reconciliation"
+  ],
+  "createdAt": "2026-09-29T06:45:00Z",
+  "claims": [
+    {
+      "nodeType": "claim",
+      "id": "claim:cfl-publishes-on-cadi",
+      "createdAt": "2026-09-29T06:45:00Z",
+      "provenance": [
+        {
+          "nodeType": "evidence",
+          "id": "evidence:cfl-our-cadi-data",
+          "role": "public-source"
+        }
+      ],
+      "subject": {
+        "id": "org:carbon-footprint-ltd",
+        "kind": "organisation",
+        "name": "Carbon Footprint Ltd"
+      },
+      "assertion": {
+        "kind": "qualitative",
+        "statement": "Carbon Footprint Ltd publishes its own carbon footprint on CaDI."
+      },
+      "assessments": [
+        {
+          "dimension": "disclosed",
+          "state": "confirmed",
+          "note": "The publisher's own page describes its emissions as published openly on CaDI."
+        },
+        {
+          "dimension": "source-found",
+          "state": "confirmed"
+        },
+        {
+          "dimension": "calculation-reproduced",
+          "state": "not-assessed"
+        },
+        {
+          "dimension": "factor-traced",
+          "state": "not-assessed"
+        },
+        {
+          "dimension": "evidence-integrity-confirmed",
+          "state": "not-assessed"
+        },
+        {
+          "dimension": "third-party-assured",
+          "state": "not-assessed"
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "nodeType": "evidence",
+      "id": "evidence:cfl-our-cadi-data",
+      "createdAt": "2026-09-29T06:45:00Z",
+      "provenance": [],
+      "kind": "public-disclosure",
+      "source": {
+        "uri": "https://www.carbonfootprint.com/our_cadi_data.html",
+        "publisher": "Carbon Footprint Ltd",
+        "retrievedAt": "2026-09-29T06:45:00Z"
+      },
+      "rights": {
+        "termsUri": "https://www.carbonfootprint.com/",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attribution": "Carbon Footprint Ltd / CaDI; retain the original source URL."
+      }
+    }
+  ],
+  "calculations": [],
+  "factors": [],
+  "modelRuns": [],
+  "verifications": [
+    {
+      "nodeType": "verification",
+      "id": "verification:cfl-source-only",
+      "createdAt": "2026-09-29T06:45:00Z",
+      "provenance": [
+        {
+          "nodeType": "claim",
+          "id": "claim:cfl-publishes-on-cadi",
+          "role": "claim-under-review"
+        },
+        {
+          "nodeType": "evidence",
+          "id": "evidence:cfl-our-cadi-data",
+          "role": "source"
+        }
+      ],
+      "verifier": {
+        "id": "service:climatechain",
+        "kind": "service",
+        "name": "ClimateChain"
+      },
+      "profile": "source-discovery/0.1",
+      "result": "insufficient-evidence",
+      "checks": [
+        {
+          "id": "source-located",
+          "name": "Public disclosure source located",
+          "outcome": "pass"
+        },
+        {
+          "id": "numeric-reconciliation",
+          "name": "Numeric emissions calculation reproduced",
+          "outcome": "not-run",
+          "detail": "This example deliberately stops at source discovery."
+        }
+      ],
+      "findings": [
+        "Public disclosure/source discovery is not the same as independent verification of the emissions values.",
+        "No calculation, factor provenance, or underlying activity data has been checked in this example."
+      ],
+      "verifiedAt": "2026-09-29T06:45:00Z"
+    }
+  ],
+  "attestations": [],
+  "anchors": []
+}

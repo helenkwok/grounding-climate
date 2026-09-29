@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "climatechain.case/0.1",
+  "caseId": "case:bdg2-benchmark-source",
+  "title": "Building Data Genome 2 benchmark source graph",
+  "capabilities": [
+    "building-meter-mrv"
+  ],
+  "createdAt": "2026-09-29T06:45:00Z",
+  "claims": [
+    {
+      "nodeType": "claim",
+      "id": "claim:bdg2-selected-source",
+      "createdAt": "2026-09-29T06:45:00Z",
+      "provenance": [
+        {
+          "nodeType": "evidence",
+          "id": "evidence:bdg2-repository",
+          "role": "dataset-source"
+        }
+      ],
+      "subject": {
+        "id": "dataset:building-data-genome-2",
+        "kind": "dataset",
+        "name": "Building Data Genome 2"
+      },
+      "assertion": {
+        "kind": "qualitative",
+        "statement": "Building Data Genome 2 is a source dataset selected for the ClimateChain building-MRV benchmark path."
+      },
+      "assessments": [
+        {
+          "dimension": "source-found",
+          "state": "confirmed"
+        },
+        {
+          "dimension": "calculation-reproduced",
+          "state": "not-assessed",
+          "note": "No benchmark result is invented in this source-only fixture."
+        }
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "nodeType": "evidence",
+      "id": "evidence:bdg2-repository",
+      "createdAt": "2026-09-29T06:45:00Z",
+      "provenance": [],
+      "kind": "dataset",
+      "source": {
+        "uri": "https://github.com/buds-lab/building-data-genome-project-2",
+        "publisher": "Building Data Genome Project",
+        "retrievedAt": "2026-09-29T06:45:00Z"
+      },
+      "rights": {
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attribution": "Preserve upstream attribution; complete the rights audit in issue #14 before redistributing data."
+      }
+    }
+  ],
+  "calculations": [],
+  "factors": [],
+  "modelRuns": [],
+  "verifications": [],
+  "attestations": [],
+  "anchors": []
+}
