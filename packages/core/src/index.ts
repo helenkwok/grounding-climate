@@ -3,3 +3,7 @@ export * from "./canonical.js";
 export * from "./graph.js";
 export * from "./rights.js";
 export * from "./crypto.js";
+export * from "./provenance.js";
+export * from "./attestation.js";
+export * from "./ledger-decision.js";
+export * from "./signed-log.js";
