@@ -3,7 +3,6 @@ import {
 } from "@climatechain/core";
 import type {
   ClimateCaseBundle,
-  ContentDigest,
   Evidence,
 } from "@climatechain/core";
 
@@ -49,14 +48,6 @@ function factorSourceEvidence(
   };
 }
 
-function digestOrUndefined(
-  digest: ContentDigest | undefined,
-): ContentDigest | undefined {
-  return digest
-    ? { algorithm: digest.algorithm, value: digest.value }
-    : undefined;
-}
-
 export function buildBuildingMrvCase(
   options: BuildBuildingCaseOptions,
 ): ClimateCaseBundle {
@@ -87,9 +78,14 @@ export function buildBuildingMrvCase(
       publisher: "Building Data Genome Project / BUDS Lab",
       retrievedAt: dataset.source.preparedAt,
     },
-    integrity: digestOrUndefined(
-      dataset.source.meterSeriesDigest ?? dataset.source.meterDigest,
-    ),
+    integrity: {
+      algorithm:
+        (dataset.source.meterSeriesDigest ?? dataset.source.meterDigest)
+          .algorithm,
+      value:
+        (dataset.source.meterSeriesDigest ?? dataset.source.meterDigest)
+          .value,
+    },
     extensions: {
       preparedMeterFileDigest:
         dataset.source.meterDigest.algorithm +
