@@ -1,4 +1,7 @@
-import type { ContentDigest } from "@climatechain/core";
+import type {
+  ContentDigest,
+  CryptoProvider,
+} from "@climatechain/core";
 
 import {
   parseMeterCsv,
@@ -77,5 +80,71 @@ export function loadPreparedBuildingDataset(input: {
         ? { weatherDigest: source.digests.weather }
         : {}),
     },
+  };
+}
+
+
+function sameDigest(
+  left: ContentDigest,
+  right: ContentDigest,
+): boolean {
+  return left.algorithm === right.algorithm && left.value === right.value;
+}
+
+export interface PreparedArtifactIntegrityResult {
+  valid: boolean;
+  meter: boolean;
+  metadata: boolean;
+  weather: boolean | null;
+}
+
+export async function verifyPreparedArtifactDigests(
+  input: {
+    meterCsv: string;
+    weatherCsv?: string;
+    metadataJson: string;
+    sourceJson: string;
+  },
+  provider: CryptoProvider,
+): Promise<PreparedArtifactIntegrityResult> {
+  const source = JSON.parse(input.sourceJson) as PreparedSourceFile;
+  const encoder = new TextEncoder();
+
+  const meter = await provider.hash(
+    encoder.encode(input.meterCsv),
+    "SHA-256",
+  );
+  const metadata = await provider.hash(
+    encoder.encode(input.metadataJson),
+    "SHA-256",
+  );
+  const meterValid = sameDigest(meter, source.digests.meter);
+  const metadataValid = sameDigest(
+    metadata,
+    source.digests.metadata,
+  );
+
+  let weatherValid: boolean | null = null;
+  if (input.weatherCsv && source.digests.weather) {
+    const weather = await provider.hash(
+      encoder.encode(input.weatherCsv),
+      "SHA-256",
+    );
+    weatherValid = sameDigest(
+      weather,
+      source.digests.weather,
+    );
+  } else if (input.weatherCsv || source.digests.weather) {
+    weatherValid = false;
+  }
+
+  return {
+    valid:
+      meterValid &&
+      metadataValid &&
+      weatherValid !== false,
+    meter: meterValid,
+    metadata: metadataValid,
+    weather: weatherValid,
   };
 }
