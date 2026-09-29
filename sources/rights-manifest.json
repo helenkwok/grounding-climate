@@ -410,6 +410,41 @@
       ]
     },
     {
+      "id": "epa-egrid2016-summary",
+      "name": "U.S. EPA eGRID Summary Tables 2016",
+      "component": "dataset",
+      "canonicalUrl": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt",
+      "upstreamPublisher": "U.S. Environmental Protection Agency",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "source-specific",
+        "name": "U.S. federal government publication / EPA site terms",
+        "url": "https://www.epa.gov/web-policies-and-procedures"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "link-only",
+        "note": "Use the published factor values with source attribution; do not mirror the EPA publication into ClimateChain."
+      },
+      "attribution": "U.S. EPA, eGRID Summary Tables 2016, Table 1 Subregion Output Emission Rates.",
+      "notes": [
+        "ClimateChain stores only the derived factor reference and original source URL.",
+        "The CAMX factor used in the Building MRV smoke is the 2016 total-output CO2e rate, not a marginal/avoided-emissions rate."
+      ],
+      "evidence": [
+        {
+          "url": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt",
+          "finding": "eGRID2016 Table 1 lists CAMX / WECC California total-output CO2e as 529.9 lb/MWh."
+        }
+      ]
+    },
+    {
       "id": "hls-burn-scars",
       "name": "IBM/NASA HLS Burn Scar Scenes",
       "component": "dataset",
