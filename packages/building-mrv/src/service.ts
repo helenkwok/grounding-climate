@@ -48,8 +48,12 @@ export class BuildingMrvService implements ModuleCommandRouter {
       this.series,
       this.options.factor,
       {
-        trainingFraction: this.options.trainingFraction,
-        anomalyThreshold: this.options.anomalyThreshold,
+        ...(this.options.trainingFraction !== undefined
+          ? { trainingFraction: this.options.trainingFraction }
+          : {}),
+        ...(this.options.anomalyThreshold !== undefined
+          ? { anomalyThreshold: this.options.anomalyThreshold }
+          : {}),
       },
     );
   }
