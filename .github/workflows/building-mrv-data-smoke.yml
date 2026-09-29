@@ -1,0 +1,32 @@
+name: Building MRV data smoke
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "packages/building-mrv/**"
+      - "scripts/prepare-bdg2-subset.mjs"
+      - "scripts/smoke-bdg2-analysis.mjs"
+      - ".github/workflows/building-mrv-data-smoke.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  bdg2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
+      - run: npm run build
+      - name: Prepare pinned BDG2 subset
+        run: |
+          npm run building:prepare -- \
+            --out /tmp/climatechain-bdg2 \
+            --hours 2160
+      - name: Run real-data baseline/anomaly smoke
+        run: node scripts/smoke-bdg2-analysis.mjs /tmp/climatechain-bdg2
