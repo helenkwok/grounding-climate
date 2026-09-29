@@ -1,0 +1,10 @@
+[package]
+name = "climatechain-crypto-boring"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.85"
+license = "MIT"
+publish = false
+
+[dependencies]
+boring = { version = "=5.2.0", features = ["mldsa"] }
