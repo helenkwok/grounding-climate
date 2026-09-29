@@ -103,6 +103,45 @@ Default split:
 
 This is a local ClimateChain benchmark. It is not labelled ALDI++ and does not reuse ALDI++'s published score as if ClimateChain had reproduced it.
 
+## Measured real-data smoke
+
+The repository's path-filtered GitHub Actions smoke has now executed the pinned BDG2 preparation path successfully.
+
+Measured result:
+
+- selected building: `Bear_assembly_Angel`
+- site: `Bear`
+- primary use: Entertainment/public assembly
+- floor area: 22,117 m²
+- electricity rows: 2,160
+- matching weather rows: 2,159
+- prepared meter/metadata/weather integrity: pass
+- training rows: 1,728
+- test rows: 432
+- temporal holdout: 2016-03-13 through 2016-03-30
+- local baseline RMSLE: **0.3419815733**
+- local baseline MAE: **70.8869356334**
+- clean residual flags: 3
+- clean flagged energy: 0 kWh
+
+The real-data tamper smoke changed holdout row 1,728 from 295.3 to 5,906 (×20). That interval was flagged, total flags increased from 3 to 4, and the canonical meter digest changed from:
+
+```text
+5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28
+```
+
+to:
+
+```text
+VCPYrmOehcTmKYZhZ8E_n3WXyDmc07K0aoPYqDV_-_k
+```
+
+Machine-readable measured record:
+
+- `reports/building-mrv/bdg2-v1-smoke.json`
+
+This is now a ClimateChain-measured result. It remains separate from the ALDI++ publication numbers below.
+
 ## ALDI++ reference
 
 The upstream ALDI++ project reports the following GEPIII forecasting RMSLE values:
