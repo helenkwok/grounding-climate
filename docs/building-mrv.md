@@ -113,6 +113,8 @@ Measured result:
 - site: `Bear`
 - primary use: Entertainment/public assembly
 - floor area: 22,117 m²
+- timezone: `US/Pacific`
+- source latitude/longitude: 37.8719034, −122.2607286
 - electricity rows: 2,160
 - matching weather rows: 2,159
 - prepared meter/metadata/weather integrity: pass
@@ -123,8 +125,12 @@ Measured result:
 - local baseline MAE: **70.8869356334**
 - clean residual flags: 3
 - clean flagged energy: 0 kWh
+- EPA eGRID2016 subregion: CAMX / WECC California
+- EPA total-output CO₂e factor: 529.9 lb/MWh = **0.240358596863 kgCO₂e/kWh**
+- accepted electricity: **1,160,425.4405 kWh**
+- reconstructed location-based emissions: **278.9182306427 tCO₂e**
 
-The real-data tamper smoke changed holdout row 1,728 from 295.3 to 5,906 (×20). That interval was flagged, total flags increased from 3 to 4, and the canonical meter digest changed from:
+The real-data tamper smoke changed holdout row 1,728 from 295.3 to 5,906 (×20). That interval was flagged and excluded, total flags increased from 3 to 4, accepted electricity changed to 1,160,130.1405 kWh, reconstructed emissions changed to 278.8472527491 tCO₂e, and the canonical meter digest changed from:
 
 ```text
 5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28
@@ -186,6 +192,19 @@ The package also exposes precision, recall, specificity, and F1 helpers for the 
 
 ## Emissions reconstruction
 
+The pinned real-data smoke now has enough source geography to use a historical factor defensibly. The selected BDG2 metadata exposes Berkeley coordinates, and the 2016 measurement period is matched to U.S. EPA eGRID2016 CAMX / WECC California total-output CO₂e.
+
+Pinned factor reference:
+
+- `packages/building-mrv/references/epa-egrid2016-camx.json`
+- source: U.S. EPA `eGRID Summary Tables 2016`, Table 1
+- published CAMX total-output CO₂e: 529.9 lb/MWh
+- converted factor: 0.240358596863 kgCO₂e/kWh
+- accounting basis: location-based
+- effective period: 2016
+
+This factor is not a marginal or avoided-emissions factor.
+
 For accepted electricity readings:
 
 ```text
@@ -196,7 +215,7 @@ accepted kWh × location-based kgCO₂e/kWh
 
 The grid factor is intentionally required at runtime.
 
-ClimateChain does **not** infer a factor from an anonymised BDG2 site label.
+ClimateChain does **not** infer a factor from an anonymised BDG2 site label. The real smoke applies CAMX only after checking the pinned metadata coordinates remain within the expected Berkeley location; if those coordinates change, the smoke refuses the factor.
 
 Run analysis with an explicitly sourced factor:
 
@@ -308,7 +327,6 @@ This is a correctness constraint, not a missing UI feature.
 
 The first runnable analysis path is implemented, but #9 should remain open until:
 
-- the pinned real BDG2 preparation path is executed end-to-end and its measured baseline result is recorded
 - the ALDI++ labelled-outlier benchmark is reproduced on an allowed local copy of the GEPIII/labels data, or the scope is explicitly reduced
 - a same-subject public disclosure dataset is found if numeric CaDI reconciliation is required
 

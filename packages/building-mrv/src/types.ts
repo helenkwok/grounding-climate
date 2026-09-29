@@ -15,6 +15,10 @@ export interface BuildingMetadata {
   siteId: string;
   primarySpaceUsage?: string;
   floorAreaM2?: number;
+  timezone?: string;
+  latitude?: number;
+  longitude?: number;
+  climateZone?: string;
 }
 
 export interface PreparedBuildingDataset {

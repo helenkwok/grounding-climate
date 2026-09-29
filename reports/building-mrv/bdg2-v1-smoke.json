@@ -1,9 +1,9 @@
 {
-  "schemaVersion": "climatechain.building-mrv-smoke/0.1",
-  "measuredAt": "2026-09-29T11:38:11Z",
-  "workflowRunId": 36562899649,
-  "workflowUrl": "https://github.com/helenkwok/climatechain/actions/runs/36562899649",
-  "headCommit": "aa3b55696a0da6e2ca1e1d5be1e3150ef7ef8e4d",
+  "schemaVersion": "climatechain.building-mrv-smoke/0.2",
+  "measuredAt": "2026-09-29T12:55:55Z",
+  "workflowRunId": 36571344224,
+  "workflowUrl": "https://github.com/helenkwok/climatechain/actions/runs/36571344224",
+  "headCommit": "e6145387cd38a6fa62d60e590a4cebba18fe9a73",
   "source": {
     "dataset": "Building Data Genome Project 2 v1.0",
     "doi": "10.5281/zenodo.3887306",
@@ -14,7 +14,10 @@
     "buildingId": "Bear_assembly_Angel",
     "siteId": "Bear",
     "primarySpaceUsage": "Entertainment/public assembly",
-    "floorAreaM2": 22117
+    "floorAreaM2": 22117,
+    "timezone": "US/Pacific",
+    "latitude": 37.871903400000036,
+    "longitude": -122.26072860000008
   },
   "subset": {
     "meterRows": 2160,
@@ -48,6 +51,42 @@
     "flaggedCount": 3,
     "flaggedEnergyKWh": 0
   },
+  "emissions": {
+    "factor": {
+      "id": "epa-egrid2016-camx-total-output-co2e",
+      "valueKgCo2ePerKwh": 0.240358596863,
+      "sourceValue": {
+        "value": 529.9,
+        "unit": "lbCO2e/MWh"
+      },
+      "geography": "CAMX / WECC California",
+      "accountingBasis": "location-based",
+      "sourceOrganisation": "U.S. Environmental Protection Agency",
+      "sourceUri": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt",
+      "sourceDocument": "eGRID Summary Tables 2016",
+      "effectivePeriod": {
+        "start": "2016-01-01",
+        "end": "2016-12-31",
+        "label": "eGRID2016"
+      },
+      "sourceManifestId": "epa-egrid2016-summary"
+    },
+    "clean": {
+      "acceptedEnergyKWh": 1160425.4405,
+      "acceptedEnergyMWh": 1160.4254405,
+      "excludedEnergyKWh": 0,
+      "emissionsKgCo2e": 278918.2306427087,
+      "emissionsTCo2e": 278.9182306427087
+    },
+    "tampered": {
+      "acceptedEnergyKWh": 1160130.1404999997,
+      "acceptedEnergyMWh": 1160.1301404999997,
+      "excludedEnergyKWh": 5906,
+      "emissionsKgCo2e": 278847.252749055,
+      "emissionsTCo2e": 278.847252749055
+    },
+    "emissionsChanged": true
+  },
   "tamperSmoke": {
     "index": 1728,
     "timestamp": "2016-03-13 00:00:00",
@@ -68,8 +107,10 @@
     "digestChanged": true
   },
   "caveats": [
-    "This smoke does not apply a grid-emission factor because the anonymised BDG2 site label is not sufficient to choose a defensible geographic factor automatically.",
+    "The factor is EPA eGRID2016 CAMX total-output CO2e, used only after the pinned BDG2 metadata exposed Berkeley coordinates for the selected building.",
+    "This is a location-based inventory-style reconstruction, not a marginal/avoided-emissions calculation.",
     "The three clean-run flags are zero-energy residual anomalies; flaggedEnergyKWh is therefore zero.",
-    "The deliberately modified holdout row is a tamper demonstration, not a claim that the source dataset was maliciously altered."
+    "The deliberately modified holdout row is a tamper demonstration, not a claim that the source dataset was maliciously altered.",
+    "The BDG2 building remains an anonymous benchmark subject and is not claimed to be the Carbon Footprint Ltd CaDI disclosure subject."
   ]
 }

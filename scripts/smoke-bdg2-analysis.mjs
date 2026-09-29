@@ -9,9 +9,20 @@ import {
   digestMeterSeries,
   injectTamper,
   loadPreparedBuildingDataset,
+  runBuildingMrv,
   runHourOfWeekBaseline,
   verifyPreparedArtifactDigests,
 } from "@climatechain/building-mrv";
+
+const factorReference = JSON.parse(
+  await readFile(
+    new URL(
+      "../packages/building-mrv/references/epa-egrid2016-camx.json",
+      import.meta.url,
+    ),
+    "utf8",
+  ),
+);
 
 const dir = process.argv[2];
 if (!dir) {
@@ -105,6 +116,41 @@ const tamperedDigest = await digestMeterSeries(
   crypto,
 );
 
+const latitude = dataset.metadata.latitude;
+const longitude = dataset.metadata.longitude;
+if (
+  latitude === undefined ||
+  longitude === undefined ||
+  Math.abs(latitude - 37.8719034) > 0.01 ||
+  Math.abs(longitude - -122.2607286) > 0.01
+) {
+  throw new Error(
+    "Pinned Bear smoke no longer resolves to the expected Berkeley coordinates; refusing to apply the CAMX factor.",
+  );
+}
+
+const factor = {
+  id: factorReference.id,
+  valueKgCo2ePerKwh:
+    factorReference.conversion.valueKgCo2ePerKwh,
+  geography: factorReference.geography,
+  sourceOrganisation: factorReference.sourceOrganisation,
+  sourceUri: factorReference.sourceUri,
+  sourceDocument: factorReference.sourceDocument,
+  retrievedAt: factorReference.retrievedAt,
+  effectivePeriod: factorReference.effectivePeriod,
+  sourceManifestId: factorReference.sourceManifestId,
+};
+
+const cleanMrv = runBuildingMrv(dataset.meter, factor, {
+  trainingFraction: 0.8,
+  anomalyThreshold: 6,
+});
+const tamperedMrv = runBuildingMrv(tamperedMeter, factor, {
+  trainingFraction: 0.8,
+  anomalyThreshold: 6,
+});
+
 console.log(
   "CLIMATECHAIN_BDG2_SMOKE=" +
     JSON.stringify({
@@ -127,6 +173,14 @@ console.log(
         threshold: anomalies.threshold,
         flaggedCount: anomalies.flaggedCount,
         flaggedEnergyKWh: anomalies.flaggedEnergyKWh,
+      },
+      emissions: {
+        factor,
+        clean: cleanMrv.emissions,
+        tampered: tamperedMrv.emissions,
+        emissionsChanged:
+          cleanMrv.emissions.emissionsTCo2e !==
+          tamperedMrv.emissions.emissionsTCo2e,
       },
       tamperSmoke: {
         index: tamperIndex,

@@ -414,6 +414,40 @@ const weatherSource = await extractWeather(
   meterSource.rows.map((row) => row.timestamp),
 );
 
+function firstNonEmpty(row, keys) {
+  for (const key of keys) {
+    const value = row[key];
+    if (value !== undefined && String(value).trim() !== "") return value;
+  }
+  return undefined;
+}
+
+function optionalNumber(row, keys) {
+  const value = firstNonEmpty(row, keys);
+  if (value === undefined) return undefined;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : undefined;
+}
+
+const timezone = firstNonEmpty(metadataRow, [
+  "timezone",
+  "time_zone",
+]);
+const latitude = optionalNumber(metadataRow, [
+  "lat",
+  "latitude",
+]);
+const longitude = optionalNumber(metadataRow, [
+  "lng",
+  "lon",
+  "longitude",
+]);
+const climateZone = firstNonEmpty(metadataRow, [
+  "climatezone",
+  "climate_zone",
+  "ashraeclimatezone",
+]);
+
 const metadata = {
   buildingId,
   siteId,
@@ -423,6 +457,10 @@ const metadata = {
   ...(Number.isFinite(Number(metadataRow.sqm))
     ? { floorAreaM2: Number(metadataRow.sqm) }
     : {}),
+  ...(timezone ? { timezone } : {}),
+  ...(latitude !== undefined ? { latitude } : {}),
+  ...(longitude !== undefined ? { longitude } : {}),
+  ...(climateZone ? { climateZone } : {}),
 };
 
 const meterText = meterCsv(meterSource.rows);
@@ -492,6 +530,7 @@ console.log(
       siteId,
       meterRows: meterSource.rows.length,
       weatherRows: weatherSource.rows.length,
+      metadata,
       meterSha256: source.digests.meter.value,
     },
     null,
