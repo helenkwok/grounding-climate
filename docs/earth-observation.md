@@ -152,3 +152,38 @@ The defensible units for this module are:
 - provenance/citation integrity
 
 Detection accuracy is **not** converted directly into avoided tCO2e.
+
+
+## Measured real-scene result
+
+The isolated real-data smoke was executed in GitHub Actions run `36580275620` against the pinned test scene:
+
+`T10SEH.2018190.v1`
+
+The full upstream TAR, image member, and mask member all matched their pinned byte sizes and SHA-256 digests before analysis.
+
+With NBR threshold `0.0`:
+
+| Metric | Measured |
+| --- | ---: |
+| Burn-class IoU | 0.6163525 |
+| Precision | 0.9756703 |
+| Recall | 0.6259735 |
+| F1 | 0.7626461 |
+| Overall accuracy | 0.6917725 |
+| Labelled burn area | 18,663.57 ha |
+| Predicted burn area | 11,974.23 ha |
+| Missed burn area | 6,980.67 ha |
+| False-positive burn area | 291.33 ha |
+
+This result is operationally informative: the zero-threshold NBR baseline is very conservative/high-precision on this scene, but recall is only about 0.626. It misses far more labelled burn area than it falsely adds, with a net under-estimate of 6,689.34 ha.
+
+For a wildfire/land-management analyst, this makes the baseline suitable as a cheap **triage** signal, not as final burn-boundary delineation.
+
+The corresponding JSON record is:
+
+`reports/earth-observation/t10seh-2018190-nbr.json`
+
+The workflow also produced a visual artifact containing the RGB scene, ground-truth mask, and TP/FP/FN overlay. The derived artifact ZIP was 664,415 bytes with SHA-256 `2bf7724361acca57d7112c5720f526f516a82babf3d804bf812af5bded944edb`.
+
+The published Prithvi IoU of 0.73 remains a separately attributed reference and is not represented as locally reproduced.
