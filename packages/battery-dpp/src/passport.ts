@@ -197,10 +197,14 @@ export async function buildBatteryPassport(options: {
             unit: "cycles",
           },
         },
-        confidence:
-          health.fit.rSquared === null
-            ? undefined
-            : Math.max(0, Math.min(1, health.fit.rSquared)),
+        ...(health.fit.rSquared === null
+          ? {}
+          : {
+              confidence: Math.max(
+                0,
+                Math.min(1, health.fit.rSquared),
+              ),
+            }),
         benchmark: {
           metric: "R² of local linear capacity fit",
           value: health.fit.rSquared ?? 0,
