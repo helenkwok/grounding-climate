@@ -335,6 +335,42 @@
       ]
     },
     {
+      "id": "energy-eva-active-power-load",
+      "name": "Active power load dataset - IEX data",
+      "component": "dataset",
+      "canonicalUrl": "https://data.mendeley.com/datasets/jxm8d4w4cv/1",
+      "upstreamPublisher": "Venkataramana Veeramsetty, Surender Reddy Salkuti, Baddam Nikitha, Thallapalli Siddartha",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0",
+        "url": "https://data.mendeley.com/datasets/jxm8d4w4cv/1"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "Use the original Mendeley or Energy-EVA standardized source at runtime. Do not vendor the full dataset into ClimateChain."
+      },
+      "attribution": "Veeramsetty, Salkuti, Nikitha and Siddartha, Active power load dataset - IEX data, Mendeley Data v1, DOI 10.17632/jxm8d4w4cv.1, CC-BY-4.0.",
+      "notes": [
+        "Energy-EVA standardizes this original source into its load benchmark representation.",
+        "Provenance must distinguish the original Mendeley data from the Energy-EVA standardized artifact."
+      ],
+      "evidence": [
+        {
+          "url": "https://data.mendeley.com/datasets/jxm8d4w4cv/1",
+          "finding": "Mendeley lists the dataset as CC BY 4.0 and describes 23,304 hourly active-power samples."
+        }
+      ]
+    },
+    {
       "id": "energy-eva-code",
       "name": "Energy-EVA benchmark code",
       "component": "code",
