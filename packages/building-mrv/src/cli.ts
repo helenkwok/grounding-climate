@@ -32,14 +32,14 @@ interface CliArgs {
   dir: string;
   out: string;
   factor?: number;
-  factorGeography?: string;
-  factorSource?: string;
+  factorGeography: string | undefined;
+  factorSource: string | undefined;
   factorOrganisation: string;
-  factorDocument?: string;
+  factorDocument: string | undefined;
   factorRetrievedAt: string;
   anomalyThreshold: number;
   trainingFraction: number;
-  tamperIndex?: number;
+  tamperIndex: number | undefined;
   tamperMultiplier: number;
 }
 
@@ -47,10 +47,14 @@ function argsFrom(argv: string[]): CliArgs {
   const args: CliArgs = {
     dir: "",
     out: "out/building-mrv",
+    factorGeography: undefined,
+    factorSource: undefined,
     factorOrganisation: "User-specified factor source",
+    factorDocument: undefined,
     factorRetrievedAt: new Date().toISOString(),
     anomalyThreshold: 6,
     trainingFraction: 0.8,
+    tamperIndex: undefined,
     tamperMultiplier: 20,
   };
 
