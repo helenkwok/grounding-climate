@@ -1,0 +1,57 @@
+name: Judging demo artifact
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install
+
+      - name: Build static judging demo
+        run: npm run demo:build
+
+      - name: Check expected static assets
+        run: |
+          test -s apps/demo/dist/index.html
+          test -s apps/demo/dist/styles.css
+          test -s apps/demo/dist/app.js
+          grep -q "ClimateChain" apps/demo/dist/index.html
+          grep -q "Evidence before claims" apps/demo/dist/index.html
+
+      - name: Serve and smoke-check built site
+        run: |
+          python3 -m http.server 4173 --directory apps/demo/dist > /tmp/climatechain-demo.log 2>&1 &
+          server_pid=$!
+          trap 'kill $server_pid' EXIT
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /tmp/demo-index.html; then
+              break
+            fi
+            sleep 0.25
+          done
+          curl --fail --silent http://127.0.0.1:4173/app.js > /tmp/demo-app.js
+          curl --fail --silent http://127.0.0.1:4173/styles.css > /tmp/demo-styles.css
+          grep -q "ClimateChain" /tmp/demo-index.html
+          test -s /tmp/demo-app.js
+          test -s /tmp/demo-styles.css
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: climatechain-judging-demo
+          path: apps/demo/dist
+          if-no-files-found: error
+          retention-days: 30

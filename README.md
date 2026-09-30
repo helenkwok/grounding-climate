@@ -2,6 +2,24 @@
 
 Evidence-first climate verification workspace for the IEEE ClimateChain Global Hackathon 2026.
 
+## Demo
+
+The integrated judging demo is the fastest way to see the product:
+
+```bash
+npm install
+npm run demo:build
+npm run demo:serve
+```
+
+Open `http://localhost:4173`.
+
+The demo combines measured outputs from Building MRV, Energy-EVA forecasting, HLS Earth observation, BatteryLife DPP, CarbonPlan registry reconciliation, and real CaDI-confirmed public disclosure sources. It also exposes the capability-aware WebMCP surface when `document.modelContext` is available.
+
+See [docs/judging-demo.md](docs/judging-demo.md) for the 3–5 minute presentation flow.
+
+> Submission blocker: this repository is currently private. The hackathon requirements tracked in [#1](https://github.com/helenkwok/climatechain/issues/1) require a public GitHub (or equivalent) repository before final submission.
+
 The project is organised around verifiable climate claims rather than tokens:
 
 ```text
