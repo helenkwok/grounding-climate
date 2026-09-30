@@ -10,6 +10,15 @@ import zipfile
 from pathlib import Path
 
 RELEASES = {
+    "v1": {
+        "record": "14890219",
+        "doi": "10.5281/zenodo.14890219",
+        "version": "v1",
+        "files": {
+            "CALB_labels.json": "6a9eff3b988d0faf03a08b5b2aca42ed",
+        },
+        "labels_only": True,
+    },
     "v4": {
         "record": "14969822",
         "doi": "10.5281/zenodo.14969822",
@@ -150,10 +159,14 @@ def main():
                 f"Checksum mismatch for {name}: expected {expected_md5}, got {actual}"
             )
         print(f"{name}: md5 OK ({actual})")
-        with zipfile.ZipFile(path) as zf:
-            zf.extractall(extracted / name.removesuffix(".zip"))
+        if name.endswith(".zip"):
+            with zipfile.ZipFile(path) as zf:
+                zf.extractall(extracted / name.removesuffix(".zip"))
 
-    labels_path = find_file(extracted / "Life labels", "CALB_labels.json")
+    if release.get("labels_only"):
+        labels_path = downloads / "CALB_labels.json"
+    else:
+        labels_path = find_file(extracted / "Life labels", "CALB_labels.json")
     labels_raw = json.loads(labels_path.read_text(encoding="utf-8"))
     labels = [
         {"batteryFile": str(name), "lifeCycles": float(value)}
@@ -166,12 +179,14 @@ def main():
         encoding="utf-8",
     )
 
-    battery_path = find_file(extracted / "CALB", battery_file)
-    history = export_history(
-        battery_path,
-        root / "battery-history.json",
-        release,
-    )
+    history = None
+    if not release.get("labels_only"):
+        battery_path = find_file(extracted / "CALB", battery_file)
+        history = export_history(
+            battery_path,
+            root / "battery-history.json",
+            release,
+        )
 
     manifest = {
         "schemaVersion": "climatechain.batterylife-prepared/0.1",
@@ -185,9 +200,9 @@ def main():
             ],
         },
         "labelCount": len(labels),
-        "selectedBattery": battery_file,
-        "selectedBatteryCycleCount": len(history["cycles"]),
-        "selectedBatteryNominalCapacityAh": history["nominalCapacityAh"],
+        "selectedBattery": battery_file if history else None,
+        "selectedBatteryCycleCount": len(history["cycles"]) if history else None,
+        "selectedBatteryNominalCapacityAh": history["nominalCapacityAh"] if history else None,
     }
     (root / "manifest.json").write_text(
         json.dumps(manifest, indent=2) + "\n",
