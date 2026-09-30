@@ -2,7 +2,17 @@
   "source": {
     "repository": "https://github.com/Ruifeng-Tan/BatteryLife",
     "file": "data_provider/data_split_recorder.py",
-    "note": "Exact CALB train/test split lists used by BatteryLife for seeds 42, 2021 and 2024."
+    "note": "Exact CALB train/test split lists used by BatteryLife for seeds 42, 2021 and 2024.",
+    "paperEra": {
+      "labels": {
+        "zenodoDoi": "10.5281/zenodo.14890219",
+        "version": "v1",
+        "file": "CALB_labels.json",
+        "md5": "6a9eff3b988d0faf03a08b5b2aca42ed"
+      },
+      "codeCommit": "f2fc7ab17b3311ea3ef62514f20bc8275a3efaf4",
+      "note": "Paper-era BatteryLife code immediately before the 2025-02-26 'fix calb random' commit maps seed 42 to CALB_422, matching the split pinned here."
+    }
   },
   "splits": [
     {
@@ -101,5 +111,12 @@
       "accuracyWithin15PercentMean": 0.267,
       "accuracyWithin15PercentStd": 0.094
     }
+  },
+  "measuredV1": {
+    "meanMape": 1.8760243941430395,
+    "stdMape": 0.6060759892181009,
+    "meanAccuracyWithin15Percent": 0.20000000000000004,
+    "stdAccuracyWithin15Percent": 2.7755575615628914e-17,
+    "note": "Measured by ClimateChain from immutable BatteryLife v1 CALB_labels.json using the paper-era Dummy semantics and the pinned 42/2021/2024 splits. This does not equal the published summary row."
   }
 }
