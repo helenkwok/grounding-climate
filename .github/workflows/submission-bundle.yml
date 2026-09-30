@@ -1,0 +1,73 @@
+name: Submission bundle
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "apps/demo/**"
+      - "docs/**"
+      - "reports/**"
+      - "sources/**"
+      - "scripts/build-submission.py"
+      - "package.json"
+      - "packages/core/**"
+      - "packages/webmcp/**"
+  push:
+    branches: [main]
+    paths:
+      - "apps/demo/**"
+      - "docs/**"
+      - "reports/**"
+      - "sources/**"
+      - "scripts/build-submission.py"
+      - "package.json"
+      - "packages/core/**"
+      - "packages/webmcp/**"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm install
+
+      - name: Build submission ZIP
+        run: python3 scripts/build-submission.py
+
+      - name: Validate ZIP and manifest
+        run: |
+          test -s dist/submission/climatechain-submission.zip
+          test -s dist/submission/climatechain/MANIFEST.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("dist/submission/climatechain/MANIFEST.json")
+          m = json.loads(p.read_text())
+          assert m["thirdPartyRawDataIncluded"] is False
+          assert m["fileCount"] > 10
+          forbidden = [
+              "data/external/",
+              ".tif",
+              ".parquet",
+              ".zip",
+          ]
+          for row in m["files"]:
+              path = row["path"].lower()
+              assert not any(token in path for token in forbidden), path
+          print("manifest OK:", m["fileCount"], "files")
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: climatechain-submission-bundle
+          path: dist/submission/climatechain-submission.zip
+          if-no-files-found: error
+          retention-days: 30
