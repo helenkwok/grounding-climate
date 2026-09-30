@@ -7,18 +7,19 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/energy-forecast && npm run build --workspace @climatechain/battery-dpp && npm run build --workspace @climatechain/carbon-registry",
-    "test": "npm run test --workspace @climatechain/core && npm run test --workspace @climatechain/crypto-node && npm run test --workspace @climatechain/webmcp && npm run test --workspace @climatechain/building-mrv && npm run test --workspace @climatechain/energy-forecast && npm run test --workspace @climatechain/battery-dpp && npm run test --workspace @climatechain/carbon-registry",
+    "build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/energy-forecast && npm run build --workspace @climatechain/battery-dpp && npm run build --workspace @climatechain/carbon-registry && npm run build --workspace @climatechain/disclosure",
+    "test": "npm run test --workspace @climatechain/core && npm run test --workspace @climatechain/crypto-node && npm run test --workspace @climatechain/webmcp && npm run test --workspace @climatechain/building-mrv && npm run test --workspace @climatechain/energy-forecast && npm run test --workspace @climatechain/battery-dpp && npm run test --workspace @climatechain/carbon-registry && npm run test --workspace @climatechain/disclosure",
     "check:rights": "node scripts/check-source-rights.mjs",
     "sources:attribution": "node scripts/render-source-attribution.mjs",
     "sources:attribution:check": "node scripts/render-source-attribution.mjs --check",
-    "check": "npm run build && npm run test && npm run check:rights && npm run sources:attribution:check",
+    "check": "npm run build && npm run test && npm run check:rights && npm run sources:attribution:check && npm run check:cadi",
     "building:prepare": "node scripts/prepare-bdg2-subset.mjs",
     "building:analyze": "npm run analyze --workspace @climatechain/building-mrv --",
     "energy:inspect": "node scripts/inspect-energy-eva-zenodo.mjs",
     "battery:prepare": "python scripts/prepare-batterylife-calb.py",
     "battery:smoke": "node scripts/smoke-batterylife-calb.mjs",
     "carbon:prepare": "node scripts/prepare-carbonplan-registry-fixtures.mjs",
-    "carbon:smoke": "node scripts/smoke-carbon-registry.mjs"
+    "carbon:smoke": "node scripts/smoke-carbon-registry.mjs",
+    "check:cadi": "node scripts/check-cadi-candidates.mjs"
   }
 }
