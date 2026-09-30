@@ -27,17 +27,27 @@ The module uses the shared #6/#8/#18 domain and trust layers rather than inventi
 
 ## Real data
 
-The reproducibility smoke pins BatteryLife Processed **v11**:
+The smoke intentionally pins two BatteryLife releases for different purposes.
+
+### Paper-era benchmark input
+
+- Zenodo v1 DOI `10.5281/zenodo.14890219`
+- `CALB_labels.json` MD5 `6a9eff3b988d0faf03a08b5b2aca42ed`
+- paper-era code reference: commit `f2fc7ab17b3311ea3ef62514f20bc8275a3efaf4`
+
+This is the immutable label artifact linked by the paper-era repository. The referenced code is immediately before the 26 February 2025 `fix calb random` commit.
+
+### Current passport input
+
+BatteryLife Processed **v11**:
 
 - Zenodo DOI `10.5281/zenodo.19688272`
 - `CALB.zip` MD5 `2b1006e96e0ca42765a732060f964687`
 - `Life labels.zip` MD5 `cd0cc01a7211972be45e8e38d86cdeca`
 
-The workflow downloads those two artifacts at runtime and does not commit their bytes.
+The workflow downloads these artifacts at runtime and does not commit their bytes. Keeping the historical benchmark source separate from the current corrected passport source makes version changes visible instead of silently mixing them.
 
-Why v11 instead of silently using latest: the BatteryLife project has continued to release corrected/expanded dataset versions. Pinning one release makes the benchmark and passport demonstration reproducible and makes future version changes visible.
-
-## Published benchmark reproduced
+## Published benchmark reference and measured rerun
 
 BatteryLife defines the Dummy battery-life predictor as:
 
@@ -59,7 +69,20 @@ The exact file lists are pinned in:
 
 ClimateChain's evaluator intentionally mirrors one upstream implementation detail: BatteryLife's 15%-accuracy check divides absolute error by the **dummy prediction / training mean**, not by the ground-truth life label. That convention is preserved only for reproduction of the published benchmark.
 
-The real-data workflow fails when the locally reproduced three-seed aggregate does not agree with the published rounded table within the configured rounding tolerance.
+Using the immutable v1 labels, the paper-era Dummy semantics, and the pinned 42/2021/2024 split definitions, ClimateChain measures:
+
+| Metric | ClimateChain v1 rerun | Published Dummy |
+| --- | ---: | ---: |
+| MAPE mean | 1.8760243941 | 1.811 |
+| MAPE population std. | 0.6060759892 | 0.550 |
+| 15%-Acc mean | 0.2000000000 | 0.267 |
+| 15%-Acc population std. | ~0 | 0.094 |
+
+The released paper-era code/data therefore **do not reproduce the published summary row exactly**.
+
+This is retained as a reproducibility finding rather than hidden by widening a tolerance. Upstream history also records later CALB split fixes, including `fix calb random` (26 February 2025) and `fix CALB issue` (15 April 2025). The smoke fails if the immutable v1 rerun changes from the measured values above; the published row remains a separate reference.
+
+This distinction matters for provenance: “published benchmark value” and “reproduced from released artifacts” are different claims.
 
 ## Passport health estimate
 
@@ -169,10 +192,11 @@ npm run check
 Real BatteryLife smoke:
 
 ```bash
-python scripts/prepare-batterylife-calb.py /tmp/batterylife
+python scripts/prepare-batterylife-calb.py /tmp/batterylife-v1 v1
+python scripts/prepare-batterylife-calb.py /tmp/batterylife-v11 v11
 npm install
 npm run build
-node scripts/smoke-batterylife-calb.mjs /tmp/batterylife
+node scripts/smoke-batterylife-calb.mjs /tmp/batterylife-v1 /tmp/batterylife-v11
 ```
 
 The GitHub Actions workflow `BatteryLife CALB data smoke` performs the same path on changes to the Battery DPP module.
