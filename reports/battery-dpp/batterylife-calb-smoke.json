@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "climatechain.batterylife-smoke/0.1",
+  "source": {
+    "paperBenchmarkRelease": {
+      "zenodoRecord": "https://zenodo.org/records/14890219",
+      "doi": "10.5281/zenodo.14890219",
+      "version": "v1",
+      "files": [
+        {
+          "name": "CALB_labels.json",
+          "md5": "6a9eff3b988d0faf03a08b5b2aca42ed"
+        }
+      ]
+    },
+    "currentPassportRelease": {
+      "zenodoRecord": "https://zenodo.org/records/19688272",
+      "doi": "10.5281/zenodo.19688272",
+      "version": "v11",
+      "files": [
+        {
+          "name": "Life labels.zip",
+          "md5": "cd0cc01a7211972be45e8e38d86cdeca"
+        },
+        {
+          "name": "CALB.zip",
+          "md5": "2b1006e96e0ca42765a732060f964687"
+        }
+      ]
+    }
+  },
+  "benchmark": {
+    "dataset": "CALB",
+    "paperLabelCount": 27,
+    "currentLabelCount": 27,
+    "runs": [
+      {
+        "seed": 42,
+        "trainCount": 17,
+        "testCount": 5,
+        "trainMeanLifeCycles": 968.5294117647059,
+        "mape": 2.723016487760917,
+        "accuracyWithin15Percent": 0.2
+      },
+      {
+        "seed": 2021,
+        "trainCount": 17,
+        "testCount": 5,
+        "trainMeanLifeCycles": 852.1176470588235,
+        "mape": 1.5663064298968377,
+        "accuracyWithin15Percent": 0.2
+      },
+      {
+        "seed": 2024,
+        "trainCount": 17,
+        "testCount": 5,
+        "trainMeanLifeCycles": 837.4117647058823,
+        "mape": 1.338750264771364,
+        "accuracyWithin15Percent": 0.2
+      }
+    ],
+    "reproduced": {
+      "meanMape": 1.8760243941430395,
+      "stdMape": 0.6060759892181009,
+      "meanAccuracyWithin15Percent": 0.20000000000000004,
+      "stdAccuracyWithin15Percent": 2.7755575615628914e-17
+    },
+    "published": {
+      "mapeMean": 1.811,
+      "mapeStd": 0.55,
+      "accuracyWithin15PercentMean": 0.267,
+      "accuracyWithin15PercentStd": 0.094
+    },
+    "delta": {
+      "mapeMeanDelta": 0.06502439414303951,
+      "mapeStdDelta": 0.05607598921810086,
+      "accuracyMeanDelta": -0.06699999999999998,
+      "accuracyStdDelta": -0.09399999999999997
+    },
+    "benchmarkMatchesPublished": false,
+    "benchmarkMatchesPinnedV1": true,
+    "reproducibilityFinding": "Pinned v1 code/data does not reproduce the published rounded table; the measured discrepancy is retained as provenance rather than hidden by tolerance.",
+    "paperEraCodeCommit": "f2fc7ab17b3311ea3ef62514f20bc8275a3efaf4",
+    "correctedV11": {
+      "runs": [
+        {
+          "seed": 42,
+          "trainCount": 17,
+          "testCount": 5,
+          "trainMeanLifeCycles": 967.7058823529412,
+          "mape": 2.704282471799923,
+          "accuracyWithin15Percent": 0.2
+        },
+        {
+          "seed": 2021,
+          "trainCount": 17,
+          "testCount": 5,
+          "trainMeanLifeCycles": 852.2941176470588,
+          "mape": 1.5518387101757631,
+          "accuracyWithin15Percent": 0.2
+        },
+        {
+          "seed": 2024,
+          "trainCount": 17,
+          "testCount": 5,
+          "trainMeanLifeCycles": 836.6470588235294,
+          "mape": 1.3380581313032303,
+          "accuracyWithin15Percent": 0.2
+        }
+      ],
+      "reproduced": {
+        "meanMape": 1.8647264377596386,
+        "stdMape": 0.6000368237010443,
+        "meanAccuracyWithin15Percent": 0.20000000000000004,
+        "stdAccuracyWithin15Percent": 2.7755575615628914e-17
+      },
+      "deltaFromPublishedTable": {
+        "mapeMeanDelta": 0.0537264377596387,
+        "mapeStdDelta": 0.05003682370104423,
+        "accuracyMeanDelta": -0.06699999999999998,
+        "accuracyStdDelta": -0.09399999999999997
+      },
+      "note": "BatteryLife v11 corrected labels are measured separately and are not expected to reproduce the historical paper-era table."
+    }
+  },
+  "passport": {
+    "batteryId": "CALB_0_B182",
+    "cycleCount": 100,
+    "nominalCapacityAh": 58,
+    "observedCycle": 100,
+    "currentSoh": 0.7759146551724139,
+    "estimatedRulCycles": 0,
+    "disposition": "repurpose",
+    "fitRSquared": 0.8981361761643544,
+    "inputDigest": {
+      "algorithm": "SHA-256",
+      "value": "W9o1KG15CxACBhRCYFDJafYBUlAUd7AXqPkejRoPfcw"
+    },
+    "evidenceRoot": {
+      "algorithm": "SHA-256",
+      "value": "rl8V6A3os9zzp5pU9m4X-JR3kKCUnymZFu0zi2pe_GM"
+    }
+  },
+  "tamper": {
+    "cycle": 100,
+    "originalCapacityAh": 45.00305,
+    "changedCapacityAh": 54.00366,
+    "changedInputDigest": {
+      "algorithm": "SHA-256",
+      "value": "EO9XCJ1sPmCsVBrdgy7j32bK-JyJ6Ob5bx1INjsK5WQ"
+    },
+    "changedEvidenceRoot": {
+      "algorithm": "SHA-256",
+      "value": "COwtymV1HF4Sm0SUnK6ZGGxGQIPUC-uJ9PQbPlDDehU"
+    },
+    "rootChanged": true
+  },
+  "scope": {
+    "primaryUser": "second-life battery operator",
+    "decision": "reuse, repurpose, service-review, or retire-review",
+    "caveat": "Decision support only; no claim of avoided emissions or battery safety certification."
+  }
+}

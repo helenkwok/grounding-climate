@@ -112,6 +112,48 @@
       ]
     },
     {
+      "id": "batterylife-processed",
+      "name": "BatteryLife Processed dataset",
+      "component": "dataset",
+      "canonicalUrl": "https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed",
+      "upstreamPublisher": "Battery-Life",
+      "retrievedAt": "2026-09-29",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "MIT",
+        "name": "MIT License",
+        "url": "https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "ClimateChain downloads only the pinned CALB and life-label artifacts for reproducibility smoke tests; processed battery bytes are not committed."
+      },
+      "attribution": "BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. ClimateChain pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.",
+      "notes": [
+        "Hugging Face metadata identifies the processed dataset licence as MIT.",
+        "The reproducibility smoke pins the v11 Zenodo release rather than silently following the mutable latest dataset.",
+        "CALB.zip MD5 2b1006e96e0ca42765a732060f964687; Life labels.zip MD5 cd0cc01a7211972be45e8e38d86cdeca.",
+        "Preserve citations to the original CALB experiment as requested by BatteryLife."
+      ],
+      "evidence": [
+        {
+          "url": "https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed",
+          "finding": "Dataset metadata lists MIT."
+        },
+        {
+          "url": "https://zenodo.org/records/19688272",
+          "finding": "Pinned BatteryLife Processed v11 release used by ClimateChain, including CALB.zip and Life labels.zip with published MD5 checksums."
+        }
+      ]
+    },
+    {
       "id": "batterylife-raw",
       "name": "BatteryLife Raw dataset",
       "component": "dataset",

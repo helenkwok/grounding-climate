@@ -10,6 +10,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | ALDI++ | code | MIT | allowed | code-only |
 | ASHRAE Great Energy Predictor III competition data | benchmark-data | Subject to Competition Rules | prohibited | download-from-upstream |
 | BatteryLife benchmark code | code | MIT | allowed | code-only |
+| BatteryLife Processed dataset | dataset | MIT | allowed | download-from-upstream |
 | BatteryLife Raw dataset | dataset | MIT | allowed | redistributable |
 | Building Data Genome Project 2 | dataset | CC-BY-SA-4.0 | allowed | redistributable |
 | Carbon Data Intelligence (CaDI) | website | Carbon Footprint Ltd website Terms & Conditions | prohibited | link-only |
@@ -57,6 +58,14 @@ BatteryLife benchmark code, Ruifeng Tan et al., MIT License.
 - Source: https://github.com/Ruifeng-Tan/BatteryLife
 - Terms/licence: https://github.com/Ruifeng-Tan/BatteryLife/blob/main/LICENSE
 - Repository policy: Benchmark code is MIT licensed.
+
+### BatteryLife Processed dataset (dataset)
+
+BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. ClimateChain pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.
+
+- Source: https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed
+- Terms/licence: https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed
+- Repository policy: ClimateChain downloads only the pinned CALB and life-label artifacts for reproducibility smoke tests; processed battery bytes are not committed.
 
 ### BatteryLife Raw dataset (dataset)
 
