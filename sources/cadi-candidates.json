@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "climatechain.cadi-candidates/0.1",
+  "researchedAt": "2026-09-30",
+  "rightsManifestId": "cadi-public-web",
+  "policy": "Links and extracted factual claims only; do not mirror CaDI or bulk scrape records.",
+  "candidates": [
+    {
+      "id": "carbon-footprint-ltd",
+      "name": "Carbon Footprint Ltd",
+      "confirmationStatus": "confirmed-on-cadi",
+      "confirmationUrl": "https://www.carbonfootprint.com/our_cadi_data.html",
+      "underlyingSourceUrl": "https://www.carbonfootprint.com/our_sustainability.html",
+      "usableClaim": "Own emissions are explicitly stated as published openly on CaDI; 2023 is the current absolute-emissions baseline described on its sustainability page.",
+      "numericClaimReady": false
+    },
+    {
+      "id": "ebb",
+      "name": "Elliott Baxter & Company Ltd (EBB)",
+      "confirmationStatus": "confirmed-on-cadi",
+      "confirmationUrl": "https://www.ebbgroup.com/ebb-strengthens-transparency-with-carbon-disclosure-on-cadi.html",
+      "underlyingSourceUrl": "https://www.ebbgroup.com/sustainability-brochure.html",
+      "usableClaim": "EBB states that it publishes its environmental data on CaDI and identifies its annual Sustainability Brochure as the primary detailed source.",
+      "numericClaimReady": false
+    },
+    {
+      "id": "lpl-construction",
+      "name": "LPL Construction",
+      "confirmationStatus": "confirmed-on-cadi",
+      "confirmationUrl": "https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/",
+      "underlyingSourceUrl": "https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/",
+      "usableClaim": "LPL states that Scope 1, 2 and 3 are measured annually with external verification through Carbon Footprint Ltd and publication on CaDI. The page reports 2025 Scope 1 as 601.26 tCO2e.",
+      "numericClaimReady": true,
+      "extractedClaims": [
+        {
+          "id": "claim:lpl:2025:scope1",
+          "period": "2025",
+          "metric": "Scope 1 emissions",
+          "value": 601.26,
+          "unit": "tCO2e",
+          "basis": "reported",
+          "assuranceClaim": "First-party page states external verification through Carbon Footprint Ltd."
+        }
+      ]
+    },
+    {
+      "id": "venn",
+      "name": "Venn",
+      "confirmationStatus": "confirmed-on-cadi",
+      "confirmationUrl": "https://www.venn-partners.com/wp-content/uploads/2026/01/ESG-initiatives-2025.pdf",
+      "underlyingSourceUrl": "https://www.venn-partners.com/wp-content/uploads/2026/01/ESG-initiatives-2025.pdf",
+      "usableClaim": "Venn's 2025 ESG review states that its 2024 Carbon Neutral certification details are published on CaDI and that corporate-level emissions fell by nearly 60% year-on-year.",
+      "numericClaimReady": false
+    },
+    {
+      "id": "centreline-pula",
+      "name": "Centreline / Pula Aviation Services",
+      "confirmationStatus": "confirmed-on-cadi",
+      "confirmationUrl": "https://www.centreline.aero/carbon-database-initiative/",
+      "underlyingSourceUrl": "https://www.centreline.aero/wp-content/uploads/2025/11/Net-Zero-Strategic-Plan-2050-1.pdf",
+      "usableClaim": "Centreline states that data is being published through CaDI. Its strategic plan calls for annual independent carbon-footprint assessments and a net-zero 2050 pathway.",
+      "numericClaimReady": false
+    },
+    {
+      "id": "washco",
+      "name": "WASHCO Ltd",
+      "confirmationStatus": "confirmed-on-cadi",
+      "confirmationUrl": "https://www.washco.co.uk/2025/09/another-step-towards-sustainability/",
+      "underlyingSourceUrl": "https://carbon.knack.com/cadi",
+      "usableClaim": "WASHCO states that its emissions report has been published on CaDI and links directly to the CaDI report.",
+      "numericClaimReady": false
+    }
+  ]
+}
