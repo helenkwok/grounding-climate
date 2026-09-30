@@ -1,0 +1,16 @@
+{
+  "name": "@climatechain/demo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "@climatechain/core": "*",
+    "@climatechain/webmcp": "*"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}
