@@ -4,10 +4,11 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "apps/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/energy-forecast && npm run build --workspace @climatechain/battery-dpp && npm run build --workspace @climatechain/carbon-registry && npm run build --workspace @climatechain/disclosure",
+    "build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/energy-forecast && npm run build --workspace @climatechain/battery-dpp && npm run build --workspace @climatechain/carbon-registry && npm run build --workspace @climatechain/disclosure && npm run build --workspace @climatechain/demo",
     "test": "npm run test --workspace @climatechain/core && npm run test --workspace @climatechain/crypto-node && npm run test --workspace @climatechain/webmcp && npm run test --workspace @climatechain/building-mrv && npm run test --workspace @climatechain/energy-forecast && npm run test --workspace @climatechain/battery-dpp && npm run test --workspace @climatechain/carbon-registry && npm run test --workspace @climatechain/disclosure",
     "check:rights": "node scripts/check-source-rights.mjs",
     "sources:attribution": "node scripts/render-source-attribution.mjs",
@@ -20,6 +21,8 @@
     "battery:smoke": "node scripts/smoke-batterylife-calb.mjs",
     "carbon:prepare": "node scripts/prepare-carbonplan-registry-fixtures.mjs",
     "carbon:smoke": "node scripts/smoke-carbon-registry.mjs",
-    "check:cadi": "node scripts/check-cadi-candidates.mjs"
+    "check:cadi": "node scripts/check-cadi-candidates.mjs",
+    "demo:build": "npm run build --workspace @climatechain/demo",
+    "demo:serve": "python3 -m http.server 4173 --directory apps/demo/dist"
   }
 }

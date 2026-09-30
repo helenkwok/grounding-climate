@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="ClimateChain evidence-first climate verification workspace demo">
+  <title>ClimateChain · Evidence before claims</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="ClimateChain home">
+      <span class="brand-mark">CC</span>
+      <span>
+        <strong>ClimateChain</strong>
+        <small>evidence before claims</small>
+      </span>
+    </a>
+    <nav>
+      <a href="#workspace">Workspace</a>
+      <a href="#tamper">Tamper proof</a>
+      <a href="#agent">WebMCP</a>
+    </nav>
+    <div id="webmcp-badge" class="status-pill">Checking WebMCP…</div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">IEEE ClimateChain Global Hackathon 2026</p>
+        <h1>Climate claims that can show their work.</h1>
+        <p class="hero-lede">
+          One workspace connects real measurements, benchmarked analysis,
+          provenance, signatures, and tamper detection—without pretending a
+          blockchain makes source data true.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#workspace">Open evidence workspace</a>
+          <button class="button ghost" id="run-agent-audit">Run guided audit</button>
+        </div>
+        <div class="hero-proof">
+          <span><strong>5</strong> real-data modules</span>
+          <span><strong>1</strong> shared evidence graph</span>
+          <span><strong>PQ</strong> ML-DSA + hybrid TLS tested</span>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Current audit case">
+        <p class="panel-label">Current cross-module case</p>
+        <h2>Evidence integrity audit</h2>
+        <div class="flow">
+          <span>source</span><b>→</b><span>analysis</span><b>→</b><span>claim</span>
+          <b>→</b><span>verify</span><b>→</b><span>attest</span>
+        </div>
+        <dl>
+          <div><dt>Building energy</dt><dd>1,160.43 MWh</dd></div>
+          <div><dt>Reconstructed emissions</dt><dd>278.92 tCO₂e</dd></div>
+          <div><dt>Burn-scar IoU</dt><dd>0.6164</dd></div>
+          <div><dt>Battery decision</dt><dd>repurpose</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section id="workspace" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Measured, not mocked</p>
+          <h2>One workspace, five independently testable capabilities</h2>
+        </div>
+        <p>
+          Each card is backed by a committed measured report generated from a
+          pinned upstream source. Select a module to inspect its evidence and failure path.
+        </p>
+      </div>
+      <div id="module-grid" class="module-grid"></div>
+    </section>
+
+    <section id="detail" class="section detail-section">
+      <div class="section-heading compact">
+        <div>
+          <p class="eyebrow">Selected evidence</p>
+          <h2 id="detail-title">Building MRV</h2>
+        </div>
+        <div id="detail-source" class="source-chip"></div>
+      </div>
+      <div class="detail-grid">
+        <article class="card">
+          <p class="panel-label">What was measured</p>
+          <div id="metric-list" class="metric-list"></div>
+        </article>
+        <article class="card">
+          <p class="panel-label">Decision / user</p>
+          <h3 id="decision-title"></h3>
+          <p id="decision-copy" class="muted"></p>
+          <div id="limitations" class="notice"></div>
+        </article>
+        <article class="card evidence-card">
+          <p class="panel-label">Provenance</p>
+          <div id="provenance-list" class="provenance-list"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="tamper" class="section tamper-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow danger">Proof it is real</p>
+          <h2>Change one input. The current verification must fail.</h2>
+        </div>
+        <p>
+          The old attestation remains attributable to the old bytes. It does not
+          silently “move” to changed evidence.
+        </p>
+      </div>
+      <div class="tamper-console">
+        <div class="tamper-controls">
+          <label for="tamper-module">Demo</label>
+          <select id="tamper-module"></select>
+          <button id="tamper-button" class="button danger-button">Inject test tamper</button>
+          <button id="reset-button" class="button ghost">Reset</button>
+        </div>
+        <div id="tamper-output" class="tamper-output"></div>
+      </div>
+    </section>
+
+    <section id="agent" class="section agent-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Semantic agent interface</p>
+          <h2>Agents call evidence tools—not the DOM.</h2>
+        </div>
+        <p>
+          Capability-aware WebMCP registers only tools relevant to the active
+          case. Consequential operations stay behind human approval.
+        </p>
+      </div>
+      <div class="agent-grid">
+        <article class="card">
+          <p class="panel-label">Suggested audit</p>
+          <ol class="audit-steps">
+            <li>List active capabilities.</li>
+            <li>Inspect the Building MRV measured baseline.</li>
+            <li>Inspect the carbon-registry integrity result.</li>
+            <li>Explain which claims are reconciled, incomplete, or tampered.</li>
+          </ol>
+          <button class="button primary" id="run-agent-audit-2">Run guided audit</button>
+        </article>
+        <article class="card activity-card">
+          <div class="activity-head">
+            <p class="panel-label">Activity trail</p>
+            <button class="text-button" id="clear-activity">Clear</button>
+          </div>
+          <div id="activity-log" class="activity-log"></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>ClimateChain · real sources → measured analysis → provenance → verification</p>
+    <p>Raw third-party datasets remain off-chain and are not bundled unless rights permit.</p>
+  </footer>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

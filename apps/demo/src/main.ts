@@ -1,0 +1,802 @@
+import {
+  CLIMATECHAIN_SCHEMA_VERSION,
+  type ClimateCaseBundle,
+  type ClimateNode,
+  type NodeRef,
+  type Verification,
+} from "@climatechain/core";
+import {
+  ActivityLog,
+  ClimateCapabilityRegistry,
+  DynamicClimateWebMcp,
+  createRoutedModule,
+  type ClimateWorkspace,
+  type ModuleCommandRouter,
+} from "@climatechain/webmcp";
+
+import buildingReport from "../../../reports/building-mrv/bdg2-v1-smoke.json";
+import energyReport from "../../../reports/energy-forecast/active-power-dummy.json";
+import earthReport from "../../../reports/earth-observation/t10seh-2018190-nbr.json";
+import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
+import carbonReport from "../../../reports/carbon-registry/carbonplan-smoke.json";
+import cadi from "../../../sources/cadi-candidates.json";
+
+type JsonObject = Record<string, any>;
+
+type DemoModule = {
+  id: string;
+  title: string;
+  icon: string;
+  kicker: string;
+  kpi: string;
+  kpiLabel: string;
+  source: string;
+  decisionTitle: string;
+  decisionCopy: string;
+  limitation: string;
+  metrics: Array<[string, string]>;
+  provenance: Array<[string, string]>;
+  tamper: {
+    before: string;
+    change: string;
+    after: string;
+    rootBefore?: string;
+    rootAfter?: string;
+  };
+};
+
+const building = buildingReport as JsonObject;
+const energy = energyReport as JsonObject;
+const earth = earthReport as JsonObject;
+const battery = batteryReport as JsonObject;
+const carbon = carbonReport as JsonObject;
+const cadiData = cadi as JsonObject;
+const lpl = cadiData.candidates.find((item: JsonObject) => item.id === "lpl-construction");
+const lplClaim = lpl?.extractedClaims?.[0];
+
+const avgLoadAcc =
+  energy.benchmark.cutoffs.reduce(
+    (sum: number, row: JsonObject) => sum + row.reproduced.loadAcc,
+    0,
+  ) / energy.benchmark.cutoffs.length;
+
+const modules: DemoModule[] = [
+  {
+    id: "building",
+    title: "Building MRV",
+    icon: "▦",
+    kicker: "Real meter → emissions",
+    kpi: building.emissions.clean.emissionsTCo2e.toFixed(2),
+    kpiLabel: "tCO₂e reconstructed",
+    source: "BDG2 v1.0 + EPA eGRID2016",
+    decisionTitle: "Facility energy manager",
+    decisionCopy:
+      "Check whether the measured electricity record is credible enough to support an inventory-style Scope 2 reconstruction before it reaches a disclosure workflow.",
+    limitation:
+      "The BDG2 building is anonymous benchmark data. It is not claimed to be the same subject as any CaDI organisation.",
+    metrics: [
+      ["Meter rows", building.subset.meterRows.toLocaleString()],
+      ["Temporal holdout RMSLE", building.baseline.metrics.rmsle.toFixed(4)],
+      ["MAE", building.baseline.metrics.mae.toFixed(2) + " kWh"],
+      ["Accepted energy", building.emissions.clean.acceptedEnergyMWh.toFixed(2) + " MWh"],
+      ["Location-based emissions", building.emissions.clean.emissionsTCo2e.toFixed(2) + " tCO₂e"],
+      ["Clean anomaly flags", String(building.anomalyCheck.flaggedCount)],
+    ],
+    provenance: [
+      ["Dataset", building.source.doi],
+      ["Building", building.building.buildingId],
+      ["Factor", building.emissions.factor.id],
+      ["Factor source", building.emissions.factor.sourceOrganisation],
+      ["Clean digest", building.tamperSmoke.cleanDigest.value],
+    ],
+    tamper: {
+      before: building.tamperSmoke.originalValue + " kWh",
+      change: "×" + building.tamperSmoke.multiplier + " at " + building.tamperSmoke.timestamp,
+      after:
+        building.tamperSmoke.tamperedValue +
+        " kWh → flagged; accepted emissions " +
+        building.emissions.tampered.emissionsTCo2e.toFixed(2) +
+        " tCO₂e",
+      rootBefore: building.tamperSmoke.cleanDigest.value,
+      rootAfter: building.tamperSmoke.tamperedDigest.value,
+    },
+  },
+  {
+    id: "energy",
+    title: "Renewable / Load Forecast",
+    icon: "↯",
+    kicker: "Published baseline reproduced",
+    kpi: avgLoadAcc.toFixed(3),
+    kpiLabel: "mean LOAD_ACC",
+    source: "Energy-EVA 2.0",
+    decisionTitle: "Microgrid operator",
+    decisionCopy:
+      "Use a measured forecast-quality result as decision support, then apply coded limits before any market or dispatch action.",
+    limitation:
+      "The demo reproduces Energy-EVA's dummy baseline exactly. It does not claim that forecast accuracy alone reduces emissions.",
+    metrics: [
+      ["Standardized item series", String(energy.standardizedData.itemCount)],
+      ["Forecast horizon", energy.benchmark.horizonHours + " h"],
+      ["Rolling windows", String(energy.benchmark.cutoffs.length)],
+      ["Published baseline matched", energy.benchmark.reproducedAll ? "yes" : "no"],
+      ["Mean LOAD_ACC", avgLoadAcc.toFixed(4)],
+      ["Data licence", energy.source.originalData.license],
+    ],
+    provenance: [
+      ["Dataset DOI", energy.source.doi],
+      ["Original DOI", energy.source.originalData.doi],
+      ["Member", energy.source.standardizedMember],
+      ["Archive MD5", energy.source.archiveMd5],
+      ["Model", energy.benchmark.model],
+    ],
+    tamper: {
+      before: "Pinned standardized input + dummy_model semantics",
+      change: "Change source series / model version / confidence",
+      after: "Input commitment changes; bounded action must be re-evaluated",
+    },
+  },
+  {
+    id: "earth",
+    title: "Earth Observation",
+    icon: "◉",
+    kicker: "Satellite scene → measured mask",
+    kpi: earth.baseline.metrics.iou.toFixed(3),
+    kpiLabel: "burn-class IoU",
+    source: "IBM/NASA HLS Burn Scars",
+    decisionTitle: "Wildfire / land-management analyst",
+    decisionCopy:
+      "Use a transparent CPU NBR detector to triage a real HLS scene, compare it to ground truth, and preserve source/model provenance.",
+    limitation:
+      "One pinned scene does not establish broad geographic generalisation. The baseline is high-precision triage, not final delineation.",
+    metrics: [
+      ["IoU", earth.baseline.metrics.iou.toFixed(4)],
+      ["Precision", earth.baseline.metrics.precision.toFixed(4)],
+      ["Recall", earth.baseline.metrics.recall.toFixed(4)],
+      ["F1", earth.baseline.metrics.f1.toFixed(4)],
+      ["Labelled burn", earth.baseline.metrics.groundTruthHectares.toLocaleString() + " ha"],
+      ["Missed burn", earth.baseline.metrics.missedBurnHectares.toLocaleString() + " ha"],
+    ],
+    provenance: [
+      ["Scene", earth.source.sceneId],
+      ["Dataset revision", earth.source.datasetRevision],
+      ["Image SHA-256", earth.source.image.sha256],
+      ["Mask SHA-256", earth.source.mask.sha256],
+      ["Method", earth.baseline.method + " @ " + earth.baseline.threshold],
+    ],
+    tamper: {
+      before: earth.source.image.sha256,
+      change: "Modify source image or prediction artefact",
+      after: "Evidence digest/root no longer matches the signed provenance record",
+    },
+  },
+  {
+    id: "battery",
+    title: "Battery DPP",
+    icon: "▣",
+    kicker: "Cycling history → passport decision",
+    kpi: (battery.passport.currentSoh * 100).toFixed(1) + "%",
+    kpiLabel: "current SOH",
+    source: "BatteryLife / CALB",
+    decisionTitle: "Second-life battery operator",
+    decisionCopy:
+      "Turn measured cycle history into a traceable SOH/RUL passport claim for reuse, repurpose, service review, or retirement review.",
+    limitation:
+      "Decision support only. This is not a battery-safety certification and is not a claim of avoided emissions.",
+    metrics: [
+      ["Battery", battery.passport.batteryId],
+      ["Observed cycles", String(battery.passport.cycleCount)],
+      ["Current SOH", (battery.passport.currentSoh * 100).toFixed(2) + "%"],
+      ["Fit R²", battery.passport.fitRSquared.toFixed(4)],
+      ["Disposition", battery.passport.disposition],
+      ["Pinned-v1 baseline reproducible", battery.benchmark.benchmarkMatchesPinnedV1 ? "yes" : "no"],
+    ],
+    provenance: [
+      ["Benchmark DOI", battery.source.paperBenchmarkRelease.doi],
+      ["Passport DOI", battery.source.currentPassportRelease.doi],
+      ["Input digest", battery.passport.inputDigest.value],
+      ["Evidence root", battery.passport.evidenceRoot.value],
+      ["Published-row exact match", battery.benchmark.benchmarkMatchesPublished ? "yes" : "no"],
+    ],
+    tamper: {
+      before: battery.tamper.originalCapacityAh + " Ah",
+      change: "Final cycle capacity → " + battery.tamper.changedCapacityAh + " Ah",
+      after: "Input digest and evidence root both change",
+      rootBefore: battery.passport.evidenceRoot.value,
+      rootAfter: battery.tamper.changedEvidenceRoot.value,
+    },
+  },
+  {
+    id: "carbon",
+    title: "Carbon Registry",
+    icon: "◎",
+    kicker: "Multi-registry reconciliation",
+    kpi: String(carbon.clean.recordCount),
+    kpiLabel: "real records checked",
+    source: "CarbonPlan OffsetsDB",
+    decisionTitle: "Carbon-market auditor / verifier",
+    decisionCopy:
+      "Reconcile issuance and retirement records across a bounded multi-registry snapshot with deterministic, explainable checks.",
+    limitation:
+      "Missing issuance in the bounded subset is unresolved evidence, not automatically fraud. The duplicate row is injected only for the integrity demo.",
+    metrics: [
+      ["Registries", String(carbon.clean.registries.length)],
+      ["Records", String(carbon.clean.recordCount)],
+      ["Supported groups", String(carbon.clean.supportedCount)],
+      ["Missing-issuance groups", String(carbon.clean.unresolvedMissingIssuanceCount)],
+      ["Duplicate serials", String(carbon.clean.duplicateExcessCount)],
+      ["Clean result", carbon.clean.verificationResult],
+    ],
+    provenance: [
+      ["Pinned commit", carbon.source.commit],
+      ["Source files", String(carbon.source.fileCount)],
+      ["Source bytes", carbon.source.totalBytes.toLocaleString()],
+      ["Evidence root", carbon.clean.evidenceRoot.value],
+      ["Ledger decision", carbon.ledgerDecision.decision],
+    ],
+    tamper: {
+      before:
+        carbon.tamperDemo.originalQuantity +
+        " credits; root " +
+        carbon.tamperDemo.originalEvidenceRoot.value,
+      change:
+        carbon.tamperDemo.originalQuantity +
+        " → " +
+        carbon.tamperDemo.changedQuantity,
+      after: "Evidence root changes; duplicate injection also produces mismatch",
+      rootBefore: carbon.tamperDemo.originalEvidenceRoot.value,
+      rootAfter: carbon.tamperDemo.changedEvidenceRoot.value,
+    },
+  },
+  {
+    id: "disclosure",
+    title: "Public Disclosure",
+    icon: "◫",
+    kicker: "Public claim ≠ verified truth",
+    kpi: lplClaim ? String(lplClaim.value) : "—",
+    kpiLabel: lplClaim ? lplClaim.unit + " Scope 1" : "source-only",
+    source: "CaDI-confirmed first-party sources",
+    decisionTitle: "Sustainability manager / verifier",
+    decisionCopy:
+      "Locate a real public climate claim, preserve the original source, and keep disclosure, calculation reproduction, factor tracing, and assurance as separate assessment dimensions.",
+    limitation:
+      "LPL's external-verification statement is retained as an attributed source claim. ClimateChain has not independently audited that assurance engagement.",
+    metrics: [
+      ["Confirmed CaDI candidates", String(cadiData.candidates.length)],
+      ["Numeric case", lpl?.name ?? "none"],
+      ["Period", lplClaim?.period ?? "—"],
+      ["Metric", lplClaim?.metric ?? "—"],
+      ["Reported value", lplClaim ? lplClaim.value + " " + lplClaim.unit : "—"],
+      ["Calculation reproduced", "not assessed"],
+    ],
+    provenance: [
+      ["Organisation", lpl?.name ?? "—"],
+      ["Claim ID", lplClaim?.id ?? "—"],
+      ["Source", lpl?.underlyingSourceUrl ?? "—"],
+      ["CaDI status", lpl?.confirmationStatus ?? "—"],
+      ["Rights policy", cadiData.rightsManifestId],
+    ],
+    tamper: {
+      before: lplClaim ? lplClaim.value + " " + lplClaim.unit : "public source",
+      change: "Change extracted claim value/source bytes",
+      after: "Current evidence commitment changes; old provenance remains tied to old bytes",
+    },
+  },
+];
+
+const moduleById = new Map(modules.map((item) => [item.id, item]));
+
+function reportEvidence(id: string, source: string, digest: string) {
+  return {
+    nodeType: "evidence" as const,
+    id: "evidence:demo:" + id,
+    createdAt: "2026-09-30T00:00:00Z",
+    provenance: [],
+    kind: "dataset" as const,
+    source: {
+      localRef: "committed measured report",
+      publisher: source,
+      retrievedAt: "2026-09-30T00:00:00Z",
+    },
+    integrity: {
+      algorithm: "SHA-256",
+      value: digest,
+    },
+    rights: {
+      redistribution: "allowed" as const,
+      attribution: source,
+    },
+  };
+}
+
+const demoEvidence = modules.map((item) =>
+  reportEvidence(
+    item.id,
+    item.source,
+    item.provenance.find(([key]) => /digest|root|sha/i.test(key))?.[1] ??
+      "measured-report:" + item.id,
+  ),
+);
+
+const demoClaims = modules.map((item) => ({
+  nodeType: "claim" as const,
+  id: "claim:demo:" + item.id,
+  createdAt: "2026-09-30T00:00:00Z",
+  provenance: [
+    {
+      nodeType: "evidence" as const,
+      id: "evidence:demo:" + item.id,
+      role: "measured-report",
+    },
+  ],
+  subject: {
+    id: "demo:" + item.id,
+    kind: "other" as const,
+    name: item.title,
+  },
+  assertion: {
+    kind: "qualitative" as const,
+    statement: item.kicker + "; key measured result: " + item.kpi + " " + item.kpiLabel,
+  },
+  assessments: [
+    { dimension: "source-found" as const, state: "confirmed" as const },
+    { dimension: "evidence-integrity-confirmed" as const, state: "confirmed" as const },
+  ],
+}));
+
+const demoVerifications: Verification[] = modules.map((item) => ({
+  nodeType: "verification",
+  id: "verification:demo:" + item.id,
+  createdAt: "2026-09-30T00:00:00Z",
+  provenance: [
+    {
+      nodeType: "claim",
+      id: "claim:demo:" + item.id,
+      role: "claim-under-review",
+    },
+  ],
+  verifier: {
+    id: "service:climatechain-demo",
+    kind: "service",
+    name: "ClimateChain measured-report workspace",
+  },
+  profile: "demo-report/0.1",
+  result:
+    item.id === "carbon" || item.id === "disclosure"
+      ? "insufficient-evidence"
+      : "reconciled",
+  checks: item.metrics.slice(0, 3).map(([name, value], index) => ({
+    id: "metric-" + index,
+    name,
+    outcome: "pass",
+    detail: value,
+  })),
+  findings: [item.limitation],
+  verifiedAt: "2026-09-30T00:00:00Z",
+}));
+
+const demoCase: ClimateCaseBundle = {
+  schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+  caseId: "case:climatechain-demo",
+  title: "ClimateChain multi-capability evidence workspace",
+  capabilities: [
+    "building-meter-mrv",
+    "carbon-recalculation",
+    "renewable-forecasting",
+    "earth-observation",
+    "battery-dpp",
+    "carbon-registry",
+    "public-disclosure",
+    "claim-reconciliation",
+  ],
+  createdAt: "2026-09-30T00:00:00Z",
+  claims: demoClaims,
+  evidence: demoEvidence,
+  calculations: [],
+  factors: [],
+  modelRuns: [],
+  verifications: demoVerifications,
+  attestations: [],
+  anchors: [],
+};
+
+class DemoWorkspace implements ClimateWorkspace {
+  async getCase(caseId?: string): Promise<ClimateCaseBundle | undefined> {
+    return !caseId || caseId === demoCase.caseId ? demoCase : undefined;
+  }
+
+  async listCases(): Promise<ClimateCaseBundle[]> {
+    return [demoCase];
+  }
+
+  async getNode(
+    caseId: string,
+    ref: NodeRef,
+  ): Promise<ClimateNode | undefined> {
+    if (caseId !== demoCase.caseId) return undefined;
+    const groups: ClimateNode[][] = [
+      demoCase.claims,
+      demoCase.evidence,
+      demoCase.calculations,
+      demoCase.factors,
+      demoCase.modelRuns,
+      demoCase.verifications,
+      demoCase.attestations,
+      demoCase.anchors,
+    ];
+    return groups.flat().find(
+      (node) => node.nodeType === ref.nodeType && node.id === ref.id,
+    );
+  }
+
+  async listChecks(caseId: string): Promise<Verification[]> {
+    return caseId === demoCase.caseId ? demoCase.verifications : [];
+  }
+
+  async compareClaims(
+    caseId: string,
+    leftClaimId: string,
+    rightClaimId: string,
+  ) {
+    if (caseId !== demoCase.caseId) throw new Error("Unknown demo case.");
+    return {
+      left: demoCase.claims.find((claim) => claim.id === leftClaimId) ?? null,
+      right: demoCase.claims.find((claim) => claim.id === rightClaimId) ?? null,
+      note: "Comparison preserves module-specific limitations; unlike metrics are not collapsed into one score.",
+    };
+  }
+}
+
+const router: ModuleCommandRouter = {
+  async execute(moduleId, toolName) {
+    const item = moduleById.get(moduleId);
+    if (!item) throw new Error("Unknown demo module: " + moduleId);
+
+    switch (toolName) {
+      case "building_get_meter_series":
+        return { rows: building.subset.meterRows, building: building.building, sourceIntegrity: building.subset.sourceIntegrity };
+      case "building_detect_anomalies":
+        return { clean: building.anomalyCheck, tamper: building.tamperSmoke };
+      case "building_run_baseline":
+        return building.baseline;
+      case "building_reconstruct_emissions":
+        return building.emissions;
+
+      case "energy_run_forecast":
+      case "energy_compare_baseline":
+        return energy.benchmark;
+      case "energy_prepare_bounded_action":
+        return {
+          prepared: true,
+          submitted: false,
+          policy: "Demo shell prepares evidence only; no market/hardware action is executed.",
+          source: energy.scope,
+        };
+
+      case "earth_run_detector":
+        return earth.baseline;
+      case "earth_compare_ground_truth":
+        return { metrics: earth.baseline.metrics, publishedReference: earth.publishedPrithviReference };
+      case "earth_get_scene_provenance":
+        return earth.source;
+
+      case "battery_predict_health":
+        return battery.passport;
+      case "battery_compare_baseline":
+        return battery.benchmark;
+      case "battery_build_passport_claim":
+        return { passport: battery.passport, scope: battery.scope };
+
+      case "carbon_reconcile_registry_records":
+        return { clean: carbon.clean, ledgerDecision: carbon.ledgerDecision };
+      case "carbon_check_retirement":
+        return { duplicateDemo: carbon.duplicateDemo, clean: carbon.clean };
+      case "carbon_check_duplicate_claim":
+        return carbon.duplicateDemo;
+
+      case "disclosure_get_public_claim":
+      case "disclosure_extract_report_claims":
+        return { organisation: lpl, claim: lplClaim, policy: cadiData.policy };
+      case "disclosure_reconcile_claim":
+        return {
+          disclosed: true,
+          sourceFound: true,
+          calculationReproduced: false,
+          factorsTraced: false,
+          thirdPartyAssurance: "attributed-not-independently-assessed",
+          claim: lplClaim,
+        };
+      default:
+        throw new Error("Unsupported demo tool: " + toolName);
+    }
+  },
+};
+
+const registry = new ClimateCapabilityRegistry()
+  .register(
+    createRoutedModule({
+      id: "building",
+      title: "Building MRV",
+      capabilities: ["building-meter-mrv", "carbon-recalculation"],
+      toolNames: [
+        "building_get_meter_series",
+        "building_detect_anomalies",
+        "building_run_baseline",
+        "building_reconstruct_emissions",
+      ],
+      router,
+    }),
+  )
+  .register(
+    createRoutedModule({
+      id: "energy",
+      title: "Renewable / load forecasting",
+      capabilities: ["renewable-forecasting"],
+      toolNames: [
+        "energy_run_forecast",
+        "energy_compare_baseline",
+        "energy_prepare_bounded_action",
+      ],
+      router,
+    }),
+  )
+  .register(
+    createRoutedModule({
+      id: "earth",
+      title: "Earth observation",
+      capabilities: ["earth-observation"],
+      toolNames: [
+        "earth_run_detector",
+        "earth_compare_ground_truth",
+        "earth_get_scene_provenance",
+      ],
+      router,
+    }),
+  )
+  .register(
+    createRoutedModule({
+      id: "battery",
+      title: "Battery DPP",
+      capabilities: ["battery-dpp"],
+      toolNames: [
+        "battery_predict_health",
+        "battery_compare_baseline",
+        "battery_build_passport_claim",
+      ],
+      router,
+    }),
+  )
+  .register(
+    createRoutedModule({
+      id: "carbon",
+      title: "Carbon registry",
+      capabilities: ["carbon-registry"],
+      toolNames: [
+        "carbon_reconcile_registry_records",
+        "carbon_check_retirement",
+        "carbon_check_duplicate_claim",
+      ],
+      router,
+    }),
+  )
+  .register(
+    createRoutedModule({
+      id: "disclosure",
+      title: "Public disclosure",
+      capabilities: ["public-disclosure", "claim-reconciliation"],
+      toolNames: [
+        "disclosure_get_public_claim",
+        "disclosure_extract_report_claims",
+        "disclosure_reconcile_claim",
+      ],
+      router,
+    }),
+  );
+
+const activity = new ActivityLog();
+const workspace = new DemoWorkspace();
+
+const webmcp = new DynamicClimateWebMcp({
+  registry,
+  workspace,
+  approve: async (summary) =>
+    window.confirm(
+      "ClimateChain requires your approval before this consequential operation.\n\n" +
+        summary.title +
+        "\n" +
+        summary.tool +
+        "\n\n" +
+        summary.args,
+    ),
+  activity: activity.sink,
+});
+
+const surface = webmcp.activate(demoCase.capabilities);
+
+const badge = document.querySelector<HTMLDivElement>("#webmcp-badge");
+if (badge) {
+  badge.textContent = surface.available
+    ? "WebMCP · " + surface.toolNames.length + " tools"
+    : "WebMCP unavailable · fallback ready";
+}
+
+let activeId = "building";
+
+function escapeHtml(value: unknown): string {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderModules(): void {
+  const grid = document.querySelector<HTMLDivElement>("#module-grid");
+  if (!grid) return;
+  grid.innerHTML = modules
+    .map(
+      (item) => `
+      <button class="module-card ${item.id === activeId ? "active" : ""}" data-module="${escapeHtml(item.id)}">
+        <div class="module-icon">${escapeHtml(item.icon)}</div>
+        <h3>${escapeHtml(item.title)}</h3>
+        <p>${escapeHtml(item.kicker)}</p>
+        <div class="module-kpi">
+          <strong>${escapeHtml(item.kpi)}</strong>
+          <span>${escapeHtml(item.kpiLabel)}</span>
+        </div>
+      </button>`,
+    )
+    .join("");
+
+  grid.querySelectorAll<HTMLButtonElement>("[data-module]").forEach((button) => {
+    button.addEventListener("click", () => {
+      activeId = button.dataset.module ?? "building";
+      renderModules();
+      renderDetail();
+    });
+  });
+}
+
+function renderDetail(): void {
+  const item = moduleById.get(activeId);
+  if (!item) return;
+
+  const title = document.querySelector("#detail-title");
+  const source = document.querySelector("#detail-source");
+  const metrics = document.querySelector("#metric-list");
+  const decisionTitle = document.querySelector("#decision-title");
+  const decisionCopy = document.querySelector("#decision-copy");
+  const limitations = document.querySelector("#limitations");
+  const provenance = document.querySelector("#provenance-list");
+
+  if (title) title.textContent = item.title;
+  if (source) source.textContent = item.source;
+  if (decisionTitle) decisionTitle.textContent = item.decisionTitle;
+  if (decisionCopy) decisionCopy.textContent = item.decisionCopy;
+  if (limitations) limitations.textContent = item.limitation;
+
+  if (metrics) {
+    metrics.innerHTML = item.metrics
+      .map(
+        ([name, value]) =>
+          `<div class="metric-row"><span>${escapeHtml(name)}</span><strong>${escapeHtml(value)}</strong></div>`,
+      )
+      .join("");
+  }
+
+  if (provenance) {
+    provenance.innerHTML = item.provenance
+      .map(
+        ([name, value]) =>
+          `<div class="provenance-item"><span>${escapeHtml(name)}</span><code>${escapeHtml(value)}</code></div>`,
+      )
+      .join("");
+  }
+}
+
+function renderTamperSelect(): void {
+  const select = document.querySelector<HTMLSelectElement>("#tamper-module");
+  if (!select) return;
+  select.innerHTML = modules
+    .map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.title)}</option>`)
+    .join("");
+}
+
+function renderTamper(id: string, injected: boolean): void {
+  const item = moduleById.get(id);
+  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+  if (!item || !output) return;
+
+  if (!injected) {
+    output.innerHTML = [
+      ["state", '<span class="good">verified source state</span>'],
+      ["input", escapeHtml(item.tamper.before)],
+      ["verification", '<span class="good">current evidence accepted</span>'],
+      ["action", "Choose “Inject test tamper” to modify the deterministic demo input."],
+    ]
+      .map(([label, value]) => `<div class="tamper-line"><span class="label">${label}</span><span>${value}</span></div>`)
+      .join("");
+    return;
+  }
+
+  const rows: Array<[string, string]> = [
+    ["test mutation", escapeHtml(item.tamper.change)],
+    ["result", '<span class="bad">' + escapeHtml(item.tamper.after) + "</span>"],
+  ];
+
+  if (item.tamper.rootBefore) rows.push(["old commitment", escapeHtml(item.tamper.rootBefore)]);
+  if (item.tamper.rootAfter) rows.push(["new commitment", '<span class="bad">' + escapeHtml(item.tamper.rootAfter) + "</span>"]);
+
+  rows.push(
+    ["historical status", '<span class="good">old provenance still identifies the old bytes</span>'],
+    ["current status", '<span class="bad">old attestation does not describe the changed evidence</span>'],
+  );
+
+  output.innerHTML = rows
+    .map(([label, value]) => `<div class="tamper-line"><span class="label">${label}</span><span>${value}</span></div>`)
+    .join("");
+}
+
+function renderActivity(): void {
+  const container = document.querySelector<HTMLDivElement>("#activity-log");
+  if (!container) return;
+  const entries = activity.list().slice(-30).reverse();
+  container.innerHTML = entries.length
+    ? entries
+        .map(
+          (event) => `
+          <div class="activity-entry">
+            <time>${escapeHtml(event.at.slice(11, 19))}</time>
+            <strong>${escapeHtml(event.tool)}</strong>
+            <em>${escapeHtml(event.phase)}</em>
+          </div>`,
+        )
+        .join("")
+    : '<p class="muted">No tool calls yet. Run the guided audit or use WebMCP.</p>';
+}
+
+async function guidedAudit(): Promise<void> {
+  const calls: Array<[string, Record<string, unknown>]> = [
+    ["climate_list_capabilities", { caseId: demoCase.caseId }],
+    ["building_run_baseline", { caseId: demoCase.caseId }],
+    ["building_reconstruct_emissions", { caseId: demoCase.caseId }],
+    ["carbon_reconcile_registry_records", { caseId: demoCase.caseId }],
+    ["disclosure_get_public_claim", { caseId: demoCase.caseId }],
+  ];
+
+  for (const [tool, input] of calls) {
+    await surface.executeFallback(tool, input);
+    renderActivity();
+  }
+
+  activeId = "building";
+  renderModules();
+  renderDetail();
+  document.querySelector("#agent")?.scrollIntoView({ behavior: "smooth" });
+}
+
+document.querySelector("#tamper-button")?.addEventListener("click", () => {
+  const select = document.querySelector<HTMLSelectElement>("#tamper-module");
+  renderTamper(select?.value ?? "building", true);
+});
+
+document.querySelector("#reset-button")?.addEventListener("click", () => {
+  const select = document.querySelector<HTMLSelectElement>("#tamper-module");
+  renderTamper(select?.value ?? "building", false);
+});
+
+document.querySelector("#tamper-module")?.addEventListener("change", (event) => {
+  renderTamper((event.target as HTMLSelectElement).value, false);
+});
+
+document.querySelector("#run-agent-audit")?.addEventListener("click", () => void guidedAudit());
+document.querySelector("#run-agent-audit-2")?.addEventListener("click", () => void guidedAudit());
+document.querySelector("#clear-activity")?.addEventListener("click", () => {
+  activity.clear();
+  renderActivity();
+});
+
+renderModules();
+renderDetail();
+renderTamperSelect();
+renderTamper("building", false);
+renderActivity();
