@@ -84,6 +84,21 @@ This is retained as a reproducibility finding rather than hidden by widening a t
 
 This distinction matters for provenance: “published benchmark value” and “reproduced from released artifacts” are different claims.
 
+The measured real-data smoke is committed at:
+
+`reports/battery-dpp/batterylife-calb-smoke.json`
+
+For the current v11 passport sample `CALB_0_B182`:
+
+- 100 usable cycles
+- nominal capacity: 58 Ah
+- observed-cycle SOH: 0.7759146552
+- transparent linear-fit R²: 0.8981361762
+- estimated RUL at the configured 80% SOH threshold: 0 cycles
+- disposition under the demo policy: `repurpose`
+
+Changing the final capacity observation from 45.00305 Ah to 54.00366 Ah changes both the input digest and the shared evidence root.
+
 ## Passport health estimate
 
 The passport uses a separate transparent local decision-support baseline:
