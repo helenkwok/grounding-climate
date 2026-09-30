@@ -166,6 +166,62 @@ Therefore signed append-only provenance is sufficient for this slice.
 
 A chain can be reconsidered for a concrete deployment where independent registries/buyers/verifiers co-maintain shared issuance/transfer/retirement state.
 
+## Measured real-data smoke
+
+The pinned six-file CarbonPlan snapshot contains:
+
+- 600 normalized transactions
+- 300 issuance records
+- 300 retirement records
+- 3 registries
+- 12 project/vintage groups where retirement is supported by issuance in this bounded snapshot
+- 269 issuance-only groups
+- 101 retirement groups with no matching issuance in this bounded snapshot
+- 0 over-retired groups
+- 0 exact duplicate retirement serial claims
+
+Because 101 retirement groups lack matching issuance rows in this intentionally bounded snapshot, the clean verification result is `insufficient-evidence`, not `mismatch`.
+
+The clean evidence root is:
+
+```text
+SHA-256 snPmdsybCzwqESJsqvkYUQZ46Tu5hJAoRiHfH9cmSY4
+```
+
+### Injected duplicate
+
+The smoke duplicates the first ACR retirement row in memory:
+
+```text
+ACR-FR-1129-2025-2917-30932 to 35143
+```
+
+This produces:
+
+- duplicate excess count: 1
+- verification result: `mismatch`
+- evidence root: `u92hWxFQXVmWN-dsEqLtEDACG5grxbVO2LmZagnnkF0`
+
+This is a synthetic test mutation and not an allegation about ACR or CarbonPlan.
+
+### Injected quantity change
+
+The same source retirement quantity is changed in memory:
+
+```text
+4212 → 4213
+```
+
+The evidence root changes to:
+
+```text
+mQifKVD7u1y_5YrLj-d_TfJwjMl1tsvj5gh7AxyQwZU
+```
+
+The measured summary is committed at:
+
+`reports/carbon-registry/carbonplan-smoke.json`
+
 ## Reproduce
 
 ```bash
