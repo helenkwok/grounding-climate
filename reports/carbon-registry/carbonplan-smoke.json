@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "climatechain.carbon-registry-smoke/0.1",
+  "source": {
+    "repository": "https://github.com/carbonplan/offsets-db-data",
+    "commit": "c34ec955df0988009ac14e8abd91013f3b03e4f5",
+    "rightsManifestId": "carbonplan-offsets-data",
+    "fileCount": 6,
+    "totalBytes": 241591
+  },
+  "clean": {
+    "registries": [
+      "american-carbon-registry",
+      "climate-action-reserve",
+      "gold-standard"
+    ],
+    "recordCount": 600,
+    "issuanceCount": 300,
+    "retirementCount": 300,
+    "supportedCount": 12,
+    "issuedNotRetiredCount": 269,
+    "unresolvedMissingIssuanceCount": 101,
+    "overRetiredCount": 0,
+    "duplicateExcessCount": 0,
+    "verificationResult": "insufficient-evidence",
+    "evidenceRoot": {
+      "algorithm": "SHA-256",
+      "value": "snPmdsybCzwqESJsqvkYUQZ46Tu5hJAoRiHfH9cmSY4"
+    }
+  },
+  "duplicateDemo": {
+    "injected": true,
+    "registry": "american-carbon-registry",
+    "serialRange": "ACR-FR-1129-2025-2917-30932 to 35143",
+    "originalSourcePath": "acr-retirements.csv",
+    "originalSourceRow": 2,
+    "duplicateExcessCount": 1,
+    "verificationResult": "mismatch",
+    "evidenceRoot": {
+      "algorithm": "SHA-256",
+      "value": "u92hWxFQXVmWN-dsEqLtEDACG5grxbVO2LmZagnnkF0"
+    },
+    "caveat": "The duplicate row is injected in memory for testing and is not an allegation about the upstream registry or CarbonPlan dataset."
+  },
+  "tamperDemo": {
+    "registry": "american-carbon-registry",
+    "serialRange": "ACR-FR-1129-2025-2917-30932 to 35143",
+    "originalQuantity": 4212,
+    "changedQuantity": 4213,
+    "originalEvidenceRoot": {
+      "algorithm": "SHA-256",
+      "value": "snPmdsybCzwqESJsqvkYUQZ46Tu5hJAoRiHfH9cmSY4"
+    },
+    "changedEvidenceRoot": {
+      "algorithm": "SHA-256",
+      "value": "mQifKVD7u1y_5YrLj-d_TfJwjMl1tsvj5gh7AxyQwZU"
+    },
+    "rootChanged": true,
+    "caveat": "The quantity modification is injected in memory solely to test evidence integrity."
+  },
+  "ledgerDecision": {
+    "decision": "defer-ledger",
+    "satisfied": [
+      "Multiple independent parties need the same state.",
+      "External parties must verify historical state later.",
+      "The required shared state fits a compact ledger commitment."
+    ],
+    "unmet": [
+      "No single trusted operator can serve as record keeper."
+    ],
+    "notes": [
+      "This prototype consumes registry records through a trusted snapshot/provider and does not model cross-party transfer consensus.",
+      "Use signed append-only provenance first. Revisit a shared ledger only for a deployment where independent parties must co-maintain state without one trusted record keeper."
+    ]
+  },
+  "scope": {
+    "primaryUser": "carbon-market auditor / verifier",
+    "aiUsed": false,
+    "aiRationale": "The first slice uses exact identifiers and deterministic reconciliation; no measurable AI task is needed."
+  }
+}
