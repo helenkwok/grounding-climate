@@ -188,7 +188,20 @@ Default threshold: `6`.
 
 This is deliberately described as an **anomaly/data-quality check**, not a proof of fraud or malicious tampering.
 
-The package also exposes precision, recall, specificity, and F1 helpers for the later ALDI++ labelled-outlier evaluation.
+### Measured against labelled bad readings
+
+`scripts/kaggle/gepiii-label-scoring/label_scoring.py` scores the same screen (a line-by-line Python port, checked to flag the same rows as the TypeScript) against the bad-reading labels of the GEPIII rank-1 team (MIT licence, one label per `train.csv` row). It runs as a private Kaggle notebook, so the competition data stays on Kaggle; only the aggregates in `reports/building-mrv/gepiii-label-scoring.json` leave it.
+
+| Electricity, all GEPIII buildings | Rows | Bad-label rate | Precision | Recall | F1 |
+|---|---|---|---|---|---|
+| Case window (first 2,160 h of 2016, 1,399 buildings) | 2.87 M | 10.9% | 0.353 | 0.077 | 0.126 |
+| Full 2016 (1,413 buildings) | 12.06 M | 5.8% | 0.267 | 0.089 | 0.134 |
+
+Read this plainly: the screen catches isolated readings far from the usual hour-of-week level. It misses most of what the rank-1 team labelled bad, which is largely long runs of zero or constant readings; those runs sit inside the training data and shift the baseline instead of standing out from it. The median building's precision is 0.03 in the case window. It is a narrow first pass, not a general bad-reading detector.
+
+For the case building (GEPIII building 602), the competition data holds 2,155 readings in the window against BDG2's 2,160, with the same total energy. None of the three hours the screen flagged exists in the competition data, so the labels cannot judge them; BDG2's `0` at those hours stands in for a reading the competition data does not have. BDG2 has exactly five zeros in the window: the three flagged, the US daylight-saving hour 2016-03-13 02:00, and 2016-01-30 08:00, which the screen did not flag. That the five missing rows are these five zeros is inferred from the count and the total, not checked hour by hour. This supports treating the flagged zeros as dropouts; it does not establish the cause.
+
+The decision model's advice has not been scored against these labels yet.
 
 ## Emissions reconstruction
 
@@ -327,7 +340,7 @@ This is a correctness constraint, not a missing UI feature.
 
 The first runnable analysis path is implemented, but #9 should remain open until:
 
-- the ALDI++ labelled-outlier benchmark is reproduced on an allowed local copy of the GEPIII/labels data, or the scope is explicitly reduced
+- the decision model's advice is scored against labelled data (the screen itself is scored above, against the GEPIII rank-1 labels; the ALDI++ labelled benchmark is not reproduced)
 - a same-subject public disclosure dataset is found if numeric CaDI reconciliation is required
 
 The foundation does not manufacture those results.
