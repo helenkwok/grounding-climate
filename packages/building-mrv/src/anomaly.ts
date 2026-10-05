@@ -66,6 +66,7 @@ export function detectResidualAnomalies(
       residual,
       robustZ,
       flagged,
+      reasons: flagged ? ["residual"] : [],
     };
   });
 

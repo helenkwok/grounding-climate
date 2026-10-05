@@ -20,6 +20,7 @@ import {
   buildDecidedBuildingCase,
   buildFlagState,
   callJev,
+  QUESTION_SET,
   digestMeterSeries,
   injectTamper,
   loadPreparedBuildingDataset,
@@ -74,8 +75,10 @@ if (mode === "advise") {
   const key = process.env.TYPESAFE_API_KEY;
   if (!key) throw new Error("TYPESAFE_API_KEY is not set.");
   const deps = { fetch: globalThis.fetch, sleep: (ms) => new Promise((r) => setTimeout(r, ms)), now: Date.now };
-  const records = [];
+  // Earlier records stay as they were: they are what a person saw when deciding.
+  const records = await readJson(ADVICE_FILE, []);
   for (const index of flagged) {
+    if (records.some((record) => record.timestamp === analysis.anomalies.points[index].timestamp)) continue;
     const state = buildFlagState(loaded.meter, analysis.anomalies, index, loaded.metadata);
     const advice = await callJev(deps, key, state);
     records.push({
@@ -84,11 +87,12 @@ if (mode === "advise") {
       state,
       advice,
       executedAt: new Date().toISOString(),
+      questionSet: QUESTION_SET,
     });
     console.log(records.at(-1).timestamp, advice.choice, advice.confidence, advice.model);
   }
   await writeFile(ADVICE_FILE, JSON.stringify(records, null, 2) + "\n");
-  console.log("Wrote " + records.length + " advice records to " + ADVICE_FILE.pathname);
+  console.log(records.length + " advice records in " + ADVICE_FILE.pathname);
   process.exit(0);
 }
 

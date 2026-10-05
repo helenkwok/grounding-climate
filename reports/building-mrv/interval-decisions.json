@@ -34,5 +34,29 @@
       "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
     },
     "adviceShown": "model-run:triage-advice:2016-03-03T14:00:00"
+  },
+  {
+    "timestamp": "2016-01-30 08:00:00",
+    "decision": "exclude",
+    "reason": "isolated zero reading between normal hours, treated as a meter dropout",
+    "decidedBy": "person:energy-manager",
+    "decidedAt": "2026-10-05T12:30:34.795Z",
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "adviceShown": "model-run:triage-advice:2016-01-30T08:00:00"
+  },
+  {
+    "timestamp": "2016-03-13 02:00:00",
+    "decision": "exclude",
+    "reason": "isolated zero reading between normal hours, treated as a meter dropout",
+    "decidedBy": "person:energy-manager",
+    "decidedAt": "2026-10-05T12:30:34.795Z",
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "adviceShown": "model-run:triage-advice:2016-03-13T02:00:00"
   }
 ]

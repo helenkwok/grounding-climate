@@ -8,7 +8,9 @@ import type { AnomalyResult, BuildingMetadata, MeterPoint } from "./types.js";
 
 export const JEV_URL = "https://api.typesafe.ai/v1/systemone";
 export const JEV_MODEL = "jev-latest";
-export const QUESTION_SET = "building-triage@1";
+export const QUESTION_SET = "building-triage@2";
+/** Records made before question sets were stored on each record used this one. */
+const FIRST_QUESTION_SET = "building-triage@1";
 export const JEV_TIMEOUT_MS = 20_000;
 const RETRY_AFTER_CAP_S = 10;
 const MAX_STRING = 120;
@@ -23,7 +25,7 @@ export const TRIAGE_CRITERIA = {
 export type TriageChoice = keyof typeof TRIAGE_CRITERIA;
 
 const TRIAGE_INSTRUCTIONS =
-  "An hourly electricity reading was flagged because it is far from the building's usual use for that hour of the week. Is it a meter fault or real consumption?";
+  "An hourly electricity reading was flagged by a data-quality screen. flag_reasons says why: residual means far from the building's usual use for that hour of the week; zero means the reading is exactly 0; constant-run means it is part of a week or more of identical readings. Is it a meter fault or real consumption?";
 
 const WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -39,11 +41,12 @@ export interface FlagState {
   flag_threshold_z: number;
   previous_3_kwh: number[];
   next_3_kwh: number[];
+  flag_reasons: string[];
 }
 
 const STATE_KEYS = [
   "meter", "building_use", "weekday", "hour", "reading_kwh", "expected_kwh",
-  "robust_z", "flag_threshold_z", "previous_3_kwh", "next_3_kwh",
+  "robust_z", "flag_threshold_z", "previous_3_kwh", "next_3_kwh", "flag_reasons",
 ];
 
 const round1 = (value: number) => Math.round(value * 10) / 10;
@@ -72,6 +75,7 @@ export function buildFlagState(
     flag_threshold_z: anomalies.threshold,
     previous_3_kwh: series.slice(Math.max(0, index - 3), index).map((p) => round1(p.value)),
     next_3_kwh: series.slice(index + 1, index + 4).map((p) => round1(p.value)),
+    flag_reasons: [...point.reasons],
   };
   checkSentState(state);
   return state;
@@ -224,9 +228,12 @@ export async function adviceModelRun(input: {
   state: FlagState;
   advice: JevAdvice;
   executedAt: string;
+  /** The question set the record was asked with; absent on records from before it was stored. */
+  questionSet?: string;
   hashProvider: CryptoProvider;
 }): Promise<ModelRun> {
   const { advice, state } = input;
+  const questionSet = input.questionSet ?? FIRST_QUESTION_SET;
   return {
     nodeType: "model-run",
     id: adviceRunId(input.timestamp),
@@ -236,13 +243,13 @@ export async function adviceModelRun(input: {
     ],
     model: { id: "typesafe-jev", name: "Typesafe AI System One (Jev)", version: advice.model },
     inputDigest: await input.hashProvider.hash(
-      domainSeparatedBytes("climatechain.triage-advice-state", QUESTION_SET, state),
+      domainSeparatedBytes("climatechain.triage-advice-state", questionSet, state),
       "SHA-256",
     ),
     inferenceParameters: {
       endpoint: JEV_URL,
       requestedModel: JEV_MODEL,
-      questionSet: QUESTION_SET,
+      questionSet,
       interval: input.timestamp,
       state: state as unknown as JsonObject,
       probabilities: advice.probabilities,
@@ -252,7 +259,7 @@ export async function adviceModelRun(input: {
     output: { kind: "qualitative", statement: "advice: " + advice.choice },
     confidence: advice.confidence,
     executedAt: input.executedAt,
-    reproducibility: { codeVersion: "building-mrv/0.1 " + QUESTION_SET },
+    reproducibility: { codeVersion: "building-mrv/0.1 " + questionSet },
     extensions: { authority: "advice-only" },
   };
 }
