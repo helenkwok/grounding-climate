@@ -1,0 +1,277 @@
+{
+  "schemaVersion": "climatechain.gepiii-jev-scoring/0.1",
+  "sentToModel": "states built from BDG2 v1.0 raw electricity (CC BY-SA 4.0) only; no competition data",
+  "questionSet": "building-triage@2",
+  "window": [
+    "2016-01-01 00:00:00",
+    "2016-03-30 23:00:00"
+  ],
+  "screen": {
+    "threshold": 6.0,
+    "minRunHours": 168
+  },
+  "flagPopulationByPrimaryReason": {
+    "zero": 273024,
+    "residual": 49874,
+    "constant-run": 32511
+  },
+  "sampleByPrimaryReason": {
+    "residual": 120,
+    "constant-run": 120,
+    "zero": 60
+  },
+  "seed": 20261005,
+  "models": {
+    "jev-1.13.0": 300
+  },
+  "inputTokens": 171787,
+  "errors": {},
+  "unlabelledInSample": 4,
+  "bdg2MatchesCompetitionValue": 0.972972972972973,
+  "overall": {
+    "n": 296,
+    "badRate": 0.5506756756756757,
+    "choices": {
+      "meter_fault": 268,
+      "real_consumption": 28
+    },
+    "accuracyFaultVsNot": 0.6047297297297297,
+    "alwaysFaultAccuracy": 0.5506756756756757,
+    "precisionOfFault": 0.585820895522388,
+    "recallOfFault": 0.9631901840490797,
+    "brier": 0.2636388513513514,
+    "aucPFault": 0.7300844134877069,
+    "reliability": [
+      {
+        "pFault": [
+          0,
+          0.5
+        ],
+        "n": 31,
+        "meanP": 0.3812903225806452,
+        "badRate": 0.22580645161290322
+      },
+      {
+        "pFault": [
+          0.5,
+          0.8
+        ],
+        "n": 105,
+        "meanP": 0.6651428571428571,
+        "badRate": 0.38095238095238093
+      },
+      {
+        "pFault": [
+          0.8,
+          0.9
+        ],
+        "n": 40,
+        "meanP": 0.8455,
+        "badRate": 0.675
+      },
+      {
+        "pFault": [
+          0.9,
+          0.95
+        ],
+        "n": 49,
+        "meanP": 0.9222448979591837,
+        "badRate": 0.673469387755102
+      },
+      {
+        "pFault": [
+          0.95,
+          1.0
+        ],
+        "n": 71,
+        "meanP": 0.9752112676056337,
+        "badRate": 0.7887323943661971
+      }
+    ]
+  },
+  "byPrimaryReason": {
+    "residual": {
+      "n": 120,
+      "badRate": 0.11666666666666667,
+      "choices": {
+        "meter_fault": 99,
+        "real_consumption": 21
+      },
+      "accuracyFaultVsNot": 0.2916666666666667,
+      "alwaysFaultAccuracy": 0.11666666666666667,
+      "precisionOfFault": 0.1414141414141414,
+      "recallOfFault": 1.0,
+      "brier": 0.40065083333333334,
+      "aucPFault": 0.8595013477088949,
+      "reliability": [
+        {
+          "pFault": [
+            0,
+            0.5
+          ],
+          "n": 23,
+          "meanP": 0.3891304347826087,
+          "badRate": 0.0
+        },
+        {
+          "pFault": [
+            0.5,
+            0.8
+          ],
+          "n": 64,
+          "meanP": 0.66125,
+          "badRate": 0.0625
+        },
+        {
+          "pFault": [
+            0.8,
+            0.9
+          ],
+          "n": 16,
+          "meanP": 0.8325,
+          "badRate": 0.1875
+        },
+        {
+          "pFault": [
+            0.9,
+            0.95
+          ],
+          "n": 8,
+          "meanP": 0.9175,
+          "badRate": 0.125
+        },
+        {
+          "pFault": [
+            0.95,
+            1.0
+          ],
+          "n": 9,
+          "meanP": 0.9733333333333333,
+          "badRate": 0.6666666666666666
+        }
+      ]
+    },
+    "constant-run": {
+      "n": 120,
+      "badRate": 0.775,
+      "choices": {
+        "meter_fault": 119,
+        "real_consumption": 1
+      },
+      "accuracyFaultVsNot": 0.7833333333333333,
+      "alwaysFaultAccuracy": 0.775,
+      "precisionOfFault": 0.7815126050420168,
+      "recallOfFault": 1.0,
+      "brier": 0.1953258333333333,
+      "aucPFault": 0.5346475507765831,
+      "reliability": [
+        {
+          "pFault": [
+            0,
+            0.5
+          ],
+          "n": 1,
+          "meanP": 0.44,
+          "badRate": 0.0
+        },
+        {
+          "pFault": [
+            0.5,
+            0.8
+          ],
+          "n": 19,
+          "meanP": 0.7089473684210525,
+          "badRate": 0.7368421052631579
+        },
+        {
+          "pFault": [
+            0.8,
+            0.9
+          ],
+          "n": 10,
+          "meanP": 0.845,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.9,
+            0.95
+          ],
+          "n": 32,
+          "meanP": 0.9259375,
+          "badRate": 0.71875
+        },
+        {
+          "pFault": [
+            0.95,
+            1.0
+          ],
+          "n": 58,
+          "meanP": 0.9748275862068968,
+          "badRate": 0.7931034482758621
+        }
+      ]
+    },
+    "zero": {
+      "n": 56,
+      "badRate": 1.0,
+      "choices": {
+        "meter_fault": 50,
+        "real_consumption": 6
+      },
+      "accuracyFaultVsNot": 0.8928571428571429,
+      "alwaysFaultAccuracy": 1.0,
+      "precisionOfFault": 1.0,
+      "recallOfFault": 0.8928571428571429,
+      "brier": 0.11642678571428573,
+      "aucPFault": null,
+      "reliability": [
+        {
+          "pFault": [
+            0,
+            0.5
+          ],
+          "n": 7,
+          "meanP": 0.3471428571428571,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.5,
+            0.8
+          ],
+          "n": 22,
+          "meanP": 0.6386363636363636,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.8,
+            0.9
+          ],
+          "n": 14,
+          "meanP": 0.8607142857142858,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.9,
+            0.95
+          ],
+          "n": 9,
+          "meanP": 0.9133333333333334,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.95,
+            1.0
+          ],
+          "n": 4,
+          "meanP": 0.9850000000000001,
+          "badRate": 1.0
+        }
+      ]
+    }
+  }
+}

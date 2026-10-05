@@ -12,7 +12,7 @@ It is deliberately static and Cloudflare-Pages-friendly. The heavy reproducibili
 
 Building MRV runs live: the page recomputes the building case in the browser from the committed BDG2 subset (`data/external/bdg2`), using the same `building-mrv` code as `scripts/run-building-case.mjs`. It shows the decision-model advice and the person's decision on each flagged reading, and checks the committed signed attestation (`reports/building-mrv/case-run.json`) against the recomputed evidence. Ed25519 is verified in the browser. ML-DSA-65 was verified in the offline Node run, because browsers have no ML-DSA. The building tamper changes a reading in the browser: the decisions go stale and the attestation stops matching. The building WebMCP tools, including `building_review_flags`, call the same service.
 
-What the page does not do yet: the other five modules replay committed reports, so their tool outputs are labelled `replayedFrom` and ignore inputs other than `caseId`. Tamper results are recorded runs for battery and carbon; for energy, earth and disclosure the page states the expected effect only. Signing keys are per-run demo keys, not an identity, and the advice's accuracy has not been measured on labelled data.
+What the page does not do yet: the other five modules replay committed reports, so their tool outputs are labelled `replayedFrom` and ignore inputs other than `caseId`. Tamper results are recorded runs for battery and carbon; for energy, earth and disclosure the page states the expected effect only. Signing keys are per-run demo keys, not an identity, and the advice is overconfident on labelled data: on 296 labelled GEPIII flags it called 91% faults against 55% labelled bad (see `docs/building-mrv.md`).
 
 ## Build and run
 
