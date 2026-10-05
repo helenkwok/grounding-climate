@@ -1,0 +1,36 @@
+{
+  "sourceManifestId": "bdg2",
+  "zenodoRecord": "https://zenodo.org/records/3887306",
+  "doi": "10.5281/zenodo.3887306",
+  "archiveName": "buds-lab/building-data-genome-project-2-v1.0.zip",
+  "publishedArchiveMd5": "44393dc4cf61e84dec105e955368c890",
+  "preparedAt": "2026-10-05T11:14:38.163Z",
+  "buildingId": "Bear_assembly_Angel",
+  "siteId": "Bear",
+  "requestedHours": 2160,
+  "returnedWeatherRows": 2159,
+  "members": {
+    "meter": "buds-lab-building-data-genome-project-2-3d0cbaf/data/meters/cleaned/electricity_cleaned.csv",
+    "metadata": "buds-lab-building-data-genome-project-2-3d0cbaf/data/metadata/metadata.csv",
+    "weather": "buds-lab-building-data-genome-project-2-3d0cbaf/data/weather/weather.csv"
+  },
+  "memberUrls": {
+    "meter": "https://zenodo.org/records/3887306/files/buds-lab%2Fbuilding-data-genome-project-2-v1.0.zip/container/buds-lab-building-data-genome-project-2-3d0cbaf/data/meters/cleaned/electricity_cleaned.csv",
+    "metadata": "https://zenodo.org/records/3887306/files/buds-lab%2Fbuilding-data-genome-project-2-v1.0.zip/container/buds-lab-building-data-genome-project-2-3d0cbaf/data/metadata/metadata.csv",
+    "weather": "https://zenodo.org/records/3887306/files/buds-lab%2Fbuilding-data-genome-project-2-v1.0.zip/container/buds-lab-building-data-genome-project-2-3d0cbaf/data/weather/weather.csv"
+  },
+  "digests": {
+    "meter": {
+      "algorithm": "SHA-256",
+      "value": "XwcVNyhhcl2ZiLd2kJsJAlKmcGga7PsW-7w1cspHQ6o"
+    },
+    "metadata": {
+      "algorithm": "SHA-256",
+      "value": "6I8l8s-oNNrhknvazG28i_3CkOe2sIo43_1rIkEI8tw"
+    },
+    "weather": {
+      "algorithm": "SHA-256",
+      "value": "2qy-bgfRxSHN9EKhn-Dk7ake9ae0_ONR4gED8jHJwo0"
+    }
+  }
+}

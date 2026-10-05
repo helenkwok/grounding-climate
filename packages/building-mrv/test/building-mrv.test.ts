@@ -237,6 +237,7 @@ test("Building MRV WebMCP module uses the same analysis service", async () => {
       "building_detect_anomalies",
       "building_get_meter_series",
       "building_reconstruct_emissions",
+      "building_review_flags",
       "building_run_baseline",
     ],
   );

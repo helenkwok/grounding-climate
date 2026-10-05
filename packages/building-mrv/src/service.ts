@@ -6,7 +6,11 @@ import type {
   ModuleCommandRouter,
 } from "@climatechain/webmcp";
 
+import type { CryptoProvider, ModelRun } from "@climatechain/core";
+
 import { runBuildingMrv } from "./analysis.js";
+import { buildDecidedBuildingCase } from "./decided-case.js";
+import type { IntervalDecision } from "./decisions.js";
 import {
   injectTamper,
 } from "./anomaly.js";
@@ -22,6 +26,13 @@ export interface BuildingMrvServiceOptions {
   factor: GridEmissionFactor;
   trainingFraction?: number;
   anomalyThreshold?: number;
+  /** Recorded advice and decisions; with them the service serves the decided case. */
+  review?: {
+    createdAt: string;
+    advice: ModelRun[];
+    decisions: IntervalDecision[];
+    hashProvider: CryptoProvider;
+  };
 }
 
 export class BuildingMrvService implements ModuleCommandRouter {
@@ -41,6 +52,22 @@ export class BuildingMrvService implements ModuleCommandRouter {
 
   tamper(index: number, multiplier: number): void {
     this.series = injectTamper(this.series, index, multiplier);
+  }
+
+  /** The decided case for the current series. Needs the review option. */
+  async decidedCase() {
+    const review = this.options.review;
+    if (!review) throw new Error("This Building MRV service has no recorded review.");
+    return buildDecidedBuildingCase({
+      caseId: this.options.caseId,
+      createdAt: review.createdAt,
+      dataset: this.options.dataset,
+      meter: this.series,
+      factor: this.options.factor,
+      advice: review.advice,
+      decisions: review.decisions,
+      hashProvider: review.hashProvider,
+    });
   }
 
   analysis() {
@@ -111,6 +138,14 @@ export class BuildingMrvService implements ModuleCommandRouter {
       }
 
       case "building_reconstruct_emissions": {
+        if (this.options.review) {
+          const decided = await this.decidedCase();
+          return {
+            factor: this.options.factor,
+            emissions: decided.analysis.emissions,
+            reconciliation: decided.climateCase.verifications[0]?.result,
+          };
+        }
         const analysis = this.analysis();
         return {
           factor: this.options.factor,
@@ -119,6 +154,27 @@ export class BuildingMrvService implements ModuleCommandRouter {
             analysis.anomalies.flaggedCount === 0
               ? "reconciled"
               : "not-reconciled",
+        };
+      }
+
+      case "building_review_flags": {
+        const decided = await this.decidedCase();
+        const advice = this.options.review?.advice ?? [];
+        return {
+          meterSeriesDigest: decided.digest,
+          result: decided.climateCase.verifications[0]?.result,
+          note: "Advice is recorded and shown; it never sets a status. A decision is not an explanation of the cause.",
+          flags: decided.statuses.map((status) => {
+            const run = advice.find((item) => item.inferenceParameters.interval === status.timestamp);
+            return {
+              timestamp: status.timestamp,
+              state: status.state,
+              decision: status.decision ?? null,
+              advice: run
+                ? { modelRun: run.id, model: run.model.version, output: run.output, confidence: run.confidence }
+                : null,
+            };
+          }),
         };
       }
 
@@ -143,6 +199,7 @@ export function createBuildingMrvModule(
       "building_detect_anomalies",
       "building_run_baseline",
       "building_reconstruct_emissions",
+      "building_review_flags",
     ],
     router: service,
   });

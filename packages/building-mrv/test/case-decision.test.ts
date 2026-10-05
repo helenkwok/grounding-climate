@@ -11,6 +11,7 @@ import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
 import {
   adviceModelRun,
   applyDecisions,
+  BuildingMrvService,
   buildBuildingMrvCase,
   buildFlagState,
   callJev,
@@ -259,4 +260,33 @@ test("decided case signed with Ed25519 and ML-DSA-65 fails verification after ta
   assert.equal(after.validForSignedEvidence, true);
   assert.equal(after.validForCurrentEvidence, false);
   assert.ok(after.changedRefs.some((ref) => ref.id === "evidence:bdg2-electricity"));
+});
+
+test("WebMCP review tool serves the decided case and sees decisions go stale after a tamper", async () => {
+  const provider = new InMemoryNodeCryptoProvider();
+  const series = meter();
+  const digest = await digestMeterSeries(series, provider);
+  const timestamp = runBuildingMrv(series, factor).anomalies.points[FLAG]!.timestamp;
+  const service = new BuildingMrvService({
+    caseId: "case:t",
+    dataset: dataset(series, digest),
+    factor,
+    review: {
+      createdAt: "2026-10-05T00:00:00Z",
+      advice: [],
+      decisions: [
+        { timestamp, decision: "exclude", reason: "Test", decidedBy: "person:test", decidedAt: "2026-10-05T01:00:00Z", meterSeriesDigest: digest },
+      ],
+      hashProvider: provider,
+    },
+  });
+  type Review = { result: string; flags: Array<{ state: string }> };
+  const review = () => service.execute("building-mrv", "building_review_flags", { caseId: "case:t" }) as Promise<Review>;
+
+  assert.equal((await review()).result, "reconciled");
+  service.tamper(FLAG + 5, 20);
+  const after = await review();
+  assert.equal(after.result, "insufficient-evidence");
+  assert.deepEqual(after.flags.map((flag) => flag.state).sort(), ["stale", "undecided"]);
+  await assert.rejects(service.execute("building-mrv", "building_review_flags", { caseId: "case:other" }), /Unknown/);
 });

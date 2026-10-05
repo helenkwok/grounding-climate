@@ -12,18 +12,15 @@ import path from "node:path";
 
 import {
   createSignedAttestation,
-  validateBundle,
   verifySignedAttestation,
 } from "@climatechain/core";
 import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
 import {
   adviceModelRun,
-  applyDecisions,
-  buildBuildingMrvCase,
+  buildDecidedBuildingCase,
   buildFlagState,
   callJev,
   digestMeterSeries,
-  flagStatuses,
   injectTamper,
   loadPreparedBuildingDataset,
   runBuildingMrv,
@@ -65,26 +62,9 @@ const reference = JSON.parse(
 );
 const factor = { ...reference, valueKgCo2ePerKwh: reference.conversion.valueKgCo2ePerKwh };
 
-/** Builds the case for a meter series; decisions on another series come out stale. */
-async function buildCase(meter, advice, decisions, createdAt) {
-  const digest = await digestMeterSeries(meter, crypto);
-  const dataset = { ...loaded, meter, source: { ...loaded.source, meterSeriesDigest: digest } };
-  const raw = runBuildingMrv(meter, factor);
-  const statuses = flagStatuses(raw, decisions, digest);
-  const analysis = applyDecisions(meter, factor, raw, statuses);
-  const climateCase = buildBuildingMrvCase({
-    caseId: "case:building-mrv:" + loaded.metadata.buildingId,
-    createdAt,
-    dataset,
-    factor,
-    analysis,
-    flagStatuses: statuses,
-    advice,
-  });
-  const issues = validateBundle(climateCase);
-  if (issues.length > 0) throw new Error("Invalid case: " + JSON.stringify(issues));
-  return { climateCase, digest, analysis, statuses };
-}
+const caseId = "case:building-mrv:" + loaded.metadata.buildingId;
+const buildCase = (meter, advice, decisions, createdAt) =>
+  buildDecidedBuildingCase({ caseId, createdAt, dataset: loaded, meter, factor, advice, decisions, hashProvider: crypto });
 
 const meterDigest = await digestMeterSeries(loaded.meter, crypto);
 const analysis = runBuildingMrv(loaded.meter, factor);
