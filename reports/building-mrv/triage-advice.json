@@ -1,0 +1,122 @@
+[
+  {
+    "timestamp": "2016-02-03 07:00:00",
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "state": {
+      "meter": "hourly electricity, kWh",
+      "building_use": "Entertainment/public assembly",
+      "weekday": "Wednesday",
+      "hour": 7,
+      "reading_kwh": 0,
+      "expected_kwh": 580.1,
+      "robust_z": -7.8,
+      "flag_threshold_z": 6,
+      "previous_3_kwh": [
+        221.4,
+        361.1,
+        408.9
+      ],
+      "next_3_kwh": [
+        659.9,
+        675.2,
+        690.6
+      ]
+    },
+    "advice": {
+      "model": "jev-1.13.0",
+      "choice": "meter_fault",
+      "probabilities": {
+        "meter_fault": 0.98,
+        "real_consumption": 0.02,
+        "unclear": 0
+      },
+      "confidence": 0.97,
+      "inputTokens": 530,
+      "latencyMs": 362
+    },
+    "executedAt": "2026-10-05T11:23:15.862Z"
+  },
+  {
+    "timestamp": "2016-03-01 17:00:00",
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "state": {
+      "meter": "hourly electricity, kWh",
+      "building_use": "Entertainment/public assembly",
+      "weekday": "Tuesday",
+      "hour": 17,
+      "reading_kwh": 0,
+      "expected_kwh": 724.8,
+      "robust_z": -9.7,
+      "flag_threshold_z": 6,
+      "previous_3_kwh": [
+        736.9,
+        771.5,
+        784.8
+      ],
+      "next_3_kwh": [
+        662.2,
+        571.3,
+        518.2
+      ]
+    },
+    "advice": {
+      "model": "jev-1.13.0",
+      "choice": "meter_fault",
+      "probabilities": {
+        "real_consumption": 0,
+        "unclear": 0,
+        "meter_fault": 1
+      },
+      "confidence": 0.99,
+      "inputTokens": 531,
+      "latencyMs": 245
+    },
+    "executedAt": "2026-10-05T11:23:16.108Z"
+  },
+  {
+    "timestamp": "2016-03-03 14:00:00",
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "state": {
+      "meter": "hourly electricity, kWh",
+      "building_use": "Entertainment/public assembly",
+      "weekday": "Thursday",
+      "hour": 14,
+      "reading_kwh": 0,
+      "expected_kwh": 684.4,
+      "robust_z": -9.2,
+      "flag_threshold_z": 6,
+      "previous_3_kwh": [
+        763.8,
+        756.1,
+        760.6
+      ],
+      "next_3_kwh": [
+        759.4,
+        748.4,
+        742.6
+      ]
+    },
+    "advice": {
+      "model": "jev-1.13.0",
+      "choice": "meter_fault",
+      "probabilities": {
+        "real_consumption": 0.01,
+        "meter_fault": 0.99,
+        "unclear": 0
+      },
+      "confidence": 0.99,
+      "inputTokens": 531,
+      "latencyMs": 285
+    },
+    "executedAt": "2026-10-05T11:23:16.393Z"
+  }
+]

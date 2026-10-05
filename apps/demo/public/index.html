@@ -68,9 +68,10 @@
           <h2>One workspace, six independently testable capabilities</h2>
         </div>
         <p>
-          Each card replays a committed measured report generated from a
-          pinned upstream source; the browser does not recompute it. Select a
-          module to inspect its evidence, checks and limitations.
+          Building MRV is recomputed in this browser from the committed BDG2
+          subset, and its signed attestation is checked here. The other cards
+          replay committed measured reports from pinned upstream sources. Select
+          a module to inspect its evidence, checks and limitations.
         </p>
       </div>
       <div id="module-grid" class="module-grid"></div>
@@ -95,6 +96,7 @@
           <p class="panel-label">Decision / user</p>
           <h3 id="decision-title"></h3>
           <p id="decision-copy" class="muted"></p>
+          <div id="decision-list" class="metric-list"></div>
           <div id="limitations" class="notice"></div>
         </article>
         <article class="card evidence-card">
@@ -111,8 +113,10 @@
           <h2>Change one input and the evidence digest changes.</h2>
         </div>
         <p>
-          Building, battery and carbon show digests from recorded tamper runs.
-          The other modules show the expected effect only; no run is recorded for them yet.
+          Building changes a reading in this browser, recomputes the case and
+          checks the signed attestation again. Battery and carbon show digests
+          from recorded tamper runs. The other modules show the expected effect
+          only; no run is recorded for them yet.
         </p>
       </div>
       <div class="tamper-console">
