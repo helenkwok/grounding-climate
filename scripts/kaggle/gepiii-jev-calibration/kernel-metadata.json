@@ -1,0 +1,15 @@
+{
+  "id": "helenkwok/climatechain-gepiii-jev-calibration",
+  "title": "climatechain gepiii jev calibration",
+  "code_file": "jev_calibration.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_internet": true,
+  "competition_sources": [
+    "ashrae-energy-prediction"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": []
+}

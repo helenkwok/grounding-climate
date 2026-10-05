@@ -171,7 +171,7 @@ export class BuildingMrvService implements ModuleCommandRouter {
               state: status.state,
               decision: status.decision ?? null,
               advice: run
-                ? { modelRun: run.id, model: run.model.version, output: run.output, confidence: run.confidence }
+                ? { modelRun: run.id, model: run.model.version, output: run.output, confidence: run.confidence, handOff: run.extensions?.handOff ?? null }
                 : null,
             };
           }),

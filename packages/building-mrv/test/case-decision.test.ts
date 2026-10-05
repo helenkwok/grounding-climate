@@ -18,6 +18,7 @@ import {
   checkSentState,
   digestMeterSeries,
   flagStatuses,
+  handOff,
   injectTamper,
   JevError,
   runBuildingMrv,
@@ -309,4 +310,11 @@ test("stuck-reading screen flags zeros and runs of identical hourly readings, no
   const flatStuck = runBuildingMrv(flat, factor, { minRunHours: 3 });
   assert.ok(flatStuck.anomalies.points.slice(100, 110).every((point) => point.reasons.includes("constant-run")));
   assert.throws(() => runBuildingMrv(series, factor, { minRunHours: 1 }), /at least 2/);
+});
+
+test("advice is a suggestion only at or above the measured hand-off threshold", () => {
+  const p = (meter_fault: number) => ({ meter_fault, real_consumption: 1 - meter_fault, unclear: 0 });
+  assert.equal(handOff({ choice: "meter_fault", probabilities: p(0.97) }), "suggested");
+  assert.equal(handOff({ choice: "meter_fault", probabilities: p(0.96) }), "needs a person");
+  assert.equal(handOff({ choice: "real_consumption", probabilities: p(0.99) }), "needs a person");
 });

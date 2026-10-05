@@ -241,6 +241,20 @@ What this says:
 
 This is why the advice never sets a status: a person decides each flag, and the advice is shown as one input. For the case building, all five flags are zeros, a group the labels mark bad without exception, and Jev called each a fault with 0.96 to 0.99.
 
+### When the advice is shown as a suggestion
+
+`scripts/kaggle/gepiii-jev-calibration/jev_calibration.py` repeats the scoring run with the same seed and sample, then gives the answers and labels to [jeval](https://github.com/rlaope/jeval) 0.2.0 (Apache-2.0, installed from its release wheel with a checked SHA-256) to turn what a mistake costs into a threshold on P(meter_fault). The per-flag records stay inside Kaggle; only aggregates come out, in `reports/building-mrv/gepiii-jev-calibration.json`. A re-asked model does not answer identically: in this run 77% of answers at 0.95 or more were labelled bad (79% before), and Jev called 7 of 56 zeros real consumption (6 before).
+
+With a person's review costing 1 and a missed fault costing nothing extra, the threshold depends on what a wrong exclusion costs:
+
+| Wrong exclusion costs | Threshold | Shown as suggested | Of those, labelled bad |
+|---|---|---|---|
+| 2 reviews | 0.84 | 51% | 75% |
+| **5 reviews (chosen)** | **0.97** (flat from 0.96 to 0.99) | 16% | 88% |
+| 10 reviews | 1.00 | 1% | 100% |
+
+The case uses 5 reviews, so advice is shown as "suggested" at P(meter_fault) of 0.97 or more and as "needs a person" otherwise. The cost ratio is a policy choice, not a measurement, and the case records it with each advice run (`handOff`, `handOffPolicy`). A wrong exclusion silently lowers the reported emissions, the error the case exists to catch, so a cheaper ratio was not used. At 5 and 10 reviews jeval found that separate thresholds per flag reason do not pay; zeros had 56 labelled flags, below the 100 it needs for a threshold of their own. The threshold is compared with the probability, not with the normalised `confidence` the API also returns. All five case flags are at 0.98 to 1.00, so all are shown as suggested. Either way a person decides each one.
+
 ## Emissions reconstruction
 
 The pinned real-data smoke now has enough source geography to use a historical factor defensibly. The selected BDG2 metadata exposes Berkeley coordinates, and the 2016 measurement period is matched to U.S. EPA eGRID2016 CAMX / WECC California total-output CO₂e.

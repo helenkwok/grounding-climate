@@ -1,6 +1,6 @@
 {
   "schemaVersion": "climatechain.building-case-run/0.1",
-  "runAt": "2026-10-05T12:58:47.888Z",
+  "runAt": "2026-10-05T23:46:32.780Z",
   "organisingQuestion": "Can this building's Scope 2 number be trusted, and who decided what about each flagged reading?",
   "building": {
     "buildingId": "Bear_assembly_Angel",
@@ -150,40 +150,40 @@
   },
   "publishedKeys": [
     {
-      "keyId": "key:demo-ed25519:2026-10-05T12:58:47.888Z",
+      "keyId": "key:demo-ed25519:2026-10-05T23:46:32.780Z",
       "suite": "classical",
       "algorithm": "Ed25519",
       "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-05T12:58:47.888Z",
-      "validFrom": "2026-10-05T12:58:47.888Z",
+      "createdAt": "2026-10-05T23:46:32.780Z",
+      "validFrom": "2026-10-05T23:46:32.780Z",
       "verificationKey": {
-        "keyId": "key:demo-ed25519:2026-10-05T12:58:47.888Z",
+        "keyId": "key:demo-ed25519:2026-10-05T23:46:32.780Z",
         "suite": "classical",
         "algorithm": "Ed25519",
         "encoding": "spki-der-base64url",
-        "publicKey": "MCowBQYDK2VwAyEA7BXoJDFktdiDXPgYI4C_z1LcIH3SfRwI1vB26pxedgk"
+        "publicKey": "MCowBQYDK2VwAyEABcUAfDRY2ee2IaYwxS7IlW8gE78OYB-9OLZZWWWHACw"
       }
     },
     {
-      "keyId": "key:demo-ml-dsa-65:2026-10-05T12:58:47.888Z",
+      "keyId": "key:demo-ml-dsa-65:2026-10-05T23:46:32.780Z",
       "suite": "post-quantum",
       "algorithm": "ML-DSA-65",
       "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-05T12:58:47.888Z",
-      "validFrom": "2026-10-05T12:58:47.888Z",
+      "createdAt": "2026-10-05T23:46:32.780Z",
+      "validFrom": "2026-10-05T23:46:32.780Z",
       "verificationKey": {
-        "keyId": "key:demo-ml-dsa-65:2026-10-05T12:58:47.888Z",
+        "keyId": "key:demo-ml-dsa-65:2026-10-05T23:46:32.780Z",
         "suite": "post-quantum",
         "algorithm": "ML-DSA-65",
         "encoding": "spki-der-base64url",
-        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehANfTRVbpnFCiHKppL2I5H6zXdknTpuChInAKZ4KhB2jk8FXgw6BVM8IM8DVNroI8Qe3NotsgB7DRj1reI2LIEvAT8MEKr3v6ZElsGuVFVjRiJzmo88KZ4GsNBP9Ypc_g0VmuYIAzH9GdWiV0QdXxwbOYUe0RreQUba9ovrsmLJF36jYN6T7Xtljf0NF7lhLfsfzEHZc9bltSmUIho77TCujKxv6XEwfL1h6gbA5Clsf7K4_-pHmHxlIGDvuY1LBRuHnLgmjodSsoqSR9FVpBGRVjV7rZSHgZkVGPAxycPhxcDqrCBIF3Yu5dixsIOlsRjERGzvLYvlirINb71RlJAUzsajBBdgT5Z3w7bkOf1n6VhleS-G21SDBU0Md7rYobeNONv5WIuNKTHBzgpVkmBb71BqGRm9jxwy-OTOb96ASIkv_5rqK0e8P-TYBWOanL9xI40SsiPM7TSGNISQTwQtWO35ws3uerU8UIDYHw-wH7xFfTq_gAYt1S4v85v97EDeT_9y8RgrARltrlS8u5a27lImrMUDAG17ULPi8LfoIThzg0_55uNFk-I4geF4tXolZn_83LhgIGP6oYWJfHMikBHkbfn1uDJClOpcQV5TL8Q8_esB77JPID_UQwOExeQjVAiCzpN0-nzsT5hN4ulPO1I2f8ogqiSHsy9tOUgeRrGLxXKYhgzhU9V937sR1s7kTngmjdpVOMI3nQe9X1XBn-FMmFnH7Uc4KiWcqoC6u1UapyIETrZPXHZXyNpJqKG7W_-ZxRzgDPifRlFKleSVV3d3efXRohR85hVDrZ5hsaHGMURFP9tLoTrcDKmEl5ntXaPycNis66hqYP2iVQjS2p3ud3k6Q6fh2Cadf2A_dYA68e0J9UseeEoM3le4EBvyIKidCk3uAp-OnP1F__KSZOS_VE4ljXZ1_vEMjzsrI3YkBrj4xdDFtT8cwEdCE3-aKX1CLS70XioWAT34KxGbSdVr9OOgeeEPKMNPco3hazCMVwtO1AakVLPbyWPYQtZQ2_Px-fvCWSTLHPB1UFtjcfsQFHS795kvuxpTG33c3yWbGgDTgSPfd2jyTf-8FyPB2jnn4nbpI9GVqQk8RhcO53tn-8Xmv8DPpQJylJ3egvVMqMCdZSKfftXhrKdc8b1J5tVBdUqKgvd0M-AmvRU9rTN1_QKQR_oOJkJTpAT8bgoFSovQVBhXa-X_JErKO-tkx8RT4fAUuGcEBVqZqafVaIyK5zPK2-f1R7U_bJjQjb11bRKsjN9VXozhSX3-9onb_S35DvczBrTyAy_bfdjoMqfnDXzF2MkNmi80u-ooW7jZ7Z8hbEe63gzs0NwWtoarzJJcZqVr-lc0kMmZqHiOLo0qVb2Eo6M958-kC9wcfqHcXctCg3d6u3JYkG1rJy-y7bAgPUNt7KsCXKz0pe1HoULwyoBVQIjcHIWsfE0lN_LjusNR-QRT7VTy56OMLb2JYoQW9EXbMGI0F2JYICkpfxzxQvNwOkI06FNgOJXhO585ZWaBRLRrPtZgfI4E81LjvDNk1FVdxV7-cV1o8k51Tm0HU8cWsEmRqK52hvUMK7wEnhAUmvptg7yzCYCQf9VDXrTII-x4jETnb7ocq_qZSwlId_ngXpeojUYXvYSVWGwmM2AS54DctZxbsmiap5DIWLfHltL6xz6etmqm_KlAiJQZSDLDBJWjuYRcDyL7mGwugZLthi3D2p1jFYYCx20huwYd1J7XfhiyP3TBP1uqMsx5aCTmOlBv5eYoc6J3fr0j0FZ2XBkaxU9Vpd561V_N_pj68jWhS88CfxPE79tSItIwRmBAf4TAMGWsPchco1AM37IB8xzUNS8-RsoOtGhyVbzCbmfMp-8DZxgChi538BU8qKmqpytdQ_k3CCVt9PKyFqtNBQQqCHwCxVzhkMn5bLdCq4joNz2CYTQgZuIqksJa1n9tqn1F8w1e2RQ7rqx8JOEKaTBTgSW4tGlPW_jKzmY67AiB6ywNvL6DpO7L1MY6X6bRrXqrWd7Nwp01rTUOfz9szieNRvLzE5bG8lewKp8RPmN1f3cR5qYyOEDHTZa6L1am-YWcCmuIM0R5MlRsJQBt8tXI3ZVRK6-JvH-iADJpiM2Znr_bK_m7X5zG71aTSbN3_OoiPL--3OCz0JHHMkAhdy1futdtuTSq4oqjB9AgWTmtglNeH4PelQfdqpCKHMjGlI9a_exS5rXofdRMsOxxRDYjOzDoRcbcGBcOgBOAFnbpnqGMZ5SXGyGALSk5S24Yj7pw6Kic5Ryh1mSAM0a7olZg-MdP3-nNOEz3Mnf2xb2N7oKF4sa0PcJPJK1zl5lG3xNDJQDsoL3A33CpCC4-0InnzCkVt9OIq1MNoSdwe52r47z6qA1VyEyUYwv6LHb3wzcCsrlk6gW6ihI3p7FYL2zVYP6jRoBua4SDh2dcYAjrllt12in1aqn0JlWGD10gMgZiTrUBE3xT2odB_4RT0Dt-15FYuUN9uU8rrmzr8IMaWHhbVSUXGG0jrOT1m9F2ejKiPtbxBbIgooUdQmS2DfvbP0I7TkP-aVAGdQkQoYbkvoWZunUD1cbZgq4Og4udMVxRN48AWila2i"
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAFtj1nkhmO3yWsdv-I-dGM0GoBclsRxd63jmePJ2JhfXFbzK9GYRshfr4Kwozw0YPwQtcMATKJpkC3M4_N6WB7fWwUWmewylj22Us74IVhd8B7ed0o5uX215GZei96wAVyJojHK1IZGgktCdffE-i2B-E-JSWf-1hbCydqcZJ8ZQHjRmnfrdtefMu5xDhjNzeRXwnS3KHI4Ap0eZMgvBLHWcbX9N4Q6_0UnMiIg0FBoiPs_HNTtaocEptWpJKRIQG3hU_luvLV057juxwaW0eZf8YlNk7Hh_7t8YmW3VI0qh-k-rxpHEV8_XqZ4sY0WE6jMJ3ZfOWbOS0o2MxnwV0n6odkcn4o_t0UiJBx6UpzdVFud4idjNGyCiQ5KgqRS4TWJr7VoxEH17LgIHW5PwgJsgN9f9x_ycesIsTT5rwTUh3KN5fyzfw8CpaaQHeo8vVWgTMl6sDmk-VmsYXyf4TEijoAkPvDjhILFRs1dpVvYJfKqx9OXI2H_uZkM-YB9rbNvM4TCi3J4oo6Aumqnk-KfDNu1A4cabGYezk476SJTDaD6oezw6_HWviCd24m7xJYBzlb1634PvmaI-ZYauUtycxu3Y-_-5aete_CbCojVOFqO0vXeH-fv8wR68HlF7PghIGECVS9Mvvpn6sLQWQjQOMnZMTbWN4WhkSawxe2bRqZu6ZgBVunsCf2kbRmPT49bHlo5FTtLxYYQt7FJpF1Pq9AAnX8HxX0xv2peg4foix086aopczx6RlToZ4qrq4zGg3whhmd752WL5oHwLBZEsgvNR_WUPCW4wny2W319dhm5efFj7au7hvdITD0DFcxZKTsSD8UeATBvfmaryEOVN5QxMUOcT6x3_DipxEMmfZlG4Mo9ShQX6KWl2L96UCUR_lzimk7eksT2Fwe2OQNvK7HaHqNfA6jyO-4rsehiQgEMsBNxgtZgg7iC_AvEsgLmN5MS-Nhnuv-KC0Cg7k5Jy_NZLxtB0mP1p6EQVwGMmx25uJTe_a-rWB1C77LdlpArJ5r7d0FcFL07R3RjT2GtRYa9Qe_trSXG_CEuHHOm6-sHM5759Fm1pk8QsUu4WRbuXzW_OyX9_jQ6jxt-lmhHTzTJaV5oEqrR7sxj7lhhEmXUJDadVVJt3JKcenI-kVGeH7-bcegi1uBCfgT3TJw-f3116pE7zuFjMc5BOZqSngds3PGNSKkQkButnKfINXpz134Mn4WwZOffcG6cuQ9blggSlHhc6csSNapwjZ7hMZn1zf5pPhTl5dtMbdzMR6TFetGxW9o63ea5lzaHDCHfWTun05fjnidOYsEteiqIGDcFhAXRvl6hsrWL0hTqexPgzoi0MvO6CpZ3TAxsf1TnbWyKW46-Faa4DLmxyTkgzOQ78s-lD9zSSROXzX3RwYuxIpaB1yxOntdTO1f62RdMijDt6SWi_l3D_clK4zHn-vl66MNgGpNymjg8mWASHyJW0e2cStM5qY84DUr0qbwm1wOjpia06JvY731g9pZWAVExesnsCG4Bg9safcbmBw7utZwvElGLVxMi2p_72XKbIZY6znbrvP2I7HEk4-3qbh1enYXtEvKMY3riEWtiO96MALi8h6GTkXzsw-t5rQW-YMiWNIbZJoCSd74x0eU9gfPeenmLrHY5cJCL3Ps4TMnKSQrGoel-XxMJ9VZWtY7ZdVJPqMpxxlSRSwu2yTSV3qqK4Oo2q2v8WWrwvsAPOwBhXfXvEX90evdC9gYUnegnIo36iJ_1c5Y-sllxot_WkOBnFWFS0lw7tJOmdCfs6GbNCJK51PvPfv9iU3fh20fJtE69sFIumHqwF8yJVTo6lp_0CFpVZ_t000bPwo3Q4ZLpGEVBl1A-4mscBOKUHOJNsGwlLTRFZsbA6BEdSjiYNiAiRBHxXDGFCzOvCdN5YtwfTRQzzGKicxjfQPzol6895V1Rfxj2Tmc2Uo5sjmuo4FIcm2Z_RINcjmxTvxG6jX7TLvdWxTkMEKqQik9W3zOZXzy4XC78mlzIW3Au4_sTLMep6mt4Edirp_ah5fS7D0AID83RKmD6eT_nmZFaeOTsCQhCnLA-kgf9PlBTCIB8cHpBHmOq7t8tfh89WpSFho2KtXO7lhd1Jb__n9v_oxOZj3qGK8JuNFgx0YGyr22ebBiVWU782GklI5lIR_w5MXsKKV7rWuEe2ZSF9ft1oPNdjbe8C7Z2dkIuN1IpDE0E8oapGM-qxVOJoP9k0DkodSPuO9SOuCp2sschYfDQVrHyMUqZsyhKVY1OFf0O3a3iGiVmPBRN5LPnVhj0mtXD8U9FV-H1LDMDXWhGfO29EscmVwZxxPyEfAhvsn2FinN42ciDe-79qUeI0ph_mC-PrNRI5Wzl1tu925RHH2llmJ64lUQvjhfdEK78AZ5e6Ks1amjSTsM_OMfgl-DAKRvIIACE0Lh5TsXGmXJcUES8iId_WsdxcLlPXEPhGOXbRxLf3TkFvBLbz3d9PToWOOmk0IzZEaqIqFv-tXebkUX_GpZgq1sZwVwbN0uOYnXSAmLhOL8tla6K3UOQtyisbS77Q1Kn0lLWxBxNb9s5Hj5lWFS_J1CFhVlreTRBv3PMDLwSq"
       }
     }
   ],
   "attestation": {
     "payload": {
       "version": "climatechain.attestation/0.1",
-      "id": "attestation:building-mrv:2026-10-05T12:58:47.888Z",
+      "id": "attestation:building-mrv:2026-10-05T23:46:32.780Z",
       "attester": {
         "subjectId": "org:climatechain-demo",
         "name": "ClimateChain demo run"
@@ -201,10 +201,10 @@
       },
       "evidenceRoot": {
         "algorithm": "SHA-256",
-        "value": "NYddDmKCrBY509WGGS0aSyXtmVk63OOE2FtF14wFHUw"
+        "value": "5_Mwz4ZRV9lPHuv0waAUaFvljz5xBw5KvLf2q4djaXk"
       },
       "manifestVersion": "climatechain.evidence-manifest/0.1",
-      "issuedAt": "2026-10-05T12:58:47.888Z"
+      "issuedAt": "2026-10-05T23:46:32.780Z"
     },
     "evidence": {
       "manifest": {
@@ -225,7 +225,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "5BxMwA88-C4JHwMkI36I5FMybR5dj2YE7Bc-kylqCYw"
+              "value": "Hy0DdOi9q4HpwVWlGaCttwXaiyis9D-5BvRNHo3Nt4w"
             }
           },
           {
@@ -235,7 +235,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "qsDj6ymW9ZJadymlqQtNVra0ZzrKHFanUi1LhKb660A"
+              "value": "k5usSpc1rSMFIY7jPONqQ8ZFZm7kPwkjANHlLPWFEXE"
             }
           },
           {
@@ -245,7 +245,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "2LSTFrht_QCynUqikZwJzfxtP-Cjo1JEMvdJGq7sTWw"
+              "value": "3soHOoZsKb1sNM4jvOKkfulUdDB_r1sMWImQAxny1aI"
             }
           },
           {
@@ -255,7 +255,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "J4-IsUxALaZYZ-H7IKOOJEMV2ldfS94SN02KlW0IG1s"
+              "value": "nQKoGvFDO5hDIcyKwba6mph32zIVL_5ibhjnP861XY4"
             }
           },
           {
@@ -265,7 +265,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "a8CDyUQND52k3cYTB6R0H30aBCykzNilOC6A08IJWkc"
+              "value": "gTlApqvGeIZL90YIO1p-MtPxCHG968jMP0QcqLASTCM"
             }
           },
           {
@@ -275,7 +275,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "KZQ3ngKyJI6PEdQS1og4FJeDIfOco8rqWaYRGY8Aj-o"
+              "value": "OO2peMlHAb034cbM_LwS8xUWs2cZKTgf-JZi1iHUqTY"
             }
           },
           {
@@ -285,7 +285,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "bB85rTgC4vzezGSQt_-FHKJ9GobvRCM6VTHuGSGO5rA"
+              "value": "tkmNqyiDey7HLTTV4R3QWUVGEt-0sA7Z7R0c_Yehw2A"
             }
           },
           {
@@ -295,7 +295,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "mVC9DGSIQ4OS7sXe8LjeUv6uww2D5JSqgnCTzGsgM1s"
+              "value": "hqO6zB72oDUt19oWvRcYi8mz7lcOMq6ohnblCjXzjLY"
             }
           },
           {
@@ -305,7 +305,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "DxZYw5Ei_P4QC6HXveTKh-q7iOxgqizg_ZzkhQWNsu4"
+              "value": "vEkbKUad00-fvmyGSJUBauEB46g7zO6uPamYCm1-RcA"
             }
           },
           {
@@ -315,7 +315,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "A6SmJNoXFIT59YMbtCfGheHMaR-2I-yIkDMSJ9rj_EM"
+              "value": "ntPy5Zxm38n2xDp9ird-yJWm4LFw4-olI6Ea7p-dMcU"
             }
           },
           {
@@ -325,7 +325,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "O5pNEOYK1gwYIh3j44egFBRKMiEm0_1eh_L9hepb3n0"
+              "value": "1TWYPrDQULmDS5n6fOAV-y1wUkpyCWlahjHpFjEpN20"
             }
           },
           {
@@ -335,7 +335,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "a5IdhayNFNR1PVA-brdTJVbuVPe2-2LmPvetOVKQq70"
+              "value": "7aL4mf3FNBCLHv52vxJak9pumH6PcuttT64YUKJB4DU"
             }
           },
           {
@@ -345,14 +345,14 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "kax4sPiMjgNpYEkoCfW-8tw9cvp1dOhFbyYsmoZ-uPc"
+              "value": "U0XTGO__x7nPD6hWBqQdYk8J7mRFiBFa2yKbpYFt8vg"
             }
           }
         ]
       },
       "root": {
         "algorithm": "SHA-256",
-        "value": "NYddDmKCrBY509WGGS0aSyXtmVk63OOE2FtF14wFHUw"
+        "value": "5_Mwz4ZRV9lPHuv0waAUaFvljz5xBw5KvLf2q4djaXk"
       }
     },
     "envelope": {
@@ -361,23 +361,23 @@
       "schemaVersion": "climatechain.attestation/0.1",
       "payloadHash": {
         "algorithm": "SHA-256",
-        "value": "xw6iMVXX0dTRNvH2HJcF9EtO6YDcPcb7wvYqB1g-62k"
+        "value": "aI8y_ps_mZqzdav99_kR7ProCwUHPGrz6tPT1Ag5ERc"
       },
-      "createdAt": "2026-10-05T12:58:47.888Z",
+      "createdAt": "2026-10-05T23:46:32.780Z",
       "signatures": [
         {
           "suite": "classical",
           "algorithm": "Ed25519",
-          "keyId": "key:demo-ed25519:2026-10-05T12:58:47.888Z",
+          "keyId": "key:demo-ed25519:2026-10-05T23:46:32.780Z",
           "encoding": "base64url",
-          "value": "Ibk2uLN8Dk-BnqaeCFJqd9T1f0fXq9Erv4QxwzgQOhn2zsDlnuBshZyJy62z8JAouo-MjJvn8qa8Y4IvhHZXAw"
+          "value": "LyHWKhK02PQx2wL2cx-_0LqEJPsX5KdUkixdaZu5Jax-kIClQbZ3Q01gPqy7oHw7OO17XVvBkM90hCO6c_SxAg"
         },
         {
           "suite": "post-quantum",
           "algorithm": "ML-DSA-65",
-          "keyId": "key:demo-ml-dsa-65:2026-10-05T12:58:47.888Z",
+          "keyId": "key:demo-ml-dsa-65:2026-10-05T23:46:32.780Z",
           "encoding": "base64url",
-          "value": "LCdgxfS1g7gsv0M9fSmjImUHHrn57W_Rbw042jOfS8-AjEpUK6GBfJEKguPndmX8VQD-eXJREP5xNVQEEOpwG1VUu03VcGErlIT3_6AH_QyqVh1WXhnupCTv_nqFR4G0wRyXvsHHG8x6gBFEWSWGtE3l5YIqeJkR9zOdSgx4_SxQHFLf-zUKQpGzAbuFgOTx4DOmzoIC6874YppGfz9cy-Q8gi7X9ngQ_oZEdC-yt_pZbAeLkDTJdCz6uc5hGSavvbKbYaEg6lrv14e7_7PwBY4xHcI_SuOMGBHUZzhoyLPvyT14u-dEkwQGAFItpmTtqWVno22Ot3F0OEN2xaCoxSB5miyXRtl8w0yHzZ_fOneqR-q6AJaX8u6lbtA2-cjXPzQ8u3auIJh55oOYDjQ0Mjukq6B_qDhc0dQRwhkGfB8aGUfXse6kcakNE2Z6JWgCejOlF7QiKuCtlG97esOQxJp997Zy40fdwvMwbhEEoisf9y42UkPwL7Vr-Y7JEcHxhfiqYVe7cMAm2xzvgFs4bKtAJoqOQegZk0_1gwjFft2u8URMhpDZm3-atZPtT13leNfrgcuQPnAmveGvrSRajD23eJ1AHop5iStXQq6m-H1LAWp4x0xkqzdlIdEhJkZJTEZQ82dHAJELzDAHbG-F9gsTr0k9aQT1Y8ddfgpcPpKFoLz9gLb5Hg0J_RZLRHNiJvR-XgAdXcLSePnKuZejptAS7CtfW_V4bkJuxBALiXLUODbWS-5Drkj1cpZ7gssAFyzLXYnj52GhunoVPzvvp-0Lj4vxofRnvOF9c_4jC-F-79qZdFFLrYGubomRfpk8PL_74AnqB1KcZLgt-eWEkG-cVUAZdCzlxVqgoX9IkZiNj1gNyS0fWzG8akfD7krHBsOnrzgf0Sc-LvdWcuHIARAi21ijHtNI_WWsLBOKOGUCzdgsdOotw1XXt_EAjk4l-eXyPcH9cGGePRyfjgBUTGkvyyZOtFl_LDUA9ln6IzrjN7Jl9fP-s_iCgLE4wQfs10uLC2z-3PJTktJv9tC26kSSMa9EiJOM6n6ouo67xQkyCGrgLolVC9860yADpVq4UpYtJk5JPJBdSkhWjwyMtsNyY1xx4BLMr-BI1OX2JddsWk5HZM6LHUqdBMg0WbGmakPt77FINbiNUoztm83k5UZvt5yL7_AynwKQiDPHsW1Ei0ASRTjbu0hnGJHctpwGQ6WxN4apW1nWBoWw9gQ5-elTHM2ZkymEphGJUV5breLncimpaOz3_6jevczvOdiDVb3zy-_RQJUM2z8ladjeXG92f6agRqhTfMqjbBdnFfRcfCRvEnNLLMamlQdguzh1EhFSEvObCCxQSNF3IygXWAwUXps2yVwL1vBQw2quR6FoKokZQootIXyt2Pg8wlqsfoLHOqcJ3XcZIhmkbKwmUNCTjdoL6gjfRK0Knosy7hTrn-1ltuXxfioepYe_1IZstm_Ar_eYnuM08KCp8Y2ankVjDShxXyZSksi1c3CmHM1-GqJ4A953fGO_M3rjqPHK1qwoZkkZmvkWSdZckWkPtzhD1EvPdFg2Cof8-zu4BQhjQUpZdNaVKShCMCShOaC95LjWS-2Bm7JgICepK7dgacr-whEWEybUGb6IE-QaxmmhH-WYNVAt0Kh2HD36Yd9uh0r0UII0ibUiLdX_YCjS9WcWOW_TBsOTX_EIVdbBeNzC_wNIO8RrkvQVCe24DTwYQvS_HezgNxLbBTiZoHZxnjy6HrxxMbBPQH-v_4Mw3NeM_OxoYm3s0YEw738WX6Ofd_1rybQ1Z8ViW0wQT5qPORZtrR9S7jIA8rWq27rnmn7wZl4M-LLwD-s3UIF9z6O478yoLthqSQemarGrV8XwHlhTz5nKkjVsrbc_AFd0x8XgUdVtIMU0d4p_HbwwArW0NKEkf1TORXgBLVFRVSsHAo4wN4zY7BwVzklxzjG8OzHTwh853TAEhW6-6cTzuuDCnmhQlK_bJ4b_WXv4pqZhoUS1jlQ9KvmapklHJGoeL4iOVXs4gshQgsjFta30ZnKRg9_rrMlNND6RLYKK7NhbFGy9nWdx9mWAjxROTBT23M2iZhoAadhbuQwH9Onb4gsJKceqAB_IuBuH66dxBXkggzDisbJgtrss67m-2n_K75I-zesrscTB9W01F9PGcmmU__Xy0dW8noeW8o1iYcohs4QXDFYw4jk6nMAERCOSryg6gbn5mjsfTU2GEfuHFM1KmIQeYlb-W1pXywzf_YetSWaKgOEGisoUF5utU8FtXH_CBPM03-sRtcZANEFQe2aUf4NBHkS5dawb_6mom2pkFXpGbBtufr7kFRsJqLH0o5PJu62mn8SFR5ohaO5azBcuE7zpofB6AWDO7poQgsYDBRf9DceugxQt2YhJsp_XchrVj7MLlJ7lQ4yVPtpBYRsZtyL8-afYk8BqhwemXp5ITSqihMX0UfKUw5xdOYoLqxZBtcglHEi-toEWGZp-lVNniGqhzgspJjnGMW6BfOdGfhMAnSIQqB7mXDDakpujl4L1KA2p6SdjwTLnAAlfEA24PtxBEKJM_F14PAopYnnszKC_rTEEvIhi8ifYKqGNzSvmHaH2MYLrrKlzppizGEGiiqiieKh3JFZFa6tZhBBi5eHpmml8pJykPbTqz27GZM7wIhGjlDwwD42koZALEB5Nyf8Zqrv5k9WA7Imd5jB_yDKeeyuIF0rxIvPcYaKb6KkH6YfS5AOqwIJo6Q4AmF7cKoruK4oUQryYAUBotsuwqx74_HXlyrnOQoH-JnlH02_4YDt8x3ubI16OOr5f9mlsifr1n_lEIS-r4N1Jpzy3AIVHjzfnENqLRlmBOAOanUvSVIclBultVn2F83SDAoAZ71XJPYl01_M9xhRXseOVfIHKfLlYlsiV2avw0Xfxf6OViPaG7nz9nrdsU-KN9oAFXml1ME_d2YKwSoPPYZ4a-Edm1ft_ZmE-3XRq2-qqGbz9cqXmQRnJFHVf1Lng4l5ruQ_IIWT5DU0CzbpvHa0jLCGvPUuLOkHL0M7cACoxBKL_Mv9dtRFs_CG0MjdMe9_0Ir_yjlcglaPsixscQlQHdKqdWomfh9rFbJu_HMQxZzHYlCVRgWH7GXRtijirzfjFPU_tQ6qNK6ocR6AJ08tdGsfIWYS3_23-z01eoU_4JqotjBnw7H_dkmOWNc6empmhCZumze60E7MaTIqLNVo9JsWmBJAR6Q888cx4SH4pCNk_ZGFw0XWJEzWFlio_HNc1kpoiZsFeyRdLvioBhed18UCLYY8O-KGn_N7_YZWiEsjUdLPPvRf-2aN-hBPKtFRhx59xAghi5b-I9y5z24ELrAJDgG1OKHI_Az2jMAtkp2SkmmUmyupKVJQH3LqkHXw-2Tun4mFGAHXwqY6cXyacV7kPYxhivEajtximTEWjT7jopudCU9GcgVjN05wt9e0WzrfFy3DNmxuXY44tdWk-DMZ0Ba3IfvvF9yzB2eIPb2CjC_6_LnOvTpcqLKqe4_O6bSPPddSS0w5FDgTEU35ia7ZrQL3T5Kj0bgioWfDghcJLm3dvLeMggJ0jDatsWMUWdGZTNZe7VnjH-NqbCqDuxswK3Pg6wPlDgbqgvcu257L_sHGBIUzaFtTGXyjpr_pgzb7RMyDIDkV7UxucsVrRJUXzV4cU5yTD_7zCMOM3uAslPz0j5E-ILPrsI-tke_12e5G-Hm4jTxVLxEsXe2VNPB-MM7rX3RqUo_-uPIlpHKeLjVktSVmemGIntA2dHWKHp6E7dBwi-EJ_kVf_gRgH9B2CMczjeDPixVYEXh_LySIZO3Y8RNn991VayWzwXa6gjlDQsXgziWBixXbXzcz-bw7RA96Q96KPjWUrlJB4y7GDSG04OWifs_AseEpiRlkJphmHW23kplmOpC--Dc5zd1OAnqORnvjEI-D1buloZ_iLoHmookpaLC5o4UYU_kWCQi92Ujg_LgTpctBWkZLyo3F2K5HmX2peLCXc4LnaX1JNMeVZ1tV4KQlfwyU9mCobxruE670N3A475Jin7vVMTsvnzZRs9jKStTjHFyhS85r3FcjGyxgQ2U8NMEh-ojrkdHz_au-jipKlRUHD21WVHz5m8s_TUJ917mU-D9g3pSVRrcHCSCmQ4fk1BC6eu3GquIdVmVPqT6lgeRGrrNhGr7dOSD7b7N0MO4bUzovlZisJy_--w6GQLMUuUZa2inkzpWqB8iK71A69ZFJ9CzggTtGwcsgB4S1-_f6g2edjxg5dlS-7EZoRFgT3yEOV0RON4p66AELRKUrsLgQvrD4uXHCHAI7bTgwfb504Pckp6P5MjscSPYjnDjtwkpW0xukpmKAIRChCiImOxwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAwcPEhQa"
+          "value": "7Mcj6MVd3L6kc_vswsfOWWmj8PkammrnJfEWR47KKoZ390s8tcmIUrV6wHzTXD4aBZRWiMbG_9d-tuZeLEQYj7Mee1y9J0wjHfxdA6nlGy_ZAL2vNKmNCR7mkysYodLrJQ1b5ZeTrnL67y_GFruHFsoB1hE5Wz6hPssfki7g0qeztVrUYX-Ht8YAZNYpd6vpn8JyRelPZRFnpivjccp1mHKd6Tu_UaRQv1Pe8N-qjrIvZ93KXNsWLyfX7cguJKVxPBiOmlBlQxcbyUz_rUbCWn87hsTij3_lP2jgNMSrAxgleuTq4ZOfXVbhCTcS9TIJjyCcHTH2GiBzcIVqZksLKstBJcXXBE4dl7zbdPcsFVSZhCTeeGEqbrCUOM2A7p8nZBxs2fVQ0D35322nlX_bJ6P7VbENLnsoDiMNJANBKUyNQyFdb_Jfv9ivQ9aHFcFnpTtjjcDjurl_rA9SShSEaFEALbd_DVj4CgFh3t1zkb1VOVYyAsiRUHOryVH_ZCKoxmEiUeQ43lB9Ws6Qbnc9FgAAgT-kunzBp1s-7fMyfuST89ZMXtaNv3xTtZnuaujd3-jpp_s5gqyQOqygEniNFWwR_cdf0XMR1yZTXoVF6ej3XABUkOzh6wwEeeBa1Y9PQk6x1t5Nly3bR2ANJJwXrI9IhLyxdAG1rF7Xdje84ApZ5-IclOEsWd3lHNi_Jv2Ufw62tNKcYIXe8Ew58XUoDxvMt1asAE8Trfo5hxCA1nNlG5O7qnWXPdLGj23L-j0lR27QC6GP_skwa4U-6_f8xEfu_NiHdJV2AHwBJjGMM9xvhmTyZjptUdo2Xi6eDlzC4Cvgg2QqL0Me_IgUGpGG-YOgOkF4ONlRqxq23MJt4VNEOMGQwSfvcGAdo5G0ThFMEcDL89VNS8wrV8I9LGetDssD8-JwFZVF4J5NEKuzMpMsX2YRbXJoOn3o9-kP3mxVhl51L0i6xIArKPJRKJK_e-pecFfdBDjMR6YirjqfnxdSc7Wu2eBPxB8jlHp5KyadN1Qx42TZe5Ktq4xbWAVJNfuoyfQ3ry_3RhnZAeJFLspcq-oBzCYcQkUixwozPFg0K_KYSgrhHh-nqTqy0VsMy9L6KNVPfZvlWOx884jbYnrAEJl2OPg6b_vWJDjO3UUYlSSi9GIowr1GdZCS9PV3e8BHMcYAhVF-Z2l-FNNRYSneixBELaMskqkr_vDCQF4Yf2dBGn6mXGWw8NAITOS7sz5BbEPCZksRb2yNtUSn8bRGJFtrIeKHhW7kl3G97l1DgYcpxmcvgFlXe86HoZ8T81Dz_Nry1ei4qjdCgwM539_iVR9byxuxRoNYOEJzU_3ARHY-vZqgxppjmJa42poBnR8zLfPH7UCZ35PcVGR0kD7xwLT9nZnTqAJoc2TCE6CeDTn92eJ8iFNqv6sk0AYvtKohmgFOuWVZUMvvhgfcuNJjcl92nWLUsDP4tk8mUn8LKMtu3nWRlCLkIS-dwy3VXUf6-gwuLxfOaac3tv6oMOVDmAlOtAfFhzRbIo0BGs9dNDlJPxd1QOE5MRaKomzvJ80H0Blawc1w0cw4t7FN852n1ejLB1C649-bfMaNYloRYsbSGDihy0habSPKiSKHb8o-E4ODWCfZuMwBxnAU_4ulWjvqUUzffY-8hCp7wncyoYPSIn58gk52IYojBmQFdUFelGmoC2-GIhH4mfYoYQlHXHc9SEHJ6gndXUqg5yxh7By69LqPgr0i-uuzCYzRFMy5aGGXEYatggQOJL4xs8sUoIYtY7li9YbdHXlDW-p9H-j4G7qnFPN1Jn3EUroIGrF2gYdfSWInMsD9KI69fb8j9oLGCOYuVDFMXVel0p4AxR9cnEknUB0mBhAIrmaCD1trhhnA6NR5maPTPp6YTKx6SnbeCGys60nmybEw2goEkHDChVG7okURwJ1E5RJ9_bEEIZ2qfpa3iq67hst84Bnb9--EK1my8d1TylJ9iSFs18idTC5w7dHtts92hDj0CiLgZcfmVWyxQEbIZFhHJSDdEUdIfJIaAVn-4-ReXLafXO4ZsFfKt5S---dI4uspQIhU3tZI4ETTqBTCiq7rUK1eAtEOl_WMB5dEojMnvvEOBGNB2X4wLbzVOMO3kM-5pL0UEITgBaQf8ScoRJ9QrAuP1iUDU6SxEQaQkNz2oesCyb5cqEGbbR_RL7IzORJfcy7zXalTfsUYRjwPR6UTkzN8O-gwA1cjnXWnw38WkD_64OeN0JlhFZRctIZUTg3qJAC5jM2znzAf7CuAl7duU0qdU4kONtgtajz63wcVZTxf8OL99zPzGCFLFnNX_wAmOCADWD0GjzRLHDqScwwt8lRL4PJTj33Fdjh01dce5p1a-mw_xDihIl4cVvulCvieoYTqhFqiG827Al_qGS2k2J_teDUADq2pb307mM74P3sTiBkQm_8BSo1OzCwF3jvPkr3m1SNwn9i72TV9jVnyAnB2hWc7yra0Zlo6xDjcHf2wkponhKdXDdRfZtPzPRYa2VUA04ot-46ZKbZ_cuITIGlPjc4lzJPhjSqDaQl9L1FF-XlnWb7WsdNDyB_EAb6CkNbEwL6kPDZQYLGv5I-ekQ1TYaQDngLSdGfZK_dRHSdnw6f-J5t3vKrUCO3NJVA3QJ-oV2qiuD-mggVDG-uSeobA7wQrEz3S9wmUpY-UdDeuOf364czlh0TCReCNaNm25cA9iLe12O6KAqgUFj56vySa5xnm_jB8FbXP-IOwf98qZXw_KyehGRgtIQpo3jtJ-trJam2sd2wYZYE7cq9NLbb7XiNEjLWa5BGQv8E-s98pbR4_vT9mCrIVHDEGHRWvYTdikeY6kDxOqdGTprjNRa0YYZURBqAOhdgBXbQ_6TYvSNwsbQm6ojHU9SxrRln-TlZG9faZC_ZjjlNF2I3XfkcDSCtrkqZPZeU24fhZDDejXhPH8VL3TQx4CVI1c5zWk_ieBhv6u2uaguEj_vzCxDLTMX0D9shiRTu6pfkZnQAORiTSjcC-6kHf7cMqNO7dHJg3yrp3M-iUEXb_7jM9EPe_Q8RJaFXGet7Zme6QeJGo6yWN1WXrtVpRkpJ9_pYLO56G8548sq3aAw9g5Kjl1K2hbfN2OsOgKZxqtdjKwl4AERwjzPW4LrDKr3R0GC62JMhm_cN4fPB4uYVLDXigADXF2OkoSjw4eVdkNtW7sou_pwiEZn1h6Ao9jGmI4owXTV3wR8_PU5UXUEa_y_1J3fistkL8xB9Il_yuELmGiMDDSHzoK7rRkRHGxEfx-6cdwGTUvDe6FKr4LRPQ3cGaqEtqAH3S-DP15GnUp26q9ohQ3LCEnd-oyCU79DIkMOGdVDVxnDlVPNjdQpmYT5mhnAWVIjRSW5DBsco9Yc4em0kMWltkOU3wuVytKpufw0A5waaX-ijSFzUxsjl9rF5F-afs6ZBvvZvBXpGW4NjL6rwX0yQevipw4o1P6hbS_lOgA_qMtXXRutMoNmHT3C5sMUaTTxPSw-R9npWNi85VupKA4xkUe_p3lxwEyymi8JyemKZdyKylN9CD4Jvm3RWXMdxr3CfTOF_aQ6tkiEwfFJfKuFx6Asbe0FL9p3s7cAkj0L-5LlcCBGMipY_TwKh0WF6ChdzgwmKbhnLbj2oOhyR1J1qn7LIUgXTuHcQjnhvsY7bYZeo4231sDWVxNFC5q6YKEiYjADfFMeqAztjJFsVmzBgZSb5WTZI4EmfUEeK3-yF16w5-TN33xIJCQs0zhdBNI13QJ2HBFV-Iy-isxIQeQVB7_yA6QElf9CQ41IR2VGK1Dwey8UE1BrG8F8C61299cjYubzJL01WZmGt9Y9e_L0Q9rLLCT42AVSzejl1Qy2YDjpkX4wEbvXc5WyJdHe5geqxZSrLslCuMpvv39gJtx_JvCGAt9uszFoxeYgwkQRfV4fvmAurOXq6n1XWXE31amfWKgA21cSBh_OqiwV6GQq7Y4F9v6_X2DNMpnRxziOX3tKD-7pF4j7NllAJe1GLJgLS11-5TQQOn44-bfAPlfMdIF856K2P_EsavXkfMfZIO9IukcN_tumJl1-tWBjCkaWD_pc2uCu4g78_l0zba52Mm1CETUtCt11uALVORfvDl81dugszg5Hn1czGSGomrWxoSGvktUkQUUI6RchHf8vonOUpJ1uAxia2QLVHcpJVb0bz7AEGjPy1ofRzTrCyWKyO3gpFZcQgGVMOZ4-OhbxcXH8fmWe5ZtULOX9aTXHQ4kwrYuSpXKZeJgqtimTu1kDIMMFPHypvpCgnKhjqH-vUawLnUXDUWdfdixUzkhEGy_YT25BXcDkAzaGOPTXsdgIaM1B8nLjM4eZK_2OL-EEF2fM3O9hYYH2SvttvhDK24xcbMzQ8iTYCVnb3PAAAAAAAAAAAABRAXHyYu"
         }
       ]
     },
@@ -387,7 +387,7 @@
         "from": "pending",
         "to": "attested",
         "actor": "org:climatechain-demo",
-        "at": "2026-10-05T12:58:47.888Z",
+        "at": "2026-10-05T23:46:32.780Z",
         "reason": "Signed attestation issued.",
         "evidenceRefs": [
           {
@@ -409,12 +409,12 @@
       "claim-reconciliation",
       "pq-attestation"
     ],
-    "createdAt": "2026-10-05T12:58:47.888Z",
+    "createdAt": "2026-10-05T23:46:32.780Z",
     "claims": [
       {
         "nodeType": "claim",
         "id": "claim:building-electricity-emissions",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [
           {
             "nodeType": "calculation",
@@ -450,27 +450,27 @@
           {
             "dimension": "source-found",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T12:58:47.888Z"
+            "assessedAt": "2026-10-05T23:46:32.780Z"
           },
           {
             "dimension": "calculation-reproduced",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T12:58:47.888Z"
+            "assessedAt": "2026-10-05T23:46:32.780Z"
           },
           {
             "dimension": "factor-traced",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T12:58:47.888Z"
+            "assessedAt": "2026-10-05T23:46:32.780Z"
           },
           {
             "dimension": "evidence-integrity-confirmed",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T12:58:47.888Z"
+            "assessedAt": "2026-10-05T23:46:32.780Z"
           },
           {
             "dimension": "disputed",
             "state": "not-applicable",
-            "assessedAt": "2026-10-05T12:58:47.888Z",
+            "assessedAt": "2026-10-05T23:46:32.780Z",
             "note": "All 5 flagged intervals decided by a person; decided is not explained."
           }
         ]
@@ -480,7 +480,7 @@
       {
         "nodeType": "evidence",
         "id": "evidence:bdg2-electricity",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [],
         "kind": "meter-data",
         "source": {
@@ -513,7 +513,7 @@
       {
         "nodeType": "evidence",
         "id": "evidence:grid-factor-source",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [],
         "kind": "calculation-input",
         "source": {
@@ -532,7 +532,7 @@
       {
         "nodeType": "calculation",
         "id": "calculation:electricity-emissions",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -564,7 +564,7 @@
             "unit": "tCO2e"
           }
         },
-        "executedAt": "2026-10-05T12:58:47.888Z",
+        "executedAt": "2026-10-05T23:46:32.780Z",
         "reproducibility": {
           "codeVersion": "building-mrv/0.1"
         }
@@ -574,7 +574,7 @@
       {
         "nodeType": "factor",
         "id": "factor:grid-electricity",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -662,7 +662,14 @@
           "codeVersion": "building-mrv/0.1 building-triage@1"
         },
         "extensions": {
-          "authority": "advice-only"
+          "authority": "advice-only",
+          "handOff": "suggested",
+          "handOffPolicy": {
+            "threshold": 0.97,
+            "on": "probabilities.meter_fault",
+            "costRatio": 5,
+            "calibration": "reports/building-mrv/gepiii-jev-calibration.json"
+          }
         }
       },
       {
@@ -728,7 +735,14 @@
           "codeVersion": "building-mrv/0.1 building-triage@1"
         },
         "extensions": {
-          "authority": "advice-only"
+          "authority": "advice-only",
+          "handOff": "suggested",
+          "handOffPolicy": {
+            "threshold": 0.97,
+            "on": "probabilities.meter_fault",
+            "costRatio": 5,
+            "calibration": "reports/building-mrv/gepiii-jev-calibration.json"
+          }
         }
       },
       {
@@ -794,7 +808,14 @@
           "codeVersion": "building-mrv/0.1 building-triage@1"
         },
         "extensions": {
-          "authority": "advice-only"
+          "authority": "advice-only",
+          "handOff": "suggested",
+          "handOffPolicy": {
+            "threshold": 0.97,
+            "on": "probabilities.meter_fault",
+            "costRatio": 5,
+            "calibration": "reports/building-mrv/gepiii-jev-calibration.json"
+          }
         }
       },
       {
@@ -863,7 +884,14 @@
           "codeVersion": "building-mrv/0.1 building-triage@2"
         },
         "extensions": {
-          "authority": "advice-only"
+          "authority": "advice-only",
+          "handOff": "suggested",
+          "handOffPolicy": {
+            "threshold": 0.97,
+            "on": "probabilities.meter_fault",
+            "costRatio": 5,
+            "calibration": "reports/building-mrv/gepiii-jev-calibration.json"
+          }
         }
       },
       {
@@ -932,13 +960,20 @@
           "codeVersion": "building-mrv/0.1 building-triage@2"
         },
         "extensions": {
-          "authority": "advice-only"
+          "authority": "advice-only",
+          "handOff": "suggested",
+          "handOffPolicy": {
+            "threshold": 0.97,
+            "on": "probabilities.meter_fault",
+            "costRatio": 5,
+            "calibration": "reports/building-mrv/gepiii-jev-calibration.json"
+          }
         }
       },
       {
         "nodeType": "model-run",
         "id": "model-run:hour-of-week-baseline",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -970,7 +1005,7 @@
           "splitRef": "2016-03-12 23:00:00 -> 2016-03-13 00:00:00",
           "notes": "ClimateChain local baseline; do not confuse with the published ALDI++ GEPIII results."
         },
-        "executedAt": "2026-10-05T12:58:47.888Z",
+        "executedAt": "2026-10-05T23:46:32.780Z",
         "reproducibility": {
           "codeVersion": "building-mrv/0.1"
         }
@@ -980,7 +1015,7 @@
       {
         "nodeType": "verification",
         "id": "verification:building-mrv",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [
           {
             "nodeType": "claim",
@@ -1029,12 +1064,12 @@
           "Every flagged interval has a current decision by a person; the claim uses those decisions.",
           "Decided is not resolved: the cause of each flagged reading is not confirmed by site records."
         ],
-        "verifiedAt": "2026-10-05T12:58:47.888Z"
+        "verifiedAt": "2026-10-05T23:46:32.780Z"
       },
       {
         "nodeType": "verification",
         "id": "verification:interval-decisions",
-        "createdAt": "2026-10-05T12:58:47.888Z",
+        "createdAt": "2026-10-05T23:46:32.780Z",
         "provenance": [
           {
             "nodeType": "model-run",
@@ -1106,7 +1141,8 @@
           }
         ],
         "findings": [
-          "A decision records what a person chose, not why the reading happened; the cause is not confirmed by site records."
+          "A decision records what a person chose, not why the reading happened; the cause is not confirmed by site records.",
+          "Advice is shown as a suggestion only at p(meter_fault) >= 0.97, a threshold measured for a wrong exclusion costed at 5 reviews (a policy choice); below it the flag needs a person. Either way a person decides."
         ],
         "verifiedAt": "2026-10-05T12:30:34.795Z"
       }
@@ -1125,6 +1161,6 @@
     "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
     "Decision-model advice is recorded but never changes a status; a person's decision does.",
     "A decision is not an explanation: the cause of each flagged reading is not confirmed by site records.",
-    "Advice is overconfident on labelled GEPIII flags (reports/building-mrv/gepiii-jev-scoring.json); it is shown as advice only."
+    "Advice is overconfident on labelled GEPIII flags (reports/building-mrv/gepiii-jev-scoring.json). It is shown as a suggestion only at p(meter_fault) >= 0.97, measured with jeval for a wrong exclusion costed at 5 reviews (gepiii-jev-calibration.json); the 5x ratio is a policy choice, and zero readings had too few labels (56) for a threshold of their own."
   ]
 }
