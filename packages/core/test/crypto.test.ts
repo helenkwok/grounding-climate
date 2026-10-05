@@ -170,3 +170,27 @@ test("historical signature time remains valid before key rotation", () => {
     false,
   );
 });
+
+test("review statuses: current decision is decided, other input is stale, none is undecided", async () => {
+  const { reviewStatuses, reviewVerification } = await import("../src/index.js");
+  const digest = { algorithm: "SHA-256", value: "now" };
+  const flags = [{ id: "flag:a", label: "A" }, { id: "flag:b", label: "B" }, { id: "flag:c", label: "C" }];
+  const decision = (flagId: string, value: string) => ({
+    flagId, decision: "exclude", reason: "test", decidedBy: "person:test", decidedAt: "2026-10-06T00:00:00Z",
+    inputDigest: { algorithm: "SHA-256", value },
+  });
+  const statuses = reviewStatuses(flags, [decision("flag:a", "now"), decision("flag:b", "before")], digest);
+  assert.deepEqual(statuses.map((status) => status.state), ["decided", "stale", "undecided"]);
+
+  const node = reviewVerification({
+    id: "verification:review", profile: "test/0.1", statuses,
+    flagSource: { nodeType: "model-run", id: "model-run:screen" }, adviceRefs: [],
+    createdAt: "2026-10-06T00:00:00Z", staleNote: "Stale. ", findings: [],
+  });
+  assert.equal(node.result, "insufficient-evidence");
+  assert.deepEqual(node.checks.map((check) => check.outcome), ["pass", "fail", "not-run"]);
+  assert.equal(node.verifier.id, "person:test");
+
+  const allDecided = reviewStatuses(flags.slice(0, 1), [decision("flag:a", "now")], digest);
+  assert.equal(reviewVerification({ ...{ id: "v", profile: "p", flagSource: { nodeType: "model-run", id: "m" }, adviceRefs: [], createdAt: "t", staleNote: "", findings: [] }, statuses: allDecided }).result, "reconciled");
+});

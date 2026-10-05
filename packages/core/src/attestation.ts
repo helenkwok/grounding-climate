@@ -12,6 +12,7 @@ import {
 import type {
   CreateSignatureEnvelopeOptions,
   EnvelopeVerificationResult,
+  KeyMetadata,
   SignatureEnvelope,
   SignaturePolicy,
   VerificationKeyResolver,
@@ -102,6 +103,23 @@ export interface SignedAttestationVerification {
   unexpectedRefs: NodeRef[];
   validForSignedEvidence: boolean;
   validForCurrentEvidence: boolean;
+}
+
+/** Every case is signed with one classical and one post-quantum key; both must verify. */
+export const HYBRID_SIGNATURE_POLICY: SignaturePolicy = {
+  requiredSuites: ["classical", "post-quantum"],
+  minimumSignatures: 2,
+};
+
+/** Resolves signatures against published key metadata only, as an independent verifier would. */
+export function publishedKeyResolver(
+  keys: readonly KeyMetadata[],
+  provider: CreateSignatureEnvelopeOptions["hashProvider"],
+): VerificationKeyResolver {
+  return async (signature) => {
+    const metadata = keys.find((key) => key.keyId === signature.keyId);
+    return metadata && { provider, key: metadata.verificationKey, metadata };
+  };
 }
 
 function sameDigest(left: ContentDigest, right: ContentDigest): boolean {

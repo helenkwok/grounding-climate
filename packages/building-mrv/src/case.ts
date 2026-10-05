@@ -9,6 +9,9 @@ import type {
   Verification,
 } from "@climatechain/core";
 
+import { reviewVerification } from "@climatechain/core";
+
+import { intervalFlag } from "./decisions.js";
 import type { FlagStatus } from "./decisions.js";
 
 import type {
@@ -35,51 +38,30 @@ function decisionVerification(
   advice: readonly ModelRun[],
   createdAt: string,
 ): Verification {
-  const decided = statuses.filter((status) => status.state === "decided");
-  const decidedBy = decided[0]?.decision?.decidedBy;
-  const adviceRefs: NodeRef[] = advice.map((run) => ({
-    nodeType: "model-run",
-    id: run.id,
-    role: "advice-shown",
-  }));
-  return {
-    nodeType: "verification",
+  return reviewVerification({
     id: "verification:interval-decisions",
-    createdAt,
-    provenance: [
-      { nodeType: "model-run", id: "model-run:hour-of-week-baseline", role: "flag-source" },
-      ...adviceRefs,
-    ],
-    verifier: decidedBy
-      ? { id: decidedBy, kind: "person" }
-      : { id: "person:unassigned", kind: "person", name: "No reviewer yet" },
     profile: "building-mrv/interval-decisions/0.1",
-    result: decided.length === statuses.length ? "reconciled" : "insufficient-evidence",
-    checks: statuses.map((status) => ({
-      id: "interval:" + status.timestamp,
-      name: "Decision on flagged reading at " + status.timestamp,
-      outcome:
-        status.state === "decided" ? "pass" : status.state === "stale" ? "fail" : "not-run",
-      detail:
-        status.state === "undecided"
-          ? "No decision yet."
-          : (status.state === "stale"
-              ? "Stale: made on a different meter series. "
-              : "") +
-            status.decision?.decision +
-            ": " +
-            status.decision?.reason +
-            " (" +
-            status.decision?.decidedBy +
-            ", " +
-            status.decision?.decidedAt +
-            ")",
+    statuses: statuses.map((status) => ({
+      flag: intervalFlag(status.timestamp),
+      state: status.state,
+      ...(status.decision
+        ? {
+            decision: {
+              ...status.decision,
+              flagId: intervalFlag(status.timestamp).id,
+              inputDigest: status.decision.meterSeriesDigest,
+            },
+          }
+        : {}),
     })),
+    flagSource: { nodeType: "model-run", id: "model-run:hour-of-week-baseline", role: "flag-source" },
+    adviceRefs: advice.map((run): NodeRef => ({ nodeType: "model-run", id: run.id, role: "advice-shown" })),
+    createdAt,
+    staleNote: "Stale: made on a different meter series. ",
     findings: [
       "A decision records what a person chose, not why the reading happened; the cause is not confirmed by site records.",
     ],
-    verifiedAt: decided.at(-1)?.decision?.decidedAt ?? createdAt,
-  };
+  });
 }
 
 function factorSourceEvidence(
