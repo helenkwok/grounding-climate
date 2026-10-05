@@ -22,6 +22,7 @@ import {
   buildingCaseId,
   caseRun,
   checkBuilding,
+  mlDsaVerifier,
   service as buildingService,
   setTampered,
   type LiveCheck,
@@ -85,7 +86,7 @@ function buildingModule(live: LiveCheck): DemoModule {
   const flags = decided.statuses;
   const decidedCount = flags.filter((flag) => flag.state === "decided").length;
   const ed25519 = attestation.signature.signatures.find((item) => item.signature.algorithm === "Ed25519");
-  const mlDsaRecorded = caseRun.clean.signatures.find((item) => item.algorithm === "ML-DSA-65");
+  const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
   return {
     id: "building",
     title: "Building MRV",
@@ -144,8 +145,7 @@ function buildingModule(live: LiveCheck): DemoModule {
         outcome: attestation.validForCurrentEvidence ? "pass" : "fail",
         detail:
           "Ed25519 " + (ed25519?.signatureValid ? "verified in this browser" : "NOT verified") +
-          "; ML-DSA-65 " + (mlDsaRecorded?.signatureValid ? "verified in the offline Node run" : "not verified") +
-          " (browsers have no ML-DSA)" +
+          "; ML-DSA-65 " + (mlDsa?.signatureValid ? "verified in this browser (" + mlDsaVerifier + ")" : "NOT verified") +
           (attestation.changedRefs.length ? "; changed since signing: " + attestation.changedRefs.map((ref) => ref.id).join(", ") : ""),
       },
     ],
@@ -909,7 +909,7 @@ async function renderBuildingTamper(injected: boolean): Promise<void> {
     ["flags", escapeHtml(live.decided.statuses.length + " flagged · " + stale + " decisions stale (made on other data) · " + undecided + " undecided")],
     ["case verification", tag(result === "reconciled", result)],
     ["overall (with signature check)", tag(deriveResult(moduleById.get("building")!.checks) === "reconciled", deriveResult(moduleById.get("building")!.checks))],
-    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 checked here)" : "no longer matches the current evidence")],
+    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
     ...(valid ? [] : [["changed since signing", escapeHtml(live.attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
     ["action", injected ? "Reset restores the committed reading; the signed attestation then matches again." : "Choose “Show tamper result” to change one reading in this browser."],
   ]);

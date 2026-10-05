@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, rm } from "node:fs/promises";
+import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { build } from "esbuild";
 
@@ -8,6 +8,15 @@ const dist = resolve(root, "dist");
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(resolve(root, "public"), dist, { recursive: true });
+
+// Bundled third-party code: ship each package's full licence text next to the page (MIT requires it).
+const bundledLicences = ["@noble/post-quantum", "@noble/hashes", "@noble/curves"];
+const licenceTexts = await Promise.all(
+  bundledLicences.map(async (name) =>
+    "== " + name + " ==\n\n" + (await readFile(resolve(root, "../../node_modules", name, "LICENSE"), "utf8")),
+  ),
+);
+await writeFile(resolve(dist, "third-party-licenses.txt"), licenceTexts.join("\n"));
 
 await build({
   entryPoints: [resolve(root, "src/main.ts")],
