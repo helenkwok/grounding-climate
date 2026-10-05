@@ -1,0 +1,930 @@
+{
+  "schemaVersion": "climatechain.building-case-run/0.1",
+  "runAt": "2026-10-05T11:25:02.680Z",
+  "organisingQuestion": "Can this building's Scope 2 number be trusted, and who decided what about each flagged reading?",
+  "building": {
+    "buildingId": "Bear_assembly_Angel",
+    "siteId": "Bear",
+    "primarySpaceUsage": "Entertainment/public assembly",
+    "floorAreaM2": 22117,
+    "timezone": "US/Pacific",
+    "latitude": 37.871903400000036,
+    "longitude": -122.26072860000008
+  },
+  "sourceIntegrity": {
+    "valid": true,
+    "meter": true,
+    "metadata": true,
+    "weather": true
+  },
+  "clean": {
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "result": "reconciled",
+    "flags": [
+      {
+        "timestamp": "2016-02-03 07:00:00",
+        "state": "decided",
+        "decision": "exclude"
+      },
+      {
+        "timestamp": "2016-03-01 17:00:00",
+        "state": "decided",
+        "decision": "exclude"
+      },
+      {
+        "timestamp": "2016-03-03 14:00:00",
+        "state": "decided",
+        "decision": "exclude"
+      }
+    ],
+    "emissionsTCo2e": 278.9182306427087,
+    "excludedEnergyKWh": 0,
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": true,
+    "changedRefs": [],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "tamper": {
+    "index": 1728,
+    "timestamp": "2016-03-13 00:00:00",
+    "multiplier": 20,
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "VCPYrmOehcTmKYZhZ8E_n3WXyDmc07K0aoPYqDV_-_k"
+    },
+    "result": "insufficient-evidence",
+    "flags": [
+      {
+        "timestamp": "2016-02-03 07:00:00",
+        "state": "stale",
+        "decision": "exclude"
+      },
+      {
+        "timestamp": "2016-03-01 17:00:00",
+        "state": "stale",
+        "decision": "exclude"
+      },
+      {
+        "timestamp": "2016-03-03 14:00:00",
+        "state": "stale",
+        "decision": "exclude"
+      },
+      {
+        "timestamp": "2016-03-13 00:00:00",
+        "state": "undecided",
+        "decision": null
+      }
+    ],
+    "emissionsTCo2e": 278.847252749055,
+    "excludedEnergyKWh": 5906,
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": false,
+    "changedRefs": [
+      {
+        "nodeType": "calculation",
+        "id": "calculation:electricity-emissions"
+      },
+      {
+        "nodeType": "claim",
+        "id": "claim:building-electricity-emissions"
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:bdg2-electricity"
+      },
+      {
+        "nodeType": "model-run",
+        "id": "model-run:hour-of-week-baseline"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:building-mrv"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:interval-decisions"
+      }
+    ],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "publishedKeys": [
+    {
+      "keyId": "key:demo-ed25519:2026-10-05T11:25:02.680Z",
+      "suite": "classical",
+      "algorithm": "Ed25519",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-05T11:25:02.680Z",
+      "validFrom": "2026-10-05T11:25:02.680Z",
+      "verificationKey": {
+        "keyId": "key:demo-ed25519:2026-10-05T11:25:02.680Z",
+        "suite": "classical",
+        "algorithm": "Ed25519",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MCowBQYDK2VwAyEAuidbuKpAixAaxbrSKvkvy5oY4sgK7Sw2zgeorzkD7w0"
+      }
+    },
+    {
+      "keyId": "key:demo-ml-dsa-65:2026-10-05T11:25:02.680Z",
+      "suite": "post-quantum",
+      "algorithm": "ML-DSA-65",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-05T11:25:02.680Z",
+      "validFrom": "2026-10-05T11:25:02.680Z",
+      "verificationKey": {
+        "keyId": "key:demo-ml-dsa-65:2026-10-05T11:25:02.680Z",
+        "suite": "post-quantum",
+        "algorithm": "ML-DSA-65",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehALslcpdgB7dop4lHIXSkZlX7y7eXvPrZi6D-0ZGUi2Dt-7jBOru5oOfSM1Bx-CcuWvWzkFAutjn2qjH9S9CYIf05JN2Xp7TpRvk9cavVG8quxq2CposF7g0cenA8Eqzy2TitM9n19_t1N4LimWOPix-pcESY2tnC80s3oYnAEG7bNKSyeX2lXypn2dBp1YP9nY2He0lc1fNUr6ni0VFdAXjkssndncywlnbawvhWx5WV_a34nt5JKd1NL64aiI-FEXWlqdpgaj9f6CjhvvpkjOdbqYT45c63WfFWJl_myOuSirXfmjMyhpHmdVQ2U221Y3jWm6eDCAkVmAwlgdI0g-Od5ZeEfx51AbfzYpEjffn64E7gLiekHC_DoR173SpgnSiP8lhFPv5vF9Lm_AupzU4rGwe4HinIQlk8PJARWNf2VaywCEcm1Q6Wj0PXDB5RdxTMYU81UHfvTAWhNYEmElAN0RZ2vlvhXzeYwbRoZUPv6hvmj3QwUSnP95vfJC4A14lMbYrtGCD8RYVM9fgIS7V0XEAFb753ZjI-YW3M_w2yv96PsXDYvzAPZ-yZ4Hyg0HG4VtU5MTshitzYLs7eNzngWRSXTdJ5KJcM_mTkiQ24qsjIbbwCgWh1fc8VjlSyIZOB8xDXpQv6ImHkDTHNViNiQShzZ2koUr5bk0CQCe5obKtHOK7hF8iCKrfjTLQuew2awaQGQ23ObkRJQo_cILgEqf3GOI3frG2PWszaVX_a9SUT8a6AWPRoOeU_8FcJ3KfG0iOn8gw6YAyWnWMmFkHAlmCmjBjkmj2KBmx2rJEG8QaWUwvxHT9XT_0moUxnLDztg8_QWPOXffe-xD114h9mVx0b_EykpUXeFdX9HwakFaQHIdlQbHxGCF3U0_nS6jvBXqDb5wuy5eFHyfA9hLO3NmbtloqASD7QeGQTyRfGjxICAtP9UQtP2i2LYeYq1SYTbSovIqlJQiZuAS2iSzJHftmTsUGDjjUqOwP19LdfojDdOfm4twOKmwMpq7S08qxkH9wz5qFquPw5IvhCXNaq_t7QBm_em-KvBgM-wJYLsGMKNMNuh9T388v0gUZkWqoWJvH5fUbB4vAH5jO119w57QXhLHEtvFS1jOl57IXqLoDr6KqKaYFHYEAhx3HQaVkxpXAk2V8GeP_ue0WQOZemYGbNLBccV_He0xn84USsyQtyfmmMsFmb23dKk1PJtfQqXNkOZ4DkSoeaB3MTv90SeKVznEgZyT-HVnX-jpAECnBsHvVUvXa98i4J3l-ZyipySEMy0bFRznUKOOpQQ70Rou-o0yj7uHI1pox8Hkmn5NDEfDuyRHPBg05Qfk5DOb_ILImhM8jP-PtjSk9mW2ETEUTWTz7hXT1PccyRr6LCn4xz2WwSPUh8f6HvnB_2TDym6u6C4j_dNozPmb1Y-Iro68LGlmNJMuNgY1Cxeem8HyFGiULZ5zwmM9AyRBsDYWxMPSydDQ6Y4qp4jA2powhN4yYewpo9Jia_WsI8-7KmCfutkto-UwCr0HqTfeORyfyao5PeGx-zOALZVPLnWkIjUaNNBXrRG1SZLMiKQhr7PTwkJUDxxIIBNLS7am7n3_YSyRH5KmP3nHzMhyiTjeHfvNvBF8hkfhrZnFzt6FS8vD8WDoCW4cjQKVYU2qslshXYzFCB-mT3JKIoe9WMAyVHe2PJridSgdOwnuBWbrfYNNUuahFVC68XKm2sqIDmYYvzzSI3Yy756y7JfblqOCxwpGz_1rgcDDtkrTG9uH1oD_OkTT0PAlLkkycl8AAUj9i1LjA5L4XG--BWXewNwxJoYQfDioAyZA5yDZ0uH2qiSUseItGKSlDIN9bgzO-aK6cC1y2gJZFCo5sqt0dUbt0SJ6-YYFsudG2rIcds41snZ9Hz0Jq5IL2nXnH2PmjsirTvHPQSKwM5gATrMILflbRiPeBpuxU4EVTpN0dFMnDUln3do-Am9HzCmz_0_ne2RU-L5qO_DA5U14Hu3C6yyoi7nkimKAsOmddLhhqf-UGFebB8iL-WnMDNrUv9Gh7sPjBlr7tmh6zYawQZVhbNuQCU54Iki_PhBteCBy-VYKFrcoNiXon9J63EXNO-npq_j25FR0TSqFDw4yyS8dovMGl_CnZvJhlGs_m1IBKozyFdD3QzftClIuD_SlyMmCFm6NViFe67PBy2OHrjEKCLX9OAmv0_XlYsTIDtGLy0VGWv3XL6Kp-6B0Pa4jBJQv7u7VEZWkWzNs_AhfWCtgxU3F-HL8fjTqJ0PQj15kexR7XRXC1_0hhdv15ZHkcoMc97Oxxl7ykhWaa5ZmaSxYy3nL1ec4kD6kFHZ31K8ObjfW23uikw24TLVL-K7oAfph-u3c5J64FuiB_h-SYfthDeNwksCvAqHCsHGvASwypjYUUPGzrsbufHjN7nBDq9FuMrwO2y1cD352qwDFu7ZUVbpadCNJ_TZ6tH6rN6yU4CyPzxKro9K2_-SkrdUzBAURrWL2Yzv4X1Vrxx1N9SQFklQe0qH3buhr3vuFqanP9ahEAjqAzf10zSANrj5kWho4JdGIe1qAQoVI_NyzHsRQhP12F3y5J3v9_VyDBxhOVc9PvW"
+      }
+    }
+  ],
+  "attestation": {
+    "payload": {
+      "version": "climatechain.attestation/0.1",
+      "id": "attestation:building-mrv:2026-10-05T11:25:02.680Z",
+      "attester": {
+        "subjectId": "org:climatechain-demo",
+        "name": "ClimateChain demo run"
+      },
+      "statement": "Scope 2 electricity emissions for this building were recomputed from the BDG2 meter series. Verification result at signing: reconciled; 3 of 3 flagged readings had a current decision by a person.",
+      "claimRefs": [
+        {
+          "nodeType": "claim",
+          "id": "claim:building-electricity-emissions"
+        }
+      ],
+      "verificationRef": {
+        "nodeType": "verification",
+        "id": "verification:building-mrv"
+      },
+      "evidenceRoot": {
+        "algorithm": "SHA-256",
+        "value": "wyjDcaHeL87I75cpoTQKz8_t7DBrZmYmrA2RXHQMU9I"
+      },
+      "manifestVersion": "climatechain.evidence-manifest/0.1",
+      "issuedAt": "2026-10-05T11:25:02.680Z"
+    },
+    "evidence": {
+      "manifest": {
+        "version": "climatechain.evidence-manifest/0.1",
+        "caseId": "case:building-mrv:Bear_assembly_Angel",
+        "caseSchemaVersion": "climatechain.case/0.1",
+        "rootRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:building-mrv"
+          }
+        ],
+        "nodes": [
+          {
+            "ref": {
+              "nodeType": "calculation",
+              "id": "calculation:electricity-emissions"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "tSo890OWnIHJypFxUVx3E-fFQgjC8mu7YxdYRsX3ewo"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "claim",
+              "id": "claim:building-electricity-emissions"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "tzrX6_sFhFqqzNiYSfXZ_99B6BM9IzHrZWhcjN2sfBc"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:bdg2-electricity"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "m2h6mf5l7Lr6hv0q5LZ3JasJ_ApSxpAcUC7qPxpNu0Y"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:grid-factor-source"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "bBfz09-IjzeaBes1AULK2hdH4TBlZ4Z9yeAJ-gqhNIg"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "factor",
+              "id": "factor:grid-electricity"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "RAfDHNh3GAMU2AFlx32QHJxcqZsBItef8EMKdTZ-CqM"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:hour-of-week-baseline"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "cyPNhjT-3tmmktqM4HprXCE2JtfbYOpCBaRCwJB8c04"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:triage-advice:2016-02-03T07:00:00"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "mVC9DGSIQ4OS7sXe8LjeUv6uww2D5JSqgnCTzGsgM1s"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:triage-advice:2016-03-01T17:00:00"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "DxZYw5Ei_P4QC6HXveTKh-q7iOxgqizg_ZzkhQWNsu4"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:triage-advice:2016-03-03T14:00:00"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "A6SmJNoXFIT59YMbtCfGheHMaR-2I-yIkDMSJ9rj_EM"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:building-mrv"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "f5XSW9hWZc0J6WnEGBT83J8pJCE9qpf4GrMuP_WkPYw"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:interval-decisions"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "Em4Xn-Bxq_eAYyzUkWOi1UKBrkJW-tpDOgwsRA7Hum8"
+            }
+          }
+        ]
+      },
+      "root": {
+        "algorithm": "SHA-256",
+        "value": "wyjDcaHeL87I75cpoTQKz8_t7DBrZmYmrA2RXHQMU9I"
+      }
+    },
+    "envelope": {
+      "version": "climatechain.signature-envelope/0.1",
+      "domain": "climatechain.attestation",
+      "schemaVersion": "climatechain.attestation/0.1",
+      "payloadHash": {
+        "algorithm": "SHA-256",
+        "value": "5DbpOZt2Ptya2GDygiXVn7K8qIzYmzDnL0Tom6XEfiA"
+      },
+      "createdAt": "2026-10-05T11:25:02.680Z",
+      "signatures": [
+        {
+          "suite": "classical",
+          "algorithm": "Ed25519",
+          "keyId": "key:demo-ed25519:2026-10-05T11:25:02.680Z",
+          "encoding": "base64url",
+          "value": "OHWehMB6SIPELIWLctETNYXkNW7T-lyJrhs28ixTi9i8F0tJOP7ZLD3GtBcFqht4mFrDXPBX1myBdMPK37piDQ"
+        },
+        {
+          "suite": "post-quantum",
+          "algorithm": "ML-DSA-65",
+          "keyId": "key:demo-ml-dsa-65:2026-10-05T11:25:02.680Z",
+          "encoding": "base64url",
+          "value": "QUvi9ADkXiX25FJtc26C8A9CX77twgOvs6PqubEkuGtH0Z5ML_WlmT4hQgJm8NS1N-kLsfMfNTspvnvS7bWSyvuUYdDg73ut6KYm1sZlVJm89LuHA-u2-C4rOZYTUTSRbThnc64et2Z1v6Y0SmOPGPn4wkW7D0St-5mBI9vS2ykt_YNJT82sFM0DpId5cKUVBlcM06ibdlAAO33p2ZFi5ETLCHmjdrGRCvudO8AUpyUSPRzEa0GtMZmonn6OO9ksHwWi970zMkpuj86csCv14N0Pn5FdfGkI-xhhP-xJijEkEpDwql_EIUWvrFhnMX1DCBUPLBseebmXtVMoovgfLLEedohMp6xnIPDtSX0mzPoSPI5V2URfZBz5BK65AN7eoLnBDU1_qkGct97JNFcKzP4266w_gJcUJCv0ElaAhluCTswfYJqjcnqtso654WPDk6o13ofdzzDUzpHZflsoNev57L3aSaVbAG4Fff9GSt0kgBHbLgRlwPgkpOveo_uaX5pjRSokgbicP6uOOqDLf0r6PaUB4Y5P_Numr3lw-4hHdLvQVeUh66culU9CHAQFbyfu36TY5ML9aiJkT-mLXEn2wXq7h_efA6LpX8jydBf0RTecZVIHBmQ0LGRSCRQZwhyLPzf20Bd3psnkmzRUj0yRCjSdFQecJE_EGPOrnv8ZekSNlh_VGyneQQwvSRBP9Sfiveznxw11Yu1xYTmqkTVX8Et067PVqAsMNhOzyAuHBdYH9HGog-b5NcD9e6l08K3o1y6UmzeRlsBgH7UYUqIr6SLjcmk4Iswe9Oxow0iIz4Brd1w-MXorpGUPetIEry1sLSkN7SgaVH8whbH0xriP5qgiFNz6vQJ1S8DagHUQ4eBVHINQ0YJfweof9QIeLhlbEyk_rIBRRFiREOX2kia2Pr5r6R9z_oAUAMZm2oYitYV3yiVyyLS77Q5hYOrERpGvy4oI2LzL0ywo3r7jPtrL7tVrH2tduuUGwEMzukUmGW_PU-LJm3xd-Mt7vAUDDeTzO3m-dacPJByUWwv7TMizgXyy1a-DSAyFS807LxFLsRShOjqU6mBOf8PE70BehwH1KZIQez6YVZQKJwASvN0PsdlnYwXILd7iXurAD1kO5WthYpRH-cv2wTVgNdGSHH2VhXO2BSt7WNAuWHr_xAP2i_9_EVue0CMhhYdEHEFjt6COgQ9Th6UA-slTWNJXIm1W7y2F-Ho18Nq9wYQdFhCMIOpHKcCOhMp7oJ78B_10gDmmCD-nGdpqXLIGHgqNzV-7HE2OtQOeuJxtveKE0fZ4Rf2s8N51hHvTtoyAM1XbpBYICZtBp4wSJ1suofrWK38x6iQzKqf2Sm1vtDMhlFn1stUb21rBm9xDUdiwY1_QuQmFPiUBeljHqTcnFzbF6PB7WErrjQ4ZHMzVRzg8zz58qzqMjQQ_WJeUAkmB1SNBx9Pvq__XXfUFhVGyg-GmJJyKWeOv2jmUhveEfZBaXQV-Yx3GJya0ZtguYJ4AezwaqjwGx4GLgt1PtEhffVGmQnzEZtbP17riMIOREHOunYLmRbGFJWoAZuCqc-4zTyqb0AUTu5-4N0jtIC2q306IJpfOovmxGMO4e6VrWOLPz2VjLQ_abzOedo1BNBuCsVjg8iMg7RsZGbQr70TXJRLV71nKfGmp0QrqC_Nydys4EnQ5UbjcHPT3L6oVQcmmCBKMhvTDee8y4mjW2X7zbH2HJ0NtWLnUWTUlEBdTGhS0LpW2xFYyfaUixctUAkwzLYtZEamOZGZ3fTAfT1q4XK0KPtOGo2jOoQBlw1rlmk_8eqN4NZ-_SCxBRnAPT24Bzxc6UlN4lrau1f3LT9NSZLSKzif3cBVu3THOlbcdxSDbqici-3Uruala1MkUOwQniWM4tfAoKdNWzC3B05HWrlkLVL3zWoNaId6hjpA5RiCqERZjzZ99kxFM0OBh1-5ezZcGTXSBZn7d6eLPIfygctbEkgqpOhYi0nWjhj42CJ4lv_fIUK2h1OIi5FyEzluPO3qVQOsmMkHlA9gwQ7c0vOLlleJ52uRe7UoLP8Qi-FGHAK4qMvGz5rM18njuxAZEHJTsdpYTdi6fGYt0vORqc0KEXWn7m9gnnJxOGwWPwJbwpB_mt40VXYsuWTu9CfYTJPSqRiNXNRd1X3P0v6NOupsFR8-vb7eMQLx_aMrt4dBe4g34b0VnCVJDJ4457SvqOmyT3r8dM5HeSQ0CgsmvGDkqpTYM_dUQtiaxcwHdjzuK3pOhVQtAW1ckg1lf6nxdOKkmnQ_isuUMt-ulk07BfHwytS_Q5no38Ydja9imOkk__nZGQxJF2lll3p5VNd-BYYTzVuCwjw_fepgaH9fWs9lZORF3d1vicP47zZVP1z57Vja9HykU1L03H-pCBmeq5cqWBypt2mEUwLBZNwOSb07PYGU4e-1-GX5Dq8_25d_DHUOhSQcJZhVyQvXnzbxjnSNMurbleFwH0CzFAbmW8-OGKVsd_Lnu7ufjE5nQaTPGCyL71GoPlvHOdp6FJtGFc6TvJQeqV1LaHmmGzLKVkbv4JCf9u2lmlbhKLBNPMfOdZFmCWFtv-cftrTc0RfbH6nkdi3NOxoNPHzWGIUnKS1HOaps5suRkFZwGe1zYpsZCQtpgBvFaPGRne3n1d-1ul0QgVuAr6Z9B8tm3pFwJ7kIeB8vxyOLYxsehkXeETAUZ899TRLRYyfB0tm3AV19_8Ui9wvpagK5XU9lc-gx0hmEwZRW1ggGJbturQPBvqlJk5HCeyEZdau4AtCv9cD5Qh7lJVh2c9Ea3O2ES974cYT6X2PVmMo3dTXi1IL63924n77iHVJC8-D3BlCh4I_PA4Ej6LJRJUcYSX6Nl_-TNO7HYR2sZGi8WTfKRZUOGalQB0pjvQpcXME_l9-jxxLLgxXdZu-KGXQ2lS8nT9ZrBpkUyg7lEZA698ustG4ZVFI9ZnP7je2lPhKV9fIJ8GosjNwf5yxNR7PqoAlzlqlBLqQqXJD2bsgw93_crvm4R-EP7CF1IY1hLFXEXHZ_CfZkJcPxhroG0mSyy0Ywc1yps47wHPn0Gf-sxV1YOoE5Nm-647E2bGvx-uVNOB_zg9iqyo1zhP2HOUomiO5uUnL03SnW4eWr9kODVBCoQjpuslVPsTAeGAPiSlsBB5Ivk_XTTJJgIZTqlUbbE5MeIwUhtsBkUvq7xNVElUZIrKiPJMKXSwnce8zBv9aZ3mzfa462JxWUht0Xth09d-gFIaSWLeVQLCimqBFfqSfZClV6hyC1LKZ0VL5xYcEqlsokdSn3fZ809Bclrn-4rRIinJ2S1hxL-AO3K_6fWHmUtrzngHpI5IseG8h3ZVP50Erq5zOC_xSONgTMp2hg2S6e4slMafzb9Aiw0rLprbTTHIKpH7emZ6M2jwr_2_YytTvP1_YvoPGQqs4uVw-OJ3-guvH_rGH4gzyzRUA7j8gIFvu7xOauRLmMS2unHrO7oae3jNba7Q2RzALqFwtJeKA5Lg4QRN3Zpm84ATv_YnGexL86gaRKAFxtmN32v6ZJ-SF3AM66Zvck-cVfCifulKT6v1DwXYzTcjJqw2UFYgy4r-B-FY5ltJdlUp950S1N8bZGc4PsIwZdN_cdfNJ5jUDb-204U9LiMkTTCz_69LjtzWknvpIjcgUjhFhjDFAaw_A4GNGbblEia5h4sbzHcPnu-1-RiRO8NRWa4MVR5WYvTnXo57tRXx7uasNKd8Bt0NO2t5OSXO-x2XlJF1lgyEVoDexoLJI63vuvcXq5W-MlH8zWnYGjTMxnVg3LB_ElYUI2Z48ysvUz-M1zE8d03QCI4G2V6YhNiy5DUCZjlWpt3BfcotITc_j0b5srvL4H8CKahyxh2pm8g8YXAJvlbTPOIfavdcSCX2l2zgArdpLBkyhGRhlStL2aetD5J_nCV_PMXl0Z1DiRiKb-VB-lYPddIti3Kt2cMhAKGpU69ge4vuwMV295WJVbqFayCchOtEP7nYCfoX4cG9IC9a6Nhri8imZiOJ3WqNO4JYr7Ryh22axNWcwcisXN5G58SvMCyVCEEToysoN42KBF3izhjebOZ970mxXy0b7FJJcPissfZ2pV1EfkBaBcOaRBCKK5Z4LHuSt2z3LPqaaugIa6zyaY7fRSVNR-i1Q3BQFH0zag38-L4n6ZrlxP0uZcfPnlDcyjfesNICHzQBjekyZiJq16lEwrRZyiKFHkGUw60xu89Tnckg1lekbKufBVR6XJKxQWEKsZyJYMNR-ej6CxmfOrjD2x8IGhVB3ayaTQcfhvI8QNvltrXFQpVezW8Lmx5cwF-IInfYEcybJnBww0QMHJ-haHFyvUUQ0aDhLHn8QoMEiowNjpRam19jaXQ1OT0Oj2lrDh2ut39_wAAAAAABQ8XKCwy"
+        }
+      ]
+    },
+    "status": "attested",
+    "lifecycle": [
+      {
+        "from": "pending",
+        "to": "attested",
+        "actor": "org:climatechain-demo",
+        "at": "2026-10-05T11:25:02.680Z",
+        "reason": "Signed attestation issued.",
+        "evidenceRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:building-mrv"
+          }
+        ]
+      }
+    ],
+    "challenges": []
+  },
+  "case": {
+    "schemaVersion": "climatechain.case/0.1",
+    "caseId": "case:building-mrv:Bear_assembly_Angel",
+    "title": "Building MRV — Bear_assembly_Angel",
+    "capabilities": [
+      "building-meter-mrv",
+      "carbon-recalculation",
+      "claim-reconciliation",
+      "pq-attestation"
+    ],
+    "createdAt": "2026-10-05T11:25:02.680Z",
+    "claims": [
+      {
+        "nodeType": "claim",
+        "id": "claim:building-electricity-emissions",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [
+          {
+            "nodeType": "calculation",
+            "id": "calculation:electricity-emissions",
+            "role": "derived-by"
+          }
+        ],
+        "subject": {
+          "id": "building:Bear_assembly_Angel",
+          "kind": "asset",
+          "name": "Bear_assembly_Angel"
+        },
+        "assertion": {
+          "kind": "quantitative",
+          "metric": "Location-based electricity emissions",
+          "quantity": {
+            "value": 278.9182306427087,
+            "unit": "tCO2e"
+          }
+        },
+        "temporalScope": {
+          "start": "2016-01-01 00:00:00",
+          "end": "2016-03-30 23:00:00"
+        },
+        "boundary": {
+          "scopes": [
+            "Scope 2"
+          ],
+          "methodology": "Accepted electricity kWh multiplied by a traced location-based grid factor.",
+          "notes": "Flagged meter intervals are excluded from the accepted measurement set and reported separately."
+        },
+        "assessments": [
+          {
+            "dimension": "source-found",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T11:25:02.680Z"
+          },
+          {
+            "dimension": "calculation-reproduced",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T11:25:02.680Z"
+          },
+          {
+            "dimension": "factor-traced",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T11:25:02.680Z"
+          },
+          {
+            "dimension": "evidence-integrity-confirmed",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T11:25:02.680Z"
+          },
+          {
+            "dimension": "disputed",
+            "state": "not-applicable",
+            "assessedAt": "2026-10-05T11:25:02.680Z",
+            "note": "All 3 flagged intervals decided by a person; decided is not explained."
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "nodeType": "evidence",
+        "id": "evidence:bdg2-electricity",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [],
+        "kind": "meter-data",
+        "source": {
+          "uri": "https://zenodo.org/records/3887306",
+          "localRef": "meter.csv",
+          "publisher": "Building Data Genome Project / BUDS Lab",
+          "retrievedAt": "2026-10-05T11:14:38.163Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+        },
+        "extensions": {
+          "preparedMeterFileDigest": "SHA-256:XwcVNyhhcl2ZiLd2kJsJAlKmcGga7PsW-7w1cspHQ6o"
+        },
+        "rights": {
+          "sourceManifestId": "bdg2",
+          "licence": "CC-BY-SA-4.0",
+          "termsUri": "https://github.com/buds-lab/building-data-genome-project-2/blob/master/LICENSE",
+          "redistribution": "allowed",
+          "commercialUse": "allowed",
+          "derivedData": "allowed",
+          "attribution": "Building Data Genome Project 2 / BUDS Lab, CC-BY-SA-4.0."
+        },
+        "temporalCoverage": {
+          "start": "2016-01-01 00:00:00",
+          "end": "2016-03-30 23:00:00"
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:grid-factor-source",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [],
+        "kind": "calculation-input",
+        "source": {
+          "uri": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt",
+          "publisher": "U.S. Environmental Protection Agency",
+          "retrievedAt": "2026-09-29"
+        },
+        "rights": {
+          "sourceManifestId": "epa-egrid2016-summary",
+          "redistribution": "unclear",
+          "attribution": "U.S. Environmental Protection Agency; retain the original factor source URL."
+        }
+      }
+    ],
+    "calculations": [
+      {
+        "nodeType": "calculation",
+        "id": "calculation:electricity-emissions",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [
+          {
+            "nodeType": "evidence",
+            "id": "evidence:bdg2-electricity",
+            "role": "accepted-activity-data"
+          },
+          {
+            "nodeType": "factor",
+            "id": "factor:grid-electricity",
+            "role": "emission-factor"
+          }
+        ],
+        "method": {
+          "id": "electricity-location-based",
+          "name": "Electricity activity data × location-based grid factor",
+          "version": "0.1"
+        },
+        "parameters": {
+          "anomalyMethod": "baseline-residual-mad",
+          "anomalyThreshold": 6,
+          "excludedEnergyKWh": 0,
+          "acceptedEnergyKWh": 1160425.4405
+        },
+        "output": {
+          "kind": "quantitative",
+          "metric": "Location-based electricity emissions",
+          "quantity": {
+            "value": 278.9182306427087,
+            "unit": "tCO2e"
+          }
+        },
+        "executedAt": "2026-10-05T11:25:02.680Z",
+        "reproducibility": {
+          "codeVersion": "building-mrv/0.1"
+        }
+      }
+    ],
+    "factors": [
+      {
+        "nodeType": "factor",
+        "id": "factor:grid-electricity",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [
+          {
+            "nodeType": "evidence",
+            "id": "evidence:grid-factor-source",
+            "role": "published-source"
+          }
+        ],
+        "factorType": "grid-electricity",
+        "value": 0.240358596863,
+        "unit": "kgCO2e/kWh",
+        "geography": "CAMX / WECC California",
+        "effectivePeriod": {
+          "start": "2016-01-01",
+          "end": "2016-12-31",
+          "label": "eGRID2016"
+        },
+        "sourceOrganisation": "U.S. Environmental Protection Agency",
+        "sourceDocument": "eGRID Summary Tables 2016",
+        "method": "location-based",
+        "accountingBasis": "location-based",
+        "retrievedAt": "2026-09-29"
+      }
+    ],
+    "modelRuns": [
+      {
+        "nodeType": "model-run",
+        "id": "model-run:triage-advice:2016-02-03T07:00:00",
+        "createdAt": "2026-10-05T11:23:15.862Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:hour-of-week-baseline",
+            "role": "flag-source"
+          }
+        ],
+        "model": {
+          "id": "typesafe-jev",
+          "name": "Typesafe AI System One (Jev)",
+          "version": "jev-1.13.0"
+        },
+        "inputDigest": {
+          "algorithm": "SHA-256",
+          "value": "5FvKMJ5IUrQpVDset3TBEfH160eyD2aUN1yvURT747Y"
+        },
+        "inferenceParameters": {
+          "endpoint": "https://api.typesafe.ai/v1/systemone",
+          "requestedModel": "jev-latest",
+          "questionSet": "building-triage@1",
+          "interval": "2016-02-03 07:00:00",
+          "state": {
+            "meter": "hourly electricity, kWh",
+            "building_use": "Entertainment/public assembly",
+            "weekday": "Wednesday",
+            "hour": 7,
+            "reading_kwh": 0,
+            "expected_kwh": 580.1,
+            "robust_z": -7.8,
+            "flag_threshold_z": 6,
+            "previous_3_kwh": [
+              221.4,
+              361.1,
+              408.9
+            ],
+            "next_3_kwh": [
+              659.9,
+              675.2,
+              690.6
+            ]
+          },
+          "probabilities": {
+            "meter_fault": 0.98,
+            "real_consumption": 0.02,
+            "unclear": 0
+          },
+          "inputTokens": 530,
+          "latencyMs": 362
+        },
+        "output": {
+          "kind": "qualitative",
+          "statement": "advice: meter_fault"
+        },
+        "confidence": 0.97,
+        "executedAt": "2026-10-05T11:23:15.862Z",
+        "reproducibility": {
+          "codeVersion": "building-mrv/0.1 building-triage@1"
+        },
+        "extensions": {
+          "authority": "advice-only"
+        }
+      },
+      {
+        "nodeType": "model-run",
+        "id": "model-run:triage-advice:2016-03-01T17:00:00",
+        "createdAt": "2026-10-05T11:23:16.108Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:hour-of-week-baseline",
+            "role": "flag-source"
+          }
+        ],
+        "model": {
+          "id": "typesafe-jev",
+          "name": "Typesafe AI System One (Jev)",
+          "version": "jev-1.13.0"
+        },
+        "inputDigest": {
+          "algorithm": "SHA-256",
+          "value": "7lOmDEBvC4Tl3SzsJiBXucMONFqqdEv2f9g38doueIE"
+        },
+        "inferenceParameters": {
+          "endpoint": "https://api.typesafe.ai/v1/systemone",
+          "requestedModel": "jev-latest",
+          "questionSet": "building-triage@1",
+          "interval": "2016-03-01 17:00:00",
+          "state": {
+            "meter": "hourly electricity, kWh",
+            "building_use": "Entertainment/public assembly",
+            "weekday": "Tuesday",
+            "hour": 17,
+            "reading_kwh": 0,
+            "expected_kwh": 724.8,
+            "robust_z": -9.7,
+            "flag_threshold_z": 6,
+            "previous_3_kwh": [
+              736.9,
+              771.5,
+              784.8
+            ],
+            "next_3_kwh": [
+              662.2,
+              571.3,
+              518.2
+            ]
+          },
+          "probabilities": {
+            "real_consumption": 0,
+            "unclear": 0,
+            "meter_fault": 1
+          },
+          "inputTokens": 531,
+          "latencyMs": 245
+        },
+        "output": {
+          "kind": "qualitative",
+          "statement": "advice: meter_fault"
+        },
+        "confidence": 0.99,
+        "executedAt": "2026-10-05T11:23:16.108Z",
+        "reproducibility": {
+          "codeVersion": "building-mrv/0.1 building-triage@1"
+        },
+        "extensions": {
+          "authority": "advice-only"
+        }
+      },
+      {
+        "nodeType": "model-run",
+        "id": "model-run:triage-advice:2016-03-03T14:00:00",
+        "createdAt": "2026-10-05T11:23:16.393Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:hour-of-week-baseline",
+            "role": "flag-source"
+          }
+        ],
+        "model": {
+          "id": "typesafe-jev",
+          "name": "Typesafe AI System One (Jev)",
+          "version": "jev-1.13.0"
+        },
+        "inputDigest": {
+          "algorithm": "SHA-256",
+          "value": "NlyAyeHGBrfktsAejt0ZJKQ9dU9nLrk8EZsUAr2sBjw"
+        },
+        "inferenceParameters": {
+          "endpoint": "https://api.typesafe.ai/v1/systemone",
+          "requestedModel": "jev-latest",
+          "questionSet": "building-triage@1",
+          "interval": "2016-03-03 14:00:00",
+          "state": {
+            "meter": "hourly electricity, kWh",
+            "building_use": "Entertainment/public assembly",
+            "weekday": "Thursday",
+            "hour": 14,
+            "reading_kwh": 0,
+            "expected_kwh": 684.4,
+            "robust_z": -9.2,
+            "flag_threshold_z": 6,
+            "previous_3_kwh": [
+              763.8,
+              756.1,
+              760.6
+            ],
+            "next_3_kwh": [
+              759.4,
+              748.4,
+              742.6
+            ]
+          },
+          "probabilities": {
+            "real_consumption": 0.01,
+            "meter_fault": 0.99,
+            "unclear": 0
+          },
+          "inputTokens": 531,
+          "latencyMs": 285
+        },
+        "output": {
+          "kind": "qualitative",
+          "statement": "advice: meter_fault"
+        },
+        "confidence": 0.99,
+        "executedAt": "2026-10-05T11:23:16.393Z",
+        "reproducibility": {
+          "codeVersion": "building-mrv/0.1 building-triage@1"
+        },
+        "extensions": {
+          "authority": "advice-only"
+        }
+      },
+      {
+        "nodeType": "model-run",
+        "id": "model-run:hour-of-week-baseline",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [
+          {
+            "nodeType": "evidence",
+            "id": "evidence:bdg2-electricity",
+            "role": "meter-series"
+          }
+        ],
+        "model": {
+          "id": "hour-of-week-mean",
+          "name": "Hour-of-week mean baseline",
+          "version": "0.1"
+        },
+        "preprocessingVersion": "building-mrv/0.1",
+        "inferenceParameters": {
+          "trainingRows": 1728,
+          "testRows": 432
+        },
+        "output": {
+          "kind": "quantitative",
+          "metric": "Temporal holdout RMSLE",
+          "quantity": {
+            "value": 0.34198157328314377,
+            "unit": "RMSLE"
+          }
+        },
+        "benchmark": {
+          "metric": "RMSLE",
+          "value": 0.34198157328314377,
+          "splitRef": "2016-03-12 23:00:00 -> 2016-03-13 00:00:00",
+          "notes": "ClimateChain local baseline; do not confuse with the published ALDI++ GEPIII results."
+        },
+        "executedAt": "2026-10-05T11:25:02.680Z",
+        "reproducibility": {
+          "codeVersion": "building-mrv/0.1"
+        }
+      }
+    ],
+    "verifications": [
+      {
+        "nodeType": "verification",
+        "id": "verification:building-mrv",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:building-electricity-emissions",
+            "role": "claim-under-review"
+          },
+          {
+            "nodeType": "model-run",
+            "id": "model-run:hour-of-week-baseline",
+            "role": "baseline-check"
+          },
+          {
+            "nodeType": "verification",
+            "id": "verification:interval-decisions",
+            "role": "human-decisions"
+          }
+        ],
+        "verifier": {
+          "id": "service:climatechain-building-mrv",
+          "kind": "service",
+          "name": "ClimateChain Building MRV"
+        },
+        "profile": "building-mrv/0.1",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "temporal-holdout",
+            "name": "Temporal baseline evaluated",
+            "outcome": "pass",
+            "detail": "RMSLE=0.341982; MAE=70.886936"
+          },
+          {
+            "id": "anomaly-screen",
+            "name": "Meter anomaly screen",
+            "outcome": "pass",
+            "detail": "3 interval(s) flagged; 3 decided (0 kept), 0 without a current decision; 0.000 kWh excluded from accepted activity data."
+          },
+          {
+            "id": "factor-provenance",
+            "name": "Emission factor source recorded",
+            "outcome": "pass",
+            "detail": "0.240358596863 kgCO2e/kWh; CAMX / WECC California; https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt"
+          }
+        ],
+        "findings": [
+          "Every flagged interval has a current decision by a person; the claim uses those decisions.",
+          "Decided is not resolved: the cause of each flagged reading is not confirmed by site records."
+        ],
+        "verifiedAt": "2026-10-05T11:25:02.680Z"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:interval-decisions",
+        "createdAt": "2026-10-05T11:25:02.680Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:hour-of-week-baseline",
+            "role": "flag-source"
+          },
+          {
+            "nodeType": "model-run",
+            "id": "model-run:triage-advice:2016-02-03T07:00:00",
+            "role": "advice-shown"
+          },
+          {
+            "nodeType": "model-run",
+            "id": "model-run:triage-advice:2016-03-01T17:00:00",
+            "role": "advice-shown"
+          },
+          {
+            "nodeType": "model-run",
+            "id": "model-run:triage-advice:2016-03-03T14:00:00",
+            "role": "advice-shown"
+          }
+        ],
+        "verifier": {
+          "id": "person:energy-manager",
+          "kind": "person"
+        },
+        "profile": "building-mrv/interval-decisions/0.1",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "interval:2016-02-03 07:00:00",
+            "name": "Decision on flagged reading at 2016-02-03 07:00:00",
+            "outcome": "pass",
+            "detail": "exclude: isolated zero reading between normal hours, treated as a meter dropout (person:energy-manager, 2026-10-05T11:25:02.616Z)"
+          },
+          {
+            "id": "interval:2016-03-01 17:00:00",
+            "name": "Decision on flagged reading at 2016-03-01 17:00:00",
+            "outcome": "pass",
+            "detail": "exclude: isolated zero reading between normal hours, treated as a meter dropout (person:energy-manager, 2026-10-05T11:25:02.616Z)"
+          },
+          {
+            "id": "interval:2016-03-03 14:00:00",
+            "name": "Decision on flagged reading at 2016-03-03 14:00:00",
+            "outcome": "pass",
+            "detail": "exclude: isolated zero reading between normal hours, treated as a meter dropout (person:energy-manager, 2026-10-05T11:25:02.616Z)"
+          }
+        ],
+        "findings": [
+          "A decision records what a person chose, not why the reading happened; the cause is not confirmed by site records."
+        ],
+        "verifiedAt": "2026-10-05T11:25:02.616Z"
+      }
+    ],
+    "attestations": [],
+    "anchors": [],
+    "extensions": {
+      "primaryUser": "building/facility energy manager",
+      "buildingId": "Bear_assembly_Angel",
+      "siteId": "Bear",
+      "flaggedIntervals": 3,
+      "acceptedEnergyMWh": 1160.4254405
+    }
+  },
+  "limitations": [
+    "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
+    "Decision-model advice is recorded but never changes a status; a person's decision does.",
+    "A decision is not an explanation: the cause of each flagged reading is not confirmed by site records.",
+    "Advice accuracy has not been measured on labelled data yet."
+  ]
+}

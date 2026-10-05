@@ -10,6 +10,7 @@ import {
 import type {
   ContentDigest,
   CryptoProvider,
+  CryptoSuite,
   CryptoSignature,
   KeyMetadata,
   SigningKeyRef,
@@ -17,6 +18,19 @@ import type {
 } from "@climatechain/core";
 
 const ED25519 = "Ed25519" as const;
+const ML_DSA_65 = "ML-DSA-65" as const;
+
+// Node's own name for each supported key type, keyed by suite and algorithm.
+const NODE_KEY_TYPES = {
+  ["classical/" + ED25519]: "ed25519",
+  ["post-quantum/" + ML_DSA_65]: "ml-dsa-65",
+} as const;
+
+function nodeKeyType(suite: string, algorithm: string) {
+  return (NODE_KEY_TYPES as Record<string, "ed25519" | "ml-dsa-65" | undefined>)[
+    suite + "/" + algorithm
+  ];
+}
 
 interface StoredKey {
   metadata: KeyMetadata;
@@ -43,13 +57,6 @@ function cloneMetadata(metadata: KeyMetadata): KeyMetadata {
   };
 }
 
-function signingRef(keyId: string): SigningKeyRef {
-  return {
-    keyId,
-    suite: "classical",
-    algorithm: ED25519,
-  };
-}
 
 export class InMemoryNodeCryptoProvider implements CryptoProvider {
   private readonly keys = new Map<string, StoredKey>();
@@ -71,27 +78,45 @@ export class InMemoryNodeCryptoProvider implements CryptoProvider {
   generateEd25519Key(
     options: GenerateEd25519KeyOptions,
   ): GeneratedKeyPair {
+    return this.generateKey(options, "classical", ED25519);
+  }
+
+  /** ML-DSA-65 (FIPS 204) through node:crypto; needs Node 24 or later. */
+  generateMlDsa65Key(
+    options: GenerateEd25519KeyOptions,
+  ): GeneratedKeyPair {
+    return this.generateKey(options, "post-quantum", ML_DSA_65);
+  }
+
+  private generateKey(
+    options: GenerateEd25519KeyOptions,
+    suite: CryptoSuite,
+    algorithm: string,
+  ): GeneratedKeyPair {
     if (this.keys.has(options.keyId)) {
       throw new Error("Key already exists: " + options.keyId);
     }
 
-    const pair = generateKeyPairSync("ed25519");
+    const type = nodeKeyType(suite, algorithm);
+    if (!type) throw new Error("Unsupported key type: " + algorithm);
+    // The cast picks one overload; both types take no options.
+    const pair = generateKeyPairSync(type as "ed25519");
     const encoded = pair.publicKey
       .export({ format: "der", type: "spki" })
       .toString("base64url");
 
     const verificationKey: VerificationKey = {
       keyId: options.keyId,
-      suite: "classical",
-      algorithm: ED25519,
+      suite,
+      algorithm,
       encoding: "spki-der-base64url",
       publicKey: encoded,
     };
 
     const metadata: KeyMetadata = {
       keyId: options.keyId,
-      suite: "classical",
-      algorithm: ED25519,
+      suite,
+      algorithm,
       controller: options.controller,
       createdAt: options.createdAt,
       validFrom: options.validFrom ?? options.createdAt,
@@ -105,7 +130,7 @@ export class InMemoryNodeCryptoProvider implements CryptoProvider {
     });
 
     return {
-      signingKey: signingRef(options.keyId),
+      signingKey: { keyId: options.keyId, suite, algorithm },
       verificationKey: { ...verificationKey },
     };
   }
@@ -192,8 +217,7 @@ export class InMemoryNodeCryptoProvider implements CryptoProvider {
       signature.keyId !== key.keyId ||
       signature.suite !== key.suite ||
       signature.algorithm !== key.algorithm ||
-      key.suite !== "classical" ||
-      key.algorithm !== ED25519 ||
+      !nodeKeyType(key.suite, key.algorithm) ||
       key.encoding !== "spki-der-base64url"
     ) {
       return false;

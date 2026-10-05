@@ -47,6 +47,46 @@ test("Ed25519 provider signs and verifies an envelope", async () => {
   assert.equal(verified.signatures[0]?.signatureValid, true);
 });
 
+test("hybrid envelope needs both the Ed25519 and the ML-DSA-65 signature", async () => {
+  const provider = new InMemoryNodeCryptoProvider();
+  const options = { controller: "org:test", createdAt: "2026-09-01T00:00:00Z" };
+  const classical = provider.generateEd25519Key({ keyId: "key:ed", ...options });
+  const pq = provider.generateMlDsa65Key({ keyId: "key:pq", ...options });
+  assert.equal(pq.verificationKey.algorithm, "ML-DSA-65");
+
+  const payload = { claimId: "claim:scope2" };
+  const envelope = await createSignatureEnvelope(payload, {
+    domain: "climatechain.attestation",
+    schemaVersion: "0.1",
+    createdAt: "2026-09-29T00:00:00Z",
+    hashProvider: provider,
+    signers: [
+      { provider, key: classical.signingKey },
+      { provider, key: pq.signingKey },
+    ],
+  });
+  const verify = (env: typeof envelope) =>
+    verifySignatureEnvelope(payload, env, {
+      hashProvider: provider,
+      resolveKey: async (signature) => {
+        const metadata = await provider.describeKey(signature.keyId);
+        return metadata && { provider, key: metadata.verificationKey, metadata };
+      },
+      policy: { requiredSuites: ["classical", "post-quantum"] },
+    });
+
+  assert.equal((await verify(envelope)).valid, true);
+
+  const withoutPq = { ...envelope, signatures: envelope.signatures.slice(0, 1) };
+  assert.equal((await verify(withoutPq)).valid, false);
+
+  const [ed, mldsa] = envelope.signatures;
+  const forged = { ...envelope, signatures: [ed!, { ...mldsa!, value: ed!.value }] };
+  const result = await verify(forged);
+  assert.equal(result.signatures[1]?.signatureValid, false);
+  assert.equal(result.valid, false);
+});
+
 test("one-byte-equivalent payload change fails signature and digest", async () => {
   const provider = new InMemoryNodeCryptoProvider();
   const pair = provider.generateEd25519Key({

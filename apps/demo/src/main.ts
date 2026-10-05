@@ -17,7 +17,15 @@ import {
   type ModuleCommandRouter,
 } from "@climatechain/webmcp";
 
-import buildingReport from "../../../reports/building-mrv/bdg2-v1-smoke.json";
+import {
+  adviceRuns,
+  buildingCaseId,
+  caseRun,
+  checkBuilding,
+  service as buildingService,
+  setTampered,
+  type LiveCheck,
+} from "./building-live.js";
 import energyReport from "../../../reports/energy-forecast/active-power-dummy.json";
 import earthReport from "../../../reports/earth-observation/t10seh-2018190-nbr.json";
 import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
@@ -38,6 +46,8 @@ type DemoModule = {
   decisionCopy: string;
   limitation: string;
   metrics: Array<[string, string]>;
+  /** One row per flagged reading: what the model advised and what a person decided. */
+  decisions?: Array<[string, string]>;
   provenance: Array<[string, string]>;
   /** Digest the module's own smoke run recorded for its evidence; absent when none exists. */
   digest?: ContentDigest;
@@ -52,7 +62,6 @@ type DemoModule = {
   };
 };
 
-const building = buildingReport as JsonObject;
 const energy = energyReport as JsonObject;
 const earth = earthReport as JsonObject;
 const battery = batteryReport as JsonObject;
@@ -67,72 +76,90 @@ const avgLoadAcc =
     0,
   ) / energy.benchmark.cutoffs.length;
 
-const modules: DemoModule[] = [
-  {
+const short = (digest: ContentDigest) => digest.value.slice(0, 16) + "…";
+
+function buildingModule(live: LiveCheck): DemoModule {
+  const { decided, attestation } = live;
+  const verification = decided.climateCase.verifications[0]!;
+  const emissions = decided.analysis.emissions;
+  const flags = decided.statuses;
+  const decidedCount = flags.filter((flag) => flag.state === "decided").length;
+  const ed25519 = attestation.signature.signatures.find((item) => item.signature.algorithm === "Ed25519");
+  const mlDsaRecorded = caseRun.clean.signatures.find((item) => item.algorithm === "ML-DSA-65");
+  return {
     id: "building",
     title: "Building MRV",
     icon: "▦",
-    kicker: "Real meter → emissions",
-    kpi: building.emissions.clean.emissionsTCo2e.toFixed(2),
-    kpiLabel: "tCO₂e reconstructed",
+    kicker: "Real meter → decided → signed",
+    kpi: emissions.emissionsTCo2e.toFixed(2),
+    kpiLabel: "tCO₂e, recomputed in this browser",
     source: "BDG2 v1.0 + EPA eGRID2016",
-    decisionTitle: "Facility energy manager",
+    decisionTitle: "Facility energy manager: " + decidedCount + " of " + flags.length + " flagged readings decided",
     decisionCopy:
-      "Check whether the measured electricity record is credible enough to support an inventory-style Scope 2 reconstruction before it reaches a disclosure workflow.",
+      caseRun.organisingQuestion +
+      " A decision model advised on each flagged reading; a person decided. The advice never sets a status.",
+    decisions: flags.map((flag) => {
+      const run = adviceRuns.find((item) => item.inferenceParameters.interval === flag.timestamp);
+      const advice = run
+        ? "Jev " + run.model.version + ": " + (run.output.kind === "qualitative" ? run.output.statement.replace("advice: ", "") : "") +
+          " (" + run.confidence?.toFixed(2) + ")"
+        : "no advice recorded";
+      const decision =
+        flag.state === "undecided"
+          ? "undecided"
+          : flag.state + ": " + flag.decision?.decision + " by " + flag.decision?.decidedBy;
+      return [flag.timestamp + " · " + advice, decision];
+    }),
     limitation:
-      "The BDG2 building is anonymous benchmark data. It is not claimed to be the same subject as any CaDI organisation.",
+      "Decided is not resolved: the cause of each zero reading is not confirmed by site records. " +
+      "Signing keys are per-run demo keys, not an identity. The advice's accuracy is not yet measured on labelled data.",
     metrics: [
-      ["Meter rows", building.subset.meterRows.toLocaleString()],
-      ["Temporal holdout RMSLE", building.baseline.metrics.rmsle.toFixed(4)],
-      ["MAE", building.baseline.metrics.mae.toFixed(2) + " kWh"],
-      ["Accepted energy", building.emissions.clean.acceptedEnergyMWh.toFixed(2) + " MWh"],
-      ["Location-based emissions", building.emissions.clean.emissionsTCo2e.toFixed(2) + " tCO₂e"],
-      ["Clean anomaly flags", String(building.anomalyCheck.flaggedCount)],
+      ["Meter rows", String(decided.analysis.anomalies.points.length)],
+      ["Temporal holdout RMSLE", decided.analysis.baseline.metrics.rmsle.toFixed(4)],
+      ["Flagged readings", String(flags.length)],
+      ["Accepted energy", emissions.acceptedEnergyMWh.toFixed(2) + " MWh"],
+      ["Excluded energy", emissions.excludedEnergyKWh.toFixed(1) + " kWh"],
+      ["Location-based emissions", emissions.emissionsTCo2e.toFixed(2) + " tCO₂e"],
     ],
     provenance: [
-      ["Dataset", building.source.doi],
-      ["Building", building.building.buildingId],
-      ["Factor", building.emissions.factor.id],
-      ["Factor source", building.emissions.factor.sourceOrganisation],
-      ["Clean digest", building.tamperSmoke.cleanDigest.value],
+      ["Dataset", "doi:10.5281/zenodo.3887306 (committed subset, CC BY-SA 4.0)"],
+      ["Building", String(decided.climateCase.extensions?.buildingId)],
+      ["Factor", decided.climateCase.factors[0]?.sourceDocument ?? ""],
+      ["Meter series (now)", short(decided.digest)],
+      ["Evidence root (now)", short(attestation.currentRoot)],
+      ["Evidence root (signed)", short(caseRun.attestation.payload.evidenceRoot)],
+      ["Signed", caseRun.runAt + " · Ed25519 + ML-DSA-65"],
     ],
-    digest: building.tamperSmoke.cleanDigest,
+    digest: decided.digest,
     checks: [
       {
         id: "source-integrity",
-        name: "Source files match pinned digests",
-        outcome: building.subset.sourceIntegrity.valid ? "pass" : "fail",
+        name: "Committed BDG2 files match their recorded digests (checked here)",
+        outcome: live.sourceIntegrityValid ? "pass" : "fail",
       },
+      ...verification.checks,
       {
-        id: "anomaly-screen",
-        name: "Baseline-residual anomaly screen",
-        outcome: building.anomalyCheck.flaggedCount === 0 ? "pass" : "warn",
+        id: "attestation",
+        name: "Signed attestation matches the current evidence (checked here)",
+        outcome: attestation.validForCurrentEvidence ? "pass" : "fail",
         detail:
-          building.anomalyCheck.flaggedCount +
-          " readings flagged; not yet reviewed or explained",
-      },
-      {
-        id: "tamper-detected",
-        name: "Recorded tamper run changes the digest and is flagged",
-        outcome:
-          building.tamperSmoke.flaggedAfterTamper &&
-          building.tamperSmoke.cleanDigest.value !== building.tamperSmoke.tamperedDigest.value
-            ? "pass"
-            : "fail",
+          "Ed25519 " + (ed25519?.signatureValid ? "verified in this browser" : "NOT verified") +
+          "; ML-DSA-65 " + (mlDsaRecorded?.signatureValid ? "verified in the offline Node run" : "not verified") +
+          " (browsers have no ML-DSA)" +
+          (attestation.changedRefs.length ? "; changed since signing: " + attestation.changedRefs.map((ref) => ref.id).join(", ") : ""),
       },
     ],
     tamper: {
-      before: building.tamperSmoke.originalValue + " kWh",
-      change: "×" + building.tamperSmoke.multiplier + " at " + building.tamperSmoke.timestamp,
-      after:
-        building.tamperSmoke.tamperedValue +
-        " kWh → flagged; accepted emissions " +
-        building.emissions.tampered.emissionsTCo2e.toFixed(2) +
-        " tCO₂e",
-      rootBefore: building.tamperSmoke.cleanDigest.value,
-      rootAfter: building.tamperSmoke.tamperedDigest.value,
+      before: "meter series " + short(decided.digest),
+      change: "×" + caseRun.tamper.multiplier + " at " + caseRun.tamper.timestamp + ", applied in this browser",
+      after: "",
+      rootBefore: caseRun.attestation.payload.evidenceRoot.value,
     },
-  },
+  };
+}
+
+const modules: DemoModule[] = [
+  buildingModule(await checkBuilding()),
   {
     id: "energy",
     title: "Renewable / Load Forecast",
@@ -500,27 +527,29 @@ const demoCase: ClimateCaseBundle = {
 
 class DemoWorkspace implements ClimateWorkspace {
   async getCase(caseId?: string): Promise<ClimateCaseBundle | undefined> {
+    if (caseId === buildingCaseId) return (await buildingService.decidedCase()).climateCase;
     return !caseId || caseId === demoCase.caseId ? demoCase : undefined;
   }
 
   async listCases(): Promise<ClimateCaseBundle[]> {
-    return [demoCase];
+    return [demoCase, (await buildingService.decidedCase()).climateCase];
   }
 
   async getNode(
     caseId: string,
     ref: NodeRef,
   ): Promise<ClimateNode | undefined> {
-    if (caseId !== demoCase.caseId) return undefined;
+    const bundle = await this.getCase(caseId);
+    if (!bundle) return undefined;
     const groups: ClimateNode[][] = [
-      demoCase.claims,
-      demoCase.evidence,
-      demoCase.calculations,
-      demoCase.factors,
-      demoCase.modelRuns,
-      demoCase.verifications,
-      demoCase.attestations,
-      demoCase.anchors,
+      bundle.claims,
+      bundle.evidence,
+      bundle.calculations,
+      bundle.factors,
+      bundle.modelRuns,
+      bundle.verifications,
+      bundle.attestations,
+      bundle.anchors,
     ];
     return groups.flat().find(
       (node) => node.nodeType === ref.nodeType && node.id === ref.id,
@@ -528,7 +557,7 @@ class DemoWorkspace implements ClimateWorkspace {
   }
 
   async listChecks(caseId: string): Promise<Verification[]> {
-    return caseId === demoCase.caseId ? demoCase.verifications : [];
+    return (await this.getCase(caseId))?.verifications ?? [];
   }
 
   async compareClaims(
@@ -546,7 +575,6 @@ class DemoWorkspace implements ClimateWorkspace {
 }
 
 const reportPaths: Record<string, string> = {
-  building: "reports/building-mrv/bdg2-v1-smoke.json",
   energy: "reports/energy-forecast/active-power-dummy.json",
   earth: "reports/earth-observation/t10seh-2018190-nbr.json",
   battery: "reports/battery-dpp/batterylife-calb-smoke.json",
@@ -558,6 +586,8 @@ const router: ModuleCommandRouter = {
   async execute(moduleId, toolName, input) {
     const item = moduleById.get(moduleId);
     if (!item) throw new Error("Unknown demo module: " + moduleId);
+    // Building runs the real service on the committed data, the same one the page renders from.
+    if (moduleId === "building") return buildingService.execute("building-mrv", toolName, input);
     if (input.caseId !== demoCase.caseId) {
       throw new Error(
         "Unknown case " + JSON.stringify(input.caseId ?? null) + "; this demo holds only " + demoCase.caseId + ".",
@@ -575,15 +605,6 @@ const router: ModuleCommandRouter = {
 
 function recordedOutput(toolName: string): unknown {
   switch (toolName) {
-    case "building_get_meter_series":
-      return { rows: building.subset.meterRows, building: building.building, sourceIntegrity: building.subset.sourceIntegrity };
-    case "building_detect_anomalies":
-      return { clean: building.anomalyCheck, tamper: building.tamperSmoke };
-    case "building_run_baseline":
-      return building.baseline;
-    case "building_reconstruct_emissions":
-      return building.emissions;
-
     case "energy_run_forecast":
     case "energy_compare_baseline":
       return energy.benchmark;
@@ -644,6 +665,7 @@ const registry = new ClimateCapabilityRegistry()
         "building_detect_anomalies",
         "building_run_baseline",
         "building_reconstruct_emissions",
+        "building_review_flags",
       ],
       router,
     }),
@@ -816,13 +838,23 @@ function renderDetail(): void {
   const checks = document.querySelector("#check-list");
   if (checks) {
     checks.innerHTML =
-      `<div class="metric-row"><span>Result</span><strong>${escapeHtml(deriveResult(item.checks))}</strong></div>` +
+      `<div class="metric-row"><span>Overall result (all checks below)</span><strong>${escapeHtml(deriveResult(item.checks))}</strong></div>` +
       item.checks
         .map(
           (check) =>
             `<div class="metric-row"><span>${escapeHtml(check.name)}${check.detail ? `<br><small class="muted">${escapeHtml(check.detail)}</small>` : ""}</span><strong>${escapeHtml(check.outcome)}</strong></div>`,
         )
         .join("");
+  }
+
+  const decisionList = document.querySelector("#decision-list");
+  if (decisionList) {
+    decisionList.innerHTML = (item.decisions ?? [])
+      .map(
+        ([name, value]) =>
+          `<div class="metric-row"><span>${escapeHtml(name)}</span><strong>${escapeHtml(value)}</strong></div>`,
+      )
+      .join("");
   }
 
   if (provenance) {
@@ -849,7 +881,45 @@ function tamperLines(rows: Array<[string, string]>): string {
     .join("");
 }
 
+async function refreshBuilding(): Promise<LiveCheck> {
+  const live = await checkBuilding();
+  const item = buildingModule(live);
+  modules[modules.findIndex((entry) => entry.id === "building")] = item;
+  moduleById.set("building", item);
+  renderModules();
+  renderDetail();
+  return live;
+}
+
+/** Building tamper is real: the reading changes in this browser and everything downstream is recomputed. */
+async function renderBuildingTamper(injected: boolean): Promise<void> {
+  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+  if (!output) return;
+  setTampered(injected);
+  const live = await refreshBuilding();
+  const result = live.decided.climateCase.verifications[0]!.result;
+  const stale = live.decided.statuses.filter((flag) => flag.state === "stale").length;
+  const undecided = live.decided.statuses.filter((flag) => flag.state === "undecided").length;
+  const valid = live.attestation.validForCurrentEvidence;
+  const point = buildingService.analysis().anomalies.points[caseRun.tamper.index];
+  const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
+  output.innerHTML = tamperLines([
+    ...(injected ? [["mutation", escapeHtml("×" + caseRun.tamper.multiplier + " at " + caseRun.tamper.timestamp + ": now " + point?.value + " kWh, applied in this browser")] as [string, string]] : []),
+    ["meter series", escapeHtml(live.decided.digest.value)],
+    ["flags", escapeHtml(live.decided.statuses.length + " flagged · " + stale + " decisions stale (made on other data) · " + undecided + " undecided")],
+    ["case verification", tag(result === "reconciled", result)],
+    ["overall (with signature check)", tag(deriveResult(moduleById.get("building")!.checks) === "reconciled", deriveResult(moduleById.get("building")!.checks))],
+    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 checked here)" : "no longer matches the current evidence")],
+    ...(valid ? [] : [["changed since signing", escapeHtml(live.attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
+    ["action", injected ? "Reset restores the committed reading; the signed attestation then matches again." : "Choose “Show tamper result” to change one reading in this browser."],
+  ]);
+}
+
 function renderTamper(id: string, injected: boolean): void {
+  if (id === "building") {
+    void renderBuildingTamper(injected);
+    return;
+  }
   const item = moduleById.get(id);
   const output = document.querySelector<HTMLDivElement>("#tamper-output");
   if (!item || !output) return;
@@ -909,8 +979,9 @@ function renderActivity(): void {
 async function guidedAudit(): Promise<void> {
   const calls: Array<[string, Record<string, unknown>]> = [
     ["climate_list_capabilities", { caseId: demoCase.caseId }],
-    ["building_run_baseline", { caseId: demoCase.caseId }],
-    ["building_reconstruct_emissions", { caseId: demoCase.caseId }],
+    ["building_run_baseline", { caseId: buildingCaseId }],
+    ["building_review_flags", { caseId: buildingCaseId }],
+    ["building_reconstruct_emissions", { caseId: buildingCaseId }],
     ["carbon_reconcile_registry_records", { caseId: demoCase.caseId }],
     ["disclosure_get_public_claim", { caseId: demoCase.caseId }],
   ];

@@ -16,6 +16,7 @@ export const CLIMATE_MODULE_TOOL_SPECS: ModuleToolSpec[] = [
   { name: "building_get_meter_series", title: "Get building meter series", description: "Get building meter measurements for the active case.", capability: "building-meter-mrv" },
   { name: "building_detect_anomalies", title: "Detect building anomalies", description: "Run the configured building-meter anomaly check.", capability: "building-meter-mrv" },
   { name: "building_run_baseline", title: "Run building baseline", description: "Run the configured building energy baseline.", capability: "building-meter-mrv" },
+  { name: "building_review_flags", title: "Review flagged building readings", description: "List each flagged meter reading with its recorded decision-model advice and the current human decision (decided, stale or undecided).", capability: "building-meter-mrv" },
   { name: "building_reconstruct_emissions", title: "Reconstruct building emissions", description: "Reconstruct emissions using traced activity data and factors.", capability: "carbon-recalculation" },
 
   { name: "energy_run_forecast", title: "Run renewable forecast", description: "Run a renewable/load/price forecast.", capability: "renewable-forecasting" },

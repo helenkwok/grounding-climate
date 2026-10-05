@@ -4,7 +4,12 @@ import {
 import type {
   ClimateCaseBundle,
   Evidence,
+  ModelRun,
+  NodeRef,
+  Verification,
 } from "@climatechain/core";
+
+import type { FlagStatus } from "./decisions.js";
 
 import type {
   BuildingMrvAnalysis,
@@ -19,6 +24,62 @@ export interface BuildBuildingCaseOptions {
   dataset: PreparedBuildingDataset;
   factor: GridEmissionFactor;
   analysis: BuildingMrvAnalysis;
+  /** Current state of each flagged interval; without it every flag is undecided. */
+  flagStatuses?: FlagStatus[];
+  /** Advice model-runs. Recorded and referenced, never read by any check. */
+  advice?: ModelRun[];
+}
+
+function decisionVerification(
+  statuses: readonly FlagStatus[],
+  advice: readonly ModelRun[],
+  createdAt: string,
+): Verification {
+  const decided = statuses.filter((status) => status.state === "decided");
+  const decidedBy = decided[0]?.decision?.decidedBy;
+  const adviceRefs: NodeRef[] = advice.map((run) => ({
+    nodeType: "model-run",
+    id: run.id,
+    role: "advice-shown",
+  }));
+  return {
+    nodeType: "verification",
+    id: "verification:interval-decisions",
+    createdAt,
+    provenance: [
+      { nodeType: "model-run", id: "model-run:hour-of-week-baseline", role: "flag-source" },
+      ...adviceRefs,
+    ],
+    verifier: decidedBy
+      ? { id: decidedBy, kind: "person" }
+      : { id: "person:unassigned", kind: "person", name: "No reviewer yet" },
+    profile: "building-mrv/interval-decisions/0.1",
+    result: decided.length === statuses.length ? "reconciled" : "insufficient-evidence",
+    checks: statuses.map((status) => ({
+      id: "interval:" + status.timestamp,
+      name: "Decision on flagged reading at " + status.timestamp,
+      outcome:
+        status.state === "decided" ? "pass" : status.state === "stale" ? "fail" : "not-run",
+      detail:
+        status.state === "undecided"
+          ? "No decision yet."
+          : (status.state === "stale"
+              ? "Stale: made on a different meter series. "
+              : "") +
+            status.decision?.decision +
+            ": " +
+            status.decision?.reason +
+            " (" +
+            status.decision?.decidedBy +
+            ", " +
+            status.decision?.decidedAt +
+            ")",
+    })),
+    findings: [
+      "A decision records what a person chose, not why the reading happened; the cause is not confirmed by site records.",
+    ],
+    verifiedAt: decided.at(-1)?.decision?.decidedAt ?? createdAt,
+  };
 }
 
 function factorSourceEvidence(
@@ -59,7 +120,17 @@ export function buildBuildingMrvCase(
     analysis,
   } = options;
 
-  const anomalyFailed = analysis.anomalies.flaggedCount > 0;
+  const flagged = analysis.anomalies.flaggedCount;
+  const statuses: FlagStatus[] =
+    options.flagStatuses ??
+    analysis.anomalies.points
+      .filter((point) => point.flagged)
+      .map((point) => ({ timestamp: point.timestamp, state: "undecided" }));
+  const open = statuses.filter((status) => status.state !== "decided");
+  const needsReview = open.length > 0;
+  const kept = statuses.filter((status) => status.decision?.decision === "keep" && status.state === "decided").length;
+  const advice = options.advice ?? [];
+  const decisions = flagged > 0 ? [decisionVerification(statuses, advice, createdAt)] : [];
   const firstMeter = dataset.meter[0];
   const lastMeter = dataset.meter.at(-1);
   if (!firstMeter || !lastMeter) {
@@ -181,12 +252,13 @@ export function buildBuildingMrvCase(
           },
           {
             dimension: "disputed",
-            state: anomalyFailed ? "challenged" : "not-applicable",
+            state: needsReview ? "challenged" : "not-applicable",
             assessedAt: createdAt,
-            note: anomalyFailed
-              ? analysis.anomalies.flaggedCount +
-                " meter intervals failed the anomaly screen."
-              : "No intervals failed the configured anomaly screen.",
+            note: needsReview
+              ? open.length + " of " + flagged + " flagged meter intervals have no current decision."
+              : flagged > 0
+                ? "All " + flagged + " flagged intervals decided by a person; decided is not explained."
+                : "No intervals failed the configured anomaly screen.",
           },
         ],
       },
@@ -264,6 +336,7 @@ export function buildBuildingMrvCase(
       },
     ],
     modelRuns: [
+      ...advice,
       {
         nodeType: "model-run",
         id: "model-run:hour-of-week-baseline",
@@ -325,6 +398,11 @@ export function buildBuildingMrvCase(
             id: "model-run:hour-of-week-baseline",
             role: "baseline-check",
           },
+          ...decisions.map((node): NodeRef => ({
+            nodeType: "verification",
+            id: node.id,
+            role: "human-decisions",
+          })),
         ],
         verifier: {
           id: "service:climatechain-building-mrv",
@@ -332,7 +410,7 @@ export function buildBuildingMrvCase(
           name: "ClimateChain Building MRV",
         },
         profile: "building-mrv/0.1",
-        result: anomalyFailed ? "mismatch" : "reconciled",
+        result: needsReview ? "insufficient-evidence" : "reconciled",
         checks: [
           {
             id: "temporal-holdout",
@@ -347,10 +425,16 @@ export function buildBuildingMrvCase(
           {
             id: "anomaly-screen",
             name: "Meter anomaly screen",
-            outcome: anomalyFailed ? "fail" : "pass",
+            outcome: needsReview ? "warn" : "pass",
             detail:
-              analysis.anomalies.flaggedCount +
+              flagged +
               " interval(s) flagged; " +
+              (flagged - open.length) +
+              " decided (" +
+              kept +
+              " kept), " +
+              open.length +
+              " without a current decision; " +
               analysis.emissions.excludedEnergyKWh.toFixed(3) +
               " kWh excluded from accepted activity data.",
           },
@@ -366,16 +450,22 @@ export function buildBuildingMrvCase(
               factor.sourceUri,
           },
         ],
-        findings: anomalyFailed
+        findings: needsReview
           ? [
               "The current meter series contains intervals outside the configured robust residual threshold.",
-              "The emissions claim is not reconciled until the flagged intervals are resolved or explicitly accepted.",
+              "The emissions claim is not reconciled until a person decides each flagged interval on this meter series.",
             ]
-          : [
-              "The current meter series passed the configured residual anomaly screen.",
-            ],
+          : flagged > 0
+            ? [
+                "Every flagged interval has a current decision by a person; the claim uses those decisions.",
+                "Decided is not resolved: the cause of each flagged reading is not confirmed by site records.",
+              ]
+            : [
+                "The current meter series passed the configured residual anomaly screen.",
+              ],
         verifiedAt: createdAt,
       },
+      ...decisions,
     ],
     attestations: [],
     anchors: [],
