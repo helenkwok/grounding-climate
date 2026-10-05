@@ -1,0 +1,414 @@
+{
+  "batteryId": "CALB_0_B182",
+  "chemistry": "NMC",
+  "formFactor": "Prismatic",
+  "nominalCapacityAh": 58.0,
+  "cycles": [
+    {
+      "cycle": 1,
+      "dischargeCapacityAh": 49.69816
+    },
+    {
+      "cycle": 2,
+      "dischargeCapacityAh": 47.65138
+    },
+    {
+      "cycle": 3,
+      "dischargeCapacityAh": 47.33756
+    },
+    {
+      "cycle": 4,
+      "dischargeCapacityAh": 47.48606
+    },
+    {
+      "cycle": 5,
+      "dischargeCapacityAh": 47.48013
+    },
+    {
+      "cycle": 6,
+      "dischargeCapacityAh": 47.40422
+    },
+    {
+      "cycle": 7,
+      "dischargeCapacityAh": 47.39162
+    },
+    {
+      "cycle": 8,
+      "dischargeCapacityAh": 47.30528
+    },
+    {
+      "cycle": 9,
+      "dischargeCapacityAh": 47.25036
+    },
+    {
+      "cycle": 10,
+      "dischargeCapacityAh": 47.18893
+    },
+    {
+      "cycle": 11,
+      "dischargeCapacityAh": 47.13905
+    },
+    {
+      "cycle": 12,
+      "dischargeCapacityAh": 47.09654
+    },
+    {
+      "cycle": 13,
+      "dischargeCapacityAh": 47.05701
+    },
+    {
+      "cycle": 14,
+      "dischargeCapacityAh": 46.98934
+    },
+    {
+      "cycle": 15,
+      "dischargeCapacityAh": 46.93279
+    },
+    {
+      "cycle": 16,
+      "dischargeCapacityAh": 46.93079
+    },
+    {
+      "cycle": 17,
+      "dischargeCapacityAh": 47.00341
+    },
+    {
+      "cycle": 18,
+      "dischargeCapacityAh": 46.9075
+    },
+    {
+      "cycle": 19,
+      "dischargeCapacityAh": 46.86171
+    },
+    {
+      "cycle": 20,
+      "dischargeCapacityAh": 46.83917
+    },
+    {
+      "cycle": 21,
+      "dischargeCapacityAh": 46.82291
+    },
+    {
+      "cycle": 22,
+      "dischargeCapacityAh": 46.80691
+    },
+    {
+      "cycle": 23,
+      "dischargeCapacityAh": 46.8305
+    },
+    {
+      "cycle": 24,
+      "dischargeCapacityAh": 46.82481
+    },
+    {
+      "cycle": 25,
+      "dischargeCapacityAh": 46.82482
+    },
+    {
+      "cycle": 26,
+      "dischargeCapacityAh": 47.44555
+    },
+    {
+      "cycle": 27,
+      "dischargeCapacityAh": 46.73934
+    },
+    {
+      "cycle": 28,
+      "dischargeCapacityAh": 46.75386
+    },
+    {
+      "cycle": 29,
+      "dischargeCapacityAh": 46.729
+    },
+    {
+      "cycle": 30,
+      "dischargeCapacityAh": 46.69896
+    },
+    {
+      "cycle": 31,
+      "dischargeCapacityAh": 46.67642
+    },
+    {
+      "cycle": 32,
+      "dischargeCapacityAh": 46.68613
+    },
+    {
+      "cycle": 33,
+      "dischargeCapacityAh": 46.68439
+    },
+    {
+      "cycle": 34,
+      "dischargeCapacityAh": 46.66506
+    },
+    {
+      "cycle": 35,
+      "dischargeCapacityAh": 46.65718
+    },
+    {
+      "cycle": 36,
+      "dischargeCapacityAh": 46.67005
+    },
+    {
+      "cycle": 37,
+      "dischargeCapacityAh": 46.61972
+    },
+    {
+      "cycle": 38,
+      "dischargeCapacityAh": 46.57905
+    },
+    {
+      "cycle": 39,
+      "dischargeCapacityAh": 46.56557
+    },
+    {
+      "cycle": 40,
+      "dischargeCapacityAh": 46.51844
+    },
+    {
+      "cycle": 41,
+      "dischargeCapacityAh": 46.49511
+    },
+    {
+      "cycle": 42,
+      "dischargeCapacityAh": 46.51959
+    },
+    {
+      "cycle": 43,
+      "dischargeCapacityAh": 46.49889
+    },
+    {
+      "cycle": 44,
+      "dischargeCapacityAh": 46.47328
+    },
+    {
+      "cycle": 45,
+      "dischargeCapacityAh": 46.46702
+    },
+    {
+      "cycle": 46,
+      "dischargeCapacityAh": 46.43304
+    },
+    {
+      "cycle": 47,
+      "dischargeCapacityAh": 46.40724
+    },
+    {
+      "cycle": 48,
+      "dischargeCapacityAh": 46.3781
+    },
+    {
+      "cycle": 49,
+      "dischargeCapacityAh": 46.36518
+    },
+    {
+      "cycle": 50,
+      "dischargeCapacityAh": 46.35081
+    },
+    {
+      "cycle": 51,
+      "dischargeCapacityAh": 46.32976
+    },
+    {
+      "cycle": 52,
+      "dischargeCapacityAh": 46.31372
+    },
+    {
+      "cycle": 53,
+      "dischargeCapacityAh": 46.29752
+    },
+    {
+      "cycle": 54,
+      "dischargeCapacityAh": 46.27015
+    },
+    {
+      "cycle": 55,
+      "dischargeCapacityAh": 46.27172
+    },
+    {
+      "cycle": 56,
+      "dischargeCapacityAh": 46.24122
+    },
+    {
+      "cycle": 57,
+      "dischargeCapacityAh": 46.21384
+    },
+    {
+      "cycle": 58,
+      "dischargeCapacityAh": 46.19932
+    },
+    {
+      "cycle": 59,
+      "dischargeCapacityAh": 46.17816
+    },
+    {
+      "cycle": 60,
+      "dischargeCapacityAh": 46.16376
+    },
+    {
+      "cycle": 61,
+      "dischargeCapacityAh": 46.14454
+    },
+    {
+      "cycle": 62,
+      "dischargeCapacityAh": 46.13861
+    },
+    {
+      "cycle": 63,
+      "dischargeCapacityAh": 46.11668
+    },
+    {
+      "cycle": 64,
+      "dischargeCapacityAh": 46.21813
+    },
+    {
+      "cycle": 65,
+      "dischargeCapacityAh": 46.06288
+    },
+    {
+      "cycle": 66,
+      "dischargeCapacityAh": 46.03978
+    },
+    {
+      "cycle": 67,
+      "dischargeCapacityAh": 46.00933
+    },
+    {
+      "cycle": 68,
+      "dischargeCapacityAh": 45.99955
+    },
+    {
+      "cycle": 69,
+      "dischargeCapacityAh": 45.97373
+    },
+    {
+      "cycle": 70,
+      "dischargeCapacityAh": 45.94638
+    },
+    {
+      "cycle": 71,
+      "dischargeCapacityAh": 45.92868
+    },
+    {
+      "cycle": 72,
+      "dischargeCapacityAh": 45.91765
+    },
+    {
+      "cycle": 73,
+      "dischargeCapacityAh": 46.71134
+    },
+    {
+      "cycle": 74,
+      "dischargeCapacityAh": 45.84235
+    },
+    {
+      "cycle": 75,
+      "dischargeCapacityAh": 45.83177
+    },
+    {
+      "cycle": 76,
+      "dischargeCapacityAh": 45.80797
+    },
+    {
+      "cycle": 77,
+      "dischargeCapacityAh": 45.78003
+    },
+    {
+      "cycle": 78,
+      "dischargeCapacityAh": 45.75359
+    },
+    {
+      "cycle": 79,
+      "dischargeCapacityAh": 45.71451
+    },
+    {
+      "cycle": 80,
+      "dischargeCapacityAh": 45.6632
+    },
+    {
+      "cycle": 81,
+      "dischargeCapacityAh": 45.62937
+    },
+    {
+      "cycle": 82,
+      "dischargeCapacityAh": 45.60513
+    },
+    {
+      "cycle": 83,
+      "dischargeCapacityAh": 45.56976
+    },
+    {
+      "cycle": 84,
+      "dischargeCapacityAh": 45.51608
+    },
+    {
+      "cycle": 85,
+      "dischargeCapacityAh": 45.48533
+    },
+    {
+      "cycle": 86,
+      "dischargeCapacityAh": 45.45316
+    },
+    {
+      "cycle": 87,
+      "dischargeCapacityAh": 45.41829
+    },
+    {
+      "cycle": 88,
+      "dischargeCapacityAh": 45.38808
+    },
+    {
+      "cycle": 89,
+      "dischargeCapacityAh": 45.38698
+    },
+    {
+      "cycle": 90,
+      "dischargeCapacityAh": 45.36966
+    },
+    {
+      "cycle": 91,
+      "dischargeCapacityAh": 45.31788
+    },
+    {
+      "cycle": 92,
+      "dischargeCapacityAh": 45.3649
+    },
+    {
+      "cycle": 93,
+      "dischargeCapacityAh": 45.25336
+    },
+    {
+      "cycle": 94,
+      "dischargeCapacityAh": 45.21478
+    },
+    {
+      "cycle": 95,
+      "dischargeCapacityAh": 45.18224
+    },
+    {
+      "cycle": 96,
+      "dischargeCapacityAh": 45.15463
+    },
+    {
+      "cycle": 97,
+      "dischargeCapacityAh": 45.11422
+    },
+    {
+      "cycle": 98,
+      "dischargeCapacityAh": 45.08489
+    },
+    {
+      "cycle": 99,
+      "dischargeCapacityAh": 45.0417
+    },
+    {
+      "cycle": 100,
+      "dischargeCapacityAh": 45.00305
+    }
+  ],
+  "source": {
+    "uri": "https://zenodo.org/records/19688272",
+    "sourceManifestId": "batterylife-processed",
+    "dataset": "BatteryLife CALB",
+    "datasetVersion": "v11"
+  }
+}

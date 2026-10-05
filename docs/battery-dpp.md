@@ -45,7 +45,7 @@ BatteryLife Processed **v11**:
 - `CALB.zip` MD5 `2b1006e96e0ca42765a732060f964687`
 - `Life labels.zip` MD5 `cd0cc01a7211972be45e8e38d86cdeca`
 
-The workflow downloads these artifacts at runtime and does not commit their bytes. Keeping the historical benchmark source separate from the current corrected passport source makes version changes visible instead of silently mixing them.
+The CI workflow downloads these artifacts at runtime. One cell's cycle history (CALB_0_B182, 100 cycles, 7 KB) is committed under `data/external/batterylife-processed` with the MIT licence text and the BatteryLife citation; the demo page and `scripts/run-battery-case.mjs` read it. Keeping the historical benchmark source separate from the current corrected passport source makes version changes visible instead of silently mixing them.
 
 ## Published benchmark reference and measured rerun
 
@@ -139,6 +139,16 @@ otherwise
 ```
 
 The thresholds are explicit policy inputs. They are not universal battery-industry rules.
+
+## Sign-off by a person
+
+The policy only proposes a disposition. A person signs it off (`approve`) or chooses another (`reuse`, `repurpose`, `recycle`, `service-review`), with a reason, using the shared review step in `@climatechain/core`. The decision is bound to the digest of the cycle history: if the history changes, the sign-off is stale and the case returns to `insufficient-evidence`. The case result is derived from these checks; it is `reconciled` only with a current sign-off.
+
+For CALB_0_B182 the policy proposes `repurpose` (SoH 0.776, above 0.75, below 0.85 for reuse). The recorded sign-off (`reports/battery-dpp/disposition-decisions.json`) is `service-review`: the cell is already past end of first life, began at 0.857 of nominal capacity, and its condition and safety are not assessed.
+
+The claim states its accounting boundary separately from the measurement: what it counts (capacity over cycles 1 to 100, SoH against 58 Ah), what it leaves out (later cycles, calendar ageing), the policy choices (thresholds, linear fit, sign-off), and what it does not assess (electrical, thermal, mechanical and safety condition; carbon footprint and other EU Battery Regulation passport fields; BatteryLife's published models).
+
+`scripts/run-battery-case.mjs` signs the case with Ed25519 and ML-DSA-65 and records a tamper run; `scripts/verify-battery-case.mjs`, part of `npm run check`, rebuilds the case from the committed inputs and checks the committed signature.
 
 ## Shared provenance
 

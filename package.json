@@ -16,7 +16,7 @@
     "check:rights": "node scripts/check-source-rights.mjs",
     "sources:attribution": "node scripts/render-source-attribution.mjs",
     "sources:attribution:check": "node scripts/render-source-attribution.mjs --check",
-    "check": "npm run build && npm run test && npm run check:rights && npm run sources:attribution:check && npm run check:cadi && npm run check:building-case",
+    "check": "npm run build && npm run test && npm run check:rights && npm run sources:attribution:check && npm run check:cadi && npm run check:cases",
     "building:prepare": "node scripts/prepare-bdg2-subset.mjs",
     "building:analyze": "npm run analyze --workspace @climatechain/building-mrv --",
     "energy:inspect": "node scripts/inspect-energy-eva-zenodo.mjs",
@@ -25,7 +25,7 @@
     "carbon:prepare": "node scripts/prepare-carbonplan-registry-fixtures.mjs",
     "carbon:smoke": "node scripts/smoke-carbon-registry.mjs",
     "check:cadi": "node scripts/check-cadi-candidates.mjs",
-    "check:building-case": "node scripts/verify-building-case.mjs",
+    "check:cases": "node scripts/verify-building-case.mjs && node scripts/verify-battery-case.mjs",
     "demo:build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/demo",
     "demo:serve": "python3 -m http.server 4173 --directory apps/demo/dist",
     "submission:build": "python3 scripts/build-submission.py"

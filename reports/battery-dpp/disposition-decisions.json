@@ -1,0 +1,13 @@
+[
+  {
+    "flagId": "disposition:CALB_0_B182",
+    "decision": "service-review",
+    "reason": "Capacity alone supports repurpose (SoH 0.776), but the cell is already past end of first life (SoH below 0.8, 0 cycles of remaining life), began at only 0.857 of nominal capacity, and its condition and safety are not assessed. Hold for inspection before any second-life use.",
+    "decidedBy": "person:energy-manager",
+    "decidedAt": "2026-10-05T14:00:39.685Z",
+    "inputDigest": {
+      "algorithm": "SHA-256",
+      "value": "W9o1KG15CxACBhRCYFDJafYBUlAUd7AXqPkejRoPfcw"
+    }
+  }
+]
