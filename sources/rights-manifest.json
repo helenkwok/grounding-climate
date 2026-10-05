@@ -132,8 +132,9 @@
         "attributionRequired": true
       },
       "repository": {
-        "mode": "download-from-upstream",
-        "note": "ClimateChain downloads only the pinned CALB and life-label artifacts for reproducibility smoke tests; processed battery bytes are not committed."
+        "mode": "redistributable",
+        "path": "data/external/batterylife-processed",
+        "note": "One cell's cycle-capacity history (CALB_0_B182, 100 cycles) from the pinned v11 release is committed with the MIT licence text and the BatteryLife citation; the full release stays upstream."
       },
       "attribution": "BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. ClimateChain pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.",
       "notes": [

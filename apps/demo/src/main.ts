@@ -27,6 +27,14 @@ import {
   setTampered,
   type LiveCheck,
 } from "./building-live.js";
+import {
+  batteryCaseId,
+  batteryRun,
+  batteryService,
+  checkBattery,
+  setBatteryTampered,
+  type BatteryCheck,
+} from "./battery-live.js";
 import energyReport from "../../../reports/energy-forecast/active-power-dummy.json";
 import earthReport from "../../../reports/earth-observation/t10seh-2018190-nbr.json";
 import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
@@ -158,6 +166,86 @@ function buildingModule(live: LiveCheck): DemoModule {
   };
 }
 
+function batteryModule(live: BatteryCheck): DemoModule {
+  const { built, attestation } = live;
+  const verification = built.caseBundle.verifications[0]!;
+  const passport = built.passport;
+  const signOff = built.review[0];
+  const boundary = built.caseBundle.claims[0]?.boundary?.accounting;
+  const ed25519 = attestation.signature.signatures.find((item) => item.signature.algorithm === "Ed25519");
+  const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
+  return {
+    id: "battery",
+    title: "Battery DPP",
+    icon: "▣",
+    kicker: "Cycle history → signed-off passport",
+    kpi: (passport.currentSoh * 100).toFixed(1) + "%",
+    kpiLabel: "state of health, recomputed in this browser",
+    source: "BatteryLife / CALB (MIT)",
+    decisionTitle:
+      "Second-life operator: disposition " +
+      passport.disposition +
+      (signOff?.state === "decided" ? " (signed off)" : " (not signed off)"),
+    decisionCopy:
+      batteryRun.organisingQuestion +
+      " The policy proposes a disposition from the measured capacity; a person signs it off or overrides it.",
+    decisions: [
+      [
+        "Proposed by policy: " + (passport.decisionReasons.join(" ") || passport.disposition),
+        signOff?.state === "undecided" || !signOff?.decision
+          ? signOff?.state ?? "undecided"
+          : signOff.state + ": " + signOff.decision.decision + " by " + signOff.decision.decidedBy,
+      ],
+      ...(signOff?.decision ? [["Reason", signOff.decision.reason] as [string, string]] : []),
+      ...(boundary
+        ? ([
+            ["Counts", boundary.included.join("; ")],
+            ["Policy choices", boundary.policyChoices.join("; ")],
+            ["Not assessed", boundary.notAssessed.join("; ")],
+          ] as Array<[string, string]>)
+        : []),
+    ],
+    limitation:
+      "Decision support only, not a safety certification. Signing keys are per-run demo keys. " +
+      "BatteryLife's published Dummy baseline is not reproduced exactly from the pinned v1 release (recorded smoke run: MAPE " +
+      battery.benchmark.reproduced.meanMape.toFixed(3) + " vs published 1.811).",
+    metrics: [
+      ["Battery", passport.batteryId],
+      ["Observed cycles", String(passport.observedCycle)],
+      ["State of health", (passport.currentSoh * 100).toFixed(2) + "%"],
+      ["Remaining cycles to SoH 0.8", String(passport.estimatedRulCycles ?? "n/a")],
+      ["Fit R²", (passport.model.fitRSquared ?? 0).toFixed(4)],
+      ["Disposition", passport.disposition],
+    ],
+    provenance: [
+      ["Dataset", "doi:10.5281/zenodo.19688272 (committed subset, MIT)"],
+      ["Cycle history (now)", short(passport.inputDigest!)],
+      ["Evidence root (now)", short(attestation.currentRoot)],
+      ["Evidence root (signed)", short(batteryRun.attestation.payload.evidenceRoot)],
+      ["Signed", batteryRun.runAt + " · Ed25519 + ML-DSA-65"],
+    ],
+    digest: passport.inputDigest!,
+    checks: [
+      ...verification.checks,
+      {
+        id: "attestation",
+        name: "Signed attestation matches the current evidence (checked here)",
+        outcome: attestation.validForCurrentEvidence ? "pass" : "fail",
+        detail:
+          "Ed25519 " + (ed25519?.signatureValid ? "verified in this browser" : "NOT verified") +
+          "; ML-DSA-65 " + (mlDsa?.signatureValid ? "verified in this browser (" + mlDsaVerifier + ")" : "NOT verified") +
+          (attestation.changedRefs.length ? "; changed since signing: " + attestation.changedRefs.map((ref) => ref.id).join(", ") : ""),
+      },
+    ],
+    tamper: {
+      before: "cycle history " + short(passport.inputDigest!),
+      change: "Cycle " + batteryRun.tamper.cycle + " capacity " + batteryRun.tamper.from + " → " + batteryRun.tamper.to.toFixed(5) + " Ah, applied in this browser",
+      after: "",
+      rootBefore: batteryRun.attestation.payload.evidenceRoot.value,
+    },
+  };
+}
+
 const modules: DemoModule[] = [
   buildingModule(await checkBuilding()),
   {
@@ -256,61 +344,7 @@ const modules: DemoModule[] = [
       after: "Evidence digest/root no longer matches the signed provenance record",
     },
   },
-  {
-    id: "battery",
-    title: "Battery DPP",
-    icon: "▣",
-    kicker: "Cycling history → passport decision",
-    kpi: (battery.passport.currentSoh * 100).toFixed(1) + "%",
-    kpiLabel: "current SOH",
-    source: "BatteryLife / CALB",
-    decisionTitle: "Second-life battery operator",
-    decisionCopy:
-      "Turn measured cycle history into a traceable SOH/RUL passport claim for reuse, repurpose, service review, or retirement review.",
-    limitation:
-      "Decision support only. This is not a battery-safety certification and is not a claim of avoided emissions.",
-    metrics: [
-      ["Battery", battery.passport.batteryId],
-      ["Observed cycles", String(battery.passport.cycleCount)],
-      ["Current SOH", (battery.passport.currentSoh * 100).toFixed(2) + "%"],
-      ["Fit R²", battery.passport.fitRSquared.toFixed(4)],
-      ["Disposition", battery.passport.disposition],
-      ["Pinned-v1 baseline reproducible", battery.benchmark.benchmarkMatchesPinnedV1 ? "yes" : "no"],
-    ],
-    provenance: [
-      ["Benchmark DOI", battery.source.paperBenchmarkRelease.doi],
-      ["Passport DOI", battery.source.currentPassportRelease.doi],
-      ["Input digest", battery.passport.inputDigest.value],
-      ["Evidence root", battery.passport.evidenceRoot.value],
-      ["Published-row exact match", battery.benchmark.benchmarkMatchesPublished ? "yes" : "no"],
-    ],
-    digest: battery.passport.evidenceRoot,
-    checks: [
-      {
-        id: "pinned-baseline",
-        name: "Pinned v1 baseline reproduced",
-        outcome: battery.benchmark.benchmarkMatchesPinnedV1 ? "pass" : "fail",
-      },
-      {
-        id: "published-baseline",
-        name: "Published baseline table reproduced",
-        outcome: battery.benchmark.benchmarkMatchesPublished ? "pass" : "warn",
-        detail: battery.benchmark.reproducibilityFinding,
-      },
-      {
-        id: "tamper-detected",
-        name: "Recorded tamper run changes the evidence root",
-        outcome: battery.tamper.rootChanged ? "pass" : "fail",
-      },
-    ],
-    tamper: {
-      before: battery.tamper.originalCapacityAh + " Ah",
-      change: "Final cycle capacity → " + battery.tamper.changedCapacityAh + " Ah",
-      after: "Input digest and evidence root both change",
-      rootBefore: battery.passport.evidenceRoot.value,
-      rootAfter: battery.tamper.changedEvidenceRoot.value,
-    },
-  },
+  batteryModule(await checkBattery()),
   {
     id: "carbon",
     title: "Carbon Registry",
@@ -528,11 +562,16 @@ const demoCase: ClimateCaseBundle = {
 class DemoWorkspace implements ClimateWorkspace {
   async getCase(caseId?: string): Promise<ClimateCaseBundle | undefined> {
     if (caseId === buildingCaseId) return (await buildingService.decidedCase()).climateCase;
+    if (caseId === batteryCaseId) return (await batteryService.passport()).caseBundle;
     return !caseId || caseId === demoCase.caseId ? demoCase : undefined;
   }
 
   async listCases(): Promise<ClimateCaseBundle[]> {
-    return [demoCase, (await buildingService.decidedCase()).climateCase];
+    return [
+      demoCase,
+      (await buildingService.decidedCase()).climateCase,
+      (await batteryService.passport()).caseBundle,
+    ];
   }
 
   async getNode(
@@ -577,7 +616,6 @@ class DemoWorkspace implements ClimateWorkspace {
 const reportPaths: Record<string, string> = {
   energy: "reports/energy-forecast/active-power-dummy.json",
   earth: "reports/earth-observation/t10seh-2018190-nbr.json",
-  battery: "reports/battery-dpp/batterylife-calb-smoke.json",
   carbon: "reports/carbon-registry/carbonplan-smoke.json",
   disclosure: "sources/cadi-candidates.json",
 };
@@ -588,6 +626,7 @@ const router: ModuleCommandRouter = {
     if (!item) throw new Error("Unknown demo module: " + moduleId);
     // Building runs the real service on the committed data, the same one the page renders from.
     if (moduleId === "building") return buildingService.execute("building-mrv", toolName, input);
+    if (moduleId === "battery") return batteryService.execute("battery-dpp", toolName, input);
     if (input.caseId !== demoCase.caseId) {
       throw new Error(
         "Unknown case " + JSON.stringify(input.caseId ?? null) + "; this demo holds only " + demoCase.caseId + ".",
@@ -622,13 +661,6 @@ function recordedOutput(toolName: string): unknown {
       return { metrics: earth.baseline.metrics, publishedReference: earth.publishedPrithviReference };
     case "earth_get_scene_provenance":
       return earth.source;
-
-    case "battery_predict_health":
-      return battery.passport;
-    case "battery_compare_baseline":
-      return battery.benchmark;
-    case "battery_build_passport_claim":
-      return { passport: battery.passport, scope: battery.scope };
 
     case "carbon_reconcile_registry_records":
       return { clean: carbon.clean, ledgerDecision: carbon.ledgerDecision };
@@ -915,9 +947,41 @@ async function renderBuildingTamper(injected: boolean): Promise<void> {
   ]);
 }
 
+/** Battery tamper is real: the last cycle's capacity changes in this browser and the passport is recomputed. */
+async function renderBatteryTamper(injected: boolean): Promise<void> {
+  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+  if (!output) return;
+  setBatteryTampered(injected);
+  const live = await checkBattery();
+  const item = batteryModule(live);
+  modules[modules.findIndex((entry) => entry.id === "battery")] = item;
+  moduleById.set("battery", item);
+  renderModules();
+  renderDetail();
+  const { built, attestation } = live;
+  const result = built.caseBundle.verifications[0]!.result;
+  const valid = attestation.validForCurrentEvidence;
+  const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
+  output.innerHTML = tamperLines([
+    ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
+    ["cycle history", escapeHtml(built.passport.inputDigest!.value)],
+    ["state of health", escapeHtml((built.passport.currentSoh * 100).toFixed(2) + "% · disposition " + built.passport.disposition)],
+    ["sign-off", escapeHtml(built.review[0]?.state + (built.review[0]?.state === "stale" ? " (made on a different cycle history)" : ""))],
+    ["case verification", tag(result === "reconciled", result)],
+    ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
+    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
+    ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
+    ["action", injected ? "Reset restores the committed history; the signed attestation then matches again." : "Choose “Show tamper result” to change one cycle in this browser."],
+  ]);
+}
+
 function renderTamper(id: string, injected: boolean): void {
   if (id === "building") {
     void renderBuildingTamper(injected);
+    return;
+  }
+  if (id === "battery") {
+    void renderBatteryTamper(injected);
     return;
   }
   const item = moduleById.get(id);

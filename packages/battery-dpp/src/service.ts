@@ -5,7 +5,7 @@ import type {
   ClimateModule,
   ModuleCommandRouter,
 } from "@climatechain/webmcp";
-import type { CryptoProvider } from "@climatechain/core";
+import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
 
 import { runCalbDummyBenchmark } from "./benchmark.js";
 import { estimateBatteryHealth } from "./health.js";
@@ -29,6 +29,8 @@ export interface BatteryDppServiceOptions {
   policy?: BatteryPassportPolicy;
   benchmarkLabels?: LifeLabelRecord[];
   benchmarkSplits?: BatteryLifeSplit[];
+  /** Recorded sign-off decisions; with them the passport tool serves the signed-off case. */
+  decisions?: ReviewDecision[];
 }
 
 export class BatteryDppService implements ModuleCommandRouter {
@@ -40,6 +42,28 @@ export class BatteryDppService implements ModuleCommandRouter {
 
   setHistory(history: BatteryHistory): void {
     this.history = structuredClone(history);
+  }
+
+  resetHistory(): void {
+    this.history = structuredClone(this.options.history);
+  }
+
+  /** Multiplies the capacity of the last recorded cycle, as the recorded tamper run does. */
+  tamperLastCycle(multiplier: number): void {
+    const last = this.history.cycles.at(-1);
+    if (!last) throw new Error("Battery history is empty.");
+    last.dischargeCapacityAh *= multiplier;
+  }
+
+  /** The passport case for the current history, with the recorded sign-off decisions. */
+  passport() {
+    return buildBatteryPassport({
+      history: this.history,
+      provider: this.options.provider,
+      observedAt: this.options.observedAt,
+      policy: this.options.policy ?? DEFAULT_BATTERY_PASSPORT_POLICY,
+      decisions: this.options.decisions ?? [],
+    });
   }
 
   health() {
@@ -81,15 +105,12 @@ export class BatteryDppService implements ModuleCommandRouter {
         });
 
       case "battery_build_passport_claim": {
-        const built = await buildBatteryPassport({
-          history: this.history,
-          provider: this.options.provider,
-          observedAt: this.options.observedAt,
-          policy:
-            this.options.policy ?? DEFAULT_BATTERY_PASSPORT_POLICY,
-        });
+        const built = await this.passport();
         return {
           passport: built.passport,
+          result: built.caseBundle.verifications[0]?.result,
+          signOff: built.review,
+          accountingBoundary: built.caseBundle.claims[0]?.boundary?.accounting,
           evidenceRoot: built.evidenceRoot.root,
         };
       }

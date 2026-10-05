@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "climatechain.batterylife-prepared/0.1",
+  "source": {
+    "zenodoRecord": "https://zenodo.org/records/19688272",
+    "doi": "10.5281/zenodo.19688272",
+    "version": "v11",
+    "files": [
+      {
+        "name": "Life labels.zip",
+        "md5": "cd0cc01a7211972be45e8e38d86cdeca"
+      },
+      {
+        "name": "CALB.zip",
+        "md5": "2b1006e96e0ca42765a732060f964687"
+      }
+    ]
+  },
+  "labelCount": 27,
+  "selectedBattery": "CALB_0_B182.pkl",
+  "selectedBatteryCycleCount": 100,
+  "selectedBatteryNominalCapacityAh": 58.0
+}

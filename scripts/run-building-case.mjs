@@ -10,12 +10,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import {
-  createSignedAttestation,
-  HYBRID_SIGNATURE_POLICY,
-  publishedKeyResolver,
-  verifySignedAttestation,
-} from "@climatechain/core";
 import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
 import {
   adviceModelRun,
@@ -29,6 +23,8 @@ import {
   runBuildingMrv,
   verifyPreparedArtifactDigests,
 } from "@climatechain/building-mrv";
+
+import { signCase, verificationSummary } from "./lib/attest.mjs";
 
 const REPORTS = new URL("../reports/building-mrv/", import.meta.url);
 const ADVICE_FILE = new URL("triage-advice.json", REPORTS);
@@ -130,13 +126,9 @@ if (undecided.length > 0) {
   );
 }
 
-// Demo keys made for this run. They identify the run, not a person or an organisation.
-const keyOptions = { controller: "org:climatechain-demo", createdAt };
-const ed = crypto.generateEd25519Key({ keyId: "key:demo-ed25519:" + createdAt, ...keyOptions });
-const pq = crypto.generateMlDsa65Key({ keyId: "key:demo-ml-dsa-65:" + createdAt, ...keyOptions });
-const signed = await createSignedAttestation(clean.climateCase, {
-  id: "attestation:building-mrv:" + createdAt,
-  attester: { subjectId: "org:climatechain-demo", name: "ClimateChain demo run" },
+const { attestation: signed, publishedKeys, verify } = await signCase({
+  climateCase: clean.climateCase,
+  module: "building-mrv",
   statement:
     "Scope 2 electricity emissions for this building were recomputed from the BDG2 meter series. " +
     "Verification result at signing: " +
@@ -146,30 +138,16 @@ const signed = await createSignedAttestation(clean.climateCase, {
     " of " +
     clean.statuses.length +
     " flagged readings had a current decision by a person.",
-  claimRefs: [{ nodeType: "claim", id: "claim:building-electricity-emissions" }],
+  claimRef: { nodeType: "claim", id: "claim:building-electricity-emissions" },
   verificationRef: { nodeType: "verification", id: "verification:building-mrv" },
-  issuedAt: createdAt,
-  hashProvider: crypto,
-  signers: [
-    { provider: crypto, key: ed.signingKey },
-    { provider: crypto, key: pq.signingKey },
-  ],
+  createdAt,
 });
-
-// The verifier gets only the published key metadata, never the signing provider's private keys.
-const publishedKeys = [await crypto.describeKey(ed.signingKey.keyId), await crypto.describeKey(pq.signingKey.keyId)];
-const verifier = new InMemoryNodeCryptoProvider();
-const verifyOptions = {
-  hashProvider: verifier,
-  resolveKey: publishedKeyResolver(publishedKeys, verifier),
-  policy: HYBRID_SIGNATURE_POLICY,
-};
-const cleanVerification = await verifySignedAttestation(clean.climateCase, signed, verifyOptions);
+const cleanVerification = await verify(clean.climateCase);
 
 const tamperIndex = analysis.baseline.split.trainingEndIndex;
 const tamperedMeter = injectTamper(loaded.meter, tamperIndex, 20);
 const tampered = await buildCase(tamperedMeter, advice, decisions, createdAt);
-const tamperedVerification = await verifySignedAttestation(tampered.climateCase, signed, verifyOptions);
+const tamperedVerification = await verify(tampered.climateCase);
 
 const summary = (built, verification) => ({
   meterSeriesDigest: built.digest,
@@ -177,13 +155,7 @@ const summary = (built, verification) => ({
   flags: built.statuses.map(({ timestamp, state, decision }) => ({ timestamp, state, decision: decision?.decision ?? null })),
   emissionsTCo2e: built.analysis.emissions.emissionsTCo2e,
   excludedEnergyKWh: built.analysis.emissions.excludedEnergyKWh,
-  attestationValidForSignedEvidence: verification.validForSignedEvidence,
-  attestationValidForCurrentEvidence: verification.validForCurrentEvidence,
-  changedRefs: verification.changedRefs,
-  signatures: verification.signature.signatures.map((item) => ({
-    algorithm: item.signature.algorithm,
-    signatureValid: item.signatureValid,
-  })),
+  ...verificationSummary(verification),
 });
 
 const report = {

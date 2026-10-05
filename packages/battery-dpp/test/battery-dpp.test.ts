@@ -174,7 +174,8 @@ test("passport uses shared evidence graph and tamper changes evidence root", asy
   assert.equal(clean.caseBundle.evidence.length, 1);
   assert.equal(clean.caseBundle.modelRuns.length, 1);
   assert.equal(clean.caseBundle.claims.length, 1);
-  assert.equal(clean.caseBundle.verifications.length, 1);
+  assert.equal(clean.caseBundle.verifications.length, 2);
+  assert.equal(clean.caseBundle.verifications[0]?.result, "insufficient-evidence");
 
   const tamperedHistory = structuredClone(cleanHistory);
   const latest = tamperedHistory.cycles.at(-1);
@@ -230,4 +231,32 @@ test("Battery DPP WebMCP module routes through the same service", async () => {
     { workspace: {} as never },
   );
   assert.ok((result as { passport?: unknown }).passport);
+});
+
+test("a person's sign-off settles the disposition and goes stale when the history changes", async () => {
+  const provider = new TestProvider();
+  const cleanHistory = history();
+  const base = { history: cleanHistory, provider, observedAt: "2026-09-29T12:00:00Z", fitLastCycles: 30 };
+  const proposed = await buildBatteryPassport(base);
+  const decision = {
+    flagId: "disposition:" + cleanHistory.batteryId,
+    decision: "service-review",
+    reason: "Test: hold for inspection.",
+    decidedBy: "person:test",
+    decidedAt: "2026-09-30T00:00:00Z",
+    inputDigest: proposed.passport.inputDigest!,
+  };
+
+  const signed = await buildBatteryPassport({ ...base, decisions: [decision] });
+  assert.equal(signed.caseBundle.verifications[0]?.result, "reconciled");
+  assert.equal(signed.passport.disposition, "service-review");
+  assert.match(String(signed.caseBundle.claims[0]?.assertion.kind === "qualitative" && signed.caseBundle.claims[0].assertion.statement), /signed off by person:test/);
+  assert.ok(signed.caseBundle.claims[0]?.boundary?.accounting?.notAssessed.length);
+
+  const tamperedHistory = structuredClone(cleanHistory);
+  tamperedHistory.cycles.at(-1)!.dischargeCapacityAh += 2;
+  const tampered = await buildBatteryPassport({ ...base, history: tamperedHistory, decisions: [decision] });
+  assert.equal(tampered.review[0]?.state, "stale");
+  assert.equal(tampered.caseBundle.verifications[0]?.result, "insufficient-evidence");
+  assert.equal(tampered.passport.disposition, proposed.passport.disposition);
 });
