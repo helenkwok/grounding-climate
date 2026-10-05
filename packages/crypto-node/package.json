@@ -17,6 +17,7 @@
     "@climatechain/core": "*"
   },
   "devDependencies": {
+    "@noble/post-quantum": "0.7.1",
     "@types/node": "^22.0.0",
     "typescript": "^5.9.0"
   }

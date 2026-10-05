@@ -19,6 +19,8 @@ import {
   type IntervalDecision,
 } from "@climatechain/building-mrv";
 
+import { ml_dsa65 } from "@noble/post-quantum/ml-dsa.js";
+
 import meterCsv from "../../../data/external/bdg2/meter.csv";
 import weatherCsv from "../../../data/external/bdg2/weather.csv";
 import metadataJson from "../../../data/external/bdg2/metadata.json";
@@ -37,7 +39,32 @@ const toBase64Url = (bytes: ArrayBuffer) =>
 const fromBase64Url = (value: string) =>
   Uint8Array.from(atob(value.replaceAll("-", "+").replaceAll("_", "/")), (c) => c.charCodeAt(0));
 
-/** SHA-256 and Ed25519 verification through WebCrypto. Browsers have no ML-DSA, so it verifies nothing else. */
+// ML-DSA-65 SPKI: a fixed 22-byte header naming id-ml-dsa-65 (2.16.840.1.101.3.4.3.18), then the raw key.
+const ML_DSA_65_SPKI_HEADER = "308207b2300b0609608648016503040312038207a100";
+const hex = (bytes: Uint8Array) => Array.from(bytes, (b) => b.toString(16).padStart(2, "0")).join("");
+
+/** Which implementation checked the ML-DSA-65 signature on this page, once one has. */
+export let mlDsaVerifier: "browser WebCrypto" | "noble-post-quantum 0.7.1 (JavaScript)" | undefined;
+
+/**
+ * ML-DSA-65 verification. Uses the browser's own WebCrypto ML-DSA when it has one (the WICG "Modern
+ * Algorithms in the Web Cryptography API" draft); otherwise the pure-JavaScript noble implementation.
+ */
+async function verifyMlDsa65(spki: Uint8Array, signature: Uint8Array, payload: Uint8Array): Promise<boolean> {
+  try {
+    const key = await crypto.subtle.importKey("spki", spki as BufferSource, { name: "ML-DSA-65" }, false, ["verify"]);
+    const valid = await crypto.subtle.verify({ name: "ML-DSA-65" }, key, signature as BufferSource, payload as BufferSource);
+    mlDsaVerifier = "browser WebCrypto";
+    return valid;
+  } catch (error) {
+    if (!(error instanceof DOMException && error.name === "NotSupportedError")) return false;
+  }
+  if (spki.length !== 1974 || hex(spki.subarray(0, 22)) !== ML_DSA_65_SPKI_HEADER) return false;
+  mlDsaVerifier = "noble-post-quantum 0.7.1 (JavaScript)";
+  return ml_dsa65.verify(signature, payload, spki.subarray(22));
+}
+
+/** SHA-256, Ed25519 and ML-DSA-65 verification in the browser. */
 class WebCryptoProvider implements CryptoProvider {
   async hash(data: Uint8Array, algorithm: "SHA-256"): Promise<ContentDigest> {
     return { algorithm, value: toBase64Url(await crypto.subtle.digest("SHA-256", data as BufferSource)) };
@@ -48,9 +75,13 @@ class WebCryptoProvider implements CryptoProvider {
   }
 
   async verify(payload: Uint8Array, signature: CryptoSignature, key: VerificationKey): Promise<boolean> {
-    if (key.algorithm !== "Ed25519" || signature.algorithm !== "Ed25519" || signature.keyId !== key.keyId) {
+    if (signature.keyId !== key.keyId || signature.algorithm !== key.algorithm || key.encoding !== "spki-der-base64url") {
       return false;
     }
+    if (key.suite === "post-quantum" && key.algorithm === "ML-DSA-65") {
+      return verifyMlDsa65(fromBase64Url(key.publicKey), fromBase64Url(signature.value), payload);
+    }
+    if (key.suite !== "classical" || key.algorithm !== "Ed25519") return false;
     try {
       const publicKey = await crypto.subtle.importKey(
         "spki", fromBase64Url(key.publicKey) as BufferSource, { name: "Ed25519" }, false, ["verify"],
@@ -125,7 +156,7 @@ export async function checkBuilding(): Promise<LiveCheck> {
       const metadata = caseRun.publishedKeys.find((key) => key.keyId === signature.keyId);
       return metadata && { provider: web, key: metadata.verificationKey, metadata };
     },
-    policy: { requiredSuites: ["classical"] },
+    policy: { requiredSuites: ["classical", "post-quantum"], minimumSignatures: 2 },
   });
   return { decided, attestation, sourceIntegrityValid: sourceIntegrity.valid, tampered };
 }

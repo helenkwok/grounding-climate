@@ -184,3 +184,23 @@ test("rotation preserves historical verification but disables old signing key", 
   assert.equal(oldMetadata?.supersededBy, "key:new");
   assert.equal(oldMetadata?.validUntil, "2026-10-01T00:00:00Z");
 });
+
+test("noble-post-quantum, used by the demo page, verifies Node's ML-DSA-65 signatures", async () => {
+  const { ml_dsa65 } = await import("@noble/post-quantum/ml-dsa.js");
+  const provider = new InMemoryNodeCryptoProvider();
+  const pair = provider.generateMlDsa65Key({ keyId: "key:pq", controller: "org:test", createdAt: "2026-09-01T00:00:00Z" });
+  const message = new TextEncoder().encode("climatechain interop");
+  const signature = await provider.sign(message, pair.signingKey);
+
+  const spki = Buffer.from(pair.verificationKey.publicKey, "base64url");
+  // ML-DSA-65 SPKI: a fixed 22-byte header (OID 2.16.840.1.101.3.4.3.18), then the 1,952-byte raw key.
+  assert.equal(spki.subarray(0, 22).toString("hex"), "308207b2300b0609608648016503040312038207a100");
+  const raw = spki.subarray(22);
+  const sig = Buffer.from(signature.value, "base64url");
+
+  assert.equal(ml_dsa65.verify(sig, message, raw), true);
+  assert.equal(ml_dsa65.verify(sig, new TextEncoder().encode("climatechain interop!"), raw), false);
+  const flipped = Buffer.from(sig);
+  flipped[10] = flipped[10]! ^ 1;
+  assert.equal(ml_dsa65.verify(flipped, message, raw), false);
+});
