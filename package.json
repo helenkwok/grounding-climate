@@ -26,7 +26,7 @@
     "carbon:smoke": "node scripts/smoke-carbon-registry.mjs",
     "check:cadi": "node scripts/check-cadi-candidates.mjs",
     "check:cases": "node scripts/verify-building-case.mjs && node scripts/verify-battery-case.mjs",
-    "demo:build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/demo",
+    "demo:build": "npm run build",
     "demo:serve": "python3 -m http.server 4173 --directory apps/demo/dist",
     "submission:build": "python3 scripts/build-submission.py"
   }
