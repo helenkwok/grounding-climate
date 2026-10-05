@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "climatechain.gepiii-label-scoring/0.1",
+  "labels": {
+    "source": "https://raw.githubusercontent.com/buds-lab/ashrae-great-energy-predictor-3-solution-analysis/master/solutions/rank-1/input/bad_meter_readings.zip",
+    "licence": "MIT",
+    "rows": 20216100,
+    "alignedToTrainRows": true
+  },
+  "screen": {
+    "method": "hour-of-week-mean baseline, robust z of residual",
+    "threshold": 6.0,
+    "trainingFraction": 0.8
+  },
+  "meter": "electricity (meter 0)",
+  "windows": {
+    "case-2160h": {
+      "range": [
+        "2016-01-01 00:00:00",
+        "2016-03-30 23:00:00"
+      ],
+      "buildingsScored": 1399,
+      "buildingsSkippedTooFewRows": 2,
+      "buildingsWithAnyBadLabel": 809,
+      "rows": 2871538,
+      "badRate": 0.10851258106283114,
+      "pooled": {
+        "tp": 23945,
+        "fp": 43876,
+        "fn": 287653,
+        "tn": 2516064,
+        "precision": 0.35306173604045943,
+        "recall": 0.07684580773945918,
+        "f1": 0.1262192984536884
+      },
+      "perBuildingPrecision": {
+        "buildings": 944,
+        "p10": 0.0,
+        "median": 0.03125763125763126,
+        "p90": 1.0
+      },
+      "perBuildingRecall": {
+        "buildings": 809,
+        "p10": 0.0,
+        "median": 0.16666666666666666,
+        "p90": 1.0
+      }
+    },
+    "full-2016": {
+      "range": [
+        "2016-01-01",
+        "2016-12-31 23:00:00"
+      ],
+      "buildingsScored": 1413,
+      "buildingsSkippedTooFewRows": 0,
+      "buildingsWithAnyBadLabel": 1055,
+      "rows": 12060910,
+      "badRate": 0.05780849040412374,
+      "pooled": {
+        "tp": 62229,
+        "fp": 171006,
+        "fn": 634994,
+        "tn": 11192681,
+        "precision": 0.26680815486526466,
+        "recall": 0.08925264943927552,
+        "f1": 0.13375993328016955
+      },
+      "perBuildingPrecision": {
+        "buildings": 832,
+        "p10": 0.0,
+        "median": 0.06759638082975086,
+        "p90": 1.0
+      },
+      "perBuildingRecall": {
+        "buildings": 1055,
+        "p10": 0.0,
+        "median": 0.0,
+        "p90": 0.9704835049746902
+      }
+    }
+  },
+  "caseBuilding": {
+    "gepiiiBuildingId": 602,
+    "bdg2BuildingId": "Bear_assembly_Angel",
+    "windowRows": 2155,
+    "windowSumKWh": 1160425.4470000002,
+    "matchesCommittedBdg2Subset": false,
+    "badReadingsInWindow": 0,
+    "ourFlags": [
+      {
+        "timestamp": "2016-02-03 07:00:00",
+        "inLabels": false,
+        "labelledBad": false
+      },
+      {
+        "timestamp": "2016-03-01 17:00:00",
+        "inLabels": false,
+        "labelledBad": false
+      },
+      {
+        "timestamp": "2016-03-03 14:00:00",
+        "inLabels": false,
+        "labelledBad": false
+      }
+    ]
+  }
+}
