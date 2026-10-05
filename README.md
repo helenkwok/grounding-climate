@@ -75,4 +75,4 @@ The grid factor is deliberately not guessed from anonymised BDG2 site IDs. The C
 
 ## Battery DPP prototype
 
-The BatteryLife/CALB digital-product-passport slice is documented in [docs/battery-dpp.md](docs/battery-dpp.md). It reproduces the published CALB Dummy life-prediction baseline from pinned real labels, builds a traceable SOH/RUL decision-support passport from one processed battery, and demonstrates evidence-root failure after a cycle-capacity tamper.
+The BatteryLife/CALB digital-product-passport slice is documented in [docs/battery-dpp.md](docs/battery-dpp.md). It reruns the CALB Dummy life-prediction baseline from the pinned v1 release (which does **not** exactly reproduce the published summary row; the discrepancy is recorded), builds a traceable SOH/RUL decision-support passport from one processed battery, and demonstrates evidence-root failure after a cycle-capacity tamper.

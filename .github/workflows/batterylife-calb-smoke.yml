@@ -28,7 +28,7 @@ jobs:
         run: python scripts/prepare-batterylife-calb.py /tmp/batterylife-v11 v11
       - name: Build ClimateChain workspaces
         run: |
-          npm install
+          npm ci
           npm run build
       - name: Reproduce paper CALB baseline and build current passport
         run: node scripts/smoke-batterylife-calb.mjs /tmp/batterylife-v1 /tmp/batterylife-v11

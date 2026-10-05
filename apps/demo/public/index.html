@@ -18,7 +18,7 @@
     </a>
     <nav>
       <a href="#workspace">Workspace</a>
-      <a href="#tamper">Tamper proof</a>
+      <a href="#tamper">Tamper tests</a>
       <a href="#agent">WebMCP</a>
     </nav>
     <div id="webmcp-badge" class="status-pill">Checking WebMCP…</div>
@@ -30,8 +30,8 @@
         <p class="eyebrow">IEEE ClimateChain Global Hackathon 2026</p>
         <h1>Climate claims that can show their work.</h1>
         <p class="hero-lede">
-          One workspace connects real measurements, benchmarked analysis,
-          provenance, signatures, and tamper detection—without pretending a
+          One workspace brings together real measurements, benchmarked analysis,
+          provenance and recorded tamper tests—without pretending a
           blockchain makes source data true.
         </p>
         <div class="hero-actions">
@@ -39,9 +39,9 @@
           <button class="button ghost" id="run-agent-audit">Run guided audit</button>
         </div>
         <div class="hero-proof">
-          <span><strong>5</strong> real-data modules</span>
+          <span><strong>6</strong> real-data modules</span>
           <span><strong>1</strong> shared evidence graph</span>
-          <span><strong>PQ</strong> ML-DSA + hybrid TLS tested</span>
+          <span><strong>PQ</strong> ML-DSA + hybrid TLS tested in the libraries</span>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
         <h2>Evidence integrity audit</h2>
         <div class="flow">
           <span>source</span><b>→</b><span>analysis</span><b>→</b><span>claim</span>
-          <b>→</b><span>verify</span><b>→</b><span>attest</span>
+          <b>→</b><span>verify</span>
         </div>
         <dl>
           <div><dt>Building energy</dt><dd>1,160.43 MWh</dd></div>
@@ -64,12 +64,13 @@
     <section id="workspace" class="section">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Measured, not mocked</p>
-          <h2>One workspace, five independently testable capabilities</h2>
+          <p class="eyebrow">Measured offline, replayed here</p>
+          <h2>One workspace, six independently testable capabilities</h2>
         </div>
         <p>
-          Each card is backed by a committed measured report generated from a
-          pinned upstream source. Select a module to inspect its evidence and failure path.
+          Each card replays a committed measured report generated from a
+          pinned upstream source; the browser does not recompute it. Select a
+          module to inspect its evidence, checks and limitations.
         </p>
       </div>
       <div id="module-grid" class="module-grid"></div>
@@ -87,6 +88,8 @@
         <article class="card">
           <p class="panel-label">What was measured</p>
           <div id="metric-list" class="metric-list"></div>
+          <p class="panel-label">Verification</p>
+          <div id="check-list" class="metric-list"></div>
         </article>
         <article class="card">
           <p class="panel-label">Decision / user</p>
@@ -104,19 +107,19 @@
     <section id="tamper" class="section tamper-section">
       <div class="section-heading">
         <div>
-          <p class="eyebrow danger">Proof it is real</p>
-          <h2>Change one input. The current verification must fail.</h2>
+          <p class="eyebrow danger">Tamper tests</p>
+          <h2>Change one input and the evidence digest changes.</h2>
         </div>
         <p>
-          The old attestation remains attributable to the old bytes. It does not
-          silently “move” to changed evidence.
+          Building, battery and carbon show digests from recorded tamper runs.
+          The other modules show the expected effect only; no run is recorded for them yet.
         </p>
       </div>
       <div class="tamper-console">
         <div class="tamper-controls">
           <label for="tamper-module">Demo</label>
           <select id="tamper-module"></select>
-          <button id="tamper-button" class="button danger-button">Inject test tamper</button>
+          <button id="tamper-button" class="button danger-button">Show tamper result</button>
           <button id="reset-button" class="button ghost">Reset</button>
         </div>
         <div id="tamper-output" class="tamper-output"></div>

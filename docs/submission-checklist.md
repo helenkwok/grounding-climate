@@ -58,7 +58,7 @@ This user can:
 - inspect Building MRV evidence
 - ask the WebMCP agent for provenance
 - see source/model/factor boundaries
-- trigger the tamper demonstration
+- view the recorded tamper results (building, battery, carbon)
 - distinguish public disclosure from independently reproduced evidence
 
 The other module-specific users remain evidence that the workspace architecture generalises; they do not all need equal airtime.
