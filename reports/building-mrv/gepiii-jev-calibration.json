@@ -1,0 +1,457 @@
+{
+  "schemaVersion": "climatechain.gepiii-jev-calibration/0.1",
+  "sentToModel": "states built from BDG2 v1.0 raw electricity (CC BY-SA 4.0) only; no competition data",
+  "questionSet": "building-triage@2",
+  "window": [
+    "2016-01-01 00:00:00",
+    "2016-03-30 23:00:00"
+  ],
+  "screen": {
+    "threshold": 6.0,
+    "minRunHours": 168
+  },
+  "flagPopulationByPrimaryReason": {
+    "zero": 273024,
+    "residual": 49874,
+    "constant-run": 32511
+  },
+  "sampleByPrimaryReason": {
+    "residual": 120,
+    "constant-run": 120,
+    "zero": 60
+  },
+  "seed": 20261005,
+  "models": {
+    "jev-1.13.0": 300
+  },
+  "inputTokens": 171787,
+  "errors": {},
+  "unlabelledInSample": 4,
+  "bdg2MatchesCompetitionValue": 0.972972972972973,
+  "overall": {
+    "n": 296,
+    "badRate": 0.5506756756756757,
+    "choices": {
+      "meter_fault": 266,
+      "real_consumption": 30
+    },
+    "accuracyFaultVsNot": 0.6047297297297297,
+    "alwaysFaultAccuracy": 0.5506756756756757,
+    "precisionOfFault": 0.5864661654135338,
+    "recallOfFault": 0.9570552147239264,
+    "brier": 0.26323614864864864,
+    "aucPFault": 0.7315604963328567,
+    "reliability": [
+      {
+        "pFault": [
+          0,
+          0.5
+        ],
+        "n": 32,
+        "meanP": 0.37249999999999994,
+        "badRate": 0.21875
+      },
+      {
+        "pFault": [
+          0.5,
+          0.8
+        ],
+        "n": 100,
+        "meanP": 0.6566,
+        "badRate": 0.38
+      },
+      {
+        "pFault": [
+          0.8,
+          0.9
+        ],
+        "n": 43,
+        "meanP": 0.8446511627906979,
+        "badRate": 0.627906976744186
+      },
+      {
+        "pFault": [
+          0.9,
+          0.95
+        ],
+        "n": 50,
+        "meanP": 0.9231999999999999,
+        "badRate": 0.72
+      },
+      {
+        "pFault": [
+          0.95,
+          1.0
+        ],
+        "n": 71,
+        "meanP": 0.9761971830985914,
+        "badRate": 0.7746478873239436
+      }
+    ]
+  },
+  "byPrimaryReason": {
+    "residual": {
+      "n": 120,
+      "badRate": 0.11666666666666667,
+      "choices": {
+        "meter_fault": 98,
+        "real_consumption": 22
+      },
+      "accuracyFaultVsNot": 0.3,
+      "alwaysFaultAccuracy": 0.11666666666666667,
+      "precisionOfFault": 0.14285714285714285,
+      "recallOfFault": 1.0,
+      "brier": 0.39836000000000005,
+      "aucPFault": 0.8591644204851753,
+      "reliability": [
+        {
+          "pFault": [
+            0,
+            0.5
+          ],
+          "n": 24,
+          "meanP": 0.3870833333333333,
+          "badRate": 0.0
+        },
+        {
+          "pFault": [
+            0.5,
+            0.8
+          ],
+          "n": 60,
+          "meanP": 0.6535,
+          "badRate": 0.05
+        },
+        {
+          "pFault": [
+            0.8,
+            0.9
+          ],
+          "n": 21,
+          "meanP": 0.8438095238095239,
+          "badRate": 0.23809523809523808
+        },
+        {
+          "pFault": [
+            0.9,
+            0.95
+          ],
+          "n": 7,
+          "meanP": 0.9228571428571427,
+          "badRate": 0.0
+        },
+        {
+          "pFault": [
+            0.95,
+            1.0
+          ],
+          "n": 8,
+          "meanP": 0.9824999999999999,
+          "badRate": 0.75
+        }
+      ]
+    },
+    "constant-run": {
+      "n": 120,
+      "badRate": 0.775,
+      "choices": {
+        "meter_fault": 119,
+        "real_consumption": 1
+      },
+      "accuracyFaultVsNot": 0.7833333333333333,
+      "alwaysFaultAccuracy": 0.775,
+      "precisionOfFault": 0.7815126050420168,
+      "recallOfFault": 1.0,
+      "brier": 0.19434166666666666,
+      "aucPFault": 0.5531660692951016,
+      "reliability": [
+        {
+          "pFault": [
+            0,
+            0.5
+          ],
+          "n": 1,
+          "meanP": 0.37,
+          "badRate": 0.0
+        },
+        {
+          "pFault": [
+            0.5,
+            0.8
+          ],
+          "n": 18,
+          "meanP": 0.6966666666666667,
+          "badRate": 0.7222222222222222
+        },
+        {
+          "pFault": [
+            0.8,
+            0.9
+          ],
+          "n": 10,
+          "meanP": 0.8370000000000001,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.9,
+            0.95
+          ],
+          "n": 32,
+          "meanP": 0.9253125,
+          "badRate": 0.78125
+        },
+        {
+          "pFault": [
+            0.95,
+            1.0
+          ],
+          "n": 59,
+          "meanP": 0.9747457627118645,
+          "badRate": 0.7627118644067796
+        }
+      ]
+    },
+    "zero": {
+      "n": 56,
+      "badRate": 1.0,
+      "choices": {
+        "meter_fault": 49,
+        "real_consumption": 7
+      },
+      "accuracyFaultVsNot": 0.875,
+      "alwaysFaultAccuracy": 1.0,
+      "precisionOfFault": 1.0,
+      "recallOfFault": 0.875,
+      "brier": 0.12131607142857144,
+      "aucPFault": null,
+      "reliability": [
+        {
+          "pFault": [
+            0,
+            0.5
+          ],
+          "n": 7,
+          "meanP": 0.32285714285714284,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.5,
+            0.8
+          ],
+          "n": 22,
+          "meanP": 0.6322727272727274,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.8,
+            0.9
+          ],
+          "n": 12,
+          "meanP": 0.8525,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.9,
+            0.95
+          ],
+          "n": 11,
+          "meanP": 0.9172727272727272,
+          "badRate": 1.0
+        },
+        {
+          "pFault": [
+            0.95,
+            1.0
+          ],
+          "n": 4,
+          "meanP": 0.9850000000000001,
+          "badRate": 1.0
+        }
+      ]
+    }
+  },
+  "labels": "GEPIII rank-1 team's bad_meter_readings, passed to jeval as gold (label_source human_review)",
+  "jeval": {
+    "version": "0.2.0",
+    "wheelSha256": "027aa1953e8e91056ac697e79e1d1f6b90041ce3fc99b3a98158ffc094758222",
+    "costUnits": "review units; escalate = 1",
+    "suggestExcludeCostRatios": [
+      2,
+      5,
+      10
+    ],
+    "thresholds": {
+      "overall": {
+        "exit": 0,
+        "summary": [
+          "suggest_exclude_x2: threshold 0.84 (95% CI 0.70-0.85, width 0.15) \u00b7 auto 51% \u00b7 USD 0.75 per case",
+          "suggest_exclude_x5: threshold 0.97 (95% CI 0.94-1.00, width 0.06) \u00b7 auto 16% \u00b7 USD 0.94 per case",
+          "suggest_exclude_x10: threshold 1.00 (95% CI 0.97-1.00, width 0.03) \u00b7 auto 1% \u00b7 USD 0.99 per case",
+          "wrote /tmp/jeval-root/thresholds-overall.yaml"
+        ],
+        "file": {
+          "generated_at": "2026-10-05 23:34:28Z",
+          "model": "jev-1.13.0",
+          "n_records": 888,
+          "actions": {
+            "suggest_exclude_x2": {
+              "question": "triage",
+              "when": "meter_fault",
+              "threshold": 0.84,
+              "expected_cost_per_case": 0.75,
+              "auto_rate": 0.506757,
+              "accuracy_auto": 0.746667,
+              "ci": {
+                "low": 0.7,
+                "high": 0.85
+              },
+              "flat_region": {
+                "low": 0.68,
+                "high": 0.87
+              },
+              "models": [
+                "jev-1.13.0"
+              ],
+              "n_records": 296,
+              "insufficient_data": false
+            },
+            "suggest_exclude_x5": {
+              "question": "triage",
+              "when": "meter_fault",
+              "threshold": 0.97,
+              "expected_cost_per_case": 0.939189,
+              "auto_rate": 0.162162,
+              "accuracy_auto": 0.875,
+              "ci": {
+                "low": 0.93975,
+                "high": 1.0
+              },
+              "flat_region": {
+                "low": 0.96,
+                "high": 0.99
+              },
+              "models": [
+                "jev-1.13.0"
+              ],
+              "n_records": 296,
+              "insufficient_data": false
+            },
+            "suggest_exclude_x10": {
+              "question": "triage",
+              "when": "meter_fault",
+              "threshold": 1.0,
+              "expected_cost_per_case": 0.986486,
+              "auto_rate": 0.013514,
+              "accuracy_auto": 1.0,
+              "ci": {
+                "low": 0.97,
+                "high": 1.0
+              },
+              "flat_region": null,
+              "models": [
+                "jev-1.13.0"
+              ],
+              "n_records": 296,
+              "insufficient_data": false
+            }
+          }
+        }
+      },
+      "byFlagReason": {
+        "exit": 0,
+        "summary": [
+          "suggest_exclude_x2: threshold 0.84 (95% CI 0.70-0.85, width 0.15) \u00b7 auto 51% \u00b7 USD 0.75 per case",
+          "suggest_exclude_x5: threshold 0.97 (95% CI 0.94-1.00, width 0.06) \u00b7 auto 16% \u00b7 USD 0.94 per case",
+          "suggest_exclude_x10: threshold 1.00 (95% CI 0.97-1.00, width 0.03) \u00b7 auto 1% \u00b7 USD 0.99 per case",
+          "wrote /tmp/jeval-root/thresholds-byFlagReason.yaml",
+          "suggest_exclude_x2 by flag_reason: global threshold 0.84",
+          "  segment            threshold    cost/case (USD)  vs global      n  verdict",
+          "  flag_reason = constant-run      0.57               0.44      -0.08    120  split",
+          "  flag_reason = residual      0.97               0.97      -0.09    120  split",
+          "  flag_reason = zero         \u2014                  \u2014          \u2014     56  only 56 gold records, below the 100 a segment needs before a threshold is recommended for it",
+          "suggest_exclude_x5 by flag_reason: global threshold 0.97",
+          "  segment            threshold    cost/case (USD)  vs global      n  verdict",
+          "  flag_reason = constant-run      0.97               0.88      \u00b10.00    120  splitting does not pay: its optimum 0.97 is within one sweep step (0.01) of the global 0.97 and the cost change of 0 per case is under the 2% bar.",
+          "  flag_reason = residual      1.00               0.98    -0.0083    120  splitting does not pay: its optimum 1.00 differs from the global 0.97 and the cost change of 0.008333 per case is under the 2% bar.",
+          "  flag_reason = zero         \u2014                  \u2014          \u2014     56  only 56 gold records, below the 100 a segment needs before a threshold is recommended for it",
+          "suggest_exclude_x10 by flag_reason: global threshold 1.00",
+          "  segment            threshold    cost/case (USD)  vs global      n  verdict",
+          "  flag_reason = constant-run      1.00               0.99      \u00b10.00    120  splitting does not pay: its optimum 1.00 is within one sweep step (0.01) of the global 1.00 and the cost change of 0 per case is under the 2% bar.",
+          "  flag_reason = residual      1.00               0.98      \u00b10.00    120  splitting does not pay: its optimum 1.00 is within one sweep step (0.01) of the global 1.00 and the cost change of 0 per case is under the 2% bar.",
+          "  flag_reason = zero         \u2014                  \u2014          \u2014     56  only 56 gold records, below the 100 a segment needs before a threshold is recommended for it"
+        ],
+        "file": {
+          "generated_at": "2026-10-05 23:34:28Z",
+          "model": "jev-1.13.0",
+          "n_records": 888,
+          "actions": {
+            "suggest_exclude_x2": {
+              "question": "triage",
+              "when": "meter_fault",
+              "threshold": 0.84,
+              "expected_cost_per_case": 0.75,
+              "auto_rate": 0.506757,
+              "accuracy_auto": 0.746667,
+              "ci": {
+                "low": 0.7,
+                "high": 0.85
+              },
+              "flat_region": {
+                "low": 0.68,
+                "high": 0.87
+              },
+              "models": [
+                "jev-1.13.0"
+              ],
+              "n_records": 296,
+              "insufficient_data": false
+            },
+            "suggest_exclude_x5": {
+              "question": "triage",
+              "when": "meter_fault",
+              "threshold": 0.97,
+              "expected_cost_per_case": 0.939189,
+              "auto_rate": 0.162162,
+              "accuracy_auto": 0.875,
+              "ci": {
+                "low": 0.93975,
+                "high": 1.0
+              },
+              "flat_region": {
+                "low": 0.96,
+                "high": 0.99
+              },
+              "models": [
+                "jev-1.13.0"
+              ],
+              "n_records": 296,
+              "insufficient_data": false
+            },
+            "suggest_exclude_x10": {
+              "question": "triage",
+              "when": "meter_fault",
+              "threshold": 1.0,
+              "expected_cost_per_case": 0.986486,
+              "auto_rate": 0.013514,
+              "accuracy_auto": 1.0,
+              "ci": {
+                "low": 0.97,
+                "high": 1.0
+              },
+              "flat_region": null,
+              "models": [
+                "jev-1.13.0"
+              ],
+              "n_records": 296,
+              "insufficient_data": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

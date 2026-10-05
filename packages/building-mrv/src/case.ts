@@ -11,6 +11,7 @@ import type {
 
 import { reviewVerification } from "@climatechain/core";
 
+import { JEV_HAND_OFF } from "./advisory.js";
 import { intervalFlag } from "./decisions.js";
 import type { FlagStatus } from "./decisions.js";
 
@@ -60,6 +61,7 @@ function decisionVerification(
     staleNote: "Stale: made on a different meter series. ",
     findings: [
       "A decision records what a person chose, not why the reading happened; the cause is not confirmed by site records.",
+      "Advice is shown as a suggestion only at p(meter_fault) >= " + JEV_HAND_OFF.threshold + ", a threshold measured for a wrong exclusion costed at " + JEV_HAND_OFF.costRatio + " reviews (a policy choice); below it the flag needs a person. Either way a person decides.",
     ],
   });
 }

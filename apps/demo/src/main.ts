@@ -111,7 +111,7 @@ function buildingModule(live: LiveCheck): DemoModule {
       const run = adviceRuns.find((item) => item.inferenceParameters.interval === flag.timestamp);
       const advice = run
         ? "Jev " + run.model.version + ": " + (run.output.kind === "qualitative" ? run.output.statement.replace("advice: ", "") : "") +
-          " (" + run.confidence?.toFixed(2) + ")"
+          " (" + run.confidence?.toFixed(2) + ") · " + (run.extensions?.handOff ?? "needs a person")
         : "no advice recorded";
       const decision =
         flag.state === "undecided"
@@ -121,7 +121,7 @@ function buildingModule(live: LiveCheck): DemoModule {
     }),
     limitation:
       "Decided is not resolved: the cause of each zero reading is not confirmed by site records. " +
-      "Signing keys are per-run demo keys, not an identity. On 296 labelled GEPIII flags the advice called 91% faults against 55% labelled bad, so it is shown as advice only.",
+      "Signing keys are per-run demo keys, not an identity. On 296 labelled GEPIII flags the advice called 91% faults against 55% labelled bad, so it is shown as a suggestion only at p(fault) ≥ 0.97, a threshold measured for a wrong exclusion costed at 5 reviews (a policy choice).",
     metrics: [
       ["Meter rows", String(decided.analysis.anomalies.points.length)],
       ["Temporal holdout RMSLE", decided.analysis.baseline.metrics.rmsle.toFixed(4)],

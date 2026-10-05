@@ -218,6 +218,27 @@ export async function callJev(deps: JevDeps, key: string, state: FlagState): Pro
   }
 }
 
+/**
+ * When advice is shown as a suggested decision rather than "needs a person". Measured with jeval 0.2.0 on 296
+ * labelled GEPIII flags (reports/building-mrv/gepiii-jev-calibration.json): a wrong exclusion costed at 5 reviews
+ * gives 0.97 on p(meter_fault), with 88% of suggestions labelled bad. The cost ratio is a policy choice. Either
+ * way a person decides; the hand-off only changes what the advice is shown as.
+ */
+export const JEV_HAND_OFF = {
+  threshold: 0.97,
+  on: "probabilities.meter_fault",
+  costRatio: 5,
+  calibration: "reports/building-mrv/gepiii-jev-calibration.json",
+} as const;
+
+export type HandOff = "suggested" | "needs a person";
+
+export function handOff(advice: Pick<JevAdvice, "choice" | "probabilities">): HandOff {
+  return advice.choice === "meter_fault" && (advice.probabilities.meter_fault ?? 0) >= JEV_HAND_OFF.threshold
+    ? "suggested"
+    : "needs a person";
+}
+
 export function adviceRunId(timestamp: string): string {
   return "model-run:triage-advice:" + timestamp.replace(" ", "T");
 }
@@ -260,6 +281,6 @@ export async function adviceModelRun(input: {
     confidence: advice.confidence,
     executedAt: input.executedAt,
     reproducibility: { codeVersion: "building-mrv/0.1 " + questionSet },
-    extensions: { authority: "advice-only" },
+    extensions: { authority: "advice-only", handOff: handOff(advice), handOffPolicy: { ...JEV_HAND_OFF } },
   };
 }

@@ -179,7 +179,7 @@ const report = {
     "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
     "Decision-model advice is recorded but never changes a status; a person's decision does.",
     "A decision is not an explanation: the cause of each flagged reading is not confirmed by site records.",
-    "Advice is overconfident on labelled GEPIII flags (reports/building-mrv/gepiii-jev-scoring.json); it is shown as advice only.",
+    "Advice is overconfident on labelled GEPIII flags (reports/building-mrv/gepiii-jev-scoring.json). It is shown as a suggestion only at p(meter_fault) >= 0.97, measured with jeval for a wrong exclusion costed at 5 reviews (gepiii-jev-calibration.json); the 5x ratio is a policy choice, and zero readings had too few labels (56) for a threshold of their own.",
   ],
 };
 await writeFile(OUT_FILE, JSON.stringify(report, null, 2) + "\n");
