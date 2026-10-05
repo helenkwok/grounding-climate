@@ -12,6 +12,8 @@ import path from "node:path";
 
 import {
   createSignedAttestation,
+  HYBRID_SIGNATURE_POLICY,
+  publishedKeyResolver,
   verifySignedAttestation,
 } from "@climatechain/core";
 import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
@@ -159,11 +161,8 @@ const publishedKeys = [await crypto.describeKey(ed.signingKey.keyId), await cryp
 const verifier = new InMemoryNodeCryptoProvider();
 const verifyOptions = {
   hashProvider: verifier,
-  resolveKey: async (signature) => {
-    const metadata = publishedKeys.find((key) => key.keyId === signature.keyId);
-    return metadata && { provider: verifier, key: metadata.verificationKey, metadata };
-  },
-  policy: { requiredSuites: ["classical", "post-quantum"], minimumSignatures: 2 },
+  resolveKey: publishedKeyResolver(publishedKeys, verifier),
+  policy: HYBRID_SIGNATURE_POLICY,
 };
 const cleanVerification = await verifySignedAttestation(clean.climateCase, signed, verifyOptions);
 

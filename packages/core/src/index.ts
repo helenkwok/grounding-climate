@@ -7,3 +7,4 @@ export * from "./provenance.js";
 export * from "./attestation.js";
 export * from "./ledger-decision.js";
 export * from "./signed-log.js";
+export * from "./review.js";

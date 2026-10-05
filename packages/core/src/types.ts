@@ -100,6 +100,27 @@ export interface ClaimAssessment {
   note?: string;
 }
 
+export interface AccountingBoundary {
+  /** What the claim counts. */
+  included: string[];
+  /** What it deliberately leaves out. */
+  excluded: string[];
+  /** Choices a person or a policy made, which another reviewer could make differently. */
+  policyChoices: string[];
+  /** Properties the claim says nothing about. */
+  notAssessed: string[];
+}
+
+/**
+ * How a reviewer obtains the data behind a piece of evidence. "committed": in the repository, where the
+ * licence allows it. "reviewer-supplied": the reviewer gets it from the source and brings it; only its
+ * digest is kept. "link-only": the source can be read where it is published, but not copied.
+ */
+export interface EvidenceAccess {
+  mode: "committed" | "reviewer-supplied" | "link-only";
+  instructions?: string;
+}
+
 export interface Claim extends BaseNode {
   nodeType: "claim";
   subject: SubjectRef;
@@ -111,6 +132,11 @@ export interface Claim extends BaseNode {
     methodology?: string;
     organisationalBoundary?: string;
     notes?: string;
+    /**
+     * The accounting boundary: policy judgements about what the claim counts, kept apart from how it was
+     * measured (calculations, factors and model runs). After CarbonPlan and CRSI, "Recentering goals" (2026).
+     */
+    accounting?: AccountingBoundary;
   };
   assessments: ClaimAssessment[];
 }
@@ -154,6 +180,7 @@ export interface Evidence extends BaseNode {
   };
   integrity?: ContentDigest;
   rights?: RightsMetadata;
+  access?: EvidenceAccess;
   temporalCoverage?: TemporalScope;
   spatialCoverage?: SpatialScope;
   signer?: {

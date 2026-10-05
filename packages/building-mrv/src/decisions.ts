@@ -1,6 +1,7 @@
 // A person's decision on each flagged interval. "Decided" is not "resolved": excluding a reading as a
 // meter fault records a choice, not an explanation of what happened at the site.
-import type { ContentDigest } from "@climatechain/core";
+import { reviewStatuses } from "@climatechain/core";
+import type { ContentDigest, ReviewFlag } from "@climatechain/core";
 
 import { reconstructElectricityEmissions } from "./emissions.js";
 import type {
@@ -27,25 +28,34 @@ export interface FlagStatus {
   decision?: IntervalDecision;
 }
 
-const sameDigest = (a: ContentDigest, b: ContentDigest) =>
-  a.algorithm === b.algorithm && a.value === b.value;
+/** The review flag for one flagged reading; its id is also the decision check's id. */
+export function intervalFlag(timestamp: string): ReviewFlag {
+  return { id: "interval:" + timestamp, label: "Decision on flagged reading at " + timestamp };
+}
 
+/** The shared review rule (core reviewStatuses), keyed by the reading's timestamp. */
 export function flagStatuses(
   analysis: BuildingMrvAnalysis,
   decisions: readonly IntervalDecision[],
   currentSeriesDigest: ContentDigest,
 ): FlagStatus[] {
-  return analysis.anomalies.points
-    .filter((point) => point.flagged)
-    .map((point) => {
-      const decision = decisions.find((item) => item.timestamp === point.timestamp);
-      if (!decision) return { timestamp: point.timestamp, state: "undecided" };
-      return {
-        timestamp: point.timestamp,
-        state: sameDigest(decision.meterSeriesDigest, currentSeriesDigest) ? "decided" : "stale",
-        decision,
-      };
-    });
+  const timestamps = analysis.anomalies.points.filter((point) => point.flagged).map((point) => point.timestamp);
+  const statuses = reviewStatuses(
+    timestamps.map(intervalFlag),
+    decisions.map((decision) => ({
+      ...decision,
+      flagId: intervalFlag(decision.timestamp).id,
+      inputDigest: decision.meterSeriesDigest,
+    })),
+    currentSeriesDigest,
+  );
+  return statuses.map((status, index) => {
+    const timestamp = timestamps[index]!;
+    const decision = decisions.find((item) => item.timestamp === timestamp);
+    return status.state === "undecided" || !decision
+      ? { timestamp, state: "undecided" }
+      : { timestamp, state: status.state, decision };
+  });
 }
 
 /**
