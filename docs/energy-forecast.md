@@ -148,6 +148,20 @@ The measured record is:
 
 The published EnergyTS V3.0 values remain an upstream comparison target. ClimateChain does not claim to have rerun the proprietary/large forecasting model merely because it reproduces the baseline.
 
+## Live case and approval
+
+`node scripts/run-energy-case.mjs` builds the signed case from the committed series
+(`data/external/energy-eva-active-power-load`, CC BY 4.0), Energy-EVA's published results
+(`packages/energy-forecast/references/energy-eva-active-power-load.json`) and the operator's request and policy
+(`reports/energy-forecast/action-request.json`). The request and policy are illustrative; the confidence is not: it is
+the mean LOAD_ACC measured over the 5 windows (0.6470).
+
+The policy caps the requested 120 MWh at 100 MWh, and amounts of 50 MWh or more need a person's approval. The approval in
+`reports/energy-forecast/action-decisions.json` (approve, `person:energy-manager`) is bound to a digest of the series, the
+request and the policy, so changing any of them makes it stale. The claim states its accounting boundary: nothing is sent
+to a market or a device, and forecast quality is not claimed as avoided emissions. `npm run check` rebuilds the case and
+verifies it against the signed attestation (`scripts/verify-energy-case.mjs`).
+
 ## Acceptance scope
 
 For the hackathon slice, "model metric against baseline" means:

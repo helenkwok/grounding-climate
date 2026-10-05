@@ -1,0 +1,13 @@
+[
+  {
+    "flagId": "action:bounded-action",
+    "decision": "approve",
+    "reason": "Forecast matches the published baseline in all 5 windows and clears the 0.6 confidence floor; approving the policy-capped 100 MWh.",
+    "decidedBy": "person:energy-manager",
+    "decidedAt": "2026-10-05T14:34:33.900Z",
+    "inputDigest": {
+      "algorithm": "SHA-256",
+      "value": "DokLOtp07sXUMuX5QnOOlbhuXBYApKXXQcC7Q9bHqo8"
+    }
+  }
+]

@@ -398,8 +398,9 @@
         "attributionRequired": true
       },
       "repository": {
-        "mode": "download-from-upstream",
-        "note": "Use the original Mendeley or Energy-EVA standardized source at runtime. Do not vendor the full dataset into ClimateChain."
+        "mode": "redistributable",
+        "path": "data/external/energy-eva-active-power-load",
+        "note": "All 7 standardised series (5,160 hourly rows) from the pinned Energy-EVA parquet member, converted to JSON, are committed with the CC BY 4.0 notice and both citations; the full Energy-EVA archive stays upstream."
       },
       "attribution": "Veeramsetty, Salkuti, Nikitha and Siddartha, Active power load dataset - IEX data, Mendeley Data v1, DOI 10.17632/jxm8d4w4cv.1, CC-BY-4.0.",
       "notes": [
@@ -410,6 +411,10 @@
         {
           "url": "https://data.mendeley.com/datasets/jxm8d4w4cv/1",
           "finding": "Mendeley lists the dataset as CC BY 4.0 and describes 23,304 hourly active-power samples."
+        },
+        {
+          "url": "https://zenodo.org/records/17099628",
+          "finding": "The EnergyTS TimeSeries Dataset record that holds the standardised parquet is licensed CC BY 4.0."
         }
       ]
     },

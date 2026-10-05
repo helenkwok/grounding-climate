@@ -1,0 +1,16 @@
+{
+  "note": "An illustrative operator request and policy. The amounts are not from a real operator; the confidence is not set here, it is the forecast's measured mean LOAD_ACC.",
+  "request": {
+    "actionType": "shift-load",
+    "requestedMWh": 120,
+    "counterparty": "grid:demand-response-pool"
+  },
+  "policy": {
+    "enabled": true,
+    "allowedActionTypes": ["shift-load", "charge-storage", "discharge-storage"],
+    "maxActionMWh": 100,
+    "minimumConfidence": 0.6,
+    "humanApprovalAboveMWh": 50,
+    "allowedCounterparties": ["grid:demand-response-pool"]
+  }
+}

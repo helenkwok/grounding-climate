@@ -6,7 +6,7 @@ This table records the repository's current reuse decision; it is not legal advi
 
 | Source | Component | Licence / terms | Redistribution | Repository policy |
 | --- | --- | --- | --- | --- |
-| Active power load dataset - IEX data | dataset | CC-BY-4.0 | allowed | download-from-upstream |
+| Active power load dataset - IEX data | dataset | CC-BY-4.0 | allowed | redistributable |
 | ALDI++ | code | MIT | allowed | code-only |
 | ASHRAE Great Energy Predictor III competition data | benchmark-data | Subject to Competition Rules | prohibited | download-from-upstream |
 | BatteryLife benchmark code | code | MIT | allowed | code-only |
@@ -33,7 +33,7 @@ Veeramsetty, Salkuti, Nikitha and Siddartha, Active power load dataset - IEX dat
 
 - Source: https://data.mendeley.com/datasets/jxm8d4w4cv/1
 - Terms/licence: https://data.mendeley.com/datasets/jxm8d4w4cv/1
-- Repository policy: Use the original Mendeley or Energy-EVA standardized source at runtime. Do not vendor the full dataset into ClimateChain.
+- Repository policy: All 7 standardised series (5,160 hourly rows) from the pinned Energy-EVA parquet member, converted to JSON, are committed with the CC BY 4.0 notice and both citations; the full Energy-EVA archive stays upstream.
 
 ### ALDI++ (code)
 
