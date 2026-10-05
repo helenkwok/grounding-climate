@@ -9,6 +9,8 @@ export function reconstructElectricityEmissions(
   series: readonly MeterPoint[],
   factor: GridEmissionFactor,
   anomalies?: AnomalyResult,
+  /** Flagged timestamps a person decided to keep. */
+  kept: ReadonlySet<string> = new Set(),
 ): EmissionsResult {
   if (
     !Number.isFinite(factor.valueKgCo2ePerKwh) ||
@@ -19,7 +21,7 @@ export function reconstructElectricityEmissions(
 
   const flagged = new Set(
     anomalies?.points
-      .filter((point) => point.flagged)
+      .filter((point) => point.flagged && !kept.has(point.timestamp))
       .map((point) => point.timestamp) ?? [],
   );
 

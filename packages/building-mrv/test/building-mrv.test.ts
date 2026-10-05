@@ -200,7 +200,7 @@ test("tamper changes the ClimateChain evidence root and reconciliation state", a
     analysis: tamperedAnalysis,
   });
 
-  assert.equal(tamperedCase.verifications[0]?.result, "mismatch");
+  assert.equal(tamperedCase.verifications[0]?.result, "insufficient-evidence");
 
   const verification = await verifyEvidenceRoot(
     tamperedCase,

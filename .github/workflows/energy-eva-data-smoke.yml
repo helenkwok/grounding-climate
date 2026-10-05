@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
       - name: Stream standardized active-power parquet
         run: node scripts/prepare-energy-eva-active-power.mjs /tmp/energy-eva
       - name: Install Parquet reader

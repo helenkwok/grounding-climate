@@ -8,3 +8,5 @@ export * from "./integrity.js";
 export * from "./prepared.js";
 export * from "./case.js";
 export * from "./service.js";
+export * from "./advisory.js";
+export * from "./decisions.js";
