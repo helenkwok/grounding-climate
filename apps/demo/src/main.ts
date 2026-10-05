@@ -112,7 +112,7 @@ function buildingModule(live: LiveCheck): DemoModule {
     }),
     limitation:
       "Decided is not resolved: the cause of each zero reading is not confirmed by site records. " +
-      "Signing keys are per-run demo keys, not an identity. The advice's accuracy is not yet measured on labelled data.",
+      "Signing keys are per-run demo keys, not an identity. On 296 labelled GEPIII flags the advice called 91% faults against 55% labelled bad, so it is shown as advice only.",
     metrics: [
       ["Meter rows", String(decided.analysis.anomalies.points.length)],
       ["Temporal holdout RMSLE", decided.analysis.baseline.metrics.rmsle.toFixed(4)],

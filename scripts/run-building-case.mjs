@@ -208,7 +208,7 @@ const report = {
     "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
     "Decision-model advice is recorded but never changes a status; a person's decision does.",
     "A decision is not an explanation: the cause of each flagged reading is not confirmed by site records.",
-    "Advice accuracy has not been measured on labelled data yet.",
+    "Advice is overconfident on labelled GEPIII flags (reports/building-mrv/gepiii-jev-scoring.json); it is shown as advice only.",
   ],
 };
 await writeFile(OUT_FILE, JSON.stringify(report, null, 2) + "\n");

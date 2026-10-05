@@ -221,7 +221,25 @@ Caveats:
 
 In the case window this adds two flags to the case building: the zero readings at 2016-01-30 08:00 and at 2016-03-13 02:00, the hour that does not exist on the local clock when US daylight saving starts.
 
-The decision model's advice has not been scored against these labels yet.
+### The decision model's advice, scored
+
+`scripts/kaggle/gepiii-jev-scoring/jev_scoring.py` asked the decision model (Jev, `jev-1.13.0`, question set `building-triage@2`) about 300 flags from the case window: 120 residual, 120 constant-run and 60 zero, drawn by flag reason with a fixed seed and without looking at labels. Everything sent was built from BDG2 v1.0 raw electricity (CC BY-SA 4.0), with the same state builder and leak guard as `advisory.ts`; the competition data and labels were loaded only afterwards, inside Kaggle, to score the answers. 296 of the 300 had a label (BDG2 and competition values agree on 97.3% of them). There were no API errors; the run used 171,787 input tokens. Aggregates are in `reports/building-mrv/gepiii-jev-scoring.json`.
+
+| Flags | n | Labelled bad | Jev said meter fault | Accuracy (always "fault") | AUC of P(fault) | Brier |
+|---|---|---|---|---|---|---|
+| All sampled | 296 | 55% | 91% | 0.61 (0.55) | 0.73 | 0.26 |
+| Residual | 120 | 12% | 83% | 0.29 (0.12) | 0.86 | 0.40 |
+| Constant run | 120 | 78% | 99% | 0.78 (0.78) | 0.53 | 0.20 |
+| Zero | 56 | 100% | 89% | 0.89 (1.00) | n/a | 0.12 |
+
+What this says:
+
+- **The advice leans heavily towards "meter fault" and its probabilities are overconfident.** Overall, when it gave P(fault) of 0.95 or more, 79% of those readings were labelled bad; from 0.5 to 0.8, 38% were.
+- **On residual flags its probability ranks well (AUC 0.86) but its choice does not.** It called 83% of them faults while the labels mark 12%. Part of that gap may be the labels: they rarely mark isolated spikes, which is what this rule finds.
+- **On constant runs it adds nothing over the base rate** (AUC 0.53): it calls nearly every run a fault.
+- **On zeros it was wrong 11% of the time**, calling a zero real consumption on 6 of 56, all labelled bad.
+
+This is why the advice never sets a status: a person decides each flag, and the advice is shown as one input. For the case building, all five flags are zeros, a group the labels mark bad without exception, and Jev called each a fault with 0.96 to 0.99.
 
 ## Emissions reconstruction
 
