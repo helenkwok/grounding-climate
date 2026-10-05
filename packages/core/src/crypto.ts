@@ -1,8 +1,10 @@
 import { domainSeparatedBytes } from "./canonical.js";
 import type { ContentDigest } from "./types.js";
 
+// 0.2 signs createdAt with the payload. 0.1 left it unsigned, so editing it could move a signature
+// to before a key's revocation; 0.1 envelopes are refused.
 export const SIGNATURE_ENVELOPE_VERSION =
-  "climatechain.signature-envelope/0.1" as const;
+  "climatechain.signature-envelope/0.2" as const;
 
 export type CryptoSuite = "classical" | "post-quantum";
 export type SignatureEncoding = "base64url";
@@ -105,7 +107,10 @@ export interface SignatureVerificationResult {
 }
 
 export interface EnvelopeVerificationResult {
+  versionSupported: boolean;
   payloadHashMatches: boolean;
+  /** Keys that appear on more than one signature; each key counts once toward the policy. */
+  duplicateKeyIds: string[];
   signatures: SignatureVerificationResult[];
   policySatisfied: boolean;
   valid: boolean;
@@ -163,6 +168,20 @@ export function isKeyValidAt(
   return true;
 }
 
+/** The bytes every signer signs: the payload and the envelope's createdAt, under the domain and schema. */
+function envelopeSigningBytes(
+  domain: string,
+  schemaVersion: string,
+  createdAt: string,
+  payload: unknown,
+): Uint8Array {
+  return domainSeparatedBytes(domain, schemaVersion, {
+    envelopeVersion: SIGNATURE_ENVELOPE_VERSION,
+    createdAt,
+    payload,
+  });
+}
+
 function sameDigest(left: ContentDigest, right: ContentDigest): boolean {
   return left.algorithm === right.algorithm && left.value === right.value;
 }
@@ -175,9 +194,10 @@ export async function createSignatureEnvelope(
     throw new Error("At least one signer is required.");
   }
 
-  const bytes = domainSeparatedBytes(
+  const bytes = envelopeSigningBytes(
     options.domain,
     options.schemaVersion,
+    options.createdAt,
     payload,
   );
   const payloadHash = await options.hashProvider.hash(bytes, "SHA-256");
@@ -218,9 +238,11 @@ export async function verifySignatureEnvelope(
     policy: SignaturePolicy;
   },
 ): Promise<EnvelopeVerificationResult> {
-  const bytes = domainSeparatedBytes(
+  const versionSupported = envelope.version === SIGNATURE_ENVELOPE_VERSION;
+  const bytes = envelopeSigningBytes(
     envelope.domain,
     envelope.schemaVersion,
+    envelope.createdAt,
     payload,
   );
   const currentHash = await options.hashProvider.hash(bytes, "SHA-256");
@@ -262,18 +284,28 @@ export async function verifySignatureEnvelope(
     });
   }
 
+  const seen = new Set<string>();
+  const duplicateKeyIds = new Set<string>();
+  for (const item of envelope.signatures) {
+    if (seen.has(item.keyId)) duplicateKeyIds.add(item.keyId);
+    seen.add(item.keyId);
+  }
+
   const validSignatures = signatures.filter((item) => item.signatureValid);
+  const validKeyIds = new Set(validSignatures.map((item) => item.signature.keyId));
   const minimumSignatures = options.policy.minimumSignatures ?? 1;
   const requiredSuitesPresent = options.policy.requiredSuites.every((suite) =>
     validSignatures.some((item) => item.signature.suite === suite),
   );
   const policySatisfied =
-    validSignatures.length >= minimumSignatures && requiredSuitesPresent;
+    validKeyIds.size >= minimumSignatures && requiredSuitesPresent;
 
   return {
+    versionSupported,
     payloadHashMatches,
+    duplicateKeyIds: [...duplicateKeyIds].sort(),
     signatures,
     policySatisfied,
-    valid: payloadHashMatches && policySatisfied,
+    valid: versionSupported && payloadHashMatches && policySatisfied,
   };
 }

@@ -1,4 +1,5 @@
 import { canonicalBytes } from "./canonical.js";
+import { isKeyValidAt } from "./crypto.js";
 import type {
   CryptoProvider,
   CryptoSignature,
@@ -137,8 +138,12 @@ export async function verifySignedLog<T>(
 
     for (const signature of record.signatures) {
       const resolved = await options.resolveKey(signature);
+      // The timestamp is part of the signed body, so it can be trusted for the key-validity check.
       if (
         !resolved ||
+        resolved.key.keyId !== signature.keyId ||
+        resolved.metadata.keyId !== signature.keyId ||
+        !isKeyValidAt(resolved.metadata, record.timestamp) ||
         !(await resolved.provider.verify(payload, signature, resolved.key))
       ) {
         signaturesValid = false;
