@@ -207,8 +207,11 @@ export async function verifySignedAttestation(
     evidenceVerification.manifestRootMatches &&
     sameDigest(signed.evidence.root, signed.payload.evidenceRoot);
 
+  // createdAt is signed, and must also be the time the payload says it was issued.
   const validForSignedEvidence =
-    signature.valid && manifestRootMatchesPayload;
+    signature.valid &&
+    manifestRootMatchesPayload &&
+    signed.envelope.createdAt === signed.payload.issuedAt;
 
   return {
     signature,

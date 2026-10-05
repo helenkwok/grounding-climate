@@ -55,18 +55,18 @@ The application does not sign arbitrary JSON serialization.
 ```text
 domain
 + schema version
-+ canonical payload bytes
++ canonical { envelopeVersion, createdAt, payload } bytes
 → SHA-256 content identifier
 → one or more signatures over the same domain-separated canonical bytes
 ```
 
-The signature covers the exact domain-separated payload bytes, not only a human-readable field or mutable database row.
+The signature covers the exact domain-separated payload bytes and the envelope's `createdAt`, not only a human-readable field or mutable database row. Envelope version 0.1 left `createdAt` unsigned, so editing it could move a signature to before a key's revocation and make it verify; version 0.2 signs it, and 0.1 envelopes are refused.
 
 The envelope stores the SHA-256 digest as an identifier and tamper check:
 
 ```json
 {
-  "version": "climatechain.signature-envelope/0.1",
+  "version": "climatechain.signature-envelope/0.2",
   "domain": "climatechain.attestation",
   "schemaVersion": "0.1",
   "payloadHash": {
@@ -149,7 +149,13 @@ old key signs at T1
 → old key is invalid for new signatures after T2
 ```
 
-Verification checks validity at the **envelope creation/signing time**, not merely whether the key is active today.
+Verification checks validity at the **envelope creation/signing time**, not merely whether the key is active today. That time is signed, so nobody without the key can change it; an attestation's `createdAt` must also equal the `issuedAt` in its signed payload. Signed-log records are checked the same way against their signed timestamp.
+
+What signing the time does not do: whoever holds a key chooses the time they sign with. A stolen key can still sign with a date before its revocation. Ruling that out needs a time the signer does not control, such as an external timestamp or ledger anchor recorded when the signature is made.
+
+### Signature policy
+
+`minimumSignatures` counts **distinct keys**, not signatures: the same signature copied twice, or two signatures from one key, count once, and the result lists any `duplicateKeyIds`. `requiredSuites` needs at least one valid signature from each named suite, so a hybrid policy (`["classical", "post-quantum"]`) needs both an Ed25519 and an ML-DSA signature. Distinct keys are not necessarily distinct people: two keys held by one controller still count as two.
 
 ## Implementations
 
@@ -163,8 +169,10 @@ Tests cover:
 - payload tampering
 - key rotation
 - historical verification after rotation
+- ML-DSA-65 (Node 24), and a hybrid policy that fails without either signature
+- adversarial cases (`test/adversarial.test.ts`): a backdated `createdAt`, one signature copied twice, an old-version envelope, and a signed-log record made after its key was revoked
 
-This is suitable for classical signing in local/server workflows. It is not the PQ implementation.
+This is suitable for signing in local and server workflows. It now also signs and verifies ML-DSA-65 through Node's built-in cryptography; the Rust crate below remains the TLS and BoringSSL path.
 
 ### `climatechain-crypto-boring`
 
