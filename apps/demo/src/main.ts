@@ -2,8 +2,11 @@ import {
   CLIMATECHAIN_SCHEMA_VERSION,
   type ClimateCaseBundle,
   type ClimateNode,
+  type ContentDigest,
   type NodeRef,
   type Verification,
+  type VerificationCheck,
+  type VerificationResult,
 } from "@climatechain/core";
 import {
   ActivityLog,
@@ -36,6 +39,10 @@ type DemoModule = {
   limitation: string;
   metrics: Array<[string, string]>;
   provenance: Array<[string, string]>;
+  /** Digest the module's own smoke run recorded for its evidence; absent when none exists. */
+  digest?: ContentDigest;
+  /** Checks read from fields the committed report records; nothing here is recomputed in the browser. */
+  checks: VerificationCheck[];
   tamper: {
     before: string;
     change: string;
@@ -89,6 +96,31 @@ const modules: DemoModule[] = [
       ["Factor source", building.emissions.factor.sourceOrganisation],
       ["Clean digest", building.tamperSmoke.cleanDigest.value],
     ],
+    digest: building.tamperSmoke.cleanDigest,
+    checks: [
+      {
+        id: "source-integrity",
+        name: "Source files match pinned digests",
+        outcome: building.subset.sourceIntegrity.valid ? "pass" : "fail",
+      },
+      {
+        id: "anomaly-screen",
+        name: "Baseline-residual anomaly screen",
+        outcome: building.anomalyCheck.flaggedCount === 0 ? "pass" : "warn",
+        detail:
+          building.anomalyCheck.flaggedCount +
+          " readings flagged; not yet reviewed or explained",
+      },
+      {
+        id: "tamper-detected",
+        name: "Recorded tamper run changes the digest and is flagged",
+        outcome:
+          building.tamperSmoke.flaggedAfterTamper &&
+          building.tamperSmoke.cleanDigest.value !== building.tamperSmoke.tamperedDigest.value
+            ? "pass"
+            : "fail",
+      },
+    ],
     tamper: {
       before: building.tamperSmoke.originalValue + " kWh",
       change: "×" + building.tamperSmoke.multiplier + " at " + building.tamperSmoke.timestamp,
@@ -129,6 +161,20 @@ const modules: DemoModule[] = [
       ["Archive MD5", energy.source.archiveMd5],
       ["Model", energy.benchmark.model],
     ],
+    digest: { algorithm: "MD5", value: energy.source.archiveMd5 },
+    checks: [
+      {
+        id: "baseline-reproduced",
+        name: "Published dummy baseline reproduced",
+        outcome: energy.benchmark.reproducedAll ? "pass" : "fail",
+      },
+      {
+        id: "source-integrity",
+        name: "Source archive digest",
+        outcome: "warn",
+        detail: "Archive pinned by MD5 only; no SHA-256 evidence digest or evidence root recorded",
+      },
+    ],
     tamper: {
       before: "Pinned standardized input + dummy_model semantics",
       change: "Change source series / model version / confidence",
@@ -163,6 +209,20 @@ const modules: DemoModule[] = [
       ["Mask SHA-256", earth.source.mask.sha256],
       ["Method", earth.baseline.method + " @ " + earth.baseline.threshold],
     ],
+    digest: { algorithm: "SHA-256 (hex)", value: earth.source.image.sha256 },
+    checks: [
+      {
+        id: "source-integrity",
+        name: "Scene image and mask pinned by SHA-256",
+        outcome: earth.source.image.sha256 && earth.source.mask.sha256 ? "pass" : "fail",
+      },
+      {
+        id: "ground-truth",
+        name: "Detector compared with labelled mask",
+        outcome: earth.baseline.metrics.validPixels > 0 ? "pass" : "fail",
+        detail: "IoU " + earth.baseline.metrics.iou.toFixed(4) + " on one scene",
+      },
+    ],
     tamper: {
       before: earth.source.image.sha256,
       change: "Modify source image or prediction artefact",
@@ -196,6 +256,25 @@ const modules: DemoModule[] = [
       ["Input digest", battery.passport.inputDigest.value],
       ["Evidence root", battery.passport.evidenceRoot.value],
       ["Published-row exact match", battery.benchmark.benchmarkMatchesPublished ? "yes" : "no"],
+    ],
+    digest: battery.passport.evidenceRoot,
+    checks: [
+      {
+        id: "pinned-baseline",
+        name: "Pinned v1 baseline reproduced",
+        outcome: battery.benchmark.benchmarkMatchesPinnedV1 ? "pass" : "fail",
+      },
+      {
+        id: "published-baseline",
+        name: "Published baseline table reproduced",
+        outcome: battery.benchmark.benchmarkMatchesPublished ? "pass" : "warn",
+        detail: battery.benchmark.reproducibilityFinding,
+      },
+      {
+        id: "tamper-detected",
+        name: "Recorded tamper run changes the evidence root",
+        outcome: battery.tamper.rootChanged ? "pass" : "fail",
+      },
     ],
     tamper: {
       before: battery.tamper.originalCapacityAh + " Ah",
@@ -232,6 +311,24 @@ const modules: DemoModule[] = [
       ["Source bytes", carbon.source.totalBytes.toLocaleString()],
       ["Evidence root", carbon.clean.evidenceRoot.value],
       ["Ledger decision", carbon.ledgerDecision.decision],
+    ],
+    digest: carbon.clean.evidenceRoot,
+    checks: [
+      {
+        id: "duplicate-serials",
+        name: "No duplicate serial excess",
+        outcome: carbon.clean.duplicateExcessCount === 0 ? "pass" : "fail",
+      },
+      {
+        id: "issuance-coverage",
+        name: "Every retirement group has matching issuance",
+        outcome: carbon.clean.unresolvedMissingIssuanceCount === 0 ? "pass" : "warn",
+        detail:
+          carbon.clean.unresolvedMissingIssuanceCount +
+          " groups lack issuance in the bounded snapshot (report result: " +
+          carbon.clean.verificationResult +
+          ")",
+      },
     ],
     tamper: {
       before:
@@ -275,6 +372,12 @@ const modules: DemoModule[] = [
       ["CaDI status", lpl?.confirmationStatus ?? "—"],
       ["Rights policy", cadiData.rightsManifestId],
     ],
+    checks: [
+      { id: "source-found", name: "Public first-party source located", outcome: lpl ? "pass" : "fail" },
+      { id: "calculation-reproduced", name: "Reported value recalculated", outcome: "not-run" },
+      { id: "factor-traced", name: "Emission factors traced", outcome: "not-run" },
+      { id: "assurance", name: "Third-party assurance assessed", outcome: "not-run" },
+    ],
     tamper: {
       before: lplClaim ? lplClaim.value + " " + lplClaim.unit : "public source",
       change: "Change extracted claim value/source bytes",
@@ -285,7 +388,7 @@ const modules: DemoModule[] = [
 
 const moduleById = new Map(modules.map((item) => [item.id, item]));
 
-function reportEvidence(id: string, source: string, digest: string) {
+function reportEvidence(id: string, source: string, digest?: ContentDigest) {
   return {
     nodeType: "evidence" as const,
     id: "evidence:demo:" + id,
@@ -297,10 +400,7 @@ function reportEvidence(id: string, source: string, digest: string) {
       publisher: source,
       retrievedAt: "2026-09-30T00:00:00Z",
     },
-    integrity: {
-      algorithm: "SHA-256",
-      value: digest,
-    },
+    ...(digest ? { integrity: digest } : {}),
     rights: {
       redistribution: "allowed" as const,
       attribution: source,
@@ -309,12 +409,7 @@ function reportEvidence(id: string, source: string, digest: string) {
 }
 
 const demoEvidence = modules.map((item) =>
-  reportEvidence(
-    item.id,
-    item.source,
-    item.provenance.find(([key]) => /digest|root|sha/i.test(key))?.[1] ??
-      "measured-report:" + item.id,
-  ),
+  reportEvidence(item.id, item.source, item.digest),
 );
 
 const demoClaims = modules.map((item) => ({
@@ -339,9 +434,21 @@ const demoClaims = modules.map((item) => ({
   },
   assessments: [
     { dimension: "source-found" as const, state: "confirmed" as const },
-    { dimension: "evidence-integrity-confirmed" as const, state: "confirmed" as const },
+    item.digest
+      ? {
+          dimension: "evidence-integrity-confirmed" as const,
+          state: "confirmed" as const,
+          note: item.digest.algorithm + " digest recorded by the module's smoke run",
+        }
+      : { dimension: "evidence-integrity-confirmed" as const, state: "not-assessed" as const },
   ],
 }));
+
+function deriveResult(checks: VerificationCheck[]): VerificationResult {
+  if (checks.some((check) => check.outcome === "fail")) return "mismatch";
+  if (checks.some((check) => check.outcome !== "pass")) return "insufficient-evidence";
+  return "reconciled";
+}
 
 const demoVerifications: Verification[] = modules.map((item) => ({
   nodeType: "verification",
@@ -360,16 +467,8 @@ const demoVerifications: Verification[] = modules.map((item) => ({
     name: "ClimateChain measured-report workspace",
   },
   profile: "demo-report/0.1",
-  result:
-    item.id === "carbon" || item.id === "disclosure"
-      ? "insufficient-evidence"
-      : "reconciled",
-  checks: item.metrics.slice(0, 3).map(([name, value], index) => ({
-    id: "metric-" + index,
-    name,
-    outcome: "pass",
-    detail: value,
-  })),
+  result: deriveResult(item.checks),
+  checks: item.checks,
   findings: [item.limitation],
   verifiedAt: "2026-09-30T00:00:00Z",
 }));
@@ -446,70 +545,93 @@ class DemoWorkspace implements ClimateWorkspace {
   }
 }
 
+const reportPaths: Record<string, string> = {
+  building: "reports/building-mrv/bdg2-v1-smoke.json",
+  energy: "reports/energy-forecast/active-power-dummy.json",
+  earth: "reports/earth-observation/t10seh-2018190-nbr.json",
+  battery: "reports/battery-dpp/batterylife-calb-smoke.json",
+  carbon: "reports/carbon-registry/carbonplan-smoke.json",
+  disclosure: "sources/cadi-candidates.json",
+};
+
 const router: ModuleCommandRouter = {
-  async execute(moduleId, toolName) {
+  async execute(moduleId, toolName, input) {
     const item = moduleById.get(moduleId);
     if (!item) throw new Error("Unknown demo module: " + moduleId);
-
-    switch (toolName) {
-      case "building_get_meter_series":
-        return { rows: building.subset.meterRows, building: building.building, sourceIntegrity: building.subset.sourceIntegrity };
-      case "building_detect_anomalies":
-        return { clean: building.anomalyCheck, tamper: building.tamperSmoke };
-      case "building_run_baseline":
-        return building.baseline;
-      case "building_reconstruct_emissions":
-        return building.emissions;
-
-      case "energy_run_forecast":
-      case "energy_compare_baseline":
-        return energy.benchmark;
-      case "energy_prepare_bounded_action":
-        return {
-          prepared: true,
-          submitted: false,
-          policy: "Demo shell prepares evidence only; no market/hardware action is executed.",
-          source: energy.scope,
-        };
-
-      case "earth_run_detector":
-        return earth.baseline;
-      case "earth_compare_ground_truth":
-        return { metrics: earth.baseline.metrics, publishedReference: earth.publishedPrithviReference };
-      case "earth_get_scene_provenance":
-        return earth.source;
-
-      case "battery_predict_health":
-        return battery.passport;
-      case "battery_compare_baseline":
-        return battery.benchmark;
-      case "battery_build_passport_claim":
-        return { passport: battery.passport, scope: battery.scope };
-
-      case "carbon_reconcile_registry_records":
-        return { clean: carbon.clean, ledgerDecision: carbon.ledgerDecision };
-      case "carbon_check_retirement":
-        return { duplicateDemo: carbon.duplicateDemo, clean: carbon.clean };
-      case "carbon_check_duplicate_claim":
-        return carbon.duplicateDemo;
-
-      case "disclosure_get_public_claim":
-      case "disclosure_extract_report_claims":
-        return { organisation: lpl, claim: lplClaim, policy: cadiData.policy };
-      case "disclosure_reconcile_claim":
-        return {
-          disclosed: true,
-          sourceFound: true,
-          calculationReproduced: false,
-          factorsTraced: false,
-          thirdPartyAssurance: "attributed-not-independently-assessed",
-          claim: lplClaim,
-        };
-      default:
-        throw new Error("Unsupported demo tool: " + toolName);
+    if (input.caseId !== demoCase.caseId) {
+      throw new Error(
+        "Unknown case " + JSON.stringify(input.caseId ?? null) + "; this demo holds only " + demoCase.caseId + ".",
+      );
     }
+
+    // ponytail: replays committed reports; real per-case execution is the next step (shared case workflow).
+    return {
+      replayedFrom: reportPaths[moduleId],
+      note: "Recorded output of an offline run, replayed unchanged. Inputs other than caseId are not used.",
+      result: recordedOutput(toolName),
+    };
   },
 };
+
+function recordedOutput(toolName: string): unknown {
+  switch (toolName) {
+    case "building_get_meter_series":
+      return { rows: building.subset.meterRows, building: building.building, sourceIntegrity: building.subset.sourceIntegrity };
+    case "building_detect_anomalies":
+      return { clean: building.anomalyCheck, tamper: building.tamperSmoke };
+    case "building_run_baseline":
+      return building.baseline;
+    case "building_reconstruct_emissions":
+      return building.emissions;
+
+    case "energy_run_forecast":
+    case "energy_compare_baseline":
+      return energy.benchmark;
+    case "energy_prepare_bounded_action":
+      return {
+        prepared: true,
+        submitted: false,
+        policy: "Demo shell prepares evidence only; no market/hardware action is executed.",
+        source: energy.scope,
+      };
+
+    case "earth_run_detector":
+      return earth.baseline;
+    case "earth_compare_ground_truth":
+      return { metrics: earth.baseline.metrics, publishedReference: earth.publishedPrithviReference };
+    case "earth_get_scene_provenance":
+      return earth.source;
+
+    case "battery_predict_health":
+      return battery.passport;
+    case "battery_compare_baseline":
+      return battery.benchmark;
+    case "battery_build_passport_claim":
+      return { passport: battery.passport, scope: battery.scope };
+
+    case "carbon_reconcile_registry_records":
+      return { clean: carbon.clean, ledgerDecision: carbon.ledgerDecision };
+    case "carbon_check_retirement":
+      return { duplicateDemo: carbon.duplicateDemo, clean: carbon.clean };
+    case "carbon_check_duplicate_claim":
+      return carbon.duplicateDemo;
+
+    case "disclosure_get_public_claim":
+    case "disclosure_extract_report_claims":
+      return { organisation: lpl, claim: lplClaim, policy: cadiData.policy };
+    case "disclosure_reconcile_claim":
+      return {
+        disclosed: true,
+        sourceFound: true,
+        calculationReproduced: false,
+        factorsTraced: false,
+        thirdPartyAssurance: "attributed-not-independently-assessed",
+        claim: lplClaim,
+      };
+    default:
+      throw new Error("Unsupported demo tool: " + toolName);
+  }
+}
 
 const registry = new ClimateCapabilityRegistry()
   .register(
@@ -614,9 +736,17 @@ const surface = webmcp.activate(demoCase.capabilities);
 
 const badge = document.querySelector<HTMLDivElement>("#webmcp-badge");
 if (badge) {
-  badge.textContent = surface.available
-    ? "WebMCP · " + surface.toolNames.length + " tools"
-    : "WebMCP unavailable · fallback ready";
+  if (!surface.available) {
+    badge.textContent = "WebMCP unavailable · fallback ready";
+  } else {
+    badge.textContent = "WebMCP · registering…";
+    void surface.registration.then(({ registered, failed }) => {
+      badge.textContent = failed.length
+        ? "WebMCP · " + registered.length + "/" + surface.toolNames.length + " tools registered · fallback ready"
+        : "WebMCP · " + registered.length + " tools";
+      if (failed.length) badge.title = failed.map((item) => item.name + ": " + item.error).join("\n");
+    });
+  }
 }
 
 let activeId = "building";
@@ -683,6 +813,18 @@ function renderDetail(): void {
       .join("");
   }
 
+  const checks = document.querySelector("#check-list");
+  if (checks) {
+    checks.innerHTML =
+      `<div class="metric-row"><span>Result</span><strong>${escapeHtml(deriveResult(item.checks))}</strong></div>` +
+      item.checks
+        .map(
+          (check) =>
+            `<div class="metric-row"><span>${escapeHtml(check.name)}${check.detail ? `<br><small class="muted">${escapeHtml(check.detail)}</small>` : ""}</span><strong>${escapeHtml(check.outcome)}</strong></div>`,
+        )
+        .join("");
+  }
+
   if (provenance) {
     provenance.innerHTML = item.provenance
       .map(
@@ -701,39 +843,49 @@ function renderTamperSelect(): void {
     .join("");
 }
 
+function tamperLines(rows: Array<[string, string]>): string {
+  return rows
+    .map(([label, value]) => `<div class="tamper-line"><span class="label">${label}</span><span>${value}</span></div>`)
+    .join("");
+}
+
 function renderTamper(id: string, injected: boolean): void {
   const item = moduleById.get(id);
   const output = document.querySelector<HTMLDivElement>("#tamper-output");
   if (!item || !output) return;
+  const recorded = Boolean(item.tamper.rootAfter);
+  const result = deriveResult(item.checks);
 
   if (!injected) {
-    output.innerHTML = [
-      ["state", '<span class="good">verified source state</span>'],
+    output.innerHTML = tamperLines([
       ["input", escapeHtml(item.tamper.before)],
-      ["verification", '<span class="good">current evidence accepted</span>'],
-      ["action", "Choose “Inject test tamper” to modify the deterministic demo input."],
-    ]
-      .map(([label, value]) => `<div class="tamper-line"><span class="label">${label}</span><span>${value}</span></div>`)
-      .join("");
+      ["verification", '<span class="' + (result === "reconciled" ? "good" : "bad") + '">' + escapeHtml(result) + "</span>"],
+      [
+        "action",
+        recorded
+          ? "Choose “Show tamper result” to see what the recorded tamper run produced."
+          : "No tamper run is recorded for this module yet; “Show tamper result” describes the expected effect only.",
+      ],
+    ]);
     return;
   }
 
-  const rows: Array<[string, string]> = [
-    ["test mutation", escapeHtml(item.tamper.change)],
-    ["result", '<span class="bad">' + escapeHtml(item.tamper.after) + "</span>"],
-  ];
+  if (!recorded) {
+    output.innerHTML = tamperLines([
+      ["mutation", escapeHtml(item.tamper.change)],
+      ["expected effect", escapeHtml(item.tamper.after)],
+      ["status", "not run: no recorded tamper result for this module"],
+    ]);
+    return;
+  }
 
-  if (item.tamper.rootBefore) rows.push(["old commitment", escapeHtml(item.tamper.rootBefore)]);
-  if (item.tamper.rootAfter) rows.push(["new commitment", '<span class="bad">' + escapeHtml(item.tamper.rootAfter) + "</span>"]);
-
-  rows.push(
-    ["historical status", '<span class="good">old provenance still identifies the old bytes</span>'],
-    ["current status", '<span class="bad">old attestation does not describe the changed evidence</span>'],
-  );
-
-  output.innerHTML = rows
-    .map(([label, value]) => `<div class="tamper-line"><span class="label">${label}</span><span>${value}</span></div>`)
-    .join("");
+  output.innerHTML = tamperLines([
+    ["recorded mutation", escapeHtml(item.tamper.change)],
+    ["recorded result", '<span class="bad">' + escapeHtml(item.tamper.after) + "</span>"],
+    ["original digest", escapeHtml(item.tamper.rootBefore ?? "")],
+    ["tampered digest", '<span class="bad">' + escapeHtml(item.tamper.rootAfter ?? "") + "</span>"],
+    ["meaning", "anything committed to the original digest no longer matches the changed evidence"],
+  ]);
 }
 
 function renderActivity(): void {

@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 22
 
-      - run: npm install
+      - run: npm ci
 
       - name: Build static judging demo
         run: npm run demo:build

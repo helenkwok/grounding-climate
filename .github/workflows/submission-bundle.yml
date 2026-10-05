@@ -37,7 +37,7 @@ jobs:
         with:
           node-version: 22
 
-      - run: npm install
+      - run: npm ci
 
       - name: Build submission ZIP
         run: python3 scripts/build-submission.py

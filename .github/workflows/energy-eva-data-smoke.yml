@@ -32,7 +32,7 @@ jobs:
         run: python scripts/export-energy-eva-active-power.py /tmp/energy-eva/active_power_load.parquet /tmp/energy-eva/series.json
       - name: Build workspace dependencies and Energy Forecast
         run: |
-          npm install
+          npm ci
           npm run build
       - name: Reproduce published Energy-EVA dummy baseline
         run: node scripts/smoke-energy-eva-analysis.mjs /tmp/energy-eva/series.json

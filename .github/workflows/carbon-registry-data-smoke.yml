@@ -33,7 +33,7 @@ jobs:
         run: node scripts/prepare-carbonplan-registry-fixtures.mjs /tmp/carbonplan-registry
       - name: Build ClimateChain workspaces
         run: |
-          npm install
+          npm ci
           npm run build
       - name: Reconcile registry records and run duplicate/tamper demos
         run: node scripts/smoke-carbon-registry.mjs /tmp/carbonplan-registry

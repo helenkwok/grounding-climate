@@ -16,9 +16,17 @@ import type {
   ModelContextLike,
 } from "./types.js";
 
+export interface WebMcpRegistrationOutcome {
+  registered: string[];
+  failed: Array<{ name: string; error: string }>;
+}
+
 export interface RegisteredWebMcpSurface {
+  /** The browser exposes a WebMCP model context. Says nothing about whether tools registered. */
   available: boolean;
   toolNames: string[];
+  /** Settles once every registerTool call has resolved or rejected. */
+  registration: Promise<WebMcpRegistrationOutcome>;
   controller: AbortController;
   executeFallback(
     toolName: string,
@@ -101,35 +109,59 @@ export function registerClimateWebMcp(
       ? currentDocumentModelContext()
       : options.modelContext;
 
+  const attempts: Array<Promise<{ name: string; error?: string }>> = [];
+
   if (modelContext) {
     for (const tool of tools) {
       const execute = executions.get(tool.name);
       if (!execute) continue;
 
-      void Promise.resolve(
-        modelContext.registerTool(
-          {
-            name: tool.name,
-            title: tool.title,
-            description: tool.description,
-            inputSchema: tool.inputSchema,
-            annotations: {
-              readOnlyHint: tool.risk === "read",
-              destructiveHint: false,
-              consequentialHint: tool.risk === "consequential",
-              untrustedContentHint: true,
+      let attempt: Promise<unknown>;
+      try {
+        attempt = Promise.resolve(
+          modelContext.registerTool(
+            {
+              name: tool.name,
+              title: tool.title,
+              description: tool.description,
+              inputSchema: tool.inputSchema,
+              annotations: {
+                readOnlyHint: tool.risk === "read",
+                destructiveHint: false,
+                consequentialHint: tool.risk === "consequential",
+                untrustedContentHint: true,
+              },
+              execute,
             },
-            execute,
-          },
-          { signal: controller.signal },
+            { signal: controller.signal },
+          ),
+        );
+      } catch (error) {
+        attempt = Promise.reject(error);
+      }
+      attempts.push(
+        attempt.then(
+          () => ({ name: tool.name }),
+          (error: unknown) => ({
+            name: tool.name,
+            error: error instanceof Error ? error.message : String(error),
+          }),
         ),
-      ).catch(() => undefined);
+      );
     }
   }
+
+  const registration = Promise.all(attempts).then((results) => ({
+    registered: results.filter((r) => r.error === undefined).map((r) => r.name),
+    failed: results
+      .filter((r) => r.error !== undefined)
+      .map((r) => ({ name: r.name, error: r.error as string })),
+  }));
 
   return {
     available: modelContext !== null,
     toolNames: tools.map((tool) => tool.name),
+    registration,
     controller,
     async executeFallback(toolName, input = {}) {
       const execute = executions.get(toolName);

@@ -10,6 +10,8 @@ apps/demo/
 
 It is deliberately static and Cloudflare-Pages-friendly. The heavy reproducibility workflows remain separate from the presentation path.
 
+What the page does not do yet: it replays committed reports rather than recomputing them, so tool outputs are labelled `replayedFrom` and ignore inputs other than `caseId`. Tamper results are recorded runs for building, battery and carbon; for the other modules the page states the expected effect only. Verification results are derived from the checks each report records, and the demo case holds no signed attestations.
+
 ## Build and run
 
 ```bash
