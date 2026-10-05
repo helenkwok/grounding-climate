@@ -7,8 +7,10 @@
     "build": "node build.mjs"
   },
   "dependencies": {
+    "@climatechain/battery-dpp": "*",
     "@climatechain/building-mrv": "*",
     "@climatechain/core": "*",
+    "@climatechain/energy-forecast": "*",
     "@climatechain/webmcp": "*",
     "@noble/post-quantum": "0.7.1"
   },

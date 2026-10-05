@@ -35,7 +35,14 @@ import {
   setBatteryTampered,
   type BatteryCheck,
 } from "./battery-live.js";
-import energyReport from "../../../reports/energy-forecast/active-power-dummy.json";
+import {
+  checkEnergy,
+  energyCaseId,
+  energyRun,
+  energyService,
+  setEnergyTampered,
+  type EnergyCheck,
+} from "./energy-live.js";
 import earthReport from "../../../reports/earth-observation/t10seh-2018190-nbr.json";
 import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
 import carbonReport from "../../../reports/carbon-registry/carbonplan-smoke.json";
@@ -71,19 +78,12 @@ type DemoModule = {
   };
 };
 
-const energy = energyReport as JsonObject;
 const earth = earthReport as JsonObject;
 const battery = batteryReport as JsonObject;
 const carbon = carbonReport as JsonObject;
 const cadiData = cadi as JsonObject;
 const lpl = cadiData.candidates.find((item: JsonObject) => item.id === "lpl-construction");
 const lplClaim = lpl?.extractedClaims?.[0];
-
-const avgLoadAcc =
-  energy.benchmark.cutoffs.reduce(
-    (sum: number, row: JsonObject) => sum + row.reproduced.loadAcc,
-    0,
-  ) / energy.benchmark.cutoffs.length;
 
 const short = (digest: ContentDigest) => digest.value.slice(0, 16) + "…";
 
@@ -246,56 +246,92 @@ function batteryModule(live: BatteryCheck): DemoModule {
   };
 }
 
-const modules: DemoModule[] = [
-  buildingModule(await checkBuilding()),
-  {
+function energyModule(live: EnergyCheck): DemoModule {
+  const { built, attestation } = live;
+  const verification = built.caseBundle.verifications[0]!;
+  const approval = built.review[0];
+  const actionClaim = built.caseBundle.claims[1]!;
+  const boundary = actionClaim.boundary?.accounting;
+  const ed25519 = attestation.signature.signatures.find((item) => item.signature.algorithm === "Ed25519");
+  const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
+  const rows = built.caseBundle.claims[0]!.boundary?.accounting?.included[0] ?? "";
+  return {
     id: "energy",
     title: "Renewable / Load Forecast",
     icon: "↯",
-    kicker: "Published baseline reproduced",
-    kpi: avgLoadAcc.toFixed(3),
-    kpiLabel: "mean LOAD_ACC",
-    source: "Energy-EVA 2.0",
-    decisionTitle: "Microgrid operator",
+    kicker: "Forecast quality → bounded action → approval",
+    kpi: built.confidence.toFixed(3),
+    kpiLabel: "mean LOAD_ACC, recomputed in this browser",
+    source: "Energy-EVA / IEX load (CC BY 4.0)",
+    decisionTitle:
+      "Operator: " + built.action.approvedMWh + " MWh " + built.caseBundle.claims[1]!.subject.name!.replace("Bounded ", "") +
+      (approval ? " (" + (approval.state === "decided" ? approval.decision!.decision + "d" : approval.state === "stale" ? "approval stale" : "awaiting approval") + ")" : ""),
     decisionCopy:
-      "Use a measured forecast-quality result as decision support, then apply coded limits before any market or dispatch action.",
+      energyRun.organisingQuestion +
+      " The policy takes the measured forecast quality as its confidence and caps the amount; a person approves amounts above the threshold.",
+    decisions: [
+      [
+        "Proposed by policy: " + (actionClaim.assertion.kind === "qualitative" ? actionClaim.assertion.statement : ""),
+        !approval
+          ? "no approval needed"
+          : approval.state === "undecided" || !approval.decision
+            ? approval.state
+            : approval.state + ": " + approval.decision.decision + " by " + approval.decision.decidedBy,
+      ],
+      ...(approval?.decision ? [["Reason", approval.decision.reason] as [string, string]] : []),
+      ...(boundary
+        ? ([
+            ["Counts", boundary.included.join("; ")],
+            ["Policy choices", boundary.policyChoices.join("; ")],
+            ["Not assessed", boundary.notAssessed.join("; ")],
+          ] as Array<[string, string]>)
+        : []),
+    ],
     limitation:
-      "The demo reproduces Energy-EVA's dummy baseline exactly. It does not claim that forecast accuracy alone reduces emissions.",
+      "The forecast is Energy-EVA's dummy baseline and the request and policy are illustrative. The action is prepared, not sent anywhere. " +
+      "Forecast quality is not a claim of avoided emissions. Signing keys are per-run demo keys.",
     metrics: [
-      ["Standardized item series", String(energy.standardizedData.itemCount)],
-      ["Forecast horizon", energy.benchmark.horizonHours + " h"],
-      ["Rolling windows", String(energy.benchmark.cutoffs.length)],
-      ["Published baseline matched", energy.benchmark.reproducedAll ? "yes" : "no"],
-      ["Mean LOAD_ACC", avgLoadAcc.toFixed(4)],
-      ["Data licence", energy.source.originalData.license],
+      ["Series", rows],
+      ["Forecast horizon", "48 h · 5 rolling windows"],
+      ["Published results reproduced", built.comparisons.filter((row) => row.reproduced).length + " of " + built.comparisons.length],
+      ["Mean LOAD_ACC", built.confidence.toFixed(4)],
+      ["Allowed by policy", built.action.approvedMWh + " MWh"],
     ],
     provenance: [
-      ["Dataset DOI", energy.source.doi],
-      ["Original DOI", energy.source.originalData.doi],
-      ["Member", energy.source.standardizedMember],
-      ["Archive MD5", energy.source.archiveMd5],
-      ["Model", energy.benchmark.model],
+      ["Dataset", "doi:10.5281/zenodo.17099628 (committed, CC BY 4.0)"],
+      ["Original data", "doi:10.17632/jxm8d4w4cv.1"],
+      ["Series (now)", short(built.caseBundle.evidence[0]!.integrity!)],
+      ["Evidence root (now)", short(attestation.currentRoot)],
+      ["Evidence root (signed)", short(energyRun.attestation.payload.evidenceRoot)],
+      ["Signed", energyRun.runAt + " · Ed25519 + ML-DSA-65"],
     ],
-    digest: { algorithm: "MD5", value: energy.source.archiveMd5 },
+    digest: built.caseBundle.evidence[0]!.integrity!,
     checks: [
+      ...verification.checks,
       {
-        id: "baseline-reproduced",
-        name: "Published dummy baseline reproduced",
-        outcome: energy.benchmark.reproducedAll ? "pass" : "fail",
-      },
-      {
-        id: "source-integrity",
-        name: "Source archive digest",
-        outcome: "warn",
-        detail: "Archive pinned by MD5 only; no SHA-256 evidence digest or evidence root recorded",
+        id: "attestation",
+        name: "Signed attestation matches the current evidence (checked here)",
+        outcome: attestation.validForCurrentEvidence ? "pass" : "fail",
+        detail:
+          "Ed25519 " + (ed25519?.signatureValid ? "verified in this browser" : "NOT verified") +
+          "; ML-DSA-65 " + (mlDsa?.signatureValid ? "verified in this browser (" + mlDsaVerifier + ")" : "NOT verified") +
+          (attestation.changedRefs.length ? "; changed since signing: " + attestation.changedRefs.map((ref) => ref.id).join(", ") : ""),
       },
     ],
     tamper: {
-      before: "Pinned standardized input + dummy_model semantics",
-      change: "Change source series / model version / confidence",
-      after: "Input commitment changes; bounded action must be re-evaluated",
+      before: "series " + short(built.caseBundle.evidence[0]!.integrity!),
+      change:
+        "Series " + energyRun.tamper.item + " at " + energyRun.tamper.timestamp + ": " + energyRun.tamper.from + " → " +
+        energyRun.tamper.to.toFixed(3) + " MW, applied in this browser",
+      after: "",
+      rootBefore: energyRun.attestation.payload.evidenceRoot.value,
     },
-  },
+  };
+}
+
+const modules: DemoModule[] = [
+  buildingModule(await checkBuilding()),
+  energyModule(await checkEnergy()),
   {
     id: "earth",
     title: "Earth Observation",
@@ -563,6 +599,7 @@ class DemoWorkspace implements ClimateWorkspace {
   async getCase(caseId?: string): Promise<ClimateCaseBundle | undefined> {
     if (caseId === buildingCaseId) return (await buildingService.decidedCase()).climateCase;
     if (caseId === batteryCaseId) return (await batteryService.passport()).caseBundle;
+    if (caseId === energyCaseId) return (await energyService.build()).caseBundle;
     return !caseId || caseId === demoCase.caseId ? demoCase : undefined;
   }
 
@@ -571,6 +608,7 @@ class DemoWorkspace implements ClimateWorkspace {
       demoCase,
       (await buildingService.decidedCase()).climateCase,
       (await batteryService.passport()).caseBundle,
+      (await energyService.build()).caseBundle,
     ];
   }
 
@@ -614,7 +652,6 @@ class DemoWorkspace implements ClimateWorkspace {
 }
 
 const reportPaths: Record<string, string> = {
-  energy: "reports/energy-forecast/active-power-dummy.json",
   earth: "reports/earth-observation/t10seh-2018190-nbr.json",
   carbon: "reports/carbon-registry/carbonplan-smoke.json",
   disclosure: "sources/cadi-candidates.json",
@@ -627,6 +664,7 @@ const router: ModuleCommandRouter = {
     // Building runs the real service on the committed data, the same one the page renders from.
     if (moduleId === "building") return buildingService.execute("building-mrv", toolName, input);
     if (moduleId === "battery") return batteryService.execute("battery-dpp", toolName, input);
+    if (moduleId === "energy") return energyService.execute("energy-forecast", toolName, input);
     if (input.caseId !== demoCase.caseId) {
       throw new Error(
         "Unknown case " + JSON.stringify(input.caseId ?? null) + "; this demo holds only " + demoCase.caseId + ".",
@@ -644,17 +682,6 @@ const router: ModuleCommandRouter = {
 
 function recordedOutput(toolName: string): unknown {
   switch (toolName) {
-    case "energy_run_forecast":
-    case "energy_compare_baseline":
-      return energy.benchmark;
-    case "energy_prepare_bounded_action":
-      return {
-        prepared: true,
-        submitted: false,
-        policy: "Demo shell prepares evidence only; no market/hardware action is executed.",
-        source: energy.scope,
-      };
-
     case "earth_run_detector":
       return earth.baseline;
     case "earth_compare_ground_truth":
@@ -975,7 +1002,40 @@ async function renderBatteryTamper(injected: boolean): Promise<void> {
   ]);
 }
 
+/** Energy tamper is real: one load value changes in this browser and the case is recomputed. */
+async function renderEnergyTamper(injected: boolean): Promise<void> {
+  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+  if (!output) return;
+  setEnergyTampered(injected);
+  const live = await checkEnergy();
+  const item = energyModule(live);
+  modules[modules.findIndex((entry) => entry.id === "energy")] = item;
+  moduleById.set("energy", item);
+  renderModules();
+  renderDetail();
+  const { built, attestation } = live;
+  const result = built.caseBundle.verifications[0]!.result;
+  const valid = attestation.validForCurrentEvidence;
+  const reproduced = built.comparisons.filter((row) => row.reproduced).length;
+  const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
+  output.innerHTML = tamperLines([
+    ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
+    ["series", escapeHtml(built.caseBundle.evidence[0]!.integrity!.value)],
+    ["forecast", escapeHtml("mean LOAD_ACC " + built.confidence.toFixed(6) + " · published results reproduced " + reproduced + " of " + built.comparisons.length)],
+    ["approval", escapeHtml((built.review[0]?.state ?? "not needed") + (built.review[0]?.state === "stale" ? " (made on a different series)" : ""))],
+    ["case verification", tag(result === "reconciled", result)],
+    ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
+    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
+    ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
+    ["action", injected ? "Reset restores the committed series; the signed attestation then matches again." : "Choose “Show tamper result” to change one load value in this browser."],
+  ]);
+}
+
 function renderTamper(id: string, injected: boolean): void {
+  if (id === "energy") {
+    void renderEnergyTamper(injected);
+    return;
+  }
   if (id === "building") {
     void renderBuildingTamper(injected);
     return;

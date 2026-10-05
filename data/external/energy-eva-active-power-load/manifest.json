@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "climatechain.energy-eva-prepared/0.1",
+  "source": {
+    "zenodoRecord": "https://zenodo.org/records/17099628",
+    "doi": "10.5281/zenodo.17099628",
+    "licence": "CC-BY-4.0",
+    "archive": "EnergyEVA_Timeseries_Dataset.zip",
+    "archiveMd5": "662cbf850ecd592d6ff534471460f3f1",
+    "member": "load/active_power_load.parquet",
+    "memberBytes": 81469,
+    "memberMd5": "cb27c3c612a10f317167fc48d0422f57"
+  },
+  "originalData": {
+    "source": "https://data.mendeley.com/datasets/jxm8d4w4cv/1",
+    "doi": "10.17632/jxm8d4w4cv.1",
+    "licence": "CC-BY-4.0"
+  },
+  "itemCount": 7,
+  "seriesLengths": [744, 720, 744, 720, 744, 744, 744]
+}

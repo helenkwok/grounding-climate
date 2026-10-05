@@ -5,7 +5,10 @@ import type {
   ClimateModule,
   ModuleCommandRouter,
 } from "@climatechain/webmcp";
-import type { CryptoProvider } from "@climatechain/core";
+import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
+
+import { buildEnergyActionCase } from "./action-case.js";
+import type { EnergyActionInput, PublishedCutoff } from "./action-case.js";
 
 import {
   runEnergyEvaDummy,
@@ -121,8 +124,83 @@ export class EnergyForecastService implements ModuleCommandRouter {
   }
 }
 
+export interface EnergyCaseServiceOptions {
+  caseId: string;
+  series: EnergySeries[];
+  published: PublishedCutoff[];
+  action: EnergyActionInput;
+  provider: CryptoProvider;
+  observedAt: string;
+  /** Recorded approval decisions; with them the case is served as approved or rejected. */
+  decisions?: ReviewDecision[];
+}
+
+/** The committed energy case: the multi-series benchmark, the operator's request and a person's approval. */
+export class EnergyCaseService implements ModuleCommandRouter {
+  private series: EnergySeries[];
+
+  constructor(private readonly options: EnergyCaseServiceOptions) {
+    this.series = structuredClone(options.series);
+  }
+
+  resetSeries(): void {
+    this.series = structuredClone(this.options.series);
+  }
+
+  /** Multiplies one load value, as the recorded tamper run does. */
+  tamperValue(itemIndex: number, pointIndex: number, multiplier: number): void {
+    const point = this.series[itemIndex]?.points.at(pointIndex);
+    if (!point) throw new Error("No load value at " + itemIndex + "/" + pointIndex + ".");
+    point.value *= multiplier;
+  }
+
+  build() {
+    return buildEnergyActionCase({
+      caseId: this.options.caseId,
+      createdAt: this.options.observedAt,
+      series: this.series,
+      published: this.options.published,
+      action: this.options.action,
+      provider: this.options.provider,
+      decisions: this.options.decisions ?? [],
+    });
+  }
+
+  async execute(
+    moduleId: string,
+    toolName: string,
+    input: Record<string, unknown>,
+  ): Promise<unknown> {
+    if (moduleId !== "energy-forecast") {
+      throw new Error("Unknown Energy Forecast module: " + moduleId);
+    }
+    if (String(input.caseId ?? "") !== this.options.caseId) {
+      throw new Error('Unknown Energy Forecast case "' + input.caseId + '".');
+    }
+    const built = await this.build();
+    switch (toolName) {
+      case "energy_run_forecast":
+        return { benchmark: built.benchmark, meanLoadAcc: built.confidence };
+      case "energy_compare_baseline":
+        return { comparisons: built.comparisons, published: this.options.published };
+      case "energy_prepare_bounded_action": {
+        const verification = built.caseBundle.verifications[0];
+        return {
+          result: verification?.result,
+          action: built.action,
+          approval: built.review.map(({ flag, state, decision }) => ({ flag: flag.id, state, decision: decision?.decision ?? null })),
+          accountingBoundary: built.caseBundle.claims[1]?.boundary?.accounting,
+          submitted: false,
+        };
+      }
+      default:
+        throw new Error('Unknown Energy Forecast tool "' + toolName + '".');
+    }
+  }
+}
+
 export function createEnergyForecastModule(
-  service: EnergyForecastService,
+  service: ModuleCommandRouter,
 ): ClimateModule {
   return createRoutedModule({
     id: "energy-forecast",

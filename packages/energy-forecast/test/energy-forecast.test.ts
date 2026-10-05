@@ -9,7 +9,12 @@ import {
   InMemoryNodeCryptoProvider,
 } from "@climatechain/crypto-node";
 
+import type { ReviewDecision } from "@climatechain/core";
 import {
+  ENERGY_CUTOFFS,
+  actionFlag,
+  buildEnergyActionCase,
+  runEnergyEvaDummyBenchmark,
   EnergyForecastService,
   buildEnergyForecastCase,
   createEnergyForecastModule,
@@ -18,6 +23,8 @@ import {
   runEnergyEvaDummy,
 } from "../src/index.js";
 import type {
+  EnergyActionInput,
+  PublishedCutoff,
   BoundedActionPolicy,
   EnergySeries,
 } from "../src/index.js";
@@ -261,4 +268,45 @@ test("Energy WebMCP tools use the same forecast and policy service", async () =>
 
   assert.equal(action.permitted, true);
   assert.equal(action.requiresHumanApproval, true);
+});
+
+test("energy case: approval is required, bound to the input, and a refused action is a mismatch", async () => {
+  const provider = new InMemoryNodeCryptoProvider();
+  const series = [hourlySeries(), { ...hourlySeries(), itemId: "second" }];
+  const published = runEnergyEvaDummyBenchmark({ series, horizon: 48, cutoffs: ENERGY_CUTOFFS, contextLength: 512 })
+    .cutoffs.map((row) => ({ model: "dummy_model", cutoff: row.cutoff, ...row.metrics }) as PublishedCutoff);
+  const action: EnergyActionInput = {
+    request: { actionType: "shift-load", requestedMWh: 1, counterparty: "microgrid:battery-1" },
+    policy: { ...policy, minimumConfidence: 0.1 },
+  };
+  const build = (someSeries = series, decisions: ReviewDecision[] = [], someAction = action) =>
+    buildEnergyActionCase({
+      caseId: "case:energy:test", createdAt: "2026-10-06T00:00:00Z", series: someSeries, published,
+      action: someAction, provider, decisions,
+    });
+
+  const open = await build();
+  assert.equal(open.action.requiresHumanApproval, true);
+  assert.equal(open.caseBundle.verifications[0]?.result, "insufficient-evidence");
+
+  const decision: ReviewDecision = {
+    flagId: actionFlag().id, decision: "approve", reason: "test", decidedBy: "person:test",
+    decidedAt: "2026-10-06T00:00:00Z", inputDigest: open.actionInputDigest,
+  };
+  const approved = await build(series, [decision]);
+  assert.equal(approved.review[0]?.state, "decided");
+  assert.equal(approved.caseBundle.verifications[0]?.result, "reconciled");
+
+  const changed = structuredClone(series);
+  changed[0]!.points.at(-1)!.value *= 1.2;
+  const stale = await build(changed, [decision]);
+  assert.equal(stale.review[0]?.state, "stale");
+  assert.equal(stale.caseBundle.verifications[0]?.result, "mismatch");
+
+  const raised = await build(series, [decision], { ...action, request: { ...action.request, requestedMWh: 1.5 } });
+  assert.equal(raised.review[0]?.state, "stale");
+
+  const refused = await build(series, [decision], { ...action, policy: { ...action.policy, minimumConfidence: 0.999 } });
+  assert.equal(refused.action.permitted, false);
+  assert.equal(refused.caseBundle.verifications[0]?.result, "mismatch");
 });

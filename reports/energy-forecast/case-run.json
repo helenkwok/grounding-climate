@@ -1,0 +1,651 @@
+{
+  "schemaVersion": "climatechain.energy-case-run/0.1",
+  "runAt": "2026-10-05T14:34:34.000Z",
+  "organisingQuestion": "Is the forecast good enough for the policy to allow this load shift, and who approved the capped amount?",
+  "data": {
+    "items": 7,
+    "rows": 5160
+  },
+  "clean": {
+    "meanLoadAcc": 0.6470147214511727,
+    "baselineReproduced": true,
+    "result": "reconciled",
+    "action": {
+      "permitted": true,
+      "approvedMWh": 100,
+      "requiresHumanApproval": true
+    },
+    "approval": [
+      {
+        "flag": "action:bounded-action",
+        "state": "decided",
+        "decision": "approve"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": true,
+    "changedRefs": [],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "tamper": {
+    "item": "0",
+    "itemIndex": 0,
+    "pointIndex": 743,
+    "timestamp": "2021-01-31T23:00:00Z",
+    "from": 3804.38,
+    "to": 4565.256,
+    "meanLoadAcc": 0.6467587658842111,
+    "baselineReproduced": false,
+    "result": "mismatch",
+    "action": {
+      "permitted": true,
+      "approvedMWh": 100,
+      "requiresHumanApproval": true
+    },
+    "approval": [
+      {
+        "flag": "action:bounded-action",
+        "state": "stale",
+        "decision": "approve"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": false,
+    "changedRefs": [
+      {
+        "nodeType": "claim",
+        "id": "claim:energy-bounded-action"
+      },
+      {
+        "nodeType": "claim",
+        "id": "claim:energy-forecast-quality"
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:energy-action-request"
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:energy-series-set"
+      },
+      {
+        "nodeType": "model-run",
+        "id": "model-run:energy-forecast-benchmark"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:action-approval"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:energy-forecast"
+      }
+    ],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "publishedKeys": [
+    {
+      "keyId": "key:demo-ed25519:2026-10-05T14:34:34.000Z",
+      "suite": "classical",
+      "algorithm": "Ed25519",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-05T14:34:34.000Z",
+      "validFrom": "2026-10-05T14:34:34.000Z",
+      "verificationKey": {
+        "keyId": "key:demo-ed25519:2026-10-05T14:34:34.000Z",
+        "suite": "classical",
+        "algorithm": "Ed25519",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MCowBQYDK2VwAyEAfKwSZIRg0mQZP6maSIdFj3qUvanspIdMD6kXN7Zcrf4"
+      }
+    },
+    {
+      "keyId": "key:demo-ml-dsa-65:2026-10-05T14:34:34.000Z",
+      "suite": "post-quantum",
+      "algorithm": "ML-DSA-65",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-05T14:34:34.000Z",
+      "validFrom": "2026-10-05T14:34:34.000Z",
+      "verificationKey": {
+        "keyId": "key:demo-ml-dsa-65:2026-10-05T14:34:34.000Z",
+        "suite": "post-quantum",
+        "algorithm": "ML-DSA-65",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAPDpl6yBxd-Rth8hOQM7X4O1NU_AswDYq3jw32IPklvGd2pA4IHWB18RBekDwdX-sg4B2YrPgvxBYRf9NIFpi5w-_MjcRgrEVPsA88lhUcFl6RvA9bcxK6JRNjYzk5ezI93PCbwfC5uIDMYvrxN5VZ3o0fiUgbbECDbx0tkq3mc-EnzZGHtxW3cyh5_xhNfoTjsH7YlxtOLc1kaPZ92vZw5GH8io4bJC5hwTrg6rEThHEWS6yZLAsnCXrO0eWoD5m1-rVgtopI0rTzA2vIT-6XC9hGa_xJySfdESzz2e7cy1X_EywpVFrNT762oQE3Rj8cNwEswLNMl1xMTPZYtq_mDJDCz-qSs-cFpSTEE5ek8HabNJuLqFcZeHUEsvZVS8fztY2gynKL0FNheZLZ35xnECaYE1MWDFjKqqkmxQw_92eJLyQKAck_BKGgBCSNCboo1wETDzSgB-6kLsNSOyeWtc2cYVUEBZdNBszo5S0-VydRrit9WnK29YPVL5FdMbDHeGP5lNggIKMPrONnFtVeylyeWC3B_4tBF3jOF6jTn0yxStpZ1XwTSWbRJTDHqmYbM4H33vU5sq2niOdrusn3ELtMWNVYRz7fMTf_FvnXXQXp9RhmjoFutnnw-DAWJoArB7h6PS6fs3zm0NR63neJRIsFOLH5zNlDZTeJbSqUohzXQoTMiQRpET9AZaebOlBSoyImapHYsI4KOeU8LofAhlrGQWyCMGLv-4E4ZDov02FxVn2_LsAvV82gQzmsr68gKbsCyqZURPlqTZsGKhYrvAGz7vwePzfSqhjkAEtZgNb0PkClviwyQUun-FTsrLoByG_djbhMZrFmBcCbZeX_hbkovZvWl3EcWYpeKAupDDLqamdYBsw1SfQj0v5gR2xoHdhxIrMbqJTJMdqjOK01ResX5PiNa4hhrbIBP71g3YxOThY44KpGl_gK2hGOxrDG6BMMVk39MFkzMy7xuBehMScNZhYEMLRBuPXarU1YDwOn1hcoJ0lN-qGWy8XDCJWs8H6rU_4LcY39aCC6_lVXJ_0ATrlGBq_kT1s1Xndz7OAhmxU_tc_ZcZ_YFvPxTwlIuaHs84qoXOtUe1EIGA7kQMK4Cj0uRtybiTY5GpGuQTc6gp8MT-LkO3PxIxd8nVU7KNUPT8T9rh9RL5mz8UB1ADAyO6uhch8r2iCZERy4Coh8KdhiIywxsQtm-oNPOvZie4bhr7Fxxv4eFTSXW30SU6SHvUNQe9C21BqJuHqWy2PFpVkntGKIDIT4IDOWEfcwzFik8k1b6tMoYF0uK50nqfG8h-QyO2oj_AkpkgQa5WGpkYu66l_YVMRJXJpBW8wGV_RhHUuw285eLzpKVNcvz2exSm1cmUb-5aDFqwVlMVCiH8USvY8EctYMqlrGc4v1aal4F1TBPgQTfnVnoaTPX9sKG_aBRpB89jSuEWXEaD_-Zl-uuCGzCP3vrGr91yO9wRtSLohxzAWEFtpA2jMXTO-UU_MrJekBrRFhpSxWt4iWhjoGDkZaNyUi3Iqs0AUsFrGUS1k_fkZyepxhcGH-f1NvznfRSHTSOJsEM-S-2JaUVBiQIq_pRMpCyaYlgOHsh6u3AlqrshqK0zXUTrOZuJrLri4C-8rTaMhO_wJ3NgGAr1dQ-M8FLwmxOjhYddljmHUoaDa_KSo5oDRtv-fTvrzgWdSdK0TVHKoL3OyRRp1mbwBUfC32zyQB0IUgjU2PLWLAnkjdOiVfLFxreyelvN6M5tVFglc37LNKqNCh6zn8sN4yvXSrrGtPHv4SQtyD9UBESHJd_ATuQJrd5JJMUg_3GZPe3_rl-q5SU-qNdOUnpNWcAJcnQP4RMlbvbK3GXX0XNkmjbK9noedfB5_KKlU8ybt1W0O--VczFiPDEOeqEinKF8ywsmmpYsRLdn2zf7DSkDo4nKZWRs2ocqtff7jmW8OLO0x73QHhOg2KeneIB9PU14MgiZ53-Y4sMzY6mirs9tFC8Ec1GH0SAUVds377f4rUJu7MGjlgtfyYiWa_iScPyStKIwTyguRhtPEtNdedVVidOxQly6hEnc14IlJl7hVyR2dGzhSXx23j0mwB9-PJsWISf8AJveRomplZHjXfERzYvxZs22jJiBaVmdVZVD0zQGzFHr7iX0Ggw-ATQks79lMZ627RxGs2cSps1gJ1ySzbvqBmnoQsHAg4pT24DhmqeFf12GnfLaVl4A6p3OYaxnMZQxyIZyD6VsNsDlwxDTiDU5qkvBe_pRfCZHNUfMCkDzVaPUWvOz1YvPdR5JVgA9Ekb12a9bAIxtUolpGyZTBk7WTkG6UZLbcs2uN7BqgwBwXQV2ay2N3C831ZhYOKik5ekCm2PfWhSxFSLG45opRSr0_33P-qY5gv8zrfdwhHpMonDRSkLKuufVOfijrHi8aGaftw4XuRtt8i26nOoBeRYpAteQ91AzWeYAk2j187BHWqSLM7m2ebVr2WpC9GQpli32Aow5-el-e1GrS0sQFEN5jeJe27fwbZAZ91sMuBMJJEchgffA3dmRiIce2smXjQqRLtze0deAXOPNR57Z5PhDZNBlWS4lfQQUi--cpN7ca_ZwWlKYoyiE"
+      }
+    }
+  ],
+  "attestation": {
+    "payload": {
+      "version": "climatechain.attestation/0.1",
+      "id": "attestation:energy-forecast:2026-10-05T14:34:34.000Z",
+      "attester": {
+        "subjectId": "org:climatechain-demo",
+        "name": "ClimateChain demo run"
+      },
+      "statement": "Energy forecast benchmark recomputed from the committed Energy-EVA series and a bounded load action checked against policy. Verification result at signing: reconciled; shift-load of 120 MWh requested; policy allows 100 MWh; approved by person:energy-manager.",
+      "claimRefs": [
+        {
+          "nodeType": "claim",
+          "id": "claim:energy-bounded-action"
+        }
+      ],
+      "verificationRef": {
+        "nodeType": "verification",
+        "id": "verification:energy-forecast"
+      },
+      "evidenceRoot": {
+        "algorithm": "SHA-256",
+        "value": "PhI6M6oY1Ce2xago23HIEEB0wgWWtqfwSHBVM9bXbSw"
+      },
+      "manifestVersion": "climatechain.evidence-manifest/0.1",
+      "issuedAt": "2026-10-05T14:34:34.000Z"
+    },
+    "evidence": {
+      "manifest": {
+        "version": "climatechain.evidence-manifest/0.1",
+        "caseId": "case:energy:active-power-load",
+        "caseSchemaVersion": "climatechain.case/0.1",
+        "rootRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:energy-forecast"
+          }
+        ],
+        "nodes": [
+          {
+            "ref": {
+              "nodeType": "claim",
+              "id": "claim:energy-bounded-action"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "Sm2KOqsufgEDNM5kl3Hmu5MTs5pOgyCQ5arFV1Itqlg"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "claim",
+              "id": "claim:energy-forecast-quality"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "HddDTQE-SR5Io0IZb82J9aBBgwYspH9fKREJH6DHKic"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:energy-action-request"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "noMe7jRYeyGJsTkAe94vo6GgHdbMIKsNpwArpSQ6dI8"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:energy-eva-published"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "8mSDvaNY4AT0Pr5yK5heaHr6FW6zzNnvZzzsbi7JPSM"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:energy-series-set"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "Kykrmh7RCD_mFd9V_EXVjHdmMUl34Jat4yr_ckI8BVE"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:energy-forecast-benchmark"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "MxvaBloAYmWpGHQ9DTxuqLuYhWKpYL4rs4Nu25HgKro"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:action-approval"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "DqbtB8TrqLRiY2ZAlAcl_hrCHs5JZX4rQQUlItZTVF4"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:energy-forecast"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "4HGaJoig9Un0dozUBt9UEM3sKFVNCcvLUuBOcHi3vWE"
+            }
+          }
+        ]
+      },
+      "root": {
+        "algorithm": "SHA-256",
+        "value": "PhI6M6oY1Ce2xago23HIEEB0wgWWtqfwSHBVM9bXbSw"
+      }
+    },
+    "envelope": {
+      "version": "climatechain.signature-envelope/0.2",
+      "domain": "climatechain.attestation",
+      "schemaVersion": "climatechain.attestation/0.1",
+      "payloadHash": {
+        "algorithm": "SHA-256",
+        "value": "WUj9V3JsBe_miwlOzkVyALwYZ501AIhiKb5ZLN5rTNM"
+      },
+      "createdAt": "2026-10-05T14:34:34.000Z",
+      "signatures": [
+        {
+          "suite": "classical",
+          "algorithm": "Ed25519",
+          "keyId": "key:demo-ed25519:2026-10-05T14:34:34.000Z",
+          "encoding": "base64url",
+          "value": "GXdsmnVJwk0oSSVllDQtcl4n_DqtljWto4fiQxR4pCR4kQPe0vK5CuvjwBKuWJmd4iFT0t2pd5a8WhYhdEt9BQ"
+        },
+        {
+          "suite": "post-quantum",
+          "algorithm": "ML-DSA-65",
+          "keyId": "key:demo-ml-dsa-65:2026-10-05T14:34:34.000Z",
+          "encoding": "base64url",
+          "value": "eGrGkWqvIG4skjY3QCflYrVUyVgD0rPtc7sAuhqaLtG5xrALQiE8fqpqQ2CmpfmdAZJ7ISJSY9COx9BjPU9QX3xPz8CeqYzDzDsRVW-ZO2z3aQ38ynFvCh5V13Q8OiJ-1h_R_6bxNgc1VTvVTQUBYenD5HTdQjM1hiT-wysyP4qBHXEK7vXj3Gjy3JxH8FxZ8Frx1--b9l-rBU5wGM307oqc4QtN7HJI4kpdcPsjID66hAk812iCqXEdQivgxxooGiJ2wUnHNWkHt_G5-GkEgaHujQh59TPdjDnsTTl-wwmH8efGKqTkEYmku3XHZzC_71Jdzfnu46d7hE8uktr3LJ_U5QuqZJ74E7gpu4F2rfgqMfRXD__tZ0_wacjm9aMfwpNXdv3k622jgoVz7s-6TJUdK_o5UVdA2zWcmRD_iA1u4hGpWK5O1yuPYpNQnE3wsw8kbdRCHxt9be4Txn7_m2PyS5sebq3w9UdQxyTc0wgxbwKmF9CDojm49h2y1xifGkDPwuthj-_8Z4Von-pbIHsZYx8PDH7fZCBBjh78zl7MRGjPeMEMwuOJe-uwLJXu39YE9qUudMkjQZFy6SaDsV52a3py8Af2RgmL9i8DL_E04zuU3UPu8w_0oBZqPvyBlMbjKdfyH5Yqt-b5MujDGOUN1dv4tllpbG_9UhWDWq9zvvmX_Fb-gRGclOcbIJ3afHVYNDH6zZTm9NnkLTKeJF9qbVLlHpjx3bGY1-0dKK2Rx2899aMTzHQtyncpiBDATdLZCqWLlSM895U4y_lMb9Bz_NQ6sNqMYrl2sQATlxGK_5on6K2dfD6J5lB9EzlMrvpL-VvD6ep4kN6U03Iao6Zkg40_1Cjgma9qSg0PGfNGD2vUvGW0WX5vQVRM9oHJqrFCJuHLNTCK9N-Gk9BoXRYSWIVm5llWzNyC_ReKvCacT7nVElYAudIED9jJV6zkmEogqYHaIBBHdc4giStdgVF2feLQvcNiZsr0dLOSX8elNGBjYaF1L0BZ4CEkNXiMHCx77Gql649M8SAzkuJrqrlrj1_lvi4Y9puL94959c11gz2cxtcsDxs6-RMwPCAxvIT8UypmdXjX3z6ncBcS-bmo-4UtE8tz_w-v0MaIbA2c5ygtS7DOuWZm4FK31hhLGQvhaM7nfV1TudshIlImWcOOv1mut9e41985T9NnnAuKWJF6B73BzMNT3adOQIqpqveqY_KyriDZknjEYd52IYarg0E8RWwSSatYHMLqaBqE-Y0eRBZ-pisSEP0nOlqMdxC3t11E_S5BALx1oogMhpU1yj-kzUq_0BJ8gCD59_9M8Z-PAVEf-lTBScNjC0iZV0gApXMViiClRpFEU9wFq10oqMoieRcX8GxZ93Yw2bn0OXELnA5uRIcOnFwNE7vERtVLFcYoFwXBrt6Q_KTva5a8dVguPN5s6F2C3KVOyW4VXwKc67oJ_FlCyOMLshiJA2gkj1EH5rOSIGwnG9wUyUHZxeq7IZENDftZNXFlzRayRWFRngZzk6QAGJNuVwJPUae3_ZxhBLaC6qdvWTF7mGybwSDAy1HO3JXlAHPm5273SdgWc_qMn5iaVz_Rq1i96nOtri7Wyxt0LREtKXXSTcDAYBON-1lni1CCJlyAdiI3LKqs5fjERs5JY4XaEtJ9BMylLNK0G4U1s1R-tKKEcq9H20BjO4mXrAnjAP_Vk8Gm_wYO4jX4GSNZ5QLwpDPy1N1eCj99vNtyDACEeByA8axlW8q5mUxk9xL3fafCd1LufNv-8-hW0Ndc5j8rNpnw0aDCqe5vCUEjW6MzLPf8CXDJ01NvK1dsGaLEx1Z42G_5KeX3JEWSGsPZdoBbTrUqt2JYpnvLRLkzaxCEztnU-w20Ak1pJkYdCo9a36Zgn1jwEAQ_DB1xpAtWZgRXnVccbOn5Xn_XJSxZE_BsrNAXc4-s1QPjYJy9KOKkFb8rDt3Nyw1Szogm6bFJVw6Wsixubqe2zjocVsu2czu9Lnk7b-2ciIlZdtRON8zcmdMI3n61_jqIrdXYUknigATyeJa4Dk0pNqNDxJZt75ajqOdjrQ5hNPVb6QpledpWv3Ug5nAkBYVpQYhSuU9nkzRTj09u6iwQUEU4TbHazpkaoKwzorB0GpQJ4KJSuB5_rCH_g2nZdVWyX95-jkyCa1EuDpcsglZJln06wgkqHw7e6DCMs3z9dRiYrcIsyDHxkghV_-894OOqIU1KCQVZIoYXqLM-WYiybjuZEIr7NOZHHHZpqsnsgOv7OsvWAbPa8kzNvaygI_0gnFSdNwtlzz6nTrBSxf3MCuMdvUMJkjR3VleXbIDBgw-ErkLejSu0d1X7a91KkVGG0yqUbfK4NFu08bAtDmgNDGbjLWIYptMyxYhEAxja0RAIgEWbzElf37L0tN_T4pJHxgnbdCinYLUUh3fiWjXy-VniTRsmU9Oeh902_R0YiM7lr2qqQLD9xwWCDwYAumWiMrOpgmz_e-5Akx3ZiDmBB21T0dPQ1ccaKnLonqKxw5vaqcp2hHmDExNa_-mJbGKnou-F2bF_xyY3xWESe1ZlCqiIj31rkENAO_eKkSN7mNjX0V0Df3_vf_t2eOowM2EIAD9IhBRKpR4Aj7EcNQf8ovmZJZbe5P7emNQYNbEO9egzqEVHmTezWgpHygrpAJELfIQlmxLGZHe-2D608m_WeQ5-on1lBSM3Ri9MxdJjLjHvyh87HVmSe_gT11Ixlf9Z-_5pfBxItWygZXhU95ClFwQNMaKK0AFFiqj8jUXyzmn_gxjk4Cu9F28gKS6wrV-NSDIMiEKQfYx5gFRkwyR2_hHAjIHe9PjAEwlOJuv2sujAhRzRj58JqorBk7s2zkivWgqy5eNa_I9nhYHqAUTX8pJ8HJFlPw0N0Lq7TTq-4jbaFMdhqt3vP-odJJrRc6idDmv6HRPgOm3E3kKhTPWNkfAO9pMk-NmtV3lMxniG_qE4VTQeqUl6HOYuTiy5TKyex75CoxBrSBFVM8oX1Vvj2BA4-6U4tViRm4Z8yCt0nwrMyKzuihflOlbuOcvKv9qxgetyfBojMzYKabSL_wDDr2NkXzW7UtiUd0V25j8c0cDBA8XEv8tTiEwZl5LVVFqYp59wEuSgsTzyv4k7wW7mrmmGV5ZAsFeyEtmrKsaVB7uP12CVKvdBa6FB6lSomPz0akxZWYuo705CWQr_N9tvBOaMVf6ZWKI9s9DXuh8HHzBf9IVepYJHR-lq8zUHp6s-T06BwZWXZtQRzEfrUn4OhONqlowchJAe_B4H_G_qEL1c-Cw91lm2Lr9MwMr5HfkmmHWxBYn6Wp_LwsFi54RIehJlpoA0wkNRn7bJVKSIH9BuHO-r8uiKZeVJCFIOZJTYZDA1bTBRt4h35B6J5J3hvkCVM66LOMy25Y3QOkF3302HTzIcY51JqInswhLX7u_hS_UxrFQxPlwXSWZCmp0gtdaU8qdfCjhA1jriXBvsKpnbZZLgtAsGyRBde-_q6ohE2gF5l3BlAz6wLuEBhxLO1oPOv-YeFmLQ9jHEafai4wRu6-mSGGOfVWF_PhtXkEZCWzU4KyVCPGXLDzsJDkOK_DGPBY4bT5XGDfmnI8tF-u89hQ88PvQR3adF-lPHMl9oj79TuB8rLo_Cg_DBZ4sXD8cPPLpzsB2sF00t1HndiTVrjYwQfwiFJg3kTLR6foGJKzgw6vZ3cwMTwNgZNVnKeKE546ubBnZicfxiK1QNGA1AHf_snx5zlcvG5GfjxJz1uvBk9srfW1_7U9qrC2wl_Ac4E2HNiIMW-yFq8FlzVJTWvXCNYW_EDGE57uGyhoKdlBVUWl47PsutIIBShp_nlJx0ov9D4Zh9PzHf3iZcM4h4CO607FT483KcZ8GTZAYj8LgztMAVWWhpIB11PeLDEoI5Wx9YwtPg1F2FN23eHUoRivw9tJSLEgyjOKFZkI0VdfopDmGi5rPPhl09Z8EeNB7HZl76b3j6JwQ7YfiUon6khmt2_N5cZOP2ZAzvdoiE81EgAZenP6pW4XZ_SvG8ccXyX1bv__ClXT-KkrhV9Lk0qvIpDIjdwZrqlxgGhEZQ1TKmxhhRZ7vvyuFBa6eTQ1lQzPDsFVAB5pYsFItYr_dvbyuLjZDfBLaouu4gCIkVk5zWa0u4y0N3WgkIArCNakBExSvg-SBWnJdTDcU01eRVGo_xT0HE4kciislHPbqj2e5YyApCkUpX9xc_MNCoen96wxAffII9g3OMRrnq-gTAJcbrQp44vJcz19bIVfPb-92pwwegznTrkZ5bvmW7az_T1mchUAFzgW8EcxDgagkOzpHFc5SFKJSOBEANFRc4PEGbub7fCw0gMj1KYH2mzRowS4irBhYducfKOqCtsbjQ_yEsNMYAAAAAAAAAAAAAAAAAChQZHyYq"
+        }
+      ]
+    },
+    "status": "attested",
+    "lifecycle": [
+      {
+        "from": "pending",
+        "to": "attested",
+        "actor": "org:climatechain-demo",
+        "at": "2026-10-05T14:34:34.000Z",
+        "reason": "Signed attestation issued.",
+        "evidenceRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:energy-forecast"
+          }
+        ]
+      }
+    ],
+    "challenges": []
+  },
+  "case": {
+    "schemaVersion": "climatechain.case/0.1",
+    "caseId": "case:energy:active-power-load",
+    "title": "Energy forecast and bounded load action — Energy-EVA active power load",
+    "capabilities": [
+      "renewable-forecasting",
+      "claim-reconciliation",
+      "pq-attestation"
+    ],
+    "createdAt": "2026-10-05T14:34:34.000Z",
+    "claims": [
+      {
+        "nodeType": "claim",
+        "id": "claim:energy-forecast-quality",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:energy-forecast-benchmark",
+            "role": "measured-by"
+          }
+        ],
+        "subject": {
+          "id": "energy-series:active_power_load",
+          "kind": "dataset",
+          "name": "Energy-EVA active power load"
+        },
+        "assertion": {
+          "kind": "quantitative",
+          "metric": "Energy-EVA LOAD_ACC, mean of 5 rolling 48-hour windows",
+          "quantity": {
+            "value": 0.6470147214511727,
+            "unit": "LOAD_ACC"
+          }
+        },
+        "temporalScope": {
+          "start": "2021-01-01T00:00:00Z",
+          "end": "2022-11-30T23:00:00Z"
+        },
+        "boundary": {
+          "methodology": "Energy-EVA dummy_model (repeat the previous 48 hours) scored with Energy-EVA's LOAD_ACC.",
+          "accounting": {
+            "included": [
+              "All 7 standardised series (5160 hourly values)",
+              "The last 5 rolling 48-hour windows of each series"
+            ],
+            "excluded": [
+              "Energy-EVA's other datasets and models"
+            ],
+            "policyChoices": [
+              "Horizon 48 hours, context 512 hours and cut-offs -240, -192, -144, -96, -48, as in Energy-EVA's load task"
+            ],
+            "notAssessed": [
+              "Whether a better forecast model would change the action",
+              "Avoided emissions"
+            ]
+          }
+        },
+        "assessments": [
+          {
+            "dimension": "source-found",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T14:34:34.000Z"
+          },
+          {
+            "dimension": "calculation-reproduced",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T14:34:34.000Z"
+          },
+          {
+            "dimension": "evidence-integrity-confirmed",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T14:34:34.000Z"
+          }
+        ]
+      },
+      {
+        "nodeType": "claim",
+        "id": "claim:energy-bounded-action",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:energy-forecast-quality",
+            "role": "confidence"
+          },
+          {
+            "nodeType": "evidence",
+            "id": "evidence:energy-action-request",
+            "role": "request"
+          }
+        ],
+        "subject": {
+          "id": "action:shift-load",
+          "kind": "other",
+          "name": "Bounded shift-load"
+        },
+        "assertion": {
+          "kind": "qualitative",
+          "statement": "shift-load of 120 MWh requested; policy allows 100 MWh; approved by person:energy-manager."
+        },
+        "boundary": {
+          "methodology": "A coded policy checks the request; a person approves amounts at or above the approval threshold.",
+          "accounting": {
+            "included": [
+              "The request: shift-load, 120 MWh, counterparty grid:demand-response-pool"
+            ],
+            "excluded": [
+              "Submitting the action to a market or dispatching hardware: ClimateChain prepares, it does not act"
+            ],
+            "policyChoices": [
+              "Cap 100 MWh; approval at or above 50 MWh",
+              "Minimum confidence 0.6, with the forecast's mean LOAD_ACC as the confidence",
+              "Allowed actions shift-load, charge-storage, discharge-storage; counterparties grid:demand-response-pool"
+            ],
+            "notAssessed": [
+              "Whether the action reduces emissions",
+              "Grid constraints and the counterparty's ability to deliver"
+            ]
+          }
+        },
+        "assessments": [
+          {
+            "dimension": "source-found",
+            "state": "confirmed",
+            "assessedAt": "2026-10-05T14:34:34.000Z"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "nodeType": "evidence",
+        "id": "evidence:energy-series-set",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [],
+        "kind": "dataset",
+        "source": {
+          "uri": "https://zenodo.org/records/17099628",
+          "publisher": "Energy-EVA (EnergyTS TimeSeries Dataset)",
+          "retrievedAt": "2026-10-05T14:34:34.000Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "wZjV-dnmEuQETt5X355Lnap3ollCLdisvMrWLNZFj64"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "data/external/energy-eva-active-power-load"
+        },
+        "rights": {
+          "sourceManifestId": "energy-eva-active-power-load",
+          "licence": "CC-BY-4.0",
+          "redistribution": "allowed",
+          "commercialUse": "allowed",
+          "derivedData": "allowed",
+          "attribution": "EnergyTS TimeSeries Dataset (doi:10.5281/zenodo.17099628); original data Veeramsetty et al., doi:10.17632/jxm8d4w4cv.1."
+        },
+        "temporalCoverage": {
+          "start": "2021-01-01T00:00:00Z",
+          "end": "2022-11-30T23:00:00Z"
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:energy-eva-published",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [],
+        "kind": "report",
+        "source": {
+          "uri": "https://github.com/antgroup/Energy-EVA",
+          "localRef": "packages/energy-forecast/references/energy-eva-active-power-load.json",
+          "publisher": "Energy-EVA",
+          "retrievedAt": "2026-10-05T14:34:34.000Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "FO0jaek8DU9Itq9UNOphGsjU9v27cgNrwmjxRzxksBA"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "packages/energy-forecast/references/energy-eva-active-power-load.json"
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:energy-action-request",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [],
+        "kind": "other",
+        "source": {
+          "localRef": "reports/energy-forecast/action-request.json",
+          "retrievedAt": "2026-10-05T14:34:34.000Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "DokLOtp07sXUMuX5QnOOlbhuXBYApKXXQcC7Q9bHqo8"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "reports/energy-forecast/action-request.json"
+        }
+      }
+    ],
+    "calculations": [],
+    "factors": [],
+    "modelRuns": [
+      {
+        "nodeType": "model-run",
+        "id": "model-run:energy-forecast-benchmark",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [
+          {
+            "nodeType": "evidence",
+            "id": "evidence:energy-series-set",
+            "role": "forecast-input"
+          }
+        ],
+        "model": {
+          "id": "energy-eva-dummy",
+          "name": "Energy-EVA dummy_model",
+          "version": "Energy-EVA-2.0-semantics"
+        },
+        "inputDigest": {
+          "algorithm": "SHA-256",
+          "value": "wZjV-dnmEuQETt5X355Lnap3ollCLdisvMrWLNZFj64"
+        },
+        "preprocessingVersion": "energy-forecast/0.1",
+        "inferenceParameters": {
+          "horizon": 48,
+          "contextLength": 512,
+          "cutoffs": "-240,-192,-144,-96,-48"
+        },
+        "output": {
+          "kind": "quantitative",
+          "metric": "mean LOAD_ACC",
+          "quantity": {
+            "value": 0.6470147214511727,
+            "unit": "LOAD_ACC"
+          }
+        },
+        "benchmark": {
+          "metric": "LOAD_ACC",
+          "value": 0.6470147214511727,
+          "notes": "Each window compared with Energy-EVA's published dummy_model result."
+        },
+        "executedAt": "2026-10-05T14:34:34.000Z",
+        "reproducibility": {
+          "codeVersion": "energy-forecast/0.1"
+        }
+      }
+    ],
+    "verifications": [
+      {
+        "nodeType": "verification",
+        "id": "verification:energy-forecast",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:energy-bounded-action",
+            "role": "claim-under-review"
+          },
+          {
+            "nodeType": "evidence",
+            "id": "evidence:energy-eva-published",
+            "role": "published-reference"
+          },
+          {
+            "nodeType": "verification",
+            "id": "verification:action-approval",
+            "role": "human-decisions"
+          }
+        ],
+        "verifier": {
+          "id": "service:climatechain-energy-forecast",
+          "kind": "service",
+          "name": "ClimateChain Energy Forecast"
+        },
+        "profile": "energy-forecast/0.2",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "baseline-reproduced",
+            "name": "Energy-EVA's published dummy_model results reproduced",
+            "outcome": "pass",
+            "detail": "-240: match; -192: match; -144: match; -96: match; -48: match"
+          },
+          {
+            "id": "bounded-action-policy",
+            "name": "Bounded action policy",
+            "outcome": "pass",
+            "detail": "confidence 0.6470; allowed 100 MWh; Requested MWh was capped from 120 to 100."
+          },
+          {
+            "id": "action-approval",
+            "name": "Action approved by a person",
+            "outcome": "pass",
+            "detail": "approve by person:energy-manager: Forecast matches the published baseline in all 5 windows and clears the 0.6 confidence floor; approving the policy-capped 100 MWh."
+          }
+        ],
+        "findings": [
+          "The action is prepared, not executed: nothing is sent to a market or a device.",
+          "Forecast quality is not a claim of avoided emissions."
+        ],
+        "verifiedAt": "2026-10-05T14:34:34.000Z"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:action-approval",
+        "createdAt": "2026-10-05T14:34:34.000Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:energy-bounded-action",
+            "role": "flag-source"
+          }
+        ],
+        "verifier": {
+          "id": "person:energy-manager",
+          "kind": "person"
+        },
+        "profile": "energy-forecast/action-approval/0.1",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "action:bounded-action",
+            "name": "Approval of the policy-capped load action",
+            "outcome": "pass",
+            "detail": "approve: Forecast matches the published baseline in all 5 windows and clears the 0.6 confidence floor; approving the policy-capped 100 MWh. (person:energy-manager, 2026-10-05T14:34:33.900Z)"
+          }
+        ],
+        "findings": [
+          "An approval records a person's decision on the capped amount; the policy still bounds it."
+        ],
+        "verifiedAt": "2026-10-05T14:34:33.900Z"
+      }
+    ],
+    "attestations": [],
+    "anchors": []
+  },
+  "limitations": [
+    "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
+    "The request and policy are illustrative; the action is prepared, not sent to a market or a device.",
+    "The forecast is Energy-EVA's dummy baseline; forecast quality is not a claim of avoided emissions."
+  ]
+}
