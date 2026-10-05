@@ -118,5 +118,93 @@
       "latencyMs": 285
     },
     "executedAt": "2026-10-05T11:23:16.393Z"
+  },
+  {
+    "timestamp": "2016-01-30 08:00:00",
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "state": {
+      "meter": "hourly electricity, kWh",
+      "building_use": "Entertainment/public assembly",
+      "weekday": "Saturday",
+      "hour": 8,
+      "reading_kwh": 0,
+      "expected_kwh": 435.9,
+      "robust_z": -5.8,
+      "flag_threshold_z": 6,
+      "previous_3_kwh": [
+        244.6,
+        287,
+        320.8
+      ],
+      "next_3_kwh": [
+        345.1,
+        344,
+        471.3
+      ],
+      "flag_reasons": [
+        "zero"
+      ]
+    },
+    "advice": {
+      "model": "jev-1.13.0",
+      "choice": "meter_fault",
+      "probabilities": {
+        "unclear": 0,
+        "meter_fault": 0.99,
+        "real_consumption": 0.01
+      },
+      "confidence": 0.98,
+      "inputTokens": 573,
+      "latencyMs": 591
+    },
+    "executedAt": "2026-10-05T12:29:48.510Z",
+    "questionSet": "building-triage@2"
+  },
+  {
+    "timestamp": "2016-03-13 02:00:00",
+    "meterSeriesDigest": {
+      "algorithm": "SHA-256",
+      "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+    },
+    "state": {
+      "meter": "hourly electricity, kWh",
+      "building_use": "Entertainment/public assembly",
+      "weekday": "Sunday",
+      "hour": 2,
+      "reading_kwh": 0,
+      "expected_kwh": 375.4,
+      "robust_z": -5,
+      "flag_threshold_z": 6,
+      "previous_3_kwh": [
+        300.7,
+        295.3,
+        287.4
+      ],
+      "next_3_kwh": [
+        286.6,
+        289.7,
+        295.7
+      ],
+      "flag_reasons": [
+        "zero"
+      ]
+    },
+    "advice": {
+      "model": "jev-1.13.0",
+      "choice": "meter_fault",
+      "probabilities": {
+        "real_consumption": 0.02,
+        "meter_fault": 0.98,
+        "unclear": 0
+      },
+      "confidence": 0.96,
+      "inputTokens": 575,
+      "latencyMs": 237
+    },
+    "executedAt": "2026-10-05T12:29:48.747Z",
+    "questionSet": "building-triage@2"
   }
 ]

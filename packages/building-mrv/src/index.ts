@@ -11,3 +11,4 @@ export * from "./service.js";
 export * from "./advisory.js";
 export * from "./decisions.js";
 export * from "./decided-case.js";
+export * from "./stuck.js";

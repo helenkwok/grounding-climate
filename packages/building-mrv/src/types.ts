@@ -79,11 +79,15 @@ export interface AnomalyPoint {
   residual: number;
   robustZ: number;
   flagged: boolean;
+  /** Why the reading was flagged; empty when it was not. */
+  reasons: Array<"residual" | "zero" | "constant-run">;
 }
 
 export interface AnomalyResult {
-  method: "baseline-residual-mad";
+  method: "baseline-residual-mad" | "baseline-residual-mad+stuck-readings";
   threshold: number;
+  /** Shortest run of identical hourly readings that is flagged; absent when runs are not screened. */
+  minRunHours?: number;
   center: number;
   robustScale: number;
   flaggedCount: number;

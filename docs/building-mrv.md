@@ -199,7 +199,27 @@ This is deliberately described as an **anomaly/data-quality check**, not a proof
 
 Read this plainly: the screen catches isolated readings far from the usual hour-of-week level. It misses most of what the rank-1 team labelled bad, which is largely long runs of zero or constant readings; those runs sit inside the training data and shift the baseline instead of standing out from it. The median building's precision is 0.03 in the case window. It is a narrow first pass, not a general bad-reading detector.
 
-For the case building (GEPIII building 602), the competition data holds 2,155 readings in the window against BDG2's 2,160, with the same total energy. None of the three hours the screen flagged exists in the competition data, so the labels cannot judge them; BDG2's `0` at those hours stands in for a reading the competition data does not have. BDG2 has exactly five zeros in the window: the three flagged, the US daylight-saving hour 2016-03-13 02:00, and 2016-01-30 08:00, which the screen did not flag. That the five missing rows are these five zeros is inferred from the count and the total, not checked hour by hour. This supports treating the flagged zeros as dropouts; it does not establish the cause.
+For the case building (GEPIII building 602), the competition data holds 2,155 readings in the window against BDG2's 2,160, with the same total energy. None of the three hours the screen flagged exists in the competition data, so the labels cannot judge them; BDG2's `0` at those hours stands in for a reading the competition data does not have. BDG2 has exactly five zeros in the window: the three flagged, the US daylight-saving hour 2016-03-13 02:00, and 2016-01-30 08:00, which the residual screen did not flag (the zero rule below now flags all five). That the five missing rows are these five zeros is inferred from the count and the total, not checked hour by hour. This supports treating the flagged zeros as dropouts; it does not establish the cause.
+
+### Zero and stuck-run screen
+
+Because of that result, the screen now also flags every exact-zero reading and every reading in a run of at least 168 identical hourly values (`src/stuck.ts`; `minRunHours` in `runBuildingMrv`). `scripts/kaggle/gepiii-run-screen/run_screen.py` chose the run length on even-numbered GEPIII buildings and reports it on the odd-numbered ones, so the numbers below are not tuned on the buildings they describe (`reports/building-mrv/gepiii-run-screen.json`). The TypeScript and the Python port flag the same rows on a test series with a 200-hour stuck run, a gap and five zeros.
+
+| Held-out buildings, electricity | Rule | Precision | Recall | F1 |
+|---|---|---|---|---|
+| Case window | residual only (before) | 0.375 | 0.079 | 0.131 |
+| Case window | zero or run ≥ 168 h | 0.977 | 0.942 | 0.959 |
+| Case window | residual, zero or run ≥ 168 h (used) | 0.862 | 0.961 | 0.908 |
+| Full 2016 | residual, zero or run ≥ 168 h (used) | 0.768 | 0.925 | 0.839 |
+| Full 2016, excluding site 0 | residual, zero or run ≥ 168 h (used) | 0.617 | 0.860 | 0.718 |
+
+Caveats:
+
+- The zero rule's precision is 1.000 because the rank-1 team labelled every zero electricity reading bad. Part of the agreement is our rule matching their rule, not independent confirmation.
+- Site 0's electricity before May 2016 is labelled bad in bulk; it inflates the all-sites numbers, so the table also shows them without it.
+- The residual rule lowers precision on these labels, which do not mark isolated spikes. It stays because it catches spikes like the recorded tamper, which the zero and run rules cannot.
+
+In the case window this adds two flags to the case building: the zero readings at 2016-01-30 08:00 and at 2016-03-13 02:00, the hour that does not exist on the local clock when US daylight saving starts.
 
 The decision model's advice has not been scored against these labels yet.
 

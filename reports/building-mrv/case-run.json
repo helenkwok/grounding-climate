@@ -1,6 +1,6 @@
 {
   "schemaVersion": "climatechain.building-case-run/0.1",
-  "runAt": "2026-10-05T11:25:02.680Z",
+  "runAt": "2026-10-05T12:30:34.855Z",
   "organisingQuestion": "Can this building's Scope 2 number be trusted, and who decided what about each flagged reading?",
   "building": {
     "buildingId": "Bear_assembly_Angel",
@@ -25,6 +25,11 @@
     "result": "reconciled",
     "flags": [
       {
+        "timestamp": "2016-01-30 08:00:00",
+        "state": "decided",
+        "decision": "exclude"
+      },
+      {
         "timestamp": "2016-02-03 07:00:00",
         "state": "decided",
         "decision": "exclude"
@@ -36,6 +41,11 @@
       },
       {
         "timestamp": "2016-03-03 14:00:00",
+        "state": "decided",
+        "decision": "exclude"
+      },
+      {
+        "timestamp": "2016-03-13 02:00:00",
         "state": "decided",
         "decision": "exclude"
       }
@@ -67,6 +77,11 @@
     "result": "insufficient-evidence",
     "flags": [
       {
+        "timestamp": "2016-01-30 08:00:00",
+        "state": "stale",
+        "decision": "exclude"
+      },
+      {
         "timestamp": "2016-02-03 07:00:00",
         "state": "stale",
         "decision": "exclude"
@@ -85,6 +100,11 @@
         "timestamp": "2016-03-13 00:00:00",
         "state": "undecided",
         "decision": null
+      },
+      {
+        "timestamp": "2016-03-13 02:00:00",
+        "state": "stale",
+        "decision": "exclude"
       }
     ],
     "emissionsTCo2e": 278.847252749055,
@@ -130,45 +150,45 @@
   },
   "publishedKeys": [
     {
-      "keyId": "key:demo-ed25519:2026-10-05T11:25:02.680Z",
+      "keyId": "key:demo-ed25519:2026-10-05T12:30:34.855Z",
       "suite": "classical",
       "algorithm": "Ed25519",
       "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-05T11:25:02.680Z",
-      "validFrom": "2026-10-05T11:25:02.680Z",
+      "createdAt": "2026-10-05T12:30:34.855Z",
+      "validFrom": "2026-10-05T12:30:34.855Z",
       "verificationKey": {
-        "keyId": "key:demo-ed25519:2026-10-05T11:25:02.680Z",
+        "keyId": "key:demo-ed25519:2026-10-05T12:30:34.855Z",
         "suite": "classical",
         "algorithm": "Ed25519",
         "encoding": "spki-der-base64url",
-        "publicKey": "MCowBQYDK2VwAyEAuidbuKpAixAaxbrSKvkvy5oY4sgK7Sw2zgeorzkD7w0"
+        "publicKey": "MCowBQYDK2VwAyEACjp8eu7Ro8NM4mxJDRM2kSKencJ3YbMA8WJpARRGnAk"
       }
     },
     {
-      "keyId": "key:demo-ml-dsa-65:2026-10-05T11:25:02.680Z",
+      "keyId": "key:demo-ml-dsa-65:2026-10-05T12:30:34.855Z",
       "suite": "post-quantum",
       "algorithm": "ML-DSA-65",
       "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-05T11:25:02.680Z",
-      "validFrom": "2026-10-05T11:25:02.680Z",
+      "createdAt": "2026-10-05T12:30:34.855Z",
+      "validFrom": "2026-10-05T12:30:34.855Z",
       "verificationKey": {
-        "keyId": "key:demo-ml-dsa-65:2026-10-05T11:25:02.680Z",
+        "keyId": "key:demo-ml-dsa-65:2026-10-05T12:30:34.855Z",
         "suite": "post-quantum",
         "algorithm": "ML-DSA-65",
         "encoding": "spki-der-base64url",
-        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehALslcpdgB7dop4lHIXSkZlX7y7eXvPrZi6D-0ZGUi2Dt-7jBOru5oOfSM1Bx-CcuWvWzkFAutjn2qjH9S9CYIf05JN2Xp7TpRvk9cavVG8quxq2CposF7g0cenA8Eqzy2TitM9n19_t1N4LimWOPix-pcESY2tnC80s3oYnAEG7bNKSyeX2lXypn2dBp1YP9nY2He0lc1fNUr6ni0VFdAXjkssndncywlnbawvhWx5WV_a34nt5JKd1NL64aiI-FEXWlqdpgaj9f6CjhvvpkjOdbqYT45c63WfFWJl_myOuSirXfmjMyhpHmdVQ2U221Y3jWm6eDCAkVmAwlgdI0g-Od5ZeEfx51AbfzYpEjffn64E7gLiekHC_DoR173SpgnSiP8lhFPv5vF9Lm_AupzU4rGwe4HinIQlk8PJARWNf2VaywCEcm1Q6Wj0PXDB5RdxTMYU81UHfvTAWhNYEmElAN0RZ2vlvhXzeYwbRoZUPv6hvmj3QwUSnP95vfJC4A14lMbYrtGCD8RYVM9fgIS7V0XEAFb753ZjI-YW3M_w2yv96PsXDYvzAPZ-yZ4Hyg0HG4VtU5MTshitzYLs7eNzngWRSXTdJ5KJcM_mTkiQ24qsjIbbwCgWh1fc8VjlSyIZOB8xDXpQv6ImHkDTHNViNiQShzZ2koUr5bk0CQCe5obKtHOK7hF8iCKrfjTLQuew2awaQGQ23ObkRJQo_cILgEqf3GOI3frG2PWszaVX_a9SUT8a6AWPRoOeU_8FcJ3KfG0iOn8gw6YAyWnWMmFkHAlmCmjBjkmj2KBmx2rJEG8QaWUwvxHT9XT_0moUxnLDztg8_QWPOXffe-xD114h9mVx0b_EykpUXeFdX9HwakFaQHIdlQbHxGCF3U0_nS6jvBXqDb5wuy5eFHyfA9hLO3NmbtloqASD7QeGQTyRfGjxICAtP9UQtP2i2LYeYq1SYTbSovIqlJQiZuAS2iSzJHftmTsUGDjjUqOwP19LdfojDdOfm4twOKmwMpq7S08qxkH9wz5qFquPw5IvhCXNaq_t7QBm_em-KvBgM-wJYLsGMKNMNuh9T388v0gUZkWqoWJvH5fUbB4vAH5jO119w57QXhLHEtvFS1jOl57IXqLoDr6KqKaYFHYEAhx3HQaVkxpXAk2V8GeP_ue0WQOZemYGbNLBccV_He0xn84USsyQtyfmmMsFmb23dKk1PJtfQqXNkOZ4DkSoeaB3MTv90SeKVznEgZyT-HVnX-jpAECnBsHvVUvXa98i4J3l-ZyipySEMy0bFRznUKOOpQQ70Rou-o0yj7uHI1pox8Hkmn5NDEfDuyRHPBg05Qfk5DOb_ILImhM8jP-PtjSk9mW2ETEUTWTz7hXT1PccyRr6LCn4xz2WwSPUh8f6HvnB_2TDym6u6C4j_dNozPmb1Y-Iro68LGlmNJMuNgY1Cxeem8HyFGiULZ5zwmM9AyRBsDYWxMPSydDQ6Y4qp4jA2powhN4yYewpo9Jia_WsI8-7KmCfutkto-UwCr0HqTfeORyfyao5PeGx-zOALZVPLnWkIjUaNNBXrRG1SZLMiKQhr7PTwkJUDxxIIBNLS7am7n3_YSyRH5KmP3nHzMhyiTjeHfvNvBF8hkfhrZnFzt6FS8vD8WDoCW4cjQKVYU2qslshXYzFCB-mT3JKIoe9WMAyVHe2PJridSgdOwnuBWbrfYNNUuahFVC68XKm2sqIDmYYvzzSI3Yy756y7JfblqOCxwpGz_1rgcDDtkrTG9uH1oD_OkTT0PAlLkkycl8AAUj9i1LjA5L4XG--BWXewNwxJoYQfDioAyZA5yDZ0uH2qiSUseItGKSlDIN9bgzO-aK6cC1y2gJZFCo5sqt0dUbt0SJ6-YYFsudG2rIcds41snZ9Hz0Jq5IL2nXnH2PmjsirTvHPQSKwM5gATrMILflbRiPeBpuxU4EVTpN0dFMnDUln3do-Am9HzCmz_0_ne2RU-L5qO_DA5U14Hu3C6yyoi7nkimKAsOmddLhhqf-UGFebB8iL-WnMDNrUv9Gh7sPjBlr7tmh6zYawQZVhbNuQCU54Iki_PhBteCBy-VYKFrcoNiXon9J63EXNO-npq_j25FR0TSqFDw4yyS8dovMGl_CnZvJhlGs_m1IBKozyFdD3QzftClIuD_SlyMmCFm6NViFe67PBy2OHrjEKCLX9OAmv0_XlYsTIDtGLy0VGWv3XL6Kp-6B0Pa4jBJQv7u7VEZWkWzNs_AhfWCtgxU3F-HL8fjTqJ0PQj15kexR7XRXC1_0hhdv15ZHkcoMc97Oxxl7ykhWaa5ZmaSxYy3nL1ec4kD6kFHZ31K8ObjfW23uikw24TLVL-K7oAfph-u3c5J64FuiB_h-SYfthDeNwksCvAqHCsHGvASwypjYUUPGzrsbufHjN7nBDq9FuMrwO2y1cD352qwDFu7ZUVbpadCNJ_TZ6tH6rN6yU4CyPzxKro9K2_-SkrdUzBAURrWL2Yzv4X1Vrxx1N9SQFklQe0qH3buhr3vuFqanP9ahEAjqAzf10zSANrj5kWho4JdGIe1qAQoVI_NyzHsRQhP12F3y5J3v9_VyDBxhOVc9PvW"
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAGJDo73eanmmWKaYcx_JpUGzVX-7UEWmaL-DJ-zl8DXD1r2myQ2sW-E3lXitF956g9Fk-zA3k0Yu8PSqa9ektQnkg2plvCrzjdj1f_GtNwuctImfZw3JPiE30r30M87cdwwCFFKwJzPrTMOmuOxh3fOfXGdrei1CgEmFjP1Kn-6DgtZGSgpOq1FyPw0U3Pvs37_J_pV9k5c4ymUocDiPpl4t9-St2KgKqn9nKSzkbF8HpPOyMVF8Me_-LoNV9EwtSTb_Khg7LLLOuLXYVPSdNUirKLYWyZYcwIi52_J9Fl85ohWMtVWXyco47R3BrvlgMzxCOvQNeWPJVkrcC1iXKIXcxwe4TpCDvF_qWB81EpZHXvPizd6d4Xit_TxJ9w4hNTi3OIwafbf8YB6Eb_JJx01OdouxkhSBStFuuKP0EuydMehxbL64HzeUxr_Utzg2myvjFiQ3QPB-ONj3eS768liVkBXYVluYFTH8dBgvQ4b0paO6oX1T9Ui65pwX4tK1SUzOQ9qVor65Ly9XIhVi5B3I84WfzxuQM4xN6uTOIM0sXe6rrJ21cV9414ZSnXKcmEiWTLCYybKQh4CQPOiR8AzE29rWakafHZIA_rph5ErzWRKXcFVYygF91sYdOlo4GfQ9KD9p6g5Cn9DY1GfnlbDOsM9RsVvYL-ItdMI1rlulMLQXQzc-OiNKgWJPKZ34_rGEqHf3pWitg3inE1sViEa3sRhLR3Un3BuuZZAwEYkwFyIs3YhOT6lvLPhDkHH1Uj5vskaJyoDMq-uGVMk4aPUwrhnXgteOH5y_4V4QXQOGMMnWAVaOU188Lbfp8Qc0gvKzAUfTl6eMGtJBEhkuNuEm7WZ5zRkfhK3hS5PFymZnVlNCkdY8lNxUh7CNTXVH1BeE7n8gcJ5eVXBa_7XB0hGtaZU7nhSCwYVQdBouROmq-B57dqqbP1gnqgPbl1eZO-Q1fMrDOqw_-rGzfKSGzoibvKpQrdgVjnArmQRIUpH-XGIjmHYdXdPOAMU3qgeZ-tWTLHapLPZJNxYTntxEB-QaXmLTwQkMvWMsikOUDidTnxCG0QzN6oXTWQU3QeLj3P_F5MIuGuDXHDdC9KL8tDLCa_B-irU6nnOWPXFNP0Sh2PEwGW9850_hFJcxQE_w12e7wGu3hSqflDbXQ1zVgVxfUhBFTdXu7HOfr6RVPILH_tQIhXOvwvhI4h_lDBlM4T_kDSHkjbW_HNAdUOUKE5igEQmayXIJCvg5R7ugupsfDEdjVcGL2iyj7a6miD0cU0yxYGW5NDYm9ohhWAXfNaaH22-Jud4TeL1_Nfa2e_bt3gKXQ3GfYE3xW03GfeRF3fNxKY_VRwPFBInt1luifKPed5Il2GyDvn50Wg_NloXVNA0zsjsQGTLX1KF0LxRK9WXLBJoB_pGzT20BRRjSU2cvHHt-NvUVv35d3g7EXu1ftgQQz4r8-lvHn4IhKcBdRqAcaAkUYiDAXQSYQh6kJqosU1VDicJt45GrS8vvvT6lLys2dFBUv3NeTc_mzVdfqOwjGYVhKfe51HwI2OsFIBKXfxJwNHuFcTArUPMgY8JXNY-kDsdA8lKX64D5ejTYe0Jnh_99fay8e6AondmwLAFjAhTS_kRzn6eER31gSuK4ECLyJXecr45e6qNryNIPZBPOttaGC7eKR45KgGsOdiFblK_AZyqQKP_hp_Ld3Y-DbcX3D7Lu2J2J8CPxPU_KuGiyR1B-sC0boWCmP5ORtjiippguhde9nrY1mQ8zwLjSoF6d_mduoklGo3mGObDMjH3YoeFqJE3IXUtZ1xBiO7jkDTV0zCtXhnRStO0lXsYi5vMv2NJOhuYU4Yc1SlXx_bKNRAb4ny--wotI4xmCtXTJXybQ0WHPAPPCgMfzNEKg79BPa8wZO35lr8Z4fDyok5Nk-Q_8E5akuIG-s0t9MpIjuajSPhs4Ou5c8-rQJ4gN6Yxx4JzTj-XuMIl-SxMlnNexyuzjoMmn6kuy1o77S5oBVviWxqwoyGiYHgW_1UYcXJb9IKk3gnZAD6YLCgFzWEk63BJIZTrLjQNqbX5RFKLRB-7nfK3WySLbHKlULF9qPAM7aC2vb2ANCqWCjqQ0UaTpSdi5JGgT6GjxwiTT6p6xR0v1GzbJq2ZvHqhD9AfWVhvkB7mQLNP6Poug6lAdWpmKwz4lfamc7DlrtJMU3HtIfXk_Fz786g7WJ6F0_VEK0llVIFs5WcBiOyUBYth1IRUlra1wSL3sau8SS6vUp-PLnvGxMyLoq96jgztiTsjHOWoUzAVbg9_a0uNtuUDsHTdHVm09nQ8xC530uVZ_y-2pPdPgKxzH82bZCgK5czi5B5tcG9VnZ0k7K-Hr11_9JfcdFAF3wY3DO38Gwd4K4psOMKFF5vzZWTo4NIx7hSYlSY9ONUauGBQhZ0PZyCn_SL370Wrwn3MciS7-kJeFOFZNJ3EpFSEkkESARjz3Hulps74VACgKqGoKpM7gLoO-fch7if4cS3QORSd8AMHj5j99aaj514BeXKeYFXItdTWnOFVj0Xrb6FoufR8J4TDhzt7OHSggjc6Xf-bIdSO0SI1K7WZjFG_if9oVTvzM2aOW"
       }
     }
   ],
   "attestation": {
     "payload": {
       "version": "climatechain.attestation/0.1",
-      "id": "attestation:building-mrv:2026-10-05T11:25:02.680Z",
+      "id": "attestation:building-mrv:2026-10-05T12:30:34.855Z",
       "attester": {
         "subjectId": "org:climatechain-demo",
         "name": "ClimateChain demo run"
       },
-      "statement": "Scope 2 electricity emissions for this building were recomputed from the BDG2 meter series. Verification result at signing: reconciled; 3 of 3 flagged readings had a current decision by a person.",
+      "statement": "Scope 2 electricity emissions for this building were recomputed from the BDG2 meter series. Verification result at signing: reconciled; 5 of 5 flagged readings had a current decision by a person.",
       "claimRefs": [
         {
           "nodeType": "claim",
@@ -181,10 +201,10 @@
       },
       "evidenceRoot": {
         "algorithm": "SHA-256",
-        "value": "wyjDcaHeL87I75cpoTQKz8_t7DBrZmYmrA2RXHQMU9I"
+        "value": "vyikBz1_SOb_owmz2R-z1Rt1_xTEBmLc6TjVSWL9AEA"
       },
       "manifestVersion": "climatechain.evidence-manifest/0.1",
-      "issuedAt": "2026-10-05T11:25:02.680Z"
+      "issuedAt": "2026-10-05T12:30:34.855Z"
     },
     "evidence": {
       "manifest": {
@@ -205,7 +225,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "tSo890OWnIHJypFxUVx3E-fFQgjC8mu7YxdYRsX3ewo"
+              "value": "7kyVE7akKmyHdb3lKsdJlVuOjdaAOBHW17jI85kF8xo"
             }
           },
           {
@@ -215,7 +235,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "tzrX6_sFhFqqzNiYSfXZ_99B6BM9IzHrZWhcjN2sfBc"
+              "value": "j5Pqo-W6maqB2d1U4ToKqFOpOf3H7z638Ae2yBAwBBs"
             }
           },
           {
@@ -225,7 +245,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "m2h6mf5l7Lr6hv0q5LZ3JasJ_ApSxpAcUC7qPxpNu0Y"
+              "value": "1UbLz0G8FUVXFT_ymjkQBC9Ov_x7pHac-UbnHDYJ6hE"
             }
           },
           {
@@ -235,7 +255,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "bBfz09-IjzeaBes1AULK2hdH4TBlZ4Z9yeAJ-gqhNIg"
+              "value": "JtbqOAnn92H5ENHQ0jZXElAw-YDbPA6E9PpF1gl6Zbs"
             }
           },
           {
@@ -245,7 +265,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "RAfDHNh3GAMU2AFlx32QHJxcqZsBItef8EMKdTZ-CqM"
+              "value": "vopbSDImjG-HEP9S4k75zUJBuHoCgLT7911apWkBTyA"
             }
           },
           {
@@ -255,7 +275,17 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "cyPNhjT-3tmmktqM4HprXCE2JtfbYOpCBaRCwJB8c04"
+              "value": "rDY2Cr7hMCmYOvosq5XDHx3dWlg5xJWQiwBmWYjpwUI"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:triage-advice:2016-01-30T08:00:00"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "bB85rTgC4vzezGSQt_-FHKJ9GobvRCM6VTHuGSGO5rA"
             }
           },
           {
@@ -290,12 +320,22 @@
           },
           {
             "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:triage-advice:2016-03-13T02:00:00"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "O5pNEOYK1gwYIh3j44egFBRKMiEm0_1eh_L9hepb3n0"
+            }
+          },
+          {
+            "ref": {
               "nodeType": "verification",
               "id": "verification:building-mrv"
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "f5XSW9hWZc0J6WnEGBT83J8pJCE9qpf4GrMuP_WkPYw"
+              "value": "FDsRD7_HoneIxPtkAooYsJKB0MwDothelpnM5UGw-hA"
             }
           },
           {
@@ -305,14 +345,14 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "Em4Xn-Bxq_eAYyzUkWOi1UKBrkJW-tpDOgwsRA7Hum8"
+              "value": "LBPHgSfRBXIBFfjZvKc4nPCMfaDCgZlDX8FEoI7aMMw"
             }
           }
         ]
       },
       "root": {
         "algorithm": "SHA-256",
-        "value": "wyjDcaHeL87I75cpoTQKz8_t7DBrZmYmrA2RXHQMU9I"
+        "value": "vyikBz1_SOb_owmz2R-z1Rt1_xTEBmLc6TjVSWL9AEA"
       }
     },
     "envelope": {
@@ -321,23 +361,23 @@
       "schemaVersion": "climatechain.attestation/0.1",
       "payloadHash": {
         "algorithm": "SHA-256",
-        "value": "5DbpOZt2Ptya2GDygiXVn7K8qIzYmzDnL0Tom6XEfiA"
+        "value": "ffgrw_MB1M6n4TFhvFQacPEdPmfUf5pQvbXW75JXjec"
       },
-      "createdAt": "2026-10-05T11:25:02.680Z",
+      "createdAt": "2026-10-05T12:30:34.855Z",
       "signatures": [
         {
           "suite": "classical",
           "algorithm": "Ed25519",
-          "keyId": "key:demo-ed25519:2026-10-05T11:25:02.680Z",
+          "keyId": "key:demo-ed25519:2026-10-05T12:30:34.855Z",
           "encoding": "base64url",
-          "value": "OHWehMB6SIPELIWLctETNYXkNW7T-lyJrhs28ixTi9i8F0tJOP7ZLD3GtBcFqht4mFrDXPBX1myBdMPK37piDQ"
+          "value": "0YMTFJvfkkss1cwAkQATsEoTk32J9ni0NwNGk7_Kpz8tpY7KnsFBCgKSmbm9u3PlOnv-p3kjXlph1LGEURu9AQ"
         },
         {
           "suite": "post-quantum",
           "algorithm": "ML-DSA-65",
-          "keyId": "key:demo-ml-dsa-65:2026-10-05T11:25:02.680Z",
+          "keyId": "key:demo-ml-dsa-65:2026-10-05T12:30:34.855Z",
           "encoding": "base64url",
-          "value": "QUvi9ADkXiX25FJtc26C8A9CX77twgOvs6PqubEkuGtH0Z5ML_WlmT4hQgJm8NS1N-kLsfMfNTspvnvS7bWSyvuUYdDg73ut6KYm1sZlVJm89LuHA-u2-C4rOZYTUTSRbThnc64et2Z1v6Y0SmOPGPn4wkW7D0St-5mBI9vS2ykt_YNJT82sFM0DpId5cKUVBlcM06ibdlAAO33p2ZFi5ETLCHmjdrGRCvudO8AUpyUSPRzEa0GtMZmonn6OO9ksHwWi970zMkpuj86csCv14N0Pn5FdfGkI-xhhP-xJijEkEpDwql_EIUWvrFhnMX1DCBUPLBseebmXtVMoovgfLLEedohMp6xnIPDtSX0mzPoSPI5V2URfZBz5BK65AN7eoLnBDU1_qkGct97JNFcKzP4266w_gJcUJCv0ElaAhluCTswfYJqjcnqtso654WPDk6o13ofdzzDUzpHZflsoNev57L3aSaVbAG4Fff9GSt0kgBHbLgRlwPgkpOveo_uaX5pjRSokgbicP6uOOqDLf0r6PaUB4Y5P_Numr3lw-4hHdLvQVeUh66culU9CHAQFbyfu36TY5ML9aiJkT-mLXEn2wXq7h_efA6LpX8jydBf0RTecZVIHBmQ0LGRSCRQZwhyLPzf20Bd3psnkmzRUj0yRCjSdFQecJE_EGPOrnv8ZekSNlh_VGyneQQwvSRBP9Sfiveznxw11Yu1xYTmqkTVX8Et067PVqAsMNhOzyAuHBdYH9HGog-b5NcD9e6l08K3o1y6UmzeRlsBgH7UYUqIr6SLjcmk4Iswe9Oxow0iIz4Brd1w-MXorpGUPetIEry1sLSkN7SgaVH8whbH0xriP5qgiFNz6vQJ1S8DagHUQ4eBVHINQ0YJfweof9QIeLhlbEyk_rIBRRFiREOX2kia2Pr5r6R9z_oAUAMZm2oYitYV3yiVyyLS77Q5hYOrERpGvy4oI2LzL0ywo3r7jPtrL7tVrH2tduuUGwEMzukUmGW_PU-LJm3xd-Mt7vAUDDeTzO3m-dacPJByUWwv7TMizgXyy1a-DSAyFS807LxFLsRShOjqU6mBOf8PE70BehwH1KZIQez6YVZQKJwASvN0PsdlnYwXILd7iXurAD1kO5WthYpRH-cv2wTVgNdGSHH2VhXO2BSt7WNAuWHr_xAP2i_9_EVue0CMhhYdEHEFjt6COgQ9Th6UA-slTWNJXIm1W7y2F-Ho18Nq9wYQdFhCMIOpHKcCOhMp7oJ78B_10gDmmCD-nGdpqXLIGHgqNzV-7HE2OtQOeuJxtveKE0fZ4Rf2s8N51hHvTtoyAM1XbpBYICZtBp4wSJ1suofrWK38x6iQzKqf2Sm1vtDMhlFn1stUb21rBm9xDUdiwY1_QuQmFPiUBeljHqTcnFzbF6PB7WErrjQ4ZHMzVRzg8zz58qzqMjQQ_WJeUAkmB1SNBx9Pvq__XXfUFhVGyg-GmJJyKWeOv2jmUhveEfZBaXQV-Yx3GJya0ZtguYJ4AezwaqjwGx4GLgt1PtEhffVGmQnzEZtbP17riMIOREHOunYLmRbGFJWoAZuCqc-4zTyqb0AUTu5-4N0jtIC2q306IJpfOovmxGMO4e6VrWOLPz2VjLQ_abzOedo1BNBuCsVjg8iMg7RsZGbQr70TXJRLV71nKfGmp0QrqC_Nydys4EnQ5UbjcHPT3L6oVQcmmCBKMhvTDee8y4mjW2X7zbH2HJ0NtWLnUWTUlEBdTGhS0LpW2xFYyfaUixctUAkwzLYtZEamOZGZ3fTAfT1q4XK0KPtOGo2jOoQBlw1rlmk_8eqN4NZ-_SCxBRnAPT24Bzxc6UlN4lrau1f3LT9NSZLSKzif3cBVu3THOlbcdxSDbqici-3Uruala1MkUOwQniWM4tfAoKdNWzC3B05HWrlkLVL3zWoNaId6hjpA5RiCqERZjzZ99kxFM0OBh1-5ezZcGTXSBZn7d6eLPIfygctbEkgqpOhYi0nWjhj42CJ4lv_fIUK2h1OIi5FyEzluPO3qVQOsmMkHlA9gwQ7c0vOLlleJ52uRe7UoLP8Qi-FGHAK4qMvGz5rM18njuxAZEHJTsdpYTdi6fGYt0vORqc0KEXWn7m9gnnJxOGwWPwJbwpB_mt40VXYsuWTu9CfYTJPSqRiNXNRd1X3P0v6NOupsFR8-vb7eMQLx_aMrt4dBe4g34b0VnCVJDJ4457SvqOmyT3r8dM5HeSQ0CgsmvGDkqpTYM_dUQtiaxcwHdjzuK3pOhVQtAW1ckg1lf6nxdOKkmnQ_isuUMt-ulk07BfHwytS_Q5no38Ydja9imOkk__nZGQxJF2lll3p5VNd-BYYTzVuCwjw_fepgaH9fWs9lZORF3d1vicP47zZVP1z57Vja9HykU1L03H-pCBmeq5cqWBypt2mEUwLBZNwOSb07PYGU4e-1-GX5Dq8_25d_DHUOhSQcJZhVyQvXnzbxjnSNMurbleFwH0CzFAbmW8-OGKVsd_Lnu7ufjE5nQaTPGCyL71GoPlvHOdp6FJtGFc6TvJQeqV1LaHmmGzLKVkbv4JCf9u2lmlbhKLBNPMfOdZFmCWFtv-cftrTc0RfbH6nkdi3NOxoNPHzWGIUnKS1HOaps5suRkFZwGe1zYpsZCQtpgBvFaPGRne3n1d-1ul0QgVuAr6Z9B8tm3pFwJ7kIeB8vxyOLYxsehkXeETAUZ899TRLRYyfB0tm3AV19_8Ui9wvpagK5XU9lc-gx0hmEwZRW1ggGJbturQPBvqlJk5HCeyEZdau4AtCv9cD5Qh7lJVh2c9Ea3O2ES974cYT6X2PVmMo3dTXi1IL63924n77iHVJC8-D3BlCh4I_PA4Ej6LJRJUcYSX6Nl_-TNO7HYR2sZGi8WTfKRZUOGalQB0pjvQpcXME_l9-jxxLLgxXdZu-KGXQ2lS8nT9ZrBpkUyg7lEZA698ustG4ZVFI9ZnP7je2lPhKV9fIJ8GosjNwf5yxNR7PqoAlzlqlBLqQqXJD2bsgw93_crvm4R-EP7CF1IY1hLFXEXHZ_CfZkJcPxhroG0mSyy0Ywc1yps47wHPn0Gf-sxV1YOoE5Nm-647E2bGvx-uVNOB_zg9iqyo1zhP2HOUomiO5uUnL03SnW4eWr9kODVBCoQjpuslVPsTAeGAPiSlsBB5Ivk_XTTJJgIZTqlUbbE5MeIwUhtsBkUvq7xNVElUZIrKiPJMKXSwnce8zBv9aZ3mzfa462JxWUht0Xth09d-gFIaSWLeVQLCimqBFfqSfZClV6hyC1LKZ0VL5xYcEqlsokdSn3fZ809Bclrn-4rRIinJ2S1hxL-AO3K_6fWHmUtrzngHpI5IseG8h3ZVP50Erq5zOC_xSONgTMp2hg2S6e4slMafzb9Aiw0rLprbTTHIKpH7emZ6M2jwr_2_YytTvP1_YvoPGQqs4uVw-OJ3-guvH_rGH4gzyzRUA7j8gIFvu7xOauRLmMS2unHrO7oae3jNba7Q2RzALqFwtJeKA5Lg4QRN3Zpm84ATv_YnGexL86gaRKAFxtmN32v6ZJ-SF3AM66Zvck-cVfCifulKT6v1DwXYzTcjJqw2UFYgy4r-B-FY5ltJdlUp950S1N8bZGc4PsIwZdN_cdfNJ5jUDb-204U9LiMkTTCz_69LjtzWknvpIjcgUjhFhjDFAaw_A4GNGbblEia5h4sbzHcPnu-1-RiRO8NRWa4MVR5WYvTnXo57tRXx7uasNKd8Bt0NO2t5OSXO-x2XlJF1lgyEVoDexoLJI63vuvcXq5W-MlH8zWnYGjTMxnVg3LB_ElYUI2Z48ysvUz-M1zE8d03QCI4G2V6YhNiy5DUCZjlWpt3BfcotITc_j0b5srvL4H8CKahyxh2pm8g8YXAJvlbTPOIfavdcSCX2l2zgArdpLBkyhGRhlStL2aetD5J_nCV_PMXl0Z1DiRiKb-VB-lYPddIti3Kt2cMhAKGpU69ge4vuwMV295WJVbqFayCchOtEP7nYCfoX4cG9IC9a6Nhri8imZiOJ3WqNO4JYr7Ryh22axNWcwcisXN5G58SvMCyVCEEToysoN42KBF3izhjebOZ970mxXy0b7FJJcPissfZ2pV1EfkBaBcOaRBCKK5Z4LHuSt2z3LPqaaugIa6zyaY7fRSVNR-i1Q3BQFH0zag38-L4n6ZrlxP0uZcfPnlDcyjfesNICHzQBjekyZiJq16lEwrRZyiKFHkGUw60xu89Tnckg1lekbKufBVR6XJKxQWEKsZyJYMNR-ej6CxmfOrjD2x8IGhVB3ayaTQcfhvI8QNvltrXFQpVezW8Lmx5cwF-IInfYEcybJnBww0QMHJ-haHFyvUUQ0aDhLHn8QoMEiowNjpRam19jaXQ1OT0Oj2lrDh2ut39_wAAAAAABQ8XKCwy"
+          "value": "0I3hoklfjdStkO_5fIt8YjTSevu-uZ4dBVXJ_fVZUwUC4cPkAidRQZimVFaBldAwF-Uuf_i6WvoM6bvE4MXOVwRTNxV5fC44NK33Gf_MoZKbJlDLDII_q9_cWCMlopRYkDP-QAETwSgadY-TUWfXf40X08QORNg9INAT7pklXbrDQ9Pl-7obyhfGhvprKgifLS8I4NsxghDOGQWUBj9gGv28k5xjAqV9aqdJpJzMdrj_cN7gNfwhpD4gKBVK-dKM4LpvAc25QIj6jV9Sl-YqK8Ld1ByegPGUw6FYGtHMdT8zp8jvsT6mRi5FvmjPph_-QUvrZJUHThMiR8muTSEfBxsqmwzdfckgDiCAqKa8rusKpnEsDI5-OvT5idLUCs61ocHm7BrMbyrLmyIgRHdsK6p_mSQQw7wCTySHLt8WoTZ_1pjw3rYSA57jqAHIYB8-gbkMXzjvX3g3scniedNYw8uJZgOqYcr1W-FqVZ15ECba6UDRsp6ND-KNbLUGwLo_UEYDSwLClJA0-PPEdCbNTPB8k34Yy6wTAacd_w20AvpZwYjzjGFPPjKwnKphRtuSXo-KMqLm0e_CsgU8-HjcXHRXYu32Sk-ZXwZ46t_h6iZ4dxoPP0p16U3x9QTN6H1onCRFiIGpCXJQHiL_dzuEMBTITqCTBqe48ZzLVz8Mko2LLHNU5qID0JpEnKECwqL6MswwDg_ml6Mcjjs6W2PcbjVrH7B2jJlrIHF_0J3q2JEh4GX5Kb0fNaEHRGw56-3qJbnG8Qpv2CdZaAOqXAcP25M_Y0V-RMsJGUisuu4nBPh1AVVRjfmI-GSlc-ZGPQ1nofnJXI42CVvjbpLd_iA-zi2fVWBgLaxQCivqXIlx6scd444suzf1mKqB-rtZSxCcuYaYWqhLzcxQBESfLuo71wWFQHyivNUUVl98-DZjKqUSVN3vU_PX37a8t8xbyWzbxuDb1Na-PsbA13nRjP51ZL1vi-XGzDJgsPbQ9Ap0Q8H24wHO5gchLpnR1guNtR7LDiNDkfogtSWW7ksleaogR9iOKBDkZOYHAuigMDK_pH4jsA_mgNwWkOZcUSM03BTwnKmQJNCoYT9bYEPtdpRyeFbthSiNAbQ13xoFiHK9097SAzP1y4Mjat60bEqSbrSc1q-G96s-oyVaj1ljQE6d-5atgO1SedSxglyuynMdDoOKcSbOEqKX6xQiBJVSbVqJnP7LWR-j9E-ZefjFkJQAF7eIp1B3MyuFRe86yZ9JEv864cVqdwxOwuCQR1lYfjaWGY8R8aLwiePWMM9jXRwl2SuLHD1xx9r2gMapZ_nCX3ynqrHeQmmU1fuQC0RyX_MeBRD9fz5v8lJF3x4wxgjS92PvHaP5T2ZpXF4EnSUR1K3-fDc2FsfkCOA4EBzBV3FR-ncDPc80nY8sKh6wQfTdzD9ie8xYgNYCynuMTovAZqJbOMz8psjNim9ld8G1o3mkXr38-hyXbKhwm7wPusqKp2dhrpMeQoOTuargF-SgzYrIkLD8IGgZujPQf3gzk9pSUpP-kcqgVhM5yccng89-fg6nVWxwV9QrV7LArrTEXhBcXXkZ2l89K61-oSvF93oi_nysWIacJxCEzPdal8UMsAtlvFKGgtKlwY2K6ibF7XeNZRZSaj7RFt83SxdiaXfzSKGOwIQSdspbIsoAPjD6bUPkYvESsstk-61D_gIPvAaozLPoJ3yioMNx8TW_XyMH-FBJAAQWtpUw8hUXW17AWgTvdZXE8RBOSzSIAAR7I_8pXklS89NrSsbxM9B7fVbEN-m21w2t2iM4Ynd1s7GUzS7e_jSqZzaXBY0cSib3taK5AIDFuFbDSs_wejGWDC6uzAGcIgOCyKAD0stP2ug2l3kR5Vde87zTX5RtpLKqh_6rtbEP5Dj5rzyyEJq1_PA2dibFEorKdTWNGb07T0tFvtQ-AnUOt1iMwS4k46r3_gjPqjQJ1Am_xlJ3LmVQzvfgdVv9L-1TAdgFQt6BR4cUFvidEFnj7Tc2Rm-_FRw6uWbm-Y7UOvKGIbY0zRhKP2WcZWW-gQ39CAXkmrairArD2ayfXxXn2MhoGuHkZwb8PQl0t0JW0kalJAhd3pz9gvc1bAyDsrccNRxjTYUCCcYWvXhVzD4cNdwH3xub1LFAsd4Kp_bHWI-9t83QzL60TK0WO8OIUenCZHgn9MukWbMlIvns6TpYHTobjREMhOSylz9mjjyiwaw3GoUUTLTucu-nRSp8MnX4VfyAXUvFA8zdvWGV01aVOPob3AqCYjwfQw-RCiK-vuOYmOu-SjYmPwU8qJIvzoker5YyobN6TAGWtqr3sJF4B7xHyc7b-OGBNFqpFgLeByhU0VYafraUsdyKySg1sILpmpjec02jUvbHB1WYmx1gIQ_FFWnIjOhLPRoyorryoO3ofaiPbQutPdQl_PpAFqcKDEb1rX50aDIQe-EBpJ4VEUeZ4t9SgWwdxfz_PszkCes_iq9LmIJvtBDtKTnWUilHernqzEIhzKtu-5mshTSdgSt9IKulnI3UBjzrM32vz8-vOm9UUgy4cW4uLz6BbwEl50_X5Jyqip_p9MXlur1FX-i-3KV-ZoDeG7cmQp-P6xznIwWfhkvvplTWC1jnAUQat-zXQN-7FDwIKNzikqzEaptCxF9H0rpjvpFhhlMofLkh6f-NEglPrlPJhJ37izsDtAhavZSl4wOzUEdD5X08Hrxm1fRgpby-DYOA_YIuwClQQfXRaxCwSeSPGOh5hW0A_DIEKyGq0uDyjx1DO8_XHrQHvjaRzO0Ha5t8qscLf_vVfO1KAqCr94f1Ik4RrPYlnGRmZ-gxPpYWQ1xLShCDbSaifd8UwsYE5h8h9BBh373hC1WN0UtZQ6JaDeITWuIXqV8KxcrZs6RDheYVKB3gHwz_aRFw3QF_ist_mmwBV-7RyQQ_aYmkxxFL7ACWVsYz8LyWpFPx3AhvaWwFCA6qGiQjA73Re2TfOHGvpnPy_yC06fCmd_rM7wbHm97atPpn07hUBLh-fGV7Au8F3kgCl06o0c4L5EtZGsg5ay93Epdp4XJCRhgc62I6JZ1gYyabYEbaXSEDkVef4VjPH2sc8QEHKhz3X_k4TeNEOoc3IpXdGo6wzRT-JFMMgrMaC2XO1JxzEMmjwfQKFNtHTVs3JGtENYK6myFzd6kyuekpnlD1SxAS6M6DTHEoAws4enrYAStUdgOvW5JaRQWqmtZZQWwgiIv3XQCLtk_t62b1bn4NqyS3Gut97AvTUuCJCH-SvGW_4oj9AAGVwFAbbBfa-iLNL-6xJzudFi_-mxxF0DpxYG2Jdpe1wYAxXilQKiWCxAmOq-oFpD2UEfRgIYMysilvA6NiSEe1YIjF6iTzXMzMXCyYu2iHd3v9GCAcroZyFHPqaXZCJQ_TqKhixSvj_jhwWDM2eiRih0iZJxnUWLA-_H4IsXsU_mlBZSQNCEeeIzljrIV1fa76cGD-g8830oTODgpBOcVbVXMqIGDtXLnnTAJw3vU9TUOlo37E6kNWa3Gx_NFTJTuTO5wVhfkCoSXuM2ZvwJ-FW8VJpsWX2iy1xrGLsnk3O1zAv29MPPLPwBouuBwgPFzuG6wO4niqi_6nmgTPCccRfDOpbHLJwJ0weyd6aZSlt7k67GYKENEgWCpFaaw8pII6o1Gl2XiHRTOh39fKQ-REZuAl4Jsqijj7XFzWhgFJ24-eapbLTmI3o72V-t3pSXKbSACMKMLXDqV5NDTK6b0w_CORxuEiSwrkTHI2MRVAEG1egl-YNZwyLXN-qwsUjhBWYPRzU2fVsxgkYEDjykuotTG2UqlCnmsP69cw2-FSx1LlqjctrLb0sv3__Vmttj-y6Zoi7WA5xth8xeS2cL5B0n-DR2jDeKMNCldBgjw0DJLNm9tVQQtI_m7BNIj_oP-3OoNWyOGgSBc61OYCXCcBZRmbPoFPZC074lpidggn5J_ez-vPYg3I5j1Bv0ziN2YMjerOxzBJRBfQEQ5w6ny4iRGW4vFR4c6tDn0r8JKja6VNYNCOxHGGuave0K1joJGQLn3Xk4uKU_kbqmQzoq__7yWOVdccyCW0SDirNnbRNkp8FInsDDpCehgIr4_HU3Ar5y-zeXG45-uSfk3iXsDChWI0ALkzrqdu__GcQbVTuoop_JCrOdnAqHhz3h9P8okUkvSJ81EhzpAwyaT6Mbe4kdlirQphp7sfR3Iz-Vn4mJQM8CThE0c_luKYMd0XU9Q5Hjoy-DApiKLcXclVtxebiYXt3JtMDpjH1prdCgBkOE3UAhr-ZAZXLClC51LQ9Gn_qhfKAqalT1WorLYROkRWOG4ciertAkJWXnO52C5DRl98ljZGUn6Ag5G8-QYfJy9ERU5b2ucAJEtNs8wAAAAAAAAAAAAAAAAABAsRGiQq"
         }
       ]
     },
@@ -347,7 +387,7 @@
         "from": "pending",
         "to": "attested",
         "actor": "org:climatechain-demo",
-        "at": "2026-10-05T11:25:02.680Z",
+        "at": "2026-10-05T12:30:34.855Z",
         "reason": "Signed attestation issued.",
         "evidenceRefs": [
           {
@@ -369,12 +409,12 @@
       "claim-reconciliation",
       "pq-attestation"
     ],
-    "createdAt": "2026-10-05T11:25:02.680Z",
+    "createdAt": "2026-10-05T12:30:34.855Z",
     "claims": [
       {
         "nodeType": "claim",
         "id": "claim:building-electricity-emissions",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [
           {
             "nodeType": "calculation",
@@ -410,28 +450,28 @@
           {
             "dimension": "source-found",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T11:25:02.680Z"
+            "assessedAt": "2026-10-05T12:30:34.855Z"
           },
           {
             "dimension": "calculation-reproduced",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T11:25:02.680Z"
+            "assessedAt": "2026-10-05T12:30:34.855Z"
           },
           {
             "dimension": "factor-traced",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T11:25:02.680Z"
+            "assessedAt": "2026-10-05T12:30:34.855Z"
           },
           {
             "dimension": "evidence-integrity-confirmed",
             "state": "confirmed",
-            "assessedAt": "2026-10-05T11:25:02.680Z"
+            "assessedAt": "2026-10-05T12:30:34.855Z"
           },
           {
             "dimension": "disputed",
             "state": "not-applicable",
-            "assessedAt": "2026-10-05T11:25:02.680Z",
-            "note": "All 3 flagged intervals decided by a person; decided is not explained."
+            "assessedAt": "2026-10-05T12:30:34.855Z",
+            "note": "All 5 flagged intervals decided by a person; decided is not explained."
           }
         ]
       }
@@ -440,7 +480,7 @@
       {
         "nodeType": "evidence",
         "id": "evidence:bdg2-electricity",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [],
         "kind": "meter-data",
         "source": {
@@ -473,7 +513,7 @@
       {
         "nodeType": "evidence",
         "id": "evidence:grid-factor-source",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [],
         "kind": "calculation-input",
         "source": {
@@ -492,7 +532,7 @@
       {
         "nodeType": "calculation",
         "id": "calculation:electricity-emissions",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -511,7 +551,7 @@
           "version": "0.1"
         },
         "parameters": {
-          "anomalyMethod": "baseline-residual-mad",
+          "anomalyMethod": "baseline-residual-mad+stuck-readings",
           "anomalyThreshold": 6,
           "excludedEnergyKWh": 0,
           "acceptedEnergyKWh": 1160425.4405
@@ -524,7 +564,7 @@
             "unit": "tCO2e"
           }
         },
-        "executedAt": "2026-10-05T11:25:02.680Z",
+        "executedAt": "2026-10-05T12:30:34.855Z",
         "reproducibility": {
           "codeVersion": "building-mrv/0.1"
         }
@@ -534,7 +574,7 @@
       {
         "nodeType": "factor",
         "id": "factor:grid-electricity",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -759,8 +799,146 @@
       },
       {
         "nodeType": "model-run",
+        "id": "model-run:triage-advice:2016-01-30T08:00:00",
+        "createdAt": "2026-10-05T12:29:48.510Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:hour-of-week-baseline",
+            "role": "flag-source"
+          }
+        ],
+        "model": {
+          "id": "typesafe-jev",
+          "name": "Typesafe AI System One (Jev)",
+          "version": "jev-1.13.0"
+        },
+        "inputDigest": {
+          "algorithm": "SHA-256",
+          "value": "e5EhIPoxIggzKH4mZ_L0S573YOCj7qr-3mo4FyecPYI"
+        },
+        "inferenceParameters": {
+          "endpoint": "https://api.typesafe.ai/v1/systemone",
+          "requestedModel": "jev-latest",
+          "questionSet": "building-triage@2",
+          "interval": "2016-01-30 08:00:00",
+          "state": {
+            "meter": "hourly electricity, kWh",
+            "building_use": "Entertainment/public assembly",
+            "weekday": "Saturday",
+            "hour": 8,
+            "reading_kwh": 0,
+            "expected_kwh": 435.9,
+            "robust_z": -5.8,
+            "flag_threshold_z": 6,
+            "previous_3_kwh": [
+              244.6,
+              287,
+              320.8
+            ],
+            "next_3_kwh": [
+              345.1,
+              344,
+              471.3
+            ],
+            "flag_reasons": [
+              "zero"
+            ]
+          },
+          "probabilities": {
+            "unclear": 0,
+            "meter_fault": 0.99,
+            "real_consumption": 0.01
+          },
+          "inputTokens": 573,
+          "latencyMs": 591
+        },
+        "output": {
+          "kind": "qualitative",
+          "statement": "advice: meter_fault"
+        },
+        "confidence": 0.98,
+        "executedAt": "2026-10-05T12:29:48.510Z",
+        "reproducibility": {
+          "codeVersion": "building-mrv/0.1 building-triage@2"
+        },
+        "extensions": {
+          "authority": "advice-only"
+        }
+      },
+      {
+        "nodeType": "model-run",
+        "id": "model-run:triage-advice:2016-03-13T02:00:00",
+        "createdAt": "2026-10-05T12:29:48.747Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:hour-of-week-baseline",
+            "role": "flag-source"
+          }
+        ],
+        "model": {
+          "id": "typesafe-jev",
+          "name": "Typesafe AI System One (Jev)",
+          "version": "jev-1.13.0"
+        },
+        "inputDigest": {
+          "algorithm": "SHA-256",
+          "value": "IHuMMUPslAdQ8W0N7d32keTxRInHZ6a6bWLG3PFlAAo"
+        },
+        "inferenceParameters": {
+          "endpoint": "https://api.typesafe.ai/v1/systemone",
+          "requestedModel": "jev-latest",
+          "questionSet": "building-triage@2",
+          "interval": "2016-03-13 02:00:00",
+          "state": {
+            "meter": "hourly electricity, kWh",
+            "building_use": "Entertainment/public assembly",
+            "weekday": "Sunday",
+            "hour": 2,
+            "reading_kwh": 0,
+            "expected_kwh": 375.4,
+            "robust_z": -5,
+            "flag_threshold_z": 6,
+            "previous_3_kwh": [
+              300.7,
+              295.3,
+              287.4
+            ],
+            "next_3_kwh": [
+              286.6,
+              289.7,
+              295.7
+            ],
+            "flag_reasons": [
+              "zero"
+            ]
+          },
+          "probabilities": {
+            "real_consumption": 0.02,
+            "meter_fault": 0.98,
+            "unclear": 0
+          },
+          "inputTokens": 575,
+          "latencyMs": 237
+        },
+        "output": {
+          "kind": "qualitative",
+          "statement": "advice: meter_fault"
+        },
+        "confidence": 0.96,
+        "executedAt": "2026-10-05T12:29:48.747Z",
+        "reproducibility": {
+          "codeVersion": "building-mrv/0.1 building-triage@2"
+        },
+        "extensions": {
+          "authority": "advice-only"
+        }
+      },
+      {
+        "nodeType": "model-run",
         "id": "model-run:hour-of-week-baseline",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -792,7 +970,7 @@
           "splitRef": "2016-03-12 23:00:00 -> 2016-03-13 00:00:00",
           "notes": "ClimateChain local baseline; do not confuse with the published ALDI++ GEPIII results."
         },
-        "executedAt": "2026-10-05T11:25:02.680Z",
+        "executedAt": "2026-10-05T12:30:34.855Z",
         "reproducibility": {
           "codeVersion": "building-mrv/0.1"
         }
@@ -802,7 +980,7 @@
       {
         "nodeType": "verification",
         "id": "verification:building-mrv",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [
           {
             "nodeType": "claim",
@@ -838,7 +1016,7 @@
             "id": "anomaly-screen",
             "name": "Meter anomaly screen",
             "outcome": "pass",
-            "detail": "3 interval(s) flagged; 3 decided (0 kept), 0 without a current decision; 0.000 kWh excluded from accepted activity data."
+            "detail": "5 interval(s) flagged; 5 decided (0 kept), 0 without a current decision; 0.000 kWh excluded from accepted activity data."
           },
           {
             "id": "factor-provenance",
@@ -851,12 +1029,12 @@
           "Every flagged interval has a current decision by a person; the claim uses those decisions.",
           "Decided is not resolved: the cause of each flagged reading is not confirmed by site records."
         ],
-        "verifiedAt": "2026-10-05T11:25:02.680Z"
+        "verifiedAt": "2026-10-05T12:30:34.855Z"
       },
       {
         "nodeType": "verification",
         "id": "verification:interval-decisions",
-        "createdAt": "2026-10-05T11:25:02.680Z",
+        "createdAt": "2026-10-05T12:30:34.855Z",
         "provenance": [
           {
             "nodeType": "model-run",
@@ -877,6 +1055,16 @@
             "nodeType": "model-run",
             "id": "model-run:triage-advice:2016-03-03T14:00:00",
             "role": "advice-shown"
+          },
+          {
+            "nodeType": "model-run",
+            "id": "model-run:triage-advice:2016-01-30T08:00:00",
+            "role": "advice-shown"
+          },
+          {
+            "nodeType": "model-run",
+            "id": "model-run:triage-advice:2016-03-13T02:00:00",
+            "role": "advice-shown"
           }
         ],
         "verifier": {
@@ -886,6 +1074,12 @@
         "profile": "building-mrv/interval-decisions/0.1",
         "result": "reconciled",
         "checks": [
+          {
+            "id": "interval:2016-01-30 08:00:00",
+            "name": "Decision on flagged reading at 2016-01-30 08:00:00",
+            "outcome": "pass",
+            "detail": "exclude: isolated zero reading between normal hours, treated as a meter dropout (person:energy-manager, 2026-10-05T12:30:34.795Z)"
+          },
           {
             "id": "interval:2016-02-03 07:00:00",
             "name": "Decision on flagged reading at 2016-02-03 07:00:00",
@@ -903,12 +1097,18 @@
             "name": "Decision on flagged reading at 2016-03-03 14:00:00",
             "outcome": "pass",
             "detail": "exclude: isolated zero reading between normal hours, treated as a meter dropout (person:energy-manager, 2026-10-05T11:25:02.616Z)"
+          },
+          {
+            "id": "interval:2016-03-13 02:00:00",
+            "name": "Decision on flagged reading at 2016-03-13 02:00:00",
+            "outcome": "pass",
+            "detail": "exclude: isolated zero reading between normal hours, treated as a meter dropout (person:energy-manager, 2026-10-05T12:30:34.795Z)"
           }
         ],
         "findings": [
           "A decision records what a person chose, not why the reading happened; the cause is not confirmed by site records."
         ],
-        "verifiedAt": "2026-10-05T11:25:02.616Z"
+        "verifiedAt": "2026-10-05T12:30:34.795Z"
       }
     ],
     "attestations": [],
@@ -917,7 +1117,7 @@
       "primaryUser": "building/facility energy manager",
       "buildingId": "Bear_assembly_Angel",
       "siteId": "Bear",
-      "flaggedIntervals": 3,
+      "flaggedIntervals": 5,
       "acceptedEnergyMWh": 1160.4254405
     }
   },

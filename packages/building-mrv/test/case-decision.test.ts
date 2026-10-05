@@ -21,6 +21,7 @@ import {
   injectTamper,
   JevError,
   runBuildingMrv,
+  runLengths,
 } from "../src/index.js";
 import type {
   GridEmissionFactor,
@@ -289,4 +290,23 @@ test("WebMCP review tool serves the decided case and sees decisions go stale aft
   assert.equal(after.result, "insufficient-evidence");
   assert.deepEqual(after.flags.map((flag) => flag.state).sort(), ["stale", "undecided"]);
   await assert.rejects(service.execute("building-mrv", "building_review_flags", { caseId: "case:other" }), /Unknown/);
+});
+
+test("stuck-reading screen flags zeros and runs of identical hourly readings, not runs across a gap", () => {
+  const at = (hour: number) => new Date(Date.UTC(2017, 0, 1) + hour * 3_600_000).toISOString().replace(".000Z", "Z");
+  const points = [5, 7, 7, 7, 0, 9, 9, 9].map((value, hour) => ({ timestamp: at(hour), value }));
+  points.push({ timestamp: at(10), value: 9 }); // two-hour gap: does not extend the run of 9s
+  assert.deepEqual(runLengths(points), [1, 3, 3, 3, 1, 3, 3, 3, 1]);
+
+  const series = meter();
+  const residual = runBuildingMrv(series, factor, { minRunHours: 0 });
+  const stuck = runBuildingMrv(series, factor, { minRunHours: 3 });
+  assert.deepEqual(stuck.anomalies.points[FLAG]!.reasons, ["residual", "zero"]);
+  assert.equal(stuck.anomalies.method, "baseline-residual-mad+stuck-readings");
+  assert.equal(stuck.anomalies.flaggedCount, residual.anomalies.flaggedCount);
+
+  const flat = series.map((point, index) => (index >= 100 && index < 110 ? { ...point, value: 42 } : point));
+  const flatStuck = runBuildingMrv(flat, factor, { minRunHours: 3 });
+  assert.ok(flatStuck.anomalies.points.slice(100, 110).every((point) => point.reasons.includes("constant-run")));
+  assert.throws(() => runBuildingMrv(series, factor, { minRunHours: 1 }), /at least 2/);
 });
