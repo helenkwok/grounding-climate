@@ -63,8 +63,10 @@ const reference: PublishedBurnScarReference = {
 };
 
 test("NBR uses NIR and SWIR2 in the documented order", () => {
-  assert.equal(normalizedBurnRatio(0.6, 0.2), 0.49999999999999994);
-  assert.equal(normalizedBurnRatio(0.1, 0.5), -2 / 3);
+  // (NIR - SWIR2) / (NIR + SWIR2); compared with a tolerance, since floating point cannot hit 0.5 or -2/3 exactly.
+  assert.ok(Math.abs(normalizedBurnRatio(0.6, 0.2) - 0.5) < 1e-12);
+  assert.ok(Math.abs(normalizedBurnRatio(0.1, 0.5) - -2 / 3) < 1e-12);
+  assert.ok(normalizedBurnRatio(0.2, 0.6) < 0, "SWIR2 above NIR (burnt) must be negative");
 });
 
 test("CPU NBR baseline ignores no-data labels and reports hectares", () => {
