@@ -30,10 +30,6 @@ function Home() {
         <div className="where-map">
           <h2 id="where-title" className="sr-only">Claims on the map</h2>
           <CaseMap />
-          <p className="note map-note">
-            Two claims carry a location in their evidence: the building's site and the satellite scene. Select one to review
-            it. The other four have no location in their evidence, so they are not placed.
-          </p>
         </div>
         <div className="where-list">
           <p className="kicker">Six claims waiting for review</p>

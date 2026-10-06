@@ -364,7 +364,7 @@
       "repository": {
         "mode": "redistributable",
         "path": "data/external/acr-offsetsdb",
-        "note": "100 issuances and 100 retirements, reduced to project, vintage, quantity, date and serial range. Beneficiary and account-holder names are not committed."
+        "note": "100 issuances and 100 retirements, reduced to project, vintage, quantity, date and serial range; and the 14 sample projects the fixture's project list names, reduced to ID, name, type, state and country. Beneficiary and account-holder names are not committed."
       },
       "attribution": "American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by ClimateChain; values unchanged.",
       "notes": [
@@ -724,6 +724,51 @@
         {
           "url": "https://gdex.ucar.edu/datasets/d559000/",
           "finding": "CONUS404 distributed under CC BY 4.0."
+        }
+      ]
+    },
+    {
+      "id": "open-climate-risk-tiles",
+      "name": "Open Climate Risk v1.1.0 fire-risk vector tiles (regions and building centroids, PMTiles)",
+      "component": "map-tiles",
+      "canonicalUrl": "https://source.coop/carbonplan/carbonplan-ocr",
+      "upstreamPublisher": "CarbonPlan; contains Overture Maps Foundation data",
+      "retrievedAt": "2026-10-07",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "ODbL-1.0",
+        "name": "Open Database License 1.0",
+        "url": "https://data.source.coop/carbonplan/carbonplan-ocr/output/fire-risk/vector/LICENSE.txt"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "link-only",
+        "note": "regions.pmtiles and building_centroids.pmtiles are streamed by viewers' browsers from Source Cooperative with HTTP range requests and drawn on the map (a Produced Work under the ODbL). Nothing is committed."
+      },
+      "attribution": "Open Climate Risk v1.1.0, CarbonPlan, ODbL; contains information from the Overture Maps Foundation buildings dataset (ODbL, © OpenStreetMap contributors); Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F). Shown in the map's attribution.",
+      "notes": [
+        "Region tiles store fields under numbered keys; ClimateChain matched them against CarbonPlan's published states/stats.csv (California: building count, mean RPS ~2011 and ~2047).",
+        "RPS is annual risk to potential structures, in percent: burn probability times conditional risk to a structure (OCR data schema).",
+        "CarbonPlan's terms: the name may not be used in a project name or to imply endorsement."
+      ],
+      "evidence": [
+        {
+          "url": "https://data.source.coop/carbonplan/carbonplan-ocr/output/fire-risk/vector/LICENSE.txt",
+          "finding": "The vector outputs are licensed under the Open Database License (ODbL), copyright 2025 CarbonPlan."
+        },
+        {
+          "url": "https://data.source.coop/carbonplan/carbonplan-ocr/output/fire-risk/vector/NOTICE.txt",
+          "finding": "Contains information from the Overture Maps Foundation buildings dataset under the ODbL; relies on Riley et al. 2025, Scott et al. 2024 and CONUS404."
+        },
+        {
+          "url": "https://open-climate-risk.readthedocs.io/en/latest/reference/data-schema.html",
+          "finding": "rps_2011 and rps_2047: annual risk to potential structures, percent, 0 to 100."
         }
       ]
     },

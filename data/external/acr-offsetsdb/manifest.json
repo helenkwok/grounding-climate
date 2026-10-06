@@ -42,6 +42,26 @@
         "gitBlobSha": "1388abca2ff4d83bd849010921582eed3fa72737",
         "commit": "c34ec955df0988009ac14e8abd91013f3b03e4f5"
       }
+    },
+    {
+      "path": "projects.csv",
+      "registry": "american-carbon-registry",
+      "kind": "projects",
+      "rows": 14,
+      "columns": [
+        "Project ID",
+        "Project Name",
+        "Project Type",
+        "Project Site State",
+        "Project Site Country"
+      ],
+      "sha256": "6002169bec5006c23d28552a391395aa14abe307499b3c8777bba9b65d9fdf91",
+      "upstream": {
+        "uri": "https://raw.githubusercontent.com/carbonplan/offsets-db-data/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry/projects.csv",
+        "path": "tests/data/american-carbon-registry/projects.csv",
+        "gitBlobSha": "1e1346bc8b2a4ce92bf18bf70f589cbc4379c405",
+        "commit": "c34ec955df0988009ac14e8abd91013f3b03e4f5"
+      }
     }
   ]
 }

@@ -10,7 +10,7 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 
 export async function loadCarbonCase({ provider, observedAt, caseId = "case:carbon-registry:acr" }) {
   const manifest = JSON.parse(await read("data/external/acr-offsetsdb/manifest.json"));
-  const committedSources = manifest.files.map((file) => ({
+  const committedSources = manifest.files.filter((file) => file.kind === "issuance" || file.kind === "retirement").map((file) => ({
     registry: file.registry,
     kind: file.kind,
     path: "data/external/acr-offsetsdb/" + file.path,

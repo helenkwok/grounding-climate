@@ -6,6 +6,10 @@ as collected by CarbonPlan's OffsetsDB pipeline in its test fixtures, at pinned 
 columns its reconciliation reads: project, vintage, quantity, date and, for retirements, the serial range. Values are
 unchanged. Beneficiary and account-holder names are left out: no check uses them, and some name individuals.
 
+`projects.csv` (14 rows) is the same fixture set's project list (`projects.csv`, same commit), reduced to the projects
+in the sample that it names and to ID, name, type, state and country. Only the map reads it, to place those projects
+by state; the other projects in the sample have no location in these records.
+
 `manifest.json` records each upstream file's Git blob SHA and each committed file's SHA-256. To reproduce:
 
     node scripts/prepare-carbonplan-registry-fixtures.mjs <dir>   # downloads and checks the Git blob SHAs
