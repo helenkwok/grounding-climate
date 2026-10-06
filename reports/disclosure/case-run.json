@@ -1,0 +1,491 @@
+{
+  "schemaVersion": "climatechain.disclosure-case-run/0.1",
+  "runAt": "2026-10-06T05:22:47.313Z",
+  "organisingQuestion": "What may a public emissions figure rest on when nobody outside the company can recalculate it?",
+  "input": {
+    "candidateId": "lpl-construction",
+    "claimId": "claim:lpl:2025:scope1",
+    "alsoReported": [
+      "Scope 2 emissions 2025, 8.31 tCO2e",
+      "Scope 3 emissions 2025, 3,891.22 tCO2e"
+    ],
+    "tamper": {
+      "from": 601.26,
+      "to": 6012.6,
+      "note": "A decimal slip in extraction"
+    }
+  },
+  "clean": {
+    "value": 601.26,
+    "result": "reconciled",
+    "decision": [
+      {
+        "flag": "disclosure:not-recalculable",
+        "state": "decided",
+        "decision": "accept-as-attributed"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": true,
+    "changedRefs": [],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "tamper": {
+    "from": 601.26,
+    "to": 6012.6,
+    "note": "A decimal slip in extraction",
+    "value": 6012.6,
+    "result": "insufficient-evidence",
+    "decision": [
+      {
+        "flag": "disclosure:not-recalculable",
+        "state": "stale",
+        "decision": "accept-as-attributed"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": false,
+    "changedRefs": [
+      {
+        "nodeType": "claim",
+        "id": "claim:lpl:2025:scope1"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:disclosure"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:disclosure-decision"
+      }
+    ],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "publishedKeys": [
+    {
+      "keyId": "key:demo-ed25519:2026-10-06T05:22:47.313Z",
+      "suite": "classical",
+      "algorithm": "Ed25519",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-06T05:22:47.313Z",
+      "validFrom": "2026-10-06T05:22:47.313Z",
+      "verificationKey": {
+        "keyId": "key:demo-ed25519:2026-10-06T05:22:47.313Z",
+        "suite": "classical",
+        "algorithm": "Ed25519",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MCowBQYDK2VwAyEA0IbHsx4RtdKy1rXLAxQtG3yIihczFwx6rYxG5-yoWdw"
+      }
+    },
+    {
+      "keyId": "key:demo-ml-dsa-65:2026-10-06T05:22:47.313Z",
+      "suite": "post-quantum",
+      "algorithm": "ML-DSA-65",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-06T05:22:47.313Z",
+      "validFrom": "2026-10-06T05:22:47.313Z",
+      "verificationKey": {
+        "keyId": "key:demo-ml-dsa-65:2026-10-06T05:22:47.313Z",
+        "suite": "post-quantum",
+        "algorithm": "ML-DSA-65",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAPXV53YYJAvdg5IVYGPONymVtRw3cjp8WuHXDgFXZ_L_DYF6s6x-1i-YZGAOLIPoh1yA0jYzEDF6GtXuHgcdSa-NUUzKGO45fvliyv7fk4fcUQqeZQuVy8EnQIo2tssDU8-AMknsw8ycJ686wBW7h1jWUmkzsjemAQ3Y72QoPnryhJZZZlI3Yp6GSAUp_8uwLPPpGEBPStcwejoGLeP25lMyxMNIQ3dtOIx_mNvSOIPucODwvT0BDL3zj8b_5ZmvC3vfnFaRkUSJW9-dpjLhMHrcVPQpYX2Y_w0pkOGQ2Q-M1ujRUaaedpVmok2MWS6_PeymcfF3w_MrsR2sYZUw9qghuTxbU8F9a0jhUXADPTzlD6iU86axOg8ab9MPxDvXuNiSl51Pig-YvixpeYyuUFhCVL3C7R9K7u-XJ7gASGxFdvUaG30CQBiIxep8UxmEkyn4FqLIYzfmEkBs18WNpJa4bG0HofkAjNURQOpa2ZjWZ6FqV3cQPtNK52a6JmErY0b6stCxJSlvhbi7OSAF1suZKa8y3_o4p2jKU2IV74qpXuD0gyB1-ZM22UP6UO15ksGwyxYMxy8TBY3iyZXDwWvEnu_xCeaKqi1Bvvky4O-y60rOY8FjaPnTpGGGtpm0E-DXSzXXYNLJEN8slzdW5FRSbwDarBpekDM0_Ia9_5YlS56xPLvrro0kHXXZt8K-_2AgHNZQQ85Vwokt8PbdQiX0oSnYNbFkseXZOu9m6C-yM7blmriURvGHQQAFoQnW6rIcgYUWEevTynz7LYUqUMBcviIJrDED5YhHcwj-kFb3CgCKd-pqBKL7JIvxuWLaWU6NW70CraEhvXicJF6B-Uyq8TVRmN58M_FG5nU6lLSqN_8illryLtYUdr3WNxZRxwXOxwEFty7X0-gRuUJessoddzMhsDeBIqQM6mIiLwnbam-lPRSHu3Z1cxr9hbd8gBEoD_GnkbDUT2-x97xxD6UoNT4T_8KYzj7tVcJsjuduQEDLt_TBo_l1bVKPhb8GD0dzkMpXWJIzTzQngT60vnGTONvZsgNhBoYXbi0khv2KJOJM_eZ3KSoaMC3b5Eqmd5UR06RKynmwNEwVdtEv0Aj91TKKkNsLeT654eegGqP6ZNa_56G9mh811lCAGvFt9BaYuEMgh2Er9FG_sRSkI3Fjnw_sPDlHV1BPOPSfy6XgrDmThFnkYbNtC7KvMuM4EKWYxnWQf-dPg9tI3TgoPh2Fdnbt4lcY44pfLiNvE62S2npqeTjyMEZqDiUPtDqsmZup5IWX-VzpFK39BIaQ3v3FMn1bk4XdHPKFqQCoSdjAP5ybnxFU4sDkhlcVoPxklz71z_RL-hkyuVaw4gllQfJ8hmAs3Z_2fU_wg1EWMGcZdh4-7JP3yoBmIxG5Gt84Rueu43gOZjU2vt7z7MIjBnAspY2yxezpSzvELzAevZ3srd1gSuPLS4CQPHLViNQj3sTfcDwwIICnna4ad0xUamkgrSLBu8SiGAj_bAiFM_l1urG0-13kv1726JK530MMQnGLgFliXX0sWSqqMY1JS4_i7fN7uYk32PJYmnW38SiLtqXFvxzM7b__s8Db2jRTmb7nf0Ixw3kSa7JvDroyGbconryRJe6lXgfPZ4_WCjqiYg5RIWhmPKzTbjTzeEdHMHe7gNb7xwUB8gaR2ZrEDBVt8EV20Y8O5DQc0kRdSiRtW3ewKCGlI_Z0NCnjDZTuuTF_NFyA3AzhfZe-taunjEate_rpXOhpRsE1Y4rYq1LTT8KHpo8NWqcz9Q37S17vuO5EXtdVb6W4b6Bi4D6jpUyhxgbh3n6KZMNuIAF1se9b2hg7BBuAKUeS9o9Yi9WRXQ2rZiUYdCmrz5ZMYEdDOqGIYkFI7gNY6GUAXSPqzmiV3HN6mlJsaC9Ao0_4v0pedEQnfNfH86y5gfE8Thn3Yeydc9oodrQwg_NSj4bZ_bUn4I-c0E2VAvSJIgxtM6HLKvSt46-0Qm-qara7gq73N8l68Nv8uKVDrCegYcOssksEIecvUgtUeqUPa9Nwk6QS3mlTMP2Lfa9W7d132OUGzGi0NlQVjye1fIX8f2lPaz14c9GRihNp0FL6cJBroIe4XCIL_y7R_1fftygpapNJmM8bdEdOkupCwaNLNa850zjpW_HDeP0EN6vpUV90ZiQv9BFFckITVjrfEWHh6cq9nOYUKoUksknfRTXM4qu9ecL8qunvUbwTLqkX26bH-KRtz_lrVKdEytUctUr7hZPDaYi-Ld1rBx57MgpFGPxVlwHnIO3E7J9jJ3EzmOcdkXJs6BmM3v5bYi661dhb9uNWpuPGhb4badYXOLq11yCoAS0F1kXOVS0iNOsZb9KvKeBlcl7XqrVC3VrB_BzJdbWWDJR3VFBvbpzCsxM2tcDO89dDM9uQthDH_uF8AkqHpzRAyUfYwKcqaDEJZZaqRZmFgFHz4_7UbOkTkmJ8jcLFr_l_4fsI1s2xsgf0h6YhsVw8jMsniyxj1v_UTwz8fRj2ADz7ichpBPzMauaBHEXUXZH-BNZcbcYgf9RXU5kl3q1xEx420EyVukODA3dcl_xxsdh9vjTaCcl_ufGUuyowPpVC"
+      }
+    }
+  ],
+  "attestation": {
+    "payload": {
+      "version": "climatechain.attestation/0.1",
+      "id": "attestation:disclosure:2026-10-06T05:22:47.313Z",
+      "attester": {
+        "subjectId": "org:climatechain-demo",
+        "name": "ClimateChain demo run"
+      },
+      "statement": "Public figure extracted from the company's own page, with a person's decision on what the claim rests on. Not recalculated. Verification result at signing: reconciled.",
+      "claimRefs": [
+        {
+          "nodeType": "claim",
+          "id": "claim:lpl:2025:scope1"
+        }
+      ],
+      "verificationRef": {
+        "nodeType": "verification",
+        "id": "verification:disclosure"
+      },
+      "evidenceRoot": {
+        "algorithm": "SHA-256",
+        "value": "fPvYqOOCeYe0gI-xXiQOE23F4pklUImYbqAcSk3XhCs"
+      },
+      "manifestVersion": "climatechain.evidence-manifest/0.1",
+      "issuedAt": "2026-10-06T05:22:47.313Z"
+    },
+    "evidence": {
+      "manifest": {
+        "version": "climatechain.evidence-manifest/0.1",
+        "caseId": "case:disclosure:lpl-construction",
+        "caseSchemaVersion": "climatechain.case/0.1",
+        "rootRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:disclosure"
+          }
+        ],
+        "nodes": [
+          {
+            "ref": {
+              "nodeType": "claim",
+              "id": "claim:lpl:2025:scope1"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "qgBKK6pdU9x-8ycY1Y6J8F83YYUTOu1DiFZ6iK7aTV4"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:disclosure:lpl-construction:cadi-confirmation"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "dDi9v-p4q6p1v43vKRRs_r9TEP7iDlf6QZ8YV9X-t38"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:disclosure:lpl-construction:source"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "AuI1veU7aqXmKuc10wPRRgv0efveVWoNWUD6l4ZXA78"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:disclosure"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "0453g8ojDAlx_b6hzP6vT7nC0jmIhybUGXmtTVuywk0"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:disclosure-decision"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "8MyN3WiJQu_C9setS9v1P2F0nNMt9Rjq3mVLChBLXX4"
+            }
+          }
+        ]
+      },
+      "root": {
+        "algorithm": "SHA-256",
+        "value": "fPvYqOOCeYe0gI-xXiQOE23F4pklUImYbqAcSk3XhCs"
+      }
+    },
+    "envelope": {
+      "version": "climatechain.signature-envelope/0.2",
+      "domain": "climatechain.attestation",
+      "schemaVersion": "climatechain.attestation/0.1",
+      "payloadHash": {
+        "algorithm": "SHA-256",
+        "value": "zFklqTuqACcvyLvdBwgyC8wDzkRYXKYSJlJHxhrcMzc"
+      },
+      "createdAt": "2026-10-06T05:22:47.313Z",
+      "signatures": [
+        {
+          "suite": "classical",
+          "algorithm": "Ed25519",
+          "keyId": "key:demo-ed25519:2026-10-06T05:22:47.313Z",
+          "encoding": "base64url",
+          "value": "_oIX2p2CRHyrhetcQOU13qXweT_JgvknLa1yASdYEXfApCttxOWFQE5d2I3EeJ_9kcNFN8bPZA1L2r1v-rGhCQ"
+        },
+        {
+          "suite": "post-quantum",
+          "algorithm": "ML-DSA-65",
+          "keyId": "key:demo-ml-dsa-65:2026-10-06T05:22:47.313Z",
+          "encoding": "base64url",
+          "value": "kHwIT9Id0JBq-W63HbJFMUt7KaZ11EftY7OGG-uPukXz770qC0cF5PWuDDYagJdkspSqCukvUsBnsZDuRl2N7M-T5cx-SZJcdCZiazx3I7z-84RQSsDkI8-dirjXkgqicbMIilOdgX6fLBwf0wag7HL1a_GIJm9R6_tA4XXljVzIM70EuKaxg54fi_38QKbJhmpXYU2wxGgS2NF8mqmWMMSkO-NFqlFYo6rDSCPegDCD3nc_ArqqaSAKd7PCyU1XBKqAga0wcUVzI3FIGGH1IJwUvf3qPWNfWdTl-RwFvlUQV3OTYhJ0Y8BsvRkSIC2F4L80cbA_l7OKb0h4U6GWWEIAdAXtNfPukwF8WOs4TD1XkLzMdXhxjQyOyzvUHZ8MLNaP9ugPvD2r-n3vW1WJWd5dIXE0haXkZ5pUgD0I1diBzFK5jcnl1cxEzcnaDw3NdUDR-jQ7M0l4U6J6HlaagTMiFj9K7mXcTXrpR_uGiG5z4g33vLiHZHo1wpERrMDi6tJNTDiqJLOax6-FT3jRkXDntIX28w_Ca-Xb8OB7IcHlobHFHlhm_0Jjtk6x10Wr6dIUG0CvOiWsACozb0GyZKKdUD545VYzvl70SjqOOswZ9FUH3brGViDJGrT3xEWQ3LLGxu2r16PaRoMaNW8hPtHVi7CTfgFzO33qpFjncerHox2Ib2xCh0JbQyNCOP2-ysmNYYleSB7e0z67j1xLer8lq6O6X_9oaATEhjFjmmI-gNM2rgdelCy8f_t-8eFMG6qwHrddGIAnBoZTNm1vdGLrgq8XQqf2mg9GR4CTZW3lG4o29JhQI_UMrjo9QN6E1cUfRHrpheFFBZS4CnKC-nar0K0_s2RVCRu1g3NfQgz8ca-0Pfd3eaxLDAWR80EUDNL-OJR1Wze5B0gBt-NhUSg67RRUdk3eOStPRcwlYkK7nfhMQ98k-IPfV18TCrkbj9-3ACWShuMMgYfPGnCKQ27ekVXd-6LLzekpid2s6TZ5NNXwFrXwKGWPtjDE9ExScHC9e5b9pjP_HuKGeK--WEvMcrjdfjaoE8Dx5BC5P13zYdfgxU02yW1FypjK5N_ioabxopXEOFy7Z8WSuXeYePcY5-DJDzlF4DDf9sJu-w2LujT9xgOzWC7i3sG6HFYZAin-lPHOjLD2VRwSzUUc_YAHofbgAffLVWKXLU0jGQ-hz6Ebj8vnhX5GXkv4eX3X3aSd73eMCj_pqYxcMU8sBzUdFNl2U9KWqU1Gwe8hyjVKnJLpSiZp2PAxohLu5RaJccpp6JTd1atv6slQNUVlKFQcEQyByURCQG7WyukcLMX27Uv9rhMIP7Cbh7Kj3bjdZ0eu4vO_QGNkpjL6qoQyZR17PN_mojjmqIayiG0r1vLKUfsjldhqHzdLhY60UFxJ8r3ky-1MBphsRufTcwhztDLC8iIayre8LzRE-70x5aV96NmBndw0uraKy6dCsrt3Rp7G_x3v0Tl9ubAZsXVCX860w_-iU91WnYI1dfMiaF5qqjNJOjLH9p3EIEEpy6lQFjmFlzvr0s8mN3TwG9zEwCULFzEJP5LUzgLdXXptfM4tOYVbHYF7-crZD9B7GlZZqo7S6-NoBnjzaRHu19T1ZLTZ-gn69eWYQWEs47-3pojdr4CgxCW94J-JaNjK2aKYhSY22RSecVTrNToNW0nUu5mbaNhIzF6M0mF0MCh8IgHjf8R4oAzOkt_aprx4gYUqU8kre-aRicuJLZno55l50vjKHgijkymsWy32zbgITtc693x80bpgvT8MJeoZs4C7Qdwj-dptUnnbpVxRBjDSivmJv2sPMNtQhmTXglMmocr_OSUnCgfcNSiMMM80PogNoZkZnDaJ5IodAfaDr9KMqUA-s6FZpMhrK_qf3TbtitdgTL51GN8x8X_pQagWTpK9DZzhEc3QvloEyBUhoPTIvtPud0revtLoAkQSYh4COKdwaUS3LPVJ8626LCeAHq5pBJocOj2R9KhgUfSvRQBdU2cbOIemVZpiVO7tPqKavSDYYiynA3tRU7KFFeXuLnDQBIcqoBpwcLGGTydF7z9xTg1DR6SYRslpJAPMTo9XsTctbwUSIgze74Y-N93UXH7mNG9CW2qxYh4jbiazYamRaDfhqIAH3sb76m880p3O3GM_b9Kl6M6Dk2R6czGTyTiZtWhEBmX3LOhW7aNtj-6gFRNqVRJQ6HpcpMmyXECOVARecNJGjx7GfHlpll2nmFE77GpHLhzz7I_diYjzR99F7DWuDprtST0BCEcdUMNKjgJ7DJNJdfWeqpbRQ4ajOAgkHCBZGtEwoTlGw9iv9oNjH2rsEnSo42-896Ja83rdUVIH4fn-rL1YaN46Nmykm0D4HHfGNEt2Yk19K1Tet_rpQ0zrSPdo3OjLiYxu7BNufXnjyayHxYCCtsq5PIO6EhAyx0_3MaL9q4kgSf8YBowhyzw0gLGwI12qzRAmtg0L7wd0I80B1SzIWCiAeqfosmsW0-oldH8BGP2I0mJuMmfgFVHgaCThCSDCbuwCPWF7ziA3Vr07wiKb4T_lbwFuuJzxbY916GJkUMOgCywFhS570GckVzCw9aTnDCcgfVQlyZEx1zd7g8Pjlu-CM7NX1L18tTDTDpR784bzo86jePE47JBA_Cl5_Fm2l077GzzinKZE-Q1K_buzmk4F-xhhcOOLM2JLPppAPAGt0Ep0fmb8j-0-daFvT3OX5y7liQ17xmwvekckKZZHJRAnjFKGi1106h4onSn_Z56nbspXj__NbP9MqR1Zi-rVaLe31-LSvNDiyRyNIEj_orQ-9iRHlADq_1whXN2BmvYhhjxNotctn2mmyBs1kNDIWIL25LHzoKGp77zVGStvPPv92F9Z-uahUwrwmtp9Tv0oMVcdTlofTceCGbFUZQ4-aZGtPvqRLdWnatfC0iuuNUPWmeS6FkUR2OyfyXIYTQRROilphKK3fd69d31LQ9LLIvunbK7I9RSdD6Ap9luKat-YXTXt1KTRNS9y4t6SifqxcGS6Kloz6yZkVPiBOSITsZ76xEvk6sRakmRcpInn1HUPvCgEvs1WOMr7U6rRoPv-FY1BFqPhE_ajLe40oUIA7Pyzmo4Y7HX9eG_nJuWmnIfmVITBm7QZmZFBaAaB2uM7dhpaq6GblxyRMkBrJdPtDkzKnPJin9u9NJe_IppVRzVPiZX_nmxWXI6iMrGw-4X2NQ727khsLzud0qomr-3zjc0CYqA3ZLQvCrw4mOrZBzZxCyL8ilY7vtDOkZ_txGHxaMfo4s9ZRXI-bGJKz2UGz2VW3S5W7Qn0xFNdBF_iPiEl5widIuhmgqprQqzteQzdtf7AFXlg-dmh_iengaSYpCkzgcG7L6ABt9M2xFhmAVmYnYG7ySX-9_A9TCVs56YI_YlM5U-0Dy9y9O22vXTmptASk6MVCOWXPHFl4XzbHM3ADXIdJ6XD0uyRxJv4M072Lwz0GdDF-KhvfUxb0GhAMAv3LThy7Pec9T5MP97NWytEsiLzBnTi8f6rBOMrWxn_ghyPXG8eOy50gfHV3BtrDIS42nIHJZnHOFOTJ6H9SaRjyRptEPWhK0nq8BD4Li3fHLVWZaezpuBK1_7LHBo7aeSXw19CGaiPFp8KNdYmrY6gi17wf_ayY2Vl6v8rUldr-l91tIkl8SVIaUMC-AEmQxlZU9hFhV8_rJgdUBZvYO94FjKCbcMOZbruuB_1VQSDKkGo2lo5s_nU-k8-oEUynJNHx60_JO-rLlXFg0gi95bOOnovdAE2kZ3wRs-_P-GEmnuFV8kfYRsq1hGRH9VTsShGDlG9IOSxssJhVH7V_ZTTJ8IAQk8HqtIBHA1NGm89J9s_Qbzl-vz9FWHVR9UvVIvCm5Inu9aYipjHjOk7Ck3RX9JcLAfCSjOUlGY9FMcCVX-r_w3yW2JHyPxM13Stv17Dn_zKyl6p_k85Ksi02_Wd6m_s-tNTGgRHSH4FEMV23NY1qt4rOdtRSncHeKuUnxnzEnA75NVUUgnIwZMv57pZysbMf4qQamdGy5MqUvIkX6E_HKr5Mme70CbFoTaTr4QR6dfm8C-xNk2kHPShtvYaUZfNPKWOv9e1V6dJ4ecciEfmjOI5uRNUJrTi7z-nq5qUg6l0kkX54YeGhwnpDP166peJ4rVPpOcCjjGaZG4s2x4CZG37Rxp2x877ON0i3HNDRbTIlkGWHplR5T1mIZqUrcrCNi0X116TAp8lTKSpfc1GRKhf1pQp7DynecWhztuBe5lzlUDL3rbtdq_wDsmBamy9n4Js_IJOCi30fazFO7YQwEwhIwvp3JEtw1k9o-rzgQLc7pwdMF1vn6y-3eXn_xIbarHJNuQmb3CIliAuQGnXQmu-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACxASFxwf"
+        }
+      ]
+    },
+    "status": "attested",
+    "lifecycle": [
+      {
+        "from": "pending",
+        "to": "attested",
+        "actor": "org:climatechain-demo",
+        "at": "2026-10-06T05:22:47.313Z",
+        "reason": "Signed attestation issued.",
+        "evidenceRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:disclosure"
+          }
+        ]
+      }
+    ],
+    "challenges": []
+  },
+  "case": {
+    "schemaVersion": "climatechain.case/0.1",
+    "caseId": "case:disclosure:lpl-construction",
+    "title": "LPL Construction public carbon disclosure",
+    "capabilities": [
+      "public-disclosure",
+      "claim-reconciliation"
+    ],
+    "createdAt": "2026-10-06T05:22:47.313Z",
+    "claims": [
+      {
+        "nodeType": "claim",
+        "id": "claim:lpl:2025:scope1",
+        "createdAt": "2026-10-06T05:22:47.313Z",
+        "provenance": [
+          {
+            "nodeType": "evidence",
+            "id": "evidence:disclosure:lpl-construction:cadi-confirmation",
+            "role": "cadi-publication-confirmation"
+          },
+          {
+            "nodeType": "evidence",
+            "id": "evidence:disclosure:lpl-construction:source",
+            "role": "underlying-public-source"
+          }
+        ],
+        "subject": {
+          "id": "org:lpl-construction",
+          "kind": "organisation",
+          "name": "LPL Construction"
+        },
+        "temporalScope": {
+          "label": "2025"
+        },
+        "assertion": {
+          "kind": "quantitative",
+          "metric": "Scope 1 emissions",
+          "quantity": {
+            "value": 601.26,
+            "unit": "tCO2e"
+          }
+        },
+        "assessments": [
+          {
+            "dimension": "disclosed",
+            "state": "confirmed",
+            "note": "Publication on CaDI is confirmed by a first-party source; this is a disclosure-state claim, not a claim of independent physical truth."
+          },
+          {
+            "dimension": "source-found",
+            "state": "confirmed"
+          },
+          {
+            "dimension": "calculation-reproduced",
+            "state": "not-assessed"
+          },
+          {
+            "dimension": "factor-traced",
+            "state": "not-assessed"
+          },
+          {
+            "dimension": "evidence-integrity-confirmed",
+            "state": "not-assessed"
+          },
+          {
+            "dimension": "third-party-assured",
+            "state": "not-assessed",
+            "note": "The source attributes assurance to a third party: First-party page states external verification through Carbon Footprint Ltd. ClimateChain has not independently audited that assurance engagement."
+          }
+        ],
+        "boundary": {
+          "scopes": [
+            "Scope 1 emissions"
+          ],
+          "methodology": "Figure extracted from the company's own public page; not recalculated.",
+          "accounting": {
+            "included": [
+              "LPL Construction Scope 1 emissions, 2025, 601.26 tCO2e, as the company reports it"
+            ],
+            "excluded": [
+              "Scope 2 emissions 2025, 8.31 tCO2e, reported on the same page and not part of this claim",
+              "Scope 3 emissions 2025, 3,891.22 tCO2e, reported on the same page and not part of this claim",
+              "Any figure not on the company's own page, including the CaDI record itself (link-only, not mirrored)"
+            ],
+            "policyChoices": [
+              "A reported figure that cannot be recalculated needs a person's decision before the claim is accepted",
+              "The organisational boundary and the method are the company's (the page cites the GHG Protocol), not ClimateChain's"
+            ],
+            "notAssessed": [
+              "The activity data and emission factors behind the figure",
+              "The external verification the page attributes to Carbon Footprint Ltd",
+              "Whether the CaDI record matches the page"
+            ]
+          }
+        }
+      }
+    ],
+    "evidence": [
+      {
+        "nodeType": "evidence",
+        "id": "evidence:disclosure:lpl-construction:cadi-confirmation",
+        "createdAt": "2026-10-06T05:22:47.313Z",
+        "provenance": [],
+        "kind": "public-disclosure",
+        "source": {
+          "uri": "https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/",
+          "publisher": "LPL Construction",
+          "retrievedAt": "2026-10-06T05:22:47.313Z"
+        },
+        "rights": {
+          "sourceManifestId": "cadi-public-web",
+          "termsUri": "https://www.carbonfootprint.com/termsandconditions.html",
+          "redistribution": "prohibited",
+          "commercialUse": "prohibited",
+          "derivedData": "unclear",
+          "attribution": "Link to the original first-party publication/CaDI record; do not mirror CaDI content."
+        },
+        "access": {
+          "mode": "link-only",
+          "instructions": "Open https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/ and compare the figure with the claim."
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:disclosure:lpl-construction:source",
+        "createdAt": "2026-10-06T05:22:47.313Z",
+        "provenance": [],
+        "kind": "report",
+        "source": {
+          "uri": "https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/",
+          "publisher": "LPL Construction",
+          "retrievedAt": "2026-10-06T05:22:47.313Z"
+        },
+        "rights": {
+          "redistribution": "unclear",
+          "commercialUse": "unclear",
+          "derivedData": "unclear",
+          "attribution": "Preserve the original public source URL. ClimateChain stores extracted factual claims, not the source document bytes."
+        },
+        "access": {
+          "mode": "link-only",
+          "instructions": "Open https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/ and compare the figure with the claim."
+        }
+      }
+    ],
+    "calculations": [],
+    "factors": [],
+    "modelRuns": [],
+    "verifications": [
+      {
+        "nodeType": "verification",
+        "id": "verification:disclosure",
+        "createdAt": "2026-10-06T05:22:47.313Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:lpl:2025:scope1"
+          },
+          {
+            "nodeType": "verification",
+            "id": "verification:disclosure-decision"
+          }
+        ],
+        "verifier": {
+          "id": "person:sustainability-reviewer",
+          "kind": "person"
+        },
+        "profile": "disclosure/0.2",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "source-found",
+            "name": "First-party source located",
+            "outcome": "pass",
+            "detail": "https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/"
+          },
+          {
+            "id": "calculation-reproduced",
+            "name": "Reported value recalculated",
+            "outcome": "not-run",
+            "detail": "The activity data and emission factors are not public."
+          },
+          {
+            "id": "third-party-assured",
+            "name": "Third-party assurance inspected",
+            "outcome": "not-run",
+            "detail": "First-party page states external verification through Carbon Footprint Ltd."
+          },
+          {
+            "id": "disclosure:not-recalculable",
+            "name": "Reported value cannot be recalculated from public data",
+            "outcome": "pass",
+            "detail": "accept-as-attributed: The figure is on LPL's own page, which cites the GHG Protocol and external verification by Carbon Footprint Ltd. Nothing public lets us recalculate it, so the claim rests on LPL's statement and says so; calculation and assurance stay not-assessed. (person:sustainability-reviewer, 2026-10-06T05:21:08Z)"
+          }
+        ],
+        "findings": [
+          "Accepted as attributed: the claim rests on the company's own statement, not on a recalculation."
+        ],
+        "verifiedAt": "2026-10-06T05:21:08Z"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:disclosure-decision",
+        "createdAt": "2026-10-06T05:22:47.313Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:lpl:2025:scope1"
+          }
+        ],
+        "verifier": {
+          "id": "person:sustainability-reviewer",
+          "kind": "person"
+        },
+        "profile": "disclosure/0.2",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "disclosure:not-recalculable",
+            "name": "Reported value cannot be recalculated from public data",
+            "outcome": "pass",
+            "detail": "accept-as-attributed: The figure is on LPL's own page, which cites the GHG Protocol and external verification by Carbon Footprint Ltd. Nothing public lets us recalculate it, so the claim rests on LPL's statement and says so; calculation and assurance stay not-assessed. (person:sustainability-reviewer, 2026-10-06T05:21:08Z)"
+          }
+        ],
+        "findings": [
+          "Decided is not verified: a decision records what the claim may rest on, not that the figure is correct."
+        ],
+        "verifiedAt": "2026-10-06T05:21:08Z"
+      }
+    ],
+    "attestations": [],
+    "anchors": []
+  },
+  "limitations": [
+    "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
+    "The figure is extracted by hand from the company's page; the page itself is link-only and may change.",
+    "Accepted as attributed means the claim rests on the company's statement; nothing is recalculated or audited."
+  ]
+}

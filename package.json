@@ -25,7 +25,7 @@
     "carbon:prepare": "node scripts/prepare-carbonplan-registry-fixtures.mjs",
     "carbon:smoke": "node scripts/smoke-carbon-registry.mjs",
     "check:cadi": "node scripts/check-cadi-candidates.mjs",
-    "check:cases": "node scripts/verify-building-case.mjs && node scripts/verify-battery-case.mjs && node scripts/verify-energy-case.mjs && node scripts/verify-earth-case.mjs",
+    "check:cases": "node scripts/verify-building-case.mjs && node scripts/verify-battery-case.mjs && node scripts/verify-energy-case.mjs && node scripts/verify-earth-case.mjs && node scripts/verify-disclosure-case.mjs",
     "demo:build": "npm run build",
     "demo:serve": "python3 -m http.server 4173 --directory apps/demo/dist",
     "submission:build": "python3 scripts/build-submission.py"

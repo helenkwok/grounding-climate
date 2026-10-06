@@ -44,6 +44,15 @@ import {
   setEnergyTampered,
   type EnergyCheck,
 } from "./energy-live.js";
+import {
+  checkDisclosure,
+  disclosureCaseId,
+  disclosureInput,
+  disclosureRun,
+  disclosureService,
+  setDisclosureTampered,
+  type DisclosureCheck,
+} from "./disclosure-live.js";
 import { checkEarth, earthCaseId, earthRun, earthService, setEarthTampered, type EarthCheck } from "./earth-live.js";
 import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
 import carbonReport from "../../../reports/carbon-registry/carbonplan-smoke.json";
@@ -82,8 +91,6 @@ type DemoModule = {
 const battery = batteryReport as JsonObject;
 const carbon = carbonReport as JsonObject;
 const cadiData = cadi as JsonObject;
-const lpl = cadiData.candidates.find((item: JsonObject) => item.id === "lpl-construction");
-const lplClaim = lpl?.extractedClaims?.[0];
 
 const short = (digest: ContentDigest) => digest.value.slice(0, 16) + "…";
 
@@ -437,6 +444,76 @@ function earthModule(live: EarthCheck): DemoModule {
   };
 }
 
+function disclosureModule(live: DisclosureCheck): DemoModule {
+  const { built, attestation } = live;
+  const verification = built.caseBundle.verifications[0]!;
+  const claim = built.caseBundle.claims[0]!;
+  const status = built.review[0]!;
+  const value = claim.assertion.kind === "quantitative" ? claim.assertion.quantity : undefined;
+  const source = built.caseBundle.evidence[1]!.source.uri ?? "";
+  const ed25519 = attestation.signature.signatures.find((item) => item.signature.algorithm === "Ed25519");
+  const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
+  return {
+    id: "disclosure",
+    title: "Public Disclosure",
+    icon: "◫",
+    kicker: "Public claim ≠ verified truth",
+    kpi: value ? String(value.value) : "—",
+    kpiLabel: value ? value.unit + " Scope 1, as reported" : "source-only",
+    source: "CaDI-confirmed first-party sources",
+    decisionTitle:
+      "Sustainability reviewer: " +
+      (status.state === "decided" ? status.decision!.decision : status.state === "stale" ? "decision stale" : "awaiting decision"),
+    decisionCopy:
+      disclosureRun.organisingQuestion +
+      " The figure cannot be recalculated from public data, so a person decides what the claim rests on.",
+    decisions: [
+      [
+        claim.subject.name + " " + (value ? value.value + " " + value.unit : ""),
+        status.state === "undecided" || !status.decision ? status.state : status.state + ": " + status.decision.decision + " by " + status.decision.decidedBy,
+      ],
+      ...(status.decision ? [["Reason", status.decision.reason] as [string, string]] : []),
+      ...boundaryRows(claim),
+    ],
+    limitation:
+      "Accepted as attributed means the claim rests on the company's own statement: nothing is recalculated, and the verification the page attributes to Carbon Footprint Ltd is not inspected. The page is link-only and may change. Signing keys are per-run demo keys.",
+    metrics: [
+      ["Confirmed CaDI candidates", String(cadiData.candidates.length)],
+      ["Numeric case", claim.subject.name ?? "—"],
+      ["Period", claim.temporalScope?.label ?? "—"],
+      ["Reported value", value ? value.value + " " + value.unit : "—"],
+      ["Calculation reproduced", "not assessed"],
+    ],
+    provenance: [
+      ["Claim ID", claim.id],
+      ["Source (link-only)", source],
+      ["Evidence root (now)", short(attestation.currentRoot)],
+      ["Evidence root (signed)", short(disclosureRun.attestation.payload.evidenceRoot)],
+      ["Signed", disclosureRun.runAt + " · Ed25519 + ML-DSA-65"],
+    ],
+    checks: [
+      ...verification.checks,
+      {
+        id: "attestation",
+        name: "Signed attestation matches the current evidence (checked here)",
+        outcome: attestation.validForCurrentEvidence ? "pass" : "fail",
+        detail:
+          "Ed25519 " + (ed25519?.signatureValid ? "verified in this browser" : "NOT verified") +
+          "; ML-DSA-65 " + (mlDsa?.signatureValid ? "verified in this browser (" + mlDsaVerifier + ")" : "NOT verified") +
+          (attestation.changedRefs.length ? "; changed since signing: " + attestation.changedRefs.map((ref) => ref.id).join(", ") : ""),
+      },
+    ],
+    tamper: {
+      before: disclosureInput.tamper.from + " tCO2e",
+      change:
+        "Extracted value " + disclosureInput.tamper.from + " → " + disclosureInput.tamper.to + " tCO2e (" +
+        disclosureInput.tamper.note.toLowerCase() + "), applied in this browser",
+      after: "",
+      rootBefore: disclosureRun.attestation.payload.evidenceRoot.value,
+    },
+  };
+}
+
 const modules: DemoModule[] = [
   buildingModule(await checkBuilding()),
   energyModule(await checkEnergy()),
@@ -502,46 +579,7 @@ const modules: DemoModule[] = [
       rootAfter: carbon.tamperDemo.changedEvidenceRoot.value,
     },
   },
-  {
-    id: "disclosure",
-    title: "Public Disclosure",
-    icon: "◫",
-    kicker: "Public claim ≠ verified truth",
-    kpi: lplClaim ? String(lplClaim.value) : "—",
-    kpiLabel: lplClaim ? lplClaim.unit + " Scope 1" : "source-only",
-    source: "CaDI-confirmed first-party sources",
-    decisionTitle: "Sustainability manager / verifier",
-    decisionCopy:
-      "Locate a real public climate claim, preserve the original source, and keep disclosure, calculation reproduction, factor tracing, and assurance as separate assessment dimensions.",
-    limitation:
-      "LPL's external-verification statement is retained as an attributed source claim. ClimateChain has not independently audited that assurance engagement.",
-    metrics: [
-      ["Confirmed CaDI candidates", String(cadiData.candidates.length)],
-      ["Numeric case", lpl?.name ?? "none"],
-      ["Period", lplClaim?.period ?? "—"],
-      ["Metric", lplClaim?.metric ?? "—"],
-      ["Reported value", lplClaim ? lplClaim.value + " " + lplClaim.unit : "—"],
-      ["Calculation reproduced", "not assessed"],
-    ],
-    provenance: [
-      ["Organisation", lpl?.name ?? "—"],
-      ["Claim ID", lplClaim?.id ?? "—"],
-      ["Source", lpl?.underlyingSourceUrl ?? "—"],
-      ["CaDI status", lpl?.confirmationStatus ?? "—"],
-      ["Rights policy", cadiData.rightsManifestId],
-    ],
-    checks: [
-      { id: "source-found", name: "Public first-party source located", outcome: lpl ? "pass" : "fail" },
-      { id: "calculation-reproduced", name: "Reported value recalculated", outcome: "not-run" },
-      { id: "factor-traced", name: "Emission factors traced", outcome: "not-run" },
-      { id: "assurance", name: "Third-party assurance assessed", outcome: "not-run" },
-    ],
-    tamper: {
-      before: lplClaim ? lplClaim.value + " " + lplClaim.unit : "public source",
-      change: "Change extracted claim value/source bytes",
-      after: "Current evidence commitment changes; old provenance remains tied to old bytes",
-    },
-  },
+  disclosureModule(await checkDisclosure()),
 ];
 
 const moduleById = new Map(modules.map((item) => [item.id, item]));
@@ -662,6 +700,7 @@ class DemoWorkspace implements ClimateWorkspace {
     if (caseId === batteryCaseId) return (await batteryService.passport()).caseBundle;
     if (caseId === energyCaseId) return (await energyService.build()).caseBundle;
     if (caseId === earthCaseId) return (await earthService.build()).caseBundle;
+    if (caseId === disclosureCaseId) return (await disclosureService.review()).caseBundle;
     return !caseId || caseId === demoCase.caseId ? demoCase : undefined;
   }
 
@@ -672,6 +711,7 @@ class DemoWorkspace implements ClimateWorkspace {
       (await batteryService.passport()).caseBundle,
       (await energyService.build()).caseBundle,
       (await earthService.build()).caseBundle,
+      (await disclosureService.review()).caseBundle,
     ];
   }
 
@@ -716,7 +756,6 @@ class DemoWorkspace implements ClimateWorkspace {
 
 const reportPaths: Record<string, string> = {
   carbon: "reports/carbon-registry/carbonplan-smoke.json",
-  disclosure: "sources/cadi-candidates.json",
 };
 
 const router: ModuleCommandRouter = {
@@ -728,6 +767,13 @@ const router: ModuleCommandRouter = {
     if (moduleId === "battery") return batteryService.execute("battery-dpp", toolName, input);
     if (moduleId === "energy") return energyService.execute("energy-forecast", toolName, input);
     if (moduleId === "earth") return earthService.execute("earth-observation", toolName, input);
+    if (moduleId === "disclosure") {
+      return disclosureService.execute("disclosure", toolName, {
+        candidateId: disclosureInput.candidateId,
+        claimId: disclosureInput.claimId,
+        ...input,
+      });
+    }
     if (input.caseId !== demoCase.caseId) {
       throw new Error(
         "Unknown case " + JSON.stringify(input.caseId ?? null) + "; this demo holds only " + demoCase.caseId + ".",
@@ -752,18 +798,6 @@ function recordedOutput(toolName: string): unknown {
     case "carbon_check_duplicate_claim":
       return carbon.duplicateDemo;
 
-    case "disclosure_get_public_claim":
-    case "disclosure_extract_report_claims":
-      return { organisation: lpl, claim: lplClaim, policy: cadiData.policy };
-    case "disclosure_reconcile_claim":
-      return {
-        disclosed: true,
-        sourceFound: true,
-        calculationReproduced: false,
-        factorsTraced: false,
-        thirdPartyAssurance: "attributed-not-independently-assessed",
-        claim: lplClaim,
-      };
     default:
       throw new Error("Unsupported demo tool: " + toolName);
   }
@@ -846,6 +880,7 @@ const registry = new ClimateCapabilityRegistry()
         "disclosure_get_public_claim",
         "disclosure_extract_report_claims",
         "disclosure_reconcile_claim",
+        "disclosure_review_claim",
       ],
       router,
     }),
@@ -1087,6 +1122,33 @@ async function renderEnergyTamper(injected: boolean): Promise<void> {
   ]);
 }
 
+/** Disclosure tamper is real: the extracted figure changes in this browser and the case is rebuilt. */
+async function renderDisclosureTamper(injected: boolean): Promise<void> {
+  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+  if (!output) return;
+  setDisclosureTampered(injected);
+  const live = await checkDisclosure();
+  const item = disclosureModule(live);
+  modules[modules.findIndex((entry) => entry.id === "disclosure")] = item;
+  moduleById.set("disclosure", item);
+  renderModules();
+  renderDetail();
+  const { built, attestation } = live;
+  const result = built.caseBundle.verifications[0]!.result;
+  const valid = attestation.validForCurrentEvidence;
+  const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
+  output.innerHTML = tamperLines([
+    ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
+    ["claim", escapeHtml(item.kpi + " " + item.kpiLabel)],
+    ["decision", escapeHtml(built.review[0]!.state + (built.review[0]!.state === "stale" ? " (made on a different figure)" : ""))],
+    ["case verification", tag(result === "reconciled", result)],
+    ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
+    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
+    ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
+    ["action", injected ? "Reset restores the committed figure; the signed attestation then matches again." : "Choose “Show tamper result” to change the extracted figure in this browser."],
+  ]);
+}
+
 /** Earth tamper is real: one NIR value changes in this browser and the case is recomputed. */
 async function renderEarthTamper(injected: boolean): Promise<void> {
   const output = document.querySelector<HTMLDivElement>("#tamper-output");
@@ -1116,6 +1178,10 @@ async function renderEarthTamper(injected: boolean): Promise<void> {
 }
 
 function renderTamper(id: string, injected: boolean): void {
+  if (id === "disclosure") {
+    void renderDisclosureTamper(injected);
+    return;
+  }
   if (id === "earth") {
     void renderEarthTamper(injected);
     return;

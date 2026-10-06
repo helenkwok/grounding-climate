@@ -1,0 +1,10 @@
+[
+  {
+    "flagId": "disclosure:not-recalculable",
+    "decision": "accept-as-attributed",
+    "reason": "The figure is on LPL's own page, which cites the GHG Protocol and external verification by Carbon Footprint Ltd. Nothing public lets us recalculate it, so the claim rests on LPL's statement and says so; calculation and assurance stay not-assessed.",
+    "decidedBy": "person:sustainability-reviewer",
+    "decidedAt": "2026-10-06T05:21:08Z",
+    "inputDigest": { "algorithm": "SHA-256", "value": "EY-DP6ggZpWNi45LESRiguXBcXxwpBu7MM0P80IW9c8" }
+  }
+]
