@@ -73,6 +73,9 @@ export function normalizeRegistryCsv(input: {
         ...(input.kind === "retirement" && clean(row["Credit Serial Numbers"])
           ? { serialRange: clean(row["Credit Serial Numbers"]) }
           : {}),
+        ...(input.kind === "retirement" && clean(row["Date Issued (GMT)"])
+          ? { creditsIssuedAt: clean(row["Date Issued (GMT)"]) }
+          : {}),
         ...(input.kind === "retirement" &&
         clean(row["Retired on Behalf of"] || row["Account Holder"])
           ? {

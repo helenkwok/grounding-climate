@@ -68,10 +68,8 @@
           <h2>One workspace, six independently testable capabilities</h2>
         </div>
         <p>
-          Building MRV, Battery DPP, the energy forecast, the burn-scar scene and the public disclosure are rebuilt in
-          this browser from committed data, and their signed attestations are checked here. The
-          carbon card replays a committed measured report from pinned upstream
-          sources. Select a module to inspect its evidence, checks and
+          Every module is rebuilt in this browser from committed data, and its signed attestation is
+          checked here. Select a module to inspect its evidence, checks and
           limitations.
         </p>
       </div>
@@ -114,9 +112,8 @@
           <h2>Change one input and the evidence digest changes.</h2>
         </div>
         <p>
-          Building, battery, energy, earth and disclosure change an input in this browser, rebuild the
-          case and check the signed attestation again. Carbon shows digests
-          from a recorded tamper run.
+          Every module changes an input in this browser, rebuilds the case and checks the signed
+          attestation again.
         </p>
       </div>
       <div class="tamper-console">
@@ -128,6 +125,40 @@
         </div>
         <div id="tamper-output" class="tamper-output"></div>
       </div>
+    </section>
+
+    <section id="bring-report" class="section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Evidence the reviewer brings</p>
+          <h2>Add a Climate Action Reserve or Gold Standard report.</h2>
+        </div>
+        <p>
+          Their terms do not allow ClimateChain to copy their records, and CAR's site disallows automated access.
+          Download a report with the registry's own CSV button and choose it here: it is read in this browser,
+          reconciled with the ACR records, and kept in the case as a digest only. The signed decisions then go
+          stale, because they were made on different records.
+        </p>
+      </div>
+      <form id="carbon-import" class="tamper-controls">
+        <label>Registry
+          <select name="registry">
+            <option value="climate-action-reserve">Climate Action Reserve</option>
+            <option value="gold-standard">Gold Standard</option>
+          </select>
+        </label>
+        <label>Report
+          <select name="kind">
+            <option value="retirement">Retirements</option>
+            <option value="issuance">Issuances</option>
+          </select>
+        </label>
+        <label>Page it came from <input name="sourceUri" type="url" required placeholder="https://thereserve2.apx.com/…"></label>
+        <input name="file" type="file" accept=".csv,text/csv" required>
+        <button class="button">Add report</button>
+        <button id="carbon-import-clear" type="button" class="button ghost">Remove reports</button>
+        <output id="carbon-import-status" aria-live="polite"></output>
+      </form>
     </section>
 
     <section id="agent" class="section agent-section">

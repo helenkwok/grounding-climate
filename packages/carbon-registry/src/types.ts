@@ -22,6 +22,8 @@ export interface NormalizedRegistryTransaction {
   quantity: number;
   transactionDate?: string;
   serialRange?: string;
+  /** On a retirement: when the retired credits were issued, as the registry's retirement record states. */
+  creditsIssuedAt?: string;
   beneficiary?: string;
   sourcePath: string;
   sourceRow: number;

@@ -32,6 +32,20 @@ The preparation script downloads each file from the pinned raw GitHub commit and
 
 No upstream registry bytes are committed to ClimateChain.
 
+## Review case: committed ACR records and reports the reviewer brings
+
+`buildCarbonReviewCase()` runs the records through the shared review process.
+
+- **Committed:** ACR's records, because ACR's terms allow data from its public reports to be reproduced if accurately represented and cited (`data/external/acr-offsetsdb`, made by `scripts/prepare-acr-subset.mjs`). Only the columns the checks read are kept, plus each retired block's issue date. Beneficiary and account-holder names are left out: no check uses them, and some name individuals.
+- **Reviewer-supplied:** Climate Action Reserve and Gold Standard records are never fetched or committed. CAR's `robots.txt` disallows all automated access, and neither registry's terms grant reuse. A reviewer downloads a report with the registry's CSV button and brings it, in the page or with `--import <registry>:<kind>:<file>:<page URL>`. The case keeps the page URL, the download time and a SHA-256 of the normalised records (independent of row order and layout), never the records. A verifier brings the report again: the same records verify; different ones are reported as `source-changed`.
+- **Flags:** duplicate serial ranges and over-retirement are mismatches. A retirement group with no issuance in the records is a coverage gap, raised as two flags: groups whose retired credits were all issued, by the retirement record's own date, before the records' first issuance (`coverage:before-window`), and the rest (`coverage:inside-window`). Each is decided `out-of-sample` or `investigate`, bound to the digest of all the records. The result is `reconciled` only when every flag is decided `out-of-sample`.
+- **Decisions** (`reports/carbon-registry/coverage-decisions.json`, `person:carbon-auditor`): 12 groups before the window, `out-of-sample`; 10 groups inside it, `investigate`. So the signed result is `insufficient-evidence`.
+- **Accounting boundary:** counts the committed records and any brought; leaves out records outside them and claims made outside the registries; policy choices are the grouping, treating a gap as a decision rather than an over-retirement, and exact serial-range matching (overlapping ranges written differently are not compared); not assessed: durability, additionality and project quality, and whether a retirement backs the claim its beneficiary makes.
+
+`node scripts/run-carbon-case.mjs` signs the case (`reports/carbon-registry/case-run.json`); `scripts/verify-carbon-case.mjs` is part of `npm run check:cases`. The WebMCP tools add `carbon_import_registry_report` and `carbon_review_records`. The multi-registry smoke below still checks all three registries in CI without committing them.
+
+ACR's registry has moved to ICE GreenTrace (`https://greentrace.ice.com/acr`); looking up the 10 groups there would need GreenTrace's own terms reviewed first.
+
 ## Rights
 
 The source-rights manifest already separates:

@@ -45,6 +45,14 @@ import {
   type EnergyCheck,
 } from "./energy-live.js";
 import {
+  carbonCaseId,
+  carbonRun,
+  carbonService,
+  checkCarbon,
+  setCarbonTampered,
+  type CarbonCheck,
+} from "./carbon-live.js";
+import {
   checkDisclosure,
   disclosureCaseId,
   disclosureInput,
@@ -55,7 +63,6 @@ import {
 } from "./disclosure-live.js";
 import { checkEarth, earthCaseId, earthRun, earthService, setEarthTampered, type EarthCheck } from "./earth-live.js";
 import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
-import carbonReport from "../../../reports/carbon-registry/carbonplan-smoke.json";
 import cadi from "../../../sources/cadi-candidates.json";
 
 type JsonObject = Record<string, any>;
@@ -89,7 +96,6 @@ type DemoModule = {
 };
 
 const battery = batteryReport as JsonObject;
-const carbon = carbonReport as JsonObject;
 const cadiData = cadi as JsonObject;
 
 const short = (digest: ContentDigest) => digest.value.slice(0, 16) + "…";
@@ -514,71 +520,80 @@ function disclosureModule(live: DisclosureCheck): DemoModule {
   };
 }
 
+function carbonModule(live: CarbonCheck): DemoModule {
+  const { built, attestation } = live;
+  const report = built.report;
+  const verification = built.caseBundle.verifications[0]!;
+  const claim = built.caseBundle.claims[0]!;
+  const ed25519 = attestation.signature.signatures.find((item) => item.signature.algorithm === "Ed25519");
+  const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
+  const imported = built.caseBundle.evidence.filter((item) => item.access?.mode === "reviewer-supplied");
+  return {
+    id: "carbon",
+    title: "Carbon Registry",
+    icon: "◎",
+    kicker: "Registry records → gap decided → signed",
+    kpi: String(report.recordCount),
+    kpiLabel: "registry records reconciled in this browser",
+    source: "ACR public reports via CarbonPlan OffsetsDB",
+    decisionTitle:
+      "Carbon-market auditor: " +
+      built.review.map((status) => (status.state === "decided" ? status.decision!.decision : status.state)).join(" / "),
+    decisionCopy:
+      carbonRun.organisingQuestion +
+      " Duplicates and over-retirement are mismatches; a retirement with no issuance in the records is a gap a person decides.",
+    decisions: [
+      ...built.review.map((status): [string, string] => [
+        status.flag.label,
+        status.state === "undecided" || !status.decision ? status.state : status.state + ": " + status.decision.decision + " by " + status.decision.decidedBy,
+      ]),
+      ...built.review.flatMap((status) => (status.decision ? [["Reason", status.decision.reason] as [string, string]] : [])),
+      ...boundaryRows(claim),
+    ],
+    limitation:
+      "The ACR records are a 100-row test sample, not the full registry. Duplicates are exact serial-range matches. Durability, additionality and project quality are not assessed. Reports a reviewer brings are kept as digests only. Signing keys are per-run demo keys.",
+    metrics: [
+      ["Records", String(report.recordCount)],
+      ["Retirements within issuance", String(report.supportedCount)],
+      ["Issued, not retired", String(report.issuedNotRetiredCount)],
+      ["Retirement groups without issuance", report.unresolvedMissingIssuanceCount + " (" + built.coverage.beforeWindow + " issued before " + Object.values(built.coverage.windowStart).join(", ") + ")"],
+      ["Duplicate serial ranges", String(report.duplicateExcessCount)],
+      ["Reports brought by the reviewer", String(imported.length)],
+    ],
+    provenance: [
+      ["Records", "data/external/acr-offsetsdb (ACR public reports, cited per ACR's terms)"],
+      ...imported.map((item): [string, string] => ["Brought (digest only)", item.source.uri + " · " + short(item.integrity!)]),
+      ["Evidence root (now)", short(attestation.currentRoot)],
+      ["Evidence root (signed)", short(carbonRun.attestation.payload.evidenceRoot)],
+      ["Signed", carbonRun.runAt + " · Ed25519 + ML-DSA-65"],
+    ],
+    checks: [
+      ...verification.checks,
+      {
+        id: "attestation",
+        name: "Signed attestation matches the current evidence (checked here)",
+        outcome: attestation.validForCurrentEvidence ? "pass" : "fail",
+        detail:
+          "Ed25519 " + (ed25519?.signatureValid ? "verified in this browser" : "NOT verified") +
+          "; ML-DSA-65 " + (mlDsa?.signatureValid ? "verified in this browser (" + mlDsaVerifier + ")" : "NOT verified") +
+          (attestation.changedRefs.length ? "; changed since signing: " + attestation.changedRefs.map((ref) => ref.id).join(", ") : ""),
+      },
+    ],
+    tamper: {
+      before: report.duplicateExcessCount + " duplicate serial ranges",
+      change: "Retirement " + carbonRun.tamper.duplicated + " appears twice, applied in this browser",
+      after: "",
+      rootBefore: carbonRun.attestation.payload.evidenceRoot.value,
+    },
+  };
+}
+
 const modules: DemoModule[] = [
   buildingModule(await checkBuilding()),
   energyModule(await checkEnergy()),
   earthModule(await checkEarth()),
   batteryModule(await checkBattery()),
-  {
-    id: "carbon",
-    title: "Carbon Registry",
-    icon: "◎",
-    kicker: "Multi-registry reconciliation",
-    kpi: String(carbon.clean.recordCount),
-    kpiLabel: "real records checked",
-    source: "CarbonPlan OffsetsDB",
-    decisionTitle: "Carbon-market auditor / verifier",
-    decisionCopy:
-      "Reconcile issuance and retirement records across a bounded multi-registry snapshot with deterministic, explainable checks.",
-    limitation:
-      "Missing issuance in the bounded subset is unresolved evidence, not automatically fraud. The duplicate row is injected only for the integrity demo.",
-    metrics: [
-      ["Registries", String(carbon.clean.registries.length)],
-      ["Records", String(carbon.clean.recordCount)],
-      ["Supported groups", String(carbon.clean.supportedCount)],
-      ["Missing-issuance groups", String(carbon.clean.unresolvedMissingIssuanceCount)],
-      ["Duplicate serials", String(carbon.clean.duplicateExcessCount)],
-      ["Clean result", carbon.clean.verificationResult],
-    ],
-    provenance: [
-      ["Pinned commit", carbon.source.commit],
-      ["Source files", String(carbon.source.fileCount)],
-      ["Source bytes", carbon.source.totalBytes.toLocaleString()],
-      ["Evidence root", carbon.clean.evidenceRoot.value],
-      ["Ledger decision", carbon.ledgerDecision.decision],
-    ],
-    digest: carbon.clean.evidenceRoot,
-    checks: [
-      {
-        id: "duplicate-serials",
-        name: "No duplicate serial excess",
-        outcome: carbon.clean.duplicateExcessCount === 0 ? "pass" : "fail",
-      },
-      {
-        id: "issuance-coverage",
-        name: "Every retirement group has matching issuance",
-        outcome: carbon.clean.unresolvedMissingIssuanceCount === 0 ? "pass" : "warn",
-        detail:
-          carbon.clean.unresolvedMissingIssuanceCount +
-          " groups lack issuance in the bounded snapshot (report result: " +
-          carbon.clean.verificationResult +
-          ")",
-      },
-    ],
-    tamper: {
-      before:
-        carbon.tamperDemo.originalQuantity +
-        " credits; root " +
-        carbon.tamperDemo.originalEvidenceRoot.value,
-      change:
-        carbon.tamperDemo.originalQuantity +
-        " → " +
-        carbon.tamperDemo.changedQuantity,
-      after: "Evidence root changes; duplicate injection also produces mismatch",
-      rootBefore: carbon.tamperDemo.originalEvidenceRoot.value,
-      rootAfter: carbon.tamperDemo.changedEvidenceRoot.value,
-    },
-  },
+  carbonModule(await checkCarbon()),
   disclosureModule(await checkDisclosure()),
 ];
 
@@ -700,6 +715,7 @@ class DemoWorkspace implements ClimateWorkspace {
     if (caseId === batteryCaseId) return (await batteryService.passport()).caseBundle;
     if (caseId === energyCaseId) return (await energyService.build()).caseBundle;
     if (caseId === earthCaseId) return (await earthService.build()).caseBundle;
+    if (caseId === carbonCaseId) return (await carbonService.review()).caseBundle;
     if (caseId === disclosureCaseId) return (await disclosureService.review()).caseBundle;
     return !caseId || caseId === demoCase.caseId ? demoCase : undefined;
   }
@@ -712,6 +728,7 @@ class DemoWorkspace implements ClimateWorkspace {
       (await energyService.build()).caseBundle,
       (await earthService.build()).caseBundle,
       (await disclosureService.review()).caseBundle,
+      (await carbonService.review()).caseBundle,
     ];
   }
 
@@ -754,9 +771,6 @@ class DemoWorkspace implements ClimateWorkspace {
   }
 }
 
-const reportPaths: Record<string, string> = {
-  carbon: "reports/carbon-registry/carbonplan-smoke.json",
-};
 
 const router: ModuleCommandRouter = {
   async execute(moduleId, toolName, input) {
@@ -774,34 +788,10 @@ const router: ModuleCommandRouter = {
         ...input,
       });
     }
-    if (input.caseId !== demoCase.caseId) {
-      throw new Error(
-        "Unknown case " + JSON.stringify(input.caseId ?? null) + "; this demo holds only " + demoCase.caseId + ".",
-      );
-    }
-
-    // ponytail: replays committed reports; real per-case execution is the next step (shared case workflow).
-    return {
-      replayedFrom: reportPaths[moduleId],
-      note: "Recorded output of an offline run, replayed unchanged. Inputs other than caseId are not used.",
-      result: recordedOutput(toolName),
-    };
+    if (moduleId === "carbon") return carbonService.execute("carbon-registry", toolName, { ...input, caseId: carbonCaseId });
+    throw new Error("Unknown demo module: " + moduleId);
   },
 };
-
-function recordedOutput(toolName: string): unknown {
-  switch (toolName) {
-    case "carbon_reconcile_registry_records":
-      return { clean: carbon.clean, ledgerDecision: carbon.ledgerDecision };
-    case "carbon_check_retirement":
-      return { duplicateDemo: carbon.duplicateDemo, clean: carbon.clean };
-    case "carbon_check_duplicate_claim":
-      return carbon.duplicateDemo;
-
-    default:
-      throw new Error("Unsupported demo tool: " + toolName);
-  }
-}
 
 const registry = new ClimateCapabilityRegistry()
   .register(
@@ -867,6 +857,8 @@ const registry = new ClimateCapabilityRegistry()
         "carbon_reconcile_registry_records",
         "carbon_check_retirement",
         "carbon_check_duplicate_claim",
+        "carbon_import_registry_report",
+        "carbon_review_records",
       ],
       router,
     }),
@@ -1122,6 +1114,66 @@ async function renderEnergyTamper(injected: boolean): Promise<void> {
   ]);
 }
 
+/** Carbon tamper is real: one retirement is duplicated in this browser and the case is rebuilt. */
+async function renderCarbonTamper(injected: boolean): Promise<void> {
+  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+  if (!output) return;
+  setCarbonTampered(injected);
+  await rerenderCarbon();
+  const live = await checkCarbon();
+  const item = moduleById.get("carbon")!;
+  const result = live.built.caseBundle.verifications[0]!.result;
+  const valid = live.attestation.validForCurrentEvidence;
+  const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
+  output.innerHTML = tamperLines([
+    ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
+    ["duplicates", escapeHtml(String(live.built.report.duplicateExcessCount))],
+    ["coverage decisions", escapeHtml(live.built.review.map((status) => status.state).join(" / "))],
+    ["case verification", tag(result === "reconciled", result)],
+    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
+    ...(valid ? [] : [["changed since signing", escapeHtml(live.attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
+    ["action", injected ? "Reset restores the committed records; the signed attestation then matches again." : "Choose “Show tamper result” to duplicate one retirement in this browser."],
+  ]);
+}
+
+/** Rebuilds the carbon card from the current records and any reports the reviewer brought. */
+async function rerenderCarbon(): Promise<void> {
+  const item = carbonModule(await checkCarbon());
+  modules[modules.findIndex((entry) => entry.id === "carbon")] = item;
+  moduleById.set("carbon", item);
+  renderModules();
+  renderDetail();
+}
+
+/** A report the reviewer downloaded from CAR or Gold Standard: read locally, kept as a digest only. */
+document.querySelector<HTMLFormElement>("#carbon-import")?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const form = new FormData(event.currentTarget as HTMLFormElement);
+  const file = form.get("file");
+  const status = document.querySelector<HTMLOutputElement>("#carbon-import-status");
+  if (!(file instanceof File) || file.size === 0 || !status) return;
+  void (async () => {
+    try {
+      const result = await carbonService.importReport({
+        registry: String(form.get("registry")) as "climate-action-reserve" | "gold-standard",
+        kind: String(form.get("kind")) as "issuance" | "retirement",
+        csv: await file.text(),
+        sourceUri: String(form.get("sourceUri")),
+        downloadedAt: new Date().toISOString(),
+      });
+      status.textContent = result.records + " records brought; digest " + result.digest.value.slice(0, 16) + "…. The records stay in this browser.";
+      activeId = "carbon";
+      await rerenderCarbon();
+    } catch (error) {
+      status.textContent = error instanceof Error ? error.message : String(error);
+    }
+  })();
+});
+document.querySelector("#carbon-import-clear")?.addEventListener("click", () => {
+  carbonService.clearImports();
+  void rerenderCarbon();
+});
+
 /** Disclosure tamper is real: the extracted figure changes in this browser and the case is rebuilt. */
 async function renderDisclosureTamper(injected: boolean): Promise<void> {
   const output = document.querySelector<HTMLDivElement>("#tamper-output");
@@ -1178,6 +1230,10 @@ async function renderEarthTamper(injected: boolean): Promise<void> {
 }
 
 function renderTamper(id: string, injected: boolean): void {
+  if (id === "carbon") {
+    void renderCarbonTamper(injected);
+    return;
+  }
   if (id === "disclosure") {
     void renderDisclosureTamper(injected);
     return;
@@ -1260,7 +1316,7 @@ async function guidedAudit(): Promise<void> {
     ["building_run_baseline", { caseId: buildingCaseId }],
     ["building_review_flags", { caseId: buildingCaseId }],
     ["building_reconstruct_emissions", { caseId: buildingCaseId }],
-    ["carbon_reconcile_registry_records", { caseId: demoCase.caseId }],
+    ["carbon_review_records", { caseId: carbonCaseId }],
     ["disclosure_get_public_claim", { caseId: demoCase.caseId }],
   ];
 

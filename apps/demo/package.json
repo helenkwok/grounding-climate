@@ -9,6 +9,7 @@
   "dependencies": {
     "@climatechain/battery-dpp": "*",
     "@climatechain/building-mrv": "*",
+    "@climatechain/carbon-registry": "*",
     "@climatechain/core": "*",
     "@climatechain/disclosure": "*",
     "@climatechain/earth-observation": "*",
