@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   assessLedgerNeed,
   challengeAttestation,
   createEvidenceRoot,
@@ -99,7 +99,7 @@ class TestProvider implements CryptoProvider {
 
 function bundle(): ClimateCaseBundle {
   return {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: "case:provenance",
     title: "Provenance test",
     capabilities: ["claim-reconciliation"],

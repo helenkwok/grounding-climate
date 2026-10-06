@@ -2,7 +2,7 @@
 
 Issue: #14
 
-ClimateChain uses real public datasets, disclosures, reports, registries, and benchmark code. Public accessibility does not by itself grant permission to copy or redistribute those materials.
+Grounding uses real public datasets, disclosures, reports, registries, and benchmark code. Public accessibility does not by itself grant permission to copy or redistribute those materials.
 
 The machine-readable audit is:
 

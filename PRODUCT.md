@@ -13,7 +13,7 @@ the reader is a real verifier, auditor or ESG reviewer.
 
 ## Product Purpose
 
-ClimateChain shows what a climate claim rests on: the source data, the analysis rerun in the reader's own browser,
+Grounding shows what a climate claim rests on: the source data, the analysis rerun in the reader's own browser,
 each judgement a person made, and a signature (Ed25519 plus post-quantum ML-DSA-65) that stops matching the moment any
 of it changes. It works the same way across six kinds of claim: building emissions, energy forecasts, burn scars from
 satellites, battery passports, carbon registry records and public disclosures. Success is a judge who, within 30

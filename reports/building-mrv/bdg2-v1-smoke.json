@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "climatechain.building-mrv-smoke/0.2",
+  "schemaVersion": "grounding.building-mrv-smoke/0.2",
   "measuredAt": "2026-09-29T12:55:55Z",
   "workflowRunId": 36571344224,
-  "workflowUrl": "https://github.com/helenkwok/climatechain/actions/runs/36571344224",
+  "workflowUrl": "https://github.com/helenkwok/grounding-climate/actions/runs/36571344224",
   "headCommit": "e6145387cd38a6fa62d60e590a4cebba18fe9a73",
   "source": {
     "dataset": "Building Data Genome Project 2 v1.0",

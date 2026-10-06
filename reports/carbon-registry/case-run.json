@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "climatechain.carbon-case-run/0.1",
-  "runAt": "2026-10-06T07:11:16.499Z",
+  "schemaVersion": "grounding.carbon-case-run/0.1",
+  "runAt": "2026-10-06T14:00:58.098Z",
   "organisingQuestion": "Do these registry records show any credit retired twice or beyond its issuance, and who decided what a gap in the records means?",
   "clean": {
     "records": 200,
@@ -90,43 +90,43 @@
   },
   "publishedKeys": [
     {
-      "keyId": "key:demo-ed25519:2026-10-06T07:11:16.499Z",
+      "keyId": "key:demo-ed25519:2026-10-06T14:00:58.098Z",
       "suite": "classical",
       "algorithm": "Ed25519",
-      "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-06T07:11:16.499Z",
-      "validFrom": "2026-10-06T07:11:16.499Z",
+      "controller": "org:grounding-demo",
+      "createdAt": "2026-10-06T14:00:58.098Z",
+      "validFrom": "2026-10-06T14:00:58.098Z",
       "verificationKey": {
-        "keyId": "key:demo-ed25519:2026-10-06T07:11:16.499Z",
+        "keyId": "key:demo-ed25519:2026-10-06T14:00:58.098Z",
         "suite": "classical",
         "algorithm": "Ed25519",
         "encoding": "spki-der-base64url",
-        "publicKey": "MCowBQYDK2VwAyEA9abM0zTn22BvA--34P6EXO98ymc1ah4egxLhpma_Zjg"
+        "publicKey": "MCowBQYDK2VwAyEA36QfHa4N6p4INXqfQWYiJD7Yno5bjtjiGEKZMcDgx3Y"
       }
     },
     {
-      "keyId": "key:demo-ml-dsa-65:2026-10-06T07:11:16.499Z",
+      "keyId": "key:demo-ml-dsa-65:2026-10-06T14:00:58.098Z",
       "suite": "post-quantum",
       "algorithm": "ML-DSA-65",
-      "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-06T07:11:16.499Z",
-      "validFrom": "2026-10-06T07:11:16.499Z",
+      "controller": "org:grounding-demo",
+      "createdAt": "2026-10-06T14:00:58.098Z",
+      "validFrom": "2026-10-06T14:00:58.098Z",
       "verificationKey": {
-        "keyId": "key:demo-ml-dsa-65:2026-10-06T07:11:16.499Z",
+        "keyId": "key:demo-ml-dsa-65:2026-10-06T14:00:58.098Z",
         "suite": "post-quantum",
         "algorithm": "ML-DSA-65",
         "encoding": "spki-der-base64url",
-        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAJv-lUoVFYp5AEANBxgeGpHlky_bDEGOnERPK6rIqq-qq1xgxwZzoEt34RFA2PJf0lcjiTVdVM2S5b3g8g_BE43rYkEvfMdOT3G1xtNpRqfmZooh_GBNXq4NkHiCe97W8RzNeueT7ANQWgO0GCve0a1kS4vLdAcs3wIzTNv-JRLrSc1VHOn0dFif2uC89ewgI7qkp3O62EJxFtXC2-lq1_72L3ZxGJhDclRRtY5eelrcfd7HqjDCioZxgBQigILsoacGIVXJm8XbKq6uFiI2M3b_-hvSOXSRoFLAU9YXtHzxQs80K07kxkrjdqfpmjZ_ovljbicRlYck-7v-It8FRXgQENkngeCsChMub5gu8K5P-CidSvsIZl9boFCgm_48HsMWs6MLW6Mob-Auvg9kwso_XvEj_VfZMei5xsBl-JmTVhSl-aSCrqv6f0rgoK8BFwd5l_T20hP1bzGxS9Le-jsFXQVMk-LuX4IjAqLgD5xDDmPvh4hT3kugooVc4A0IlVtt5o148PjquYj9Own0wO69WquXBJhWzU4xB8u96UoWni1upAAo7WoRm43EXbETSPQtL2WHpZj--IsrqdfB9CdQAriuuz1Rby97miE4AMWaNvM7lzhF6cSi-JJ8yHjHXuLmQvDrZSEcOJK_3bkpLaOkpkpjfS-VEaBLnOsRaL7RtDpZ5L8mrfDD2sCk4i12JdHLEVwA6SMiiInchDa-V8sD9osKmfoOGMmRbDd21vUSxcmeghntvutYSp_M2q9y-WPRtX4Acqim-BPrnPvLP2ANjkYsI3SA9osfK3VgYQmMuHDKR4aA6EiMZhanOHTjQjbK3qm37RLuzxnDDIJ5Tz0QUAZ-8qqqputQXXsQn_Y9kah85VRCQJVyrekdprVYTveBzBJAST_4WQ98X9KlaMMUoqbboDfbtiL1g_KoMFVHGrnsfG6hsW1EIwDUGgMOzLJ0ZzmjSSCPdtaHUSJeMQ1NMfbL6wLLkPJM0Wuk1pDEd2MM5k-Ky_3PAU3_zoRllZu-WNKd3LEMicUkzqjHoYFDQ23KXQAyBy_rM3gBbzaafW2NHkwEU7mflRHHb1MdXY4TU4nyKpzhZ5QPWEXj6943rQJsgf2wL0bLlB8H1Ee6JziH0wNAOJfsfbONXnUMmwm97PP8xIpGOHruIT05wwfRo8jJlLOk_Jseyw8x5qhBGRbo-MtilHSTMRh1bTG0pI9GyIoHPSuF6ZY_fGTamQ57qfHflBW5ppr5DnhNTFW5yrIAvuyah6PZ3fDCGXl61_7eu7zW88QHsa5hSG5iQBsymvzW62Pb3Gxgj4wBJitfdVj0mj7vQsfG6XMTy7B3ySzcRqBsjTz7W0AF-YmE8nUE6IdKpLSZZ5jdjk_f83MNcy2mEW8mJ6v3rtkjroqJVMzkq-YUVO10Y-6bzJRAwGkHzcq2-I4FfK9LNkFsGhZisxKb7gWCMZNxO98mcElxy-TNqMwmuCXfeLms9HtN2FU-iHhxjvGpDasF_K61MXhgaRMN-XC5PhMUeAdG9bpP1YxU5hbG8pX-2Firfhzwu-SEa2isHA3Od3KrZEDT_88L3GZLnA4o3nFfSTDS8dN-SfgBXAEbGI5yT5pfOManHnlOgQGLMgp2sTDfGsokhk1-ioRy3KDJUo0Edng-6MKJfQMPYrofrzdw3c9OKmc02k9X6FzJbYTIkTkRawZOqo1z-45iUX__MiBWa6wzEIR6GOQyw6pIqeOdu3QFTa-eCGQFahPbnYjjGsY57lBnaFvUbB8eujKonrFbVAonJOmGsVbylvrjhmIjBT99c2wJrDjRQ4nejjk5qd2e0xmRjCbjM2ao4EBoyRORkr_guI8rA5oObCG1f1RW-Afs1JLigsLEFOsb_AILrjBTKKlZyuWhh6KyTT7yNvA2nmHNN9Pa9JuNnzF1DPTf2yEmDHwjw76KFmZjAf-1z3DbSA3vmpquKU_QHaVELGbzCpZNAf5U3y4T0Rx_Nn3R0t3pCY9HWDGth1HyxouETMDdMOLUgvDMjDP10AdeRbL7PKFW1qGXsZfTwdvC4-GOewL4x6JX1iGEO-u6aQnXkQvDO1Ni0SRkQMmOMNHunmf7Ywx5vPpXwL81Wo20IIpPUVYdI-G9KzVPxSv_CtSziuHXDfWhbEJ1bMjd-DJHho36tO57mx3izo98ptIVBWp2DEQJ_iVs8AVf65krcNe53CECAmiX005XtgwHNHVVGF7Pp9hceNCPWkiXWtDVfCvkGZ8PctP7H03Ts7jwuQqk6FQJcvzrffvzj4zKidi6yF3pZ0QGEO801iXy_JZbq74MfNuiVo4fQUPumZ6wakiDZ15l0aNs8W8kJ-K_qnuiiWeSaqU4YALddV8XpfkAojk381vFZKKU1RWxZE96PbeGIWEQNIj_D04mThxgGpWzgKQs4iRRTEB0QjC4B4XkUpyuv5KBxFs9_wLEFylV1MxXdCT0l5pDWcHT_G7Mr49xCeNZ4RYL0vSdqKTic8Oh3jWSw2nUXRoL82jH3hXy20KvDT_59nZMU8fhXL1Yjk5xxL4D5N6Ixrp3jOogHWPl4hEWKVdIdBeAKrvP5CH-wScUAHxUSWxTs5Ep"
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAKnyP3Yfm3hM3ZpnBNbBBCshUpoTt-X89seVpWpPiGp606RtEXaKmjknypbA51DfQyJf4ZINoBs44RcG3ZeX49TxnX4DqFWhcoDvK47kp7qZ1HtON5nvxKVexnWO198i-OdZ7xZX1SUmJQYrwv1281zmjwPg6dbE7G69G1QmRwMjvYRzSBOhx1PVlOS-q--xsZScUjvk2zrwBq-OChUIHVCZPEQD3StLA9RMD2kK8oVb3PIi58GzRQdl-L1yunfb4ZFg2oS5ORYeWa0U1HsM7n2kxkmQO3YiYIPSQvGY9YxqUIHDdIPcJiLDX9K_TKYehg05KXDcPrWoDpEN3fwTzFRJT5wyuYN4oxEtBqdBAByFxfbSfNBJNVdKOH6p_47AmElI74UMagT8zBKjTPEElbr66v4BDiyVdR7Cjqd1KGBSqBemW3J_WwR8oF-9yV1zwiAC8Zr3GYnQ0ioYa6cIZjSQP_7U7R4IT_X81PG7CjBdhwTnCx7DEUgFm-_QM5dmRrt7LgDUReMubULckSbro7cxqXfuCaH8GmXGEwpCxSuzg8Wn-LTbY6UFuyAmZqguArLWyuqPuM5Fw2O14JM9bf-l6PzLL0T9pLyh6ayCBu8_u8jWuLI-2F4-SYS_CGOTau0QUpUHC07-6KvdYmrYyrvIEW-2O9QmDKqQMVJHGL1N9gi3bXL3P_Odo2yJmLeoKy7yM-l9lR5X2-X8hzaJyX96mIZ5vvYRurVIlZsQxWtm5DKVNkHvzjOK6feo6mBToVICKxbjHEWSqwvlABk7nSuSFhiKLXk1ZXMhAwmZX0D0BvWbKGFFV6jNxLFCu0JRfRWsTh5h5mHSZuDBFBrYQBiuzaX94JwI0dIQ0CRP1jbKdxRj682KhX7WyQidMHihn7m_iHytEGCu9nHq1QAcCNncoFGCSRYUZX3urUZPgYr621BwxLHg4r_5K92VoErtUjO4Rxqz5NUg67Ug8sma5zbHTnnBD4fT4XSXGwQt6BCQg_thUb7ak7zE8gyVhMUyeEfV8UsZaN1PZQOq7oWfhRdH_MImhcBbCcPBNpI-B3uO05aN7VDQ9IS1W4EPieazHFugb2Qo5QUnka4zfdjxlSFWWlC-1qQ7H8MXD5r5G7Yaial4SItM21weHVXRBp-mAbw7Ja4ZBc0NcwKG2Zvi9NNL6IMvjhgI4TGDUaJKbmRjdnakpWwHboCp_2cOBj56-HfLQBS8tQWFzOavLW6LX0XUDOGbf1J5ntYABwUPlSQXE23s3clwdMtXLUkhUR_d0ifYvFjXm6HKPJZN8ChnDTFj8ijxSEkR8UbI1G71wMQT1OTVbhhZw5jdPUfXuQ02yJ7Nj-DoD9TLmSRVkMd5S_mutBNs8HvrTRJXF80cYnny16Yjn9LXaxKpADiwUrLkjfL4LfIr2b7FubFne45BgJx4PIFOY0I_MOz7d0WOMH_0JDYW250jS0NHcjkbxyJp0E2U58E3blGs7sLVzzGt2LbYDmjmo6Q8f2s6NWcb4Oy8B7KARaT7ZuExdgxZChpzO_NTfPoALHkv4eTbr30MHRIK-xf7hVmPbSMaRijX9WujZPpHEN8Lojwco6O3BSd5dO7vMg6xBsLXkzlgzZJrfICf4DH_Nc4lXhGIiL_lLdm0UoKq0r_n4tt6u_TfzOD4HbSShiNPAtDlsySpMnfi4XIhLdbJvDJVgjxtjwMSIIBArvCG5Mfum9gJOVMm8rZUID1HNjWxwkeyraFrz-WR_9NTLXWBT-PLFs0inj17r1lw0I5Uk0vqn_5eNJsqRsis0kyTfFkzMsBwsa0TFIqisRq6SGoGrCpO0c-yigCJDj23PldT55fBc_CPXpeZjgXuzXFa_uht8t8EhvJtJ1jo_tiLpQ3e0nPizYuFpcNFgT-IzT7YbgHlo-fj7t5txepvsWpoIm6gFNR2Z2Mfhh9LThim-SIMvbH6RghHJ5LaOnDcyZ8L9oDZHTpP5g7GqBGOaSYiyrML-ogBKsOD969anAAt6IqeTBdG3YUnkmPKxm1XGpEYWV0MicLWu5wWdD9njd5L0E__6wEWLw7yftrBqgr2bfoJfstsylmsZuHdFOIIc52VTj8tEURQbdvV3mr_3L84qL73DyC-fxhw_ToaDUV0v3S_1QONB-1VQgtdbEfyhrh_NM-jE9VJvJYSvqDhm0xf_JjJetzmrZRJVlm1pd8Z0B-saOCNk9Lg4oVfaxbgLcOGl230BmI_LrM1eyfYLsZg8NKMxbASHqqvce1jn-G37iW9Sr2Q9mGQMj-4mPEJ7M9q03OZ9VlYC2_CpWV-L3VdxLDsE_UF0OpeyfynmVemq7s47jHGJKoHlARzx_QBsQ4VYcOdAk1UbqwEfBJpwAilWVUIBFQVjuxApuvBaHTEXLpX0CazGRn0tNvSCHkbFkT49jexn7uW3iw172fe3DeiLpHgomGpRPqah4OwlYHYuQOiikmx53C4F5UTap7tkACcvwmpFvTZxsJzNd_PndsD_VZooRe1yaTb1ZE2q_TnqgInioJbBFU-l3w5KTyvWjZm8h26BYffg8G3H0FlMDmkd3P-N4P-YHtXGOdRAIXX-SBo6LCrboA1eu9GXvKw"
       }
     }
   ],
   "attestation": {
     "payload": {
-      "version": "climatechain.attestation/0.1",
-      "id": "attestation:carbon-registry:2026-10-06T07:11:16.499Z",
+      "version": "grounding.attestation/0.1",
+      "id": "attestation:carbon-registry:2026-10-06T14:00:58.098Z",
       "attester": {
-        "subjectId": "org:climatechain-demo",
-        "name": "ClimateChain demo run"
+        "subjectId": "org:grounding-demo",
+        "name": "Grounding demo run"
       },
       "statement": "Registry records reconciled by project and vintage. Verification result at signing: insufficient-evidence.",
       "claimRefs": [
@@ -141,16 +141,16 @@
       },
       "evidenceRoot": {
         "algorithm": "SHA-256",
-        "value": "rKoLiX0PUYWDSMDQrId5TM6ob7UZJ9uq3EUzY02b3Pc"
+        "value": "2TByQPLKH9tlfVGD5EbYHIAvFRG3pN7GcfPCKkQVxY8"
       },
-      "manifestVersion": "climatechain.evidence-manifest/0.1",
-      "issuedAt": "2026-10-06T07:11:16.499Z"
+      "manifestVersion": "grounding.evidence-manifest/0.1",
+      "issuedAt": "2026-10-06T14:00:58.098Z"
     },
     "evidence": {
       "manifest": {
-        "version": "climatechain.evidence-manifest/0.1",
+        "version": "grounding.evidence-manifest/0.1",
         "caseId": "case:carbon-registry:acr",
-        "caseSchemaVersion": "climatechain.case/0.1",
+        "caseSchemaVersion": "grounding.case/0.1",
         "rootRefs": [
           {
             "nodeType": "verification",
@@ -165,7 +165,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "xDserJ29C8LIcif8h5yih33TXV1Bnpxi8Ytf8otIjmk"
+              "value": "wJQOhsJpBfdKr7dqanLjD49b4lbMnpvPabmyb9bucwQ"
             }
           },
           {
@@ -175,7 +175,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "m-4dnqI_PdP2YJXEvCNw5zyPrWvOGBVMEBoMMhKSkpg"
+              "value": "7RjCeklu-elHmofhLjPR8GPYE6b_X6W7k2Ne9aLNwrM"
             }
           },
           {
@@ -185,7 +185,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "Yl6aD_3ai8ihX4ISSAeEyhHUp5JHZKLG30bdH13BKfg"
+              "value": "-A-oUb87JW0PGQBXltcpgiBz8LP1yYEPuXNiokLBUhE"
             }
           },
           {
@@ -195,7 +195,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "h0txHBluD7FiBnAV8TdiWZRzhRObsOAi00d8Wak80_E"
+              "value": "0i-HmtSYaFJgUvw8rAwLU9EKcIFKhtSMeQxA18ZWS68"
             }
           },
           {
@@ -205,39 +205,39 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "QMFCdd-6awZYq--ik9R1U1sTLINJFAC168wcZ9moTfg"
+              "value": "rHhCXTSXNVronOojZyT7e7O2WvNiBMDnona9NO9TJdQ"
             }
           }
         ]
       },
       "root": {
         "algorithm": "SHA-256",
-        "value": "rKoLiX0PUYWDSMDQrId5TM6ob7UZJ9uq3EUzY02b3Pc"
+        "value": "2TByQPLKH9tlfVGD5EbYHIAvFRG3pN7GcfPCKkQVxY8"
       }
     },
     "envelope": {
-      "version": "climatechain.signature-envelope/0.2",
-      "domain": "climatechain.attestation",
-      "schemaVersion": "climatechain.attestation/0.1",
+      "version": "grounding.signature-envelope/0.2",
+      "domain": "grounding.attestation",
+      "schemaVersion": "grounding.attestation/0.1",
       "payloadHash": {
         "algorithm": "SHA-256",
-        "value": "UzuX_MxlboQ0kjP5gxGgFcaEwJSVSWBfplSLlB24QxY"
+        "value": "ngPyy0u0FO1Y_NkD6DpdpCGZNr0uiV2-HF63GkMcMTM"
       },
-      "createdAt": "2026-10-06T07:11:16.499Z",
+      "createdAt": "2026-10-06T14:00:58.098Z",
       "signatures": [
         {
           "suite": "classical",
           "algorithm": "Ed25519",
-          "keyId": "key:demo-ed25519:2026-10-06T07:11:16.499Z",
+          "keyId": "key:demo-ed25519:2026-10-06T14:00:58.098Z",
           "encoding": "base64url",
-          "value": "rqGqe6eF3-eYvdLn2OwY7InVtIQdGmvFMnej8RyJi5o1c2IRBpLNj3PWHeBvDlAT99JPILud5jelk1ZIHZ4-DQ"
+          "value": "nT-V_kbXYqkRVi5ZbJHw4H7ukmV0avRBw7fptYXMOt0FoLTVudVYsbBHsUdrb1HCUPCk5_Uw_A2AFOdnvMYsCQ"
         },
         {
           "suite": "post-quantum",
           "algorithm": "ML-DSA-65",
-          "keyId": "key:demo-ml-dsa-65:2026-10-06T07:11:16.499Z",
+          "keyId": "key:demo-ml-dsa-65:2026-10-06T14:00:58.098Z",
           "encoding": "base64url",
-          "value": "Dn3HDb40WPDeeECVtmwBEGuZdwZeeQseuGLYwXZB7U3WMRVzp2Q-k7Hmwi5sh6_dlgR0y8sBu9XfBgX9ie33lF9gy_GKln-RCh6tWkTsp44MLW8q46S19g4IC9roEHBDR9jvDJaw3_Syx3PU5dqASMBrrLi7UJZzjEHRfIGnwbLDPJ7u07iQlwong0fdQmK0bKnuOz3W3mx3x5HPPthu2mMHs_I_Z-6lGeFJW_l0yoOaxN1DKjTDvKM2iA0ZZXQ8WhbGUrlhiexcCGXNbM1U4Ti6aCqMysdugbVgxxrAtRUdzjN8lJ2q9_GmIPu5Y_iO5LibnOrcfMnl7qd4JRXaYbxYFzJ3nw68XSvEeBoPD_uk2vxtJ1doeA397Z91CT5r5ifgxyQV0CzE72BPSnm4KuCKeU6zMxXgq64qTjF6YUa5PeTiNHE1mWJDVcdmJ92pmRpETHa94enmomQ0oUt45-Mtqh8-zFifgeSG3iRq--LXaHfCAsX9RWbY-hdrKqCFcLNRUIUKBK3E1RgKwuMfRyhFfG6AlC2crVxbiUAedEbyMtUIIFWsKHo9YsvbnwkRZyNZHhbwF0-m48j0oB5BlCmxNNdEHchFoQLGEMT2VNmuoaA-NBI9xWG2bh9nGdgLLOa6XNibv2JJTFAExXCt4O2NijhOGrUKt8O-nFPdNyZ3UU2YKmLlQ5lIFpi7Wq8-E46j16BQMK22Mfxub5Qsj52bDsr8rWf-wP7zvVKAOpOxVOI0S3uAessNM7dTy40ocmn0VnQWYv1TbEIu9u5i0isl3-rtO9dxpYRFjNFWgPdZYcvB2BaRHKrGGYilZVj31S3V0jHNeVoEicPI__uOuBqO6bt-8sRWxmW436H8A6Ro1Lw1kNrDiCLQYRsldmVc01Oqwx7SUwIkBFQyWM2qAd_64Y8A_GTNyhyLeXRg8GHd8yNICJFxVHMfzzIn-RL7bTRfc01vidmqIPC_nVnw-jToC88AdYEpAy3SyxGUzXAp6F-kbu68UkcSMVpukihaYD_jDR5k80yK87rRrMt-GD727YI8ARQtUNxVuvEi7c3bfMpZLEYaNaAwbwPdPjC7REjXA4Qx1t8_uzHsiqyq2yX970BA-g4TzCR7FhKg1yxLS_vaPzz5QAPH3CKvTivEUQe_oz52d6Wpi6lfZAeKNlnZUs5_VG0GuZiuGl9XycX9V83MG3bePoxsqU7YMI2PjjTRiUSgvsVc8vhIuOTboz385Ay_Sbu1YVBrcjy6rUkxvdTwT5z4t_ocH1uxyfRTAxV5gUMoUnCtvV71r_-xrmq5zYNzeV-oIrMd-kV1RC9pLu0eqpvXNUDl_8ATbIdInnfc_zhAhP5NbAQmqrV7j60sG-Xx0ff4zxhlmCj6DUTkkwc3LGlZTQElO57jYcHmDGLYwIZ9W49RA8TjzakP-9IwE6urvGxDtgZgHYp2Rlp6JKL5nv7CX8PhDL5rzT4naB4bwNpToR47CVp6myRPKXlrsY9ZaXN8fOYOhQQtFFvlSI19oAVVj0-Md-we5JnnOQbRWSXqeEoeKku92nG_9HvS-ITaTKqIGi3B3BFBf3rAHrmSOl3M0FCgJs51YvL8vnrEqhtetFKLO0ZeyBmwkTaJZsoZmNae57jIaXgCJd2lUnCgCYUnA9q6yloF6SiV25x0Cj60QnL0UXsimwAzejZ31V5Ul3hVAuPqe5ncwTuFA-MfJIOHnkHCtCz9v2YR4tL-UWCp7uzJ_tp_DV-EeVgVKI8Md8jvwq1tgUyu0roSkjSx1dAPo6t1CTwi5B-EV_CzuAHhXW70Xl-kqgZawdbUnIUH4CxSNA5RJ9j_wtS0MPvMFFqJ5ec6Pn2cYYqA8I3zy9lmxxWhSxpYD74Id87IrGqx7P1UxrS9weAlTvu8Ya1GdxSNunBgz4LEEFocGG0IQ0Oo2_dmV91zkJSFrJlXCy4ZWACfeTqqsQ3VkXkvfS3B2WAk6DLzcVc8nl3aVoX5gh_vFR58BlaN23NncKqoaSqmDTBPOSsHjV_ugOtZ9UldzpmDKvqxefRn6FuPJLZEPWShFDkAjAi2qllFdmBRhv6jRsqltBFsJ4fFD2DsivSZxhvgD8BpI137bLO-dVNFOGR5uGymqGG-heVWzRZBdVy6WdjRoIKbP511UYklj218yHizmeLkNzs9oBS_h3HLXoNb5TxDNUgAIjPLLy9AgNR8oD59pY842SXOMAh8NiFnaSmegwG6ZkVlF0NewRKJRs6XtJ2PCvmqeh456RHaSGJ31X8BK5TwdEbt2YfoHWABVPHtCn1a1WbCa7512nD8Y0OVqZNHsZ_LYQOe-viLMOnk-yDdNyuHHWcwkcs-vPUZO-N0jxfVQmHmH77Eu23IcbyGZAd9UcbcIaXCW3K1uw5JTYQ1fVBGiC7ChfGeRgsVTnhN1Jv5QQ5QSwXGQELVx69wsPMcNCehe_p3qpzp9p9SoMn2sltASxpNnk9AH-Q8MoJZTvFlQ9sI_8rPYyf4j7ubm6dbQ74teFC6-o8Uz1OCYdgHZoF5Z3nFsM0pzd0TBZQvSUEPC1q_69JRqDN7Wl6n8PF3Mi_REMl2a57GgwYB1gUSsJmwYRbGxT79o7grFlg9I6P6vYKLgo62nSu9mqqs9OiHqXJqvCbLgZj_GfBRrehhyRw0WF-oIsFq8eBX-5JbtQD7V1wUEjbuevu-QEVatqVKwJyhk7IOCKs3CDLgfCT2Xn_perpGJmWLObxY0hAcL0H7Y1LQ-q2HSXx70Z0yEB3AYA9YlUVhhWHErkGFkVY57sG8j20U0yVl9zLW-xto1l9b7fFW8iT33g4l5c_cxJXTmwXL2_9GuX8c1JfCeFdkTzphO_Fa0lmdLHCpS3ISMCpYQbXvSLbZ67gmtr65uTllWxGb4Fu56ZRJF4dfLu_jCFs0Jpmos8XiZ9kstlk-njxVT4Pe05iiblh5MMJ3O1it3c4JwQ6Ub5q4AS43JudyMtJfExT4j3T7VkkiZX3vf6It4uuiBK3WSqaHoY62LNsxqTvWEqDlFLMI0vYp1WCI8aVEU3j1vYGqIDThGg14dKLHKuCx_lJ-X50-lnG23aQUsRD6CTUnjSOXmCpnnnbIxPIFusG2BFsbxDRWy8hcI_M6MjQ6TqXG7ZfCCA4UaS-PAE13rj7JzKl_OP-DssINmP3HhIhGU3653kIqoUzzVfpU4WvXmUiZQyl6wSYT26TuIbgTt7t_1-BS4q0pvkZOt7F85tguoa1C8t3xdNVV4sjaa9RdLVwUEsa23mo60AEEAQzmSzMXI8vIEzXoT4i3sQGomluAbUBgM_TOpbsb_LK32snPATCsrIgnvPndyLfFAqR9wSdUQU8txetCJmIB5H7ZzJpfZhBYUHTil3meW9qx8ZWFRNB1-wAZaYmBMTV0hAE0e1LDMOvqkmfLq9OXNnOOUZyJpW0GwJofxcMC5UBmdFeOx27L73c4SzyBJxhuSiZ7K9TPU1tffQFtRDdbTFwevqzhFy8Z3XGEzqfco1DzA7szra_dfsIg4MThBjbNXkWm-hzO_AbqsY5d27d8Lg-vkdddzAuskUd3PTccM7RBI30ks_NxFjaJXY9HoQICJm-swK-PfKOULqJT53S-yY2lQL1gtQ9NDcU1qYyQlNfFVNOFVcu6MNNALKHVRH6bZtJ_VmFE4w5WuWI-GecD9OAmJE11Bb-ubEuKD80F05BUt756QQghKDX3npUCJf-SILjzX9Z1rGRnKT5oWciXxJm_V00Y4mg2HzfjBtXMsz58o7nirEPT1lN51lHUC4JuHtKQb1zwV6-QL9c49GPGsowtiDd25jD0H_ZoNbGtiIkB2bNEWnKGXivLxcm-7Qk6xYmsH50PttH8HX06SL7XqadN0uv-BFcOKSA9wbBTbR5WKuByLbPUro4doVcDA2dO9mhMHkQ2vjoDq8_gAFsXnkRRDQqUXtlCvMwVTuv4pF225icMG0LYgNDvGbOWinWg9_DyUZrKr97emG_UYMkOugl_aVEKvCpcweA5m-kF-RMurLwK7as-yjaixqyAt0soIJ8Lf00lJVEA7lo2fP-JHS6UzjaCso4xvCYoJo4o6-Wgc8N4AENfZK0WQOpYYiXMeJykVedW8SRl4S1EUvEV7uwuikzukaG4KibbCMXG1lNJaLGqKsW_Sq8BpkCUxQVKm6X3c2j5ZWAw_pe9zKvGIAt0zjERxidyxo89y8bPE_UmcsPYVg5gmgI6Nz9rthdEbGuriLn9tJsuO7yg6dwrdfQK4ccqgos_VVU7Zp8SEMeWNTERyxF-i_DFErL4t0-pX8IYXj4ruV2P004lcWPEB7moKYbD7bwfMmFrdoaJqbXZBRgxV6O2Bi9QU5_SHIO66_gVIYeSqwM9TF93pvgAAAAAAAAAAAAAAAAAAAAAChAWGyAn"
+          "value": "gTDbUScz1-FtTkVHE0GRimT0fPpbyweLeFHWa0kWCPdP3Z8QDlelGJTeMvxkVrtjHQxdS_K-KaaX9re4EFcWiUBqAqSxYYbfk5tTUawQ1cymfMHYZBmLvE7KlXCIjaAK7SWwUoN0WrO9PaweK-PG7y8EM4CyV3HA5GcURpZGRGYAlmQU6r15rTGhnsQ-BwxmHNmua-0VL8MpA4Zs3hL4lTjVCCrGqk9xoH5fd6pAM7-q6LpdOFe8vFwHkMHKGD4T9MjSJ6m9ue0d7Kua0-AzBRL0EgETkhJxBoDGf2lfV0vCzFzR_BZ8mgUKKo1DyeXnIsREjmYMzjBJd21_8dTYTUcwkisjiKbQyVW5mFECMyIJ-8LMl9PBilM39u9jFuAA_A_o4_wufL82F8o8MuI7AYWfujeKmtHgI4Y_C3FbpGUEkboM9oxzZk-L_-5B94ChFQ9h0EJ8vxhz1ZjWCdFHvtjvFJSUrL6sK3c5X9isY5QnbY_jPNc4cfVpPdamMC3jDLvXkRRiGeRBL1TKtCY1rIBOgPkfQxfOpiN2XqhXVtf8xin6jCujOElrFOxzAzyaomh5qqbt-nxvtWR-y_nJ67jtWTs9lzh9S2CjKO2HTclw6ynqMbX5ytX1Tb4mZppEvt_dK0_zF-giXNQdqqUsTvpp1JMgu4YgSZ1GiehWCYfXGY3JvirA1OyuJWiF6riwZZTRAKA8P-ibPY5_sSUR77sbKjO_6TMLnYakPsxZEAqjbb3bV3rm1dkcw5hG7URYrG7CCP07o4I6Jv-Qyblb7KiwyJtWIcCTHrKWQJhdNM7H25gF9tMYc8De9BkoyjFNOwqHfwiSAyWZo_p8g9KZRMTxc_yFKGoqwhAXRkWn1Vw0RRSxfe4jQ8qplsbwVw-XyOKoKq9B3qDZmgfdTW-t5zRLEKSOubwXlRGNYjKiQRyGkvkHKptEVHk_w-vZIJTQWAtbBmSsfkDyqDlNnroXzYXALyM4Aq04ky1KyRuGx6tz8cxPsk9TKEVBLunS8x5fPbioEZb3Qwht_XpUrCQySpAPHTxVV9yBeSKQ_7PFFqN6GXrjWyh9ARml0O9Ya_8D1aSk8ardUVF83xEYTQsNCM-nWPSRY0O_Zfko8pXRMLnQkPctGG62i3aVrqcMfuSW_ZJJkY9nX2SNjtQBM9E6Uxxa1IDdEfQjUT8M6IYYk7iLovmCNrXCNmsmc-726DAwRUFmx1UAWDaWAeszysEL24_X0NHDV5c4avHDGmb4bNft2fioZWq-Gy9SGbT4ph2sJaLhxqUn8beCoRb9_HD4PanLoeOgPg0dIf3Wx0om54ghboGjDI7EKMzk5BRvBinbgllVT4mwq6NWx7lvdKDfnEPfJ8tEFI-0ul9fXU6Lfh48VbYeuEUGms-vRE6XryXqWNgNyFY29F2Idiln1v-1gzaEcWQT826FJQ-Mu30dSnbGP9uYZJ4DOJcyqZSikF0IPKhbtH4iOOe6eGODaA1pSmvJqH89Pm7nvlHdTgPOeWTIITP2EW5qoSL8DkWKQRA4JGNYEv5AFo1DR9_ujAHWDMP78gXIPu9HRokSWpLpB12eoh3cJZsu1C-HQGVVrVNC4NT1fmR14Fopz7d9b9b5C8Klsc5yWk2-S2a7pwnS3eckGfne4VcsiIFslvF6dtieAjjCqle-kwYUlxcwdnoafiENh7T8PS8sVuCK8seu3Aj8dvETVDSDYhfDzGGQkHtJAOTNeIbM23kbsqNj--YEQhJdCceODMI11ZBUYWT9YUlJB-SZhzXeJGQjflXMW8oyUWU6csIqL5upfYwqpIOB-WvUf-09jdaV5ACCUrOkWgKad2kZLPdPRWqCCto0PJywi9-N8hqflKxDHjc0ow8I_PipHLZVIeNmXcAX1CWoO0C7io40Z3OyUAsPIS8Bf6TES6mLayva7SCvup1WpPaA5WVLFJtHZzWm4M4WeQofBOExjwItYuu2r6aBmOKVhrnBRsSL6Ks5VUHYui2b9Z3WHvppaSMC9VFpGaOIDnurc6Hp4QhcmqgdzZsoJnfFWAbkV_abjP9bWfWRV73LaBHbP_L_jfl86FPFB1ez3EYeqKqbRWf4sJd90uH8myyneqQt6QcAQ8Bf_ZeAg8yfcwo4k-Sv1tctp6Y6bgeHfTKd8HmI62EazAt6wlhtwRCn1VSXiGol7sZoqomtQHf_rzSo5egyfnzBt6PdpvwzR6P_SB4wSmOll68FgB931LeVMZQrKm1w14P1xi9HL1bsjHhLFpPhOzDOmWAjulmVj3XA5pn5wqsV3gXkaHzREtJmK9moPXU4JxArBICHU8jtpj4vdhHiDoDG6v2QBK_0VtJiMsFsNQGfQYG1sAisHhZmHFE-XqhgabsTONI5E-UPbTmMQIE9-1aWdUKuqP8urT8wtLgUbHPKtsAL4IoEpeKEhgjERCprheJzqYkQC5h-tuCiE_UqrXgwJ74Qj4Ms_yERaooHUy9BH5vwjmAewabiabVXeGhj2Hlte_Fel1Ir4kuHIxO4tyycfMEMVF1BE0qWeerYwR3GVpu2EUef9pu9M-KZmKjuq_dIXrtsAe5iIQc45wx51ZOmatM7BSKU9eX06nhsSFHXQWO9uKaY7mySJEOzM7NCUv9mHmjOaur2QJPkWx7gAyRgv2s0E8Npig3eVpcNg2C2CD_feWsoNH4TWLvAb34wPOMbTTMKqUw46IlX9Ahz_NWRpqXohdvDhpJ6NTmx_LNFCW60C6-Y9TmGBssqS0WfAeZh7JruT_H2vFWV5f71zWRmZ_pQVJv7XPkSnWcWkZ_LSig96BdeulFC4QkIgQMEDbqpyLRJzhdSelpsdefxBsxgW2Mkw5cNFkkULHCTzkSRIyjqH0dPZmVwDpw14s0ip5KQhFQ4nQdPeQZaY-FKzmDDDOxDckBh2Oh7Q3ddc_ePxI3gtjj5-0mpgR_3PgWCRX0loLSgnNwcswu_uMK6en86ibzWrWKuYrLfms3HK2RrXZ67SeyAN5d9YOILvsGbIllBLbI8xGr98KLiF29PLXSI6_-3pYnvk07RdzaMCXSBU8_4K3qUUyinSBuT8a0IM36cVQhbIC35oZfj0lRWR0hkrw2KHHeltIYHyo43s6laJHWT8Etbl_rV4WCj9ItRQnVuj3XYK4-XzRkIq2FWCu8NAONf_a8p5hQ18NNpl68mMhl8M-hGBqc78JiDeLb25VtziyoOzQo0AlMKyqo6QCJOzhwdorzIAdo7pq3FeYla_QMarMrvlFt0sPUNSlxK--SPH2bo44x5b1h2UM1bKCNKZmsOZepWyRAkK4zBVDbJg_xKHOtnBRBgvbJyWWsheoqnmTR626Axhr7vgcbWSvvvZtaH44aTO_Uft_YB8CMWIauBs2IrXewgq9qCQJ6NEngzb7P62PeR29ZJYWgDV7_rqvhKgQkAxs0wAyNNGjRNZD7etWVx2adw3xYowe-HRxvjIQzBUJK0nTeIt2H4qkLilyy9iTSwcFQMkD0jWSiQ-qAPAr6zIJ_pi7rWie2h2b-jdJs7duk-Rb0qLmZLBbqnYS3cR_o2bIpat6w6A9y4zfaL9XNpHoYcWugxZnHD8zSgKB0sKNQxjA0g2HammuEll40fwLffOilgRMG7AYKpQAyOp6jyZgKtJNu7FYBe9ugIQYpHhGhyJzrk4hSQSPOc9i1l3AxUvoFoLeuOxYp1B7IYH2eemxijkmShhSwluF8xqT-Y4OzmGltGf0lfKNzPh9ixrc02fuR786zsLTtgjeGrcVYKntXHOSWxhTM6COptVhJ3eqxWM9Gmko8jrPuDtetI09uwDVzLfAk40LqI6tEyG1OK9zy_wo5aEatKBGzvyh67qNa7BY0MVszEU7gO6NzQgjGKf7Wfd9rJaOaTm-WfIpGj_4CB-c53dHb5jG9jZCo8qBRYWeUYYvlltQIG-zh08jD1XCxsR1MvVxYWqFDggRnLr9vbeauZqJ6zUaJIt7fdwl5TmqGXeRFaExg3O9mCJ_F46apA2nOwmk-IBGCI5Dw5xMQdVhGUFQqTwYvOfWC8TE99kRPXm984dT3SPU1fCUhbYcqY82b-QQF0JrGYKRO-THQIV7SStN-oVPkgjmehKe0_L34GUkO2xhlcYqJAENkmwIvEiqaNo9azHj3mJmz5Sa4sBy57hKsNWK4K8v3HwfyXduX3wEfGeUTFWe3Y0Fg5ggPqN2iuRV_t4eDNKBdIQkHUOQeLxufAIpuZIpzUBxp965ziGtcU7ITos0NpMsxJj97SpgNfNl5v7wuCfoAc7kemaa_o4CTKmqnAffuY6e4cyRtrxPlilbpBOuEgQVMWcIdT8F-U2RImXqCnur3C5BlUcpG4vtoUPEFZeIfN_hkdOT5JUYbJ4e8FDBUZS7TK3OwAAAAAAAAAAAAAAgsSGiQt"
         }
       ]
     },
@@ -246,8 +246,8 @@
       {
         "from": "pending",
         "to": "attested",
-        "actor": "org:climatechain-demo",
-        "at": "2026-10-06T07:11:16.499Z",
+        "actor": "org:grounding-demo",
+        "at": "2026-10-06T14:00:58.098Z",
         "reason": "Signed attestation issued.",
         "evidenceRefs": [
           {
@@ -260,7 +260,7 @@
     "challenges": []
   },
   "case": {
-    "schemaVersion": "climatechain.case/0.1",
+    "schemaVersion": "grounding.case/0.1",
     "caseId": "case:carbon-registry:acr",
     "title": "Carbon registry reconciliation",
     "capabilities": [
@@ -268,12 +268,12 @@
       "claim-reconciliation",
       "pq-attestation"
     ],
-    "createdAt": "2026-10-06T07:11:16.499Z",
+    "createdAt": "2026-10-06T14:00:58.098Z",
     "claims": [
       {
         "nodeType": "claim",
         "id": "claim:carbon-registry-reconciliation",
-        "createdAt": "2026-10-06T07:11:16.499Z",
+        "createdAt": "2026-10-06T14:00:58.098Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -335,14 +335,14 @@
       {
         "nodeType": "evidence",
         "id": "evidence:carbon:american-carbon-registry:issuance",
-        "createdAt": "2026-10-06T07:11:16.499Z",
+        "createdAt": "2026-10-06T14:00:58.098Z",
         "provenance": [],
         "kind": "registry-record",
         "source": {
           "uri": "https://raw.githubusercontent.com/carbonplan/offsets-db-data/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry/issuances.csv",
           "localRef": "data/external/acr-offsetsdb/issuances.csv",
           "publisher": "american-carbon-registry",
-          "retrievedAt": "2026-10-06T07:11:16.499Z"
+          "retrievedAt": "2026-10-06T14:00:58.098Z"
         },
         "integrity": {
           "algorithm": "SHA-256",
@@ -355,7 +355,7 @@
           "sourceManifestId": "acr-offsetsdb-subset",
           "redistribution": "allowed",
           "derivedData": "allowed",
-          "attribution": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by ClimateChain; values unchanged."
+          "attribution": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by Grounding; values unchanged."
         },
         "extensions": {
           "records": 100
@@ -364,14 +364,14 @@
       {
         "nodeType": "evidence",
         "id": "evidence:carbon:american-carbon-registry:retirement",
-        "createdAt": "2026-10-06T07:11:16.499Z",
+        "createdAt": "2026-10-06T14:00:58.098Z",
         "provenance": [],
         "kind": "registry-record",
         "source": {
           "uri": "https://raw.githubusercontent.com/carbonplan/offsets-db-data/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry/retirements.csv",
           "localRef": "data/external/acr-offsetsdb/retirements.csv",
           "publisher": "american-carbon-registry",
-          "retrievedAt": "2026-10-06T07:11:16.499Z"
+          "retrievedAt": "2026-10-06T14:00:58.098Z"
         },
         "integrity": {
           "algorithm": "SHA-256",
@@ -384,7 +384,7 @@
           "sourceManifestId": "acr-offsetsdb-subset",
           "redistribution": "allowed",
           "derivedData": "allowed",
-          "attribution": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by ClimateChain; values unchanged."
+          "attribution": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by Grounding; values unchanged."
         },
         "extensions": {
           "records": 100
@@ -398,7 +398,7 @@
       {
         "nodeType": "verification",
         "id": "verification:carbon-registry",
-        "createdAt": "2026-10-06T07:11:16.499Z",
+        "createdAt": "2026-10-06T14:00:58.098Z",
         "provenance": [
           {
             "nodeType": "claim",
@@ -410,9 +410,9 @@
           }
         ],
         "verifier": {
-          "id": "service:climatechain:carbon-registry",
+          "id": "service:grounding:carbon-registry",
           "kind": "service",
-          "name": "ClimateChain Carbon Registry"
+          "name": "Grounding Carbon Registry"
         },
         "profile": "carbon-registry/0.2",
         "result": "insufficient-evidence",
@@ -456,7 +456,7 @@
       {
         "nodeType": "verification",
         "id": "verification:coverage-decision",
-        "createdAt": "2026-10-06T07:11:16.499Z",
+        "createdAt": "2026-10-06T14:00:58.098Z",
         "provenance": [
           {
             "nodeType": "claim",

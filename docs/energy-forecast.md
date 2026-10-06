@@ -24,7 +24,7 @@ the most recent historical target values
 with length exactly equal to the forecast horizon
 ```
 
-ClimateChain's `runEnergyEvaDummy()` reproduces that exact semantic operation.
+Grounding's `runEnergyEvaDummy()` reproduces that exact semantic operation.
 
 The LOAD_ACC implementation is also mirrored from Energy-EVA:
 
@@ -39,7 +39,7 @@ The pinned upstream values for `active_power_load` at context length 512 are sto
 
 `packages/energy-forecast/references/energy-eva-active-power-load.json`
 
-The standardized Energy-EVA parquet has now been executed in the path-filtered CI smoke. The JSON marks the dummy baseline `reproducedByClimateChain: true` and records the exact five-window comparison.
+The standardized Energy-EVA parquet has now been executed in the path-filtered CI smoke. The JSON marks the dummy baseline `reproducedByGrounding: true` and records the exact five-window comparison.
 
 ## Original data
 
@@ -56,7 +56,7 @@ Energy-EVA standardizes this source into its own load parquet/task representatio
 
 ## Forecast provenance
 
-The ClimateChain evidence graph records:
+The Grounding evidence graph records:
 
 ```text
 energy-series evidence + input digest
@@ -121,7 +121,7 @@ It must not claim avoided tCO2e unless a separate causal dispatch/counterfactual
 
 ## Measured real-data reproduction
 
-ClimateChain streams only the standardized member:
+Grounding streams only the standardized member:
 
 `load/active_power_load.parquet`
 
@@ -135,7 +135,7 @@ Measured standardized data:
 - context length: 512
 - cutoffs: -240, -192, -144, -96, -48
 
-For all five windows, ClimateChain's independent dummy implementation matched the published Energy-EVA values within:
+For all five windows, Grounding's independent dummy implementation matched the published Energy-EVA values within:
 
 - LOAD_ACC: 1e-6
 - MAE: 0.001
@@ -146,7 +146,7 @@ The measured record is:
 
 `reports/energy-forecast/active-power-dummy.json`
 
-The published EnergyTS V3.0 values remain an upstream comparison target. ClimateChain does not claim to have rerun the proprietary/large forecasting model merely because it reproduces the baseline.
+The published EnergyTS V3.0 values remain an upstream comparison target. Grounding does not claim to have rerun the proprietary/large forecasting model merely because it reproduces the baseline.
 
 ## Live case and approval
 

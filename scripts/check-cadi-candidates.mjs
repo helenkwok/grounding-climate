@@ -5,7 +5,7 @@ const manifest = JSON.parse(
 );
 
 const errors = [];
-if (manifest.schemaVersion !== "climatechain.cadi-candidates/0.1") {
+if (manifest.schemaVersion !== "grounding.cadi-candidates/0.1") {
   errors.push("Unsupported CaDI candidate manifest version.");
 }
 if ((manifest.candidates?.length ?? 0) < 5) {

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.batterylife-smoke/0.1",
+  "schemaVersion": "grounding.batterylife-smoke/0.1",
   "source": {
     "paperBenchmarkRelease": {
       "zenodoRecord": "https://zenodo.org/records/14890219",

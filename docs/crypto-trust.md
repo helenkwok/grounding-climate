@@ -2,7 +2,7 @@
 
 Issue: #18
 
-ClimateChain keeps three trust problems separate:
+Grounding keeps three trust problems separate:
 
 ```text
 transport confidentiality
@@ -26,7 +26,7 @@ RFC 10024 standardizes hybrid post-quantum/traditional TLS 1.3 key agreement, in
 
 Cloudflare `boring` 5.2.0 uses its patched BoringSSL TLS path for post-quantum key agreement. Its separate `mlkem` Cargo feature exposes the low-level FIPS 203 ML-KEM API and explicitly does not control TLS ciphers/groups.
 
-ClimateChain therefore does **not** enable the low-level `mlkem` feature merely to get PQ TLS.
+Grounding therefore does **not** enable the low-level `mlkem` feature merely to get PQ TLS.
 
 ### Long-lived authenticity
 
@@ -66,8 +66,8 @@ The envelope stores the SHA-256 digest as an identifier and tamper check:
 
 ```json
 {
-  "version": "climatechain.signature-envelope/0.2",
-  "domain": "climatechain.attestation",
+  "version": "grounding.signature-envelope/0.2",
+  "domain": "grounding.attestation",
   "schemaVersion": "0.1",
   "payloadHash": {
     "algorithm": "SHA-256",
@@ -159,7 +159,7 @@ What signing the time does not do: whoever holds a key chooses the time they sig
 
 ## Implementations
 
-### `@climatechain/crypto-node`
+### `@grounding-climate/crypto-node`
 
 Provides a real Ed25519 `CryptoProvider` using Node's built-in cryptography.
 
@@ -174,7 +174,7 @@ Tests cover:
 
 This is suitable for signing in local and server workflows. It now also signs and verifies ML-DSA-65 through Node's built-in cryptography; the Rust crate below remains the TLS and BoringSSL path.
 
-### `climatechain-crypto-boring`
+### `grounding-crypto-boring`
 
 Rust crate backed by:
 

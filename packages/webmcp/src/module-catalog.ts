@@ -34,7 +34,7 @@ export const CLIMATE_MODULE_TOOL_SPECS: ModuleToolSpec[] = [
   { name: "carbon_reconcile_registry_records", title: "Reconcile carbon registry records", description: "Reconcile carbon-credit records across configured registry sources.", capability: "carbon-registry" },
   { name: "carbon_check_retirement", title: "Check carbon retirement", description: "Check retirement state for a carbon-credit record.", capability: "carbon-registry" },
   { name: "carbon_check_duplicate_claim", title: "Check duplicate carbon claim", description: "Check whether the same registry/credit state appears to be claimed more than once.", capability: "carbon-registry" },
-  { name: "carbon_import_registry_report", title: "Import a registry report", description: "Bring a Climate Action Reserve or Gold Standard report the reviewer downloaded with the registry's own CSV button (registry, kind, csv, sourceUri). ClimateChain never fetches from the registry; it keeps only a digest of the normalised records.", capability: "carbon-registry" },
+  { name: "carbon_import_registry_report", title: "Import a registry report", description: "Bring a Climate Action Reserve or Gold Standard report the reviewer downloaded with the registry's own CSV button (registry, kind, csv, sourceUri). Grounding never fetches from the registry; it keeps only a digest of the normalised records.", capability: "carbon-registry" },
   { name: "carbon_review_records", title: "Review registry records", description: "Return the reconciliation result, the claim with its accounting boundary, the coverage decision (decided, stale or undecided) and how each source is accessed.", capability: "carbon-registry" },
 
   { name: "disclosure_get_public_claim", title: "Get public disclosure claim", description: "Get a public disclosure claim and its original source reference.", capability: "public-disclosure" },
@@ -62,7 +62,7 @@ export function createRoutedModule(options: {
   const allowedCapabilities = new Set(options.capabilities);
   const specs = options.toolNames.map((name) => {
     const spec = CLIMATE_MODULE_TOOL_SPECS.find((item) => item.name === name);
-    if (!spec) throw new Error('Unknown ClimateChain module tool spec "' + name + '".');
+    if (!spec) throw new Error('Unknown Grounding module tool spec "' + name + '".');
     if (!allowedCapabilities.has(spec.capability)) {
       throw new Error(
         'Tool "' +

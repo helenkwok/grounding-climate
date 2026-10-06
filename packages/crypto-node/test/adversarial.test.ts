@@ -10,7 +10,7 @@ import {
   type SignatureEnvelope,
   type SignaturePolicy,
   type SignedLogRecord,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { InMemoryNodeCryptoProvider } from "../src/index.js";
 
@@ -24,7 +24,7 @@ async function setup() {
     createdAt: "2026-01-01T00:00:00Z",
   });
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "climatechain.attestation",
+    domain: "grounding.attestation",
     schemaVersion: "0.1",
     createdAt: "2026-09-01T00:00:00Z",
     hashProvider: provider,
@@ -75,7 +75,7 @@ test("two different keys satisfy a two-signature policy", async () => {
   const { provider, verify } = await setup();
   const second = provider.generateEd25519Key({ keyId: "key:second", controller: "org:other", createdAt: "2026-01-01T00:00:00Z" });
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "climatechain.attestation",
+    domain: "grounding.attestation",
     schemaVersion: "0.1",
     createdAt: "2026-09-01T00:00:00Z",
     hashProvider: provider,
@@ -91,7 +91,7 @@ test("two different keys satisfy a two-signature policy", async () => {
 
 test("an envelope claiming the old unsigned-time version is refused", async () => {
   const { envelope, verify } = await setup();
-  const old = { ...envelope, version: "climatechain.signature-envelope/0.1" } as unknown as SignatureEnvelope;
+  const old = { ...envelope, version: "grounding.signature-envelope/0.1" } as unknown as SignatureEnvelope;
   const result = await verify(old);
   assert.equal(result.versionSupported, false);
   assert.equal(result.valid, false);

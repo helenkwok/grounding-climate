@@ -1,5 +1,5 @@
 [package]
-name = "climatechain-crypto-boring"
+name = "grounding-crypto-boring"
 version = "0.1.0"
 edition = "2021"
 rust-version = "1.85"

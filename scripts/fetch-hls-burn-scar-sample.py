@@ -43,7 +43,7 @@ def main():
     parser.add_argument(
         "--cache",
         type=Path,
-        default=Path("/tmp/climatechain-hls-cache"),
+        default=Path("/tmp/grounding-hls-cache"),
     )
     args = parser.parse_args()
 

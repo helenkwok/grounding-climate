@@ -16,10 +16,10 @@ import {
   type SignedAttestationVerification,
   type SigningKeyRef,
   type VerificationKey,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import { ml_dsa65 } from "@noble/post-quantum/ml-dsa.js";
 
-export const SIGNED_RECORD_FORMAT = "climatechain-signed-record/0.1";
+export const SIGNED_RECORD_FORMAT = "grounding-signed-record/0.1";
 
 /** What a reader downloads and anyone can check: the case, its attestation, and the public keys that signed it. */
 export interface SignedRecord {
@@ -134,7 +134,7 @@ export async function verifyRecord(
   record: SignedRecord,
   base: Pick<CryptoProvider, "hash" | "verify">,
 ): Promise<SignedAttestationVerification> {
-  if (record.format !== SIGNED_RECORD_FORMAT) throw new Error("Not a ClimateChain signed record.");
+  if (record.format !== SIGNED_RECORD_FORMAT) throw new Error("Not a Grounding signed record.");
   const provider = new BrowserSigner(base);
   return verifySignedAttestation(record.case, record.attestation, {
     hashProvider: provider,

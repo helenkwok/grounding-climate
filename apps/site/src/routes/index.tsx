@@ -4,7 +4,7 @@ import { MapClaims } from "../case-map";
 import { ClaimList, STAGES, useAllClaims } from "../components";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [{ title: "ClimateChain · Climate claims that can show their work" }] }),
+  head: () => ({ meta: [{ title: "Grounding · Climate claims that can show their work" }] }),
   component: Home,
 });
 
@@ -16,7 +16,7 @@ function Home() {
         <p className="kicker">IEEE ClimateChain Global Hackathon 2026 · Climate Data &amp; Environmental Monitoring</p>
         <h1 id="hero-title">Climate claims that can show their work.</h1>
         <p className="lede">
-          A reported climate figure is usually just a number. ClimateChain turns it into a record you can check: the
+          A reported climate figure is usually just a number. Grounding turns it into a record you can check: the
           evidence, the figure rebuilt from it, every call a person made, and a signature that breaks if anything changes.
         </p>
         <p className="note">

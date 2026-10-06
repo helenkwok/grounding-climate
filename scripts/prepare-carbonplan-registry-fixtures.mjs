@@ -119,12 +119,12 @@ for (const source of sources) {
 }
 
 const manifest = {
-  schemaVersion: "climatechain.carbonplan-fixtures/0.1",
+  schemaVersion: "grounding.carbonplan-fixtures/0.1",
   repository: "https://github.com/" + REPOSITORY,
   commit: COMMIT,
   rightsManifestId: "carbonplan-offsets-data",
   note:
-    "Runtime-only bounded CarbonPlan test fixture snapshot. ClimateChain does not commit these upstream registry bytes.",
+    "Runtime-only bounded CarbonPlan test fixture snapshot. Grounding does not commit these upstream registry bytes.",
   sources: manifestSources,
 };
 
@@ -134,5 +134,5 @@ await writeFile(
 );
 
 console.log(
-  "CLIMATECHAIN_CARBONPLAN_PREPARED=" + JSON.stringify(manifest),
+  "GROUNDING_CARBONPLAN_PREPARED=" + JSON.stringify(manifest),
 );

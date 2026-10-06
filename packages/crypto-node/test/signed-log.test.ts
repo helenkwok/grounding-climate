@@ -5,7 +5,7 @@ import {
   appendSignedLogRecord,
   verifySignedLog,
   type SignedLogRecord,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { InMemoryNodeCryptoProvider } from "../src/index.js";
 
@@ -13,7 +13,7 @@ test("signed log verifies an intact hash chain", async () => {
   const provider = new InMemoryNodeCryptoProvider();
   const pair = provider.generateEd25519Key({
     keyId: "key:log",
-    controller: "service:climatechain",
+    controller: "service:grounding",
     createdAt: "2026-09-29T00:00:00Z",
   });
 
@@ -62,7 +62,7 @@ test("signed log detects a modified historical event", async () => {
   const provider = new InMemoryNodeCryptoProvider();
   const pair = provider.generateEd25519Key({
     keyId: "key:log-tamper",
-    controller: "service:climatechain",
+    controller: "service:grounding",
     createdAt: "2026-09-29T00:00:00Z",
   });
 

@@ -4,10 +4,10 @@ import test from "node:test";
 import {
   createEvidenceRoot,
   verifyEvidenceRoot,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   InMemoryNodeCryptoProvider,
-} from "@climatechain/crypto-node";
+} from "@grounding-climate/crypto-node";
 
 import {
   BuildingMrvService,
@@ -153,7 +153,7 @@ test("classification metrics expose precision and recall for labelled checks", (
   assert.equal(metrics.f1, 0.5);
 });
 
-test("tamper changes the ClimateChain evidence root and reconciliation state", async () => {
+test("tamper changes the Grounding evidence root and reconciliation state", async () => {
   const provider = new InMemoryNodeCryptoProvider();
   const normalMeter = series();
   const normalDataset = await dataset(normalMeter, provider);

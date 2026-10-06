@@ -16,7 +16,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "ClimateChain shows what a climate figure rests on: the source data, the analysis rerun in your browser, every call a person made, and a signature that breaks if any of it changes.",
+          "Grounding shows what a climate figure rests on: the source data, the analysis rerun in your browser, every call a person made, and a signature that breaks if any of it changes.",
       },
     ],
     links: [

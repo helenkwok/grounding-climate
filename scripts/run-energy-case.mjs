@@ -9,8 +9,8 @@
 // template when the action needs approval and has no current one.
 import { readFile, writeFile } from "node:fs/promises";
 
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
-import { buildEnergyActionCase } from "@climatechain/energy-forecast";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
+import { buildEnergyActionCase } from "@grounding-climate/energy-forecast";
 
 import { signCase, verificationSummary } from "./lib/attest.mjs";
 
@@ -94,7 +94,7 @@ const summary = (built, someVerification) => ({
 });
 
 const report = {
-  schemaVersion: "climatechain.energy-case-run/0.1",
+  schemaVersion: "grounding.energy-case-run/0.1",
   runAt: createdAt,
   organisingQuestion: "Is the forecast good enough for the policy to allow this load shift, and who approved the capped amount?",
   data: { items: series.length, rows: series.reduce((sum, item) => sum + item.points.length, 0) },

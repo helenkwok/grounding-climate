@@ -15,7 +15,7 @@ Variables: `bp_2011` and `bp_2047`, annual burn probability (0 to 1) for ~2011 a
 
 Both cases record these values as context: modelled, not observed, and read by no check.
 
-**Licence:** CC BY 4.0. The values are derived (sampled and summarised) from OCR. ClimateChain is not affiliated with
+**Licence:** CC BY 4.0. The values are derived (sampled and summarised) from OCR. Grounding is not affiliated with
 or endorsed by CarbonPlan.
 
 **Cite:** Open Climate Risk v1.1.0, CarbonPlan, https://source.coop/carbonplan/carbonplan-ocr. Its inputs: Riley et

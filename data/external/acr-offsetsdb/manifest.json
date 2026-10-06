@@ -1,7 +1,7 @@
 {
-  "schemaVersion": "climatechain.acr-subset/0.1",
+  "schemaVersion": "grounding.acr-subset/0.1",
   "rightsManifestId": "acr-offsetsdb-subset",
-  "citation": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by ClimateChain; values unchanged.",
+  "citation": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by Grounding; values unchanged.",
   "files": [
     {
       "path": "issuances.csv",

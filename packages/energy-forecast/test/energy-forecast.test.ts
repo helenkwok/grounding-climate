@@ -4,12 +4,12 @@ import test from "node:test";
 import {
   createEvidenceRoot,
   verifyEvidenceRoot,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   InMemoryNodeCryptoProvider,
-} from "@climatechain/crypto-node";
+} from "@grounding-climate/crypto-node";
 
-import type { ReviewDecision } from "@climatechain/core";
+import type { ReviewDecision } from "@grounding-climate/core";
 import {
   ENERGY_CUTOFFS,
   actionFlag,

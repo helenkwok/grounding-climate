@@ -3,10 +3,10 @@
 // the measured forecast quality as its confidence. When the policy asks for approval, a person decides.
 import {
   canonicalBytes,
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   reviewStatuses,
   reviewVerification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   ContentDigest,
@@ -14,7 +14,7 @@ import type {
   ReviewDecision,
   ReviewFlag,
   ReviewStatus,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { runEnergyEvaDummyBenchmark } from "./forecast.js";
 import { evaluateBoundedAction } from "./policy.js";
@@ -148,7 +148,7 @@ export async function buildEnergyActionCase(options: {
     !baselineReproduced || !action.permitted ? "mismatch" : decided ? "reconciled" : "insufficient-evidence";
 
   const caseBundle: ClimateCaseBundle = {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: options.caseId,
     title: "Energy forecast and bounded load action — Energy-EVA active power load",
     capabilities: ["renewable-forecasting", "claim-reconciliation", "pq-attestation"],
@@ -203,7 +203,7 @@ export async function buildEnergyActionCase(options: {
           methodology: "A coded policy checks the request; a person approves amounts at or above the approval threshold.",
           accounting: {
             included: ["The request: " + request.actionType + ", " + request.requestedMWh + " MWh, counterparty " + (request.counterparty ?? "none")],
-            excluded: ["Submitting the action to a market or dispatching hardware: ClimateChain prepares, it does not act"],
+            excluded: ["Submitting the action to a market or dispatching hardware: Grounding prepares, it does not act"],
             policyChoices: [
               "Cap " + policy.maxActionMWh + " MWh; approval at or above " + policy.humanApprovalAboveMWh + " MWh",
               "Minimum confidence " + policy.minimumConfidence + ", with the forecast's mean LOAD_ACC as the confidence",
@@ -296,7 +296,7 @@ export async function buildEnergyActionCase(options: {
           { nodeType: "evidence", id: ids.published, role: "published-reference" },
           { nodeType: "verification", id: ids.review, role: "human-decisions" },
         ],
-        verifier: { id: "service:climatechain-energy-forecast", kind: "service", name: "ClimateChain Energy Forecast" },
+        verifier: { id: "service:grounding-energy-forecast", kind: "service", name: "Grounding Energy Forecast" },
         profile: "energy-forecast/0.2",
         result,
         checks: [

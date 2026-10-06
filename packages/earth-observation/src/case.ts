@@ -1,10 +1,10 @@
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
-} from "@climatechain/core";
+  GROUNDING_SCHEMA_VERSION,
+} from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   ContentDigest,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import type {
   BurnScarDetectionResult,
@@ -26,7 +26,7 @@ export function buildBurnScarCase(options: {
   const reference = options.publishedReference;
 
   return {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: options.caseId,
     title: "HLS burn-scar monitoring — " + scene.sceneId,
     capabilities: [
@@ -230,9 +230,9 @@ export function buildBurnScarCase(options: {
           },
         ],
         verifier: {
-          id: "service:climatechain-earth-observation",
+          id: "service:grounding-earth-observation",
           kind: "service",
-          name: "ClimateChain Earth Observation",
+          name: "Grounding Earth Observation",
         },
         profile: "earth-observation/0.1",
         result: "reconciled",

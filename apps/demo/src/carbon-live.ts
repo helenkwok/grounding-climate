@@ -9,13 +9,13 @@ import {
   type ReviewDecision,
   type SignedAttestationBundle,
   type SignedAttestationVerification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   CarbonRegistryService,
   normalizeRegistryCsv,
   type CommittedRegistrySource,
   type NormalizedRegistryTransaction,
-} from "@climatechain/carbon-registry";
+} from "@grounding-climate/carbon-registry";
 
 import manifest from "../../../data/external/acr-offsetsdb/manifest.json";
 import issuancesCsv from "../../../data/external/acr-offsetsdb/issuances.csv";

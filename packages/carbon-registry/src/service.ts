@@ -1,10 +1,10 @@
-import { assessLedgerNeed } from "@climatechain/core";
-import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
-import { createRoutedModule } from "@climatechain/webmcp";
+import { assessLedgerNeed } from "@grounding-climate/core";
+import type { CryptoProvider, ReviewDecision } from "@grounding-climate/core";
+import { createRoutedModule } from "@grounding-climate/webmcp";
 import type {
   ClimateModule,
   ModuleCommandRouter,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 
 import { buildRegistryVerification } from "./case.js";
 import { normalizeRegistryCsv } from "./normalize.js";

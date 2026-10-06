@@ -57,7 +57,7 @@ def main():
         files[name] = {"bytes": len(data), "sha256": sha256(data)}
 
     manifest = {
-        "schemaVersion": "climatechain.hls-scene-arrays/0.1",
+        "schemaVersion": "grounding.hls-scene-arrays/0.1",
         "sceneId": SCENE,
         "dataset": "ibm-nasa-geospatial/hls_burn_scars",
         "datasetRevision": "1864285e25010d346a842e4f068b1a1d4248ed6d",

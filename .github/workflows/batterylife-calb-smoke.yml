@@ -26,7 +26,7 @@ jobs:
         run: python scripts/prepare-batterylife-calb.py /tmp/batterylife-v1 v1
       - name: Prepare corrected BatteryLife v11 CALB subset
         run: python scripts/prepare-batterylife-calb.py /tmp/batterylife-v11 v11
-      - name: Build ClimateChain workspaces
+      - name: Build Grounding workspaces
         run: |
           npm ci
           npm run build

@@ -1,4 +1,4 @@
-import type { ContentDigest } from "@climatechain/core";
+import type { ContentDigest } from "@grounding-climate/core";
 
 export interface BatteryCycleCapacity {
   cycle: number;
@@ -58,7 +58,7 @@ export interface BatteryPassportDecision {
 }
 
 export interface BatteryPassportClaim {
-  version: "climatechain.battery-passport/0.1";
+  version: "grounding.battery-passport/0.1";
   batteryId: string;
   sourceDataset: string;
   chemistry?: string;

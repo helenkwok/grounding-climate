@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import type { SignedAttestationVerification } from "@climatechain/core";
+import type { SignedAttestationVerification } from "@grounding-climate/core";
 import { useState, type DragEvent } from "react";
 
 import { claimMeta } from "../../../demo/src/claims-meta";
@@ -8,7 +8,7 @@ import { signedRecords } from "../live";
 import type { SignedRecord } from "../signing";
 
 export const Route = createFileRoute("/verify")({
-  head: () => ({ meta: [{ title: "Verify a signed record · ClimateChain" }] }),
+  head: () => ({ meta: [{ title: "Verify a signed record · Grounding" }] }),
   component: VerifyPage,
 });
 

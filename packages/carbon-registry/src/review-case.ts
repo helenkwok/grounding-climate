@@ -4,7 +4,7 @@
 // over-retirement are mismatches. Retirements with no issuance in the records are a coverage gap a person decides:
 // outside the sample, or to investigate, in two flags: groups the records' own dates place before the sample's
 // window, and the rest. Each decision is bound to the digest of every record it was made on.
-import { canonicalBytes, CLIMATECHAIN_SCHEMA_VERSION, reviewStatuses, reviewVerification } from "@climatechain/core";
+import { canonicalBytes, GROUNDING_SCHEMA_VERSION, reviewStatuses, reviewVerification } from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   ContentDigest,
@@ -13,7 +13,7 @@ import type {
   ReviewDecision,
   ReviewFlag,
   ReviewStatus,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { reconcileRegistryTransactions } from "./reconcile.js";
 import type {
@@ -190,7 +190,7 @@ export async function buildCarbonReviewCase(options: {
         mode: "reviewer-supplied",
         instructions:
           "Open " + item.sourceUri + ", download the report with the registry's own CSV button and bring it. " +
-          "ClimateChain compares the digest of its normalised records; a different digest means the source changed.",
+          "Grounding compares the digest of its normalised records; a different digest means the source changed.",
       },
       rights: {
         sourceManifestId: REVIEWER_SUPPLIED_RIGHTS[item.registry],
@@ -213,7 +213,7 @@ export async function buildCarbonReviewCase(options: {
   });
   const registries = report.registries.join(", ");
   const caseBundle: ClimateCaseBundle = {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: options.caseId,
     title: "Carbon registry reconciliation",
     capabilities: ["carbon-registry", "claim-reconciliation", "pq-attestation"],
@@ -279,7 +279,7 @@ export async function buildCarbonReviewCase(options: {
           { nodeType: "claim", id: "claim:carbon-registry-reconciliation" },
           { nodeType: "verification", id: reviewNode.id },
         ],
-        verifier: { id: "service:climatechain:carbon-registry", kind: "service", name: "ClimateChain Carbon Registry" },
+        verifier: { id: "service:grounding:carbon-registry", kind: "service", name: "Grounding Carbon Registry" },
         profile: "carbon-registry/0.2",
         result,
         checks: [

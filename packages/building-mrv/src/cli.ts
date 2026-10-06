@@ -3,10 +3,10 @@ import path from "node:path";
 
 import {
   createEvidenceRoot,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   InMemoryNodeCryptoProvider,
-} from "@climatechain/crypto-node";
+} from "@grounding-climate/crypto-node";
 
 import {
   runBuildingMrv,
@@ -103,7 +103,7 @@ function argsFrom(argv: string[]): CliArgs {
         [
           "Usage: node dist/src/cli.js --dir <prepared-bdg2-dir> --factor <kgCO2e/kWh> --factor-geography <name> --factor-source <url> [options]",
           "",
-          "The factor is intentionally required. ClimateChain does not guess a grid factor from an anonymised BDG2 site.",
+          "The factor is intentionally required. Grounding does not guess a grid factor from an anonymised BDG2 site.",
           "",
           "Options:",
           "  --out <dir>                    Output directory (default out/building-mrv)",

@@ -51,7 +51,7 @@ ALDI++ / BUDS Lab, MIT License.
 
 ### American Carbon Registry public report records (OffsetsDB test subset, reduced columns) (registry-data)
 
-American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by ClimateChain; values unchanged.
+American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by Grounding; values unchanged.
 
 - Source: https://github.com/carbonplan/offsets-db-data/tree/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry
 - Terms/licence: https://acrcarbon.org/term-and-condition/
@@ -75,7 +75,7 @@ BatteryLife benchmark code, Ruifeng Tan et al., MIT License.
 
 ### BatteryLife Processed dataset (dataset)
 
-BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. ClimateChain pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.
+BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. Grounding pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.
 
 - Source: https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed
 - Terms/licence: https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed
@@ -127,7 +127,7 @@ Climate Action Reserve registry, report downloaded by the reviewer.
 
 - Source: https://thereserve2.apx.com/
 - Terms/licence: https://climateactionreserve.org/wp-content/uploads/2023/07/Final-TOU-7.26-redline.pdf
-- Repository policy: Never fetched or committed by ClimateChain. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept.
+- Repository policy: Never fetched or committed by Grounding. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept.
 
 ### Cloudflare boring (code)
 
@@ -135,7 +135,7 @@ Cloudflare boring Rust bindings, Apache-2.0 as declared by the boring crate.
 
 - Source: https://github.com/cloudflare/boring
 - Terms/licence: https://github.com/cloudflare/boring/blob/master/boring/Cargo.toml
-- Repository policy: Consumed as the pinned boring 5.2.0 Cargo dependency; no upstream source is vendored into ClimateChain.
+- Repository policy: Consumed as the pinned boring 5.2.0 Cargo dependency; no upstream source is vendored into Grounding.
 
 ### Energy-EVA benchmark code (code)
 
@@ -171,7 +171,7 @@ HLS Burn Scar Scenes, IBM/NASA Geospatial, CC-BY-4.0; retain dataset citation an
 
 ### Open Climate Risk v1.1.0 fire-risk raster (sampled values) (dataset)
 
-Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by ClimateChain. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).
+Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by Grounding. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).
 
 - Source: https://source.coop/carbonplan/carbonplan-ocr
 - Terms/licence: https://docs.carbonplan.org/ocr/en/latest/terms-of-data-access.html
@@ -223,5 +223,5 @@ U.S. EPA, eGRID Summary Tables 2016, Table 1 Subregion Output Emission Rates.
 
 - Source: https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt
 - Terms/licence: https://www.epa.gov/web-policies-and-procedures
-- Repository policy: Use the published factor values with source attribution; do not mirror the EPA publication into ClimateChain.
+- Repository policy: Use the published factor values with source attribution; do not mirror the EPA publication into Grounding.
 

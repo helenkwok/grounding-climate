@@ -3,7 +3,7 @@ import { pluginReact } from "@rsbuild/plugin-react";
 import { tanstackStart } from "@tanstack/react-start/plugin/rsbuild";
 
 export default defineConfig({
-  // A GitHub Pages project site lives under /<repo>/: build it with SITE_BASE=/climatechain.
+  // A GitHub Pages project site lives under /<repo>/: build it with SITE_BASE=/grounding.
   server: { port: 4180, host: "127.0.0.1", base: process.env.SITE_BASE ?? "/" },
   output: {
     copy: [

@@ -1,7 +1,7 @@
 // The six claims as plain data for the pages: each builder turns a live in-browser check into what a page shows.
 // Nothing here touches the DOM, so the demo page and the site share it.
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   type ClimateCaseBundle,
   type ClimateNode,
   type ContentDigest,
@@ -10,7 +10,7 @@ import {
   type Verification,
   type VerificationCheck,
   type VerificationResult,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   ActivityLog,
   ClimateCapabilityRegistry,
@@ -18,7 +18,7 @@ import {
   createRoutedModule,
   type ClimateWorkspace,
   type ModuleCommandRouter,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 
 import {
   adviceRuns,

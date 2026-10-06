@@ -4,7 +4,7 @@ import type { ContentDigest } from "./types.js";
 // 0.2 signs createdAt with the payload. 0.1 left it unsigned, so editing it could move a signature
 // to before a key's revocation; 0.1 envelopes are refused.
 export const SIGNATURE_ENVELOPE_VERSION =
-  "climatechain.signature-envelope/0.2" as const;
+  "grounding.signature-envelope/0.2" as const;
 
 export type CryptoSuite = "classical" | "post-quantum";
 export type SignatureEncoding = "base64url";

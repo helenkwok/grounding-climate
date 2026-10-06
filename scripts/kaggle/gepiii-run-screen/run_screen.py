@@ -4,7 +4,7 @@ Private Kaggle notebook on the ashrae-energy-prediction competition. Competition
 output is run-screen.json with aggregate counts and rates. Nothing is sent to a third party.
 
 Rules, per electricity reading (rows sorted by time within a building):
-  residual  the existing ClimateChain screen (hour-of-week mean baseline, robust z >= 6), as in label_scoring.py
+  residual  the existing Grounding screen (hour-of-week mean baseline, robust z >= 6), as in label_scoring.py
   zero      the reading is exactly 0
   run>=L    the reading belongs to a run of at least L consecutive hourly readings with the same value
 
@@ -76,7 +76,7 @@ def rates(flags: np.ndarray, bad: np.ndarray) -> dict:
 
 
 result = {
-    "schemaVersion": "climatechain.gepiii-run-screen/0.2",
+    "schemaVersion": "grounding.gepiii-run-screen/0.2",
     "labels": {"source": LABELS_URL, "licence": "MIT", "rows": int(len(labels))},
     "meter": "electricity (meter 0)",
     "selection": "run length chosen by F1 of residual|zero|run>=L on even building ids; reported on odd ids",

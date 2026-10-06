@@ -91,7 +91,7 @@ export function useAllClaims() {
 /** The five stages of a claim, used on the home page and the "how it fits" page. */
 export const STAGES: Array<[string, string]> = [
   ["A claim comes in", "with its evidence: meter data, a registry export, a satellite scene, a company's own page."],
-  ["It is rechecked", "ClimateChain rebuilds the figure from that evidence, in your browser, and flags data that looks wrong."],
+  ["It is rechecked", "Grounding rebuilds the figure from that evidence, in your browser, and flags data that looks wrong."],
   ["A person decides", "each flag, and the claim itself, gets a named decision tied to the exact data it was made on."],
   ["It is signed", "the evidence, the decisions and the result become one record, signed with Ed25519 and post-quantum ML-DSA-65."],
   ["Anyone verifies", "open the record on any computer. Change one number in it and the signatures no longer match."],
@@ -100,7 +100,7 @@ export const STAGES: Array<[string, string]> = [
 export function SiteHeader() {
   return (
     <header className="topbar">
-      <Link className="brand" to="/">ClimateChain</Link>
+      <Link className="brand" to="/">Grounding</Link>
       <nav aria-label="Sections">
         <Link to="/">Claims</Link>
         <Link to="/verify">Verify<span className="long"> a record</span></Link>

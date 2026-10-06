@@ -95,7 +95,7 @@ Measured result:
 - disposition: repurpose
 
 Reproducibility finding:
-- pinned historical release reproduces ClimateChain's measured rerun
+- pinned historical release reproduces Grounding's measured rerun
 - the released paper-era data/code do not exactly reproduce the published summary row, and the discrepancy is retained rather than hidden
 
 ### Carbon registry
@@ -249,7 +249,7 @@ raw data off-chain
 → optional ledger only when the trust model requires it
 ```
 
-The carbon-registry prototype currently returns `defer-ledger`, demonstrating that ClimateChain does not force blockchain into every workflow.
+The carbon-registry prototype currently returns `defer-ledger`, demonstrating that Grounding does not force blockchain into every workflow.
 
 ## Presentation rule
 

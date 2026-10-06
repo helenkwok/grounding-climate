@@ -1,5 +1,5 @@
 export const SOURCE_RIGHTS_SCHEMA_VERSION =
-  "climatechain.source-rights/0.1" as const;
+  "grounding.source-rights/0.1" as const;
 
 export type RightsDecision = "allowed" | "prohibited" | "unclear";
 export type LicenceStatus =

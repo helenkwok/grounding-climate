@@ -3,8 +3,8 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
-import { buildDisclosureReviewCase } from "@climatechain/disclosure";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
+import { buildDisclosureReviewCase } from "@grounding-climate/disclosure";
 
 import { signRecord, verifyRecord, type SignedRecord } from "../src/signing.ts";
 

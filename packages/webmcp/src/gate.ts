@@ -8,10 +8,10 @@ import type {
 } from "./types.js";
 
 export const DEFAULT_OUTPUT_CAP = 8_000;
-const SENTINEL = "[TRUNCATED by climatechain:";
+const SENTINEL = "[TRUNCATED by grounding:";
 
 function neutralizeSentinel(value: string): string {
-  return value.split(SENTINEL).join("[truncated-by-climatechain:");
+  return value.split(SENTINEL).join("[truncated-by-grounding:");
 }
 
 export function capToolOutput(

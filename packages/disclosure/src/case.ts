@@ -1,11 +1,11 @@
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   createEvidenceRoot,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   CryptoProvider,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import type {
   DisclosureAssessment,
@@ -41,7 +41,7 @@ export async function buildDisclosureCase(input: {
     "evidence:disclosure:" + input.claim.organisationId + ":source";
 
   const caseBundle: ClimateCaseBundle = {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: "case:disclosure:" + input.claim.organisationId,
     title: input.claim.organisationName + " public carbon disclosure",
     capabilities: ["public-disclosure", "claim-reconciliation"],
@@ -132,7 +132,7 @@ export async function buildDisclosureCase(input: {
             note: input.claim.assuranceClaim
               ? "The source attributes assurance to a third party: " +
                 input.claim.assuranceClaim +
-                " ClimateChain has not independently audited that assurance engagement."
+                " Grounding has not independently audited that assurance engagement."
               : "No assurance evidence assessed.",
           },
         ],
@@ -176,7 +176,7 @@ export async function buildDisclosureCase(input: {
           commercialUse: "unclear",
           derivedData: "unclear",
           attribution:
-            "Preserve the original public source URL. ClimateChain stores extracted factual claims, not the source document bytes.",
+            "Preserve the original public source URL. Grounding stores extracted factual claims, not the source document bytes.",
         },
       },
     ],

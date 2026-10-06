@@ -25,7 +25,7 @@ import type {
 } from "./types.js";
 
 export const ATTESTATION_PAYLOAD_VERSION =
-  "climatechain.attestation/0.1" as const;
+  "grounding.attestation/0.1" as const;
 
 export type AttestationChallengeKind =
   | "changed-source"
@@ -174,7 +174,7 @@ export async function createSignedAttestation(
   };
 
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "climatechain.attestation",
+    domain: "grounding.attestation",
     schemaVersion: payload.version,
     createdAt: options.issuedAt,
     hashProvider: options.hashProvider,

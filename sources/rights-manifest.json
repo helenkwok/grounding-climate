@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.source-rights/0.1",
+  "schemaVersion": "grounding.source-rights/0.1",
   "auditedAt": "2026-09-29",
   "policy": {
     "unknownRightsDefault": "do-not-redistribute",
@@ -136,7 +136,7 @@
         "path": "data/external/batterylife-processed",
         "note": "One cell's cycle-capacity history (CALB_0_B182, 100 cycles) from the pinned v11 release is committed with the MIT licence text and the BatteryLife citation; the full release stays upstream."
       },
-      "attribution": "BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. ClimateChain pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.",
+      "attribution": "BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. Grounding pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.",
       "notes": [
         "Hugging Face metadata identifies the processed dataset licence as MIT.",
         "The reproducibility smoke pins the v11 Zenodo release rather than silently following the mutable latest dataset.",
@@ -150,7 +150,7 @@
         },
         {
           "url": "https://zenodo.org/records/19688272",
-          "finding": "Pinned BatteryLife Processed v11 release used by ClimateChain, including CALB.zip and Life labels.zip with published MD5 checksums."
+          "finding": "Pinned BatteryLife Processed v11 release used by Grounding, including CALB.zip and Life labels.zip with published MD5 checksums."
         }
       ]
     },
@@ -220,7 +220,7 @@
         "ShareAlike obligations apply to adaptations of the licensed work.",
         "The canonical v1.0 data release is Zenodo DOI 10.5281/zenodo.3887306.",
         "The GitHub data paths are Git LFS pointers; preparation must fetch real data from the upstream release rather than treating pointer files as meter data.",
-        "Do not vendor the full ~595 MB release archive in ClimateChain."
+        "Do not vendor the full ~595 MB release archive in Grounding."
       ],
       "evidence": [
         {
@@ -229,7 +229,7 @@
         },
         {
           "url": "https://zenodo.org/records/3887306",
-          "finding": "Pinned BDG2 v1.0 release used by ClimateChain; archive buds-lab/building-data-genome-project-2-v1.0.zip with published MD5 44393dc4cf61e84dec105e955368c890."
+          "finding": "Pinned BDG2 v1.0 release used by Grounding; archive buds-lab/building-data-genome-project-2-v1.0.zip with published MD5 44393dc4cf61e84dec105e955368c890."
         }
       ]
     },
@@ -366,10 +366,10 @@
         "path": "data/external/acr-offsetsdb",
         "note": "100 issuances and 100 retirements, reduced to project, vintage, quantity, date and serial range; and the 14 sample projects the fixture's project list names, reduced to ID, name, type, state and country. Beneficiary and account-holder names are not committed."
       },
-      "attribution": "American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by ClimateChain; values unchanged.",
+      "attribution": "American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by Grounding; values unchanged.",
       "notes": [
         "ACR's terms allow information and data from ACR public reports to be used for adaptation, reproduction or derivative works if it is accurately represented and cited, and not used or presented in an unfair, misleading or discriminatory manner.",
-        "The records are a bounded test sample; ClimateChain states this wherever it reports on them.",
+        "The records are a bounded test sample; Grounding states this wherever it reports on them.",
         "CarbonPlan claims no copyright in the factual data (carbonplan-offsets-data)."
       ],
       "evidence": [
@@ -400,11 +400,11 @@
       },
       "repository": {
         "mode": "reviewer-supplied",
-        "note": "Never fetched or committed by ClimateChain. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept."
+        "note": "Never fetched or committed by Grounding. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept."
       },
       "attribution": "Climate Action Reserve registry, report downloaded by the reviewer.",
       "notes": [
-        "The registry's robots.txt disallows all automated access (User-agent: * / Disallow: /), so no ClimateChain code fetches from it.",
+        "The registry's robots.txt disallows all automated access (User-agent: * / Disallow: /), so no Grounding code fetches from it.",
         "The terms do not grant reuse of public reports."
       ],
       "evidence": [
@@ -474,12 +474,12 @@
       },
       "repository": {
         "mode": "code-only",
-        "note": "Consumed as the pinned boring 5.2.0 Cargo dependency; no upstream source is vendored into ClimateChain."
+        "note": "Consumed as the pinned boring 5.2.0 Cargo dependency; no upstream source is vendored into Grounding."
       },
       "attribution": "Cloudflare boring Rust bindings, Apache-2.0 as declared by the boring crate.",
       "notes": [
         "The crate manifest declares Apache-2.0.",
-        "ClimateChain pins version 5.2.0 and enables the mldsa feature; upstream source remains fetched by Cargo."
+        "Grounding pins version 5.2.0 and enables the mldsa feature; upstream source remains fetched by Cargo."
       ],
       "evidence": [
         {
@@ -625,11 +625,11 @@
       },
       "repository": {
         "mode": "link-only",
-        "note": "Use the published factor values with source attribution; do not mirror the EPA publication into ClimateChain."
+        "note": "Use the published factor values with source attribution; do not mirror the EPA publication into Grounding."
       },
       "attribution": "U.S. EPA, eGRID Summary Tables 2016, Table 1 Subregion Output Emission Rates.",
       "notes": [
-        "ClimateChain stores only the derived factor reference and original source URL.",
+        "Grounding stores only the derived factor reference and original source URL.",
         "The CAMX factor used in the Building MRV smoke is the 2016 total-output CO2e rate, not a marginal/avoided-emissions rate."
       ],
       "evidence": [
@@ -701,7 +701,7 @@
         "path": "data/external/open-climate-risk",
         "note": "Only sampled values are committed: one site value and statistics over one scene footprint."
       },
-      "attribution": "Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by ClimateChain. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).",
+      "attribution": "Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by Grounding. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).",
       "notes": [
         "The store's global attributes give license_name CC-BY-4.0 (snapshot CZP0B0ETPG38MW0C1R30).",
         "USDA Forest Service inputs can be used without additional permissions or fees; the originator should be acknowledged.",
@@ -753,7 +753,7 @@
       },
       "attribution": "Open Climate Risk v1.1.0, CarbonPlan, ODbL; contains information from the Overture Maps Foundation buildings dataset (ODbL, © OpenStreetMap contributors); Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F). Shown in the map's attribution.",
       "notes": [
-        "Region tiles store fields under numbered keys; ClimateChain matched them against CarbonPlan's published states/stats.csv (California: building count, mean RPS ~2011 and ~2047).",
+        "Region tiles store fields under numbered keys; Grounding matched them against CarbonPlan's published states/stats.csv (California: building count, mean RPS ~2011 and ~2047).",
         "RPS is annual risk to potential structures, in percent: burn probability times conditional risk to a structure (OCR data schema).",
         "CarbonPlan's terms: the name may not be used in a project name or to imply endorsement."
       ],

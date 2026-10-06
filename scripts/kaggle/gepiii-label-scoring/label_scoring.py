@@ -1,8 +1,8 @@
-"""Score ClimateChain's building anomaly screen against the GEPIII rank-1 team's bad-reading labels.
+"""Score Grounding's building anomaly screen against the GEPIII rank-1 team's bad-reading labels.
 
 Runs as a private Kaggle notebook attached to the ashrae-energy-prediction competition. The competition
 data never leaves Kaggle: the only output is label-scoring.json, which holds aggregate counts and rates,
-plus the labels of the three readings ClimateChain's building case flagged (timestamps we already
+plus the labels of the three readings Grounding's building case flagged (timestamps we already
 publish from BDG2, CC BY-SA). Nothing here is sent to a third party.
 
 Labels: bad_meter_readings.csv from the rank-1 solution (MIT licence), one 0/1 value per train.csv row,
@@ -79,7 +79,7 @@ def quantiles(values: list) -> dict | None:
 
 
 result = {
-    "schemaVersion": "climatechain.gepiii-label-scoring/0.1",
+    "schemaVersion": "grounding.gepiii-label-scoring/0.1",
     "labels": {"source": LABELS_URL, "licence": "MIT", "rows": int(len(labels)), "alignedToTrainRows": True},
     "screen": {"method": "hour-of-week-mean baseline, robust z of residual", "threshold": THRESHOLD, "trainingFraction": TRAINING_FRACTION},
     "meter": "electricity (meter 0)",

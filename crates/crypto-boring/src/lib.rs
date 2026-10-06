@@ -1,4 +1,4 @@
-//! Native cryptography for ClimateChain.
+//! Native cryptography for Grounding.
 //!
 //! This crate deliberately keeps post-quantum attestation signatures separate
 //! from optional ledger/wallet logic. ML-DSA authenticates the evidence bundle;
@@ -61,7 +61,7 @@ mod tests {
     fn mldsa65_round_trip() {
         let key = MlDsa65KeyPair::generate().unwrap();
         let public_key = key.public_key_bytes().unwrap();
-        let message = b"climatechain canonical attestation payload";
+        let message = b"grounding canonical attestation payload";
         let signature = key.sign(message).unwrap();
 
         assert!(MlDsa65KeyPair::verify(&public_key, message, &signature).unwrap());

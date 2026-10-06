@@ -2,7 +2,7 @@
 
 Issue: #6
 
-ClimateChain models a climate statement as a graph of evidence and transformations. The central object is a **claim**, not a token and not a blockchain transaction.
+Grounding models a climate statement as a graph of evidence and transformations. The central object is a **claim**, not a token and not a blockchain transaction.
 
 ## Graph
 
@@ -55,13 +55,13 @@ This prevents a public source, a correct arithmetic check, a signature, and an e
 
 ## Serialization
 
-The JSON envelope is `climatechain.case/0.1`.
+The JSON envelope is `grounding.case/0.1`.
 
 A bundle contains:
 
 ```json
 {
-  "schemaVersion": "climatechain.case/0.1",
+  "schemaVersion": "grounding.case/0.1",
   "caseId": "...",
   "title": "...",
   "capabilities": [],

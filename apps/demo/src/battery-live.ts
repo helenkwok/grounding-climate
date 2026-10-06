@@ -8,8 +8,8 @@ import {
   type ReviewDecision,
   type SignedAttestationBundle,
   type SignedAttestationVerification,
-} from "@climatechain/core";
-import { BatteryDppService, type BatteryHistory } from "@climatechain/battery-dpp";
+} from "@grounding-climate/core";
+import { BatteryDppService, type BatteryHistory } from "@grounding-climate/battery-dpp";
 
 import history from "../../../data/external/batterylife-processed/battery-history.json";
 import caseRunReport from "../../../reports/battery-dpp/case-run.json";

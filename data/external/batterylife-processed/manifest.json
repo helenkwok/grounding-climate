@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.batterylife-prepared/0.1",
+  "schemaVersion": "grounding.batterylife-prepared/0.1",
   "source": {
     "zenodoRecord": "https://zenodo.org/records/19688272",
     "doi": "10.5281/zenodo.19688272",

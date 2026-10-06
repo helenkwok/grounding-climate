@@ -1,16 +1,16 @@
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
-} from "@climatechain/core";
+  GROUNDING_SCHEMA_VERSION,
+} from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   Evidence,
   ModelRun,
   NodeRef,
   Verification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
-import { reviewVerification } from "@climatechain/core";
-import type { CaseContext } from "@climatechain/core";
+import { reviewVerification } from "@grounding-climate/core";
+import type { CaseContext } from "@grounding-climate/core";
 
 import { JEV_HAND_OFF } from "./advisory.js";
 import { intervalFlag } from "./decisions.js";
@@ -168,7 +168,7 @@ export function buildBuildingMrvCase(
   };
 
   return {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId,
     title:
       options.title ??
@@ -391,7 +391,7 @@ export function buildBuildingMrvCase(
             " -> " +
             analysis.baseline.split.testStart,
           notes:
-            "ClimateChain local baseline; do not confuse with the published ALDI++ GEPIII results.",
+            "Grounding local baseline; do not confuse with the published ALDI++ GEPIII results.",
         },
         executedAt: createdAt,
         reproducibility: {
@@ -422,9 +422,9 @@ export function buildBuildingMrvCase(
           })),
         ],
         verifier: {
-          id: "service:climatechain-building-mrv",
+          id: "service:grounding-building-mrv",
           kind: "service",
-          name: "ClimateChain Building MRV",
+          name: "Grounding Building MRV",
         },
         profile: "building-mrv/0.1",
         result: needsReview ? "insufficient-evidence" : "reconciled",

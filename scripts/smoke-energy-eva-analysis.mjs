@@ -74,7 +74,7 @@ const comparisons = result.cutoffs.map((row) => {
 });
 
 console.log(
-  "CLIMATECHAIN_ENERGY_EVA_REPRODUCTION=" +
+  "GROUNDING_ENERGY_EVA_REPRODUCTION=" +
     JSON.stringify({
       dataset: "active_power_load",
       horizonHours: 48,

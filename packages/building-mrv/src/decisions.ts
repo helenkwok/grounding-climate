@@ -1,7 +1,7 @@
 // A person's decision on each flagged interval. "Decided" is not "resolved": excluding a reading as a
 // meter fault records a choice, not an explanation of what happened at the site.
-import { reviewStatuses } from "@climatechain/core";
-import type { ContentDigest, ReviewFlag } from "@climatechain/core";
+import { reviewStatuses } from "@grounding-climate/core";
+import type { ContentDigest, ReviewFlag } from "@grounding-climate/core";
 
 import { reconstructElectricityEmissions } from "./emissions.js";
 import type {

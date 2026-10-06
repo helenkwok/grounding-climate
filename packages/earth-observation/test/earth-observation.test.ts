@@ -5,10 +5,10 @@ import {
   createEvidenceRoot,
   validateBundle,
   verifyEvidenceRoot,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   InMemoryNodeCryptoProvider,
-} from "@climatechain/crypto-node";
+} from "@grounding-climate/crypto-node";
 
 import {
   EarthObservationService,

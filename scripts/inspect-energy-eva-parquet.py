@@ -157,4 +157,4 @@ summary = {
     ],
 }
 
-print("CLIMATECHAIN_ENERGY_EVA_PARQUET=" + json.dumps(summary))
+print("GROUNDING_ENERGY_EVA_PARQUET=" + json.dumps(summary))

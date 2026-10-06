@@ -4,7 +4,7 @@ const url = "https://zenodo.org/api/records/" + RECORD_ID;
 const response = await fetch(url, {
   headers: {
     accept: "application/json",
-    "user-agent": "ClimateChain/0.1 (+https://github.com/helenkwok/climatechain)",
+    "user-agent": "Grounding/0.1 (+https://github.com/helenkwok/grounding-climate)",
   },
 });
 if (!response.ok) {
@@ -45,7 +45,7 @@ const output = {
 };
 
 console.log(
-  "CLIMATECHAIN_ENERGY_EVA_ZENODO=" + JSON.stringify(output),
+  "GROUNDING_ENERGY_EVA_ZENODO=" + JSON.stringify(output),
 );
 
 if (files.length === 0) {

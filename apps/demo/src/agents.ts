@@ -2,7 +2,7 @@
 // gated by the open case's capabilities, with a fallback executor for browsers without it. Importing this module
 // rebuilds the six claims and activates the surface once.
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   type ClimateCaseBundle,
   type ClimateNode,
   type ContentDigest,
@@ -11,7 +11,7 @@ import {
   type Verification,
   type VerificationCheck,
   type VerificationResult,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   ActivityLog,
   ClimateCapabilityRegistry,
@@ -19,7 +19,7 @@ import {
   createRoutedModule,
   type ClimateWorkspace,
   type ModuleCommandRouter,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 
 import {
   adviceRuns,
@@ -162,9 +162,9 @@ const demoVerifications: Verification[] = modules.map((item) => ({
     },
   ],
   verifier: {
-    id: "service:climatechain-demo",
+    id: "service:grounding-demo",
     kind: "service",
-    name: "ClimateChain measured-report workspace",
+    name: "Grounding measured-report workspace",
   },
   profile: "demo-report/0.1",
   result: deriveResult(item.checks),
@@ -174,9 +174,9 @@ const demoVerifications: Verification[] = modules.map((item) => ({
 }));
 
 const demoCase: ClimateCaseBundle = {
-  schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
-  caseId: "case:climatechain-demo",
-  title: "ClimateChain multi-capability evidence workspace",
+  schemaVersion: GROUNDING_SCHEMA_VERSION,
+  caseId: "case:grounding-demo",
+  title: "Grounding multi-capability evidence workspace",
   capabilities: [
     "building-meter-mrv",
     "carbon-recalculation",
@@ -375,7 +375,7 @@ const webmcp = new DynamicClimateWebMcp({
   workspace,
   approve: async (summary) =>
     window.confirm(
-      "ClimateChain requires your approval before this consequential operation.\n\n" +
+      "Grounding requires your approval before this consequential operation.\n\n" +
         summary.title +
         "\n" +
         summary.tool +

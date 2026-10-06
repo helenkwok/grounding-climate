@@ -10,7 +10,7 @@
 // reports/carbon-registry/coverage-decisions.json; the script prints a template when the gap has no current decision.
 import { writeFile } from "node:fs/promises";
 
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 
 import { signCase, verificationSummary } from "./lib/attest.mjs";
 import { applyImports, DECISIONS, loadCarbonCase } from "./lib/carbon-case.mjs";
@@ -69,7 +69,7 @@ const summary = (built, someVerification) => ({
 });
 
 const report = {
-  schemaVersion: "climatechain.carbon-case-run/0.1",
+  schemaVersion: "grounding.carbon-case-run/0.1",
   runAt: createdAt,
   organisingQuestion: "Do these registry records show any credit retired twice or beyond its issuance, and who decided what a gap in the records means?",
   clean: summary(clean, await verify(clean.caseBundle)),

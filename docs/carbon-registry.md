@@ -12,7 +12,7 @@ The first slice deliberately does **not** add AI. Exact registry identifiers and
 
 ## Real source path
 
-ClimateChain uses the small multi-registry fixture snapshots maintained by CarbonPlan's OffsetsDB pipeline.
+Grounding uses the small multi-registry fixture snapshots maintained by CarbonPlan's OffsetsDB pipeline.
 
 Pinned CarbonPlan commit:
 
@@ -30,7 +30,7 @@ Selected runtime files:
 
 The preparation script downloads each file from the pinned raw GitHub commit and recalculates its Git blob SHA before analysis.
 
-No upstream registry bytes are committed to ClimateChain.
+No upstream registry bytes are committed to Grounding.
 
 ## Review case: committed ACR records and reports the reviewer brings
 
@@ -53,7 +53,7 @@ The source-rights manifest already separates:
 - CarbonPlan processing code — MIT
 - OffsetsDB registry data — source-specific / upstream registry terms
 
-For registry data, ClimateChain therefore uses:
+For registry data, Grounding therefore uses:
 
 ```text
 download-from-upstream
@@ -114,7 +114,7 @@ The demo injects an exact duplicate of a real upstream retirement row **in memor
 
 The demo also changes one normalized retirement quantity in memory.
 
-Each source slice becomes a normal ClimateChain `Evidence` node with a canonical digest. The shared #8 evidence root therefore changes after the quantity modification.
+Each source slice becomes a normal Grounding `Evidence` node with a canonical digest. The shared #8 evidence root therefore changes after the quantity modification.
 
 Cryptographic integrity proves that bytes/state changed; it does not prove the original registry statement was physically or legally correct.
 

@@ -19,7 +19,7 @@ const response = await fetch(memberUrl, {
   redirect: "follow",
   headers: {
     accept: "application/octet-stream",
-    "user-agent": "ClimateChain/0.1 Energy-EVA active-power preparation",
+    "user-agent": "Grounding/0.1 Energy-EVA active-power preparation",
   },
 });
 
@@ -63,7 +63,7 @@ await writeFile(
 );
 
 console.log(
-  "CLIMATECHAIN_ENERGY_EVA_MEMBER=" +
+  "GROUNDING_ENERGY_EVA_MEMBER=" +
     JSON.stringify({
       member: MEMBER,
       byteLength: bytes.length,

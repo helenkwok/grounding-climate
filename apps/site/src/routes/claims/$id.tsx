@@ -1,5 +1,5 @@
 import { Link, createFileRoute, notFound } from "@tanstack/react-router";
-import type { Verification, VerificationResult } from "@climatechain/core";
+import type { Verification, VerificationResult } from "@grounding-climate/core";
 import { useEffect, useState, type FormEvent } from "react";
 
 import { CLAIMS, claimMeta, deriveResult, type ClaimId } from "../../../../demo/src/claims-meta";
@@ -12,7 +12,7 @@ export const Route = createFileRoute("/claims/$id")({
   beforeLoad: ({ params }) => {
     if (!CLAIMS.some((claim) => claim.id === params.id)) throw notFound();
   },
-  head: ({ params }) => ({ meta: [{ title: claimMeta(params.id as ClaimId).title + " · ClimateChain" }] }),
+  head: ({ params }) => ({ meta: [{ title: claimMeta(params.id as ClaimId).title + " · Grounding" }] }),
   component: ClaimPage,
 });
 
@@ -112,7 +112,7 @@ function ClaimPage() {
           <div className="detail-cols">
             <div>
               <p className="note">
-                Change one input of this claim in your browser. ClimateChain rebuilds the claim and checks the signature made
+                Change one input of this claim in your browser. Grounding rebuilds the claim and checks the signature made
                 on the committed evidence again.
               </p>
               {ready && <p><strong>What changes:</strong> {ready.tamper.change}</p>}
@@ -178,7 +178,7 @@ function Review({ claimId, item, tampered }: { claimId: ClaimId; item: DemoModul
           ...climateCase.verifications.map((node) => ({ nodeType: "verification" as const, id: node.id })),
         ],
         verifier: { id: subjectId, kind: "person", name: name.trim() },
-        profile: "climatechain-review/0.1",
+        profile: "grounding-review/0.1",
         result: verdict,
         checks: item.checks.map(({ id, name: checkName, outcome }) => ({ id: "recheck:" + id, name: checkName + " (rerun by the reviewer)", outcome })),
         findings: [note.trim() || VERDICTS.find((option) => option.value === verdict)!.help],
@@ -196,7 +196,7 @@ function Review({ claimId, item, tampered }: { claimId: ClaimId; item: DemoModul
       });
       signedRecords.unshift({ claimId, record, verdict: VERDICTS.find((option) => option.value === verdict)!.label, signedAt });
       const href = URL.createObjectURL(new Blob([JSON.stringify(record, null, 2)], { type: "application/json" }));
-      setSigned({ record, href, file: "climatechain-" + claimId + "-" + signedAt.replaceAll(":", "") + ".json" });
+      setSigned({ record, href, file: "grounding-" + claimId + "-" + signedAt.replaceAll(":", "") + ".json" });
     } catch (error) {
       setSigned(error instanceof Error ? error : new Error(String(error)));
     }

@@ -3,7 +3,7 @@ import path from "node:path";
 
 import {
   InMemoryNodeCryptoProvider,
-} from "@climatechain/crypto-node";
+} from "@grounding-climate/crypto-node";
 import {
   detectResidualAnomalies,
   digestMeterSeries,
@@ -12,7 +12,7 @@ import {
   runBuildingMrv,
   runHourOfWeekBaseline,
   verifyPreparedArtifactDigests,
-} from "@climatechain/building-mrv";
+} from "@grounding-climate/building-mrv";
 
 const factorReference = JSON.parse(
   await readFile(
@@ -152,7 +152,7 @@ const tamperedMrv = runBuildingMrv(tamperedMeter, factor, {
 });
 
 console.log(
-  "CLIMATECHAIN_BDG2_SMOKE=" +
+  "GROUNDING_BDG2_SMOKE=" +
     JSON.stringify({
       source: {
         doi: dataset.source.doi,

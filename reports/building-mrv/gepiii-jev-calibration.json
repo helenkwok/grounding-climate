@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.gepiii-jev-calibration/0.1",
+  "schemaVersion": "grounding.gepiii-jev-calibration/0.1",
   "sentToModel": "states built from BDG2 v1.0 raw electricity (CC BY-SA 4.0) only; no competition data",
   "questionSet": "building-triage@2",
   "window": [

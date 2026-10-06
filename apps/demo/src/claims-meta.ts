@@ -1,6 +1,6 @@
 // What each claim is, in plain words, with no data attached: pages can name and describe a claim before any
 // check has run (the site prerenders them), and the module builders take their titles from here.
-import type { VerificationCheck, VerificationResult } from "@climatechain/core";
+import type { VerificationCheck, VerificationResult } from "@grounding-climate/core";
 
 export type ClaimId = "building" | "energy" | "earth" | "battery" | "carbon" | "disclosure";
 

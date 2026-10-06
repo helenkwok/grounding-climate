@@ -1,5 +1,5 @@
 {
-  "name": "climatechain",
+  "name": "grounding-climate",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -11,14 +11,14 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/energy-forecast && npm run build --workspace @climatechain/battery-dpp && npm run build --workspace @climatechain/carbon-registry && npm run build --workspace @climatechain/disclosure && npm run build --workspace @climatechain/earth-observation && npm run build --workspace @climatechain/demo && npm run build --workspace @climatechain/site",
-    "test": "npm run test --workspace @climatechain/core && npm run test --workspace @climatechain/crypto-node && npm run test --workspace @climatechain/webmcp && npm run test --workspace @climatechain/building-mrv && npm run test --workspace @climatechain/energy-forecast && npm run test --workspace @climatechain/battery-dpp && npm run test --workspace @climatechain/carbon-registry && npm run test --workspace @climatechain/disclosure && npm run test --workspace @climatechain/earth-observation && npm run test --workspace @climatechain/site",
+    "build": "npm run build --workspace @grounding-climate/core && npm run build --workspace @grounding-climate/crypto-node && npm run build --workspace @grounding-climate/webmcp && npm run build --workspace @grounding-climate/building-mrv && npm run build --workspace @grounding-climate/energy-forecast && npm run build --workspace @grounding-climate/battery-dpp && npm run build --workspace @grounding-climate/carbon-registry && npm run build --workspace @grounding-climate/disclosure && npm run build --workspace @grounding-climate/earth-observation && npm run build --workspace @grounding-climate/demo && npm run build --workspace @grounding-climate/site",
+    "test": "npm run test --workspace @grounding-climate/core && npm run test --workspace @grounding-climate/crypto-node && npm run test --workspace @grounding-climate/webmcp && npm run test --workspace @grounding-climate/building-mrv && npm run test --workspace @grounding-climate/energy-forecast && npm run test --workspace @grounding-climate/battery-dpp && npm run test --workspace @grounding-climate/carbon-registry && npm run test --workspace @grounding-climate/disclosure && npm run test --workspace @grounding-climate/earth-observation && npm run test --workspace @grounding-climate/site",
     "check:rights": "node scripts/check-source-rights.mjs",
     "sources:attribution": "node scripts/render-source-attribution.mjs",
     "sources:attribution:check": "node scripts/render-source-attribution.mjs --check",
     "check": "npm run build && npm run test && npm run check:rights && npm run sources:attribution:check && npm run check:cadi && npm run check:cases",
     "building:prepare": "node scripts/prepare-bdg2-subset.mjs",
-    "building:analyze": "npm run analyze --workspace @climatechain/building-mrv --",
+    "building:analyze": "npm run analyze --workspace @grounding-climate/building-mrv --",
     "energy:inspect": "node scripts/inspect-energy-eva-zenodo.mjs",
     "battery:prepare": "python scripts/prepare-batterylife-calb.py",
     "battery:smoke": "node scripts/smoke-batterylife-calb.mjs",

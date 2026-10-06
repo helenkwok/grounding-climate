@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   canonicalize,
   traceProvenance,
   validateBundle,
@@ -11,7 +11,7 @@ import type { ClimateCaseBundle } from "../src/index.js";
 
 function sampleBundle(): ClimateCaseBundle {
   return {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: "case:test-building",
     title: "Building MRV provenance test",
     capabilities: ["building-meter-mrv", "carbon-recalculation"],
@@ -56,7 +56,7 @@ function sampleBundle(): ClimateCaseBundle {
         },
         rights: {
           redistribution: "allowed",
-          attribution: "ClimateChain test fixture",
+          attribution: "Grounding test fixture",
         },
       },
       {
@@ -72,7 +72,7 @@ function sampleBundle(): ClimateCaseBundle {
         },
         rights: {
           redistribution: "allowed",
-          attribution: "ClimateChain test fixture",
+          attribution: "Grounding test fixture",
         },
       },
     ],

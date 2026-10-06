@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 
 import {
   CarbonRegistryService,

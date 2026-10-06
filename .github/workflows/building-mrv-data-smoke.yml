@@ -26,7 +26,7 @@ jobs:
       - name: Prepare pinned BDG2 subset
         run: |
           npm run building:prepare -- \
-            --out /tmp/climatechain-bdg2 \
+            --out /tmp/grounding-bdg2 \
             --hours 2160
       - name: Run real-data baseline/anomaly smoke
-        run: node scripts/smoke-bdg2-analysis.mjs /tmp/climatechain-bdg2
+        run: node scripts/smoke-bdg2-analysis.mjs /tmp/grounding-bdg2

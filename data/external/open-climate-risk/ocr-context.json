@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.ocr-context/0.1",
+  "schemaVersion": "grounding.ocr-context/0.1",
   "source": {
     "name": "Open Climate Risk v1.1.0 (CarbonPlan), fire-risk tensor",
     "store": "s3://us-west-2.opendata.source.coop/carbonplan/carbonplan-ocr/output/fire-risk/tensor/production/v1.1.0/ocr.icechunk",
@@ -13,7 +13,7 @@
     },
     "years": "bp_2011 and rps_2011 are ~2011 conditions; bp_2047 and rps_2047 are ~2047 conditions"
   },
-  "derived": "Values sampled from OCR by ClimateChain; NaN cells (unburnable) are left out of the statistics.",
+  "derived": "Values sampled from OCR by Grounding; NaN cells (unburnable) are left out of the statistics.",
   "buildingSite": {
     "case": "building-mrv",
     "location": "BDG2 site coordinates of site Bear (site-level, not the building)",
@@ -71,7 +71,7 @@
     }
   },
   "attribution": [
-    "Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0, https://source.coop/carbonplan/carbonplan-ocr; values sampled by ClimateChain.",
+    "Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0, https://source.coop/carbonplan/carbonplan-ocr; values sampled by Grounding.",
     "Burn probability: Riley et al. 2025, USDA Forest Service Research Data Archive RDS-2025-0006, https://www.fs.usda.gov/rds/archive/catalog/RDS-2025-0006",
     "Risk to potential structures: Scott et al. 2024, RDS-2020-0016-2, https://www.fs.usda.gov/rds/archive/catalog/RDS-2020-0016-2",
     "Wind adjustment: CONUS404, Rasmussen et al., https://doi.org/10.5066/P9PHPK4F"

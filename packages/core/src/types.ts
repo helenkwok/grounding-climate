@@ -1,4 +1,4 @@
-export const CLIMATECHAIN_SCHEMA_VERSION = "climatechain.case/0.1" as const;
+export const GROUNDING_SCHEMA_VERSION = "grounding.case/0.1" as const;
 
 export type JsonPrimitive = string | number | boolean | null;
 export type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue };
@@ -348,7 +348,7 @@ export type ClimateNode =
   | Anchor;
 
 export interface ClimateCaseBundle {
-  schemaVersion: typeof CLIMATECHAIN_SCHEMA_VERSION;
+  schemaVersion: typeof GROUNDING_SCHEMA_VERSION;
   caseId: string;
   title: string;
   capabilities: string[];

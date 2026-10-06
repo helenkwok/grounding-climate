@@ -1,5 +1,5 @@
-import { validateBundle } from "@climatechain/core";
-import type { CaseContext, ContentDigest, CryptoProvider, ModelRun } from "@climatechain/core";
+import { validateBundle } from "@grounding-climate/core";
+import type { CaseContext, ContentDigest, CryptoProvider, ModelRun } from "@grounding-climate/core";
 
 import { runBuildingMrv } from "./analysis.js";
 import { buildBuildingMrvCase } from "./case.js";

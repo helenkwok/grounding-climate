@@ -1,4 +1,4 @@
-import type { ContentDigest } from "@climatechain/core";
+import type { ContentDigest } from "@grounding-climate/core";
 
 export interface EnergyPoint {
   timestamp: string;
@@ -55,7 +55,7 @@ export interface PublishedBenchmarkReference {
   mae: number;
   rmse: number;
   mape: number;
-  reproducedByClimateChain: boolean;
+  reproducedByGrounding: boolean;
   sourceRepository: string;
   sourcePath: string;
 }

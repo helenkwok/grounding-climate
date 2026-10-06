@@ -1,8 +1,8 @@
 // Loads what the carbon case is built from: the committed ACR records, the person's decisions, and any reports the
-// reviewer brings with --import <registry>:<kind>:<file>:<page URL>. ClimateChain never fetches from a registry.
+// reviewer brings with --import <registry>:<kind>:<file>:<page URL>. Grounding never fetches from a registry.
 import { readFile } from "node:fs/promises";
 
-import { CarbonRegistryService, normalizeRegistryCsv } from "@climatechain/carbon-registry";
+import { CarbonRegistryService, normalizeRegistryCsv } from "@grounding-climate/carbon-registry";
 
 export const DECISIONS = "reports/carbon-registry/coverage-decisions.json";
 const root = new URL("../../", import.meta.url);

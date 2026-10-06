@@ -11,8 +11,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_ROOT = ROOT / "dist" / "submission"
-STAGE = OUT_ROOT / "climatechain"
-ZIP_PATH = OUT_ROOT / "climatechain-submission.zip"
+STAGE = OUT_ROOT / "grounding-climate"
+ZIP_PATH = OUT_ROOT / "grounding-climate-submission.zip"
 
 DOCS = [
     "docs/judging-demo.md",
@@ -69,7 +69,7 @@ def main() -> int:
         raise RuntimeError("demo build output is missing")
     shutil.copytree(demo_src, STAGE / "demo")
 
-    submission_readme = """# ClimateChain submission bundle
+    submission_readme = """# Grounding submission bundle
 
 This ZIP is a presentation/review bundle, not the full source repository.
 
@@ -91,7 +91,7 @@ Full source code must be provided through the public repository required by the 
         if p.is_file() and p.name != "MANIFEST.json"
     )
     manifest = {
-        "schemaVersion": "climatechain.submission-manifest/0.1",
+        "schemaVersion": "grounding.submission-manifest/0.1",
         "thirdPartyRawDataIncluded": False,
         "fileCount": len(files),
         "files": [

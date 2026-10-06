@@ -9,7 +9,7 @@ import type { DemoModule } from "../../demo/src/modules";
 export const base = import.meta.env.BASE_URL.replace(/\/?$/, "/");
 // The earth scene arrays are fetched from the site root, not from the page's own folder. Set before any live
 // module loads, since the shared module builders import all of them.
-(globalThis as { climatechainDataBase?: string }).climatechainDataBase = base;
+(globalThis as { groundingDataBase?: string }).groundingDataBase = base;
 
 const builders: Record<ClaimId, () => Promise<DemoModule>> = {
   building: async () => {

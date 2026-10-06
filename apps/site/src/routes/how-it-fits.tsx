@@ -5,7 +5,7 @@ import { CLAIMS } from "../../../demo/src/claims-meta";
 import { STAGES } from "../components";
 
 export const Route = createFileRoute("/how-it-fits")({
-  head: () => ({ meta: [{ title: "How it fits your work · ClimateChain" }] }),
+  head: () => ({ meta: [{ title: "How it fits your work · Grounding" }] }),
   component: HowItFits,
 });
 
@@ -29,7 +29,7 @@ function HowItFits() {
         <p className="kicker">For verifiers, reporting teams and registries</p>
         <h1>How it fits your work</h1>
         <p className="data">
-          ClimateChain doesn't replace your data systems. It sits between a reported figure and the people who rely on it:
+          Grounding doesn't replace your data systems. It sits between a reported figure and the people who rely on it:
           evidence goes in, a signed record comes out, and anyone can check that record.
         </p>
       </header>
@@ -131,7 +131,7 @@ function Agents() {
     <section id="agents" className="section" aria-labelledby="agents-title">
       <h2 id="agents-title">AI agents use the same checks</h2>
       <p className="intro">
-        Through WebMCP, this page offers ClimateChain's checks to an AI agent in your browser as tools, only those that fit
+        Through WebMCP, this page offers Grounding's checks to an AI agent in your browser as tools, only those that fit
         the open case. Anything consequential still waits for a person. No agent in your browser? The guided audit makes
         the same calls here.
       </p>

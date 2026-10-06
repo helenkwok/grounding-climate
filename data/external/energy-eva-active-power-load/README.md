@@ -10,7 +10,7 @@ to JSON. They come from the EnergyTS time-series dataset (doi:10.5281/zenodo.170
 `manifest.json` records the archive and the member's checksums.
 
 **Licence:** CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), both the Zenodo record and the original data.
-The only change is the format: parquet to JSON, with ISO timestamps. The parquet does not record a unit; ClimateChain
+The only change is the format: parquet to JSON, with ISO timestamps. The parquet does not record a unit; Grounding
 labels the values MW.
 
 **Cite:**

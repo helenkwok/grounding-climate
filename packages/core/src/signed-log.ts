@@ -8,7 +8,7 @@ import type {
 } from "./crypto.js";
 import type { ContentDigest } from "./types.js";
 
-export const SIGNED_LOG_VERSION = "climatechain.signed-log/0.1" as const;
+export const SIGNED_LOG_VERSION = "grounding.signed-log/0.1" as const;
 
 export interface SignedLogRecord<T = unknown> {
   version: typeof SIGNED_LOG_VERSION;
@@ -59,7 +59,7 @@ export async function appendSignedLogRecord<T>(
 
   const recordDigest = await digestRecordBody(body, options.hashProvider);
   const payload = canonicalBytes({
-    domain: "climatechain.signed-log-record",
+    domain: "grounding.signed-log-record",
     body,
     recordDigest,
   });
@@ -125,7 +125,7 @@ export async function verifySignedLog<T>(
     }
 
     const payload = canonicalBytes({
-      domain: "climatechain.signed-log-record",
+      domain: "grounding.signed-log-record",
       body,
       recordDigest: record.recordDigest,
     });

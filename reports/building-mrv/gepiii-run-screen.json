@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.gepiii-run-screen/0.2",
+  "schemaVersion": "grounding.gepiii-run-screen/0.2",
   "labels": {
     "source": "https://raw.githubusercontent.com/buds-lab/ashrae-great-energy-predictor-3-solution-analysis/master/solutions/rank-1/input/bad_meter_readings.zip",
     "licence": "MIT",

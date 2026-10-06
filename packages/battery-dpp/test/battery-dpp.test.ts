@@ -5,7 +5,7 @@ import {
   createEvidenceRoot,
   domainSeparatedBytes,
   verifyEvidenceRoot,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   ContentDigest,
   CryptoProvider,
@@ -13,7 +13,7 @@ import type {
   KeyMetadata,
   SigningKeyRef,
   VerificationKey,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import {
   buildBatteryPassport,

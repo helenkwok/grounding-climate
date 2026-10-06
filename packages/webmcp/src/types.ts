@@ -3,7 +3,7 @@ import type {
   ClimateNode,
   NodeRef,
   Verification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 export type ClimateCapability =
   | "public-disclosure"

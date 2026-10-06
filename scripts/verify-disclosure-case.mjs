@@ -2,9 +2,9 @@
 // and checks the committed signed attestation against it with only the published public keys.
 import { readFile } from "node:fs/promises";
 
-import { HYBRID_SIGNATURE_POLICY, publishedKeyResolver, verifySignedAttestation } from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
-import { DisclosureService } from "@climatechain/disclosure";
+import { HYBRID_SIGNATURE_POLICY, publishedKeyResolver, verifySignedAttestation } from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
+import { DisclosureService } from "@grounding-climate/disclosure";
 
 const json = async (path) => JSON.parse(await readFile(new URL("../" + path, import.meta.url), "utf8"));
 const run = await json("reports/disclosure/case-run.json");

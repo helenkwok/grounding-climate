@@ -1,4 +1,4 @@
-// Writes the ACR records ClimateChain commits: the American Carbon Registry issuance and retirement fixtures from
+// Writes the ACR records Grounding commits: the American Carbon Registry issuance and retirement fixtures from
 // CarbonPlan's OffsetsDB pipeline at a pinned commit, reduced to the columns the reconciliation reads. Beneficiary
 // and account-holder names are left out: no check uses them, and some name individuals.
 // It also writes projects.csv: the same fixture set's project list, fetched here at the pinned commit and checked
@@ -66,11 +66,11 @@ files.push({
 });
 
 const manifest = {
-  schemaVersion: "climatechain.acr-subset/0.1",
+  schemaVersion: "grounding.acr-subset/0.1",
   rightsManifestId: "acr-offsetsdb-subset",
   citation:
     "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit " +
-    prepared.commit + ", tests/data/american-carbon-registry). Columns reduced by ClimateChain; values unchanged.",
+    prepared.commit + ", tests/data/american-carbon-registry). Columns reduced by Grounding; values unchanged.",
   files,
 };
 await writeFile(new URL("manifest.json", OUT), JSON.stringify(manifest, null, 2) + "\n");
