@@ -215,6 +215,35 @@ export function buildBuildingMrvCase(
             "Accepted electricity kWh multiplied by a traced location-based grid factor.",
           notes:
             "Flagged meter intervals are excluded from the accepted measurement set and reported separately.",
+          accounting: {
+            included: [
+              "Metered electricity of building " + dataset.metadata.buildingId + ", " + firstMeter.timestamp + " to " +
+                lastMeter.timestamp + ", less the flagged readings a person decided to exclude",
+              "Location-based grid factor " + factor.valueKgCo2ePerKwh + " kgCO2e/kWh (" + factor.geography + ", " +
+                (factor.effectivePeriod?.label ?? factor.sourceDocument ?? factor.sourceUri) + ")",
+            ],
+            excluded: [
+              "Excluded readings (" + analysis.emissions.excludedEnergyKWh.toFixed(3) + " kWh), which are not replaced by an estimate",
+              "Other meters (gas, steam, chilled water) and on-site generation",
+              "Scope 1 and Scope 3 emissions",
+            ],
+            policyChoices: [
+              "Location-based, not market-based, accounting",
+              "Readings are flagged at a robust z of at least " + analysis.anomalies.threshold +
+                (analysis.anomalies.minRunHours
+                  ? ", when exactly zero, or in a run of at least " + analysis.anomalies.minRunHours + " identical hourly values"
+                  : ""),
+              "A flagged reading counts only when a person decides to keep it",
+              "Advice is shown as a suggestion at p(meter_fault) >= " + JEV_HAND_OFF.threshold +
+                ", for a wrong exclusion costed at " + JEV_HAND_OFF.costRatio + " reviews",
+            ],
+            notAssessed: [
+              "The cause of each flagged reading",
+              "Transmission and distribution losses",
+              "Hourly change in the grid's carbon intensity: the factor is an annual average",
+              "Physical climate risk to the building, including wildfire",
+            ],
+          },
         },
         assessments: [
           {

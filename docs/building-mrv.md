@@ -255,6 +255,17 @@ With a person's review costing 1 and a missed fault costing nothing extra, the t
 
 The case uses 5 reviews, so advice is shown as "suggested" at P(meter_fault) of 0.97 or more and as "needs a person" otherwise. The cost ratio is a policy choice, not a measurement, and the case records it with each advice run (`handOff`, `handOffPolicy`). A wrong exclusion silently lowers the reported emissions, the error the case exists to catch, so a cheaper ratio was not used. At 5 and 10 reviews jeval found that separate thresholds per flag reason do not pay; zeros had 56 labelled flags, below the 100 it needs for a threshold of their own. The threshold is compared with the probability, not with the normalised `confidence` the API also returns. All five case flags are at 0.98 to 1.00, so all are shown as suggested. Either way a person decides each one.
 
+## Accounting boundary
+
+The claim records its accounting boundary apart from the numbers (`claim.boundary.accounting`), so a reviewer can see which parts are measured and which are policy choices another reviewer could make differently. It is signed with the rest of the case.
+
+- **Counts:** the building's metered electricity over the case period, less the flagged readings a person decided to exclude, times the location-based eGRID2016 CAMX factor.
+- **Leaves out:** the excluded readings, which are not replaced by an estimate; other meters and on-site generation; Scope 1 and Scope 3.
+- **Policy choices:** location-based rather than market-based accounting; the flag rules (robust z of 6, exact zeros, runs of 168 identical hourly values); a flagged reading counts only when a person keeps it; the 5-review cost ratio behind the advice hand-off.
+- **Not assessed:** the cause of each flagged reading; transmission and distribution losses; hourly change in the grid's carbon intensity; physical climate risk, including wildfire (the Open Climate Risk values are context only).
+
+`building_reconstruct_emissions` returns the boundary with the emissions, and the demo card shows it.
+
 ## Emissions reconstruction
 
 The pinned real-data smoke now has enough source geography to use a historical factor defensibly. The selected BDG2 metadata exposes Berkeley coordinates, and the 2016 measurement period is matched to U.S. EPA eGRID2016 CAMX / WECC California total-output CO₂e.
