@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "climatechain.acr-subset/0.1",
+  "rightsManifestId": "acr-offsetsdb-subset",
+  "citation": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by ClimateChain; values unchanged.",
+  "files": [
+    {
+      "path": "issuances.csv",
+      "registry": "american-carbon-registry",
+      "kind": "issuance",
+      "rows": 100,
+      "columns": [
+        "Project ID",
+        "Vintage",
+        "Total Credits Issued",
+        "Date Issued (GMT)"
+      ],
+      "sha256": "9888d2177ba55ec59f5c2641054c6f45209a2a346c81c5cfc35e92d5532b1210",
+      "upstream": {
+        "uri": "https://raw.githubusercontent.com/carbonplan/offsets-db-data/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry/issuances.csv",
+        "path": "tests/data/american-carbon-registry/issuances.csv",
+        "gitBlobSha": "3209dc5cd5ad40e54d7dc040d4e6caf2014ae69f",
+        "commit": "c34ec955df0988009ac14e8abd91013f3b03e4f5"
+      }
+    },
+    {
+      "path": "retirements.csv",
+      "registry": "american-carbon-registry",
+      "kind": "retirement",
+      "rows": 100,
+      "columns": [
+        "Project ID",
+        "Vintage",
+        "Quantity of Credits",
+        "Status Effective (GMT)",
+        "Credit Serial Numbers",
+        "Date Issued (GMT)"
+      ],
+      "sha256": "3dc15fa1277eb1a0764718e76f0ee65be9c1c7424957f75a56f59c39dda2bf65",
+      "upstream": {
+        "uri": "https://raw.githubusercontent.com/carbonplan/offsets-db-data/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry/retirements.csv",
+        "path": "tests/data/american-carbon-registry/retirements.csv",
+        "gitBlobSha": "1388abca2ff4d83bd849010921582eed3fa72737",
+        "commit": "c34ec955df0988009ac14e8abd91013f3b03e4f5"
+      }
+    }
+  ]
+}

@@ -342,6 +342,117 @@
       ]
     },
     {
+      "id": "acr-offsetsdb",
+      "name": "American Carbon Registry public report records (OffsetsDB test subset, reduced columns)",
+      "component": "registry-data",
+      "canonicalUrl": "https://github.com/carbonplan/offsets-db-data/tree/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry",
+      "upstreamPublisher": "American Carbon Registry (Winrock International); collected by CarbonPlan OffsetsDB",
+      "retrievedAt": "2026-10-06",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "LicenseRef-ACR-Terms-of-Use",
+        "name": "ACR Website Terms of Use, clause on ACR public reports",
+        "url": "https://acrcarbon.org/term-and-condition/"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "unclear",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/acr-offsetsdb",
+        "note": "100 issuances and 100 retirements, reduced to project, vintage, quantity, date and serial range. Beneficiary and account-holder names are not committed."
+      },
+      "attribution": "American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by ClimateChain; values unchanged.",
+      "notes": [
+        "ACR's terms allow information and data from ACR public reports to be used for adaptation, reproduction or derivative works if it is accurately represented and cited, and not used or presented in an unfair, misleading or discriminatory manner.",
+        "The records are a bounded test sample; ClimateChain states this wherever it reports on them.",
+        "CarbonPlan claims no copyright in the factual data (carbonplan-offsets-data)."
+      ],
+      "evidence": [
+        {
+          "url": "https://acrcarbon.org/term-and-condition/",
+          "finding": "Data from ACR public reports may be reproduced if accurately represented and cited (checked 2026-10-06)."
+        }
+      ]
+    },
+    {
+      "id": "car-registry-reports",
+      "name": "Climate Action Reserve registry reports",
+      "component": "registry-data",
+      "canonicalUrl": "https://thereserve2.apx.com/",
+      "upstreamPublisher": "Climate Action Reserve",
+      "retrievedAt": "2026-10-06",
+      "licence": {
+        "status": "terms-restricted",
+        "name": "Climate Action Reserve Terms of Use (July 2023)",
+        "url": "https://climateactionreserve.org/wp-content/uploads/2023/07/Final-TOU-7.26-redline.pdf"
+      },
+      "permissions": {
+        "use": "reference-only",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "reviewer-supplied",
+        "note": "Never fetched or committed by ClimateChain. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept."
+      },
+      "attribution": "Climate Action Reserve registry, report downloaded by the reviewer.",
+      "notes": [
+        "The registry's robots.txt disallows all automated access (User-agent: * / Disallow: /), so no ClimateChain code fetches from it.",
+        "The terms do not grant reuse of public reports."
+      ],
+      "evidence": [
+        {
+          "url": "https://thereserve2.apx.com/robots.txt",
+          "finding": "Disallow: / for all user agents (checked 2026-10-06)."
+        },
+        {
+          "url": "https://climateactionreserve.org/wp-content/uploads/2023/07/Final-TOU-7.26-redline.pdf",
+          "finding": "No grant to reuse or redistribute registry reports."
+        }
+      ]
+    },
+    {
+      "id": "gold-standard-registry-reports",
+      "name": "Gold Standard Impact Registry reports",
+      "component": "registry-data",
+      "canonicalUrl": "https://registry.goldstandard.org/",
+      "upstreamPublisher": "Gold Standard Foundation",
+      "retrievedAt": "2026-10-06",
+      "licence": {
+        "status": "terms-restricted",
+        "name": "Gold Standard Registry Terms of Use (copy found; may be outdated)",
+        "url": "https://cdn.ihs.com/www/pdf/GSF-Terms-of-Use.pdf"
+      },
+      "permissions": {
+        "use": "reference-only",
+        "redistribution": "prohibited",
+        "commercialUse": "prohibited",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "reviewer-supplied",
+        "note": "Never committed. A reviewer brings an export from the registry; only a digest of the normalised records is kept."
+      },
+      "attribution": "Gold Standard Impact Registry, report exported by the reviewer.",
+      "notes": [
+        "The terms found prohibit reproduction other than for individual use and sharing copies with a third party."
+      ],
+      "evidence": [
+        {
+          "url": "https://cdn.ihs.com/www/pdf/GSF-Terms-of-Use.pdf",
+          "finding": "Reproduction prohibited other than for individual use; may not be shared with a third party."
+        }
+      ]
+    },
+    {
       "id": "cloudflare-boring-code",
       "name": "Cloudflare boring",
       "component": "code",

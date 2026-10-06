@@ -1,0 +1,18 @@
+[
+  {
+    "flagId": "coverage:before-window",
+    "decision": "out-of-sample",
+    "reason": "The retirement records date every retired block before the sample's first issuance (2024-04-26), so the issuance is outside this 100-row sample, not missing.",
+    "decidedBy": "person:carbon-auditor",
+    "decidedAt": "2026-10-06T07:11:16Z",
+    "inputDigest": { "algorithm": "SHA-256", "value": "IfqoxBmcOi7NEFJ4PsJPyS_K1KWq6O5Q-jvKF5gosS8" }
+  },
+  {
+    "flagId": "coverage:inside-window",
+    "decision": "investigate",
+    "reason": "Issued inside the sample's window (2024-04-26 to 2026-04-14) yet absent from it. A 100-row sample can miss them, but the dates do not show it, so look them up in ACR's registry (now on ICE GreenTrace) first.",
+    "decidedBy": "person:carbon-auditor",
+    "decidedAt": "2026-10-06T07:11:16Z",
+    "inputDigest": { "algorithm": "SHA-256", "value": "IfqoxBmcOi7NEFJ4PsJPyS_K1KWq6O5Q-jvKF5gosS8" }
+  }
+]

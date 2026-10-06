@@ -1,0 +1,502 @@
+{
+  "schemaVersion": "climatechain.carbon-case-run/0.1",
+  "runAt": "2026-10-06T07:11:16.499Z",
+  "organisingQuestion": "Do these registry records show any credit retired twice or beyond its issuance, and who decided what a gap in the records means?",
+  "clean": {
+    "records": 200,
+    "supported": 3,
+    "issuedNotRetired": 84,
+    "missingIssuance": 22,
+    "overRetired": 0,
+    "duplicateExcess": 0,
+    "result": "insufficient-evidence",
+    "coverageDecision": [
+      {
+        "flag": "coverage:before-window",
+        "state": "decided",
+        "decision": "out-of-sample"
+      },
+      {
+        "flag": "coverage:inside-window",
+        "state": "decided",
+        "decision": "investigate"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": true,
+    "changedRefs": [],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "tamper": {
+    "duplicated": "ACR-FR-1129-2025-2917-30932 to 35143",
+    "records": 201,
+    "supported": 3,
+    "issuedNotRetired": 84,
+    "missingIssuance": 22,
+    "overRetired": 0,
+    "duplicateExcess": 1,
+    "result": "mismatch",
+    "coverageDecision": [
+      {
+        "flag": "coverage:before-window",
+        "state": "stale",
+        "decision": "out-of-sample"
+      },
+      {
+        "flag": "coverage:inside-window",
+        "state": "stale",
+        "decision": "investigate"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": false,
+    "changedRefs": [
+      {
+        "nodeType": "claim",
+        "id": "claim:carbon-registry-reconciliation"
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:carbon:american-carbon-registry:retirement"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:carbon-registry"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:coverage-decision"
+      }
+    ],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "publishedKeys": [
+    {
+      "keyId": "key:demo-ed25519:2026-10-06T07:11:16.499Z",
+      "suite": "classical",
+      "algorithm": "Ed25519",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-06T07:11:16.499Z",
+      "validFrom": "2026-10-06T07:11:16.499Z",
+      "verificationKey": {
+        "keyId": "key:demo-ed25519:2026-10-06T07:11:16.499Z",
+        "suite": "classical",
+        "algorithm": "Ed25519",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MCowBQYDK2VwAyEA9abM0zTn22BvA--34P6EXO98ymc1ah4egxLhpma_Zjg"
+      }
+    },
+    {
+      "keyId": "key:demo-ml-dsa-65:2026-10-06T07:11:16.499Z",
+      "suite": "post-quantum",
+      "algorithm": "ML-DSA-65",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-06T07:11:16.499Z",
+      "validFrom": "2026-10-06T07:11:16.499Z",
+      "verificationKey": {
+        "keyId": "key:demo-ml-dsa-65:2026-10-06T07:11:16.499Z",
+        "suite": "post-quantum",
+        "algorithm": "ML-DSA-65",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAJv-lUoVFYp5AEANBxgeGpHlky_bDEGOnERPK6rIqq-qq1xgxwZzoEt34RFA2PJf0lcjiTVdVM2S5b3g8g_BE43rYkEvfMdOT3G1xtNpRqfmZooh_GBNXq4NkHiCe97W8RzNeueT7ANQWgO0GCve0a1kS4vLdAcs3wIzTNv-JRLrSc1VHOn0dFif2uC89ewgI7qkp3O62EJxFtXC2-lq1_72L3ZxGJhDclRRtY5eelrcfd7HqjDCioZxgBQigILsoacGIVXJm8XbKq6uFiI2M3b_-hvSOXSRoFLAU9YXtHzxQs80K07kxkrjdqfpmjZ_ovljbicRlYck-7v-It8FRXgQENkngeCsChMub5gu8K5P-CidSvsIZl9boFCgm_48HsMWs6MLW6Mob-Auvg9kwso_XvEj_VfZMei5xsBl-JmTVhSl-aSCrqv6f0rgoK8BFwd5l_T20hP1bzGxS9Le-jsFXQVMk-LuX4IjAqLgD5xDDmPvh4hT3kugooVc4A0IlVtt5o148PjquYj9Own0wO69WquXBJhWzU4xB8u96UoWni1upAAo7WoRm43EXbETSPQtL2WHpZj--IsrqdfB9CdQAriuuz1Rby97miE4AMWaNvM7lzhF6cSi-JJ8yHjHXuLmQvDrZSEcOJK_3bkpLaOkpkpjfS-VEaBLnOsRaL7RtDpZ5L8mrfDD2sCk4i12JdHLEVwA6SMiiInchDa-V8sD9osKmfoOGMmRbDd21vUSxcmeghntvutYSp_M2q9y-WPRtX4Acqim-BPrnPvLP2ANjkYsI3SA9osfK3VgYQmMuHDKR4aA6EiMZhanOHTjQjbK3qm37RLuzxnDDIJ5Tz0QUAZ-8qqqputQXXsQn_Y9kah85VRCQJVyrekdprVYTveBzBJAST_4WQ98X9KlaMMUoqbboDfbtiL1g_KoMFVHGrnsfG6hsW1EIwDUGgMOzLJ0ZzmjSSCPdtaHUSJeMQ1NMfbL6wLLkPJM0Wuk1pDEd2MM5k-Ky_3PAU3_zoRllZu-WNKd3LEMicUkzqjHoYFDQ23KXQAyBy_rM3gBbzaafW2NHkwEU7mflRHHb1MdXY4TU4nyKpzhZ5QPWEXj6943rQJsgf2wL0bLlB8H1Ee6JziH0wNAOJfsfbONXnUMmwm97PP8xIpGOHruIT05wwfRo8jJlLOk_Jseyw8x5qhBGRbo-MtilHSTMRh1bTG0pI9GyIoHPSuF6ZY_fGTamQ57qfHflBW5ppr5DnhNTFW5yrIAvuyah6PZ3fDCGXl61_7eu7zW88QHsa5hSG5iQBsymvzW62Pb3Gxgj4wBJitfdVj0mj7vQsfG6XMTy7B3ySzcRqBsjTz7W0AF-YmE8nUE6IdKpLSZZ5jdjk_f83MNcy2mEW8mJ6v3rtkjroqJVMzkq-YUVO10Y-6bzJRAwGkHzcq2-I4FfK9LNkFsGhZisxKb7gWCMZNxO98mcElxy-TNqMwmuCXfeLms9HtN2FU-iHhxjvGpDasF_K61MXhgaRMN-XC5PhMUeAdG9bpP1YxU5hbG8pX-2Firfhzwu-SEa2isHA3Od3KrZEDT_88L3GZLnA4o3nFfSTDS8dN-SfgBXAEbGI5yT5pfOManHnlOgQGLMgp2sTDfGsokhk1-ioRy3KDJUo0Edng-6MKJfQMPYrofrzdw3c9OKmc02k9X6FzJbYTIkTkRawZOqo1z-45iUX__MiBWa6wzEIR6GOQyw6pIqeOdu3QFTa-eCGQFahPbnYjjGsY57lBnaFvUbB8eujKonrFbVAonJOmGsVbylvrjhmIjBT99c2wJrDjRQ4nejjk5qd2e0xmRjCbjM2ao4EBoyRORkr_guI8rA5oObCG1f1RW-Afs1JLigsLEFOsb_AILrjBTKKlZyuWhh6KyTT7yNvA2nmHNN9Pa9JuNnzF1DPTf2yEmDHwjw76KFmZjAf-1z3DbSA3vmpquKU_QHaVELGbzCpZNAf5U3y4T0Rx_Nn3R0t3pCY9HWDGth1HyxouETMDdMOLUgvDMjDP10AdeRbL7PKFW1qGXsZfTwdvC4-GOewL4x6JX1iGEO-u6aQnXkQvDO1Ni0SRkQMmOMNHunmf7Ywx5vPpXwL81Wo20IIpPUVYdI-G9KzVPxSv_CtSziuHXDfWhbEJ1bMjd-DJHho36tO57mx3izo98ptIVBWp2DEQJ_iVs8AVf65krcNe53CECAmiX005XtgwHNHVVGF7Pp9hceNCPWkiXWtDVfCvkGZ8PctP7H03Ts7jwuQqk6FQJcvzrffvzj4zKidi6yF3pZ0QGEO801iXy_JZbq74MfNuiVo4fQUPumZ6wakiDZ15l0aNs8W8kJ-K_qnuiiWeSaqU4YALddV8XpfkAojk381vFZKKU1RWxZE96PbeGIWEQNIj_D04mThxgGpWzgKQs4iRRTEB0QjC4B4XkUpyuv5KBxFs9_wLEFylV1MxXdCT0l5pDWcHT_G7Mr49xCeNZ4RYL0vSdqKTic8Oh3jWSw2nUXRoL82jH3hXy20KvDT_59nZMU8fhXL1Yjk5xxL4D5N6Ixrp3jOogHWPl4hEWKVdIdBeAKrvP5CH-wScUAHxUSWxTs5Ep"
+      }
+    }
+  ],
+  "attestation": {
+    "payload": {
+      "version": "climatechain.attestation/0.1",
+      "id": "attestation:carbon-registry:2026-10-06T07:11:16.499Z",
+      "attester": {
+        "subjectId": "org:climatechain-demo",
+        "name": "ClimateChain demo run"
+      },
+      "statement": "Registry records reconciled by project and vintage. Verification result at signing: insufficient-evidence.",
+      "claimRefs": [
+        {
+          "nodeType": "claim",
+          "id": "claim:carbon-registry-reconciliation"
+        }
+      ],
+      "verificationRef": {
+        "nodeType": "verification",
+        "id": "verification:carbon-registry"
+      },
+      "evidenceRoot": {
+        "algorithm": "SHA-256",
+        "value": "rKoLiX0PUYWDSMDQrId5TM6ob7UZJ9uq3EUzY02b3Pc"
+      },
+      "manifestVersion": "climatechain.evidence-manifest/0.1",
+      "issuedAt": "2026-10-06T07:11:16.499Z"
+    },
+    "evidence": {
+      "manifest": {
+        "version": "climatechain.evidence-manifest/0.1",
+        "caseId": "case:carbon-registry:acr",
+        "caseSchemaVersion": "climatechain.case/0.1",
+        "rootRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:carbon-registry"
+          }
+        ],
+        "nodes": [
+          {
+            "ref": {
+              "nodeType": "claim",
+              "id": "claim:carbon-registry-reconciliation"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "xDserJ29C8LIcif8h5yih33TXV1Bnpxi8Ytf8otIjmk"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:carbon:american-carbon-registry:issuance"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "m-4dnqI_PdP2YJXEvCNw5zyPrWvOGBVMEBoMMhKSkpg"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:carbon:american-carbon-registry:retirement"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "Yl6aD_3ai8ihX4ISSAeEyhHUp5JHZKLG30bdH13BKfg"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:carbon-registry"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "h0txHBluD7FiBnAV8TdiWZRzhRObsOAi00d8Wak80_E"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:coverage-decision"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "QMFCdd-6awZYq--ik9R1U1sTLINJFAC168wcZ9moTfg"
+            }
+          }
+        ]
+      },
+      "root": {
+        "algorithm": "SHA-256",
+        "value": "rKoLiX0PUYWDSMDQrId5TM6ob7UZJ9uq3EUzY02b3Pc"
+      }
+    },
+    "envelope": {
+      "version": "climatechain.signature-envelope/0.2",
+      "domain": "climatechain.attestation",
+      "schemaVersion": "climatechain.attestation/0.1",
+      "payloadHash": {
+        "algorithm": "SHA-256",
+        "value": "UzuX_MxlboQ0kjP5gxGgFcaEwJSVSWBfplSLlB24QxY"
+      },
+      "createdAt": "2026-10-06T07:11:16.499Z",
+      "signatures": [
+        {
+          "suite": "classical",
+          "algorithm": "Ed25519",
+          "keyId": "key:demo-ed25519:2026-10-06T07:11:16.499Z",
+          "encoding": "base64url",
+          "value": "rqGqe6eF3-eYvdLn2OwY7InVtIQdGmvFMnej8RyJi5o1c2IRBpLNj3PWHeBvDlAT99JPILud5jelk1ZIHZ4-DQ"
+        },
+        {
+          "suite": "post-quantum",
+          "algorithm": "ML-DSA-65",
+          "keyId": "key:demo-ml-dsa-65:2026-10-06T07:11:16.499Z",
+          "encoding": "base64url",
+          "value": "Dn3HDb40WPDeeECVtmwBEGuZdwZeeQseuGLYwXZB7U3WMRVzp2Q-k7Hmwi5sh6_dlgR0y8sBu9XfBgX9ie33lF9gy_GKln-RCh6tWkTsp44MLW8q46S19g4IC9roEHBDR9jvDJaw3_Syx3PU5dqASMBrrLi7UJZzjEHRfIGnwbLDPJ7u07iQlwong0fdQmK0bKnuOz3W3mx3x5HPPthu2mMHs_I_Z-6lGeFJW_l0yoOaxN1DKjTDvKM2iA0ZZXQ8WhbGUrlhiexcCGXNbM1U4Ti6aCqMysdugbVgxxrAtRUdzjN8lJ2q9_GmIPu5Y_iO5LibnOrcfMnl7qd4JRXaYbxYFzJ3nw68XSvEeBoPD_uk2vxtJ1doeA397Z91CT5r5ifgxyQV0CzE72BPSnm4KuCKeU6zMxXgq64qTjF6YUa5PeTiNHE1mWJDVcdmJ92pmRpETHa94enmomQ0oUt45-Mtqh8-zFifgeSG3iRq--LXaHfCAsX9RWbY-hdrKqCFcLNRUIUKBK3E1RgKwuMfRyhFfG6AlC2crVxbiUAedEbyMtUIIFWsKHo9YsvbnwkRZyNZHhbwF0-m48j0oB5BlCmxNNdEHchFoQLGEMT2VNmuoaA-NBI9xWG2bh9nGdgLLOa6XNibv2JJTFAExXCt4O2NijhOGrUKt8O-nFPdNyZ3UU2YKmLlQ5lIFpi7Wq8-E46j16BQMK22Mfxub5Qsj52bDsr8rWf-wP7zvVKAOpOxVOI0S3uAessNM7dTy40ocmn0VnQWYv1TbEIu9u5i0isl3-rtO9dxpYRFjNFWgPdZYcvB2BaRHKrGGYilZVj31S3V0jHNeVoEicPI__uOuBqO6bt-8sRWxmW436H8A6Ro1Lw1kNrDiCLQYRsldmVc01Oqwx7SUwIkBFQyWM2qAd_64Y8A_GTNyhyLeXRg8GHd8yNICJFxVHMfzzIn-RL7bTRfc01vidmqIPC_nVnw-jToC88AdYEpAy3SyxGUzXAp6F-kbu68UkcSMVpukihaYD_jDR5k80yK87rRrMt-GD727YI8ARQtUNxVuvEi7c3bfMpZLEYaNaAwbwPdPjC7REjXA4Qx1t8_uzHsiqyq2yX970BA-g4TzCR7FhKg1yxLS_vaPzz5QAPH3CKvTivEUQe_oz52d6Wpi6lfZAeKNlnZUs5_VG0GuZiuGl9XycX9V83MG3bePoxsqU7YMI2PjjTRiUSgvsVc8vhIuOTboz385Ay_Sbu1YVBrcjy6rUkxvdTwT5z4t_ocH1uxyfRTAxV5gUMoUnCtvV71r_-xrmq5zYNzeV-oIrMd-kV1RC9pLu0eqpvXNUDl_8ATbIdInnfc_zhAhP5NbAQmqrV7j60sG-Xx0ff4zxhlmCj6DUTkkwc3LGlZTQElO57jYcHmDGLYwIZ9W49RA8TjzakP-9IwE6urvGxDtgZgHYp2Rlp6JKL5nv7CX8PhDL5rzT4naB4bwNpToR47CVp6myRPKXlrsY9ZaXN8fOYOhQQtFFvlSI19oAVVj0-Md-we5JnnOQbRWSXqeEoeKku92nG_9HvS-ITaTKqIGi3B3BFBf3rAHrmSOl3M0FCgJs51YvL8vnrEqhtetFKLO0ZeyBmwkTaJZsoZmNae57jIaXgCJd2lUnCgCYUnA9q6yloF6SiV25x0Cj60QnL0UXsimwAzejZ31V5Ul3hVAuPqe5ncwTuFA-MfJIOHnkHCtCz9v2YR4tL-UWCp7uzJ_tp_DV-EeVgVKI8Md8jvwq1tgUyu0roSkjSx1dAPo6t1CTwi5B-EV_CzuAHhXW70Xl-kqgZawdbUnIUH4CxSNA5RJ9j_wtS0MPvMFFqJ5ec6Pn2cYYqA8I3zy9lmxxWhSxpYD74Id87IrGqx7P1UxrS9weAlTvu8Ya1GdxSNunBgz4LEEFocGG0IQ0Oo2_dmV91zkJSFrJlXCy4ZWACfeTqqsQ3VkXkvfS3B2WAk6DLzcVc8nl3aVoX5gh_vFR58BlaN23NncKqoaSqmDTBPOSsHjV_ugOtZ9UldzpmDKvqxefRn6FuPJLZEPWShFDkAjAi2qllFdmBRhv6jRsqltBFsJ4fFD2DsivSZxhvgD8BpI137bLO-dVNFOGR5uGymqGG-heVWzRZBdVy6WdjRoIKbP511UYklj218yHizmeLkNzs9oBS_h3HLXoNb5TxDNUgAIjPLLy9AgNR8oD59pY842SXOMAh8NiFnaSmegwG6ZkVlF0NewRKJRs6XtJ2PCvmqeh456RHaSGJ31X8BK5TwdEbt2YfoHWABVPHtCn1a1WbCa7512nD8Y0OVqZNHsZ_LYQOe-viLMOnk-yDdNyuHHWcwkcs-vPUZO-N0jxfVQmHmH77Eu23IcbyGZAd9UcbcIaXCW3K1uw5JTYQ1fVBGiC7ChfGeRgsVTnhN1Jv5QQ5QSwXGQELVx69wsPMcNCehe_p3qpzp9p9SoMn2sltASxpNnk9AH-Q8MoJZTvFlQ9sI_8rPYyf4j7ubm6dbQ74teFC6-o8Uz1OCYdgHZoF5Z3nFsM0pzd0TBZQvSUEPC1q_69JRqDN7Wl6n8PF3Mi_REMl2a57GgwYB1gUSsJmwYRbGxT79o7grFlg9I6P6vYKLgo62nSu9mqqs9OiHqXJqvCbLgZj_GfBRrehhyRw0WF-oIsFq8eBX-5JbtQD7V1wUEjbuevu-QEVatqVKwJyhk7IOCKs3CDLgfCT2Xn_perpGJmWLObxY0hAcL0H7Y1LQ-q2HSXx70Z0yEB3AYA9YlUVhhWHErkGFkVY57sG8j20U0yVl9zLW-xto1l9b7fFW8iT33g4l5c_cxJXTmwXL2_9GuX8c1JfCeFdkTzphO_Fa0lmdLHCpS3ISMCpYQbXvSLbZ67gmtr65uTllWxGb4Fu56ZRJF4dfLu_jCFs0Jpmos8XiZ9kstlk-njxVT4Pe05iiblh5MMJ3O1it3c4JwQ6Ub5q4AS43JudyMtJfExT4j3T7VkkiZX3vf6It4uuiBK3WSqaHoY62LNsxqTvWEqDlFLMI0vYp1WCI8aVEU3j1vYGqIDThGg14dKLHKuCx_lJ-X50-lnG23aQUsRD6CTUnjSOXmCpnnnbIxPIFusG2BFsbxDRWy8hcI_M6MjQ6TqXG7ZfCCA4UaS-PAE13rj7JzKl_OP-DssINmP3HhIhGU3653kIqoUzzVfpU4WvXmUiZQyl6wSYT26TuIbgTt7t_1-BS4q0pvkZOt7F85tguoa1C8t3xdNVV4sjaa9RdLVwUEsa23mo60AEEAQzmSzMXI8vIEzXoT4i3sQGomluAbUBgM_TOpbsb_LK32snPATCsrIgnvPndyLfFAqR9wSdUQU8txetCJmIB5H7ZzJpfZhBYUHTil3meW9qx8ZWFRNB1-wAZaYmBMTV0hAE0e1LDMOvqkmfLq9OXNnOOUZyJpW0GwJofxcMC5UBmdFeOx27L73c4SzyBJxhuSiZ7K9TPU1tffQFtRDdbTFwevqzhFy8Z3XGEzqfco1DzA7szra_dfsIg4MThBjbNXkWm-hzO_AbqsY5d27d8Lg-vkdddzAuskUd3PTccM7RBI30ks_NxFjaJXY9HoQICJm-swK-PfKOULqJT53S-yY2lQL1gtQ9NDcU1qYyQlNfFVNOFVcu6MNNALKHVRH6bZtJ_VmFE4w5WuWI-GecD9OAmJE11Bb-ubEuKD80F05BUt756QQghKDX3npUCJf-SILjzX9Z1rGRnKT5oWciXxJm_V00Y4mg2HzfjBtXMsz58o7nirEPT1lN51lHUC4JuHtKQb1zwV6-QL9c49GPGsowtiDd25jD0H_ZoNbGtiIkB2bNEWnKGXivLxcm-7Qk6xYmsH50PttH8HX06SL7XqadN0uv-BFcOKSA9wbBTbR5WKuByLbPUro4doVcDA2dO9mhMHkQ2vjoDq8_gAFsXnkRRDQqUXtlCvMwVTuv4pF225icMG0LYgNDvGbOWinWg9_DyUZrKr97emG_UYMkOugl_aVEKvCpcweA5m-kF-RMurLwK7as-yjaixqyAt0soIJ8Lf00lJVEA7lo2fP-JHS6UzjaCso4xvCYoJo4o6-Wgc8N4AENfZK0WQOpYYiXMeJykVedW8SRl4S1EUvEV7uwuikzukaG4KibbCMXG1lNJaLGqKsW_Sq8BpkCUxQVKm6X3c2j5ZWAw_pe9zKvGIAt0zjERxidyxo89y8bPE_UmcsPYVg5gmgI6Nz9rthdEbGuriLn9tJsuO7yg6dwrdfQK4ccqgos_VVU7Zp8SEMeWNTERyxF-i_DFErL4t0-pX8IYXj4ruV2P004lcWPEB7moKYbD7bwfMmFrdoaJqbXZBRgxV6O2Bi9QU5_SHIO66_gVIYeSqwM9TF93pvgAAAAAAAAAAAAAAAAAAAAAChAWGyAn"
+        }
+      ]
+    },
+    "status": "attested",
+    "lifecycle": [
+      {
+        "from": "pending",
+        "to": "attested",
+        "actor": "org:climatechain-demo",
+        "at": "2026-10-06T07:11:16.499Z",
+        "reason": "Signed attestation issued.",
+        "evidenceRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:carbon-registry"
+          }
+        ]
+      }
+    ],
+    "challenges": []
+  },
+  "case": {
+    "schemaVersion": "climatechain.case/0.1",
+    "caseId": "case:carbon-registry:acr",
+    "title": "Carbon registry reconciliation",
+    "capabilities": [
+      "carbon-registry",
+      "claim-reconciliation",
+      "pq-attestation"
+    ],
+    "createdAt": "2026-10-06T07:11:16.499Z",
+    "claims": [
+      {
+        "nodeType": "claim",
+        "id": "claim:carbon-registry-reconciliation",
+        "createdAt": "2026-10-06T07:11:16.499Z",
+        "provenance": [
+          {
+            "nodeType": "evidence",
+            "id": "evidence:carbon:american-carbon-registry:issuance",
+            "role": "registry-source"
+          },
+          {
+            "nodeType": "evidence",
+            "id": "evidence:carbon:american-carbon-registry:retirement",
+            "role": "registry-source"
+          }
+        ],
+        "subject": {
+          "id": "dataset:registry-records",
+          "kind": "dataset",
+          "name": "Registry records: american-carbon-registry"
+        },
+        "assertion": {
+          "kind": "qualitative",
+          "statement": "200 records (american-carbon-registry): 3 project-vintages with retirements within issuance, 84 issued and not retired, 22 retirement groups with no issuance in the records, 0 over-retired, 0 duplicate serial ranges."
+        },
+        "boundary": {
+          "methodology": "Exact reconciliation by registry, project and vintage; exact serial-range match for duplicates.",
+          "accounting": {
+            "included": [
+              "american-carbon-registry issuance records committed in data/external/acr-offsetsdb/issuances.csv",
+              "american-carbon-registry retirement records committed in data/external/acr-offsetsdb/retirements.csv"
+            ],
+            "excluded": [
+              "Registry records outside these files: the committed ACR records are a 100-row test sample",
+              "Climate Action Reserve and Gold Standard records, until a reviewer brings a report",
+              "Claims of the same credit outside the registries"
+            ],
+            "policyChoices": [
+              "Records are grouped by registry, project and vintage; identifiers are not matched across registries",
+              "A retirement with no issuance in the records is a coverage gap for a person to decide, not an over-retirement",
+              "Duplicates are exact serial-range matches; overlapping ranges written differently are not compared"
+            ],
+            "notAssessed": [
+              "Durability of the stored carbon",
+              "Additionality, leakage and the quality of each project",
+              "Whether a retirement was used for the claim its beneficiary makes"
+            ]
+          }
+        },
+        "assessments": [
+          {
+            "dimension": "source-found",
+            "state": "confirmed"
+          },
+          {
+            "dimension": "calculation-reproduced",
+            "state": "confirmed"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "nodeType": "evidence",
+        "id": "evidence:carbon:american-carbon-registry:issuance",
+        "createdAt": "2026-10-06T07:11:16.499Z",
+        "provenance": [],
+        "kind": "registry-record",
+        "source": {
+          "uri": "https://raw.githubusercontent.com/carbonplan/offsets-db-data/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry/issuances.csv",
+          "localRef": "data/external/acr-offsetsdb/issuances.csv",
+          "publisher": "american-carbon-registry",
+          "retrievedAt": "2026-10-06T07:11:16.499Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "dbhciNHhShQP6JYcqJi8XTgLznIX8-ku_8RLYxOt6ac"
+        },
+        "access": {
+          "mode": "committed"
+        },
+        "rights": {
+          "sourceManifestId": "acr-offsetsdb-subset",
+          "redistribution": "allowed",
+          "derivedData": "allowed",
+          "attribution": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by ClimateChain; values unchanged."
+        },
+        "extensions": {
+          "records": 100
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:carbon:american-carbon-registry:retirement",
+        "createdAt": "2026-10-06T07:11:16.499Z",
+        "provenance": [],
+        "kind": "registry-record",
+        "source": {
+          "uri": "https://raw.githubusercontent.com/carbonplan/offsets-db-data/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry/retirements.csv",
+          "localRef": "data/external/acr-offsetsdb/retirements.csv",
+          "publisher": "american-carbon-registry",
+          "retrievedAt": "2026-10-06T07:11:16.499Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "mQ2fV_wB6QybrOJs7jmDn3ppzqxahyM1vaOE5Fusrgk"
+        },
+        "access": {
+          "mode": "committed"
+        },
+        "rights": {
+          "sourceManifestId": "acr-offsetsdb-subset",
+          "redistribution": "allowed",
+          "derivedData": "allowed",
+          "attribution": "American Carbon Registry public reports, as collected in CarbonPlan OffsetsDB (github.com/carbonplan/offsets-db-data, commit c34ec955df0988009ac14e8abd91013f3b03e4f5, tests/data/american-carbon-registry). Columns reduced by ClimateChain; values unchanged."
+        },
+        "extensions": {
+          "records": 100
+        }
+      }
+    ],
+    "calculations": [],
+    "factors": [],
+    "modelRuns": [],
+    "verifications": [
+      {
+        "nodeType": "verification",
+        "id": "verification:carbon-registry",
+        "createdAt": "2026-10-06T07:11:16.499Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:carbon-registry-reconciliation"
+          },
+          {
+            "nodeType": "verification",
+            "id": "verification:coverage-decision"
+          }
+        ],
+        "verifier": {
+          "id": "service:climatechain:carbon-registry",
+          "kind": "service",
+          "name": "ClimateChain Carbon Registry"
+        },
+        "profile": "carbon-registry/0.2",
+        "result": "insufficient-evidence",
+        "checks": [
+          {
+            "id": "duplicate-retirements",
+            "name": "No serial range retired twice",
+            "outcome": "pass",
+            "detail": "none"
+          },
+          {
+            "id": "over-retirement",
+            "name": "Retirements do not exceed issuance",
+            "outcome": "pass",
+            "detail": "0 over-retired project-vintage group(s)."
+          },
+          {
+            "id": "coverage-window",
+            "name": "Retired credits' issue dates compared with the issuance records' window",
+            "outcome": "pass",
+            "detail": "12 of 22 groups: every retired block was issued before the earliest issuance in these records (2024-04-26), so its issuance is outside them. The other 10 cannot be placed this way."
+          },
+          {
+            "id": "coverage:before-window",
+            "name": "12 retirement group(s) with no issuance here; every retired block was issued before 2024-04-26",
+            "outcome": "pass",
+            "detail": "out-of-sample: The retirement records date every retired block before the sample's first issuance (2024-04-26), so the issuance is outside this 100-row sample, not missing. (person:carbon-auditor, 2026-10-06T07:11:16Z)"
+          },
+          {
+            "id": "coverage:inside-window",
+            "name": "10 retirement group(s) with no issuance here, issued inside the records' window",
+            "outcome": "pass",
+            "detail": "investigate: Issued inside the sample's window (2024-04-26 to 2026-04-14) yet absent from it. A 100-row sample can miss them, but the dates do not show it, so look them up in ACR's registry (now on ICE GreenTrace) first. (person:carbon-auditor, 2026-10-06T07:11:16Z)"
+          }
+        ],
+        "findings": [
+          "No conflict in these records. Coverage gap: 12 retirement group(s) with no issuance here; every retired block was issued before 2024-04-26: out-of-sample; 10 retirement group(s) with no issuance here, issued inside the records' window: investigate."
+        ],
+        "verifiedAt": "2026-10-06T07:11:16Z"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:coverage-decision",
+        "createdAt": "2026-10-06T07:11:16.499Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:carbon-registry-reconciliation",
+            "role": "flag-source"
+          }
+        ],
+        "verifier": {
+          "id": "person:carbon-auditor",
+          "kind": "person"
+        },
+        "profile": "carbon-registry/0.2",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "coverage:before-window",
+            "name": "12 retirement group(s) with no issuance here; every retired block was issued before 2024-04-26",
+            "outcome": "pass",
+            "detail": "out-of-sample: The retirement records date every retired block before the sample's first issuance (2024-04-26), so the issuance is outside this 100-row sample, not missing. (person:carbon-auditor, 2026-10-06T07:11:16Z)"
+          },
+          {
+            "id": "coverage:inside-window",
+            "name": "10 retirement group(s) with no issuance here, issued inside the records' window",
+            "outcome": "pass",
+            "detail": "investigate: Issued inside the sample's window (2024-04-26 to 2026-04-14) yet absent from it. A 100-row sample can miss them, but the dates do not show it, so look them up in ACR's registry (now on ICE GreenTrace) first. (person:carbon-auditor, 2026-10-06T07:11:16Z)"
+          }
+        ],
+        "findings": [
+          "Decided is not resolved: out-of-sample records a choice about this sample, not that the issuance exists."
+        ],
+        "verifiedAt": "2026-10-06T07:11:16Z"
+      }
+    ],
+    "attestations": [],
+    "anchors": []
+  },
+  "limitations": [
+    "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
+    "The ACR records are a 100-row test sample from CarbonPlan OffsetsDB, not the full registry.",
+    "Duplicates are exact serial-range matches; overlapping ranges written differently are not compared.",
+    "Durability, additionality and project quality are not assessed."
+  ]
+}

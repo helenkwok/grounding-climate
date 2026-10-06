@@ -8,6 +8,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | --- | --- | --- | --- | --- |
 | Active power load dataset - IEX data | dataset | CC-BY-4.0 | allowed | redistributable |
 | ALDI++ | code | MIT | allowed | code-only |
+| American Carbon Registry public report records (OffsetsDB test subset, reduced columns) | registry-data | LicenseRef-ACR-Terms-of-Use | allowed | redistributable |
 | ASHRAE Great Energy Predictor III competition data | benchmark-data | Subject to Competition Rules | prohibited | download-from-upstream |
 | BatteryLife benchmark code | code | MIT | allowed | code-only |
 | BatteryLife Processed dataset | dataset | MIT | allowed | redistributable |
@@ -16,9 +17,11 @@ This table records the repository's current reuse decision; it is not legal advi
 | Carbon Data Intelligence (CaDI) | website | Carbon Footprint Ltd website Terms & Conditions | prohibited | link-only |
 | CarbonPlan OffsetsDB processing code | code | MIT | allowed | code-only |
 | CarbonPlan OffsetsDB registry data | registry-data | CarbonPlan Terms of Data Access plus registry-specific terms | unclear | download-from-upstream |
+| Climate Action Reserve registry reports | registry-data | Climate Action Reserve Terms of Use (July 2023) | unclear | reviewer-supplied |
 | Cloudflare boring | code | Apache-2.0 | allowed | code-only |
 | Energy-EVA benchmark code | code | Apache-2.0 | allowed | code-only |
 | Energy-EVA standardized energy datasets | benchmark-data | Source-specific upstream terms | unclear | download-from-upstream |
+| Gold Standard Impact Registry reports | registry-data | Gold Standard Registry Terms of Use (copy found; may be outdated) | prohibited | reviewer-supplied |
 | IBM/NASA HLS Burn Scar Scenes | dataset | CC-BY-4.0 | allowed | redistributable |
 | Open Climate Risk v1.1.0 fire-risk raster (sampled values) | dataset | CC-BY-4.0 | allowed | redistributable |
 | Sen1Floods11 | dataset | No licence identified in original repository | unclear | download-from-upstream |
@@ -43,6 +46,14 @@ ALDI++ / BUDS Lab, MIT License.
 - Source: https://github.com/buds-lab/aldiplusplus
 - Terms/licence: https://github.com/buds-lab/aldiplusplus/blob/main/LICENSE
 - Repository policy: MIT applies to the ALDI++ repository code. It does not grant rights to the ASHRAE/Kaggle input data used by the pipeline.
+
+### American Carbon Registry public report records (OffsetsDB test subset, reduced columns) (registry-data)
+
+American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by ClimateChain; values unchanged.
+
+- Source: https://github.com/carbonplan/offsets-db-data/tree/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry
+- Terms/licence: https://acrcarbon.org/term-and-condition/
+- Repository policy: 100 issuances and 100 retirements, reduced to project, vintage, quantity, date and serial range. Beneficiary and account-holder names are not committed.
 
 ### ASHRAE Great Energy Predictor III competition data (benchmark-data)
 
@@ -108,6 +119,14 @@ CarbonPlan OffsetsDB and the relevant upstream carbon registry/registries.
 - Terms/licence: https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS
 - Repository policy: Do not vendor OffsetsDB snapshots until the selected registries' terms are audited. Use source links and processing scripts.
 
+### Climate Action Reserve registry reports (registry-data)
+
+Climate Action Reserve registry, report downloaded by the reviewer.
+
+- Source: https://thereserve2.apx.com/
+- Terms/licence: https://climateactionreserve.org/wp-content/uploads/2023/07/Final-TOU-7.26-redline.pdf
+- Repository policy: Never fetched or committed by ClimateChain. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept.
+
 ### Cloudflare boring (code)
 
 Cloudflare boring Rust bindings, Apache-2.0 as declared by the boring crate.
@@ -131,6 +150,14 @@ Energy-EVA plus the original upstream dataset publisher for the selected sub-dat
 - Source: https://github.com/antgroup/Energy-EVA
 - Terms/licence: https://github.com/antgroup/Energy-EVA
 - Repository policy: Use Energy-EVA download/source links and audit the selected sub-dataset before packaging any bytes.
+
+### Gold Standard Impact Registry reports (registry-data)
+
+Gold Standard Impact Registry, report exported by the reviewer.
+
+- Source: https://registry.goldstandard.org/
+- Terms/licence: https://cdn.ihs.com/www/pdf/GSF-Terms-of-Use.pdf
+- Repository policy: Never committed. A reviewer brings an export from the registry; only a digest of the normalised records is kept.
 
 ### IBM/NASA HLS Burn Scar Scenes (dataset)
 
