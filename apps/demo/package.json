@@ -15,7 +15,8 @@
     "@climatechain/earth-observation": "*",
     "@climatechain/energy-forecast": "*",
     "@climatechain/webmcp": "*",
-    "@noble/post-quantum": "0.7.1"
+    "@noble/post-quantum": "0.7.1",
+    "maplibre-gl": "6.12.0"
   },
   "devDependencies": {
     "esbuild": "^0.25.0"

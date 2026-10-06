@@ -264,3 +264,5 @@ Do say:
 - “this evidence root changed after the test mutation”
 - “this signature authenticates these exact bytes”
 - “this deployment currently does / does not justify shared ledger state”
+
+The map (MapLibre GL JS 6.12.0, BSD-3-Clause, on OpenFreeMap tiles) places the two cases whose evidence has a location: the building's BDG2 site (site-level, not the building) and the earth scene's footprint (`reports/earth-observation/scene-footprint.json`, the UTM corners transformed with pyproj by `scripts/scene-footprint.py`). Each shape shows the Open Climate Risk values its case records as context and opens the case. Battery, energy, disclosure and carbon evidence has no location, so they are not placed. Tiles load from OpenFreeMap's public instance at view time; nothing from it is committed.

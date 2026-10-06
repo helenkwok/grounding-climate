@@ -834,6 +834,49 @@
           "finding": "README states released raw data are under CC-BY-SA 4.0."
         }
       ]
+    },
+    {
+      "id": "openfreemap-tiles",
+      "name": "OpenFreeMap vector tiles and styles (OpenMapTiles schema, OpenStreetMap data)",
+      "component": "map-tiles",
+      "canonicalUrl": "https://openfreemap.org/",
+      "upstreamPublisher": "OpenFreeMap (Hyperknot Software Kft.); data © OpenStreetMap contributors",
+      "retrievedAt": "2026-10-06",
+      "licence": {
+        "status": "terms-restricted",
+        "name": "OpenFreeMap Terms of Service (last updated 2026-09-09); OpenStreetMap data under ODbL",
+        "url": "https://openfreemap.org/tos/"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "unclear",
+        "commercialUse": "allowed",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "link-only",
+        "note": "Tiles, glyphs and sprites are loaded by viewers' browsers from the public instance at view time. Nothing is committed or harvested."
+      },
+      "attribution": "OpenFreeMap © OpenMapTiles, Data from OpenStreetMap (shown on the map, as the style specifies).",
+      "notes": [
+        "The public instance is free with no API keys, registration, cookies or view limits.",
+        "The terms forbid collecting data from the service in automated ways without permission; the demo only displays it."
+      ],
+      "evidence": [
+        {
+          "url": "https://openfreemap.org/",
+          "finding": "Free public instance: no limits on map views or requests, no registration, no API keys, no cookies (checked 2026-10-06)."
+        },
+        {
+          "url": "https://openfreemap.org/tos/",
+          "finding": "Use legally; no automated data collection without permission; provided as-is."
+        },
+        {
+          "url": "https://www.openstreetmap.org/copyright",
+          "finding": "OpenStreetMap data is available under the ODbL; attribution required."
+        }
+      ]
     }
   ]
 }

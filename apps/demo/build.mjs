@@ -12,12 +12,22 @@ await cp(resolve(root, "public"), dist, { recursive: true });
 await cp(resolve(root, "../../data/external/hls-burn-scars"), resolve(dist, "data/hls-burn-scars"), { recursive: true });
 
 // Bundled third-party code: ship each package's full licence text next to the page (MIT requires it).
-const bundledLicences = ["@noble/post-quantum", "@noble/hashes", "@noble/curves"];
+const bundledLicences = [
+  ["@noble/post-quantum", "LICENSE"],
+  ["@noble/hashes", "LICENSE"],
+  ["@noble/curves", "LICENSE"],
+  ["maplibre-gl", "LICENSE.txt"],
+];
 const licenceTexts = await Promise.all(
-  bundledLicences.map(async (name) =>
-    "== " + name + " ==\n\n" + (await readFile(resolve(root, "../../node_modules", name, "LICENSE"), "utf8")),
+  bundledLicences.map(async ([name, file]) =>
+    "== " + name + " ==\n\n" + (await readFile(resolve(root, "../../node_modules", name, file), "utf8")),
   ),
 );
+// MapLibre runs its tile work in a module worker that esbuild does not bundle; the page points setWorkerUrl at it.
+// The worker imports maplibre-gl-shared.mjs from beside itself.
+for (const file of ["maplibre-gl-worker.mjs", "maplibre-gl-shared.mjs"]) {
+  await cp(resolve(root, "../../node_modules/maplibre-gl/dist", file), resolve(dist, file));
+}
 await writeFile(resolve(dist, "third-party-licenses.txt"), licenceTexts.join("\n"));
 
 await build({

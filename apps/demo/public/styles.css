@@ -116,3 +116,5 @@ footer{display:flex;justify-content:space-between;gap:30px;padding:30px clamp(18
  .tamper-controls{align-items:stretch;flex-direction:column}
  footer{display:block}
 }
+.case-map { height: 420px; border-radius: 12px; overflow: hidden; }
+@media (max-width: 640px) { .case-map { height: 320px; } }
