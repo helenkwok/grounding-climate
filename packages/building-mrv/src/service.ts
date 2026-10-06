@@ -146,6 +146,7 @@ export class BuildingMrvService implements ModuleCommandRouter {
             factor: this.options.factor,
             emissions: decided.analysis.emissions,
             reconciliation: decided.climateCase.verifications[0]?.result,
+            accountingBoundary: decided.climateCase.claims[0]?.boundary?.accounting,
           };
         }
         const analysis = this.analysis();

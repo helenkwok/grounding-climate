@@ -4,6 +4,7 @@ import {
   type ClimateNode,
   type ContentDigest,
   type NodeRef,
+  type Claim,
   type Verification,
   type VerificationCheck,
   type VerificationResult,
@@ -120,6 +121,7 @@ function buildingModule(live: LiveCheck): DemoModule {
       return [flag.timestamp + " · " + advice, decision];
       }),
       ...contextRows(verification),
+      ...boundaryRows(decided.climateCase.claims[0]!),
     ],
     limitation:
       "Decided is not resolved: the cause of each zero reading is not confirmed by site records. " +
@@ -332,6 +334,18 @@ function energyModule(live: EnergyCheck): DemoModule {
 }
 
 /** Context findings (e.g. Open Climate Risk) as rows: modelled values that no check reads. */
+function boundaryRows(claim: Claim): Array<[string, string]> {
+  const boundary = claim.boundary?.accounting;
+  return boundary
+    ? [
+        ["Counts", boundary.included.join("; ")],
+        ["Leaves out", boundary.excluded.join("; ")],
+        ["Policy choices", boundary.policyChoices.join("; ")],
+        ["Not assessed", boundary.notAssessed.join("; ")],
+      ]
+    : [];
+}
+
 function contextRows(verification: Verification): Array<[string, string]> {
   return verification.findings
     .filter((finding) => finding.startsWith("Context, not evidence"))

@@ -197,6 +197,12 @@ test("advice never changes a status; only a current human decision does", async 
   assert.equal(decidedCase.verifications[1]?.verifier.id, "person:test");
   assert.equal(decided.emissions.excludedEnergyKWh, 0);
   assert.match(decidedCase.verifications[0]!.findings.join(" "), /not resolved/);
+  // The accounting boundary states the policy choices apart from the numbers, and follows the decision.
+  const boundary = decidedCase.claims[0]!.boundary!.accounting!;
+  assert.match(boundary.policyChoices.join(" "), /Location-based, not market-based/);
+  assert.match(boundary.policyChoices.join(" "), /costed at 5 reviews/);
+  assert.match(boundary.excluded[0]!, /^Excluded readings \(0\.000 kWh\)/);
+  assert.match(boundary.notAssessed.join(" "), /cause of each flagged reading/);
 
   // The same decision on a changed series is stale, and the claim is back to needing review.
   const tampered = injectTamper(series, FLAG + 5, 20);
