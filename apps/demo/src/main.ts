@@ -101,6 +101,17 @@ const cadiData = cadi as JsonObject;
 
 const short = (digest: ContentDigest) => digest.value.slice(0, 16) + "…";
 
+/** The case's own result as a check, so the overall status never reads better than the case does. */
+function caseCheck(verification: Verification): VerificationCheck {
+  const { result } = verification;
+  return {
+    id: "case-result",
+    name: "Case result: " + result,
+    outcome: result === "reconciled" ? "pass" : result === "insufficient-evidence" ? "warn" : "fail",
+    detail: verification.findings[0],
+  };
+}
+
 function buildingModule(live: LiveCheck): DemoModule {
   const { decided, attestation } = live;
   const verification = decided.climateCase.verifications[0]!;
@@ -111,9 +122,9 @@ function buildingModule(live: LiveCheck): DemoModule {
   const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
   return {
     id: "building",
-    title: "Building MRV",
+    title: "Building emissions",
     icon: "▦",
-    kicker: "Real meter → decided → signed",
+    kicker: "Meter readings rebuilt into emissions; flagged readings decided by a person",
     kpi: emissions.emissionsTCo2e.toFixed(2),
     kpiLabel: "tCO₂e, recomputed in this browser",
     source: "BDG2 v1.0 + EPA eGRID2016",
@@ -159,6 +170,7 @@ function buildingModule(live: LiveCheck): DemoModule {
     ],
     digest: decided.digest,
     checks: [
+      caseCheck(verification),
       {
         id: "source-integrity",
         name: "Committed BDG2 files match their recorded digests (checked here)",
@@ -194,9 +206,9 @@ function batteryModule(live: BatteryCheck): DemoModule {
   const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
   return {
     id: "battery",
-    title: "Battery DPP",
+    title: "Battery passport",
     icon: "▣",
-    kicker: "Cycle history → signed-off passport",
+    kicker: "Cycle history rebuilt into state of health; reuse signed off by a person",
     kpi: (passport.currentSoh * 100).toFixed(1) + "%",
     kpiLabel: "state of health, recomputed in this browser",
     source: "BatteryLife / CALB (MIT)",
@@ -217,9 +229,9 @@ function batteryModule(live: BatteryCheck): DemoModule {
       ...(signOff?.decision ? [["Reason", signOff.decision.reason] as [string, string]] : []),
       ...(boundary
         ? ([
-            ["Counts", boundary.included.join("; ")],
-            ["Policy choices", boundary.policyChoices.join("; ")],
-            ["Not assessed", boundary.notAssessed.join("; ")],
+            ["Counts", boundary.included.join("\n")],
+            ["Policy choices", boundary.policyChoices.join("\n")],
+            ["Not assessed", boundary.notAssessed.join("\n")],
           ] as Array<[string, string]>)
         : []),
     ],
@@ -244,6 +256,7 @@ function batteryModule(live: BatteryCheck): DemoModule {
     ],
     digest: passport.inputDigest!,
     checks: [
+      caseCheck(verification),
       ...verification.checks,
       {
         id: "attestation",
@@ -275,9 +288,9 @@ function energyModule(live: EnergyCheck): DemoModule {
   const rows = built.caseBundle.claims[0]!.boundary?.accounting?.included[0] ?? "";
   return {
     id: "energy",
-    title: "Renewable / Load Forecast",
+    title: "Energy forecast",
     icon: "↯",
-    kicker: "Forecast quality → bounded action → approval",
+    kicker: "Published forecast accuracy reproduced; a capped action approved by a person",
     kpi: built.confidence.toFixed(3),
     kpiLabel: "mean LOAD_ACC, recomputed in this browser",
     source: "Energy-EVA / IEX load (CC BY 4.0)",
@@ -299,9 +312,9 @@ function energyModule(live: EnergyCheck): DemoModule {
       ...(approval?.decision ? [["Reason", approval.decision.reason] as [string, string]] : []),
       ...(boundary
         ? ([
-            ["Counts", boundary.included.join("; ")],
-            ["Policy choices", boundary.policyChoices.join("; ")],
-            ["Not assessed", boundary.notAssessed.join("; ")],
+            ["Counts", boundary.included.join("\n")],
+            ["Policy choices", boundary.policyChoices.join("\n")],
+            ["Not assessed", boundary.notAssessed.join("\n")],
           ] as Array<[string, string]>)
         : []),
     ],
@@ -325,6 +338,7 @@ function energyModule(live: EnergyCheck): DemoModule {
     ],
     digest: built.caseBundle.evidence[0]!.integrity!,
     checks: [
+      caseCheck(verification),
       ...verification.checks,
       {
         id: "attestation",
@@ -352,10 +366,10 @@ function boundaryRows(claim: Claim): Array<[string, string]> {
   const boundary = claim.boundary?.accounting;
   return boundary
     ? [
-        ["Counts", boundary.included.join("; ")],
-        ["Leaves out", boundary.excluded.join("; ")],
-        ["Policy choices", boundary.policyChoices.join("; ")],
-        ["Not assessed", boundary.notAssessed.join("; ")],
+        ["Counts", boundary.included.join("\n")],
+        ["Leaves out", boundary.excluded.join("\n")],
+        ["Policy choices", boundary.policyChoices.join("\n")],
+        ["Not assessed", boundary.notAssessed.join("\n")],
       ]
     : [];
 }
@@ -382,9 +396,9 @@ function earthModule(live: EarthCheck): DemoModule {
       : "not stated";
   return {
     id: "earth",
-    title: "Earth Observation",
+    title: "Burn scar from satellite",
     icon: "◉",
-    kicker: "Satellite scene → detected area → decision",
+    kicker: "Burned area detected pixel by pixel and compared with the reference map",
     kpi: m.iou.toFixed(3),
     kpiLabel: "burn-class IoU, recomputed in this browser",
     source: "IBM/NASA HLS Burn Scars (CC BY 4.0)",
@@ -404,9 +418,9 @@ function earthModule(live: EarthCheck): DemoModule {
       ...contextRows(built.caseBundle.verifications[0]!),
       ...(boundary
         ? ([
-            ["Counts", boundary.included.join("; ")],
-            ["Policy choices", boundary.policyChoices.join("; ")],
-            ["Not assessed", boundary.notAssessed.join("; ")],
+            ["Counts", boundary.included.join("\n")],
+            ["Policy choices", boundary.policyChoices.join("\n")],
+            ["Not assessed", boundary.notAssessed.join("\n")],
           ] as Array<[string, string]>)
         : []),
     ],
@@ -429,6 +443,7 @@ function earthModule(live: EarthCheck): DemoModule {
     ],
     digest: built.caseBundle.evidence[0]!.integrity!,
     checks: [
+      caseCheck(verification),
       ...verification.checks,
       {
         id: "attestation",
@@ -462,9 +477,9 @@ function disclosureModule(live: DisclosureCheck): DemoModule {
   const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
   return {
     id: "disclosure",
-    title: "Public Disclosure",
+    title: "Company disclosure",
     icon: "◫",
-    kicker: "Public claim ≠ verified truth",
+    kicker: "A reported figure that cannot be recalculated; a person decides what it may rest on",
     kpi: value ? String(value.value) : "—",
     kpiLabel: value ? value.unit + " Scope 1, as reported" : "source-only",
     source: "CaDI-confirmed first-party sources",
@@ -499,6 +514,7 @@ function disclosureModule(live: DisclosureCheck): DemoModule {
       ["Signed", disclosureRun.runAt + " · Ed25519 + ML-DSA-65"],
     ],
     checks: [
+      caseCheck(verification),
       ...verification.checks,
       {
         id: "attestation",
@@ -531,9 +547,9 @@ function carbonModule(live: CarbonCheck): DemoModule {
   const imported = built.caseBundle.evidence.filter((item) => item.access?.mode === "reviewer-supplied");
   return {
     id: "carbon",
-    title: "Carbon Registry",
+    title: "Carbon registry records",
     icon: "◎",
-    kicker: "Registry records → gap decided → signed",
+    kicker: "Issuances and retirements reconciled; record gaps decided by a person",
     kpi: String(report.recordCount),
     kpiLabel: "registry records reconciled in this browser",
     source: "ACR public reports via CarbonPlan OffsetsDB",
@@ -569,6 +585,7 @@ function carbonModule(live: CarbonCheck): DemoModule {
       ["Signed", carbonRun.runAt + " · Ed25519 + ML-DSA-65"],
     ],
     checks: [
+      caseCheck(verification),
       ...verification.checks,
       {
         id: "attestation",
@@ -902,7 +919,7 @@ const surface = webmcp.activate(demoCase.capabilities);
 const badge = document.querySelector<HTMLDivElement>("#webmcp-badge");
 if (badge) {
   if (!surface.available) {
-    badge.textContent = "WebMCP unavailable · fallback ready";
+    badge.textContent = "No WebMCP in this browser · guided audit ready";
   } else {
     badge.textContent = "WebMCP · registering…";
     void surface.registration.then(({ registered, failed }) => {
@@ -924,104 +941,187 @@ function escapeHtml(value: unknown): string {
     .replaceAll('"', "&quot;");
 }
 
-function renderModules(): void {
-  const grid = document.querySelector<HTMLDivElement>("#module-grid");
-  if (!grid) return;
-  grid.innerHTML = modules
-    .map(
-      (item) => `
-      <button class="module-card ${item.id === activeId ? "active" : ""}" data-module="${escapeHtml(item.id)}">
-        <div class="module-icon">${escapeHtml(item.icon)}</div>
-        <h3>${escapeHtml(item.title)}</h3>
-        <p>${escapeHtml(item.kicker)}</p>
-        <div class="module-kpi">
-          <strong>${escapeHtml(item.kpi)}</strong>
-          <span>${escapeHtml(item.kpiLabel)}</span>
-        </div>
-      </button>`,
-    )
-    .join("");
+const RESULT_WORDS: Record<string, string> = {
+  reconciled: "Verified",
+  "insufficient-evidence": "Needs evidence",
+  mismatch: "Mismatch",
+  "source-changed": "Source changed",
+};
 
-  grid.querySelectorAll<HTMLButtonElement>("[data-module]").forEach((button) => {
-    button.addEventListener("click", () => {
-      activeId = button.dataset.module ?? "building";
-      renderModules();
-      renderDetail();
+/** A status as a word with a colour; the word carries the meaning, the colour only reinforces it. */
+function stateHtml(tone: "good" | "bad" | "warn", text: string): string {
+  return '<strong class="state ' + tone + '">' + escapeHtml(text) + "</strong>";
+}
+
+function resultHtml(result: string): string {
+  return stateHtml(result === "reconciled" ? "good" : result === "insufficient-evidence" ? "warn" : "bad", RESULT_WORDS[result] ?? result);
+}
+
+/** A definition list; a value holding several lines becomes a bulleted list. */
+function dlHtml(rows: Array<[string, string]>): string {
+  return rows
+    .map(([name, value]) => {
+      const lines = value.split("\n").filter(Boolean);
+      const body = lines.length > 1 ? "<ul>" + lines.map((line) => "<li>" + escapeHtml(line) + "</li>").join("") + "</ul>" : escapeHtml(value);
+      return "<div><dt>" + escapeHtml(name) + "</dt><dd>" + body + "</dd></div>";
+    })
+    .join("");
+}
+
+function claimSummary(item: DemoModule): string {
+  return (
+    '<span class="claim-title">' + escapeHtml(item.title) + "</span>" +
+    '<span class="claim-what">' + escapeHtml(item.kicker) +
+    '<span class="claim-figure">' + escapeHtml(item.kpi + " " + item.kpiLabel) + "</span></span>" +
+    "<span>" + resultHtml(deriveResult(item.checks)) + "</span>"
+  );
+}
+
+/** Builds the claim list once; later calls only refresh each summary, so an open claim stays open. */
+function renderModules(): void {
+  const list = document.querySelector<HTMLDivElement>("#claim-list");
+  if (!list) return;
+  if (!list.children.length) {
+    list.innerHTML = modules
+      .map((item) => '<details class="claim" data-module="' + escapeHtml(item.id) + '"><summary></summary></details>')
+      .join("");
+    list.querySelectorAll<HTMLDetailsElement>("details.claim").forEach((row) => {
+      row.addEventListener("toggle", () => {
+        if (!row.open) return;
+        list.querySelectorAll<HTMLDetailsElement>("details.claim[open]").forEach((other) => {
+          if (other !== row) other.open = false;
+        });
+        activeId = row.dataset.module ?? "building";
+        const body = document.querySelector("#detail-body");
+        if (body) row.append(body);
+        renderDetail();
+        renderTamper(activeId, false);
+      });
     });
-  });
+  }
+  for (const item of modules) {
+    const summary = list.querySelector('details[data-module="' + item.id + '"] > summary');
+    if (summary) summary.innerHTML = claimSummary(item);
+  }
+}
+
+function openClaim(id: string): void {
+  const row = document.querySelector<HTMLDetailsElement>('details.claim[data-module="' + id + '"]');
+  if (!row) return;
+  row.open = true;
+  row.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function renderDetail(): void {
   const item = moduleById.get(activeId);
   if (!item) return;
-
-  const title = document.querySelector("#detail-title");
-  const source = document.querySelector("#detail-source");
-  const metrics = document.querySelector("#metric-list");
-  const decisionTitle = document.querySelector("#decision-title");
-  const decisionCopy = document.querySelector("#decision-copy");
-  const limitations = document.querySelector("#limitations");
-  const provenance = document.querySelector("#provenance-list");
-
-  if (title) title.textContent = item.title;
-  if (source) source.textContent = item.source;
-  if (decisionTitle) decisionTitle.textContent = item.decisionTitle;
-  if (decisionCopy) decisionCopy.textContent = item.decisionCopy;
-  if (limitations) limitations.textContent = item.limitation;
-
-  if (metrics) {
-    metrics.innerHTML = item.metrics
-      .map(
-        ([name, value]) =>
-          `<div class="metric-row"><span>${escapeHtml(name)}</span><strong>${escapeHtml(value)}</strong></div>`,
-      )
-      .join("");
-  }
-
-  const checks = document.querySelector("#check-list");
-  if (checks) {
-    checks.innerHTML =
-      `<div class="metric-row"><span>Overall result (all checks below)</span><strong>${escapeHtml(deriveResult(item.checks))}</strong></div>` +
+  const set = (selector: string, html: string) => {
+    const node = document.querySelector(selector);
+    if (node) node.innerHTML = html;
+  };
+  set("#detail-source", escapeHtml(item.source));
+  set("#decision-title", escapeHtml(item.decisionTitle));
+  set("#decision-copy", escapeHtml(item.decisionCopy));
+  set("#limitations", escapeHtml(item.limitation));
+  set("#metric-list", dlHtml(item.metrics));
+  set("#decision-list", dlHtml(item.decisions ?? []));
+  set("#provenance-list", dlHtml(item.provenance));
+  set(
+    "#check-list",
+    "<li><span>Overall, all checks below</span>" + resultHtml(deriveResult(item.checks)) + "</li>" +
       item.checks
         .map(
           (check) =>
-            `<div class="metric-row"><span>${escapeHtml(check.name)}${check.detail ? `<br><small class="muted">${escapeHtml(check.detail)}</small>` : ""}</span><strong>${escapeHtml(check.outcome)}</strong></div>`,
+            "<li><span>" + escapeHtml(check.name) + "</span>" +
+            stateHtml(check.outcome === "pass" ? "good" : check.outcome === "fail" ? "bad" : "warn", check.outcome) +
+            (check.detail ? "<small>" + escapeHtml(check.detail) + "</small>" : "") + "</li>",
         )
-        .join("");
-  }
-
-  const decisionList = document.querySelector("#decision-list");
-  if (decisionList) {
-    decisionList.innerHTML = (item.decisions ?? [])
-      .map(
-        ([name, value]) =>
-          `<div class="metric-row"><span>${escapeHtml(name)}</span><strong>${escapeHtml(value)}</strong></div>`,
-      )
-      .join("");
-  }
-
-  if (provenance) {
-    provenance.innerHTML = item.provenance
-      .map(
-        ([name, value]) =>
-          `<div class="provenance-item"><span>${escapeHtml(name)}</span><code>${escapeHtml(value)}</code></div>`,
-      )
-      .join("");
-  }
+        .join(""),
+  );
 }
 
-function renderTamperSelect(): void {
-  const select = document.querySelector<HTMLSelectElement>("#tamper-module");
-  if (!select) return;
-  select.innerHTML = modules
-    .map((item) => `<option value="${escapeHtml(item.id)}">${escapeHtml(item.title)}</option>`)
-    .join("");
+/** The building case, told as five steps, plus the claim stub at the top of the page. */
+function renderStory(live: LiveCheck): void {
+  const { decided, attestation } = live;
+  const emissions = decided.analysis.emissions;
+  const flags = decided.statuses;
+  const decidedCount = flags.filter((flag) => flag.state === "decided").length;
+  const stale = flags.filter((flag) => flag.state === "stale").length;
+  const result = decided.climateCase.verifications[0]!.result;
+  const signature = (algorithm: string) => {
+    const found = attestation.signature.signatures.find((item) => item.signature.algorithm === algorithm);
+    return found?.signatureValid && attestation.validForCurrentEvidence
+      ? stateHtml("good", "matches")
+      : stateHtml("bad", "no longer matches");
+  };
+  const set = (selector: string, html: string) => {
+    const node = document.querySelector(selector);
+    if (node) node.innerHTML = html;
+  };
+  const tonnes = emissions.emissionsTCo2e.toFixed(2);
+  set("#stub-value", tonnes);
+  set("#stub-rebuilt", resultHtml(result));
+  set("#stub-flags", stale ? stateHtml("bad", stale + " of " + flags.length + " stale") : stateHtml(decidedCount === flags.length ? "good" : "warn", decidedCount + " of " + flags.length));
+  set("#stub-ed", signature("Ed25519"));
+  set("#stub-ml", signature("ML-DSA-65"));
+
+  set(
+    "#step-measure",
+    '<span class="figure-big">' + emissions.acceptedEnergyMWh.toFixed(2) + " MWh</span>" +
+      '<span class="figure-cap">accepted electricity, from ' + decided.analysis.anomalies.points.length.toLocaleString("en-US") +
+      " readings rebuilt in your browser</span>",
+  );
+  set(
+    "#step-flag",
+    '<ul class="flag-list">' +
+      flags
+        .map((flag) => {
+          const run = adviceRuns.find((item) => item.inferenceParameters.interval === flag.timestamp);
+          const advice = run && run.output.kind === "qualitative"
+            ? "Model advice: " + run.output.statement.replace("advice: ", "").replaceAll("_", " ") + " (" + run.confidence?.toFixed(2) + "), " + (run.extensions?.handOff ?? "needs a person")
+            : "No advice recorded";
+          return "<li><time>" + escapeHtml(flag.timestamp.slice(0, 16)) + "</time><span>" + escapeHtml(advice) + "</span></li>";
+        })
+        .join("") +
+      "</ul>",
+  );
+  const choices = [...new Set(flags.filter((flag) => flag.decision).map((flag) => flag.decision!.decision + " by " + flag.decision!.decidedBy))];
+  set(
+    "#step-decide",
+    '<span class="figure-big">' + decidedCount + " of " + flags.length + " decided</span>" +
+      '<span class="figure-cap">' +
+      (stale
+        ? escapeHtml(stale + " decisions are stale: they were made on different meter data.")
+        : escapeHtml(choices.join("; ") + ". Nothing flagged counts until a person keeps it.")) +
+      "</span>",
+  );
+  set(
+    "#step-sign",
+    '<span class="figure-big">' + tonnes + " tCO₂e</span>" +
+      '<ul class="flag-list"><li><span>Ed25519</span>' + signature("Ed25519") + "</li>" +
+      "<li><span>ML-DSA-65</span>" + signature("ML-DSA-65") + "</li></ul>" +
+      '<span class="figure-cap">Signed ' + escapeHtml(caseRun.runAt.slice(0, 10)) + "; checked just now in your browser.</span>",
+  );
+  set("#case-boundary", dlHtml(boundaryRows(decided.climateCase.claims[0]!)));
 }
+
+const tamperOutput = () => document.querySelector<HTMLDivElement>("#tamper-output");
 
 function tamperLines(rows: Array<[string, string]>): string {
   return rows
     .map(([label, value]) => `<div class="tamper-line"><span class="label">${label}</span><span>${value}</span></div>`)
     .join("");
+}
+
+/** A tamper result: the verdict in words first, then the evidence for it. */
+function showTamper(output: HTMLElement | null, valid: boolean, rows: Array<[string, string]>): void {
+  if (!output) return;
+  output.classList.toggle("is-good", valid);
+  output.classList.toggle("is-bad", !valid);
+  output.innerHTML =
+    '<p class="verdict ' + (valid ? "good" : "bad") + '">' +
+    (valid ? "Both signatures match the evidence." : "The signatures no longer match the evidence.") +
+    "</p>" + tamperLines(rows);
 }
 
 async function refreshBuilding(): Promise<LiveCheck> {
@@ -1031,12 +1131,12 @@ async function refreshBuilding(): Promise<LiveCheck> {
   moduleById.set("building", item);
   renderModules();
   renderDetail();
+  renderStory(live);
   return live;
 }
 
 /** Building tamper is real: the reading changes in this browser and everything downstream is recomputed. */
-async function renderBuildingTamper(injected: boolean): Promise<void> {
-  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+async function renderBuildingTamper(injected: boolean, output = tamperOutput()): Promise<void> {
   if (!output) return;
   setTampered(injected);
   const live = await refreshBuilding();
@@ -1046,7 +1146,7 @@ async function renderBuildingTamper(injected: boolean): Promise<void> {
   const valid = live.attestation.validForCurrentEvidence;
   const point = buildingService.analysis().anomalies.points[caseRun.tamper.index];
   const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
-  output.innerHTML = tamperLines([
+  showTamper(output, valid, [
     ...(injected ? [["mutation", escapeHtml("×" + caseRun.tamper.multiplier + " at " + caseRun.tamper.timestamp + ": now " + point?.value + " kWh, applied in this browser")] as [string, string]] : []),
     ["meter series", escapeHtml(live.decided.digest.value)],
     ["flags", escapeHtml(live.decided.statuses.length + " flagged · " + stale + " decisions stale (made on other data) · " + undecided + " undecided")],
@@ -1054,13 +1154,12 @@ async function renderBuildingTamper(injected: boolean): Promise<void> {
     ["overall (with signature check)", tag(deriveResult(moduleById.get("building")!.checks) === "reconciled", deriveResult(moduleById.get("building")!.checks))],
     ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
     ...(valid ? [] : [["changed since signing", escapeHtml(live.attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
-    ["action", injected ? "Reset restores the committed reading; the signed attestation then matches again." : "Choose “Show tamper result” to change one reading in this browser."],
+    ["action", injected ? "Reset restores the committed reading; the signed attestation then matches again." : "Press “Change one reading” to multiply one reading by 20 in this browser."],
   ]);
 }
 
 /** Battery tamper is real: the last cycle's capacity changes in this browser and the passport is recomputed. */
-async function renderBatteryTamper(injected: boolean): Promise<void> {
-  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+async function renderBatteryTamper(injected: boolean, output = tamperOutput()): Promise<void> {
   if (!output) return;
   setBatteryTampered(injected);
   const live = await checkBattery();
@@ -1073,7 +1172,7 @@ async function renderBatteryTamper(injected: boolean): Promise<void> {
   const result = built.caseBundle.verifications[0]!.result;
   const valid = attestation.validForCurrentEvidence;
   const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
-  output.innerHTML = tamperLines([
+  showTamper(output, valid, [
     ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
     ["cycle history", escapeHtml(built.passport.inputDigest!.value)],
     ["state of health", escapeHtml((built.passport.currentSoh * 100).toFixed(2) + "% · disposition " + built.passport.disposition)],
@@ -1082,13 +1181,12 @@ async function renderBatteryTamper(injected: boolean): Promise<void> {
     ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
     ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
     ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
-    ["action", injected ? "Reset restores the committed history; the signed attestation then matches again." : "Choose “Show tamper result” to change one cycle in this browser."],
+    ["action", injected ? "Reset restores the committed history; the signed attestation then matches again." : "Press “Change one input” to change one cycle in this browser."],
   ]);
 }
 
 /** Energy tamper is real: one load value changes in this browser and the case is recomputed. */
-async function renderEnergyTamper(injected: boolean): Promise<void> {
-  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+async function renderEnergyTamper(injected: boolean, output = tamperOutput()): Promise<void> {
   if (!output) return;
   setEnergyTampered(injected);
   const live = await checkEnergy();
@@ -1102,7 +1200,7 @@ async function renderEnergyTamper(injected: boolean): Promise<void> {
   const valid = attestation.validForCurrentEvidence;
   const reproduced = built.comparisons.filter((row) => row.reproduced).length;
   const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
-  output.innerHTML = tamperLines([
+  showTamper(output, valid, [
     ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
     ["series", escapeHtml(built.caseBundle.evidence[0]!.integrity!.value)],
     ["forecast", escapeHtml("mean LOAD_ACC " + built.confidence.toFixed(6) + " · published results reproduced " + reproduced + " of " + built.comparisons.length)],
@@ -1111,13 +1209,12 @@ async function renderEnergyTamper(injected: boolean): Promise<void> {
     ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
     ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
     ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
-    ["action", injected ? "Reset restores the committed series; the signed attestation then matches again." : "Choose “Show tamper result” to change one load value in this browser."],
+    ["action", injected ? "Reset restores the committed series; the signed attestation then matches again." : "Press “Change one input” to change one load value in this browser."],
   ]);
 }
 
 /** Carbon tamper is real: one retirement is duplicated in this browser and the case is rebuilt. */
-async function renderCarbonTamper(injected: boolean): Promise<void> {
-  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+async function renderCarbonTamper(injected: boolean, output = tamperOutput()): Promise<void> {
   if (!output) return;
   setCarbonTampered(injected);
   await rerenderCarbon();
@@ -1126,14 +1223,14 @@ async function renderCarbonTamper(injected: boolean): Promise<void> {
   const result = live.built.caseBundle.verifications[0]!.result;
   const valid = live.attestation.validForCurrentEvidence;
   const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
-  output.innerHTML = tamperLines([
+  showTamper(output, valid, [
     ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
     ["duplicates", escapeHtml(String(live.built.report.duplicateExcessCount))],
     ["coverage decisions", escapeHtml(live.built.review.map((status) => status.state).join(" / "))],
     ["case verification", tag(result === "reconciled", result)],
     ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
     ...(valid ? [] : [["changed since signing", escapeHtml(live.attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
-    ["action", injected ? "Reset restores the committed records; the signed attestation then matches again." : "Choose “Show tamper result” to duplicate one retirement in this browser."],
+    ["action", injected ? "Reset restores the committed records; the signed attestation then matches again." : "Press “Change one input” to duplicate one retirement in this browser."],
   ]);
 }
 
@@ -1176,8 +1273,7 @@ document.querySelector("#carbon-import-clear")?.addEventListener("click", () => 
 });
 
 /** Disclosure tamper is real: the extracted figure changes in this browser and the case is rebuilt. */
-async function renderDisclosureTamper(injected: boolean): Promise<void> {
-  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+async function renderDisclosureTamper(injected: boolean, output = tamperOutput()): Promise<void> {
   if (!output) return;
   setDisclosureTampered(injected);
   const live = await checkDisclosure();
@@ -1190,7 +1286,7 @@ async function renderDisclosureTamper(injected: boolean): Promise<void> {
   const result = built.caseBundle.verifications[0]!.result;
   const valid = attestation.validForCurrentEvidence;
   const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
-  output.innerHTML = tamperLines([
+  showTamper(output, valid, [
     ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
     ["claim", escapeHtml(item.kpi + " " + item.kpiLabel)],
     ["decision", escapeHtml(built.review[0]!.state + (built.review[0]!.state === "stale" ? " (made on a different figure)" : ""))],
@@ -1198,13 +1294,12 @@ async function renderDisclosureTamper(injected: boolean): Promise<void> {
     ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
     ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
     ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
-    ["action", injected ? "Reset restores the committed figure; the signed attestation then matches again." : "Choose “Show tamper result” to change the extracted figure in this browser."],
+    ["action", injected ? "Reset restores the committed figure; the signed attestation then matches again." : "Press “Change one input” to change the extracted figure in this browser."],
   ]);
 }
 
 /** Earth tamper is real: one NIR value changes in this browser and the case is recomputed. */
-async function renderEarthTamper(injected: boolean): Promise<void> {
-  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+async function renderEarthTamper(injected: boolean, output = tamperOutput()): Promise<void> {
   if (!output) return;
   setEarthTampered(injected);
   const live = await checkEarth();
@@ -1217,7 +1312,7 @@ async function renderEarthTamper(injected: boolean): Promise<void> {
   const result = built.caseBundle.verifications[0]!.result;
   const valid = attestation.validForCurrentEvidence;
   const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
-  output.innerHTML = tamperLines([
+  showTamper(output, valid, [
     ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
     ["NIR", escapeHtml(built.caseBundle.evidence[0]!.integrity!.value)],
     ["detector", escapeHtml("detected " + built.result.metrics.predictedHectares.toFixed(2) + " ha · pinned run reproduced: " + (built.reproduced ? "yes" : "no"))],
@@ -1226,71 +1321,21 @@ async function renderEarthTamper(injected: boolean): Promise<void> {
     ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
     ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
     ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
-    ["action", injected ? "Reset restores the committed arrays; the signed attestation then matches again." : "Choose “Show tamper result” to change one NIR value in this browser."],
+    ["action", injected ? "Reset restores the committed arrays; the signed attestation then matches again." : "Press “Change one input” to change one NIR value in this browser."],
   ]);
 }
 
-function renderTamper(id: string, injected: boolean): void {
-  if (id === "carbon") {
-    void renderCarbonTamper(injected);
-    return;
-  }
-  if (id === "disclosure") {
-    void renderDisclosureTamper(injected);
-    return;
-  }
-  if (id === "earth") {
-    void renderEarthTamper(injected);
-    return;
-  }
-  if (id === "energy") {
-    void renderEnergyTamper(injected);
-    return;
-  }
-  if (id === "building") {
-    void renderBuildingTamper(injected);
-    return;
-  }
-  if (id === "battery") {
-    void renderBatteryTamper(injected);
-    return;
-  }
-  const item = moduleById.get(id);
-  const output = document.querySelector<HTMLDivElement>("#tamper-output");
-  if (!item || !output) return;
-  const recorded = Boolean(item.tamper.rootAfter);
-  const result = deriveResult(item.checks);
+const tamperRenderers: Record<string, (injected: boolean, output?: HTMLElement | null) => Promise<void>> = {
+  building: renderBuildingTamper,
+  battery: renderBatteryTamper,
+  energy: renderEnergyTamper,
+  earth: renderEarthTamper,
+  carbon: renderCarbonTamper,
+  disclosure: renderDisclosureTamper,
+};
 
-  if (!injected) {
-    output.innerHTML = tamperLines([
-      ["input", escapeHtml(item.tamper.before)],
-      ["verification", '<span class="' + (result === "reconciled" ? "good" : "bad") + '">' + escapeHtml(result) + "</span>"],
-      [
-        "action",
-        recorded
-          ? "Choose “Show tamper result” to see what the recorded tamper run produced."
-          : "No tamper run is recorded for this module yet; “Show tamper result” describes the expected effect only.",
-      ],
-    ]);
-    return;
-  }
-
-  if (!recorded) {
-    output.innerHTML = tamperLines([
-      ["mutation", escapeHtml(item.tamper.change)],
-      ["expected effect", escapeHtml(item.tamper.after)],
-      ["status", "not run: no recorded tamper result for this module"],
-    ]);
-    return;
-  }
-
-  output.innerHTML = tamperLines([
-    ["recorded mutation", escapeHtml(item.tamper.change)],
-    ["recorded result", '<span class="bad">' + escapeHtml(item.tamper.after) + "</span>"],
-    ["original digest", escapeHtml(item.tamper.rootBefore ?? "")],
-    ["tampered digest", '<span class="bad">' + escapeHtml(item.tamper.rootAfter ?? "") + "</span>"],
-    ["meaning", "anything committed to the original digest no longer matches the changed evidence"],
-  ]);
+function renderTamper(id: string, injected: boolean, output: HTMLElement | null = tamperOutput()): void {
+  void tamperRenderers[id]?.(injected, output);
 }
 
 function renderActivity(): void {
@@ -1308,7 +1353,7 @@ function renderActivity(): void {
           </div>`,
         )
         .join("")
-    : '<p class="muted">No tool calls yet. Run the guided audit or use WebMCP.</p>';
+    : '<p class="note">No tool calls yet. Run the guided audit, or connect an agent through WebMCP.</p>';
 }
 
 async function guidedAudit(): Promise<void> {
@@ -1333,29 +1378,14 @@ async function guidedAudit(): Promise<void> {
 }
 
 const caseMap = document.querySelector<HTMLElement>("#case-map");
-if (caseMap) {
-  renderCaseMap(caseMap, (moduleId) => {
-    document.querySelector<HTMLButtonElement>('[data-module="' + moduleId + '"]')?.click();
-    document.querySelector("#detail")?.scrollIntoView({ behavior: "smooth" });
-  });
-}
+if (caseMap) renderCaseMap(caseMap, openClaim);
 
-document.querySelector("#tamper-button")?.addEventListener("click", () => {
-  const select = document.querySelector<HTMLSelectElement>("#tamper-module");
-  renderTamper(select?.value ?? "building", true);
-});
-
-document.querySelector("#reset-button")?.addEventListener("click", () => {
-  const select = document.querySelector<HTMLSelectElement>("#tamper-module");
-  renderTamper(select?.value ?? "building", false);
-});
-
-document.querySelector("#tamper-module")?.addEventListener("change", (event) => {
-  renderTamper((event.target as HTMLSelectElement).value, false);
-});
-
+const storyOutput = () => document.querySelector<HTMLElement>("#story-tamper-output");
+document.querySelector("#story-tamper")?.addEventListener("click", () => renderTamper("building", true, storyOutput()));
+document.querySelector("#story-reset")?.addEventListener("click", () => renderTamper("building", false, storyOutput()));
+document.querySelector("#tamper-button")?.addEventListener("click", () => renderTamper(activeId, true));
+document.querySelector("#reset-button")?.addEventListener("click", () => renderTamper(activeId, false));
 document.querySelector("#run-agent-audit")?.addEventListener("click", () => void guidedAudit());
-document.querySelector("#run-agent-audit-2")?.addEventListener("click", () => void guidedAudit());
 document.querySelector("#clear-activity")?.addEventListener("click", () => {
   activity.clear();
   renderActivity();
@@ -1363,6 +1393,5 @@ document.querySelector("#clear-activity")?.addEventListener("click", () => {
 
 renderModules();
 renderDetail();
-renderTamperSelect();
-renderTamper("building", false);
+renderTamper("building", false, storyOutput());
 renderActivity();

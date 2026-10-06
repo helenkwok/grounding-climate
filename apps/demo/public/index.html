@@ -3,160 +3,186 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="ClimateChain evidence-first climate verification workspace demo">
-  <title>ClimateChain · Evidence before claims</title>
+  <meta name="description" content="ClimateChain shows what a climate figure rests on: the source data, the analysis rerun in your browser, every call a person made, and a signature that breaks if any of it changes.">
+  <title>ClimateChain · Climate claims that can show their work</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Mono:wght@400;600&family=Atkinson+Hyperlegible+Next:ital,wght@0,400;0,600;0,800;1,400&display=swap">
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./app.css">
 </head>
 <body>
+  <a class="skip" href="#case">Skip to the walkthrough</a>
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="ClimateChain home">
-      <span class="brand-mark">CC</span>
-      <span>
-        <strong>ClimateChain</strong>
-        <small>evidence before claims</small>
-      </span>
-    </a>
-    <nav>
-      <a href="#workspace">Workspace</a>
-      <a href="#tamper">Tamper tests</a>
-      <a href="#agent">WebMCP</a>
+    <a class="brand" href="#top">ClimateChain</a>
+    <nav aria-label="Sections">
+      <a href="#case">How it works</a>
+      <a href="#claims">Six claims</a>
+      <a href="#agent">Agents</a>
+      <a href="#limits">Limits</a>
     </nav>
-    <div id="webmcp-badge" class="status-pill">Checking WebMCP…</div>
+    <p id="webmcp-badge" class="badge">Checking WebMCP…</p>
   </header>
 
   <main id="top">
-    <section class="hero">
+    <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">IEEE ClimateChain Global Hackathon 2026</p>
-        <h1>Climate claims that can show their work.</h1>
-        <p class="hero-lede">
-          One workspace brings together real measurements, benchmarked analysis,
-          provenance and recorded tamper tests—without pretending a
-          blockchain makes source data true.
+        <p class="kicker">IEEE ClimateChain Global Hackathon 2026 · Climate Data &amp; Environmental Monitoring</p>
+        <h1 id="hero-title">Climate claims that can show their work.</h1>
+        <p class="lede">
+          A reported climate figure is usually just a number. ClimateChain shows what it rests on: the source data,
+          the analysis rerun in your browser, every call a person made, and a signature that breaks if any of it changes.
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#workspace">Open evidence workspace</a>
-          <button class="button ghost" id="run-agent-audit">Run guided audit</button>
-        </div>
-        <div class="hero-proof">
-          <span><strong>6</strong> real-data modules</span>
-          <span><strong>1</strong> shared evidence graph</span>
-          <span><strong>PQ</strong> ML-DSA + hybrid TLS tested in the libraries</span>
+        <div class="actions">
+          <a class="button primary" href="#case">Walk through a real case</a>
+          <a class="button" href="#step-tamper">Change one reading</a>
         </div>
       </div>
 
-      <aside class="hero-panel" aria-label="Current audit case">
-        <p class="panel-label">Current cross-module case</p>
-        <h2>Evidence integrity audit</h2>
-        <div class="flow">
-          <span>source</span><b>→</b><span>analysis</span><b>→</b><span>claim</span>
-          <b>→</b><span>verify</span>
-        </div>
-        <dl>
-          <div><dt>Building energy</dt><dd>1,160.43 MWh</dd></div>
-          <div><dt>Reconstructed emissions</dt><dd>278.92 tCO₂e</dd></div>
-          <div><dt>Burn-scar IoU</dt><dd>0.6164</dd></div>
-          <div><dt>Battery decision</dt><dd>service-review</dd></div>
-        </dl>
+      <aside class="stub" aria-label="The claim this page checks">
+        <p class="stub-label">Claim under review</p>
+        <p class="stub-subject">Scope 2 electricity emissions, one office building, January to March 2016</p>
+        <p class="stub-value"><span id="stub-value">…</span> <span class="unit">tCO₂e</span></p>
+        <ul class="stub-rows">
+          <li><span>Rebuilt from the meter data</span><strong id="stub-rebuilt" class="stub-state">checking…</strong></li>
+          <li><span>Flagged readings decided by a person</span><strong id="stub-flags" class="stub-state">checking…</strong></li>
+          <li><span>Ed25519 signature</span><strong id="stub-ed" class="stub-state">checking…</strong></li>
+          <li><span>ML-DSA-65 signature (post-quantum)</span><strong id="stub-ml" class="stub-state">checking…</strong></li>
+        </ul>
+        <p class="stub-foot">Checked in your browser, not on a server.</p>
       </aside>
     </section>
 
-    <section id="workspace" class="section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Recomputed here, or replayed and labelled</p>
-          <h2>One workspace, six independently testable capabilities</h2>
-        </div>
-        <p>
-          Every module is rebuilt in this browser from committed data, and its signed attestation is
-          checked here. Select a module to inspect its evidence, checks and
-          limitations.
-        </p>
-      </div>
-      <div id="module-grid" class="module-grid"></div>
+    <section id="problem" class="section problem" aria-labelledby="problem-title">
+      <h2 id="problem-title">A climate number arrives on its own.</h2>
+      <ol class="problem-list">
+        <li>You see the total. You don't see the meter readings, the emission factor, or the readings someone left out.</li>
+        <li>You can't tell who decided what about the odd data, or whether anything changed after they did.</li>
+        <li>Putting it on a blockchain proves a record wasn't changed. It doesn't prove the number was right.</li>
+      </ol>
+      <p class="answer">ClimateChain keeps the evidence, the judgements and the signature together, and rechecks all three in your browser.</p>
     </section>
 
-    <section id="map-section" class="section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Where the evidence is</p>
-          <h2>Two cases have a location in their evidence.</h2>
-        </div>
-        <p>
-          The building's site and the earth scene's footprint, with the modelled wildfire values each case records as
-          context. Battery, energy, disclosure and carbon evidence has no location, so they are not placed.
-          Select a shape to open its case.
-        </p>
-      </div>
-      <div id="case-map" class="case-map" role="region" aria-label="Map of the building site and the earth scene"></div>
+    <section id="case" class="section case" aria-labelledby="case-title">
+      <p class="kicker">One real case</p>
+      <h2 id="case-title">Five steps from meter to signed claim</h2>
+      <p class="intro">
+        A real office building from the open Building Data Genome 2 dataset. The question a verifier brings:
+        <em>can this building's Scope 2 figure be trusted, and who decided what about each odd reading?</em>
+      </p>
+
+      <ol class="steps">
+        <li class="step">
+          <div class="step-text">
+            <h3><span class="step-n">1</span>Measure</h3>
+            <p>2,160 hourly electricity readings from the building's meter, and the grid's emission factor from EPA eGRID 2016 (California, CAMX).</p>
+          </div>
+          <div class="step-figure" id="step-measure">…</div>
+        </li>
+        <li class="step">
+          <div class="step-text">
+            <h3><span class="step-n">2</span>Flag</h3>
+            <p>A screen flags readings that look wrong: exact zeros, long runs of identical values, extreme jumps. A decision model advises on each one. Its advice is a suggestion; it never sets an outcome.</p>
+          </div>
+          <div class="step-figure" id="step-flag">…</div>
+        </li>
+        <li class="step">
+          <div class="step-text">
+            <h3><span class="step-n">3</span>A person decides</h3>
+            <p>The facility energy manager decides each flagged reading. Every decision is tied to a fingerprint of the whole meter series, so if one reading changes, the decisions go stale.</p>
+          </div>
+          <div class="step-figure" id="step-decide">…</div>
+        </li>
+        <li class="step">
+          <div class="step-text">
+            <h3><span class="step-n">4</span>Sign</h3>
+            <p>The result is signed twice: with Ed25519, used widely today, and with ML-DSA-65, a post-quantum signature standard. Both are checked here, in your browser.</p>
+          </div>
+          <div class="step-figure" id="step-sign">…</div>
+        </li>
+        <li class="step step-tamper" id="step-tamper">
+          <div class="step-text">
+            <h3><span class="step-n">5</span>Try to change it</h3>
+            <p>Multiply one reading by 20. The page recomputes everything downstream and checks both signatures again.</p>
+            <div class="actions">
+              <button id="story-tamper" class="button danger" type="button">Change one reading</button>
+              <button id="story-reset" class="button" type="button">Reset</button>
+            </div>
+          </div>
+          <div class="step-figure tamper-output" id="story-tamper-output" aria-live="polite">…</div>
+        </li>
+      </ol>
+
+      <details class="more">
+        <summary>What this figure counts, and what it leaves out</summary>
+        <dl id="case-boundary" class="boundary"></dl>
+      </details>
     </section>
 
-    <section id="detail" class="section detail-section">
-      <div class="section-heading compact">
-        <div>
-          <p class="eyebrow">Selected evidence</p>
-          <h2 id="detail-title">Building MRV</h2>
-        </div>
-        <div id="detail-source" class="source-chip"></div>
+    <section id="claims" class="section claims" aria-labelledby="claims-title">
+      <p class="kicker">Same steps, different evidence</p>
+      <h2 id="claims-title">Six kinds of climate claim</h2>
+      <p class="intro">
+        Each claim is rebuilt from committed open data, and its signature is checked, when this page loads.
+        Open one to see its evidence, the person's decision, what it leaves out, and its own tamper test.
+      </p>
+      <div class="claim-head" aria-hidden="true">
+        <span>Claim</span><span>What is checked here</span><span>Result</span>
       </div>
-      <div class="detail-grid">
-        <article class="card">
-          <p class="panel-label">What was measured</p>
-          <div id="metric-list" class="metric-list"></div>
-          <p class="panel-label">Verification</p>
-          <div id="check-list" class="metric-list"></div>
-        </article>
-        <article class="card">
-          <p class="panel-label">Decision / user</p>
-          <h3 id="decision-title"></h3>
-          <p id="decision-copy" class="muted"></p>
-          <div id="decision-list" class="metric-list"></div>
-          <div id="limitations" class="notice"></div>
-        </article>
-        <article class="card evidence-card">
-          <p class="panel-label">Provenance</p>
-          <div id="provenance-list" class="provenance-list"></div>
-        </article>
+      <div id="claim-list" class="claim-list"></div>
+
+      <div hidden id="detail-home">
+        <div id="detail-body" class="detail">
+          <p class="detail-source">Source: <span id="detail-source"></span></p>
+          <div class="detail-cols">
+            <div>
+              <h4>Checks run in your browser</h4>
+              <ul id="check-list" class="checks"></ul>
+              <h4>Figures</h4>
+              <dl id="metric-list" class="figures"></dl>
+            </div>
+            <div>
+              <h4 id="decision-title"></h4>
+              <p id="decision-copy" class="note"></p>
+              <dl id="decision-list" class="boundary"></dl>
+              <p class="limit"><strong>Limits.</strong> <span id="limitations"></span></p>
+            </div>
+          </div>
+          <div class="detail-tamper">
+            <div class="actions">
+              <button id="tamper-button" class="button danger" type="button">Change one input</button>
+              <button id="reset-button" class="button" type="button">Reset</button>
+            </div>
+            <div id="tamper-output" class="tamper-output" aria-live="polite"></div>
+          </div>
+          <details class="more">
+            <summary>Technical detail: sources and digests</summary>
+            <dl id="provenance-list" class="provenance"></dl>
+          </details>
+        </div>
       </div>
     </section>
 
-    <section id="tamper" class="section tamper-section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow danger">Tamper tests</p>
-          <h2>Change one input and the evidence digest changes.</h2>
-        </div>
-        <p>
-          Every module changes an input in this browser, rebuilds the case and checks the signed
-          attestation again.
-        </p>
-      </div>
-      <div class="tamper-console">
-        <div class="tamper-controls">
-          <label for="tamper-module">Demo</label>
-          <select id="tamper-module"></select>
-          <button id="tamper-button" class="button danger-button">Show tamper result</button>
-          <button id="reset-button" class="button ghost">Reset</button>
-        </div>
-        <div id="tamper-output" class="tamper-output"></div>
-      </div>
+    <section id="map-section" class="section" aria-labelledby="map-title">
+      <p class="kicker">Where the evidence is</p>
+      <h2 id="map-title">Two of the claims have a place</h2>
+      <p class="intro">
+        The building's site and the satellite scene's footprint, with the modelled wildfire risk each records as context.
+        The other four have no location. Select a shape to open its claim.
+      </p>
+      <div id="case-map" class="case-map" role="region" aria-label="Map of the building site and the satellite scene"></div>
     </section>
 
-    <section id="bring-report" class="section">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Evidence the reviewer brings</p>
-          <h2>Add a Climate Action Reserve or Gold Standard report.</h2>
-        </div>
-        <p>
-          Their terms do not allow ClimateChain to copy their records, and CAR's site disallows automated access.
-          Download a report with the registry's own CSV button and choose it here: it is read in this browser,
-          reconciled with the ACR records, and kept in the case as a digest only. The signed decisions then go
-          stale, because they were made on different records.
-        </p>
-      </div>
-      <form id="carbon-import" class="tamper-controls">
+    <section id="bring-report" class="section" aria-labelledby="bring-title">
+      <p class="kicker">Evidence you bring</p>
+      <h2 id="bring-title">Some registries can't be copied. Bring their report.</h2>
+      <p class="intro">
+        Climate Action Reserve and Gold Standard terms don't allow their records to be republished, so ClimateChain doesn't
+        fetch them. Download a CSV with the registry's own button and choose it here. It is read in your browser, reconciled
+        with the committed ACR records, and kept only as a fingerprint. The signed decisions then go stale, because they were
+        made on different records.
+      </p>
+      <form id="carbon-import" class="import">
         <label>Registry
           <select name="registry">
             <option value="climate-action-reserve">Climate Action Reserve</option>
@@ -169,50 +195,75 @@
             <option value="issuance">Issuances</option>
           </select>
         </label>
-        <label>Page it came from <input name="sourceUri" type="url" required placeholder="https://thereserve2.apx.com/…"></label>
-        <input name="file" type="file" accept=".csv,text/csv" required>
-        <button class="button">Add report</button>
-        <button id="carbon-import-clear" type="button" class="button ghost">Remove reports</button>
+        <label class="wide">Page you downloaded it from
+          <input name="sourceUri" type="url" required placeholder="https://…">
+        </label>
+        <label class="wide">CSV file
+          <input name="file" type="file" accept=".csv,text/csv" required>
+        </label>
+        <div class="actions">
+          <button class="button primary">Add report</button>
+          <button id="carbon-import-clear" type="button" class="button">Remove reports</button>
+        </div>
         <output id="carbon-import-status" aria-live="polite"></output>
       </form>
     </section>
 
-    <section id="agent" class="section agent-section">
-      <div class="section-heading">
+    <section id="agent" class="section" aria-labelledby="agent-title">
+      <p class="kicker">For AI agents</p>
+      <h2 id="agent-title">Agents use the same checks</h2>
+      <p class="intro">
+        Through WebMCP the page offers its checks to an AI agent in the browser as tools, only those relevant to the open
+        case. Anything consequential still waits for a person. No agent in your browser? The guided audit runs the same
+        tools here.
+      </p>
+      <div class="agent">
         <div>
-          <p class="eyebrow">Semantic agent interface</p>
-          <h2>Agents call evidence tools—not the DOM.</h2>
-        </div>
-        <p>
-          Capability-aware WebMCP registers only tools relevant to the active
-          case. Consequential operations stay behind human approval.
-        </p>
-      </div>
-      <div class="agent-grid">
-        <article class="card">
-          <p class="panel-label">Suggested audit</p>
           <ol class="audit-steps">
-            <li>List active capabilities.</li>
-            <li>Inspect the Building MRV measured baseline.</li>
-            <li>Inspect the carbon-registry integrity result.</li>
-            <li>Explain which claims are reconciled, incomplete, or tampered.</li>
+            <li>List what this case can check.</li>
+            <li>Rebuild the building's baseline and review its flagged readings.</li>
+            <li>Recompute the building's emissions.</li>
+            <li>Reconcile the carbon registry records.</li>
+            <li>Read the company's public claim.</li>
           </ol>
-          <button class="button primary" id="run-agent-audit-2">Run guided audit</button>
-        </article>
-        <article class="card activity-card">
+          <button class="button primary" id="run-agent-audit" type="button">Run the guided audit</button>
+        </div>
+        <div class="activity">
           <div class="activity-head">
-            <p class="panel-label">Activity trail</p>
-            <button class="text-button" id="clear-activity">Clear</button>
+            <h3>Tool calls</h3>
+            <button class="text-button" id="clear-activity" type="button">Clear</button>
           </div>
           <div id="activity-log" class="activity-log"></div>
-        </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="limits" class="section limits" aria-labelledby="limits-title">
+      <div>
+        <h2 id="limits-title">What this does not prove</h2>
+        <ul class="limit-list">
+          <li><strong>Who signed.</strong> The signing keys are demo keys made per run. A signature shows nothing changed since signing; it does not yet identify a real organisation.</li>
+          <li><strong>Why data was odd.</strong> A person's decision is a recorded judgement, not a confirmed cause. Site records don't confirm why the building's meter read zero.</li>
+          <li><strong>Company figures.</strong> A disclosed figure can't be recalculated from public data. It is accepted only as the company's own statement.</li>
+          <li><strong>Registry gaps.</strong> The ACR records are a 100-row sample. Ten groups of retirements have no matching issuance in it and are marked for investigation.</li>
+          <li><strong>Satellite area.</strong> The burn-scar detector reproduces the reference pixel by pixel, but its burned area is 36% below the reference map's, and that gap is recorded, not explained.</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Who would use it</h2>
+        <ul class="limit-list">
+          <li><strong>Verifiers and auditors</strong> checking a figure before they sign it off.</li>
+          <li><strong>Facility, energy and battery managers</strong> recording what they decided about bad data, and on which data.</li>
+          <li><strong>Registries and reporting teams</strong> publishing figures that carry their own evidence.</li>
+        </ul>
+        <p class="note">It runs in an ordinary browser, on open data formats, with no account and no token.</p>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>ClimateChain · real sources → measured analysis → provenance → verification</p>
-    <p>Raw third-party datasets remain off-chain and are not bundled unless rights permit.</p>
+    <p>ClimateChain: evidence, then judgement, then signature.</p>
+    <p>Third-party data is bundled only where its licence allows, with attribution.</p>
     <p><a href="./third-party-licenses.txt">Third-party software licences</a></p>
   </footer>
 

@@ -60,7 +60,7 @@ export function renderCaseMap(container: HTMLElement, select: (moduleId: string)
       type: "circle",
       source: "cases",
       filter: ["==", "$type", "Point"],
-      paint: { "circle-radius": 7, "circle-color": "#1d4ed8", "circle-stroke-color": "#fff", "circle-stroke-width": 2 },
+      paint: { "circle-radius": 7, "circle-color": "#1f6f63", "circle-stroke-color": "#fff", "circle-stroke-width": 2 },
     });
     for (const layer of ["scene-fill", "site"]) {
       map.on("click", layer, (event) => {
