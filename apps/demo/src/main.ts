@@ -106,7 +106,8 @@ function buildingModule(live: LiveCheck): DemoModule {
     decisionCopy:
       caseRun.organisingQuestion +
       " A decision model advised on each flagged reading; a person decided. The advice never sets a status.",
-    decisions: flags.map((flag) => {
+    decisions: [
+      ...flags.map((flag): [string, string] => {
       const run = adviceRuns.find((item) => item.inferenceParameters.interval === flag.timestamp);
       const advice = run
         ? "Jev " + run.model.version + ": " + (run.output.kind === "qualitative" ? run.output.statement.replace("advice: ", "") : "") +
@@ -117,7 +118,9 @@ function buildingModule(live: LiveCheck): DemoModule {
           ? "undecided"
           : flag.state + ": " + flag.decision?.decision + " by " + flag.decision?.decidedBy;
       return [flag.timestamp + " · " + advice, decision];
-    }),
+      }),
+      ...contextRows(verification),
+    ],
     limitation:
       "Decided is not resolved: the cause of each zero reading is not confirmed by site records. " +
       "Signing keys are per-run demo keys, not an identity. On 296 labelled GEPIII flags the advice called 91% faults against 55% labelled bad, so it is shown as a suggestion only at p(fault) ≥ 0.97, a threshold measured for a wrong exclusion costed at 5 reviews (a policy choice).",
@@ -328,6 +331,13 @@ function energyModule(live: EnergyCheck): DemoModule {
   };
 }
 
+/** Context findings (e.g. Open Climate Risk) as rows: modelled values that no check reads. */
+function contextRows(verification: Verification): Array<[string, string]> {
+  return verification.findings
+    .filter((finding) => finding.startsWith("Context, not evidence"))
+    .map((finding) => ["Wildfire context", finding.replace("Context, not evidence: ", "")]);
+}
+
 function earthModule(live: EarthCheck): DemoModule {
   const { built, attestation } = live;
   const m = built.result.metrics;
@@ -363,6 +373,7 @@ function earthModule(live: EarthCheck): DemoModule {
       ],
       ...(status?.decision ? [["Reason", status.decision.reason] as [string, string]] : []),
       ["Claim reports", reported],
+      ...contextRows(built.caseBundle.verifications[0]!),
       ...(boundary
         ? ([
             ["Counts", boundary.included.join("; ")],

@@ -1,5 +1,5 @@
 import { validateBundle } from "@climatechain/core";
-import type { ContentDigest, CryptoProvider, ModelRun } from "@climatechain/core";
+import type { CaseContext, ContentDigest, CryptoProvider, ModelRun } from "@climatechain/core";
 
 import { runBuildingMrv } from "./analysis.js";
 import { buildBuildingMrvCase } from "./case.js";
@@ -21,6 +21,7 @@ export interface DecidedCaseInput {
   factor: GridEmissionFactor;
   advice: ModelRun[];
   decisions: readonly IntervalDecision[];
+  context?: readonly CaseContext[];
   hashProvider: CryptoProvider;
 }
 
@@ -46,6 +47,7 @@ export async function buildDecidedBuildingCase(input: DecidedCaseInput): Promise
     analysis,
     flagStatuses: statuses,
     advice: input.advice,
+    ...(input.context ? { context: input.context } : {}),
   });
   const issues = validateBundle(climateCase);
   if (issues.length > 0) throw new Error("Invalid building case: " + JSON.stringify(issues));

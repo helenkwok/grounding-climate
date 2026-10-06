@@ -566,6 +566,57 @@
       ]
     },
     {
+      "id": "open-climate-risk",
+      "name": "Open Climate Risk v1.1.0 fire-risk raster (sampled values)",
+      "component": "dataset",
+      "canonicalUrl": "https://source.coop/carbonplan/carbonplan-ocr",
+      "upstreamPublisher": "CarbonPlan",
+      "retrievedAt": "2026-10-06",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0",
+        "url": "https://docs.carbonplan.org/ocr/en/latest/terms-of-data-access.html"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/open-climate-risk",
+        "note": "Only sampled values are committed: one site value and statistics over one scene footprint."
+      },
+      "attribution": "Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by ClimateChain. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).",
+      "notes": [
+        "The store's global attributes give license_name CC-BY-4.0 (snapshot CZP0B0ETPG38MW0C1R30).",
+        "USDA Forest Service inputs can be used without additional permissions or fees; the originator should be acknowledged.",
+        "CONUS404 on NCAR GDEX is CC BY 4.0.",
+        "CarbonPlan's terms: the name may not be used in a project name or to imply endorsement."
+      ],
+      "evidence": [
+        {
+          "url": "https://docs.carbonplan.org/ocr/en/latest/terms-of-data-access.html",
+          "finding": "Data provided as-is; third-party data not verified by CarbonPlan."
+        },
+        {
+          "url": "https://www.fs.usda.gov/rds/archive/catalog/RDS-2025-0006",
+          "finding": "Can be used without additional permissions or fees; acknowledge the originator."
+        },
+        {
+          "url": "https://www.fs.usda.gov/rds/archive/catalog/RDS-2020-0016-2",
+          "finding": "Can be used without additional permissions or fees; for national or relative comparison."
+        },
+        {
+          "url": "https://gdex.ucar.edu/datasets/d559000/",
+          "finding": "CONUS404 distributed under CC BY 4.0."
+        }
+      ]
+    },
+    {
       "id": "sen1floods11",
       "name": "Sen1Floods11",
       "component": "dataset",

@@ -8,6 +8,7 @@ import {
   reviewVerification,
 } from "@climatechain/core";
 import type {
+  CaseContext,
   ClimateCaseBundle,
   ContentDigest,
   CryptoProvider,
@@ -71,6 +72,8 @@ export async function buildEarthReviewCase(options: {
   provider: CryptoProvider;
   decisions?: readonly ReviewDecision[];
   publishedPrithviIoU?: number;
+  /** Context evidence (e.g. modelled hazard), recorded with a finding, never read by any check. */
+  context?: readonly CaseContext[];
 }): Promise<{
   caseBundle: ClimateCaseBundle;
   result: BurnScarDetectionResult;
@@ -223,6 +226,7 @@ export async function buildEarthReviewCase(options: {
         integrity: await provider.hash(canonicalBytes(options.pinned as unknown as Record<string, number>), "SHA-256"),
         access: { mode: "committed", instructions: "reports/earth-observation/t10seh-2018190-nbr.json" },
       },
+      ...(options.context ?? []).map((item) => item.evidence),
     ],
     calculations: [],
     factors: [],
@@ -305,6 +309,7 @@ export async function buildEarthReviewCase(options: {
         findings: [
           "NBR thresholding is a transparent CPU baseline, not Prithvi inference.",
           "The labels are MTBS-derived and are treated as the reference, not as ground truth checked on site.",
+          ...(options.context ?? []).map((item) => item.finding),
         ],
         verifiedAt: createdAt,
       },

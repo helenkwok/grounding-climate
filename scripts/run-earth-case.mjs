@@ -9,6 +9,7 @@
 // template when the area flag has no current decision.
 import { readFile, writeFile } from "node:fs/promises";
 
+import { openClimateRiskContext } from "@climatechain/core";
 import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
 import { buildEarthReviewCase } from "@climatechain/earth-observation";
 
@@ -34,7 +35,8 @@ const { policy } = await json("reports/earth-observation/area-policy.json");
 const decisions = await json(DECISIONS, []);
 const crypto = new InMemoryNodeCryptoProvider();
 const createdAt = new Date().toISOString();
-const build = (someScene) =>
+const ocr = await json("data/external/open-climate-risk/ocr-context.json");
+const build = async (someScene) =>
   buildEarthReviewCase({
     caseId: CASE_ID,
     createdAt,
@@ -44,6 +46,7 @@ const build = (someScene) =>
     provider: crypto,
     decisions,
     publishedPrithviIoU: pinnedReport.publishedPrithviReference.burnClassIoU,
+    context: [await openClimateRiskContext(ocr, "earthScene", createdAt, crypto)],
   });
 
 const clean = await build(scene);

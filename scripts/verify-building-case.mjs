@@ -5,6 +5,7 @@ import { readFile } from "node:fs/promises";
 
 import {
   HYBRID_SIGNATURE_POLICY,
+  openClimateRiskContext,
   publishedKeyResolver,
   verifySignedAttestation,
 } from "@climatechain/core";
@@ -40,6 +41,7 @@ const { climateCase } = await buildDecidedBuildingCase({
   advice,
   decisions: await json("reports/building-mrv/interval-decisions.json"),
   hashProvider: crypto,
+  context: [await openClimateRiskContext(await json("data/external/open-climate-risk/ocr-context.json"), "buildingSite", run.runAt, crypto)],
 });
 
 const result = await verifySignedAttestation(climateCase, run.attestation, {

@@ -6,7 +6,7 @@ import type {
   ModuleCommandRouter,
 } from "@climatechain/webmcp";
 
-import type { CryptoProvider, ModelRun } from "@climatechain/core";
+import type { CryptoProvider, ModelRun, CaseContext } from "@climatechain/core";
 
 import { runBuildingMrv } from "./analysis.js";
 import { buildDecidedBuildingCase } from "./decided-case.js";
@@ -32,6 +32,7 @@ export interface BuildingMrvServiceOptions {
     advice: ModelRun[];
     decisions: IntervalDecision[];
     hashProvider: CryptoProvider;
+    context?: readonly CaseContext[];
   };
 }
 
@@ -67,6 +68,7 @@ export class BuildingMrvService implements ModuleCommandRouter {
       advice: review.advice,
       decisions: review.decisions,
       hashProvider: review.hashProvider,
+      ...(review.context ? { context: review.context } : {}),
     });
   }
 

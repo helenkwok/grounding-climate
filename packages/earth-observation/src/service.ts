@@ -1,4 +1,4 @@
-import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
+import type { CaseContext, CryptoProvider, ReviewDecision } from "@climatechain/core";
 import {
   createRoutedModule,
 } from "@climatechain/webmcp";
@@ -150,6 +150,7 @@ export interface EarthCaseServiceOptions {
   observedAt: string;
   decisions?: readonly ReviewDecision[];
   publishedPrithviIoU?: number;
+  context?: readonly CaseContext[];
 }
 
 /** Serves the earth review case from the committed scene arrays; the arrays can be changed to show a tamper. */
@@ -178,6 +179,7 @@ export class EarthCaseService implements ModuleCommandRouter {
       policy: this.options.policy,
       provider: this.options.provider,
       decisions: this.options.decisions ?? [],
+      ...(this.options.context ? { context: this.options.context } : {}),
       ...(this.options.publishedPrithviIoU !== undefined ? { publishedPrithviIoU: this.options.publishedPrithviIoU } : {}),
     });
   }
