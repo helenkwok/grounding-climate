@@ -1,8 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
-import { CLAIMS, deriveResult } from "../../demo/src/claims-meta";
+import { CLAIMS, deriveResult, type ClaimId } from "../../demo/src/claims-meta";
 import type { DemoModule } from "../../demo/src/modules";
+import { loadClaim } from "./live";
 
 export type Tone = "good" | "bad" | "warn";
 
@@ -48,39 +49,62 @@ export function Rows({ rows, className = "boundary" }: { rows: Array<[string, st
   );
 }
 
-/** The six claims as links, each with its live result once the browser has checked it. */
-export function ClaimIndex({ results }: { results: Partial<Record<string, DemoModule | Error>> }) {
+/** The claims as sentences, each with who makes it and its live result once this browser has checked it. */
+export function ClaimList({ results, compact = false }: { results: Partial<Record<string, DemoModule | Error>>; compact?: boolean }) {
   return (
-    <>
-      <div className="claim-head" aria-hidden="true">
-        <span>Claim</span><span>What is checked</span><span>Result</span>
-      </div>
+    <ul className={"claim-list" + (compact ? " compact" : "")}>
       {CLAIMS.map((claim) => {
         const item = results[claim.id];
+        const ready = item && !(item instanceof Error) ? item : undefined;
         return (
-          <Link key={claim.id} className="claim-row" to="/claims/$id" params={{ id: claim.id }}>
-            <span className="claim-title">{claim.title}</span>
-            <span className="claim-what">
-              {claim.what}
-              {item && !(item instanceof Error) && <span className="claim-figure">{item.kpi + " " + item.kpiLabel}</span>}
-            </span>
-            <span>
-              {item && !(item instanceof Error) ? <Result result={deriveResult(item.checks)} /> : <Pending value={item} />}
-            </span>
-          </Link>
+          <li key={claim.id}>
+            <Link className="claim-card" to="/claims/$id" params={{ id: claim.id }}>
+              <span className="claim-meta">
+                <span className="claim-type">{claim.title}</span>
+                {ready ? <Result result={deriveResult(ready.checks)} /> : <Pending value={item} />}
+              </span>
+              <span className="claim-sentence">{claim.claim}</span>
+              {!compact && <span className="claim-who">Claimed by: {claim.claimant}. Checked here: {claim.what.toLowerCase()}.</span>}
+              <span className="claim-open">Review this claim →</span>
+            </Link>
+          </li>
         );
       })}
-    </>
+    </ul>
   );
 }
+
+/** Loads all six claims in the browser; each result arrives as its check finishes. */
+export function useAllClaims() {
+  const [results, setResults] = useState<Partial<Record<ClaimId, DemoModule | Error>>>({});
+  useEffect(() => {
+    for (const { id } of CLAIMS) {
+      loadClaim(id).then(
+        (item) => setResults((all) => ({ ...all, [id]: item })),
+        (error: Error) => setResults((all) => ({ ...all, [id]: error })),
+      );
+    }
+  }, []);
+  return results;
+}
+
+/** The five stages of a claim, used on the home page and the "how it fits" page. */
+export const STAGES: Array<[string, string]> = [
+  ["A claim comes in", "with its evidence: meter data, a registry export, a satellite scene, a company's own page."],
+  ["It is rechecked", "ClimateChain rebuilds the figure from that evidence, in your browser, and flags data that looks wrong."],
+  ["A person decides", "each flag, and the claim itself, gets a named decision tied to the exact data it was made on."],
+  ["It is signed", "the evidence, the decisions and the result become one record, signed with Ed25519 and post-quantum ML-DSA-65."],
+  ["Anyone verifies", "open the record on any computer. Change one number in it and the signatures no longer match."],
+];
 
 export function SiteHeader() {
   return (
     <header className="topbar">
       <Link className="brand" to="/">ClimateChain</Link>
       <nav aria-label="Sections">
-        <Link to="/" hash="case">How it works</Link>
-        <Link to="/" hash="claims">Six claims</Link>
+        <Link to="/inbox">Inbox</Link>
+        <Link to="/verify">Verify a record</Link>
+        <Link to="/how-it-fits">How it fits your work</Link>
       </nav>
     </header>
   );

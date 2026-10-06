@@ -76,6 +76,8 @@ type JsonObject = Record<string, any>;
 
 export type DemoModule = {
   id: string;
+  /** The live case, rebuilt in this browser: what a reviewer signs. */
+  climateCase: ClimateCaseBundle;
   title: string;
   icon: string;
   kicker: string;
@@ -128,6 +130,7 @@ export function buildingModule(live: LiveCheck): DemoModule {
   const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
   return {
     id: "building",
+    climateCase: decided.climateCase,
     title: claimMeta("building").title,
     icon: "▦",
     kicker: claimMeta("building").what,
@@ -212,6 +215,7 @@ export function batteryModule(live: BatteryCheck): DemoModule {
   const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
   return {
     id: "battery",
+    climateCase: built.caseBundle,
     title: claimMeta("battery").title,
     icon: "▣",
     kicker: claimMeta("battery").what,
@@ -294,6 +298,7 @@ export function energyModule(live: EnergyCheck): DemoModule {
   const rows = built.caseBundle.claims[0]!.boundary?.accounting?.included[0] ?? "";
   return {
     id: "energy",
+    climateCase: built.caseBundle,
     title: claimMeta("energy").title,
     icon: "↯",
     kicker: claimMeta("energy").what,
@@ -402,6 +407,7 @@ export function earthModule(live: EarthCheck): DemoModule {
       : "not stated";
   return {
     id: "earth",
+    climateCase: built.caseBundle,
     title: claimMeta("earth").title,
     icon: "◉",
     kicker: claimMeta("earth").what,
@@ -483,6 +489,7 @@ export function disclosureModule(live: DisclosureCheck): DemoModule {
   const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
   return {
     id: "disclosure",
+    climateCase: built.caseBundle,
     title: claimMeta("disclosure").title,
     icon: "◫",
     kicker: claimMeta("disclosure").what,
@@ -553,6 +560,7 @@ export function carbonModule(live: CarbonCheck): DemoModule {
   const imported = built.caseBundle.evidence.filter((item) => item.access?.mode === "reviewer-supplied");
   return {
     id: "carbon",
+    climateCase: built.caseBundle,
     title: claimMeta("carbon").title,
     icon: "◎",
     kicker: claimMeta("carbon").what,
