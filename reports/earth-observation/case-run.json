@@ -1,0 +1,684 @@
+{
+  "schemaVersion": "climatechain.earth-case-run/0.1",
+  "runAt": "2026-10-06T00:25:32.798Z",
+  "organisingQuestion": "How much of this scene burned, and who decided which area the claim may report?",
+  "scene": {
+    "id": "T10SEH.2018190.v1",
+    "files": {
+      "nir.f32": {
+        "bytes": 1048576,
+        "sha256": "07d0cacce7f3693ccad67e2f46dca324d8485af55f9bf173e077da8aa384f629"
+      },
+      "swir2.f32": {
+        "bytes": 1048576,
+        "sha256": "fc9d2cc2df17f46a5de6d5fd832ed854fec7f83ef795bd1551727901b754ae01"
+      },
+      "mask.i8": {
+        "bytes": 262144,
+        "sha256": "e50f643c5912958c911114498ad1b5aa4e7575fcf8798c6e5c99397c474877f0"
+      }
+    },
+    "sourceFiles": {
+      "image": {
+        "member": "validation/subsetted_512x512_HLS.S30.T10SEH.2018190.v1.4_merged.tif",
+        "sha256": "13bc592a5e569d837bd8bb3524bb0d2f28418830bcc7b0750e74033078f8b17e"
+      },
+      "mask": {
+        "member": "validation/subsetted_512x512_HLS.S30.T10SEH.2018190.v1.4.mask.tif",
+        "sha256": "67e92de848f4d90730bff525d3aa51fa7c02759e494f264c0d33dcc8c4f6e66a"
+      }
+    }
+  },
+  "policy": {
+    "threshold": 0,
+    "areaTolerance": 0.1
+  },
+  "clean": {
+    "reproduced": true,
+    "detectedHectares": 11974.23,
+    "labelledHectares": 18663.57,
+    "areaGap": -0.358416958813346,
+    "result": "reconciled",
+    "areaDecision": [
+      {
+        "flag": "area:detected-vs-labelled",
+        "state": "decided",
+        "decision": "detected-with-gap"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": true,
+    "changedRefs": [],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "tamper": {
+    "pixel": 0,
+    "row": 0,
+    "column": 0,
+    "band": "nir",
+    "from": 0.08309999853372574,
+    "to": 0.22660000622272491,
+    "reproduced": false,
+    "detectedHectares": 11974.14,
+    "labelledHectares": 18663.57,
+    "areaGap": -0.3584217810418907,
+    "result": "mismatch",
+    "areaDecision": [
+      {
+        "flag": "area:detected-vs-labelled",
+        "state": "stale",
+        "decision": "detected-with-gap"
+      }
+    ],
+    "attestationValidForSignedEvidence": true,
+    "attestationValidForCurrentEvidence": false,
+    "changedRefs": [
+      {
+        "nodeType": "claim",
+        "id": "claim:burn-scar-area"
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:hls-nir"
+      },
+      {
+        "nodeType": "model-run",
+        "id": "model-run:nbr-burn-scar"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:area-decision"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:burn-scar"
+      }
+    ],
+    "signatures": [
+      {
+        "algorithm": "Ed25519",
+        "signatureValid": true
+      },
+      {
+        "algorithm": "ML-DSA-65",
+        "signatureValid": true
+      }
+    ]
+  },
+  "publishedKeys": [
+    {
+      "keyId": "key:demo-ed25519:2026-10-06T00:25:32.798Z",
+      "suite": "classical",
+      "algorithm": "Ed25519",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-06T00:25:32.798Z",
+      "validFrom": "2026-10-06T00:25:32.798Z",
+      "verificationKey": {
+        "keyId": "key:demo-ed25519:2026-10-06T00:25:32.798Z",
+        "suite": "classical",
+        "algorithm": "Ed25519",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MCowBQYDK2VwAyEAuaGO_nguKgOiVpXxzbwe2MMQad0A4a4y8tSm9yoO6tw"
+      }
+    },
+    {
+      "keyId": "key:demo-ml-dsa-65:2026-10-06T00:25:32.798Z",
+      "suite": "post-quantum",
+      "algorithm": "ML-DSA-65",
+      "controller": "org:climatechain-demo",
+      "createdAt": "2026-10-06T00:25:32.798Z",
+      "validFrom": "2026-10-06T00:25:32.798Z",
+      "verificationKey": {
+        "keyId": "key:demo-ml-dsa-65:2026-10-06T00:25:32.798Z",
+        "suite": "post-quantum",
+        "algorithm": "ML-DSA-65",
+        "encoding": "spki-der-base64url",
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAECrBNrC3jy8CgCwTvIMry1--nTIODIfqvSy2MGT1cJcW5VmSLaQTkjXABG6xZz-SmMJiw74hQRVhXJnbRKC9eWG-EOSzie472y6i5ms53bEjacurjz_b6_rVpcVYYcEQVG1gVtPo45q7ihkP9GQC0-hAXZ73xjd9PlwN4Xeumxu0FX8L4auXUWTO9PqKsznsko8LOO4F8NwKgpSjHB3JD5d0ZG4HP4BBbrMeOTWIOR05kP8SObCr6FPmQRu5LhjrD79GEOP1_Ln9DvCmZ5NhX3dV7x7Dw2zWEJgFZ6POL2CGXK-I4q4CphI0nFhUnvW95IcNTljwNlpYdE18qX2UPFpzB3SmU58Sa7sgNC6o7dHhULjXDO9I-uD0O89auE4halW9jEpxpI9gomX0EdkGOrwIH37Uswm7IF987hFUgPwzSWdT0cE3URjBsMd0ZFg3DJ18NarRQ7kuohfEBg9sBfwd_Rr7MAutXBUkIspH8dxn8eSLUCIx6kJQtpiTkRuI0navRg-84r_othWGqeKel8290YpkOTftqp4Gj69fmeob5hL-bVIwOuEs9CU06oIqNSG73xFJ16F4oP_lMRAU4XW6hVrocCD3tWMHlihDtw7g_RqS_ZqhUPRg3QsvQ_RaeOecL108OALu63RN0VzxlN9oCzYjzzaZlThDnDH_p3WW6MiIfU8OUa_76pq-2Q0Qqa2fd-snkibqKVjbs7SwDZqSWViW6EG0lbT1Ai9nRtSpkL9eKq3qYmm1KcYQrqJYN1_tNqGnjcg42w8r9-iQXDhooLgEOZwABqggqfWyGG54OmapNus-bjEEL7DA0rELkNTmPrmhzlNPsyIa-ocXA3WW1GbiGSJd4I-r2tXDbc6KXLBHeaomaQfpWsOKduv2P3qP6E--fcNmB9szaZB9A2rv-Dd7liA6LIvaqK0-5nYzBwDrzlVxBTMoz0Y4_FPJZ4Sa0SHqULRpSdqwie6Kl0iNIaJfEO9VRf3cLY3s9xz0KHY-0iI1RVQTJPR4BDrZQgXTJObGReRR6htbF40CN6Jff5-kuqABAq1BpZe786Oi1AwduT78wtRcVTkx871R8B2LXxrWcJm4GIWBBtaSkieN0GdTR7h6oISGLJ-BWipCq0jkZupR5hY5qIDvw3yw_DCJl1-I8UWkP9V0p3WKzXS7KLjsZC-qJq7FVxo-znvnr0HoZfIpzH8IhG_QQ0TXpcBxR35XUdudB68L3a7Xid6kdLaqDan-c2HgT8S1OT18VYuouUpIXfMKQd33krQobQN3zqo5bamcmSmz2MOanOLS6_gyMYdJYi1NQdmNMgrzoqOqoyjm4mUi1Xfz5kb_ktqwD1kClpULpqc-V5NsBD7mtjvusFc1Fwku6baoLcjIpZeKYdc7EGAepDz2mQrKsdOiGGfT4ktgVkYk2nSGMZYFsjzbNbGP-62GUrhVPD77iYvUCtDpGOUqt4BeQV9FkMe4--40JHvPc_1-mCZlMG6jfCv1mgj-9TRGg6cUaFkFu-znWSJCDw5ImB_LfuA-tQwohZ3by_tLccyOIbptLRJtaJ5ZZsRZpGjkMSqs60D9n50RfJ-3LLDRvBewz8q2W7_MPt9wppmSAWOrAfnZ0zL4ryHj40OrwbcLXo6Z87uumWOtiByHO6BDXXAhsVnO4P-wJWNE8Y0k5pSWfpCCpDCfohdEst0kS0lKJ_C0NFPzzp8zjqTd5sQxU2XwjXvh4m4IZ1uUqhmr3pyI0PljLziF-BV7UUjTJ1JrgyGKmKPot-22pSI2zpjXSOMaNPtB3dPu8kCF_DxVShNP0XYrNAzSkoyQsInzEnz-ErijkWDCmSKHXnCTreQhvPiZv-T6cxHPXOkJGAGRjQh25_LgaD7NBoaJP1C8jq39GnCfoGJwXP90kVG-1Qbusm9q3d9LtN_xmcDxYSFaTIVAjlqvqLl-ao4bZ3Zs_ZJIqi-mU6z3_ebiUoXp8mjvS7cN1EpwbNlQSSzyk1BW8UZq6_5WITC-sg7gxHd6nDgesUb0fvluCgUoxPuZ-OdC9Bal9MXBFPK-fV14o66kE84FeEYrG2GUs3Nh9bz6xe4O97eDGkE0eelQtUFb5ZcpdGVX5LZgLBDqLd8oIoeSKqFOjkYUa9z7fh8lgtzcoCbV9UFsTFdmxvwNOfOcOMxHOa-pmCYWOrhpntIjUByqH7Unop2QbmBnocncTljvn1ExNZ-33k11D69mKsCMJLg7mcD6XR_CDSJncLgAI07drY08AGf_uPWvk6QutsLoBd1vd64a46Vha-fx9YA8MrWQEMxQ4ImGqN2lVSOmvSZ9SQW4u_sLrVPOFTUXNOZiKeTPhakW-G0vI3nO_ahqe_dJSR5qZa11JooPfdQUUmZVok2CXZPj9pic-fgadCemiQKRl8tq7A4FqUgwi6NNjf9GV7LzGqTLE1GMgVXkKQf4at8qfqw63ouQE19zyRwOr_gKhNe_374_A9d1CdW8Rlk8lH09f_KUgXpTD9qlSp-IFZTr6cntSicFaNP3w3LDjPBm5HNCRBHJi52CDEY8hHuiVKa3tFaQm5nmUEZfHwdNXnjD-JBQcR7CnHGWlq6ELjUefPcEe76"
+      }
+    }
+  ],
+  "attestation": {
+    "payload": {
+      "version": "climatechain.attestation/0.1",
+      "id": "attestation:earth-observation:2026-10-06T00:25:32.798Z",
+      "attester": {
+        "subjectId": "org:climatechain-demo",
+        "name": "ClimateChain demo run"
+      },
+      "statement": "Burn-scar baseline recomputed from the committed HLS scene arrays and checked against the pinned run. Verification result at signing: reconciled.",
+      "claimRefs": [
+        {
+          "nodeType": "claim",
+          "id": "claim:burn-scar-area"
+        }
+      ],
+      "verificationRef": {
+        "nodeType": "verification",
+        "id": "verification:burn-scar"
+      },
+      "evidenceRoot": {
+        "algorithm": "SHA-256",
+        "value": "sRHDA64egooruLiMk-9jcYtJo9eGKbXE7xWbOxvykpI"
+      },
+      "manifestVersion": "climatechain.evidence-manifest/0.1",
+      "issuedAt": "2026-10-06T00:25:32.798Z"
+    },
+    "evidence": {
+      "manifest": {
+        "version": "climatechain.evidence-manifest/0.1",
+        "caseId": "case:earth-observation:T10SEH.2018190.v1",
+        "caseSchemaVersion": "climatechain.case/0.1",
+        "rootRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:burn-scar"
+          }
+        ],
+        "nodes": [
+          {
+            "ref": {
+              "nodeType": "claim",
+              "id": "claim:burn-scar-area"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "FHVmQWX1PKCoW3ZSf0gtswxcBDfjeyIRDzC5usqyLEo"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:burn-mask"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "u-utfhFI5L4m1AXchDkhAsWYypHqOLNlMQR82GlE0R4"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:hls-nir"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "Xj4a7NCPssZKv1Xk5xzYsWyfsRK0xNf3sMStMa9C9U4"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:hls-swir2"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "bzwo-SaakoL0ibMYqr0ZD_deUA7l3vsywDQKJDZds7w"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "evidence",
+              "id": "evidence:python-run"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "EzZN51Ah-pc3QqvfCZQFQr0IqxaBMuoa_9-u1uK6QYI"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "model-run",
+              "id": "model-run:nbr-burn-scar"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "0DJShlMY6qzxDtQfbRc7riyUl2rXnK0S_fGMXnQzBW4"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:area-decision"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "qUjyX6BS6wwMclvfmeyu1MWl2gkVZnVCOXHqy1J-H6k"
+            }
+          },
+          {
+            "ref": {
+              "nodeType": "verification",
+              "id": "verification:burn-scar"
+            },
+            "digest": {
+              "algorithm": "SHA-256",
+              "value": "C0L0ZaSazgrahD1SYVnsmqg33kV3bd_o7SVTeuaBiuQ"
+            }
+          }
+        ]
+      },
+      "root": {
+        "algorithm": "SHA-256",
+        "value": "sRHDA64egooruLiMk-9jcYtJo9eGKbXE7xWbOxvykpI"
+      }
+    },
+    "envelope": {
+      "version": "climatechain.signature-envelope/0.2",
+      "domain": "climatechain.attestation",
+      "schemaVersion": "climatechain.attestation/0.1",
+      "payloadHash": {
+        "algorithm": "SHA-256",
+        "value": "K1oH9Ajo85XLHZsSCMRYD8SrAFU1OG0WFL5E01IHyLc"
+      },
+      "createdAt": "2026-10-06T00:25:32.798Z",
+      "signatures": [
+        {
+          "suite": "classical",
+          "algorithm": "Ed25519",
+          "keyId": "key:demo-ed25519:2026-10-06T00:25:32.798Z",
+          "encoding": "base64url",
+          "value": "qfBzMMWKzMHutgnPUBzMTn4tIcGngg6-IHrTkWJ5LoT5lCVfwwpcSyQyxbFrWjoqPGPDF6yobLBMrPDrM5jaBg"
+        },
+        {
+          "suite": "post-quantum",
+          "algorithm": "ML-DSA-65",
+          "keyId": "key:demo-ml-dsa-65:2026-10-06T00:25:32.798Z",
+          "encoding": "base64url",
+          "value": "P4P_pMwzyoYYoINPUdnJpt6Zf6kas7J79xrWU_PrOXwRSmJS8bto8nTuVoBdPpHn_H97BQSk9gnOHUHbGIRnej7bA91xEzwgqrp0RGfjiXeGrjDxA9NHu76yZLux-1xK89jbuayk1LJg7DsSTQ6JmGJbu55wG_RsfeztMk1XduYoCACL1OI72QlHSyDBExRR6nV1q_7NX04HvGwxmms9tjgJQwRKAIXE50ZvQm6JJG35dWpPqklPLdJGhTDRR8mE79jffQTYqpnPSJtxqwrM2L8x_L3AtkcZO7-Qf4NucgQFfw26NZms8pU_Vn0i3AnDNsxChYHMWe2E-QAx0jnopES9ux1SHi-qMq73IKN82zY7Pmp7GHaOzv7gow__sj6Lojwd4P1EoYk1gLPY1PRKBhBlJ1qns0Kbk6nNzO_SViKlRq5DAeO-tduZtteL4f3yIj47zgv1Vt9HR7uQvJiEXFDgrpzC9SteF1I6XcCRRB6dAazifd8j7PFhYXkKHiYDXQmBC0ScV_wrlc45vhDRv7tjBY_xSI09A-QnIM3V6FpzqhhBed_OKi_bWJmzbb6EOP59VC053bxXhwzQfWFzSx_WDbbByoeLfwFipbxM2T-QYKvvycNoTUqZH36XxyP6WdksXCt_Z96QIzuWvyIiEfFVZnlTH-UkkOa-IHQxEc2M3iDoCIbKKP8nj2X38XKqTvtusEdFQwe0hjdqls3eo2sdmloEp3gWnh2O-sI_Dhxfp9B7IM7rPnhDM1tfLMFvGQviBdLP8jOl7zJdZfhcyk_aKNy2pp-_gx4EiZz-ibiU1f7d7LhyHjyKcfeCzKXl-QTqXW53ChubrGrgVCUsFxOrr7kMD-5l80jyDX0BPLyjlIewVXfaeeanqoCw0mPs4IRgBZqnpTnBBUFFGpqH9tJL8OpdPpSRlorDAyP1A2zY7X9ehT4ROsBqqTNNwjBU4ntlqJI6L_s-ppvkaqCye-vJfSotdWR0EuKC-TBL3DxLVnlykjaRsIIpPw9wqMtUNzGKxuz3pFzP-DlgKgdRif3VnspyeTXq1ow0VJqHgern0o4sYlLIZbsG2WkGxq5wLACaelF8QPsXI_XtOSHAn_se9qUSwHRxHuZDCnN86EHcB4xqM9FeGhSzPvYNBm9jjljLDJ5aYrU355F9w2ptXKNl4xiqkmWs0Ihz-dtHNLQD_7zIkxgYWBG6_tBnu3912ESc9eeJK7CxWtpaienXKKf9hqh6bV6vJoTdXm8ULf1mI-7UWPevbZl6O5gmnnbBpylYeIk7X9ZSrmK6VGz2Z6pjGf0Wf386aI3fR-3ez0mcJ22ArbX8gmj0U-Rcv8pGuiXrTTn_nrFZNK9IOaADJeX5VSuJ9wL9-cJEUK6Ke9RIToC9r1U0lCOy8Tq2NyNaLA1bfaaJwNtsVbh6BbACrZpHXIEvL1mKxzt7h54idVOJR-e_yKVwQ4Dl5y0u8m1FybASVwEh7TEIfNF3fcl1IB1HcSPsDqPdkDZ7IiA9KIugnrmneFuJNmyamPvTH2TcGhbOBENX0ow-i9-tShwUB5erKUBpkKHrnnWWPIlmnhHDpcmQERkcYhwE0ksitXpkRH6W4e3R3i6XyCcdXOueSXGYoRT9GrU5H1WBBKO-d2LW8MuSbGi-VHnojCljRd3XRQYD_IwCrwZ-_h3C7whMf_gMO-XPc5gNV6fFBSveZ4JYC7vYNMll7YYhHWz9WBuAdHvSOdyYeNGGX0Xr0DsVRgSSPsylQp_TkH0BJG5pzsx7vxmJprZXotD6BNxmJM2PrOzKznKAHQaxvR7ClZK3soQN9f27Fko9MSCHMtDfVbCxF2xOXbCB_iHseNTomNm1dk_jgTRnGLVCMjb4RB5oem7fU-7GVtzqP-aCcWCeFjgXP6D6AK4Ou58zN9NYFGxOpJcVh8ocUdzeBDEAVEpyE4ef82h8x2MRG6np1_92jvNOHMqaecHV7Ovf1JpNJXMDBBIdmyyI18AYHlJMBKCyWrqiUytcXBaqm0rJZlDVrlrNfElhf3VFk7AoHswQaMkn8gOJXwYXuJVaDY4rAyF2SETFgp_JrV_8BRPZ8LeMQTft5IbWQ2yCgWjtxyfCLcfRUDb3vhhX2yaY4UPLxgsiqtHVb22QQD58T-9m7iHy96Mhf7_jaIJH2apCyiN5O3sah_6SNaC25o-D2j9MNl7ugE8RX0z5QV_J8NNGFO8dw4I9BXRnctzIfjuySq1iaCXoGvnyi7WU8szYeJSYaCUxsMW45IHKa9Ybq59D3706myJtdrXGkqB9ABa6-edOY--botJ76iAhMU3JmgopRO3n3q1sm2ONa9a3iTZgnwZK3GI5fEVEcJKnSEw8IcQkQbDp7cHi648H6X8ugdPX_gKaHn_90Oggtwf_0aJsZw1tl3N_uW4g46eCWHu8gCrYGBWzUr5YOP35eZEv__OUyBQObG0J6EFt_FFlA_7Fbh2j6G6XItwzAaPLFJ5DA0NTLAGSjTlkN12vmUuWvOejTTJecyYEYFIT4rEo7WdwHCYSd7EPBnkDKgdBQueY94ABQWLOGOv8Q52M6RD33jJrohhdakJPAf1MouKFIKRPx-SCUvmn0bugtUcp1KoJENPMmJ_DedsR4ienEvgnKYnB7sohXSYV_HwP-wO_aWMRs3JVC_2D6nEum_CIsqawp2K7PHdgoPr6BTSLVmwrNv699d4F1jVRxyDSDyKq3R_WkKCVUNzEeasQ4HqkddFJDcuICO3LRBcXk8jw367wnm8egx2JxZhT_3b_qnmZYs_-T_0kkX0YhM57lGjAnktTlTkxWrabEJjRPVYJWP76d--zY80kMeN6yg-S5g1UF_Q5teVfNRqhcT9ZEJedBR6tRNl0ai94ObNZjRbG19gaZGCC5geVOv6m6u_MZr5p1Lvydpr24Z0JsR05z83MqkuU4sxM_5bahTKYBpZlNYMsZzYORq1d7vba4uoKZ0WTjSFqiDXogYVdBe4HrJFqcIN_3RHsSbA7krOKbz79AnyJsuYRpg2TwVnPCIbRGkXQ8S6fNQ5wuT3fbodHKGIEhVGS97f1ROEM3sDruBB4jbPDGy_pC4YnnlHlJrnPFLEEgvOIFGcR7Rd5HHAukBfDeCfIizDguxPawjFQMI_gNiiQaAoCI5Hb8fTjb-xUC3108obLb-V25_1HqSxe9Q2-EihRHsEZ3HpFaKRzZ-R_TB0brAo5mxyOuvljOF9WhOexs4iIbHXUX-DW54KRj3Q8lR0CA6J2la-CxfSxz4a2ao83abkOdMHja1-SeeKd2OPtfOgmBLBek6etCMzQtDRq1aQNED3YK8C8mFVpsHIZSK-2xSjSqpKAxKgm5d1_YamnOoVq_FFqOCSFhEZ3m_59y3G5ptYmzDi_A5WyUJLi15MmluGCWeLZE0ybdsIPTElAfX1dZce5eHKOCqeuk77jkyWnNWyoEgELzHmQ98qblAmJCcHPjEOcMYVrxDksbqvw4Q-XfivgkmXVpLRK31lCGrLkfQmAusMMBORC_9xmqZCWHEcu5eNAc54AqVGQqjb53N54EBc-Fy0YeDmGGM43sbXdDONoXeGjJOgXdl88kr_CV9-Ib6KjivYbzrCkjPuNbE5il5rrA4rninIcW6lIQwP7222nlmOpRM6PvhZSkvmj21wvk42dBR2c6sy02PXw_kozcGJXSQx9J3wbfJqcZBJpAdeGkfBCS3btyg4KS5Kr64eossNHJ7YeauN0CfpfQT01aj1sNvkfQZsZ2OERaMApmq_Vv3oN6uF_v181KsldjD8aoKEetYoYdl7dUckzm0f1O5ksSEiSGVHgDHah-tykdMJpnBsyf7tzfGsjA76ue4zDXpZNF8CeAbMFEEPhAoQQw4Xh9JUhCmzVKSP9Az44ssx5o-13T0DYEpriekGvgcaddld9vlCXssDF-30bvEuFZeJnx7eP3bVULQcjjRrRiqurQyv-CTFfPJXX2eaCdpGPiAmKMN1jbmoHjaP8mvjdv5Jj3ytvKYnsQ7y_Rguvojj20nQerItWA7olP8S22uwYnEpSVWbVX3ImCoI-Ygbyvd3cb-kUsw8AGCUsT4XUWmmEcucJJ0HGybzrEb5DD50FKExCBP5iINoQFLG1txvkiDbVk7kNdDEk1vkPyCPiWRHM-iKv_HuQzWPgsKi_4ie_wEPq1wU6h4mA8mYrQZiLprgKx-sBfRkFOW-17VD4YbOAYQXPRp1ED8fDhWarr1dVpHU7S98Z6yn0XMoVTF9uZmuQLpyrEfb5ikNllT_hzJGnD9Nv5GbZV8rxhxZ0BexcM9yRXkg4zxO80sXfyBccvz9nlJUBUHB4qf4mKVSztrulsrjO0PMKOWlwqO0YR1mIobjD5Pn6UX8AAAAAAAAAAAAAAAAAAAAAAAAABgwSGCIk"
+        }
+      ]
+    },
+    "status": "attested",
+    "lifecycle": [
+      {
+        "from": "pending",
+        "to": "attested",
+        "actor": "org:climatechain-demo",
+        "at": "2026-10-06T00:25:32.798Z",
+        "reason": "Signed attestation issued.",
+        "evidenceRefs": [
+          {
+            "nodeType": "verification",
+            "id": "verification:burn-scar"
+          }
+        ]
+      }
+    ],
+    "challenges": []
+  },
+  "case": {
+    "schemaVersion": "climatechain.case/0.1",
+    "caseId": "case:earth-observation:T10SEH.2018190.v1",
+    "title": "HLS burn-scar area — T10SEH.2018190.v1",
+    "capabilities": [
+      "earth-observation",
+      "claim-reconciliation",
+      "pq-attestation"
+    ],
+    "createdAt": "2026-10-06T00:25:32.798Z",
+    "claims": [
+      {
+        "nodeType": "claim",
+        "id": "claim:burn-scar-area",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:nbr-burn-scar",
+            "role": "detected-by"
+          },
+          {
+            "nodeType": "verification",
+            "id": "verification:area-decision",
+            "role": "area-decision"
+          }
+        ],
+        "subject": {
+          "id": "scene:T10SEH.2018190.v1",
+          "kind": "area",
+          "name": "HLS tile T10SEH, northern California"
+        },
+        "assertion": {
+          "kind": "quantitative",
+          "metric": "Burn-scar area",
+          "quantity": {
+            "value": 11974.23,
+            "unit": "ha",
+            "uncertainty": {
+              "kind": "other",
+              "note": "Lower bound: 35.8% below the labelled 18,664 ha."
+            }
+          }
+        },
+        "temporalScope": {
+          "start": "2018-07-09",
+          "end": "2018-07-09"
+        },
+        "spatialScope": {
+          "label": "HLS tile T10SEH, northern California"
+        },
+        "boundary": {
+          "methodology": "NBR = (NIR - SWIR2) / (NIR + SWIR2) on HLS reflectance; a pixel is burned when NBR < 0.",
+          "accounting": {
+            "included": [
+              "The 262,144 labelled pixels of one 512×512 HLS subset",
+              "One pixel = 0.09 ha"
+            ],
+            "excluded": [
+              "No-data pixels (mask -1)",
+              "Land outside the subset, and the rest of the fire"
+            ],
+            "policyChoices": [
+              "NBR threshold 0",
+              "Area tolerance 10.0% between detected and labelled area before a person decides",
+              "Area reported: detected-with-gap"
+            ],
+            "notAssessed": [
+              "Burn severity, emissions from the fire and carbon lost",
+              "Accuracy on other scenes: the dataset's split is random, not held out by place or fire"
+            ]
+          }
+        },
+        "assessments": [
+          {
+            "dimension": "source-found",
+            "state": "confirmed",
+            "assessedAt": "2026-10-06T00:25:32.798Z"
+          },
+          {
+            "dimension": "calculation-reproduced",
+            "state": "confirmed",
+            "assessedAt": "2026-10-06T00:25:32.798Z"
+          },
+          {
+            "dimension": "evidence-integrity-confirmed",
+            "state": "confirmed",
+            "assessedAt": "2026-10-06T00:25:32.798Z"
+          }
+        ]
+      }
+    ],
+    "evidence": [
+      {
+        "nodeType": "evidence",
+        "id": "evidence:hls-nir",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [],
+        "kind": "satellite-image",
+        "source": {
+          "uri": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+          "localRef": "data/external/hls-burn-scars/T10SEH.2018190.v1/nir.f32",
+          "publisher": "IBM/NASA Geospatial; HLS imagery",
+          "retrievedAt": "2026-10-06T00:25:32.798Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "B9DKzOfzaTzK1n4vRtyjJNhIWvVfm_Fz4HfaiqOE9ik"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "data/external/hls-burn-scars/T10SEH.2018190.v1/nir.f32"
+        },
+        "rights": {
+          "sourceManifestId": "hls-burn-scars",
+          "licence": "CC-BY-4.0",
+          "redistribution": "allowed",
+          "commercialUse": "allowed",
+          "derivedData": "allowed",
+          "attribution": "HLS Burn Scar Scenes, IBM/NASA Geospatial (doi:10.57967/hf/0956), CC BY 4.0; HLS and MTBS provenance retained."
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:hls-swir2",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [],
+        "kind": "satellite-image",
+        "source": {
+          "uri": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+          "localRef": "data/external/hls-burn-scars/T10SEH.2018190.v1/swir2.f32",
+          "publisher": "IBM/NASA Geospatial; HLS imagery",
+          "retrievedAt": "2026-10-06T00:25:32.798Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "_J0swt8X9Gpd5tX9gy7YVP7H-D73lb0VUXJ5AbdUrgE"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "data/external/hls-burn-scars/T10SEH.2018190.v1/swir2.f32"
+        },
+        "rights": {
+          "sourceManifestId": "hls-burn-scars",
+          "licence": "CC-BY-4.0",
+          "redistribution": "allowed",
+          "commercialUse": "allowed",
+          "derivedData": "allowed",
+          "attribution": "HLS Burn Scar Scenes, IBM/NASA Geospatial (doi:10.57967/hf/0956), CC BY 4.0; HLS and MTBS provenance retained."
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:burn-mask",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [],
+        "kind": "dataset",
+        "source": {
+          "uri": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
+          "localRef": "data/external/hls-burn-scars/T10SEH.2018190.v1/mask.i8",
+          "publisher": "IBM/NASA Geospatial; labels derived from MTBS",
+          "retrievedAt": "2026-10-06T00:25:32.798Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "5Q9kPFkSlYyRERRJitG1qk51dfz4eYxuXJk5fEdId_A"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "data/external/hls-burn-scars/T10SEH.2018190.v1/mask.i8"
+        },
+        "rights": {
+          "sourceManifestId": "hls-burn-scars",
+          "licence": "CC-BY-4.0",
+          "redistribution": "allowed",
+          "commercialUse": "allowed",
+          "derivedData": "allowed",
+          "attribution": "HLS Burn Scar Scenes, IBM/NASA Geospatial (doi:10.57967/hf/0956), CC BY 4.0; HLS and MTBS provenance retained."
+        }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:python-run",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [],
+        "kind": "report",
+        "source": {
+          "localRef": "reports/earth-observation/t10seh-2018190-nbr.json",
+          "publisher": "ClimateChain CI (Python, rasterio)",
+          "retrievedAt": "2026-10-06T00:25:32.798Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "QjhQmgDGUhiN7e3AnR9ryR2GmzBPerdpYwxeuwLUudg"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "reports/earth-observation/t10seh-2018190-nbr.json"
+        }
+      }
+    ],
+    "calculations": [],
+    "factors": [],
+    "modelRuns": [
+      {
+        "nodeType": "model-run",
+        "id": "model-run:nbr-burn-scar",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [
+          {
+            "nodeType": "evidence",
+            "id": "evidence:hls-nir",
+            "role": "detector-input"
+          },
+          {
+            "nodeType": "evidence",
+            "id": "evidence:hls-swir2",
+            "role": "detector-input"
+          },
+          {
+            "nodeType": "evidence",
+            "id": "evidence:burn-mask",
+            "role": "evaluation-ground-truth"
+          }
+        ],
+        "model": {
+          "id": "nbr-threshold",
+          "name": "Normalized Burn Ratio threshold baseline",
+          "version": "earth-observation/0.2"
+        },
+        "inputDigest": {
+          "algorithm": "SHA-256",
+          "value": "_w4bXZWPYI5DjFQyHadqwzMFuxHiYFXxdWFiA6-OHNE"
+        },
+        "preprocessingVersion": "HLS reflectance; NIR = B8A (channel 4), SWIR2 = B12 (channel 6)",
+        "inferenceParameters": {
+          "threshold": 0,
+          "formula": "(NIR - SWIR2) / (NIR + SWIR2)",
+          "ignoredGroundTruthValue": -1
+        },
+        "output": {
+          "kind": "quantitative",
+          "metric": "Detected burn area",
+          "quantity": {
+            "value": 11974.23,
+            "unit": "ha"
+          }
+        },
+        "benchmark": {
+          "metric": "Burn-class IoU",
+          "value": 0.6163524998812971,
+          "baselineValue": 0.73,
+          "notes": "baselineValue is Prithvi's published IoU over the validation set, not reproduced here and not for this scene."
+        },
+        "executedAt": "2026-10-06T00:25:32.798Z",
+        "reproducibility": {
+          "codeVersion": "earth-observation/0.2"
+        },
+        "extensions": {
+          "predictionDigestAlgorithm": "SHA-256",
+          "predictionDigestValue": "GhiyxZymlF3Z4hGpoN5A7oNYEgB4ugo3mCpzoGN7VeU",
+          "validPixels": 262144,
+          "truePositive": 129810,
+          "trueNegative": 51534,
+          "falsePositive": 3237,
+          "falseNegative": 77563,
+          "precision": 0.975670251865882,
+          "recall": 0.6259734873874613,
+          "labelledHectares": 18663.57
+        }
+      }
+    ],
+    "verifications": [
+      {
+        "nodeType": "verification",
+        "id": "verification:burn-scar",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [
+          {
+            "nodeType": "claim",
+            "id": "claim:burn-scar-area",
+            "role": "claim-under-review"
+          },
+          {
+            "nodeType": "evidence",
+            "id": "evidence:python-run",
+            "role": "pinned-run"
+          },
+          {
+            "nodeType": "verification",
+            "id": "verification:area-decision",
+            "role": "human-decisions"
+          }
+        ],
+        "verifier": {
+          "id": "service:climatechain-earth-observation",
+          "kind": "service",
+          "name": "ClimateChain Earth Observation"
+        },
+        "profile": "earth-observation/0.2",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "baseline-reproduced",
+            "name": "Pixel counts match the pinned Python run on the original TIFFs",
+            "outcome": "pass",
+            "detail": "validPixels 262144; truePositive 129810; trueNegative 51534; falsePositive 3237; falseNegative 77563"
+          },
+          {
+            "id": "area-agreement",
+            "name": "Detected area within 10.0% of the labelled area",
+            "outcome": "warn",
+            "detail": "detected 11,974 ha, labelled 18,664 ha (-35.8%); missed 6,981 ha, false burn 291 ha"
+          },
+          {
+            "id": "area-decision",
+            "name": "A person decided which area the claim reports",
+            "outcome": "pass",
+            "detail": "detected-with-gap by person:land-analyst: The detector's area is a lower bound: 97.6% of the pixels it marks as burned are labelled burned, but it misses 37% of the labelled burn. Reporting 11,974 ha with the 35.8% shortfall stated keeps the claim on what was measured; the labelled 18,664 ha is MTBS-derived and not checked on site."
+          }
+        ],
+        "findings": [
+          "NBR thresholding is a transparent CPU baseline, not Prithvi inference.",
+          "The labels are MTBS-derived and are treated as the reference, not as ground truth checked on site."
+        ],
+        "verifiedAt": "2026-10-06T00:25:32.798Z"
+      },
+      {
+        "nodeType": "verification",
+        "id": "verification:area-decision",
+        "createdAt": "2026-10-06T00:25:32.798Z",
+        "provenance": [
+          {
+            "nodeType": "model-run",
+            "id": "model-run:nbr-burn-scar",
+            "role": "flag-source"
+          }
+        ],
+        "verifier": {
+          "id": "person:land-analyst",
+          "kind": "person"
+        },
+        "profile": "earth-observation/area-decision/0.1",
+        "result": "reconciled",
+        "checks": [
+          {
+            "id": "area:detected-vs-labelled",
+            "name": "Detected burn area differs from the labelled area",
+            "outcome": "pass",
+            "detail": "detected-with-gap: The detector's area is a lower bound: 97.6% of the pixels it marks as burned are labelled burned, but it misses 37% of the labelled burn. Reporting 11,974 ha with the 35.8% shortfall stated keeps the claim on what was measured; the labelled 18,664 ha is MTBS-derived and not checked on site. (person:land-analyst, 2026-10-06T00:25:20Z)"
+          }
+        ],
+        "findings": [
+          "A decision records which area the claim reports, not why the detector missed burned pixels."
+        ],
+        "verifiedAt": "2026-10-06T00:25:20Z"
+      }
+    ],
+    "attestations": [],
+    "anchors": []
+  },
+  "limitations": [
+    "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
+    "One scene; the dataset's split is random, so accuracy elsewhere is not established.",
+    "NBR is a CPU baseline, not Prithvi; the labels are MTBS-derived, not checked on site."
+  ]
+}

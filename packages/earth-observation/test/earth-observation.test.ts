@@ -3,6 +3,7 @@ import test from "node:test";
 
 import {
   createEvidenceRoot,
+  validateBundle,
   verifyEvidenceRoot,
 } from "@climatechain/core";
 import {
@@ -243,4 +244,48 @@ test("Earth WebMCP module routes all three tools through one service", async () 
       item.includes("geographic"),
     ),
   );
+});
+
+test("earth review case: area flag needs a current decision; changed arrays break reproduction", async () => {
+  const { buildEarthReviewCase, calculateBurnScarMetrics: metricsOf } = await import("../src/index.js");
+  const provider = new InMemoryNodeCryptoProvider();
+  // 2x2: three burned in the labels, the detector finds two (NBR < 0 where NIR < SWIR2).
+  const base = {
+    sceneId: "toy",
+    width: 2,
+    height: 2,
+    pixelSizeMeters: 30,
+    nir: Float32Array.from([0.1, 0.1, 0.3, 0.4]),
+    swir2: Float32Array.from([0.3, 0.3, 0.2, 0.2]),
+    mask: Int8Array.from([1, 1, 1, 0]),
+  };
+  const pinned = metricsOf([1, 1, 0, 0], [1, 1, 1, 0], 30);
+  const policy = { threshold: 0, areaTolerance: 0.1 };
+  const build = (scene: typeof base, decisions: Parameters<typeof buildEarthReviewCase>[0]["decisions"] = []) =>
+    buildEarthReviewCase({ caseId: "case:t", createdAt: "2026-10-06T00:00:00Z", scene, pinned, policy, provider, decisions });
+
+  const undecided = await build(base);
+  assert.equal(undecided.reproduced, true);
+  assert.equal(undecided.review[0]?.state, "undecided");
+  assert.equal(undecided.caseBundle.verifications[0]?.result, "insufficient-evidence");
+  assert.equal(undecided.caseBundle.claims[0]?.assertion.kind, "qualitative");
+
+  const decision = {
+    flagId: "area:detected-vs-labelled",
+    decision: "detected-with-gap",
+    reason: "Test.",
+    decidedBy: "person:test",
+    decidedAt: "2026-10-06T01:00:00Z",
+    inputDigest: undecided.reviewInputDigest,
+  };
+  const decided = await build(base, [decision]);
+  assert.equal(decided.caseBundle.verifications[0]?.result, "reconciled");
+  const assertion = decided.caseBundle.claims[0]?.assertion;
+  assert.equal(assertion?.kind === "quantitative" && assertion.quantity.value, 0.18);
+  assert.deepEqual(validateBundle(decided.caseBundle), []);
+
+  const tampered = await build({ ...base, nir: Float32Array.from([0.5, 0.1, 0.3, 0.4]) }, [decision]);
+  assert.equal(tampered.reproduced, false);
+  assert.equal(tampered.review[0]?.state, "stale");
+  assert.equal(tampered.caseBundle.verifications[0]?.result, "mismatch");
 });

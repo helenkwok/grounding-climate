@@ -43,7 +43,7 @@ import {
   setEnergyTampered,
   type EnergyCheck,
 } from "./energy-live.js";
-import earthReport from "../../../reports/earth-observation/t10seh-2018190-nbr.json";
+import { checkEarth, earthCaseId, earthRun, earthService, setEarthTampered, type EarthCheck } from "./earth-live.js";
 import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
 import carbonReport from "../../../reports/carbon-registry/carbonplan-smoke.json";
 import cadi from "../../../sources/cadi-candidates.json";
@@ -78,7 +78,6 @@ type DemoModule = {
   };
 };
 
-const earth = earthReport as JsonObject;
 const battery = batteryReport as JsonObject;
 const carbon = carbonReport as JsonObject;
 const cadiData = cadi as JsonObject;
@@ -329,57 +328,94 @@ function energyModule(live: EnergyCheck): DemoModule {
   };
 }
 
-const modules: DemoModule[] = [
-  buildingModule(await checkBuilding()),
-  energyModule(await checkEnergy()),
-  {
+function earthModule(live: EarthCheck): DemoModule {
+  const { built, attestation } = live;
+  const m = built.result.metrics;
+  const verification = built.caseBundle.verifications[0]!;
+  const claim = built.caseBundle.claims[0]!;
+  const boundary = claim.boundary?.accounting;
+  const status = built.review[0];
+  const ed25519 = attestation.signature.signatures.find((item) => item.signature.algorithm === "Ed25519");
+  const mlDsa = attestation.signature.signatures.find((item) => item.signature.algorithm === "ML-DSA-65");
+  const ha = (value: number) => Math.round(value).toLocaleString("en-US") + " ha";
+  const reported =
+    claim.assertion.kind === "quantitative"
+      ? ha(claim.assertion.quantity.value) + (claim.assertion.quantity.uncertainty?.note ? " · " + claim.assertion.quantity.uncertainty.note : "")
+      : "not stated";
+  return {
     id: "earth",
     title: "Earth Observation",
     icon: "◉",
-    kicker: "Satellite scene → measured mask",
-    kpi: earth.baseline.metrics.iou.toFixed(3),
-    kpiLabel: "burn-class IoU",
-    source: "IBM/NASA HLS Burn Scars",
-    decisionTitle: "Wildfire / land-management analyst",
+    kicker: "Satellite scene → detected area → decision",
+    kpi: m.iou.toFixed(3),
+    kpiLabel: "burn-class IoU, recomputed in this browser",
+    source: "IBM/NASA HLS Burn Scars (CC BY 4.0)",
+    decisionTitle:
+      "Land-management analyst: area " +
+      (!status ? "within tolerance" : status.state === "decided" ? status.decision!.decision : status.state === "stale" ? "decision stale" : "awaiting decision"),
     decisionCopy:
-      "Use a transparent CPU NBR detector to triage a real HLS scene, compare it to ground truth, and preserve source/model provenance.",
+      earthRun.organisingQuestion +
+      " The detector's area is compared with the labelled area; past the tolerance, a person decides which one the claim reports.",
+    decisions: [
+      [
+        "Detected " + ha(m.predictedHectares) + " vs labelled " + ha(m.groundTruthHectares) + " (" + (built.areaGap * 100).toFixed(1) + "%)",
+        !status ? "no decision needed" : status.state === "undecided" || !status.decision ? status.state : status.state + ": " + status.decision.decision + " by " + status.decision.decidedBy,
+      ],
+      ...(status?.decision ? [["Reason", status.decision.reason] as [string, string]] : []),
+      ["Claim reports", reported],
+      ...(boundary
+        ? ([
+            ["Counts", boundary.included.join("; ")],
+            ["Policy choices", boundary.policyChoices.join("; ")],
+            ["Not assessed", boundary.notAssessed.join("; ")],
+          ] as Array<[string, string]>)
+        : []),
+    ],
     limitation:
-      "One pinned scene does not establish broad geographic generalisation. The baseline is high-precision triage, not final delineation.",
+      "One scene, and the dataset's split is random, so accuracy elsewhere is not established. NBR is a CPU baseline, not Prithvi; the labels are MTBS-derived. Signing keys are per-run demo keys.",
     metrics: [
-      ["IoU", earth.baseline.metrics.iou.toFixed(4)],
-      ["Precision", earth.baseline.metrics.precision.toFixed(4)],
-      ["Recall", earth.baseline.metrics.recall.toFixed(4)],
-      ["F1", earth.baseline.metrics.f1.toFixed(4)],
-      ["Labelled burn", earth.baseline.metrics.groundTruthHectares.toLocaleString() + " ha"],
-      ["Missed burn", earth.baseline.metrics.missedBurnHectares.toLocaleString() + " ha"],
+      ["Pixels recomputed", m.validPixels.toLocaleString("en-US") + " (512×512)"],
+      ["Pinned Python run reproduced", built.reproduced ? "yes, every pixel count" : "no"],
+      ["Precision", m.precision.toFixed(4)],
+      ["Recall", m.recall.toFixed(4)],
+      ["Missed burn", ha(m.falseNegative * 0.09)],
     ],
     provenance: [
-      ["Scene", earth.source.sceneId],
-      ["Dataset revision", earth.source.datasetRevision],
-      ["Image SHA-256", earth.source.image.sha256],
-      ["Mask SHA-256", earth.source.mask.sha256],
-      ["Method", earth.baseline.method + " @ " + earth.baseline.threshold],
+      ["Scene", earthRun.scene.id + " · doi:10.57967/hf/0956 (committed, CC BY 4.0)"],
+      ["NIR (now)", short(built.caseBundle.evidence[0]!.integrity!)],
+      ["SWIR2 (now)", short(built.caseBundle.evidence[1]!.integrity!)],
+      ["Evidence root (now)", short(attestation.currentRoot)],
+      ["Evidence root (signed)", short(earthRun.attestation.payload.evidenceRoot)],
+      ["Signed", earthRun.runAt + " · Ed25519 + ML-DSA-65"],
     ],
-    digest: { algorithm: "SHA-256 (hex)", value: earth.source.image.sha256 },
+    digest: built.caseBundle.evidence[0]!.integrity!,
     checks: [
+      ...verification.checks,
       {
-        id: "source-integrity",
-        name: "Scene image and mask pinned by SHA-256",
-        outcome: earth.source.image.sha256 && earth.source.mask.sha256 ? "pass" : "fail",
-      },
-      {
-        id: "ground-truth",
-        name: "Detector compared with labelled mask",
-        outcome: earth.baseline.metrics.validPixels > 0 ? "pass" : "fail",
-        detail: "IoU " + earth.baseline.metrics.iou.toFixed(4) + " on one scene",
+        id: "attestation",
+        name: "Signed attestation matches the current evidence (checked here)",
+        outcome: attestation.validForCurrentEvidence ? "pass" : "fail",
+        detail:
+          "Ed25519 " + (ed25519?.signatureValid ? "verified in this browser" : "NOT verified") +
+          "; ML-DSA-65 " + (mlDsa?.signatureValid ? "verified in this browser (" + mlDsaVerifier + ")" : "NOT verified") +
+          (attestation.changedRefs.length ? "; changed since signing: " + attestation.changedRefs.map((ref) => ref.id).join(", ") : ""),
       },
     ],
     tamper: {
-      before: earth.source.image.sha256,
-      change: "Modify source image or prediction artefact",
-      after: "Evidence digest/root no longer matches the signed provenance record",
+      before: "NIR " + short(built.caseBundle.evidence[0]!.integrity!),
+      change:
+        "NIR at row " + earthRun.tamper.row + ", column " + earthRun.tamper.column + ": " + earthRun.tamper.from.toFixed(4) +
+        " → " + earthRun.tamper.to.toFixed(4) + ", applied in this browser",
+      after: "",
+      rootBefore: earthRun.attestation.payload.evidenceRoot.value,
     },
-  },
+  };
+}
+
+const modules: DemoModule[] = [
+  buildingModule(await checkBuilding()),
+  energyModule(await checkEnergy()),
+  earthModule(await checkEarth()),
   batteryModule(await checkBattery()),
   {
     id: "carbon",
@@ -600,6 +636,7 @@ class DemoWorkspace implements ClimateWorkspace {
     if (caseId === buildingCaseId) return (await buildingService.decidedCase()).climateCase;
     if (caseId === batteryCaseId) return (await batteryService.passport()).caseBundle;
     if (caseId === energyCaseId) return (await energyService.build()).caseBundle;
+    if (caseId === earthCaseId) return (await earthService.build()).caseBundle;
     return !caseId || caseId === demoCase.caseId ? demoCase : undefined;
   }
 
@@ -609,6 +646,7 @@ class DemoWorkspace implements ClimateWorkspace {
       (await buildingService.decidedCase()).climateCase,
       (await batteryService.passport()).caseBundle,
       (await energyService.build()).caseBundle,
+      (await earthService.build()).caseBundle,
     ];
   }
 
@@ -652,7 +690,6 @@ class DemoWorkspace implements ClimateWorkspace {
 }
 
 const reportPaths: Record<string, string> = {
-  earth: "reports/earth-observation/t10seh-2018190-nbr.json",
   carbon: "reports/carbon-registry/carbonplan-smoke.json",
   disclosure: "sources/cadi-candidates.json",
 };
@@ -665,6 +702,7 @@ const router: ModuleCommandRouter = {
     if (moduleId === "building") return buildingService.execute("building-mrv", toolName, input);
     if (moduleId === "battery") return batteryService.execute("battery-dpp", toolName, input);
     if (moduleId === "energy") return energyService.execute("energy-forecast", toolName, input);
+    if (moduleId === "earth") return earthService.execute("earth-observation", toolName, input);
     if (input.caseId !== demoCase.caseId) {
       throw new Error(
         "Unknown case " + JSON.stringify(input.caseId ?? null) + "; this demo holds only " + demoCase.caseId + ".",
@@ -682,13 +720,6 @@ const router: ModuleCommandRouter = {
 
 function recordedOutput(toolName: string): unknown {
   switch (toolName) {
-    case "earth_run_detector":
-      return earth.baseline;
-    case "earth_compare_ground_truth":
-      return { metrics: earth.baseline.metrics, publishedReference: earth.publishedPrithviReference };
-    case "earth_get_scene_provenance":
-      return earth.source;
-
     case "carbon_reconcile_registry_records":
       return { clean: carbon.clean, ledgerDecision: carbon.ledgerDecision };
     case "carbon_check_retirement":
@@ -1031,7 +1062,39 @@ async function renderEnergyTamper(injected: boolean): Promise<void> {
   ]);
 }
 
+/** Earth tamper is real: one NIR value changes in this browser and the case is recomputed. */
+async function renderEarthTamper(injected: boolean): Promise<void> {
+  const output = document.querySelector<HTMLDivElement>("#tamper-output");
+  if (!output) return;
+  setEarthTampered(injected);
+  const live = await checkEarth();
+  const item = earthModule(live);
+  modules[modules.findIndex((entry) => entry.id === "earth")] = item;
+  moduleById.set("earth", item);
+  renderModules();
+  renderDetail();
+  const { built, attestation } = live;
+  const result = built.caseBundle.verifications[0]!.result;
+  const valid = attestation.validForCurrentEvidence;
+  const tag = (good: boolean, text: string) => '<span class="' + (good ? "good" : "bad") + '">' + escapeHtml(text) + "</span>";
+  output.innerHTML = tamperLines([
+    ...(injected ? [["mutation", escapeHtml(item.tamper.change)] as [string, string]] : []),
+    ["NIR", escapeHtml(built.caseBundle.evidence[0]!.integrity!.value)],
+    ["detector", escapeHtml("detected " + built.result.metrics.predictedHectares.toFixed(2) + " ha · pinned run reproduced: " + (built.reproduced ? "yes" : "no"))],
+    ["area decision", escapeHtml((built.review[0]?.state ?? "not needed") + (built.review[0]?.state === "stale" ? " (made on different arrays)" : ""))],
+    ["case verification", tag(result === "reconciled", result)],
+    ["overall (with signature check)", tag(deriveResult(item.checks) === "reconciled", deriveResult(item.checks))],
+    ["signed attestation", tag(valid, valid ? "matches the current evidence (Ed25519 and ML-DSA-65 checked here)" : "no longer matches the current evidence")],
+    ...(valid ? [] : [["changed since signing", escapeHtml(attestation.changedRefs.map((ref) => ref.id).join(", "))] as [string, string]]),
+    ["action", injected ? "Reset restores the committed arrays; the signed attestation then matches again." : "Choose “Show tamper result” to change one NIR value in this browser."],
+  ]);
+}
+
 function renderTamper(id: string, injected: boolean): void {
+  if (id === "earth") {
+    void renderEarthTamper(injected);
+    return;
+  }
   if (id === "energy") {
     void renderEnergyTamper(injected);
     return;

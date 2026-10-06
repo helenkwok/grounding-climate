@@ -1,0 +1,4 @@
+{
+  "note": "Policy for the earth case. Both values are choices a reviewer could make differently.",
+  "policy": { "threshold": 0, "areaTolerance": 0.1 }
+}
