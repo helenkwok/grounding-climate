@@ -10,6 +10,7 @@ import type {
 } from "@climatechain/core";
 
 import { reviewVerification } from "@climatechain/core";
+import type { CaseContext } from "@climatechain/core";
 
 import { JEV_HAND_OFF } from "./advisory.js";
 import { intervalFlag } from "./decisions.js";
@@ -32,6 +33,8 @@ export interface BuildBuildingCaseOptions {
   flagStatuses?: FlagStatus[];
   /** Advice model-runs. Recorded and referenced, never read by any check. */
   advice?: ModelRun[];
+  /** Context evidence (e.g. modelled hazard), recorded with a finding, never read by any check. */
+  context?: readonly CaseContext[];
 }
 
 function decisionVerification(
@@ -250,6 +253,7 @@ export function buildBuildingMrvCase(
     evidence: [
       meterEvidence,
       factorSourceEvidence(factor, createdAt),
+      ...(options.context ?? []).map((item) => item.evidence),
     ],
     calculations: [
       {
@@ -434,7 +438,7 @@ export function buildBuildingMrvCase(
               factor.sourceUri,
           },
         ],
-        findings: needsReview
+        findings: (needsReview
           ? [
               "The current meter series contains intervals outside the configured robust residual threshold.",
               "The emissions claim is not reconciled until a person decides each flagged interval on this meter series.",
@@ -446,7 +450,7 @@ export function buildBuildingMrvCase(
               ]
             : [
                 "The current meter series passed the configured residual anomaly screen.",
-              ],
+              ]).concat((options.context ?? []).map((item) => item.finding)),
         verifiedAt: createdAt,
       },
       ...decisions,

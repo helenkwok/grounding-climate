@@ -7,6 +7,7 @@ import {
   type KeyMetadata,
   type SignedAttestationBundle,
   type SignedAttestationVerification,
+  openClimateRiskContext,
 } from "@climatechain/core";
 import {
   adviceModelRun,
@@ -27,6 +28,7 @@ import metadataJson from "../../../data/external/bdg2/metadata.json";
 import sourceJson from "../../../data/external/bdg2/source.json";
 import factorReference from "../../../packages/building-mrv/references/epa-egrid2016-camx.json";
 import caseRunReport from "../../../reports/building-mrv/case-run.json";
+import ocr from "../../../data/external/open-climate-risk/ocr-context.json";
 import adviceRecords from "../../../reports/building-mrv/triage-advice.json";
 import decisions from "../../../reports/building-mrv/interval-decisions.json";
 
@@ -68,6 +70,7 @@ export const service = new BuildingMrvService({
     advice,
     decisions: decisions as IntervalDecision[],
     hashProvider: web,
+    context: [await openClimateRiskContext(ocr, "buildingSite", caseRun.runAt, web)],
   },
 });
 

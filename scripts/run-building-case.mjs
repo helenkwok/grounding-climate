@@ -7,6 +7,7 @@
 //
 // Advice is cached in reports/building-mrv/triage-advice.json; decisions are written by a person in
 // reports/building-mrv/interval-decisions.json (run prints a template when a flag has no decision).
+import { openClimateRiskContext } from "@climatechain/core";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -62,8 +63,12 @@ const reference = JSON.parse(
 const factor = { ...reference, valueKgCo2ePerKwh: reference.conversion.valueKgCo2ePerKwh };
 
 const caseId = "case:building-mrv:" + loaded.metadata.buildingId;
-const buildCase = (meter, advice, decisions, createdAt) =>
-  buildDecidedBuildingCase({ caseId, createdAt, dataset: loaded, meter, factor, advice, decisions, hashProvider: crypto });
+const ocr = JSON.parse(await readFile(new URL("../data/external/open-climate-risk/ocr-context.json", import.meta.url), "utf8"));
+const buildCase = async (meter, advice, decisions, createdAt) =>
+  buildDecidedBuildingCase({
+    caseId, createdAt, dataset: loaded, meter, factor, advice, decisions, hashProvider: crypto,
+    context: [await openClimateRiskContext(ocr, "buildingSite", createdAt, crypto)],
+  });
 
 const meterDigest = await digestMeterSeries(loaded.meter, crypto);
 const analysis = runBuildingMrv(loaded.meter, factor);

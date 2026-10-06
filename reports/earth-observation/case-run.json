@@ -1,6 +1,6 @@
 {
   "schemaVersion": "climatechain.earth-case-run/0.1",
-  "runAt": "2026-10-06T00:25:32.798Z",
+  "runAt": "2026-10-06T00:37:57.777Z",
   "organisingQuestion": "How much of this scene burned, and who decided which area the claim may report?",
   "scene": {
     "id": "T10SEH.2018190.v1",
@@ -116,40 +116,40 @@
   },
   "publishedKeys": [
     {
-      "keyId": "key:demo-ed25519:2026-10-06T00:25:32.798Z",
+      "keyId": "key:demo-ed25519:2026-10-06T00:37:57.777Z",
       "suite": "classical",
       "algorithm": "Ed25519",
       "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-06T00:25:32.798Z",
-      "validFrom": "2026-10-06T00:25:32.798Z",
+      "createdAt": "2026-10-06T00:37:57.777Z",
+      "validFrom": "2026-10-06T00:37:57.777Z",
       "verificationKey": {
-        "keyId": "key:demo-ed25519:2026-10-06T00:25:32.798Z",
+        "keyId": "key:demo-ed25519:2026-10-06T00:37:57.777Z",
         "suite": "classical",
         "algorithm": "Ed25519",
         "encoding": "spki-der-base64url",
-        "publicKey": "MCowBQYDK2VwAyEAuaGO_nguKgOiVpXxzbwe2MMQad0A4a4y8tSm9yoO6tw"
+        "publicKey": "MCowBQYDK2VwAyEABpgD1g5qoMUCaiRRkbC03Z9S10me6VJOOcluqadVGe8"
       }
     },
     {
-      "keyId": "key:demo-ml-dsa-65:2026-10-06T00:25:32.798Z",
+      "keyId": "key:demo-ml-dsa-65:2026-10-06T00:37:57.777Z",
       "suite": "post-quantum",
       "algorithm": "ML-DSA-65",
       "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-06T00:25:32.798Z",
-      "validFrom": "2026-10-06T00:25:32.798Z",
+      "createdAt": "2026-10-06T00:37:57.777Z",
+      "validFrom": "2026-10-06T00:37:57.777Z",
       "verificationKey": {
-        "keyId": "key:demo-ml-dsa-65:2026-10-06T00:25:32.798Z",
+        "keyId": "key:demo-ml-dsa-65:2026-10-06T00:37:57.777Z",
         "suite": "post-quantum",
         "algorithm": "ML-DSA-65",
         "encoding": "spki-der-base64url",
-        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAECrBNrC3jy8CgCwTvIMry1--nTIODIfqvSy2MGT1cJcW5VmSLaQTkjXABG6xZz-SmMJiw74hQRVhXJnbRKC9eWG-EOSzie472y6i5ms53bEjacurjz_b6_rVpcVYYcEQVG1gVtPo45q7ihkP9GQC0-hAXZ73xjd9PlwN4Xeumxu0FX8L4auXUWTO9PqKsznsko8LOO4F8NwKgpSjHB3JD5d0ZG4HP4BBbrMeOTWIOR05kP8SObCr6FPmQRu5LhjrD79GEOP1_Ln9DvCmZ5NhX3dV7x7Dw2zWEJgFZ6POL2CGXK-I4q4CphI0nFhUnvW95IcNTljwNlpYdE18qX2UPFpzB3SmU58Sa7sgNC6o7dHhULjXDO9I-uD0O89auE4halW9jEpxpI9gomX0EdkGOrwIH37Uswm7IF987hFUgPwzSWdT0cE3URjBsMd0ZFg3DJ18NarRQ7kuohfEBg9sBfwd_Rr7MAutXBUkIspH8dxn8eSLUCIx6kJQtpiTkRuI0navRg-84r_othWGqeKel8290YpkOTftqp4Gj69fmeob5hL-bVIwOuEs9CU06oIqNSG73xFJ16F4oP_lMRAU4XW6hVrocCD3tWMHlihDtw7g_RqS_ZqhUPRg3QsvQ_RaeOecL108OALu63RN0VzxlN9oCzYjzzaZlThDnDH_p3WW6MiIfU8OUa_76pq-2Q0Qqa2fd-snkibqKVjbs7SwDZqSWViW6EG0lbT1Ai9nRtSpkL9eKq3qYmm1KcYQrqJYN1_tNqGnjcg42w8r9-iQXDhooLgEOZwABqggqfWyGG54OmapNus-bjEEL7DA0rELkNTmPrmhzlNPsyIa-ocXA3WW1GbiGSJd4I-r2tXDbc6KXLBHeaomaQfpWsOKduv2P3qP6E--fcNmB9szaZB9A2rv-Dd7liA6LIvaqK0-5nYzBwDrzlVxBTMoz0Y4_FPJZ4Sa0SHqULRpSdqwie6Kl0iNIaJfEO9VRf3cLY3s9xz0KHY-0iI1RVQTJPR4BDrZQgXTJObGReRR6htbF40CN6Jff5-kuqABAq1BpZe786Oi1AwduT78wtRcVTkx871R8B2LXxrWcJm4GIWBBtaSkieN0GdTR7h6oISGLJ-BWipCq0jkZupR5hY5qIDvw3yw_DCJl1-I8UWkP9V0p3WKzXS7KLjsZC-qJq7FVxo-znvnr0HoZfIpzH8IhG_QQ0TXpcBxR35XUdudB68L3a7Xid6kdLaqDan-c2HgT8S1OT18VYuouUpIXfMKQd33krQobQN3zqo5bamcmSmz2MOanOLS6_gyMYdJYi1NQdmNMgrzoqOqoyjm4mUi1Xfz5kb_ktqwD1kClpULpqc-V5NsBD7mtjvusFc1Fwku6baoLcjIpZeKYdc7EGAepDz2mQrKsdOiGGfT4ktgVkYk2nSGMZYFsjzbNbGP-62GUrhVPD77iYvUCtDpGOUqt4BeQV9FkMe4--40JHvPc_1-mCZlMG6jfCv1mgj-9TRGg6cUaFkFu-znWSJCDw5ImB_LfuA-tQwohZ3by_tLccyOIbptLRJtaJ5ZZsRZpGjkMSqs60D9n50RfJ-3LLDRvBewz8q2W7_MPt9wppmSAWOrAfnZ0zL4ryHj40OrwbcLXo6Z87uumWOtiByHO6BDXXAhsVnO4P-wJWNE8Y0k5pSWfpCCpDCfohdEst0kS0lKJ_C0NFPzzp8zjqTd5sQxU2XwjXvh4m4IZ1uUqhmr3pyI0PljLziF-BV7UUjTJ1JrgyGKmKPot-22pSI2zpjXSOMaNPtB3dPu8kCF_DxVShNP0XYrNAzSkoyQsInzEnz-ErijkWDCmSKHXnCTreQhvPiZv-T6cxHPXOkJGAGRjQh25_LgaD7NBoaJP1C8jq39GnCfoGJwXP90kVG-1Qbusm9q3d9LtN_xmcDxYSFaTIVAjlqvqLl-ao4bZ3Zs_ZJIqi-mU6z3_ebiUoXp8mjvS7cN1EpwbNlQSSzyk1BW8UZq6_5WITC-sg7gxHd6nDgesUb0fvluCgUoxPuZ-OdC9Bal9MXBFPK-fV14o66kE84FeEYrG2GUs3Nh9bz6xe4O97eDGkE0eelQtUFb5ZcpdGVX5LZgLBDqLd8oIoeSKqFOjkYUa9z7fh8lgtzcoCbV9UFsTFdmxvwNOfOcOMxHOa-pmCYWOrhpntIjUByqH7Unop2QbmBnocncTljvn1ExNZ-33k11D69mKsCMJLg7mcD6XR_CDSJncLgAI07drY08AGf_uPWvk6QutsLoBd1vd64a46Vha-fx9YA8MrWQEMxQ4ImGqN2lVSOmvSZ9SQW4u_sLrVPOFTUXNOZiKeTPhakW-G0vI3nO_ahqe_dJSR5qZa11JooPfdQUUmZVok2CXZPj9pic-fgadCemiQKRl8tq7A4FqUgwi6NNjf9GV7LzGqTLE1GMgVXkKQf4at8qfqw63ouQE19zyRwOr_gKhNe_374_A9d1CdW8Rlk8lH09f_KUgXpTD9qlSp-IFZTr6cntSicFaNP3w3LDjPBm5HNCRBHJi52CDEY8hHuiVKa3tFaQm5nmUEZfHwdNXnjD-JBQcR7CnHGWlq6ELjUefPcEe76"
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAAk9KF2MY4rWBn8GrQcUL0ebGlLlzCTGvnmZAYwI8Mlw4uFdc4NDxgpnjO8bXcAfBuFf9J-2FO9pnqHnpO7vNvekMUvHvaUwErfMNe9zDiYtoZqCubI178itjzuyPthIGUSfgkhQnRXs5T8cNgLgAZ4ZpBbfU15BqUBKPRLws7-34Z0x7ddGvqGfpRi3mU5johGjnYsWm8lMfEv9za7zFpr5xA8PnwJyglZUCYYcsza5xYZ1i-mYw0lq2FNKyZHdT9-tHfesalHhsMUy4cHgbGGf-D4jTGMjgnlCdvP5a7xGT18jaZHdATSh1cJWGhmCIL-z4swIM9wD_bWpffIJBZxtuh6zz5zvQfMWwj3Kv81CjW6XqHQVl7dhljV9tg9dPkmU_HRPI1f-AykLwZgsJegqf0YL9GKCLJv-uW9rAwc190hF4G8jFRzdFaSuNouSmwhY7dxvMsiXu8xqxQ0tjTOKVuWDDdUqD8zDtT_c5ThkG6NPtbva6MsDUG1ujiYTKelFKnR1zzmW3WFGbjI6cp-F7OV3lfmzFO2tGELi_5mCE7dNk1Xy_TTBF94QqWX1g0f4o4zQ66muKJN3bc0-ru1NZ6Hu4p3EA9QhXo8hyI6tmI_olYP-G4W882iN28yJI32gaP68DWddby4YYnMuBjXVMJ0euMPMmoWYQZ51k7PGJTyH3WYhH0ukXk7v2VVVMrorDF0kQjGelfllYS7OxCnYaHsjMn5wpN_DKpstAD_PkCZCdH0-dhcYGtlp_9-NAPU9tqsAHCY_i32Gsv_6rg8NmZqOeajpZ6Jpk4oM6BCGOV2N4F26pa5U3eNKe2bsdJquyVQEixpLut8Ik7xjiBQYqhqLuoCO3LxYXowY9loM724lhwH5HRPXIJBm5i-DWjuHNhIx0MiWnb1kYexkTcf8xKdiJbs92ta8FJQQYZKPynStj-IG6HpEsvTRu-zzPjm3v4UTBxXfAFndIAKoxyqEmT9JphyHGgHsoHm50oADpK2hDiCvs7D4gcoFS2ZYdYcZX6KPwBD2Ar8usmT0KlUSQgpM73YOee9G67ELn9PC113ditByKQlX6r8vU8OyT_b2J3MeqUhBBOF5H4YTk8nv5UGSd6HF9m5XXQWI0_uHFLQxlaHPEpZUcKLAQwDUzf4cX-xRxt3YPFwLIuhbvSgrUbjvbuqj0iI9w_fRLQ7RPFo9HFcY1YFj4uCZ8vHWGKBUZu16IJZocbnmwb0IRqHylHKRMe7Jjil2aggb2iu47n_8hyNKOHn0IP1rq7im6aG08R28Se12UQl54duj7g9wEN0d0NxA6oL-IoeOSTdHOZrfujIHjgJuhm5xwHrBzPRwcMCuC53szY4DY61KooEXeQ5ORY2eFyjcr-EQqBzkFhiUp3P6UD5xqRLqTe9Xf6v54U82WfmgtINYYllzFT7-lJ7A13lzJ2V8aJVmfY6MmsmwfO0E4B9d8ifSkrBcoRBxOVCIEfTkFrjWhK1WJ2TNMt838YsOcjG0ugmfC9sp_8U_sBKIiO-Q_yELy_AcP0CCfhNzFm2AF6-sOfjerbn31ElDHSMRROqHDWMs-lUbYiYS82Mp8P7wbE08Sk3EYfzsg3C2gt03rJYEDWBeCtIG4ISGfXA9ey_aOv8VEp2boN3cfVMgVS9DjWezPQWg0tAuLR2goJFZV2TKK1BmxrTpMsfznhjGJP2KhF96TwJU1as8Zb7v4IKV72chjLXRketC67XkkBrrL3aDjvokg3myHfFXxkpcyQ74Z_Yw8lyZ2wGfaqfvrxiAXQCO0yx2IYD2-44Ek7a-kNgCXMs6GqenvF7znoSAGROnj6KefOsNlr-2WKSloXafOR0Rp44b7VctM7gXR0i12wbCej9OILRTMd9WnW9mQ4UHZ2Fr95m4-AROdsBMQ6gdpaCnXSVJqkQUJSXI4JV5MtoAGiqzZuZytm7Mp1b32BvNSG06bQRSVvRug4tEYBmu1fh-PmhhetVacGW_rKePEpXw1gwEDErYd2F7hdQbbrFISaLYPhUWCqKO5PUgIzoQocgolW-ldNHefoZSHj9b8_9U529UbjUIKtA3UTc_xRwEuqerAEfSux6Qtd9qZ9jLB0RF6OOX92KGe8zFq_Nd0sDpLXlZ4HbTAggiY2TRkPA6rrb4qVxvXXAgpoHVfvP45EKhFCeyYlwNczk_Dpcwpp5GLY4XsI252yyZc6yJeVyyfOSoJjjHn6jXMkGzCN2IjdXJABOAWuKa-3AZKBDjyUp_izSc29e2mloowBmfpeYCAoXVxHSTKKySy8b5eM4jCUwHcv7ToCuXGB_TFNwZ51pr0BkBwB5gFefnPzAU0C4u6Et8OqnEH43VAuQl52NjOmHMb-BNwET54EMsamr4tw4uPzzZe-SQL--c0aLQJPc9TtDQgtkExaM4OyNiQy7MXZCGoQqXJ17cPpfV07IxdPNRrELP99g2EnrQvJxoFpvL214ZhtkttVDOUkXOYW00zqjUEiaLu2Rmoa-b3q5S38rnlUcnuJnxIZ0Bh8vmkJGnc37xkv9tFodtx-64lLlEaDY4OgxGpnoNVRqkVI96lpFKpyssCd-tdBa1j8AdUDzLybDc63IP"
       }
     }
   ],
   "attestation": {
     "payload": {
       "version": "climatechain.attestation/0.1",
-      "id": "attestation:earth-observation:2026-10-06T00:25:32.798Z",
+      "id": "attestation:earth-observation:2026-10-06T00:37:57.777Z",
       "attester": {
         "subjectId": "org:climatechain-demo",
         "name": "ClimateChain demo run"
@@ -167,10 +167,10 @@
       },
       "evidenceRoot": {
         "algorithm": "SHA-256",
-        "value": "sRHDA64egooruLiMk-9jcYtJo9eGKbXE7xWbOxvykpI"
+        "value": "BF_0uYHkjuWEY_xVlWnRENNvvqw3b4l4WVUWkJku9gI"
       },
       "manifestVersion": "climatechain.evidence-manifest/0.1",
-      "issuedAt": "2026-10-06T00:25:32.798Z"
+      "issuedAt": "2026-10-06T00:37:57.777Z"
     },
     "evidence": {
       "manifest": {
@@ -191,7 +191,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "FHVmQWX1PKCoW3ZSf0gtswxcBDfjeyIRDzC5usqyLEo"
+              "value": "qIEUyZZfs7dVaj2hILqf4dmw5-dsP9-pOhDjNj1kmeI"
             }
           },
           {
@@ -201,7 +201,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "u-utfhFI5L4m1AXchDkhAsWYypHqOLNlMQR82GlE0R4"
+              "value": "ZEam4hKUTgjuusQX8MDQw5DTg47XM5ZVqF6yMe2Kgio"
             }
           },
           {
@@ -211,7 +211,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "Xj4a7NCPssZKv1Xk5xzYsWyfsRK0xNf3sMStMa9C9U4"
+              "value": "K9KeZBy8ey6aoWgbfdmb_Cwo1nMVn10u53n-UdTFc2Y"
             }
           },
           {
@@ -221,7 +221,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "bzwo-SaakoL0ibMYqr0ZD_deUA7l3vsywDQKJDZds7w"
+              "value": "xsqnPuyaoYOJL28QrnBcANTvuqGUnynOSBu-QO1HsFU"
             }
           },
           {
@@ -231,7 +231,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "EzZN51Ah-pc3QqvfCZQFQr0IqxaBMuoa_9-u1uK6QYI"
+              "value": "hmu_k-AWrnslrMQlz-b-D6Hm9jH0SvQZSPc03rKTNlk"
             }
           },
           {
@@ -241,7 +241,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "0DJShlMY6qzxDtQfbRc7riyUl2rXnK0S_fGMXnQzBW4"
+              "value": "a8e1DPngGoJtzi7PDaoKDt-n-IfYLsot0fRw9P3f_eY"
             }
           },
           {
@@ -251,7 +251,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "qUjyX6BS6wwMclvfmeyu1MWl2gkVZnVCOXHqy1J-H6k"
+              "value": "XwhWzW969uqXcXmK-9MCd2TmQW4BeZkd5w9Lzbc6ivs"
             }
           },
           {
@@ -261,14 +261,14 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "C0L0ZaSazgrahD1SYVnsmqg33kV3bd_o7SVTeuaBiuQ"
+              "value": "UqJ8fWRx5JoxKfrLCsqLEtITvFGc5_m0Qj-sqAQjTwA"
             }
           }
         ]
       },
       "root": {
         "algorithm": "SHA-256",
-        "value": "sRHDA64egooruLiMk-9jcYtJo9eGKbXE7xWbOxvykpI"
+        "value": "BF_0uYHkjuWEY_xVlWnRENNvvqw3b4l4WVUWkJku9gI"
       }
     },
     "envelope": {
@@ -277,23 +277,23 @@
       "schemaVersion": "climatechain.attestation/0.1",
       "payloadHash": {
         "algorithm": "SHA-256",
-        "value": "K1oH9Ajo85XLHZsSCMRYD8SrAFU1OG0WFL5E01IHyLc"
+        "value": "yYMhMiXQyfbQLEuwqD2h-Ih5O_OtEuxcp9w4-tfksoc"
       },
-      "createdAt": "2026-10-06T00:25:32.798Z",
+      "createdAt": "2026-10-06T00:37:57.777Z",
       "signatures": [
         {
           "suite": "classical",
           "algorithm": "Ed25519",
-          "keyId": "key:demo-ed25519:2026-10-06T00:25:32.798Z",
+          "keyId": "key:demo-ed25519:2026-10-06T00:37:57.777Z",
           "encoding": "base64url",
-          "value": "qfBzMMWKzMHutgnPUBzMTn4tIcGngg6-IHrTkWJ5LoT5lCVfwwpcSyQyxbFrWjoqPGPDF6yobLBMrPDrM5jaBg"
+          "value": "vyp8cWEE7JOfa7B-ziexx48OBgI0Ty6kHQnWRidkdCabPTnUanBHaluUf3DKr2MBoUZeBcO0nsqm4fFnQx2RDQ"
         },
         {
           "suite": "post-quantum",
           "algorithm": "ML-DSA-65",
-          "keyId": "key:demo-ml-dsa-65:2026-10-06T00:25:32.798Z",
+          "keyId": "key:demo-ml-dsa-65:2026-10-06T00:37:57.777Z",
           "encoding": "base64url",
-          "value": "P4P_pMwzyoYYoINPUdnJpt6Zf6kas7J79xrWU_PrOXwRSmJS8bto8nTuVoBdPpHn_H97BQSk9gnOHUHbGIRnej7bA91xEzwgqrp0RGfjiXeGrjDxA9NHu76yZLux-1xK89jbuayk1LJg7DsSTQ6JmGJbu55wG_RsfeztMk1XduYoCACL1OI72QlHSyDBExRR6nV1q_7NX04HvGwxmms9tjgJQwRKAIXE50ZvQm6JJG35dWpPqklPLdJGhTDRR8mE79jffQTYqpnPSJtxqwrM2L8x_L3AtkcZO7-Qf4NucgQFfw26NZms8pU_Vn0i3AnDNsxChYHMWe2E-QAx0jnopES9ux1SHi-qMq73IKN82zY7Pmp7GHaOzv7gow__sj6Lojwd4P1EoYk1gLPY1PRKBhBlJ1qns0Kbk6nNzO_SViKlRq5DAeO-tduZtteL4f3yIj47zgv1Vt9HR7uQvJiEXFDgrpzC9SteF1I6XcCRRB6dAazifd8j7PFhYXkKHiYDXQmBC0ScV_wrlc45vhDRv7tjBY_xSI09A-QnIM3V6FpzqhhBed_OKi_bWJmzbb6EOP59VC053bxXhwzQfWFzSx_WDbbByoeLfwFipbxM2T-QYKvvycNoTUqZH36XxyP6WdksXCt_Z96QIzuWvyIiEfFVZnlTH-UkkOa-IHQxEc2M3iDoCIbKKP8nj2X38XKqTvtusEdFQwe0hjdqls3eo2sdmloEp3gWnh2O-sI_Dhxfp9B7IM7rPnhDM1tfLMFvGQviBdLP8jOl7zJdZfhcyk_aKNy2pp-_gx4EiZz-ibiU1f7d7LhyHjyKcfeCzKXl-QTqXW53ChubrGrgVCUsFxOrr7kMD-5l80jyDX0BPLyjlIewVXfaeeanqoCw0mPs4IRgBZqnpTnBBUFFGpqH9tJL8OpdPpSRlorDAyP1A2zY7X9ehT4ROsBqqTNNwjBU4ntlqJI6L_s-ppvkaqCye-vJfSotdWR0EuKC-TBL3DxLVnlykjaRsIIpPw9wqMtUNzGKxuz3pFzP-DlgKgdRif3VnspyeTXq1ow0VJqHgern0o4sYlLIZbsG2WkGxq5wLACaelF8QPsXI_XtOSHAn_se9qUSwHRxHuZDCnN86EHcB4xqM9FeGhSzPvYNBm9jjljLDJ5aYrU355F9w2ptXKNl4xiqkmWs0Ihz-dtHNLQD_7zIkxgYWBG6_tBnu3912ESc9eeJK7CxWtpaienXKKf9hqh6bV6vJoTdXm8ULf1mI-7UWPevbZl6O5gmnnbBpylYeIk7X9ZSrmK6VGz2Z6pjGf0Wf386aI3fR-3ez0mcJ22ArbX8gmj0U-Rcv8pGuiXrTTn_nrFZNK9IOaADJeX5VSuJ9wL9-cJEUK6Ke9RIToC9r1U0lCOy8Tq2NyNaLA1bfaaJwNtsVbh6BbACrZpHXIEvL1mKxzt7h54idVOJR-e_yKVwQ4Dl5y0u8m1FybASVwEh7TEIfNF3fcl1IB1HcSPsDqPdkDZ7IiA9KIugnrmneFuJNmyamPvTH2TcGhbOBENX0ow-i9-tShwUB5erKUBpkKHrnnWWPIlmnhHDpcmQERkcYhwE0ksitXpkRH6W4e3R3i6XyCcdXOueSXGYoRT9GrU5H1WBBKO-d2LW8MuSbGi-VHnojCljRd3XRQYD_IwCrwZ-_h3C7whMf_gMO-XPc5gNV6fFBSveZ4JYC7vYNMll7YYhHWz9WBuAdHvSOdyYeNGGX0Xr0DsVRgSSPsylQp_TkH0BJG5pzsx7vxmJprZXotD6BNxmJM2PrOzKznKAHQaxvR7ClZK3soQN9f27Fko9MSCHMtDfVbCxF2xOXbCB_iHseNTomNm1dk_jgTRnGLVCMjb4RB5oem7fU-7GVtzqP-aCcWCeFjgXP6D6AK4Ou58zN9NYFGxOpJcVh8ocUdzeBDEAVEpyE4ef82h8x2MRG6np1_92jvNOHMqaecHV7Ovf1JpNJXMDBBIdmyyI18AYHlJMBKCyWrqiUytcXBaqm0rJZlDVrlrNfElhf3VFk7AoHswQaMkn8gOJXwYXuJVaDY4rAyF2SETFgp_JrV_8BRPZ8LeMQTft5IbWQ2yCgWjtxyfCLcfRUDb3vhhX2yaY4UPLxgsiqtHVb22QQD58T-9m7iHy96Mhf7_jaIJH2apCyiN5O3sah_6SNaC25o-D2j9MNl7ugE8RX0z5QV_J8NNGFO8dw4I9BXRnctzIfjuySq1iaCXoGvnyi7WU8szYeJSYaCUxsMW45IHKa9Ybq59D3706myJtdrXGkqB9ABa6-edOY--botJ76iAhMU3JmgopRO3n3q1sm2ONa9a3iTZgnwZK3GI5fEVEcJKnSEw8IcQkQbDp7cHi648H6X8ugdPX_gKaHn_90Oggtwf_0aJsZw1tl3N_uW4g46eCWHu8gCrYGBWzUr5YOP35eZEv__OUyBQObG0J6EFt_FFlA_7Fbh2j6G6XItwzAaPLFJ5DA0NTLAGSjTlkN12vmUuWvOejTTJecyYEYFIT4rEo7WdwHCYSd7EPBnkDKgdBQueY94ABQWLOGOv8Q52M6RD33jJrohhdakJPAf1MouKFIKRPx-SCUvmn0bugtUcp1KoJENPMmJ_DedsR4ienEvgnKYnB7sohXSYV_HwP-wO_aWMRs3JVC_2D6nEum_CIsqawp2K7PHdgoPr6BTSLVmwrNv699d4F1jVRxyDSDyKq3R_WkKCVUNzEeasQ4HqkddFJDcuICO3LRBcXk8jw367wnm8egx2JxZhT_3b_qnmZYs_-T_0kkX0YhM57lGjAnktTlTkxWrabEJjRPVYJWP76d--zY80kMeN6yg-S5g1UF_Q5teVfNRqhcT9ZEJedBR6tRNl0ai94ObNZjRbG19gaZGCC5geVOv6m6u_MZr5p1Lvydpr24Z0JsR05z83MqkuU4sxM_5bahTKYBpZlNYMsZzYORq1d7vba4uoKZ0WTjSFqiDXogYVdBe4HrJFqcIN_3RHsSbA7krOKbz79AnyJsuYRpg2TwVnPCIbRGkXQ8S6fNQ5wuT3fbodHKGIEhVGS97f1ROEM3sDruBB4jbPDGy_pC4YnnlHlJrnPFLEEgvOIFGcR7Rd5HHAukBfDeCfIizDguxPawjFQMI_gNiiQaAoCI5Hb8fTjb-xUC3108obLb-V25_1HqSxe9Q2-EihRHsEZ3HpFaKRzZ-R_TB0brAo5mxyOuvljOF9WhOexs4iIbHXUX-DW54KRj3Q8lR0CA6J2la-CxfSxz4a2ao83abkOdMHja1-SeeKd2OPtfOgmBLBek6etCMzQtDRq1aQNED3YK8C8mFVpsHIZSK-2xSjSqpKAxKgm5d1_YamnOoVq_FFqOCSFhEZ3m_59y3G5ptYmzDi_A5WyUJLi15MmluGCWeLZE0ybdsIPTElAfX1dZce5eHKOCqeuk77jkyWnNWyoEgELzHmQ98qblAmJCcHPjEOcMYVrxDksbqvw4Q-XfivgkmXVpLRK31lCGrLkfQmAusMMBORC_9xmqZCWHEcu5eNAc54AqVGQqjb53N54EBc-Fy0YeDmGGM43sbXdDONoXeGjJOgXdl88kr_CV9-Ib6KjivYbzrCkjPuNbE5il5rrA4rninIcW6lIQwP7222nlmOpRM6PvhZSkvmj21wvk42dBR2c6sy02PXw_kozcGJXSQx9J3wbfJqcZBJpAdeGkfBCS3btyg4KS5Kr64eossNHJ7YeauN0CfpfQT01aj1sNvkfQZsZ2OERaMApmq_Vv3oN6uF_v181KsldjD8aoKEetYoYdl7dUckzm0f1O5ksSEiSGVHgDHah-tykdMJpnBsyf7tzfGsjA76ue4zDXpZNF8CeAbMFEEPhAoQQw4Xh9JUhCmzVKSP9Az44ssx5o-13T0DYEpriekGvgcaddld9vlCXssDF-30bvEuFZeJnx7eP3bVULQcjjRrRiqurQyv-CTFfPJXX2eaCdpGPiAmKMN1jbmoHjaP8mvjdv5Jj3ytvKYnsQ7y_Rguvojj20nQerItWA7olP8S22uwYnEpSVWbVX3ImCoI-Ygbyvd3cb-kUsw8AGCUsT4XUWmmEcucJJ0HGybzrEb5DD50FKExCBP5iINoQFLG1txvkiDbVk7kNdDEk1vkPyCPiWRHM-iKv_HuQzWPgsKi_4ie_wEPq1wU6h4mA8mYrQZiLprgKx-sBfRkFOW-17VD4YbOAYQXPRp1ED8fDhWarr1dVpHU7S98Z6yn0XMoVTF9uZmuQLpyrEfb5ikNllT_hzJGnD9Nv5GbZV8rxhxZ0BexcM9yRXkg4zxO80sXfyBccvz9nlJUBUHB4qf4mKVSztrulsrjO0PMKOWlwqO0YR1mIobjD5Pn6UX8AAAAAAAAAAAAAAAAAAAAAAAAABgwSGCIk"
+          "value": "2Gz5fP0p9cGJJSNK1KzmRSC7cvlw5n7s6KamvEBrM5ukSZdjgI155YFRDKIR7Hse7FKZpXmh-7WeH3Gqg9DApvYzzFx36HV6kzoqULRaYD4uMfc7ri0PoGDdoTX9IBBm6nr1po9qHl2hlLLcHNPgeBn6UUrH7_dak0_K8-nza2TCYjRtdMAhxhD-2exBsBUhpsLo6kZuhbQPN0idbYq_JSA-MaPMFU_XrGvnhVYFzOnHgtUH9TW1xMzy4AAQpvACbHiQDLOWeV1fPBWPQCYgNJ4ciQZR6aJ2lTTgBxdM9Ln8czpjOLPsBbNhd9Z-FwcgtVMwh-TBXkq6ckEnWrlC9gOCPWY36FDsIUdF2UlDRN-rQpWnyDqmgwlRCiYqekfzn9ooACKYcAiRTQLlb4SIOTl7CaqtvDzo9tvrumdYtqECRWWYDCm6SkvuKyP9lFWDzsJpx9_37DP9PUKJDbtn_-1EghyjMHoii4a5MDOJHu0lrrMvctrl9dcdMj9040uwvMONSEalxu2fdDSThC5qR-V0l1wdSczzc524hd8QQUJas3ujlV9d-42YrWmBDfmNwxtUjxZGFQ2YkBeVJUVhTNERiir-5VQEAmfu_1ZDlj37qL0ohu7SK0FmFGpl01yu2Ea0TEfx4mGzPHAjcCABHUos6R8xyi3or1D0pFrnWC4lzOum-UV0TATJAhGeuKSSee07ypKPv4ruJaBn38DrSAInheWd8nUDDI67Wn9R63V6MpA-2BuKC5HkX1IPEaEVCcNosjGTZRgBG6L66Y4Fs9OCGiKkTcPl584xCTViCNNXX5wyemi55VP2YbdUwcnf_GUhPK9rdyUWIw36zQoAuAFkSUP32pIt3TqhZLpfpHNbA-ZQTpQwjQR9pnhwki_xgCmJfTkRbSS8poJdScqU6cAkjuM3fFO4v0gvXWAzkIVCA4k6JKOb9wXwQCjytbxTt1nfnL0VuHdncN__yV2Idv_f6-y70_MoQmIvP3PzRxL_0Q4XP81x_c6RGhjTV2HOvfg8FWCmuFY1SmPDK2Cvl9NIEoUVRLlTHAoFkInd2m_ZviSy4KgsepHkvK0Q9xMpYjhnnd_EXPZZOo6vjogDjoT24CPKCyyYEKKzwtZXeReNLw97R0hRaIwhZ7-tMfuFitMYJgimklKvF1B7U_fzUGFXYZDKsjyVNkkCDu-0rDmg4MC7wRDNUBKWncPHodc1VVV3STQpvdBGwg-xDD2bBhVSUi4prAnBFcOnPXywL_gj90OYmIV68RemtIky8j1vKNKKGtS5EUqAoJVZkfk0XxTugl2v5NseTYfgqg6rBGHyp0rP1iMsFBsUC_cpYyuXC26GUgsKxzk_qfPghMPasAmaVRMfCxE8HFo-lPB7E9NVosha1-5HHZN5DVEqwNMLSAjS8r2W07GDBjNMJLeEAt2FdCMd2ldqZEq8t5IIdyjMqF8DHze-cQ0HFe5Cj_pI9qfrKdmkQfNWNQ7LNVVAb4b59jFLLFHv3DqmRfqGQX_1xFdGZ2FQOla5FPZuQdchau4MNgHCiDSNFwFCmP2rR1CajOR3oabBGwa15cWNCCfGei7h7d4v1npyONrUHfoWc5Qr_U695hLE3-7Fv16y63oi5_JYEiyuDjE5HKU-RX5MzNYSdB7GL4q8VgduUia6isTV6S0NWniXArhE-CirksCq3zop77sAx4d2xDMGHruq3n0Xcigu07Um6h4EHLFEPtyqigwOvrDgAP20cX_1VnO4qEWe3jjVGz7Pk2rVwa-AoLBAdgsiQg04aIh9bLrVDfgoEItTeqnZnP2D3U9VpiNSqMyvCFs5efr-Mh_OLDbyXDWjM1HoLCC04rkk8VFN0G3hjUtnu7vO-p5r5FmRsCdh8N7gGb0u7BA7KxXJi5k92i-dTTNY0ZqSKofe08y8ApZzgEC6E1izBqus34kQAigCXlVUQMKEUHu-OL1UNgUtsA0Y3PfRxB-4ms6HBSNusqY-OgxCnnMjP8Lp1RdkdXi94OqzI6x0r6ZFmMdSOBxGscUYsZGikMo1ELn4dAlfzBaCT5sXzQ3AUfvwCgIxW8zgWjcoies6Cv1IFyBZZT84VM7At68QIMRgyFg2_hHIDgaBZykADielWJSva98IS44140_cjoFYHLsALUC1uwVNGt8s21hlxQ7i76HxxHlySZsKkeOAxOa_HZx9Kgv9UYh3U3LP3PyVCcY22d4jhXkIk_sGjjwDeUDXN6mQHk0x8VbyYWbHiyBTdHVMfOoiIXFj8fXDz9i-JFvWh0G6sKLT8a0gb9qqVlsz487fT8KqHWGXjEVvo_4aNEH1m03Wp3DU7TCMb9PAlE4kdT92lLHET-gq1XOL2H--Nh019lGeuyqwFDk43xQ_Fj9qCZiOe3uPUAbCYPyuK4jbxwvNiEwGJlxBPjvcctpFBOLZ_1XkCMk1ALSR5GG8ZVeIWHSwGDDiIOjeV5eMf1V2LVZia8AJEc1iOceDfXuDuKBX-Xqll8mQuOiaeEQzWv05zFNl8G1mWHbXI5bMphhzj2pu6R1BZJ8ioC4qAOYn0JZRPX6skL6nys6AtUKZ1ilVCWEeztQxgsLRZpdbwRjUVNSnty54C8HXfT9WpNqQ_bU-v7Go1YOsLB76gSlrQzxGyfQW4Lgbr5MDf2MSZVJbQQDi6wdqB_j2g_En74Z7y5Ek7pH9Vk3rbGFMFmT_iNu5TUh_-UAA2B9SGNluXuoanac0OrdH16BkhTrG-Kc8nwikiETAuuqeGKhE66-bSei6Ce6CzA1FrxNl0Ivi2MfYJxP-UkFmo2vlS7eC3qd9dBvM2js3BGdiQEN40pRH5qV6Jk_Q2Q78oRwCUAIr5iISc-_kL0vuulzjDlDBnLcicbrNVV0gib715l94shzSovL_YjstwI8ln0IDDkK5IikdtJ28j_ekJOSmBJVpVPjSzqsvCdpVcDygMAraxS1DU_q7vubSfjEaGQTMHauFthgi_u8en1tFfsB_CjsW0rYJ1cKuE5kOnEauNqpf_RpKptRwBG8BF5R5a_3yURTbxx9986-fRbKD08cHvphtCz5E1QqqH6QlSVI_Sg_uVdCTa1NtDHX67os__3iJoOSznAkxrVOd_jmqxsG6Kj3u1aDqAC1MSpEg1_uWXajBKnSjDYDRKyLofA-UD30lCi2rNPu_kishLgk7hEmSOLY0G97abcMAM5pC4qAo4X8YDq4wP6fpkFvLr2NVjaitqJ2KGxMppEm81_doJX68zuH1Uu8x0qPLc4u84TU05YsZK3e0qrRB0UYzXsD5lAfCb4QRkGek9sca5nvUag-J4Tp0Ibkvmcfobu52qlwPyXwcZXJTTsfF_UwBziYRMzKZjOqc1Jv-MrS0OExWs1Ja40nCItCaXbcgXThObkdFfd2ZsfDgA24ZONgiVZKjlDy9a4-zLsK2An4sbqpRrrijU7aN-yHB5u345VHl4zFDb4cRN0GRMqhI2fgZ2qRWmnngNsp3RlJVDwgo-ubgzGEULm1eIH0ahdFU8O3kXZKR5Y4DQ61DjgaYIayXdqpCe1-s_ZzRj-DSLO96UM-G-eCJ_CXaED8SPMvuU-gof8yxadYzaK6hq-_tR9GIZ9Cb1SANxIxEPxHHJH1swpVHnZtX79jdBZMPq8tcJph2sf3H_ZZGBt6NxTwdIQD0Ofd434HvQ5VfL02QSLoIZ1xgSLeLbEWXmlI59aLvR2Z839d4YYkpCQi1JYpl9aERdVzPJ8pq6QmItKH7F7eWUjD-OARuYSVwgI7Oe8RoaWuGwMoYT23-RfoMAyl9vEhDxc2oXsUPNafMz6Q7iaLbH_M7C06wUA6i0dNpMpiBij3iWcE8xhVIcuBaGdTBLd8HLFIEGkV46aPwGZdGp1Xurwms4Mw9fLAWKj5j6t56JMfgv5QX4sMOd7a_SW4eUJTp5aNCdUzWwWI8a4cDVR89PI6wsARooU0n_ng0ckYtgcSryIzgp2BDOwqu7EYudNeCOtRRQeOMjahq6Xx06dVI7zvqbFLbyfRgxNh8S2m9q28fCmazX99-UWoofBj-SKy_i-DKPaNwmX4_MMkkaMeIXepBkMg73py2GgllVoYUiWN5_zN1y4ff0chbuornTZFgwBdOtaLNrqGqM6DtWkTbrQvfylGza5Gp48NZ443xB6xGmzPy2ubfmCOi9c19Rk-X_U6qJ7Id2mdRgN9TkY7TGbPCuccrPyuLe0n0wrqsWIGGCNXnX2rq5ps-PWUtqxvCH6uurKmRqDPPWKg6tFmXEL7Oi8m_BsggAWjbrRioHAkPYSVRvKxbDV58l2L5joRhLyk5dNpocaJWECA0IUWw0AMqREZMhZK2xdDgGCE0QlO8BBw4T5hrdqW76XiJ2QFjj7UAAAAAAAAAAAAAAAAAAAAAAAAAAAAAChAVGh0h"
         }
       ]
     },
@@ -303,7 +303,7 @@
         "from": "pending",
         "to": "attested",
         "actor": "org:climatechain-demo",
-        "at": "2026-10-06T00:25:32.798Z",
+        "at": "2026-10-06T00:37:57.777Z",
         "reason": "Signed attestation issued.",
         "evidenceRefs": [
           {
@@ -324,12 +324,12 @@
       "claim-reconciliation",
       "pq-attestation"
     ],
-    "createdAt": "2026-10-06T00:25:32.798Z",
+    "createdAt": "2026-10-06T00:37:57.777Z",
     "claims": [
       {
         "nodeType": "claim",
         "id": "claim:burn-scar-area",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [
           {
             "nodeType": "model-run",
@@ -392,17 +392,17 @@
           {
             "dimension": "source-found",
             "state": "confirmed",
-            "assessedAt": "2026-10-06T00:25:32.798Z"
+            "assessedAt": "2026-10-06T00:37:57.777Z"
           },
           {
             "dimension": "calculation-reproduced",
             "state": "confirmed",
-            "assessedAt": "2026-10-06T00:25:32.798Z"
+            "assessedAt": "2026-10-06T00:37:57.777Z"
           },
           {
             "dimension": "evidence-integrity-confirmed",
             "state": "confirmed",
-            "assessedAt": "2026-10-06T00:25:32.798Z"
+            "assessedAt": "2026-10-06T00:37:57.777Z"
           }
         ]
       }
@@ -411,14 +411,14 @@
       {
         "nodeType": "evidence",
         "id": "evidence:hls-nir",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [],
         "kind": "satellite-image",
         "source": {
           "uri": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
           "localRef": "data/external/hls-burn-scars/T10SEH.2018190.v1/nir.f32",
           "publisher": "IBM/NASA Geospatial; HLS imagery",
-          "retrievedAt": "2026-10-06T00:25:32.798Z"
+          "retrievedAt": "2026-10-06T00:37:57.777Z"
         },
         "integrity": {
           "algorithm": "SHA-256",
@@ -440,14 +440,14 @@
       {
         "nodeType": "evidence",
         "id": "evidence:hls-swir2",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [],
         "kind": "satellite-image",
         "source": {
           "uri": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
           "localRef": "data/external/hls-burn-scars/T10SEH.2018190.v1/swir2.f32",
           "publisher": "IBM/NASA Geospatial; HLS imagery",
-          "retrievedAt": "2026-10-06T00:25:32.798Z"
+          "retrievedAt": "2026-10-06T00:37:57.777Z"
         },
         "integrity": {
           "algorithm": "SHA-256",
@@ -469,14 +469,14 @@
       {
         "nodeType": "evidence",
         "id": "evidence:burn-mask",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [],
         "kind": "dataset",
         "source": {
           "uri": "https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars",
           "localRef": "data/external/hls-burn-scars/T10SEH.2018190.v1/mask.i8",
           "publisher": "IBM/NASA Geospatial; labels derived from MTBS",
-          "retrievedAt": "2026-10-06T00:25:32.798Z"
+          "retrievedAt": "2026-10-06T00:37:57.777Z"
         },
         "integrity": {
           "algorithm": "SHA-256",
@@ -498,13 +498,13 @@
       {
         "nodeType": "evidence",
         "id": "evidence:python-run",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [],
         "kind": "report",
         "source": {
           "localRef": "reports/earth-observation/t10seh-2018190-nbr.json",
           "publisher": "ClimateChain CI (Python, rasterio)",
-          "retrievedAt": "2026-10-06T00:25:32.798Z"
+          "retrievedAt": "2026-10-06T00:37:57.777Z"
         },
         "integrity": {
           "algorithm": "SHA-256",
@@ -514,6 +514,71 @@
           "mode": "committed",
           "instructions": "reports/earth-observation/t10seh-2018190-nbr.json"
         }
+      },
+      {
+        "nodeType": "evidence",
+        "id": "evidence:open-climate-risk",
+        "createdAt": "2026-10-06T00:37:57.777Z",
+        "provenance": [],
+        "kind": "dataset",
+        "source": {
+          "uri": "https://source.coop/carbonplan/carbonplan-ocr",
+          "localRef": "data/external/open-climate-risk/ocr-context.json#earthScene",
+          "publisher": "CarbonPlan Open Climate Risk v1.1.0 (snapshot CZP0B0ETPG38MW0C1R30)",
+          "retrievedAt": "2026-10-06T00:37:57.777Z"
+        },
+        "integrity": {
+          "algorithm": "SHA-256",
+          "value": "6M8q_5AenizJPa19f06G0wpjOphanhg-DQWjg3BDbmo"
+        },
+        "rights": {
+          "sourceManifestId": "open-climate-risk",
+          "licence": "CC-BY-4.0",
+          "redistribution": "allowed",
+          "derivedData": "allowed",
+          "attribution": "Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0, https://source.coop/carbonplan/carbonplan-ocr; values sampled by ClimateChain. Burn probability: Riley et al. 2025, USDA Forest Service Research Data Archive RDS-2025-0006, https://www.fs.usda.gov/rds/archive/catalog/RDS-2025-0006 Risk to potential structures: Scott et al. 2024, RDS-2020-0016-2, https://www.fs.usda.gov/rds/archive/catalog/RDS-2020-0016-2 Wind adjustment: CONUS404, Rasmussen et al., https://doi.org/10.5066/P9PHPK4F"
+        },
+        "access": {
+          "mode": "committed",
+          "instructions": "data/external/open-climate-risk/ocr-context.json#earthScene"
+        },
+        "extensions": {
+          "role": "context",
+          "values": {
+            "bp_2011": {
+              "cells": 257592,
+              "burnableCells": 257592,
+              "mean": 0.013608090579509735,
+              "median": 0.012929186224937439,
+              "p90": 0.02090425044298172,
+              "max": 0.027418579906225204
+            },
+            "bp_2047": {
+              "cells": 257592,
+              "burnableCells": 257592,
+              "mean": 0.020106244832277298,
+              "median": 0.019093967974185944,
+              "p90": 0.030851280316710472,
+              "max": 0.03848539665341377
+            },
+            "rps_2011": {
+              "cells": 257592,
+              "burnableCells": 257592,
+              "mean": 0.49989059567451477,
+              "median": 0.4335128664970398,
+              "p90": 0.9577500224113464,
+              "max": 2.288684129714966
+            },
+            "rps_2047": {
+              "cells": 257592,
+              "burnableCells": 257592,
+              "mean": 0.736977219581604,
+              "median": 0.6350792050361633,
+              "p90": 1.399558424949646,
+              "max": 3.386199474334717
+            }
+          }
+        }
       }
     ],
     "calculations": [],
@@ -522,7 +587,7 @@
       {
         "nodeType": "model-run",
         "id": "model-run:nbr-burn-scar",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -569,7 +634,7 @@
           "baselineValue": 0.73,
           "notes": "baselineValue is Prithvi's published IoU over the validation set, not reproduced here and not for this scene."
         },
-        "executedAt": "2026-10-06T00:25:32.798Z",
+        "executedAt": "2026-10-06T00:37:57.777Z",
         "reproducibility": {
           "codeVersion": "earth-observation/0.2"
         },
@@ -591,7 +656,7 @@
       {
         "nodeType": "verification",
         "id": "verification:burn-scar",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [
           {
             "nodeType": "claim",
@@ -638,14 +703,15 @@
         ],
         "findings": [
           "NBR thresholding is a transparent CPU baseline, not Prithvi inference.",
-          "The labels are MTBS-derived and are treated as the reference, not as ground truth checked on site."
+          "The labels are MTBS-derived and are treated as the reference, not as ground truth checked on site.",
+          "Context, not evidence: modelled annual wildfire burn probability mean over the scene is 1.36% for ~2011 conditions and 2.01% for ~2047 (Open Climate Risk, derived). No check reads it."
         ],
-        "verifiedAt": "2026-10-06T00:25:32.798Z"
+        "verifiedAt": "2026-10-06T00:37:57.777Z"
       },
       {
         "nodeType": "verification",
         "id": "verification:area-decision",
-        "createdAt": "2026-10-06T00:25:32.798Z",
+        "createdAt": "2026-10-06T00:37:57.777Z",
         "provenance": [
           {
             "nodeType": "model-run",

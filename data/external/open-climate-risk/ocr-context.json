@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "climatechain.ocr-context/0.1",
+  "source": {
+    "name": "Open Climate Risk v1.1.0 (CarbonPlan), fire-risk tensor",
+    "store": "s3://us-west-2.opendata.source.coop/carbonplan/carbonplan-ocr/output/fire-risk/tensor/production/v1.1.0/ocr.icechunk",
+    "snapshot": "CZP0B0ETPG38MW0C1R30",
+    "licence": "CC-BY-4.0",
+    "url": "https://source.coop/carbonplan/carbonplan-ocr",
+    "grid": "EPSG:4326, about 30 m",
+    "units": {
+      "bp": "annual burn probability (0-1)",
+      "rps": "relative risk to potential structures (%)"
+    },
+    "years": "bp_2011 and rps_2011 are ~2011 conditions; bp_2047 and rps_2047 are ~2047 conditions"
+  },
+  "derived": "Values sampled from OCR by ClimateChain; NaN cells (unburnable) are left out of the statistics.",
+  "buildingSite": {
+    "case": "building-mrv",
+    "location": "BDG2 site coordinates of site Bear (site-level, not the building)",
+    "latitude": 37.871903400000036,
+    "longitude": -122.26072860000008,
+    "nearestCell": {
+      "latitude": 37.87200527091956,
+      "longitude": -122.26078799266712
+    },
+    "values": {
+      "bp_2011": 0.00015923840692266822,
+      "bp_2047": 0.000151809275848791,
+      "rps_2011": 0.0,
+      "rps_2047": 0.0
+    }
+  },
+  "earthScene": {
+    "case": "earth-observation",
+    "sceneId": "T10SEH.2018190.v1",
+    "footprint": "UTM 10N x 564870.0-580230.0, y 4271790.0-4287150.0",
+    "selection": "OCR cells whose centres fall inside the scene footprint",
+    "statistics": {
+      "bp_2011": {
+        "cells": 257592,
+        "burnableCells": 257592,
+        "mean": 0.013608090579509735,
+        "median": 0.012929186224937439,
+        "p90": 0.02090425044298172,
+        "max": 0.027418579906225204
+      },
+      "bp_2047": {
+        "cells": 257592,
+        "burnableCells": 257592,
+        "mean": 0.020106244832277298,
+        "median": 0.019093967974185944,
+        "p90": 0.030851280316710472,
+        "max": 0.03848539665341377
+      },
+      "rps_2011": {
+        "cells": 257592,
+        "burnableCells": 257592,
+        "mean": 0.49989059567451477,
+        "median": 0.4335128664970398,
+        "p90": 0.9577500224113464,
+        "max": 2.288684129714966
+      },
+      "rps_2047": {
+        "cells": 257592,
+        "burnableCells": 257592,
+        "mean": 0.736977219581604,
+        "median": 0.6350792050361633,
+        "p90": 1.399558424949646,
+        "max": 3.386199474334717
+      }
+    }
+  },
+  "attribution": [
+    "Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0, https://source.coop/carbonplan/carbonplan-ocr; values sampled by ClimateChain.",
+    "Burn probability: Riley et al. 2025, USDA Forest Service Research Data Archive RDS-2025-0006, https://www.fs.usda.gov/rds/archive/catalog/RDS-2025-0006",
+    "Risk to potential structures: Scott et al. 2024, RDS-2020-0016-2, https://www.fs.usda.gov/rds/archive/catalog/RDS-2020-0016-2",
+    "Wind adjustment: CONUS404, Rasmussen et al., https://doi.org/10.5066/P9PHPK4F"
+  ],
+  "limitations": [
+    "Modelled values for national or relative comparison, not a locally calibrated assessment (Scott et al.).",
+    "Context, not evidence: one location per case; the values do not test or change either case's result."
+  ]
+}

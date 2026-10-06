@@ -198,3 +198,9 @@ The corresponding JSON record is:
 The workflow also produced a visual artifact containing the RGB scene, ground-truth mask, and TP/FP/FN overlay. The derived artifact ZIP was 664,415 bytes with SHA-256 `2bf7724361acca57d7112c5720f526f516a82babf3d804bf812af5bded944edb`.
 
 The published Prithvi IoU of 0.73 remains a separately attributed reference and is not represented as locally reproduced.
+
+## Wildfire context from Open Climate Risk
+
+The case carries Open Climate Risk (OCR) v1.1.0 wildfire values as context: `evidence:open-climate-risk`, committed in `data/external/open-climate-risk/ocr-context.json` (CC BY 4.0, sampled by `scripts/sample-open-climate-risk.py` at a pinned snapshot), plus one finding in the main verification. OCR's values are modelled, for national or relative comparison, and no check reads them: they do not change the result. ClimateChain is not affiliated with or endorsed by CarbonPlan.
+
+Over the scene footprint (257,592 OCR cells, all burnable) the mean modelled annual burn probability is 1.36% for ~2011 conditions and 2.01% for ~2047 (90th percentile 2.09% and 3.09%). That sits next to the burn observed in July 2018; one scene cannot test the model, so it is context, not evidence.

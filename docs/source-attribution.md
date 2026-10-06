@@ -20,6 +20,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | Energy-EVA benchmark code | code | Apache-2.0 | allowed | code-only |
 | Energy-EVA standardized energy datasets | benchmark-data | Source-specific upstream terms | unclear | download-from-upstream |
 | IBM/NASA HLS Burn Scar Scenes | dataset | CC-BY-4.0 | allowed | redistributable |
+| Open Climate Risk v1.1.0 fire-risk raster (sampled values) | dataset | CC-BY-4.0 | allowed | redistributable |
 | Sen1Floods11 | dataset | No licence identified in original repository | unclear | download-from-upstream |
 | SustainBench code | code | MIT | allowed | code-only |
 | SustainBench released raw datasets | dataset | CC-BY-SA-4.0 | allowed | redistributable |
@@ -138,6 +139,14 @@ HLS Burn Scar Scenes, IBM/NASA Geospatial, CC-BY-4.0; retain dataset citation an
 - Source: https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars
 - Terms/licence: https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars
 - Repository policy: Small attributed fixtures may be committed; prefer upstream download for full imagery.
+
+### Open Climate Risk v1.1.0 fire-risk raster (sampled values) (dataset)
+
+Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by ClimateChain. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).
+
+- Source: https://source.coop/carbonplan/carbonplan-ocr
+- Terms/licence: https://docs.carbonplan.org/ocr/en/latest/terms-of-data-access.html
+- Repository policy: Only sampled values are committed: one site value and statistics over one scene footprint.
 
 ### Sen1Floods11 (dataset)
 

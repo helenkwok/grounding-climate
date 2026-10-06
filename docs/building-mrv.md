@@ -396,3 +396,9 @@ The first runnable analysis path is implemented, but #9 should remain open until
 - a same-subject public disclosure dataset is found if numeric CaDI reconciliation is required
 
 The foundation does not manufacture those results.
+
+## Wildfire context from Open Climate Risk
+
+The case carries Open Climate Risk (OCR) v1.1.0 wildfire values as context: `evidence:open-climate-risk`, committed in `data/external/open-climate-risk/ocr-context.json` (CC BY 4.0, sampled by `scripts/sample-open-climate-risk.py` at a pinned snapshot), plus one finding in the main verification. OCR's values are modelled, for national or relative comparison, and no check reads them: they do not change the result. ClimateChain is not affiliated with or endorsed by CarbonPlan.
+
+At the BDG2 coordinates of site Bear (site-level, not the building) the modelled annual burn probability is 0.016% for ~2011 conditions and 0.015% for ~2047, and the relative risk to potential structures is 0. The number sits next to the measured Scope 2 total as forward-looking physical-risk context, as a climate disclosure would; with one site it says nothing about other buildings.

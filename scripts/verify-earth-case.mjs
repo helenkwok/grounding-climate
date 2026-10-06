@@ -2,7 +2,7 @@
 // and checks the committed signed attestation against it with only the published public keys.
 import { readFile } from "node:fs/promises";
 
-import { HYBRID_SIGNATURE_POLICY, publishedKeyResolver, verifySignedAttestation } from "@climatechain/core";
+import { HYBRID_SIGNATURE_POLICY, openClimateRiskContext, publishedKeyResolver, verifySignedAttestation } from "@climatechain/core";
 import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
 import { buildEarthReviewCase } from "@climatechain/earth-observation";
 
@@ -28,6 +28,7 @@ const { caseBundle } = await buildEarthReviewCase({
   provider: crypto,
   decisions: await json("reports/earth-observation/area-decisions.json", []),
   publishedPrithviIoU: pinned.publishedPrithviReference.burnClassIoU,
+  context: [await openClimateRiskContext(await json("data/external/open-climate-risk/ocr-context.json"), "earthScene", run.runAt, crypto)],
 });
 const result = await verifySignedAttestation(caseBundle, run.attestation, {
   hashProvider: crypto,

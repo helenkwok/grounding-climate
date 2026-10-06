@@ -3,6 +3,7 @@
 // fetched next to the page rather than bundled.
 import {
   HYBRID_SIGNATURE_POLICY,
+  openClimateRiskContext,
   publishedKeyResolver,
   verifySignedAttestation,
   type KeyMetadata,
@@ -13,6 +14,7 @@ import {
 import { EarthCaseService, type BurnScarMetrics } from "@climatechain/earth-observation";
 
 import manifest from "../../../data/external/hls-burn-scars/T10SEH.2018190.v1/manifest.json";
+import ocr from "../../../data/external/open-climate-risk/ocr-context.json";
 import pinnedReport from "../../../reports/earth-observation/t10seh-2018190-nbr.json";
 import areaPolicy from "../../../reports/earth-observation/area-policy.json";
 import caseRunReport from "../../../reports/earth-observation/case-run.json";
@@ -57,6 +59,7 @@ export const earthService = new EarthCaseService({
   observedAt: earthRun.runAt,
   decisions: decisions as ReviewDecision[],
   publishedPrithviIoU: pinnedReport.publishedPrithviReference.burnClassIoU,
+  context: [await openClimateRiskContext(ocr, "earthScene", earthRun.runAt, web)],
 });
 
 export function setEarthTampered(on: boolean): void {
