@@ -24,6 +24,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | Gold Standard Impact Registry reports | registry-data | Gold Standard Registry Terms of Use (copy found; may be outdated) | prohibited | reviewer-supplied |
 | IBM/NASA HLS Burn Scar Scenes | dataset | CC-BY-4.0 | allowed | redistributable |
 | Open Climate Risk v1.1.0 fire-risk raster (sampled values) | dataset | CC-BY-4.0 | allowed | redistributable |
+| OpenFreeMap vector tiles and styles (OpenMapTiles schema, OpenStreetMap data) | map-tiles | OpenFreeMap Terms of Service (last updated 2026-09-09); OpenStreetMap data under ODbL | unclear | link-only |
 | Sen1Floods11 | dataset | No licence identified in original repository | unclear | download-from-upstream |
 | SustainBench code | code | MIT | allowed | code-only |
 | SustainBench released raw datasets | dataset | CC-BY-SA-4.0 | allowed | redistributable |
@@ -174,6 +175,14 @@ Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by ClimateChain.
 - Source: https://source.coop/carbonplan/carbonplan-ocr
 - Terms/licence: https://docs.carbonplan.org/ocr/en/latest/terms-of-data-access.html
 - Repository policy: Only sampled values are committed: one site value and statistics over one scene footprint.
+
+### OpenFreeMap vector tiles and styles (OpenMapTiles schema, OpenStreetMap data) (map-tiles)
+
+OpenFreeMap © OpenMapTiles, Data from OpenStreetMap (shown on the map, as the style specifies).
+
+- Source: https://openfreemap.org/
+- Terms/licence: https://openfreemap.org/tos/
+- Repository policy: Tiles, glyphs and sprites are loaded by viewers' browsers from the public instance at view time. Nothing is committed or harvested.
 
 ### Sen1Floods11 (dataset)
 

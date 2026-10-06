@@ -1,0 +1,26 @@
+{
+  "sceneId": "T10SEH.2018190.v1",
+  "method": "Corners of the UTM 10N footprint (manifest origin, pixel size, width, height) transformed to EPSG:4326 with pyproj 3.7.2.",
+  "polygon": [
+    [
+      -122.253679,
+      38.730636
+    ],
+    [
+      -122.076983,
+      38.729374
+    ],
+    [
+      -122.078758,
+      38.59097
+    ],
+    [
+      -122.255114,
+      38.592225
+    ],
+    [
+      -122.253679,
+      38.730636
+    ]
+  ]
+}

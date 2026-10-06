@@ -44,6 +44,7 @@ import {
   setEnergyTampered,
   type EnergyCheck,
 } from "./energy-live.js";
+import { renderCaseMap } from "./map-view.js";
 import {
   carbonCaseId,
   carbonRun,
@@ -1329,6 +1330,14 @@ async function guidedAudit(): Promise<void> {
   renderModules();
   renderDetail();
   document.querySelector("#agent")?.scrollIntoView({ behavior: "smooth" });
+}
+
+const caseMap = document.querySelector<HTMLElement>("#case-map");
+if (caseMap) {
+  renderCaseMap(caseMap, (moduleId) => {
+    document.querySelector<HTMLButtonElement>('[data-module="' + moduleId + '"]')?.click();
+    document.querySelector("#detail")?.scrollIntoView({ behavior: "smooth" });
+  });
 }
 
 document.querySelector("#tamper-button")?.addEventListener("click", () => {
