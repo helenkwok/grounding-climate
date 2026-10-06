@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "climatechain.hls-scene-arrays/0.1",
+  "sceneId": "T10SEH.2018190.v1",
+  "dataset": "ibm-nasa-geospatial/hls_burn_scars",
+  "datasetRevision": "1864285e25010d346a842e4f068b1a1d4248ed6d",
+  "licence": "CC-BY-4.0",
+  "sourceFiles": {
+    "image": {
+      "member": "validation/subsetted_512x512_HLS.S30.T10SEH.2018190.v1.4_merged.tif",
+      "sha256": "13bc592a5e569d837bd8bb3524bb0d2f28418830bcc7b0750e74033078f8b17e"
+    },
+    "mask": {
+      "member": "validation/subsetted_512x512_HLS.S30.T10SEH.2018190.v1.4.mask.tif",
+      "sha256": "67e92de848f4d90730bff525d3aa51fa7c02759e494f264c0d33dcc8c4f6e66a"
+    }
+  },
+  "width": 512,
+  "height": 512,
+  "pixelSizeMeters": 30.0,
+  "crs": "PROJCS[\"UTM Zone 10, Northern Hemisphere\",GEOGCS[\"Unknown datum based upon the WGS 84 ellipsoid\",DATUM[\"Not specified (based on WGS 84 spheroid)\",SPHEROID[\"WGS 84\",6378137,298.257223563,AUTHORITY[\"EPSG\",\"7030\"]]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Transverse_Mercator\"],PARAMETER[\"latitude_of_origin\",0],PARAMETER[\"central_meridian\",-123],PARAMETER[\"scale_factor\",0.9996],PARAMETER[\"false_easting\",500000],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1,AUTHORITY[\"EPSG\",\"9001\"]],AXIS[\"Easting\",EAST],AXIS[\"Northing\",NORTH]]",
+  "origin": [
+    564870.0,
+    4287150.0
+  ],
+  "layout": "row-major, little-endian",
+  "sourceDtypes": {
+    "bands": [
+      "float32",
+      "float32",
+      "float32",
+      "float32",
+      "float32",
+      "float32"
+    ],
+    "mask": "int16"
+  },
+  "bands": {
+    "nir.f32": "channel 4 (HLS B8A, narrow NIR)",
+    "swir2.f32": "channel 6 (HLS B12, SWIR2)",
+    "mask.i8": "1 burn scar, 0 not burned, -1 no data"
+  },
+  "files": {
+    "nir.f32": {
+      "bytes": 1048576,
+      "sha256": "07d0cacce7f3693ccad67e2f46dca324d8485af55f9bf173e077da8aa384f629"
+    },
+    "swir2.f32": {
+      "bytes": 1048576,
+      "sha256": "fc9d2cc2df17f46a5de6d5fd832ed854fec7f83ef795bd1551727901b754ae01"
+    },
+    "mask.i8": {
+      "bytes": 262144,
+      "sha256": "e50f643c5912958c911114498ad1b5aa4e7575fcf8798c6e5c99397c474877f0"
+    }
+  }
+}

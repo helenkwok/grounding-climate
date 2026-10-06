@@ -82,6 +82,17 @@ This matters for audit:
 - prediction changes are separately hashed
 - the shared #8 evidence root ties the verification to all of them
 
+## Live case and area decision
+
+`packages/earth-observation/src/review-case.ts` builds the case the demo and `scripts/run-earth-case.mjs` sign. Its inputs are committed in `data/external/hls-burn-scars/T10SEH.2018190.v1`: the two bands NBR reads (NIR, SWIR2) as float32 and the label mask as int8, copied unchanged from the pinned TIFFs by `scripts/prepare-hls-scene.py` (2.3 MB; `manifest.json` holds each file's SHA-256 and the source TIFFs').
+
+- **Reproduction.** The TypeScript detector reproduces every pixel count of the Python run in `reports/earth-observation/t10seh-2018190-nbr.json` (TP 129,810, TN 51,534, FP 3,237, FN 77,563). The TIFF bands are float32 and TypeScript computes in float64, but at threshold 0 the test reduces to the sign of NIR − SWIR2, which both get exactly. The check compares counts, not a hard-coded result.
+- **The flag.** Detected area 11,974.23 ha against labelled 18,663.57 ha, 35.8% short. `reports/earth-observation/area-policy.json` sets the tolerance at 10%, so the area is flagged and a person decides what the claim reports: `labelled`, `detected-with-gap` (the detected area, with the gap stated), or `hold`. Until a current decision exists the claim states no area and the case is `insufficient-evidence`. The recorded decision (`reports/earth-observation/area-decisions.json`, `person:land-analyst`) is `detected-with-gap`: the claim reports 11,974.23 ha as a lower bound, 35.8% below the labelled area, because 97.6% of detected pixels are labelled burned while 37% of the labelled burn is missed. The decision is bound to the digests of the three arrays and the policy; a change to any of them makes it stale.
+- **Accounting boundary.** Counts the labelled pixels of the one subset at 0.09 ha each; excludes no-data pixels and the rest of the fire; policy choices are the NBR threshold, the tolerance and the area decision; not assessed are burn severity, fire emissions, carbon lost and accuracy on other scenes.
+- **Tamper.** `scripts/run-earth-case.mjs` and the demo raise one NIR value so a burned pixel reads unburned: the counts no longer match the pinned run (`mismatch`) and the attestation no longer matches the evidence.
+
+`scripts/verify-earth-case.mjs` (part of `npm run check`) rebuilds the case and checks the signed attestation.
+
 ## WebMCP
 
 The module supplies the #7 tools:
@@ -98,7 +109,7 @@ The comparison tool returns an explicit overlay code:
 - 2 false-positive burn
 - 3 false-negative/missed burn
 
-A UI can render this without recomputing the detector.
+A UI can render this without recomputing the detector. In the live demo, `earth_compare_ground_truth` returns the overlay's totals rather than 262,144 codes, with the area gap, the decision and the accounting boundary.
 
 ## Real TIFF smoke
 

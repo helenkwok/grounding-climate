@@ -1,0 +1,10 @@
+[
+  {
+    "flagId": "area:detected-vs-labelled",
+    "decision": "detected-with-gap",
+    "reason": "The detector's area is a lower bound: 97.6% of the pixels it marks as burned are labelled burned, but it misses 37% of the labelled burn. Reporting 11,974 ha with the 35.8% shortfall stated keeps the claim on what was measured; the labelled 18,664 ha is MTBS-derived and not checked on site.",
+    "decidedBy": "person:land-analyst",
+    "decidedAt": "2026-10-06T00:25:20Z",
+    "inputDigest": { "algorithm": "SHA-256", "value": "0rPYRl4hrwNTdCdFr0V6LL_zctjWB2dZuc-E0_P-9fc" }
+  }
+]

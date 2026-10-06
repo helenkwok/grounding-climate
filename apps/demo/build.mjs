@@ -8,6 +8,8 @@ const dist = resolve(root, "dist");
 await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 await cp(resolve(root, "public"), dist, { recursive: true });
+// The HLS scene arrays are fetched by the page, not bundled (2.3 MB of binary).
+await cp(resolve(root, "../../data/external/hls-burn-scars"), resolve(dist, "data/hls-burn-scars"), { recursive: true });
 
 // Bundled third-party code: ship each package's full licence text next to the page (MIT requires it).
 const bundledLicences = ["@noble/post-quantum", "@noble/hashes", "@noble/curves"];
