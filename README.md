@@ -79,4 +79,4 @@ The BatteryLife/CALB digital-product-passport slice is documented in [docs/batte
 
 ## Licence
 
-ClimateChain's code and documentation are licensed under the [Apache License 2.0](LICENSE); see [NOTICE](NOTICE). Third-party data keeps its own licence, recorded in [sources/rights-manifest.json](sources/rights-manifest.json) and listed in [docs/source-attribution.md](docs/source-attribution.md).
+Grounding's code and documentation are licensed under the [Apache License 2.0](LICENSE); see [NOTICE](NOTICE). Third-party data keeps its own licence, recorded in [sources/rights-manifest.json](sources/rights-manifest.json) and listed in [docs/source-attribution.md](docs/source-attribution.md).

@@ -1,9 +1,9 @@
-ClimateChain
+Grounding
 Copyright 2026 Helen Kwok
 
 This product is licensed under the Apache License, Version 2.0 (see LICENSE).
 
-The Apache License covers ClimateChain's own source code and documentation. It does not cover third-party data,
+The Apache License covers Grounding's own source code and documentation. It does not cover third-party data,
 which keeps its own licence: each dataset's licence, attribution and redistribution status is recorded in
 sources/rights-manifest.json and listed in docs/source-attribution.md. Bundled third-party software keeps its own
 licence; the demo build writes those licence texts to third-party-licenses.txt.
