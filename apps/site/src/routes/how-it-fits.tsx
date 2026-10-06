@@ -24,7 +24,7 @@ const RUN: Array<[string, string]> = [
 
 function HowItFits() {
   return (
-    <main id="top">
+    <>
       <header className="page-head">
         <p className="kicker">For verifiers, reporting teams and registries</p>
         <h1>How it fits your work</h1>
@@ -110,7 +110,7 @@ function HowItFits() {
           </ul>
         </div>
       </section>
-    </main>
+    </>
   );
 }
 

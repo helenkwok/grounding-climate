@@ -36,7 +36,7 @@ function VerifyPage() {
   }
 
   return (
-    <main id="top">
+    <>
       <header className="page-head">
         <p className="kicker">Anyone can do this</p>
         <h1>Verify a signed record</h1>
@@ -84,10 +84,10 @@ function VerifyPage() {
 
         <p className="note try">
           Try breaking one: open a downloaded record in a text editor, change any number in its <code>case</code>, save,
-          and drop it here again. No record yet? <Link to="/inbox">Review a claim</Link> and sign your verdict.
+          and drop it here again. No record yet? <Link to="/">Review a claim</Link> and sign your verdict.
         </p>
       </section>
-    </main>
+    </>
   );
 }
 

@@ -2,7 +2,7 @@
 // streamed tile by tile from Source Cooperative (nothing copied): annual risk to potential structures for every state,
 // county, tract and block, and for each of 89.7 million buildings when zoomed in. On top: the claims whose evidence
 // has a place. The map is context: no check reads it.
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 import issuancesCsv from "../../../data/external/acr-offsetsdb/issuances.csv";
@@ -46,6 +46,33 @@ function projectsByState(): { states: Map<string, string[]>; elsewhere: string[]
   return { states, elsewhere };
 }
 
+let sharedMap: import("maplibre-gl").Map | undefined;
+const site = ocr.buildingSite;
+const sceneLons = footprint.polygon.map((point: number[]) => point[0]!);
+const sceneLats = footprint.polygon.map((point: number[]) => point[1]!);
+const CLAIM_BOUNDS: Partial<Record<ClaimId, { bounds: [[number, number], [number, number]]; maxZoom: number }>> = {
+  building: { bounds: [[site.longitude - 0.02, site.latitude - 0.015], [site.longitude + 0.02, site.latitude + 0.015]], maxZoom: 15 },
+  earth: { bounds: [[Math.min(...sceneLons), Math.min(...sceneLats)], [Math.max(...sceneLons), Math.max(...sceneLats)]], maxZoom: 11 },
+  carbon: { bounds: [[-106.7, 25.8], [-80.5, 42.4]], maxZoom: 6 },
+};
+
+/** Moves the map to a claim's place (or the whole US), keeping it clear of the side panel. */
+export function flyToClaim(id: ClaimId | "us", instant = false): void {
+  if (!sharedMap) return;
+  const target = id === "us" ? { bounds: US_BOUNDS, maxZoom: 5 } : CLAIM_BOUNDS[id];
+  if (!target) return;
+  const panel = document.querySelector(".panel:not(.collapsed)")?.getBoundingClientRect();
+  const sheet = panel && panel.width >= window.innerWidth - 1;
+  sharedMap.fitBounds(target.bounds, {
+    maxZoom: target.maxZoom,
+    ...(instant ? { duration: 0 } : {}),
+    padding: { top: 70, right: 40, bottom: sheet ? panel!.height + 20 : 40, left: panel && !sheet ? panel.right + 30 : 40 },
+  });
+}
+
+/** Whether a claim has a place on the map. */
+export const hasPlace = (id: ClaimId) => Boolean(CLAIM_BOUNDS[id]);
+
 const pct = (value: number) => (value < 0.001 ? value.toFixed(4) : value < 0.1 ? value.toFixed(3) : value.toFixed(2)) + "%";
 const located = projectsByState();
 const usProjects = new Set([...located.states.values()].flat()).size;
@@ -59,6 +86,9 @@ export function CaseMap() {
   const mapRef = useRef<import("maplibre-gl").Map>();
   const navigate = useNavigate();
   const [year, setYear] = useState<2011 | 2047>(2047);
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const focus = /\/claims\/([a-z]+)\/?$/.exec(pathname)?.[1] as ClaimId | undefined;
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let map: import("maplibre-gl").Map | undefined;
@@ -75,6 +105,7 @@ export function CaseMap() {
         attributionControl: { compact: true },
       });
       mapRef.current = map;
+      sharedMap = map;
       map.addControl(new maplibre.NavigationControl({ showCompass: false }));
 
       map.on("load", () => {
@@ -187,10 +218,14 @@ export function CaseMap() {
         }
         // Start with the credits folded behind the (i) button, so they don't cover the map.
         container.current?.querySelector(".maplibregl-ctrl-attrib")?.classList.remove("maplibregl-compact-show");
+        setLoaded(true);
         (window as unknown as { __mapReady?: boolean }).__mapReady = true;
       });
     });
-    return () => map?.remove();
+    return () => {
+      map?.remove();
+      sharedMap = undefined;
+    };
   }, [navigate]);
 
   // Switching the climate period recolours every risk layer.
@@ -202,14 +237,20 @@ export function CaseMap() {
     m.setPaintProperty("risk-buildings", "circle-color", step(BUILDING_FIELD[year]));
   }, [year]);
 
-  const fly = (bounds: [[number, number], [number, number]], maxZoom = 12) => mapRef.current?.fitBounds(bounds, { padding: 40, maxZoom });
-  const site = ocr.buildingSite;
-  const lons = footprint.polygon.map((point: number[]) => point[0]!);
-  const lats = footprint.polygon.map((point: number[]) => point[1]!);
+  // Opening a claim's page moves the map to that claim's place.
+  // On first load without a claim open, show the whole US beside the panel rather than under it.
+  const framed = useRef(false);
+  useEffect(() => {
+    if (!loaded) return;
+    if (focus) flyToClaim(focus);
+    else if (!framed.current) flyToClaim("us", true);
+    framed.current = true;
+  }, [loaded, focus]);
 
   return (
-    <div className="map-block">
-      <div className="map-controls">
+    <div className="map-app">
+      <div ref={container} className="case-map" role="region" aria-label="Map of US wildfire risk with the claims that have a place" />
+      <div className="map-controls floating">
         <div role="group" aria-label="Climate period" className="toggle">
           <span>Annual wildfire risk to buildings, climate of</span>
           {([2011, 2047] as const).map((value) => (
@@ -222,37 +263,42 @@ export function CaseMap() {
           ))}
           <small>&lt;0.01%</small><small>≥1% a year</small>
         </div>
+        <p className="map-source">Open Climate Risk v1.1.0, CarbonPlan</p>
       </div>
-      <div ref={container} className="case-map" role="region" aria-label="Map of US wildfire risk with the claims that have a place" />
-      <div className="map-legend-claims">
-        <p className="kicker">Claims with a place in their evidence</p>
-        <ul>
-          <li>
-            <button type="button" className="text-button" onClick={() => fly([[site.longitude - 0.02, site.latitude - 0.015], [site.longitude + 0.02, site.latitude + 0.015]], 15)}>
-              Building emissions: the BDG2 site
-            </button>{" "}
-            (site-level point, not the building itself)
-          </li>
-          <li>
-            <button type="button" className="text-button" onClick={() => fly([[Math.min(...lons), Math.min(...lats)], [Math.max(...lons), Math.max(...lats)]])}>
-              Burn scar: the satellite scene
-            </button>{" "}
-            (outlined)
-          </li>
-          <li>
-            <button type="button" className="text-button" onClick={() => fly(US_BOUNDS)}>
-              Carbon registry: {usProjects} projects in {[...located.states.keys()].join(" and ")}
-            </button>{" "}
-            (dashed states). The records name {sampleProjects} projects; the pinned project list places {usProjects} of them in US
-            states{located.elsewhere.length ? " and " + located.elsewhere.length + " outside the US" : ""}. The other{" "}
-            {sampleProjects - usProjects - located.elsewhere.length} have no location in the committed records.
-          </li>
-        </ul>
-        <p className="note">
-          Not on the map: the energy forecast, the battery cell and the company disclosure carry no location in their evidence.
-          (Overture Maps Places has one "LPL Construction Ltd", in Alberta, Canada, with nothing tying it to the claim, so it is not used.)
-        </p>
-      </div>
+    </div>
+  );
+}
+
+/** For the panel: which claims have a place, with buttons that move the map there. */
+export function MapClaims() {
+  return (
+    <div className="map-legend-claims">
+      <p className="kicker">On the map</p>
+      <ul>
+        <li>
+          <button type="button" className="text-button" onClick={() => flyToClaim("building")}>Building emissions: the BDG2 site</button>{" "}
+          (site-level point, not the building itself)
+        </li>
+        <li>
+          <button type="button" className="text-button" onClick={() => flyToClaim("earth")}>Burn scar: the satellite scene</button> (outlined)
+        </li>
+        <li>
+          <button type="button" className="text-button" onClick={() => flyToClaim("carbon")}>
+            Carbon registry: {usProjects} projects in {[...located.states.keys()].join(" and ")}
+          </button>{" "}
+          (dashed states). The records name {sampleProjects} projects; the pinned project list places {usProjects} of them in US
+          states{located.elsewhere.length ? " and " + located.elsewhere.length + " outside the US" : ""}. The other{" "}
+          {sampleProjects - usProjects - located.elsewhere.length} have no location in the committed records.
+        </li>
+        <li>
+          <button type="button" className="text-button" onClick={() => flyToClaim("us")}>The whole United States</button>: wildfire risk to
+          buildings, by state, county, tract and block, and for each building when you zoom in.
+        </li>
+      </ul>
+      <p className="note">
+        Not on the map: the energy forecast, the battery cell and the company disclosure carry no location in their evidence.
+        (Overture Maps Places has one "LPL Construction Ltd", in Alberta, Canada, with nothing tying it to the claim, so it is not used.)
+      </p>
     </div>
   );
 }

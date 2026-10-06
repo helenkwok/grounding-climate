@@ -102,19 +102,10 @@ export function SiteHeader() {
     <header className="topbar">
       <Link className="brand" to="/">ClimateChain</Link>
       <nav aria-label="Sections">
-        <Link to="/inbox">Inbox</Link>
-        <Link to="/verify">Verify a record</Link>
-        <Link to="/how-it-fits">How it fits your work</Link>
+        <Link to="/">Claims</Link>
+        <Link to="/verify">Verify<span className="long"> a record</span></Link>
+        <Link to="/how-it-fits">How it fits<span className="long"> your work</span></Link>
       </nav>
     </header>
-  );
-}
-
-export function SiteFooter() {
-  return (
-    <footer>
-      <p>ClimateChain: evidence, then judgement, then signature.</p>
-      <p>Third-party data is bundled only where its licence allows, with attribution.</p>
-    </footer>
   );
 }

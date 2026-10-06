@@ -50,9 +50,9 @@ function ClaimPage() {
   const attestation = ready?.checks.find((check) => check.id === "attestation");
 
   return (
-    <main id="top">
+    <>
       <header className="page-head">
-        <p className="kicker"><Link to="/inbox">Inbox</Link> · {meta.title}</p>
+        <p className="kicker"><Link to="/">All claims</Link> · {meta.title}</p>
         <h1 className="claim-h1">{meta.claim}</h1>
         <p className="data"><strong>Claimed by:</strong> {meta.claimant}. <strong>Evidence:</strong> {meta.data}</p>
         <div className="page-result">
@@ -145,10 +145,10 @@ function ClaimPage() {
       )}
 
       <nav className="claim-nav" aria-label="Other claims">
-        {previous ? <Link to="/claims/$id" params={{ id: previous.id }}>← {previous.title}</Link> : <Link to="/inbox">← Inbox</Link>}
-        {next ? <Link to="/claims/$id" params={{ id: next.id }}>{next.title} →</Link> : <Link to="/inbox">Inbox →</Link>}
+        {previous ? <Link to="/claims/$id" params={{ id: previous.id }}>← {previous.title}</Link> : <Link to="/">← All claims</Link>}
+        {next ? <Link to="/claims/$id" params={{ id: next.id }}>{next.title} →</Link> : <Link to="/">All claims →</Link>}
       </nav>
-    </main>
+    </>
   );
 }
 
