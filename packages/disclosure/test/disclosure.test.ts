@@ -1,12 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { validateBundle } from "@climatechain/core";
+import type { ReviewDecision } from "@climatechain/core";
 import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
 
 import {
   DisclosureService,
   buildDisclosureCase,
   createDisclosureModule,
+  disclosureFlag,
   reconcileDisclosureClaim,
 } from "../src/index.js";
 import type {
@@ -151,4 +154,45 @@ test("WebMCP disclosure tools reuse curated source records and reconciliation", 
   )) as { reconciled: boolean };
 
   assert.equal(reconciled.reconciled, true);
+});
+
+test("disclosure review: the claim needs a current decision; a changed figure makes it stale", async () => {
+  const provider = new InMemoryNodeCryptoProvider();
+  const options = {
+    candidateId: LPL.id,
+    claimId: LPL_CLAIM.id,
+    provider,
+    observedAt: "2026-10-06T00:00:00Z",
+    alsoReported: ["Scope 2 emissions 2025, 8.31 tCO2e"],
+  };
+  const undecided = await new DisclosureService([LPL], { ...options, decisions: [] }).review();
+  assert.equal(undecided.review[0]?.state, "undecided");
+  assert.equal(undecided.caseBundle.verifications[0]?.result, "insufficient-evidence");
+  assert.ok(undecided.caseBundle.evidence.every((item) => item.access?.mode === "link-only"));
+  assert.match(undecided.caseBundle.claims[0]!.boundary!.accounting!.excluded[0]!, /^Scope 2 emissions 2025/);
+  assert.deepEqual(validateBundle(undecided.caseBundle), []);
+
+  const decision: ReviewDecision = {
+    flagId: disclosureFlag().id,
+    decision: "accept-as-attributed",
+    reason: "Test.",
+    decidedBy: "person:test",
+    decidedAt: "2026-10-06T01:00:00Z",
+    inputDigest: undecided.reviewInputDigest,
+  };
+  const service = new DisclosureService([LPL], { ...options, decisions: [decision] });
+  const decided = await service.review();
+  assert.equal(decided.decision, "accept-as-attributed");
+  assert.equal(decided.caseBundle.verifications[0]?.result, "reconciled");
+  assert.equal(
+    decided.caseBundle.verifications[0]?.checks.find((check) => check.id === "calculation-reproduced")?.outcome,
+    "not-run",
+  );
+
+  service.setReviewedValue(6012.6);
+  const stale = await service.review();
+  assert.equal(stale.review[0]?.state, "stale");
+  assert.equal(stale.caseBundle.verifications[0]?.result, "insufficient-evidence");
+  service.resetCandidates();
+  assert.equal((await service.review()).review[0]?.state, "decided");
 });

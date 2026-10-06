@@ -38,6 +38,7 @@ export const CLIMATE_MODULE_TOOL_SPECS: ModuleToolSpec[] = [
   { name: "disclosure_get_public_claim", title: "Get public disclosure claim", description: "Get a public disclosure claim and its original source reference.", capability: "public-disclosure" },
   { name: "disclosure_extract_report_claims", title: "Extract report claims", description: "Extract scoped claims from a report through the configured application service.", capability: "public-disclosure" },
   { name: "disclosure_reconcile_claim", title: "Reconcile disclosure claim", description: "Reconcile a public disclosure against available calculation/evidence.", capability: "claim-reconciliation" },
+  { name: "disclosure_review_claim", title: "Review disclosure claim", description: "Return the public claim with its accounting boundary and the current human decision (accept as attributed, needs source or reject; decided, stale or undecided).", capability: "public-disclosure" },
 ];
 
 export interface ModuleCommandRouter {

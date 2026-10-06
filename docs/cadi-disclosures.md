@@ -154,6 +154,25 @@ The curated source record is:
 
 No source document bytes are committed.
 
+## Decision and accounting boundary
+
+Nothing public lets anyone recalculate 601.26 tCO2e: the fuel quantities and factors behind it are LPL's. So the claim cannot reach `reconciled` by a calculation. `buildDisclosureReviewCase()` raises one flag, `disclosure:not-recalculable`, and a person decides what the claim rests on:
+
+- `accept-as-attributed`: the claim rests on LPL's own statement, and says so. Result `reconciled`.
+- `needs-source`: the claim waits for the activity data or the verification statement. Result `insufficient-evidence`.
+- `reject`: result `insufficient-evidence`, marked rejected.
+
+The decision (`reports/disclosure/claim-decisions.json`) is `accept-as-attributed` by `person:sustainability-reviewer`. It is bound to a SHA-256 of the extracted figure and both source links (`reviewInputDigest`), so a changed figure or link makes it stale. Decided is not verified: calculation reproduced and third-party assured stay `not-run`.
+
+The claim's accounting boundary (`claim.boundary.accounting`) states:
+
+- **Counts:** LPL's 2025 Scope 1, 601.26 tCO2e, as LPL reports it.
+- **Leaves out:** Scope 2 (8.31 tCO2e) and Scope 3 (3,891.22 tCO2e) for 2025, reported on the same page; anything not on LPL's own page, including the CaDI record itself.
+- **Policy choices:** a figure that cannot be recalculated needs a person's decision; the organisational boundary and method are LPL's (the page cites the GHG Protocol).
+- **Not assessed:** the activity data and factors; the verification attributed to Carbon Footprint Ltd; whether the CaDI record matches the page.
+
+Both evidence nodes are `link-only`: the reviewer opens the page and compares the figure. `node scripts/run-disclosure-case.mjs` builds, signs and verifies the case (`reports/disclosure/case-run.json`); `scripts/verify-disclosure-case.mjs` is part of `npm run check:cases`. The demo rebuilds the case in the browser, and `disclosure_review_claim` returns the claim, the boundary and the current decision.
+
 ## Reconciliation
 
 `reconcileDisclosureClaim()` compares a later reconstructed value with the disclosed value using an explicit relative tolerance.
@@ -178,6 +197,7 @@ The shared disclosure module implements:
 - `disclosure_get_public_claim`
 - `disclosure_extract_report_claims`
 - `disclosure_reconcile_claim`
+- `disclosure_review_claim`
 
 The current extraction mode is explicitly named:
 
@@ -191,7 +211,7 @@ If a report-extraction model is added later, it needs its own labelled evaluatio
 
 ## Tamper behavior
 
-A change to the stored public claim changes the shared evidence root.
+A change to the stored public claim changes the shared evidence root. In the signed case run, changing the extracted figure from 601.26 to 6012.6 (a decimal slip) makes the decision stale, the result `insufficient-evidence`, and the attestation stop matching (`reports/disclosure/case-run.json`, `tamper`).
 
 This demonstrates integrity:
 

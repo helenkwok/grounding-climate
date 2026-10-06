@@ -1,0 +1,9 @@
+{
+  "candidateId": "lpl-construction",
+  "claimId": "claim:lpl:2025:scope1",
+  "alsoReported": [
+    "Scope 2 emissions 2025, 8.31 tCO2e",
+    "Scope 3 emissions 2025, 3,891.22 tCO2e"
+  ],
+  "tamper": { "from": 601.26, "to": 6012.6, "note": "A decimal slip in extraction" }
+}

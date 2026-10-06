@@ -4,14 +4,62 @@ import type {
   ModuleCommandRouter,
 } from "@climatechain/webmcp";
 
+import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
+
 import { reconcileDisclosureClaim } from "./reconcile.js";
+import { buildDisclosureReviewCase } from "./review-case.js";
 import type {
   DisclosureCandidate,
   ExtractedDisclosureClaim,
 } from "./types.js";
 
+export interface DisclosureReviewOptions {
+  candidateId: string;
+  claimId: string;
+  provider: CryptoProvider;
+  observedAt: string;
+  decisions: readonly ReviewDecision[];
+  alsoReported?: readonly string[];
+}
+
 export class DisclosureService implements ModuleCommandRouter {
-  constructor(private readonly candidates: DisclosureCandidate[]) {}
+  private readonly original: DisclosureCandidate[];
+
+  constructor(
+    private candidates: DisclosureCandidate[],
+    private readonly reviewOptions?: DisclosureReviewOptions,
+  ) {
+    this.original = structuredClone(candidates);
+  }
+
+  /** Changes the extracted value of the reviewed claim, as an extraction error would. */
+  setReviewedValue(value: number): void {
+    const claim = this.candidates
+      .find((item) => item.id === this.reviewOptions?.candidateId)
+      ?.extractedClaims?.find((item) => item.id === this.reviewOptions?.claimId);
+    if (!claim) throw new Error("No reviewed claim configured.");
+    claim.value = value;
+  }
+
+  resetCandidates(): void {
+    this.candidates = structuredClone(this.original);
+  }
+
+  /** The reviewed claim with the person's decision, built from the current candidates. */
+  async review() {
+    const options = this.reviewOptions;
+    if (!options) throw new Error("Disclosure review is not configured.");
+    const candidate = this.candidates.find((item) => item.id === options.candidateId);
+    if (!candidate) throw new Error('Unknown disclosure candidate "' + options.candidateId + '".');
+    return buildDisclosureReviewCase({
+      candidate,
+      claimId: options.claimId,
+      createdAt: options.observedAt,
+      provider: options.provider,
+      decisions: options.decisions,
+      ...(options.alsoReported ? { alsoReported: options.alsoReported } : {}),
+    });
+  }
 
   listCandidates(): DisclosureCandidate[] {
     return structuredClone(this.candidates);
@@ -66,6 +114,17 @@ export class DisclosureService implements ModuleCommandRouter {
         );
       }
 
+      case "disclosure_review_claim": {
+        const built = await this.review();
+        return {
+          claim: built.caseBundle.claims[0],
+          result: built.caseBundle.verifications[0]?.result,
+          decision: built.review[0] ?? null,
+          accountingBoundary: built.caseBundle.claims[0]?.boundary?.accounting,
+          note: "Decided is not verified: nothing here recalculates the figure.",
+        };
+      }
+
       default:
         throw new Error('Unknown disclosure tool "' + toolName + '".');
     }
@@ -83,6 +142,7 @@ export function createDisclosureModule(
       "disclosure_get_public_claim",
       "disclosure_extract_report_claims",
       "disclosure_reconcile_claim",
+      "disclosure_review_claim",
     ],
     router: service,
   });
