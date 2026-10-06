@@ -1,0 +1,32 @@
+{
+  "name": "@climatechain/site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "rsbuild build"
+  },
+  "dependencies": {
+    "@climatechain/battery-dpp": "*",
+    "@climatechain/building-mrv": "*",
+    "@climatechain/carbon-registry": "*",
+    "@climatechain/core": "*",
+    "@climatechain/disclosure": "*",
+    "@climatechain/earth-observation": "*",
+    "@climatechain/energy-forecast": "*",
+    "@climatechain/webmcp": "*",
+    "@noble/post-quantum": "0.7.1",
+    "@tanstack/react-router": "1.170.41",
+    "@tanstack/react-start": "1.168.60",
+    "maplibre-gl": "6.12.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "2.2.11",
+    "@rsbuild/plugin-react": "2.1.1",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2"
+  }
+}

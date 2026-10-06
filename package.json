@@ -11,7 +11,7 @@
     "apps/*"
   ],
   "scripts": {
-    "build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/energy-forecast && npm run build --workspace @climatechain/battery-dpp && npm run build --workspace @climatechain/carbon-registry && npm run build --workspace @climatechain/disclosure && npm run build --workspace @climatechain/earth-observation && npm run build --workspace @climatechain/demo",
+    "build": "npm run build --workspace @climatechain/core && npm run build --workspace @climatechain/crypto-node && npm run build --workspace @climatechain/webmcp && npm run build --workspace @climatechain/building-mrv && npm run build --workspace @climatechain/energy-forecast && npm run build --workspace @climatechain/battery-dpp && npm run build --workspace @climatechain/carbon-registry && npm run build --workspace @climatechain/disclosure && npm run build --workspace @climatechain/earth-observation && npm run build --workspace @climatechain/demo && npm run build --workspace @climatechain/site",
     "test": "npm run test --workspace @climatechain/core && npm run test --workspace @climatechain/crypto-node && npm run test --workspace @climatechain/webmcp && npm run test --workspace @climatechain/building-mrv && npm run test --workspace @climatechain/energy-forecast && npm run test --workspace @climatechain/battery-dpp && npm run test --workspace @climatechain/carbon-registry && npm run test --workspace @climatechain/disclosure && npm run test --workspace @climatechain/earth-observation",
     "check:rights": "node scripts/check-source-rights.mjs",
     "sources:attribution": "node scripts/render-source-attribution.mjs",
@@ -28,6 +28,7 @@
     "check:cases": "node scripts/verify-building-case.mjs && node scripts/verify-battery-case.mjs && node scripts/verify-energy-case.mjs && node scripts/verify-earth-case.mjs && node scripts/verify-disclosure-case.mjs && node scripts/verify-carbon-case.mjs",
     "demo:build": "npm run build",
     "demo:serve": "python3 -m http.server 4173 --directory apps/demo/dist",
-    "submission:build": "python3 scripts/build-submission.py"
+    "submission:build": "python3 scripts/build-submission.py",
+    "site:serve": "python3 -m http.server 4173 --directory apps/site/dist/client"
   }
 }

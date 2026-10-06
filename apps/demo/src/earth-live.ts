@@ -32,7 +32,9 @@ export const earthRun = caseRunReport as unknown as {
 };
 
 const bytes = async (name: string) => {
-  const response = await fetch("data/hls-burn-scars/" + manifest.sceneId + "/" + name);
+  // Pages below the site root set the data folder's base before importing this module.
+  const base = (globalThis as { climatechainDataBase?: string }).climatechainDataBase ?? "";
+  const response = await fetch(base + "data/hls-burn-scars/" + manifest.sceneId + "/" + name);
   if (!response.ok) throw new Error("Could not load " + name + ": HTTP " + response.status);
   return response.arrayBuffer();
 };
