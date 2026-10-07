@@ -76,3 +76,7 @@ The grid factor is deliberately not guessed from anonymised BDG2 site IDs. The C
 ## Battery DPP prototype
 
 The BatteryLife/CALB digital-product-passport slice is documented in [docs/battery-dpp.md](docs/battery-dpp.md). It reruns the CALB Dummy life-prediction baseline from the pinned v1 release (which does **not** exactly reproduce the published summary row; the discrepancy is recorded), builds a traceable SOH/RUL decision-support passport from one processed battery, and demonstrates evidence-root failure after a cycle-capacity tamper.
+
+## Licence
+
+Grounding's code and documentation are licensed under the [Apache License 2.0](LICENSE); see [NOTICE](NOTICE). Third-party data keeps its own licence, recorded in [sources/rights-manifest.json](sources/rights-manifest.json) and listed in [docs/source-attribution.md](docs/source-attribution.md).
