@@ -157,7 +157,7 @@ The PQ path remains the real Rust/native implementation from #18 and is verified
 
 ## Guided audit
 
-The “Run guided audit” button calls the same gated WebMCP handlers through their fallback executor:
+The “Run the guided audit” button calls the same gated WebMCP handlers through their fallback executor:
 
 1. list capabilities
 2. run the Building MRV baseline summary
