@@ -1,7 +1,8 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import type { SignedAttestationVerification } from "@grounding-climate/core";
+import { cidFromSha256, type SignedAttestationVerification } from "@grounding-climate/core";
 import { useState, type DragEvent } from "react";
 
+import cidManifest from "../../../../reports/cid-manifest.json";
 import { claimMeta } from "../../../demo/src/claims-meta";
 import { Result, Rows, State } from "../components";
 import { signedRecords } from "../live";
@@ -12,7 +13,24 @@ export const Route = createFileRoute("/verify")({
   component: VerifyPage,
 });
 
-type Outcome = { name: string; record: SignedRecord; result: SignedAttestationVerification } | { name: string; error: string };
+type Outcome =
+  | { name: string; record: SignedRecord; result: SignedAttestationVerification; cid: string }
+  | { name: string; error: string };
+
+// Committed files by SHA-256, so an evidence digest that is a whole file's digest can name that file.
+const committedFiles = new Map(cidManifest.files.map((file) => [file.sha256, file.path]));
+
+/** Every SHA-256 digest an evidence node carries: its integrity, and any "SHA-256:…" fingerprint in its extensions. */
+function evidenceDigests(record: SignedRecord): Array<[string, string]> {
+  const found: Array<[string, string]> = [];
+  for (const evidence of record.case.evidence) {
+    if (evidence.integrity?.algorithm === "SHA-256") found.push([evidence.id, "SHA-256:" + evidence.integrity.value]);
+    for (const [key, value] of Object.entries(evidence.extensions ?? {})) {
+      if (typeof value === "string" && value.startsWith("SHA-256:")) found.push([evidence.id + " · " + key, value]);
+    }
+  }
+  return found;
+}
 
 function VerifyPage() {
   const [outcome, setOutcome] = useState<Outcome>();
@@ -22,7 +40,9 @@ function VerifyPage() {
     try {
       const record = JSON.parse(text) as SignedRecord;
       const [{ verifyRecord }, { WebCryptoProvider }] = await Promise.all([import("../signing"), import("../../../demo/src/web-crypto")]);
-      setOutcome({ name, record, result: await verifyRecord(record, new WebCryptoProvider()) });
+      const provider = new WebCryptoProvider();
+      const cid = cidFromSha256(await provider.hash(new TextEncoder().encode(text), "SHA-256"));
+      setOutcome({ name, record, result: await verifyRecord(record, provider), cid });
     } catch (error) {
       setOutcome({ name, error: error instanceof SyntaxError ? "This file is not JSON." : error instanceof Error ? error.message : String(error) });
     }
@@ -132,6 +152,23 @@ function Report({ outcome }: { outcome: Outcome }) {
         ))}
         <li><span>Evidence matches what was signed</span><State tone={result.currentEvidenceMatches ? "good" : "bad"}>{result.currentEvidenceMatches ? "yes" : "no"}</State></li>
         {review && <li><span>Reviewer's verdict</span><Result result={review.result} /></li>}
+      </ul>
+      <h3>Content addresses</h3>
+      <p className="note">
+        Content addresses: anyone holding these files can serve them over IPFS; the address itself proves the bytes.
+      </p>
+      <ul className="checks">
+        <li><span>This record file</span><span className="note">the bytes checked here</span><small>{outcome.cid}</small></li>
+        {evidenceDigests(record).map(([name, digest]) => {
+          const file = committedFiles.get(digest);
+          return (
+            <li key={name + digest}>
+              <span>{name}</span>
+              <span className="note">{file ? "committed file " + file : "digest of prepared data, not one file"}</span>
+              <small>{cidFromSha256(digest)}</small>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

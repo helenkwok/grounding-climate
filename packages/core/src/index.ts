@@ -11,3 +11,4 @@ export * from "./review.js";
 export * from "./context.js";
 export * from "./anchor.js";
 export * from "./ots.js";
+export * from "./cid.js";
