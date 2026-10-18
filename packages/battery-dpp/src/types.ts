@@ -23,7 +23,12 @@ export interface BatteryHealthEstimate {
   batteryId: string;
   observedCycle: number;
   currentCapacityAh: number;
+  /** Latest capacity over nominal capacity; the thresholds use this. */
   currentSoh: number;
+  /** Discharge capacity of the first recorded cycle: the battery's initial condition. */
+  initialCapacityAh: number;
+  /** Latest capacity over the first recorded cycle's, the basis Regulation (EU) 2023/1542 Art. 3(28) uses. */
+  sohVsInitial: number;
   eolSohThreshold: number;
   capacitySlopeAhPerCycle: number;
   estimatedEolCycle: number | null;
@@ -66,6 +71,7 @@ export interface BatteryPassportClaim {
   nominalCapacityAh: number;
   observedCycle: number;
   currentSoh: number;
+  sohVsInitial: number;
   estimatedRulCycles: number | null;
   disposition: BatteryDisposition;
   decisionReasons: string[];
