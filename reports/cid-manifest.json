@@ -243,9 +243,9 @@
     },
     {
       "path": "reports/battery-dpp/anchor.json",
-      "bytes": 507,
-      "sha256": "SHA-256:EMVHFsbvYa50l00b7oIdsNcddHwyBonj6ziiTB7t_J0",
-      "cid": "bafkreiaqyvdrnrxpmgxhjf2ndpxiehnq24oxi7bsa2e6h2zyujgb53p4tu",
+      "bytes": 653,
+      "sha256": "SHA-256:CNe5axHkeJ31I0Ox10iZ8EXeZVneeJZNjP4tpa8qO18",
+      "cid": "bafkreiai264wwepepco7ki2dwhlurgpqixpgkwo6pcle3dh6fws26kr3l4",
       "singleBlock": true
     },
     {
@@ -264,9 +264,9 @@
     },
     {
       "path": "reports/battery-dpp/credential.json",
-      "bytes": 13961,
-      "sha256": "SHA-256:55bLU_971QC9XHXiD0SnyxIPlUSmJmKlNLFIRnl5cw0",
-      "cid": "bafkreihhs3fvh7332ual2xdv4ihujj6lcihzkrfgezrkknfrjbdhs6ltbu",
+      "bytes": 14058,
+      "sha256": "SHA-256:dkCxFKgvc_yWwXyj25CjghrBjOAnDX1BRFVzv9u4OKU",
+      "cid": "bafkreidwicyrjkbpop6jnql4upnzbi4cdlayzybhbv6ucrcvoo75xobyuu",
       "singleBlock": true
     },
     {
@@ -299,9 +299,9 @@
     },
     {
       "path": "reports/building-mrv/credential.json",
-      "bytes": 10139,
-      "sha256": "SHA-256:qTdWTcFeMAky7b0AmkIvWx7VIiVmJUFg0SWIgiE3CSo",
-      "cid": "bafkreifjg5le3qk6gaetf3n5acneel23d3ksejlgevawbujfrcbccnyjfi",
+      "bytes": 10140,
+      "sha256": "SHA-256:Eln7jfQ7UPD7tpUyDj44VJxwWSp2-wh-BrJ3n-vRNFo",
+      "cid": "bafkreiaslh5y35b3kdypxnuvgihd4ocutryfsktw7meh4bvso6p6xujuli",
       "singleBlock": true
     },
     {
@@ -377,8 +377,8 @@
     {
       "path": "reports/carbon-registry/credential.json",
       "bytes": 11596,
-      "sha256": "SHA-256:tRz0lwCe50ZJmv929BoKO0JWeYs7LHraqhUMazNGRtY",
-      "cid": "bafkreifvdt2joae645detgx7o32bucr3ijlhtcz3fr5nvkqvbrvtgrsg2y",
+      "sha256": "SHA-256:eHboOO2vobKk9o5ZYd9dSOSztVWF_dy3CwQBmsrbGQ4",
+      "cid": "bafkreidyo3udr3npugzkj5uolfq56xki4sz3kvmf7xolocyeagnmvwyzby",
       "singleBlock": true
     },
     {
@@ -398,8 +398,8 @@
     {
       "path": "reports/did.json",
       "bytes": 6896,
-      "sha256": "SHA-256:Lw1HRBBxAHDSQ8cWmyrR8oY3xPp3t_F6QuuzybkTGXs",
-      "cid": "bafkreibpbvduiedrabyneq6hc2nsvupsqy34j6txw7yxuqxlwpe3seyzpm",
+      "sha256": "SHA-256:wGh0rl8p85FSPGHmRm3MzGGrwoVmGxVMw2lhHYaNwq8",
+      "cid": "bafkreiganb2k4xzj6oivepdb4zdg3tgmmgv4fblgdmkuzq3jmeoyndocv4",
       "singleBlock": true
     },
     {
@@ -425,9 +425,9 @@
     },
     {
       "path": "reports/disclosure/credential.json",
-      "bytes": 9366,
-      "sha256": "SHA-256:I5Zt2GyLMLp9tOCSa-masg0l_4IagoqMu8Yxl9m3ZwY",
-      "cid": "bafkreibdszw5q3elgc5h3nhasjv6tgvsbus77aq2qkfizo6gggl5tn3hay",
+      "bytes": 9365,
+      "sha256": "SHA-256:1e-mcTK9pVCRVsVg76f6hVFrB1UhLoOEQRmrFTtMRAM",
+      "cid": "bafkreigv56thcmv5uvijcvwfmdx2p6ufkfvqovjbf2byiqizvmktwtceam",
       "singleBlock": true
     },
     {
@@ -467,9 +467,9 @@
     },
     {
       "path": "reports/earth-observation/credential.json",
-      "bytes": 11966,
-      "sha256": "SHA-256:yIK_L-w5rMLAtTbBrshgVMcwbCrcleKuuzu6noGXtus",
-      "cid": "bafkreigiqk7s73bzvtbmbnjwygxmqycuy4ygykw4sxrk5oz3xkpidf5w5m",
+      "bytes": 11967,
+      "sha256": "SHA-256:nzDxfl0GnoDYy1r6rEwA3fNGY84lbPaq-4I8Mdv52Xg",
+      "cid": "bafkreie7gdyx4xigt2anrs227kweyag56ndghtrfnt3kv64chqy5x6ozpa",
       "singleBlock": true
     },
     {
@@ -523,9 +523,9 @@
     },
     {
       "path": "reports/energy-forecast/credential.json",
-      "bytes": 10408,
-      "sha256": "SHA-256:SG2GowzPIfhzBG3xwm5FZx9-e4Guf43fnovV4hprdJY",
-      "cid": "bafkreicinwdkgdgpeh4hgbdn6hbg4rlhd57hxanop6g57hul2xrbu23usy",
+      "bytes": 10409,
+      "sha256": "SHA-256:4i0Q2AU2w-TU6pKWDi_YQo5JpRhqDK9oEfE4C_S96kk",
+      "cid": "bafkreihcfuinqbjwypsnj2ussyhc7wccrze2kgdkbsxwqeprhaf7jppkje",
       "singleBlock": true
     },
     {
