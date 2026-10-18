@@ -1,4 +1,4 @@
-// The battery passport case end to end: committed BatteryLife cycle history -> health estimate and the
+// The battery passport case end to end: committed NASA Ames cycle and impedance history -> health estimate and the
 // policy's proposed disposition -> a person's sign-off -> attestation signed with Ed25519 and ML-DSA-65 ->
 // verification with only the public keys -> the same check after a tamper.
 //
@@ -24,7 +24,7 @@ const json = async (path, fallback) => {
 const DECISIONS = "reports/battery-dpp/disposition-decisions.json";
 const OUT = new URL("../reports/battery-dpp/case-run.json", import.meta.url);
 
-const history = await json("data/external/batterylife-processed/battery-history.json");
+const history = await json("data/external/nasa-battery/battery-history.json");
 const decisions = await json(DECISIONS, []);
 const crypto = new InMemoryNodeCryptoProvider();
 const createdAt = new Date().toISOString();
@@ -57,7 +57,7 @@ const { attestation, publishedKeys, verify } = await signCase({
   climateCase: clean.caseBundle,
   module: "battery-dpp",
   statement:
-    "Battery passport for " + history.batteryId + " recomputed from the BatteryLife cycle history. " +
+    "Battery passport for " + history.batteryId + " recomputed from the NASA Ames cycle and impedance history. " +
     "Verification result at signing: " + clean.caseBundle.verifications[0].result + "; disposition " +
     clean.passport.disposition + (open.length ? ", not signed off." : ", signed off by a person."),
   claimRef: { nodeType: "claim", id: claimId },
@@ -65,7 +65,7 @@ const { attestation, publishedKeys, verify } = await signCase({
   createdAt,
 });
 
-// Tamper: the last cycle's capacity raised by 20%, as in the BatteryLife smoke.
+// Tamper: the last cycle's capacity raised by 20%.
 const tamperedHistory = structuredClone(history);
 const last = tamperedHistory.cycles.at(-1);
 const originalCapacity = last.dischargeCapacityAh;
@@ -86,7 +86,7 @@ const report = {
   schemaVersion: "grounding.battery-case-run/0.1",
   runAt: createdAt,
   organisingQuestion: "Is this cell's second-life disposition supported by its measured capacity, and who signed it off?",
-  battery: { batteryId: history.batteryId, nominalCapacityAh: history.nominalCapacityAh, cycles: history.cycles.length },
+  battery: { batteryId: history.batteryId, nominalCapacityAh: history.nominalCapacityAh, cycles: history.cycles.length, dataset: history.source.dataset },
   clean: summary(clean, await verify(clean.caseBundle)),
   tamper: {
     cycle: last.cycle ?? history.cycles.length,
@@ -101,7 +101,8 @@ const report = {
   limitations: [
     "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
     "The disposition is decision support; the claim lists the condition and safety assessments it does not cover.",
-    "Remaining life comes from a straight-line capacity trend, not BatteryLife's published models.",
+    "Remaining life comes from a straight-line capacity trend, not a published life-prediction model.",
+    "Internal resistance is the ohmic resistance Re fitted by the data provider from impedance sweeps; the first sweep came after cycle 19, so it is not a beginning-of-life value.",
   ],
 };
 await writeFile(OUT, JSON.stringify(report, null, 2) + "\n");

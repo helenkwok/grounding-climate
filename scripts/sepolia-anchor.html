@@ -83,7 +83,9 @@ function render() {
   if (contract) show($("contract"), "Deployed at ", "address", contract);
   const rows = Object.entries(bundle.cases).map(([name, digest]) => {
     const tr = document.createElement("tr");
-    const done = bundle.record?.anchors?.[name];
+    // An anchor of an older record of this case does not count: the case has to be anchored again.
+    const recorded = bundle.record?.anchors?.[name];
+    const done = recorded?.digest === digest ? recorded : undefined;
     const cells = [name, digest].map((text) => {
       const td = document.createElement("td");
       td.textContent = text;

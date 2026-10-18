@@ -54,12 +54,12 @@ export const CLAIMS: readonly ClaimMeta[] = [
   {
     id: "battery",
     title: "Battery passport",
-    claim: "Battery cell CALB_0_B182 is at 77.6% state of health against its nominal capacity after 100 cycles (90.6% against its first recorded cycle), and is held for service review before any second life.",
+    claim: "NASA test cell B0005 kept 71.4% of its first recorded capacity after 168 cycles (66.3% of its 2 Ah rating), its internal resistance rose 28%, and it goes to recycling, not a second life.",
     claimant: "A second-life battery operator",
-    what: "Cycle history rebuilt into state of health; reuse signed off by a person",
+    what: "Cycle and impedance history rebuilt into state of health and resistance; disposition signed off by a person",
     question: "Is this battery cell fit for a second life, and who signed that off?",
-    data: "100 charge cycles of one CALB cell from BatteryLife (MIT).",
-    source: "BatteryLife / CALB (MIT)",
+    data: "168 charge cycles and 278 impedance sweeps of one Li-ion cell tested at NASA Ames Research Center (NASA PCoE Battery Data Set, a US government work).",
+    source: "NASA PCoE Battery Data Set (Saha and Goebel, 2007)",
   },
   {
     id: "carbon",

@@ -1125,6 +1125,48 @@
           "finding": "BatchStatus enum used to read batch states (checked 2026-10-18)."
         }
       ]
+    },
+    {
+      "id": "nasa-battery",
+      "name": "NASA PCoE Battery Data Set, cell B0005 (cycle capacity and impedance fits)",
+      "component": "dataset",
+      "canonicalUrl": "https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/",
+      "upstreamPublisher": "NASA Ames Research Center, Prognostics Center of Excellence",
+      "retrievedAt": "2026-10-18",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "LicenseRef-US-Government-Work",
+        "name": "Work of the US federal government (17 U.S.C. 105); no licence stated by the repository",
+        "url": "https://www.usa.gov/government-copyright"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/nasa-battery",
+        "note": "Derived values only: 168 discharge capacities and 278 Re/Rct impedance fits for B0005. The raw .mat files stay in the gitignored cache; scripts/prepare-nasa-battery.py rebuilds the file from NASA's download and checks its SHA-256."
+      },
+      "attribution": "B. Saha and K. Goebel (2007), \"Battery Data Set\", NASA Prognostics Data Repository, NASA Ames Research Center, Moffett Field, CA. Acknowledgement to the NASA Prognostics Data Repository and the data donors, as the repository requests.",
+      "notes": [
+        "Decided by Helen on 2026-10-18 to commit the derived per-cycle values with citation.",
+        "Open point: the US federal-works rule does not cover work by contractors; whether every data donor was a federal employee is not verified. No NASA name or logo is used to imply endorsement.",
+        "The repository says the data are used at the user's own risk and that NASA and the donors assume no liability."
+      ],
+      "evidence": [
+        {
+          "url": "https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/",
+          "finding": "Entry 5 'Batteries': download link, requested citation, acknowledgement request and own-risk disclaimer; no licence stated (checked 2026-10-18)."
+        },
+        {
+          "url": "https://www.usa.gov/government-copyright",
+          "finding": "Works made by US government officers or employees in their official duties are government works (17 U.S.C. 101, 105) (checked 2026-10-18)."
+        }
+      ]
     }
   ]
 }

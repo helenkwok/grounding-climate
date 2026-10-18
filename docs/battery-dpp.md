@@ -88,16 +88,26 @@ The measured real-data smoke is committed at:
 
 `reports/battery-dpp/batterylife-calb-smoke.json`
 
-For the current v11 passport sample `CALB_0_B182`:
+The BatteryLife smoke above is a benchmark; the passport case uses a different cell (below).
 
-- 100 usable cycles
-- nominal capacity: 58 Ah
-- observed-cycle SOH: 0.7759146552 against nominal capacity (58 Ah); 0.9055 against the first recorded cycle, the initial-condition basis of Regulation (EU) 2023/1542 Art. 3(28). Both are in the claim; the thresholds below use the nominal basis.
-- transparent linear-fit R²: 0.8981361762
-- estimated RUL at the configured 80% SOH threshold: 0 cycles
-- disposition under the demo policy: `repurpose`
+## Passport case: NASA Ames cell B0005
 
-Changing the final capacity observation from 45.00305 Ah to 54.00366 Ah changes both the input digest and the shared evidence root.
+The passport case reads `data/external/nasa-battery/battery-history.json`: cell B0005 of the NASA PCoE Battery Data Set,
+tested at NASA Ames Research Center (README in that folder; rebuilt by `scripts/prepare-nasa-battery.py`).
+
+- 168 discharge cycles at 2 A and 24 °C; rated capacity 2 Ah
+- SoH 0.6625 against the rated capacity; 0.7138 against the first recorded cycle (1.856 Ah), the initial-condition basis
+  of Regulation (EU) 2023/1542 Art. 3(28). Both are in the claim; the thresholds below use the rated basis.
+- transparent linear-fit R² over the last 50 cycles: 0.889
+- estimated RUL at the configured 80% SoH threshold: 0 cycles
+- disposition under the demo policy: `retire-review`
+- ohmic resistance Re (median of the first and last five of 278 impedance sweeps): 0.0451 Ω after cycle 19, 0.0578 Ω by
+  cycle 168, an increase of 28.2%. Recorded as DIN DKE SPEC 99100 6.7.5.2 and 6.7.5.3 (Battery Pass
+  `initialInternalResistance`, `internalResistanceIncrease`). The first sweep came after cycle 19, so the base is not a
+  beginning-of-life value, and Re is fitted from EIS by the data provider, not a DC resistance test.
+
+The tamper run raises the last cycle's capacity by 20% (1.325 to 1.590 Ah), which changes the input digest and the
+shared evidence root.
 
 ## Passport health estimate
 
@@ -144,9 +154,11 @@ The thresholds are explicit policy inputs. They are not universal battery-indust
 
 The policy only proposes a disposition. A person signs it off (`approve`) or chooses another (`reuse`, `repurpose`, `recycle`, `service-review`), with a reason, using the shared review step in `@grounding-climate/core`. The decision is bound to the digest of the cycle history: if the history changes, the sign-off is stale and the case returns to `insufficient-evidence`. The case result is derived from these checks; it is `reconciled` only with a current sign-off.
 
-For CALB_0_B182 the policy proposes `repurpose` (SoH 0.776, above 0.75, below 0.85 for reuse). The recorded sign-off (`reports/battery-dpp/disposition-decisions.json`) is `service-review`: the cell is already past end of first life, began at 0.857 of nominal capacity, and its condition and safety are not assessed.
+For NASA B0005 the policy proposes `retire-review` (SoH 0.663, below 0.75). The recorded sign-off
+(`reports/battery-dpp/disposition-decisions.json`, by the role `person:energy-manager`) is `recycle`: the cell is past the
+test's own end-of-life rule (1.4 Ah), its ohmic resistance rose about 28%, and its condition and safety are not assessed.
 
-The claim states its accounting boundary separately from the measurement: what it counts (capacity over cycles 1 to 100, SoH against 58 Ah), what it leaves out (later cycles, calendar ageing), the policy choices (thresholds, linear fit, sign-off), and what it does not assess (electrical, thermal, mechanical and safety condition; carbon footprint and other EU Battery Regulation passport fields; BatteryLife's published models).
+The claim states its accounting boundary separately from the measurement: what it counts (capacity over cycles 1 to 168, SoH against the 2 Ah rating, ohmic resistance from the impedance sweeps), what it leaves out (later cycles, calendar ageing), the policy choices (thresholds, linear fit, sign-off), and what it does not assess (electrical, thermal, mechanical and safety condition; carbon footprint and other EU Battery Regulation passport fields; published life-prediction models).
 
 `scripts/run-battery-case.mjs` signs the case with Ed25519 and ML-DSA-65 and records a tamper run; `scripts/verify-battery-case.mjs`, part of `npm run check`, rebuilds the case from the committed inputs and checks the committed signature.
 
