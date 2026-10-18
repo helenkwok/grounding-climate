@@ -30,8 +30,8 @@
       "txHash": "0xaf49ce52416685673eb13f14da822bbff9af82904d9351181e0ab77edb1133a7"
     },
     "battery-dpp": {
-      "digest": "0xab141961a3f2b3b9de15e3aeef65768a595eb7597ca05317477987975f04fd33",
-      "txHash": "0xb16b4b22abf65b314b8679a71d4846d72d0ac6b3f800ef443a1421f5e711a83f"
+      "digest": "0x6a130366177116baae3509beb17cc50470d4921ba351d87ec6af75a37f8d3100",
+      "txHash": "0xc560db34a2b04e05e433c72b169dda89f3852d4a49e6740c4e561d3ee44bf8a2"
     }
   }
 }
