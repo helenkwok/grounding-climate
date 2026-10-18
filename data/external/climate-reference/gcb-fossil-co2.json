@@ -1,0 +1,1327 @@
+{
+  "schemaVersion": "grounding.climate-reference.gcb-fossil-co2/0.1",
+  "citation": "Global Carbon Budget 2025 (Friedlingstein et al.), fossil CO2 emissions dataset, CC BY 4.0, doi:10.5281/zenodo.17417124",
+  "source": "https://zenodo.org/api/records/17417124/files/GCB2025v15_MtCO2_flat.csv/content",
+  "doi": "10.5281/zenodo.17417124",
+  "selection": "Column \"Total\" (fossil CO2: coal, oil, gas, cement, flaring, other), per ISO code the latest year with a value. \"WLD\" is the world total; \"XIA\" and \"XIS\" are international aviation and shipping bunkers, which belong to no country. Rows without an ISO code (historical entities) are left out.",
+  "unit": "MtCO2",
+  "unitNote": "The file is already in million tonnes of CO2 (GCB2025v15_MtCO2_flat); no carbon-to-CO2 conversion is applied.",
+  "world": {
+    "iso3": "WLD",
+    "name": "Global",
+    "year": 2024,
+    "MtCO2": 38598.578033
+  },
+  "internationalBunkers": [
+    {
+      "iso3": "XIA",
+      "name": "International Aviation",
+      "year": 2024,
+      "MtCO2": 569.039317
+    },
+    {
+      "iso3": "XIS",
+      "name": "International Shipping",
+      "year": 2024,
+      "MtCO2": 623.424509
+    }
+  ],
+  "countries": [
+    {
+      "iso3": "ABW",
+      "name": "Aruba",
+      "year": 2024,
+      "MtCO2": 0.920644
+    },
+    {
+      "iso3": "AFG",
+      "name": "Afghanistan",
+      "year": 2024,
+      "MtCO2": 10.825998
+    },
+    {
+      "iso3": "AGO",
+      "name": "Angola",
+      "year": 2024,
+      "MtCO2": 22.333583
+    },
+    {
+      "iso3": "AIA",
+      "name": "Anguilla",
+      "year": 2024,
+      "MtCO2": 0.148085
+    },
+    {
+      "iso3": "ALB",
+      "name": "Albania",
+      "year": 2024,
+      "MtCO2": 4.444448
+    },
+    {
+      "iso3": "AND",
+      "name": "Andorra",
+      "year": 2024,
+      "MtCO2": 0.424663
+    },
+    {
+      "iso3": "ARE",
+      "name": "United Arab Emirates",
+      "year": 2024,
+      "MtCO2": 221.988084
+    },
+    {
+      "iso3": "ARG",
+      "name": "Argentina",
+      "year": 2024,
+      "MtCO2": 171.059271
+    },
+    {
+      "iso3": "ARM",
+      "name": "Armenia",
+      "year": 2024,
+      "MtCO2": 7.430715
+    },
+    {
+      "iso3": "ATA",
+      "name": "Antarctica",
+      "year": 2024,
+      "MtCO2": 0
+    },
+    {
+      "iso3": "ATG",
+      "name": "Antigua and Barbuda",
+      "year": 2024,
+      "MtCO2": 0.66514
+    },
+    {
+      "iso3": "AUS",
+      "name": "Australia",
+      "year": 2024,
+      "MtCO2": 386.732383
+    },
+    {
+      "iso3": "AUT",
+      "name": "Austria",
+      "year": 2024,
+      "MtCO2": 56.367657
+    },
+    {
+      "iso3": "AZE",
+      "name": "Azerbaijan",
+      "year": 2024,
+      "MtCO2": 39.830141
+    },
+    {
+      "iso3": "BDI",
+      "name": "Burundi",
+      "year": 2024,
+      "MtCO2": 0.916664
+    },
+    {
+      "iso3": "BEL",
+      "name": "Belgium",
+      "year": 2024,
+      "MtCO2": 85.456203
+    },
+    {
+      "iso3": "BEN",
+      "name": "Benin",
+      "year": 2024,
+      "MtCO2": 6.066339
+    },
+    {
+      "iso3": "BES",
+      "name": "Bonaire, Saint Eustatius and Saba",
+      "year": 2024,
+      "MtCO2": 0.151882
+    },
+    {
+      "iso3": "BFA",
+      "name": "Burkina Faso",
+      "year": 2024,
+      "MtCO2": 6.507663
+    },
+    {
+      "iso3": "BGD",
+      "name": "Bangladesh",
+      "year": 2024,
+      "MtCO2": 108.31788
+    },
+    {
+      "iso3": "BGR",
+      "name": "Bulgaria",
+      "year": 2024,
+      "MtCO2": 31.621825
+    },
+    {
+      "iso3": "BHR",
+      "name": "Bahrain",
+      "year": 2024,
+      "MtCO2": 39.003458
+    },
+    {
+      "iso3": "BHS",
+      "name": "Bahamas",
+      "year": 2024,
+      "MtCO2": 3.069679
+    },
+    {
+      "iso3": "BIH",
+      "name": "Bosnia and Herzegovina",
+      "year": 2024,
+      "MtCO2": 19.425931
+    },
+    {
+      "iso3": "BLR",
+      "name": "Belarus",
+      "year": 2024,
+      "MtCO2": 55.818418
+    },
+    {
+      "iso3": "BLZ",
+      "name": "Belize",
+      "year": 2024,
+      "MtCO2": 0.796027
+    },
+    {
+      "iso3": "BMU",
+      "name": "Bermuda",
+      "year": 2024,
+      "MtCO2": 0.550001
+    },
+    {
+      "iso3": "BOL",
+      "name": "Bolivia",
+      "year": 2024,
+      "MtCO2": 28.708663
+    },
+    {
+      "iso3": "BRA",
+      "name": "Brazil",
+      "year": 2024,
+      "MtCO2": 483.011562
+    },
+    {
+      "iso3": "BRB",
+      "name": "Barbados",
+      "year": 2024,
+      "MtCO2": 1.365171
+    },
+    {
+      "iso3": "BRN",
+      "name": "Brunei Darussalam",
+      "year": 2024,
+      "MtCO2": 12.052463
+    },
+    {
+      "iso3": "BTN",
+      "name": "Bhutan",
+      "year": 2024,
+      "MtCO2": 1.657416
+    },
+    {
+      "iso3": "BWA",
+      "name": "Botswana",
+      "year": 2024,
+      "MtCO2": 7.461599
+    },
+    {
+      "iso3": "CAF",
+      "name": "Central African Republic",
+      "year": 2024,
+      "MtCO2": 0.394681
+    },
+    {
+      "iso3": "CAN",
+      "name": "Canada",
+      "year": 2024,
+      "MtCO2": 533.34009
+    },
+    {
+      "iso3": "CHE",
+      "name": "Switzerland",
+      "year": 2024,
+      "MtCO2": 32.071708
+    },
+    {
+      "iso3": "CHL",
+      "name": "Chile",
+      "year": 2024,
+      "MtCO2": 78.725544
+    },
+    {
+      "iso3": "CHN",
+      "name": "China",
+      "year": 2024,
+      "MtCO2": 12289.036755
+    },
+    {
+      "iso3": "CIV",
+      "name": "Côte d'Ivoire",
+      "year": 2024,
+      "MtCO2": 14.828585
+    },
+    {
+      "iso3": "CMR",
+      "name": "Cameroon",
+      "year": 2024,
+      "MtCO2": 9.631583
+    },
+    {
+      "iso3": "COD",
+      "name": "Democratic Republic of the Congo",
+      "year": 2024,
+      "MtCO2": 5.904451
+    },
+    {
+      "iso3": "COG",
+      "name": "Congo",
+      "year": 2024,
+      "MtCO2": 8.83977
+    },
+    {
+      "iso3": "COK",
+      "name": "Cook Islands",
+      "year": 2024,
+      "MtCO2": 0.080083
+    },
+    {
+      "iso3": "COL",
+      "name": "Colombia",
+      "year": 2024,
+      "MtCO2": 92.659386
+    },
+    {
+      "iso3": "COM",
+      "name": "Comoros",
+      "year": 2024,
+      "MtCO2": 0.55165
+    },
+    {
+      "iso3": "CPV",
+      "name": "Cape Verde",
+      "year": 2024,
+      "MtCO2": 0.593786
+    },
+    {
+      "iso3": "CRI",
+      "name": "Costa Rica",
+      "year": 2024,
+      "MtCO2": 8.760451
+    },
+    {
+      "iso3": "CUB",
+      "name": "Cuba",
+      "year": 2024,
+      "MtCO2": 24.440234
+    },
+    {
+      "iso3": "CUW",
+      "name": "Curaçao",
+      "year": 2024,
+      "MtCO2": 2.289628
+    },
+    {
+      "iso3": "CXR",
+      "name": "Christmas Island",
+      "year": 2024,
+      "MtCO2": 0
+    },
+    {
+      "iso3": "CYP",
+      "name": "Cyprus",
+      "year": 2024,
+      "MtCO2": 7.299328
+    },
+    {
+      "iso3": "CZE",
+      "name": "Czechia",
+      "year": 2024,
+      "MtCO2": 75.622999
+    },
+    {
+      "iso3": "DEU",
+      "name": "Germany",
+      "year": 2024,
+      "MtCO2": 572.319175
+    },
+    {
+      "iso3": "DJI",
+      "name": "Djibouti",
+      "year": 2024,
+      "MtCO2": 0.564084
+    },
+    {
+      "iso3": "DMA",
+      "name": "Dominica",
+      "year": 2024,
+      "MtCO2": 0.170858
+    },
+    {
+      "iso3": "DNK",
+      "name": "Denmark",
+      "year": 2024,
+      "MtCO2": 28.369162
+    },
+    {
+      "iso3": "DOM",
+      "name": "Dominican Republic",
+      "year": 2024,
+      "MtCO2": 33.130816
+    },
+    {
+      "iso3": "DZA",
+      "name": "Algeria",
+      "year": 2024,
+      "MtCO2": 198.203189
+    },
+    {
+      "iso3": "ECU",
+      "name": "Ecuador",
+      "year": 2024,
+      "MtCO2": 45.979548
+    },
+    {
+      "iso3": "EGY",
+      "name": "Egypt",
+      "year": 2024,
+      "MtCO2": 258.367864
+    },
+    {
+      "iso3": "ERI",
+      "name": "Eritrea",
+      "year": 2024,
+      "MtCO2": 0.742647
+    },
+    {
+      "iso3": "ESP",
+      "name": "Spain",
+      "year": 2024,
+      "MtCO2": 220.341272
+    },
+    {
+      "iso3": "EST",
+      "name": "Estonia",
+      "year": 2024,
+      "MtCO2": 8.306777
+    },
+    {
+      "iso3": "ETH",
+      "name": "Ethiopia",
+      "year": 2024,
+      "MtCO2": 17.837292
+    },
+    {
+      "iso3": "FIN",
+      "name": "Finland",
+      "year": 2024,
+      "MtCO2": 29.775
+    },
+    {
+      "iso3": "FJI",
+      "name": "Fiji",
+      "year": 2024,
+      "MtCO2": 1.445316
+    },
+    {
+      "iso3": "FRA",
+      "name": "France",
+      "year": 2024,
+      "MtCO2": 264.155619
+    },
+    {
+      "iso3": "FRO",
+      "name": "Faeroe Islands",
+      "year": 2024,
+      "MtCO2": 0.725388
+    },
+    {
+      "iso3": "FSM",
+      "name": "Micronesia (Federated States of)",
+      "year": 2024,
+      "MtCO2": 0.150626
+    },
+    {
+      "iso3": "GAB",
+      "name": "Gabon",
+      "year": 2024,
+      "MtCO2": 5.398794
+    },
+    {
+      "iso3": "GBR",
+      "name": "United Kingdom",
+      "year": 2024,
+      "MtCO2": 312.905559
+    },
+    {
+      "iso3": "GEO",
+      "name": "Georgia",
+      "year": 2024,
+      "MtCO2": 11.784258
+    },
+    {
+      "iso3": "GHA",
+      "name": "Ghana",
+      "year": 2024,
+      "MtCO2": 21.021874
+    },
+    {
+      "iso3": "GIN",
+      "name": "Guinea",
+      "year": 2024,
+      "MtCO2": 4.026185
+    },
+    {
+      "iso3": "GMB",
+      "name": "Gambia",
+      "year": 2024,
+      "MtCO2": 0.802774
+    },
+    {
+      "iso3": "GNB",
+      "name": "Guinea-Bissau",
+      "year": 2024,
+      "MtCO2": 0.342189
+    },
+    {
+      "iso3": "GNQ",
+      "name": "Equatorial Guinea",
+      "year": 2024,
+      "MtCO2": 7.010352
+    },
+    {
+      "iso3": "GRC",
+      "name": "Greece",
+      "year": 2024,
+      "MtCO2": 53.360839
+    },
+    {
+      "iso3": "GRD",
+      "name": "Grenada",
+      "year": 2024,
+      "MtCO2": 0.376971
+    },
+    {
+      "iso3": "GRL",
+      "name": "Greenland",
+      "year": 2024,
+      "MtCO2": 0.618963
+    },
+    {
+      "iso3": "GTM",
+      "name": "Guatemala",
+      "year": 2024,
+      "MtCO2": 19.880431
+    },
+    {
+      "iso3": "GUY",
+      "name": "Guyana",
+      "year": 2024,
+      "MtCO2": 4.51033
+    },
+    {
+      "iso3": "HKG",
+      "name": "Hong Kong",
+      "year": 2024,
+      "MtCO2": 33.323918
+    },
+    {
+      "iso3": "HND",
+      "name": "Honduras",
+      "year": 2024,
+      "MtCO2": 12.854842
+    },
+    {
+      "iso3": "HRV",
+      "name": "Croatia",
+      "year": 2024,
+      "MtCO2": 18.464849
+    },
+    {
+      "iso3": "HTI",
+      "name": "Haiti",
+      "year": 2024,
+      "MtCO2": 2.970693
+    },
+    {
+      "iso3": "HUN",
+      "name": "Hungary",
+      "year": 2024,
+      "MtCO2": 40.017291
+    },
+    {
+      "iso3": "IDN",
+      "name": "Indonesia",
+      "year": 2024,
+      "MtCO2": 812.220232
+    },
+    {
+      "iso3": "IND",
+      "name": "India",
+      "year": 2024,
+      "MtCO2": 3193.478015
+    },
+    {
+      "iso3": "IRL",
+      "name": "Ireland",
+      "year": 2024,
+      "MtCO2": 33.310623
+    },
+    {
+      "iso3": "IRN",
+      "name": "Iran",
+      "year": 2024,
+      "MtCO2": 792.631152
+    },
+    {
+      "iso3": "IRQ",
+      "name": "Iraq",
+      "year": 2024,
+      "MtCO2": 233.635505
+    },
+    {
+      "iso3": "ISL",
+      "name": "Iceland",
+      "year": 2024,
+      "MtCO2": 3.803011
+    },
+    {
+      "iso3": "ISR",
+      "name": "Israel",
+      "year": 2024,
+      "MtCO2": 52.637136
+    },
+    {
+      "iso3": "ITA",
+      "name": "Italy",
+      "year": 2024,
+      "MtCO2": 301.929742
+    },
+    {
+      "iso3": "JAM",
+      "name": "Jamaica",
+      "year": 2024,
+      "MtCO2": 8.401763
+    },
+    {
+      "iso3": "JOR",
+      "name": "Jordan",
+      "year": 2024,
+      "MtCO2": 23.219138
+    },
+    {
+      "iso3": "JPN",
+      "name": "Japan",
+      "year": 2024,
+      "MtCO2": 961.867295
+    },
+    {
+      "iso3": "KAZ",
+      "name": "Kazakhstan",
+      "year": 2024,
+      "MtCO2": 287.005956
+    },
+    {
+      "iso3": "KEN",
+      "name": "Kenya",
+      "year": 2024,
+      "MtCO2": 21.225433
+    },
+    {
+      "iso3": "KGZ",
+      "name": "Kyrgyzstan",
+      "year": 2024,
+      "MtCO2": 11.770158
+    },
+    {
+      "iso3": "KHM",
+      "name": "Cambodia",
+      "year": 2024,
+      "MtCO2": 21.882691
+    },
+    {
+      "iso3": "KIR",
+      "name": "Kiribati",
+      "year": 2024,
+      "MtCO2": 0.072456
+    },
+    {
+      "iso3": "KNA",
+      "name": "Saint Kitts and Nevis",
+      "year": 2024,
+      "MtCO2": 0.259757
+    },
+    {
+      "iso3": "KOR",
+      "name": "South Korea",
+      "year": 2024,
+      "MtCO2": 583.679195
+    },
+    {
+      "iso3": "KSV",
+      "name": "Kosovo",
+      "year": 2024,
+      "MtCO2": 8.04994
+    },
+    {
+      "iso3": "KWT",
+      "name": "Kuwait",
+      "year": 2024,
+      "MtCO2": 129.518653
+    },
+    {
+      "iso3": "LAO",
+      "name": "Laos",
+      "year": 2024,
+      "MtCO2": 24.399926
+    },
+    {
+      "iso3": "LBN",
+      "name": "Lebanon",
+      "year": 2024,
+      "MtCO2": 15.649973
+    },
+    {
+      "iso3": "LBR",
+      "name": "Liberia",
+      "year": 2024,
+      "MtCO2": 0.859369
+    },
+    {
+      "iso3": "LBY",
+      "name": "Libya",
+      "year": 2024,
+      "MtCO2": 65.260072
+    },
+    {
+      "iso3": "LCA",
+      "name": "Saint Lucia",
+      "year": 2024,
+      "MtCO2": 0.536909
+    },
+    {
+      "iso3": "LIE",
+      "name": "Liechtenstein",
+      "year": 2024,
+      "MtCO2": 0.131624
+    },
+    {
+      "iso3": "LKA",
+      "name": "Sri Lanka",
+      "year": 2024,
+      "MtCO2": 20.825544
+    },
+    {
+      "iso3": "LSO",
+      "name": "Lesotho",
+      "year": 2024,
+      "MtCO2": 2.571767
+    },
+    {
+      "iso3": "LTU",
+      "name": "Lithuania",
+      "year": 2024,
+      "MtCO2": 12.541509
+    },
+    {
+      "iso3": "LUX",
+      "name": "Luxembourg",
+      "year": 2024,
+      "MtCO2": 7.039783
+    },
+    {
+      "iso3": "LVA",
+      "name": "Latvia",
+      "year": 2024,
+      "MtCO2": 6.461889
+    },
+    {
+      "iso3": "MAC",
+      "name": "Macao",
+      "year": 2024,
+      "MtCO2": 1.056328
+    },
+    {
+      "iso3": "MAR",
+      "name": "Morocco",
+      "year": 2024,
+      "MtCO2": 69.062348
+    },
+    {
+      "iso3": "MDA",
+      "name": "Moldova",
+      "year": 2024,
+      "MtCO2": 5.326843
+    },
+    {
+      "iso3": "MDG",
+      "name": "Madagascar",
+      "year": 2024,
+      "MtCO2": 4.528381
+    },
+    {
+      "iso3": "MDV",
+      "name": "Maldives",
+      "year": 2024,
+      "MtCO2": 2.30621
+    },
+    {
+      "iso3": "MEX",
+      "name": "Mexico",
+      "year": 2024,
+      "MtCO2": 460.987634
+    },
+    {
+      "iso3": "MHL",
+      "name": "Marshall Islands",
+      "year": 2024,
+      "MtCO2": 0.15448
+    },
+    {
+      "iso3": "MKD",
+      "name": "North Macedonia",
+      "year": 2024,
+      "MtCO2": 6.619636
+    },
+    {
+      "iso3": "MLI",
+      "name": "Mali",
+      "year": 2024,
+      "MtCO2": 6.97884
+    },
+    {
+      "iso3": "MLT",
+      "name": "Malta",
+      "year": 2024,
+      "MtCO2": 1.728766
+    },
+    {
+      "iso3": "MMR",
+      "name": "Myanmar",
+      "year": 2024,
+      "MtCO2": 31.603438
+    },
+    {
+      "iso3": "MNE",
+      "name": "Montenegro",
+      "year": 2024,
+      "MtCO2": 2.376258
+    },
+    {
+      "iso3": "MNG",
+      "name": "Mongolia",
+      "year": 2024,
+      "MtCO2": 44.69389
+    },
+    {
+      "iso3": "MOZ",
+      "name": "Mozambique",
+      "year": 2024,
+      "MtCO2": 8.61263
+    },
+    {
+      "iso3": "MRT",
+      "name": "Mauritania",
+      "year": 2024,
+      "MtCO2": 5.238679
+    },
+    {
+      "iso3": "MSR",
+      "name": "Montserrat",
+      "year": 2024,
+      "MtCO2": 0.026579
+    },
+    {
+      "iso3": "MUS",
+      "name": "Mauritius",
+      "year": 2024,
+      "MtCO2": 4.673616
+    },
+    {
+      "iso3": "MWI",
+      "name": "Malawi",
+      "year": 2024,
+      "MtCO2": 1.881479
+    },
+    {
+      "iso3": "MYS",
+      "name": "Malaysia",
+      "year": 2024,
+      "MtCO2": 290.223858
+    },
+    {
+      "iso3": "NAM",
+      "name": "Namibia",
+      "year": 2024,
+      "MtCO2": 3.469112
+    },
+    {
+      "iso3": "NCL",
+      "name": "New Caledonia",
+      "year": 2024,
+      "MtCO2": 5.286637
+    },
+    {
+      "iso3": "NER",
+      "name": "Niger",
+      "year": 2024,
+      "MtCO2": 3.169958
+    },
+    {
+      "iso3": "NGA",
+      "name": "Nigeria",
+      "year": 2024,
+      "MtCO2": 135.824011
+    },
+    {
+      "iso3": "NIC",
+      "name": "Nicaragua",
+      "year": 2024,
+      "MtCO2": 5.630346
+    },
+    {
+      "iso3": "NIU",
+      "name": "Niue",
+      "year": 2024,
+      "MtCO2": 0.007627
+    },
+    {
+      "iso3": "NLD",
+      "name": "Netherlands",
+      "year": 2024,
+      "MtCO2": 114.784731
+    },
+    {
+      "iso3": "NOR",
+      "name": "Norway",
+      "year": 2024,
+      "MtCO2": 37.183
+    },
+    {
+      "iso3": "NPL",
+      "name": "Nepal",
+      "year": 2024,
+      "MtCO2": 18.776082
+    },
+    {
+      "iso3": "NRU",
+      "name": "Nauru",
+      "year": 2024,
+      "MtCO2": 0.06139
+    },
+    {
+      "iso3": "NZL",
+      "name": "New Zealand",
+      "year": 2024,
+      "MtCO2": 32.47943
+    },
+    {
+      "iso3": "OMN",
+      "name": "Oman",
+      "year": 2024,
+      "MtCO2": 82.661969
+    },
+    {
+      "iso3": "PAK",
+      "name": "Pakistan",
+      "year": 2024,
+      "MtCO2": 179.800386
+    },
+    {
+      "iso3": "PAN",
+      "name": "Panama",
+      "year": 2024,
+      "MtCO2": 12.664428
+    },
+    {
+      "iso3": "PER",
+      "name": "Peru",
+      "year": 2024,
+      "MtCO2": 70.246654
+    },
+    {
+      "iso3": "PHL",
+      "name": "Philippines",
+      "year": 2024,
+      "MtCO2": 174.878
+    },
+    {
+      "iso3": "PLW",
+      "name": "Palau",
+      "year": 2024,
+      "MtCO2": 0.226099
+    },
+    {
+      "iso3": "PNG",
+      "name": "Papua New Guinea",
+      "year": 2024,
+      "MtCO2": 8.345442
+    },
+    {
+      "iso3": "POL",
+      "name": "Poland",
+      "year": 2024,
+      "MtCO2": 272.861826
+    },
+    {
+      "iso3": "PRK",
+      "name": "North Korea",
+      "year": 2024,
+      "MtCO2": 62.550272
+    },
+    {
+      "iso3": "PRT",
+      "name": "Portugal",
+      "year": 2024,
+      "MtCO2": 35.538853
+    },
+    {
+      "iso3": "PRY",
+      "name": "Paraguay",
+      "year": 2024,
+      "MtCO2": 7.936718
+    },
+    {
+      "iso3": "PSE",
+      "name": "State of Palestine",
+      "year": 2024,
+      "MtCO2": 4.780046
+    },
+    {
+      "iso3": "PYF",
+      "name": "French Polynesia",
+      "year": 2024,
+      "MtCO2": 0.922867
+    },
+    {
+      "iso3": "QAT",
+      "name": "Qatar",
+      "year": 2024,
+      "MtCO2": 125.812258
+    },
+    {
+      "iso3": "ROU",
+      "name": "Romania",
+      "year": 2024,
+      "MtCO2": 68.551398
+    },
+    {
+      "iso3": "RUS",
+      "name": "Russia",
+      "year": 2024,
+      "MtCO2": 1780.524384
+    },
+    {
+      "iso3": "RWA",
+      "name": "Rwanda",
+      "year": 2024,
+      "MtCO2": 2.03355
+    },
+    {
+      "iso3": "SAU",
+      "name": "Saudi Arabia",
+      "year": 2024,
+      "MtCO2": 692.133489
+    },
+    {
+      "iso3": "SDN",
+      "name": "Sudan",
+      "year": 2024,
+      "MtCO2": 17.794799
+    },
+    {
+      "iso3": "SEN",
+      "name": "Senegal",
+      "year": 2024,
+      "MtCO2": 14.091846
+    },
+    {
+      "iso3": "SGP",
+      "name": "Singapore",
+      "year": 2024,
+      "MtCO2": 53.919462
+    },
+    {
+      "iso3": "SHN",
+      "name": "Saint Helena",
+      "year": 2024,
+      "MtCO2": 0.011391
+    },
+    {
+      "iso3": "SLB",
+      "name": "Solomon Islands",
+      "year": 2024,
+      "MtCO2": 0.294648
+    },
+    {
+      "iso3": "SLE",
+      "name": "Sierra Leone",
+      "year": 2024,
+      "MtCO2": 1.434283
+    },
+    {
+      "iso3": "SLV",
+      "name": "El Salvador",
+      "year": 2024,
+      "MtCO2": 8.972291
+    },
+    {
+      "iso3": "SOM",
+      "name": "Somalia",
+      "year": 2024,
+      "MtCO2": 1.319185
+    },
+    {
+      "iso3": "SPM",
+      "name": "Saint Pierre and Miquelon",
+      "year": 2024,
+      "MtCO2": 0.055322
+    },
+    {
+      "iso3": "SRB",
+      "name": "Serbia",
+      "year": 2024,
+      "MtCO2": 42.019439
+    },
+    {
+      "iso3": "SSD",
+      "name": "South Sudan",
+      "year": 2024,
+      "MtCO2": 1.695552
+    },
+    {
+      "iso3": "STP",
+      "name": "Sao Tome and Principe",
+      "year": 2024,
+      "MtCO2": 0.141779
+    },
+    {
+      "iso3": "SUR",
+      "name": "Suriname",
+      "year": 2024,
+      "MtCO2": 2.987768
+    },
+    {
+      "iso3": "SVK",
+      "name": "Slovakia",
+      "year": 2024,
+      "MtCO2": 29.090957
+    },
+    {
+      "iso3": "SVN",
+      "name": "Slovenia",
+      "year": 2024,
+      "MtCO2": 12.751194
+    },
+    {
+      "iso3": "SWE",
+      "name": "Sweden",
+      "year": 2024,
+      "MtCO2": 38.096652
+    },
+    {
+      "iso3": "SWZ",
+      "name": "Eswatini",
+      "year": 2024,
+      "MtCO2": 1.044644
+    },
+    {
+      "iso3": "SXM",
+      "name": "Sint Maarten (Dutch part)",
+      "year": 2024,
+      "MtCO2": 0.717645
+    },
+    {
+      "iso3": "SYC",
+      "name": "Seychelles",
+      "year": 2024,
+      "MtCO2": 0.652571
+    },
+    {
+      "iso3": "SYR",
+      "name": "Syria",
+      "year": 2024,
+      "MtCO2": 31.778449
+    },
+    {
+      "iso3": "TCA",
+      "name": "Turks and Caicos Islands",
+      "year": 2024,
+      "MtCO2": 0.378842
+    },
+    {
+      "iso3": "TCD",
+      "name": "Chad",
+      "year": 2024,
+      "MtCO2": 2.831401
+    },
+    {
+      "iso3": "TGO",
+      "name": "Togo",
+      "year": 2024,
+      "MtCO2": 2.753585
+    },
+    {
+      "iso3": "THA",
+      "name": "Thailand",
+      "year": 2024,
+      "MtCO2": 267.760196
+    },
+    {
+      "iso3": "TJK",
+      "name": "Tajikistan",
+      "year": 2024,
+      "MtCO2": 10.739768
+    },
+    {
+      "iso3": "TKM",
+      "name": "Turkmenistan",
+      "year": 2024,
+      "MtCO2": 81.005558
+    },
+    {
+      "iso3": "TLS",
+      "name": "Timor-Leste",
+      "year": 2024,
+      "MtCO2": 0.668112
+    },
+    {
+      "iso3": "TON",
+      "name": "Tonga",
+      "year": 2024,
+      "MtCO2": 0.15254
+    },
+    {
+      "iso3": "TTO",
+      "name": "Trinidad and Tobago",
+      "year": 2024,
+      "MtCO2": 34.576277
+    },
+    {
+      "iso3": "TUN",
+      "name": "Tunisia",
+      "year": 2024,
+      "MtCO2": 32.663697
+    },
+    {
+      "iso3": "TUR",
+      "name": "Türkiye",
+      "year": 2024,
+      "MtCO2": 513.034609
+    },
+    {
+      "iso3": "TUV",
+      "name": "Tuvalu",
+      "year": 2024,
+      "MtCO2": 0.01144
+    },
+    {
+      "iso3": "TWN",
+      "name": "Taiwan",
+      "year": 2024,
+      "MtCO2": 262.344813
+    },
+    {
+      "iso3": "TZA",
+      "name": "Tanzania",
+      "year": 2024,
+      "MtCO2": 20.018364
+    },
+    {
+      "iso3": "UGA",
+      "name": "Uganda",
+      "year": 2024,
+      "MtCO2": 6.33381
+    },
+    {
+      "iso3": "UKR",
+      "name": "Ukraine",
+      "year": 2024,
+      "MtCO2": 142.49786
+    },
+    {
+      "iso3": "URY",
+      "name": "Uruguay",
+      "year": 2024,
+      "MtCO2": 7.97327
+    },
+    {
+      "iso3": "USA",
+      "name": "USA",
+      "year": 2024,
+      "MtCO2": 4904.119652
+    },
+    {
+      "iso3": "UZB",
+      "name": "Uzbekistan",
+      "year": 2024,
+      "MtCO2": 139.234178
+    },
+    {
+      "iso3": "VCT",
+      "name": "Saint Vincent and the Grenadines",
+      "year": 2024,
+      "MtCO2": 0.255657
+    },
+    {
+      "iso3": "VEN",
+      "name": "Venezuela",
+      "year": 2024,
+      "MtCO2": 116.042427
+    },
+    {
+      "iso3": "VGB",
+      "name": "British Virgin Islands",
+      "year": 2024,
+      "MtCO2": 0.192507
+    },
+    {
+      "iso3": "VNM",
+      "name": "Viet Nam",
+      "year": 2024,
+      "MtCO2": 370.93135
+    },
+    {
+      "iso3": "VUT",
+      "name": "Vanuatu",
+      "year": 2024,
+      "MtCO2": 0.197079
+    },
+    {
+      "iso3": "WLF",
+      "name": "Wallis and Futuna Islands",
+      "year": 2024,
+      "MtCO2": 0.030508
+    },
+    {
+      "iso3": "WSM",
+      "name": "Samoa",
+      "year": 2024,
+      "MtCO2": 0.245587
+    },
+    {
+      "iso3": "YEM",
+      "name": "Yemen",
+      "year": 2024,
+      "MtCO2": 10.12309
+    },
+    {
+      "iso3": "ZAF",
+      "name": "South Africa",
+      "year": 2024,
+      "MtCO2": 439.830514
+    },
+    {
+      "iso3": "ZMB",
+      "name": "Zambia",
+      "year": 2024,
+      "MtCO2": 12.043299
+    },
+    {
+      "iso3": "ZWE",
+      "name": "Zimbabwe",
+      "year": 2024,
+      "MtCO2": 13.701154
+    }
+  ]
+}

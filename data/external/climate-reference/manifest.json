@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "grounding.climate-reference/0.1",
+  "rightsManifestId": "climate-reference",
+  "purpose": "Scale and context for Grounding's claims. Not read by any check.",
+  "sources": [
+    {
+      "url": "https://files.ember-energy.org/public-downloads/generation/outputs/release_generation_yearly_global.csv",
+      "file": "release_generation_yearly_global.csv",
+      "retrievedAt": "2026-10-18",
+      "sha256": "b2ac49fa9b27035fedda3c6afb85917bf136de9253bfcbaf09c3410904ec7cd1",
+      "licence": "CC-BY-4.0",
+      "licenceEvidence": "https://ember-energy.org/data/yearly-electricity-data/",
+      "citation": "Ember (2026), Yearly Electricity Data, CC BY 4.0"
+    },
+    {
+      "url": "https://zenodo.org/api/records/17417124/files/GCB2025v15_MtCO2_flat.csv/content",
+      "file": "GCB2025v15_MtCO2_flat.csv",
+      "retrievedAt": "2026-10-18",
+      "sha256": "20650c19b394d91b6b31cddff2fbc9508bcdbbed7c3f93660336f2f655f367ff",
+      "zenodoMd5": "3008e30d913af5926a83d0d0775fb72e",
+      "doi": "10.5281/zenodo.17417124",
+      "licence": "CC-BY-4.0",
+      "licenceEvidence": "https://zenodo.org/records/17417124",
+      "citation": "Global Carbon Budget 2025 (Friedlingstein et al.), fossil CO2 emissions dataset, CC BY 4.0, doi:10.5281/zenodo.17417124"
+    }
+  ],
+  "files": [
+    {
+      "path": "ember-grid-intensity.json",
+      "entries": 209,
+      "sha256": "13dc14dfeda00e42cf905b3c663cedb3a55aeffd317f164d51454e46b396452a"
+    },
+    {
+      "path": "gcb-fossil-co2.json",
+      "entries": 216,
+      "sha256": "d4d17d8d4e49f4764df73ccbcff554fe66d9fc8dcb5cc52c3864d18a33ae0bbb"
+    }
+  ]
+}

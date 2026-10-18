@@ -19,6 +19,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | CarbonPlan OffsetsDB processing code | code | MIT | allowed | code-only |
 | CarbonPlan OffsetsDB registry data | registry-data | CarbonPlan Terms of Data Access plus registry-specific terms | unclear | download-from-upstream |
 | Climate Action Reserve registry reports | registry-data | Climate Action Reserve Terms of Use (July 2023) | unclear | reviewer-supplied |
+| Climate reference tables: Ember Yearly Electricity Data and Global Carbon Budget 2025 fossil CO2 | reference-data | CC-BY-4.0 | allowed | redistributable |
 | Cloudflare boring | code | Apache-2.0 | allowed | code-only |
 | Energy-EVA benchmark code | code | Apache-2.0 | allowed | code-only |
 | Energy-EVA standardized energy datasets | benchmark-data | Source-specific upstream terms | unclear | download-from-upstream |
@@ -137,6 +138,14 @@ Climate Action Reserve registry, report downloaded by the reviewer.
 - Source: https://thereserve2.apx.com/
 - Terms/licence: https://climateactionreserve.org/wp-content/uploads/2023/07/Final-TOU-7.26-redline.pdf
 - Repository policy: Never fetched or committed by Grounding. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept.
+
+### Climate reference tables: Ember Yearly Electricity Data and Global Carbon Budget 2025 fossil CO2 (reference-data)
+
+Ember (2026), Yearly Electricity Data, CC BY 4.0. Global Carbon Budget 2025 (Friedlingstein et al.), fossil CO2 emissions dataset, CC BY 4.0, doi:10.5281/zenodo.17417124. Rows filtered and latest year per country selected by Grounding; values unchanged.
+
+- Source: https://ember-energy.org/data/yearly-electricity-data/ and https://doi.org/10.5281/zenodo.17417124
+- Terms/licence: https://creativecommons.org/licenses/by/4.0/
+- Repository policy: Two derived tables only: per country, Ember's latest total-generation emissions intensity (gCO2e/kWh; raw CSV SHA-256 b2ac49fa…) and GCB 2025's latest total fossil CO2 (MtCO2; GCB2025v15_MtCO2_flat.csv, SHA-256 20650c19…), plus the world total and international bunkers. The raw CSVs stay in the gitignored cache. Context for the write-up; no check reads them.
 
 ### Cloudflare boring (code)
 
