@@ -8,7 +8,7 @@ import { loadClaim } from "./live";
 export type Tone = "good" | "bad" | "warn";
 
 const RESULT_WORDS: Record<string, string> = {
-  reconciled: "Verified",
+  reconciled: "Rechecked",
   "insufficient-evidence": "Needs evidence",
   mismatch: "Mismatch",
   "source-changed": "Source changed",
@@ -18,6 +18,9 @@ const RESULT_WORDS: Record<string, string> = {
 export function State({ tone, children }: { tone: Tone; children: ReactNode }) {
   return <strong className={"state " + tone}>{children}</strong>;
 }
+
+/** Shown wherever a status appears: Grounding reports findings, not an assurance conclusion (ISSA 5000; ISO 14064-3 Annex C). */
+export const STATUS_NOTE = "Findings from rechecking the evidence; not an assurance opinion.";
 
 export function Result({ result }: { result: string }) {
   const tone: Tone = result === "reconciled" ? "good" : result === "insufficient-evidence" ? "warn" : "bad";
@@ -52,6 +55,7 @@ export function Rows({ rows, className = "boundary" }: { rows: Array<[string, st
 /** The claims as sentences, each with who makes it and its live result once this browser has checked it. */
 export function ClaimList({ results, compact = false }: { results: Partial<Record<string, DemoModule | Error>>; compact?: boolean }) {
   return (
+    <>
     <ul className={"claim-list" + (compact ? " compact" : "")}>
       {CLAIMS.map((claim) => {
         const item = results[claim.id];
@@ -71,6 +75,8 @@ export function ClaimList({ results, compact = false }: { results: Partial<Recor
         );
       })}
     </ul>
+    <p className="note status-note">{STATUS_NOTE}</p>
+    </>
   );
 }
 
