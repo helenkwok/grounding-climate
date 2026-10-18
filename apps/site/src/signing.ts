@@ -62,7 +62,7 @@ export class BrowserSigner implements CryptoProvider {
 
   /** One Ed25519 and one ML-DSA-65 key, valid from `createdAt`. */
   async generateKeys(controller: string, createdAt: string): Promise<SigningKeyRef[]> {
-    const pair = (await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"])) as CryptoKeyPair;
+    const pair = (await crypto.subtle.generateKey({ name: "Ed25519" }, false, ["sign", "verify"])) as CryptoKeyPair;
     const edSpki = new Uint8Array(await crypto.subtle.exportKey("spki", pair.publicKey));
     const pq = ml_dsa65.keygen();
     const pqSpki = new Uint8Array(ML_DSA_65_SPKI_HEADER.length + pq.publicKey.length);

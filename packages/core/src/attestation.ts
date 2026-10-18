@@ -101,9 +101,14 @@ export interface SignedAttestationVerification {
   changedRefs: NodeRef[];
   missingRefs: NodeRef[];
   unexpectedRefs: NodeRef[];
+  /** The envelope was signed for attestations, not for another kind of Grounding message. */
+  domainMatches: boolean;
   validForSignedEvidence: boolean;
   validForCurrentEvidence: boolean;
 }
+
+/** The signing domain of an attestation; the verifier accepts no other, whatever the envelope names. */
+export const ATTESTATION_DOMAIN = "grounding.attestation";
 
 /** Every case is signed with one classical and one post-quantum key; both must verify. */
 export const HYBRID_SIGNATURE_POLICY: SignaturePolicy = {
@@ -174,7 +179,7 @@ export async function createSignedAttestation(
   };
 
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "grounding.attestation",
+    domain: ATTESTATION_DOMAIN,
     schemaVersion: payload.version,
     createdAt: options.issuedAt,
     hashProvider: options.hashProvider,
@@ -225,9 +230,11 @@ export async function verifySignedAttestation(
     evidenceVerification.manifestRootMatches &&
     sameDigest(signed.evidence.root, signed.payload.evidenceRoot);
 
+  const domainMatches = signed.envelope.domain === ATTESTATION_DOMAIN;
   // createdAt is signed, and must also be the time the payload says it was issued.
   const validForSignedEvidence =
     signature.valid &&
+    domainMatches &&
     manifestRootMatchesPayload &&
     signed.envelope.createdAt === signed.payload.issuedAt;
 
@@ -239,6 +246,7 @@ export async function verifySignedAttestation(
     changedRefs: evidenceVerification.changedRefs,
     missingRefs: evidenceVerification.missingRefs,
     unexpectedRefs: evidenceVerification.unexpectedRefs,
+    domainMatches,
     validForSignedEvidence,
     validForCurrentEvidence:
       validForSignedEvidence &&

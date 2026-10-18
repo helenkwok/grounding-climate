@@ -206,9 +206,11 @@ The test therefore checks the **negotiated key-exchange group**, not merely that
 
 ## Browser/WebMCP boundary
 
-Do not assume browser WebCrypto supports ML-DSA.
+The site signs and verifies in the browser. Ed25519 uses WebCrypto. ML-DSA-65 verifies through WebCrypto where the browser has it (Chrome 155 does, with default settings) and falls back to `@noble/post-quantum` 0.7.1 otherwise, only when WebCrypto reports the algorithm as unsupported; signing uses noble. The page names which implementation checked each signature. Those keys are made in the browser for one record and prove no identity: an organisation that needs identity would keep its keys in a service, HSM or KMS behind the same crypto contract.
 
-The browser/WebMCP layer should call an application service implementing the crypto contract. A Rust service can own ML-DSA keys or call an HSM/KMS later.
+Node 24 (`packages/crypto-node`), `@noble/post-quantum` and the BoringSSL crate (`crates/crypto-boring`) all verify one fixed ML-DSA-65 vector made by Node (`test-vectors/ml-dsa-65.json`), and reject it after a one-byte change, in CI.
+
+Ed25519 verification in Node and the browser accepts some weak public keys that RFC 8032 §5.1.3 rejects (small-order points, non-canonical encodings). That does not matter while each record carries its own keys, because anyone can already sign with a key they make, and a valid ML-DSA-65 signature is still required; it would matter if keys were tied to an identity, and those keys should then be checked at import.
 
 Consequential operations such as:
 

@@ -95,4 +95,27 @@ mod tests {
             !MlDsa65KeyPair::verify(&public_key, message, &signature).unwrap()
         );
     }
+
+    fn vector_field(json: &str, name: &str) -> Vec<u8> {
+        let start = json.find(&format!("\"{name}\": \"")).unwrap() + name.len() + 5;
+        let hex = &json[start..start + json[start..].find('"').unwrap()];
+        (0..hex.len())
+            .step_by(2)
+            .map(|i| u8::from_str_radix(&hex[i..i + 2], 16).unwrap())
+            .collect()
+    }
+
+    // The same vector, made by Node, is checked by Node and noble in packages/crypto-node/test/provider.test.ts.
+    #[test]
+    fn mldsa65_verifies_the_node_vector() {
+        let json = include_str!("../../../test-vectors/ml-dsa-65.json");
+        let spki = vector_field(json, "publicKeySpkiHex");
+        let public_key = &spki[22..];
+        let message = vector_field(json, "messageHex");
+        let mut signature = vector_field(json, "signatureHex");
+
+        assert!(MlDsa65KeyPair::verify(public_key, &message, &signature).unwrap());
+        signature[0] ^= 1;
+        assert!(!MlDsa65KeyPair::verify(public_key, &message, &signature).unwrap());
+    }
 }
