@@ -75,6 +75,20 @@ export const service = new BuildingMrvService({
 });
 
 let tampered = false;
+
+/** The meter series the case is rebuilt from, with the tamper applied when it is on. */
+export function meterSeries(): Array<{ timestamp: string; value: number }> {
+  const { index, multiplier } = caseRun.tamper;
+  return dataset.meter.map((point, i) => (tampered && i === index ? { ...point, value: point.value * multiplier } : point));
+}
+
+/** The model's suggestion for each flagged reading, as recorded. */
+export const adviceByTimestamp = new Map(
+  (adviceRecords as Array<{ timestamp: string; advice: { choice: string; probabilities?: Record<string, number> } }>).map((record) => [
+    record.timestamp,
+    { choice: record.advice.choice, probability: record.advice.probabilities?.[record.advice.choice] },
+  ]),
+);
 export function setTampered(on: boolean): void {
   if (on && !tampered) service.tamper(caseRun.tamper.index, caseRun.tamper.multiplier);
   if (!on) service.resetSeries();

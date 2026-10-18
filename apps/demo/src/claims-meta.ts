@@ -18,6 +18,8 @@ export interface ClaimMeta {
   /** The open data the claim is rebuilt from. */
   data: string;
   source: string;
+  /** Where the evidence comes from, under the claim's map; or, with no place, why there is no map. */
+  place: string;
 }
 
 export const CLAIMS: readonly ClaimMeta[] = [
@@ -30,6 +32,7 @@ export const CLAIMS: readonly ClaimMeta[] = [
     question: "Can this building's Scope 2 figure be trusted, and who decided what about each odd reading?",
     data: "2,160 hourly electricity readings from one office building in the Building Data Genome 2 dataset (CC BY-SA 4.0), January to March 2016, with EPA eGRID 2016's California grid factor.",
     source: "BDG2 v1.0 + EPA eGRID2016",
+    place: "Where the readings come from: the building's site in Berkeley, California (a site-level point from BDG2, not the building itself).",
   },
   {
     id: "energy",
@@ -40,6 +43,7 @@ export const CLAIMS: readonly ClaimMeta[] = [
     question: "Does the forecast behind an energy action perform as published, and who approved the action?",
     data: "Seven hourly load and generation series from Energy-EVA (CC BY 4.0), and its published baseline results for five benchmark windows.",
     source: "Energy-EVA / IEX load (CC BY 4.0)",
+    place: "Where the load comes from: the Indian Energy Exchange, market-wide across India, not one site.",
   },
   {
     id: "earth",
@@ -50,6 +54,7 @@ export const CLAIMS: readonly ClaimMeta[] = [
     question: "How much of this satellite scene burned, and does the detector reproduce the reference?",
     data: "One NASA HLS scene (T10SEH, 2018) from the IBM/NASA burn-scar dataset (CC BY 4.0): near-infrared, shortwave-infrared and label arrays.",
     source: "IBM/NASA HLS Burn Scars (CC BY 4.0)",
+    place: "Where the pixels come from: the satellite scene's footprint, HLS tile T10SEH in northern California (outlined).",
   },
   {
     id: "battery",
@@ -60,6 +65,7 @@ export const CLAIMS: readonly ClaimMeta[] = [
     question: "Is this battery cell fit for a second life, and who signed that off?",
     data: "168 charge cycles and 278 impedance sweeps of one Li-ion cell tested at NASA Ames Research Center (NASA PCoE Battery Data Set, a US government work).",
     source: "NASA PCoE Battery Data Set (Saha and Goebel, 2007)",
+    place: "Where the cell was tested: NASA Ames Research Center, Moffett Field, California.",
   },
   {
     id: "carbon",
@@ -70,6 +76,7 @@ export const CLAIMS: readonly ClaimMeta[] = [
     question: "Were these carbon credits retired only once, and never more than were issued?",
     data: "100 issuance and 100 retirement records from the American Carbon Registry, as published in CarbonPlan's OffsetsDB test data, plus any registry report you bring.",
     source: "ACR public reports via CarbonPlan OffsetsDB",
+    place: "Where the projects are: the states the registry's project list names for them (dashed).",
   },
   {
     id: "disclosure",
@@ -80,6 +87,7 @@ export const CLAIMS: readonly ClaimMeta[] = [
     question: "What does a company's own reported figure rest on, when nobody can recalculate it?",
     data: "LPL Construction's 2025 Scope 1 figure on its own web page, found through the CaDI database. Linked, never copied.",
     source: "CaDI-confirmed first-party sources",
+    place: "No map: the company's page names no site for this figure, so none is guessed.",
   },
 ];
 

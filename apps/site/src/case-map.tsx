@@ -64,12 +64,17 @@ function projectsByState(): { states: Map<string, string[]>; elsewhere: string[]
 
 let sharedMap: import("maplibre-gl").Map | undefined;
 const site = ocr.buildingSite;
+// NASA Ames Research Center, Moffett Field, California, where the PCoE battery tests ran (the centre's own campus).
+const AMES: [number, number] = [-122.064, 37.4155];
 const sceneLons = footprint.polygon.map((point: number[]) => point[0]!);
 const sceneLats = footprint.polygon.map((point: number[]) => point[1]!);
 const CLAIM_BOUNDS: Partial<Record<ClaimId, { bounds: [[number, number], [number, number]]; maxZoom: number }>> = {
   building: { bounds: [[site.longitude - 0.02, site.latitude - 0.015], [site.longitude + 0.02, site.latitude + 0.015]], maxZoom: 15 },
   earth: { bounds: [[Math.min(...sceneLons), Math.min(...sceneLats)], [Math.max(...sceneLons), Math.max(...sceneLats)]], maxZoom: 11 },
   carbon: { bounds: [[-106.7, 25.8], [-80.5, 42.4]], maxZoom: 6 },
+  // The Indian Energy Exchange's market covers the country: the whole of India, not one site.
+  energy: { bounds: [[68, 6.5], [97.5, 35.7]], maxZoom: 4.5 },
+  battery: { bounds: [[AMES[0] - 0.03, AMES[1] - 0.02], [AMES[0] + 0.03, AMES[1] + 0.02]], maxZoom: 14 },
 };
 const PLACES = { us: { bounds: US_BOUNDS, maxZoom: 5 }, california: { bounds: CALIFORNIA, maxZoom: 6.5 } };
 
@@ -82,7 +87,8 @@ export function flyToClaim(id: ClaimId | keyof typeof PLACES, duration?: number)
   const panel = document.querySelector(".panel:not(.collapsed)")?.getBoundingClientRect();
   const sheet = panel && panel.width >= window.innerWidth - 1;
   // Keep the place clear of the floating legend too: it sits at the bottom right, or at the top on phones.
-  const legend = document.querySelector(".map-controls.floating")?.getBoundingClientRect();
+  const legendBox = document.querySelector(".map-controls.floating")?.getBoundingClientRect();
+  const legend = legendBox && legendBox.width > 0 ? legendBox : undefined; // a hidden legend takes no room
   const frame = sharedMap.getContainer().getBoundingClientRect();
   const legendTop = legend && legend.top < frame.top + frame.height / 2;
   // The top also leaves room for a chip above the place; a phone's bottom sheet has its Hide button above it.
@@ -234,6 +240,7 @@ export function CaseMap() {
             features: [
               { type: "Feature", properties: { module: "earth" }, geometry: { type: "Polygon", coordinates: [footprint.polygon] } },
               { type: "Feature", properties: { module: "building" }, geometry: { type: "Point", coordinates: [ocr.buildingSite.longitude, ocr.buildingSite.latitude] } },
+              { type: "Feature", properties: { module: "battery" }, geometry: { type: "Point", coordinates: AMES } },
             ],
           },
         });
@@ -275,6 +282,10 @@ export function CaseMap() {
           const props = hit.properties as Record<string, string | number>;
           if (hit.layer.id === "claim-site" || hit.layer.id === "claim-area") {
             const id = props.module as ClaimId;
+            if (id === "battery") {
+              popup(event.lngLat, claimMeta(id).claim, ["NASA Ames Research Center, where the cell was tested. The map's wildfire shading is context, not evidence."], id);
+              return;
+            }
             const values = id === "building" ? ocr.buildingSite.values : { bp_2011: ocr.earthScene.statistics.bp_2011.mean, bp_2047: ocr.earthScene.statistics.bp_2047.mean };
             popup(event.lngLat, claimMeta(id).claim, [
               id === "building" ? "Site-level coordinates from BDG2, not the building itself." : "The satellite scene's footprint, 512 × 512 pixels at 30 m.",
@@ -322,6 +333,8 @@ export function CaseMap() {
         };
         chip("building", claimMeta("building").title, "Building", [site.longitude, site.latitude], "top-left");
         chip("earth", claimMeta("earth").title, "Burn scar", [Math.min(...sceneLons), Math.max(...sceneLats)], "bottom-left");
+        chip("battery", claimMeta("battery").title + ": NASA Ames", "Battery", AMES, "top-left");
+        chip("energy", claimMeta("energy").title + ": Indian Energy Exchange, all of India", "Energy: India", [79, 22.5], "center");
         // One chip per state holding carbon projects, at the middle of the state's shape in the loaded tiles.
         m.once("idle", () => {
           for (const state of located.states.keys()) {
@@ -435,7 +448,8 @@ export function MapClaims() {
         </li>
       </ul>
       <p className="note">
-        Not on the map: the energy forecast, the battery cell and the company disclosure carry no location in their evidence.
+        Also on the map: the battery cell's test site, NASA Ames, and the energy forecast's market, the whole of India. Not on the
+        map: the company disclosure, whose page names no site.
         (Overture Maps Places has one "LPL Construction Ltd", in Alberta, Canada, with nothing tying it to the claim, so it is not used.)
       </p>
     </div>

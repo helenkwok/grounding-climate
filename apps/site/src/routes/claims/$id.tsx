@@ -3,9 +3,10 @@ import type { Verification, VerificationResult } from "@grounding-climate/core";
 import { useEffect, useState, type FormEvent } from "react";
 
 import { CLAIMS, claimMeta, deriveResult, type ClaimId } from "../../../../demo/src/claims-meta";
-import type { DemoModule } from "../../../../demo/src/modules";
+import type { DemoModule, EvidenceChart } from "../../../../demo/src/modules";
+import { CaseMap, hasPlace } from "../../case-map";
 import { Pending, Result, Rows, State, STATUS_NOTE, outcomeTone } from "../../components";
-import { loadClaim, setTampered, signedRecords } from "../../live";
+import { setTampered, signedRecords } from "../../live";
 import scoreboard from "../../../../../reports/carbon-registry/scoreboard.json";
 import type { SignedRecord } from "../../signing";
 
@@ -23,22 +24,34 @@ const VERDICTS: Array<{ value: VerificationResult; label: string; help: string }
   { value: "mismatch", label: "Reject", help: "The evidence contradicts the claim." },
 ];
 
+/** The five parts of every claim; each step highlights its part of the page without hiding the rest. */
+const PATH: Array<[step: string, how: string]> = [
+  ["Recompute", "From the evidence"],
+  ["Check", "Software checks"],
+  ["Decide", "A person decided"],
+  ["Sign", "Signed twice"],
+  ["Change one input", "Try it"],
+];
+
 function ClaimPage() {
   const id = Route.useParams().id as ClaimId;
   const meta = claimMeta(id);
   const [item, setItem] = useState<DemoModule | Error>();
   const [tampered, setTamperedState] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     setItem(undefined);
     setTamperedState(false);
+    setStep(0);
     // A claim left changed on another visit to this page is restored first, so the page starts from the committed data.
     setTampered(id, false).then(setItem, (error: Error) => setItem(error));
   }, [id]);
 
   async function change(on: boolean) {
     setBusy(true);
+    setStep(4);
     setItem(await setTampered(id, on).catch((error: Error) => error));
     setTamperedState(on);
     setBusy(false);
@@ -49,33 +62,57 @@ function ClaimPage() {
   const previous = CLAIMS[index - 1];
   const next = CLAIMS[index + 1];
   const attestation = ready?.checks.find((check) => check.id === "attestation");
+  const matches = attestation?.outcome === "pass";
 
   return (
-    <>
-      <header className="page-head">
-        <p className="kicker"><Link to="/">All claims</Link> · {meta.title}</p>
-        <h1 className="claim-h1">{meta.claim}</h1>
-        <p className="data"><strong>Claimed by:</strong> {meta.claimant}. <strong>Evidence:</strong> {meta.data}</p>
-        <div className="page-result">
-          {ready ? (
-            <>
-              <span>Rechecked in your browser:</span>
-              <span className="figure">{ready.kpi}</span>
-              <span className="note">{ready.kpiLabel}</span>
-              <Result result={deriveResult(ready.checks)} />
-              <span className="note status-note">{STATUS_NOTE}</span>
-            </>
-          ) : (
-            <Pending value={item} />
-          )}
+    <div className={"combined focus-" + step}>
+      <header className={"c-head" + (hasPlace(id) ? "" : " no-map")}>
+        <div>
+          <p className="kicker"><Link to="/">All claims</Link> · {meta.title}</p>
+          <h1 className="claim-h1">{meta.claim}</h1>
+          <p className="data"><strong>Claimed by:</strong> {meta.claimant}. <strong>Evidence:</strong> {meta.data}</p>
+          <div className="page-result part-0 part-4">
+            {ready ? (
+              <>
+                <span>Rechecked in your browser:</span>
+                <span className="figure">{ready.kpi}</span>
+                <span className="note">{ready.kpiLabel}</span>
+                <Result result={deriveResult(ready.checks)} />
+                <span className="note status-note">{STATUS_NOTE}</span>
+              </>
+            ) : (
+              <Pending value={item} />
+            )}
+          </div>
+          {!hasPlace(id) && <p className="note no-place">{meta.place}</p>}
         </div>
+        {hasPlace(id) && (
+          <figure className="lab-map part-0">
+            <CaseMap />
+            <figcaption>{meta.place}{id !== "energy" && " Shading: annual wildfire risk to US buildings, ~2047 (Open Climate Risk v1.1.0, CarbonPlan); context, not evidence."}</figcaption>
+          </figure>
+        )}
       </header>
 
-      <ol className="case-steps">
-        <li className="case-step">
-          <h2><span className="step-n">1</span>Rechecked from the evidence</h2>
-          {ready ? (
-            <div className="detail-cols">
+      <ol className="stepper">
+        {PATH.map(([name, how], i) => (
+          <li key={name}>
+            <button type="button" aria-current={i === step ? "step" : undefined} onClick={() => setStep(i)}>
+              <span>{i + 1}</span>{name}<small>{how}</small>
+            </button>
+          </li>
+        ))}
+      </ol>
+
+      <section className="lab-chart part-0 part-1 part-4" aria-label="The evidence">
+        {ready ? ready.evidence.map((chart) => <Evidence key={chart.caption} chart={chart} />) : <Pending value={item} />}
+      </section>
+
+      <div className="c-row">
+        <div>
+          <section className="part-1">
+            <h2>What software rechecked</h2>
+            {ready ? (
               <ul className="checks">
                 {ready.checks.map((check) => (
                   <li key={check.id + check.name}>
@@ -85,74 +122,162 @@ function ClaimPage() {
                   </li>
                 ))}
               </ul>
-              <Rows className="figures" rows={ready.metrics} />
-            </div>
-          ) : <Pending value={item} />}
-        </li>
-
-        <li className="case-step">
-          <h2><span className="step-n">2</span>Already decided, and by whom</h2>
-          {ready ? (
-            <div className="detail-cols">
-              <div>
-                <h3>{ready.decisionTitle}</h3>
+            ) : <Pending value={item} />}
+          </section>
+          <section className="part-2 c-decide">
+            <h2>What a person decided</h2>
+            {ready ? (
+              <>
                 <p className="note">{ready.decisionCopy}</p>
-                <p className="limit"><strong>Limits.</strong> {ready.limitation}</p>
-              </div>
-              <Rows rows={ready.decisions ?? []} />
+                <ol className="flags">
+                  {ready.flags.map((flag, n) => (
+                    <li key={flag.when + n} className={flag.state}>
+                      <span className="n">{n + 1}</span>
+                      <span className="when">{flag.when}</span>
+                      <span className="what">{flag.what}</span>
+                      <span className="who">{flag.who}</span>
+                    </li>
+                  ))}
+                </ol>
+              </>
+            ) : <Pending value={item} />}
+          </section>
+        </div>
+        <aside className="record part-3 part-4">
+          <p className="kicker">The signed record</p>
+          {ready ? (
+            <div className={"seals " + (matches ? "ok" : "broken")} aria-live="polite">
+              {ready.seals.map((seal) => (
+                <div key={seal.algorithm} className="seal">
+                  <strong>{seal.algorithm}</strong>
+                  <span>{seal.valid ? "matches the evidence" : "no longer matches the evidence"}</span>
+                </div>
+              ))}
             </div>
           ) : <Pending value={item} />}
-        </li>
-
-        <li className="case-step">
-          <h2><span className="step-n">3</span>Your verdict, signed in this browser</h2>
-          {ready ? <Review claimId={id} item={ready} tampered={tampered} /> : <Pending value={item} />}
-        </li>
-
-        <li className="case-step">
-          <h2><span className="step-n">4</span>Try to change the evidence</h2>
-          <div className="detail-cols">
-            <div>
-              <p className="note">
-                Change one input of this claim in your browser. Grounding rebuilds the claim and checks the signature made
-                on the committed evidence again.
+          <div className="part-4">
+            {ready && <p className="note"><strong>Try it:</strong> {ready.tamper.change.replace(/, applied in this browser$/, "")}.</p>}
+            <div className="actions">
+              <button className="button danger" type="button" disabled={!ready || busy || tampered} onClick={() => change(true)}>Change one input</button>
+              <button className="button" type="button" disabled={!ready || busy || !tampered} onClick={() => change(false)}>Reset</button>
+            </div>
+            {attestation && tampered && (
+              <p className="verdict bad">
+                The signatures no longer match the evidence. Overall: <Result result={deriveResult(ready!.checks)} />
               </p>
-              {ready && <p><strong>What changes:</strong> {ready.tamper.change}</p>}
-              <div className="actions">
-                <button className="button danger" type="button" disabled={!ready || busy || tampered} onClick={() => change(true)}>Change one input</button>
-                <button className="button" type="button" disabled={!ready || busy || !tampered} onClick={() => change(false)}>Reset</button>
-              </div>
-            </div>
-            <div className={"step-figure tamper-output " + (attestation ? (attestation.outcome === "pass" ? "is-good" : "is-bad") : "")} aria-live="polite">
-              {attestation ? (
-                <>
-                  <p className={"verdict " + (attestation.outcome === "pass" ? "good" : "bad")}>
-                    {attestation.outcome === "pass" ? "The signatures match the evidence." : "The signatures no longer match the evidence."}
-                  </p>
-                  <p className="note">{attestation.detail}</p>
-                  <p>Overall: <Result result={deriveResult(ready!.checks)} /></p>
-                </>
-              ) : <Pending value={item} />}
-            </div>
+            )}
           </div>
-        </li>
-      </ol>
+          {ready && <p className="not-checked"><strong>Not checkable here:</strong> {ready.limitation}</p>}
+        </aside>
+      </div>
+
+      <section className="case-steps c-verdict">
+        <h2>Your verdict, signed in this browser</h2>
+        {ready ? <Review claimId={id} item={ready} tampered={tampered} /> : <Pending value={item} />}
+      </section>
 
       {id === "carbon" && <Scoreboard />}
 
       {ready && (
-        <details className="more case-more">
-          <summary>Technical detail: sources and digests</summary>
-          <p className="detail-source">Source: {ready.source}</p>
-          <Rows className="provenance" rows={ready.provenance} />
-        </details>
+        <>
+          {ready.decisions && ready.decisions.length > 0 && (
+            <details className="more case-more">
+              <summary>What the claim counts, and what it leaves out</summary>
+              <h3>{ready.decisionTitle}</h3>
+              <Rows rows={ready.decisions} />
+              <Rows className="figures" rows={ready.metrics} />
+            </details>
+          )}
+          <details className="more case-more">
+            <summary>Technical detail: sources and digests</summary>
+            <p className="detail-source">Source: {ready.source}</p>
+            <Rows className="provenance" rows={ready.provenance} />
+          </details>
+        </>
       )}
 
       <nav className="claim-nav" aria-label="Other claims">
         {previous ? <Link to="/claims/$id" params={{ id: previous.id }}>← {previous.title}</Link> : <Link to="/">← All claims</Link>}
         {next ? <Link to="/claims/$id" params={{ id: next.id }}>{next.title} →</Link> : <Link to="/">All claims →</Link>}
       </nav>
-    </>
+    </div>
+  );
+}
+
+const fmt = (value: number) => (value === 0 ? "0" : Math.abs(value) >= 100 ? Math.round(value).toLocaleString("en-US") : Math.abs(value) >= 1 ? value.toFixed(2) : value.toPrecision(3));
+
+/** One drawing of the claim's evidence: a series with its flagged points, or bars comparing figures. */
+function Evidence({ chart }: { chart: EvidenceChart }) {
+  if (chart.kind === "bars") {
+    const top = Math.max(...chart.bars.map((bar) => bar.value ?? 0)) || 1;
+    return (
+      <figure className="ev">
+        <div className="bars" role="list">
+          {chart.bars.map((bar) => (
+            <div key={bar.label} className={"bar tone-" + bar.tone + (bar.value === null ? " none" : "")} role="listitem">
+              <span className="bar-label">{bar.label}</span>
+              <span className="bar-track">
+                <span className="bar-fill" style={{ width: bar.value === null ? "100%" : Math.max(0.4, (bar.value / top) * 100) + "%" }} />
+              </span>
+              <span className="bar-value">
+                {bar.value === null ? "—" : bar.value.toLocaleString("en-US") + (chart.unit ? " " + chart.unit : "")}
+                {bar.note && <small>{bar.note}</small>}
+              </span>
+            </div>
+          ))}
+        </div>
+        <figcaption>
+          {chart.caption}
+          {chart.link && <> <a href={chart.link.href} rel="noreferrer" target="_blank">{chart.link.text}</a></>}
+        </figcaption>
+      </figure>
+    );
+  }
+  const width = 1200;
+  const height = 260;
+  const pad = { l: 56, r: 12, t: 16, b: 26 };
+  const min = chart.min ?? 0;
+  const x = (i: number) => pad.l + (i / Math.max(1, chart.values.length - 1)) * (width - pad.l - pad.r);
+  const y = (value: number) => pad.t + (1 - (Math.min(Math.max(value, min), chart.max) - min) / (chart.max - min)) * (height - pad.t - pad.b);
+  const path = chart.values.map((value, i) => (i ? "L" : "M") + x(i).toFixed(1) + " " + y(value).toFixed(1)).join("");
+  return (
+    <figure className="ev">
+      <svg className="series" viewBox={`0 0 ${width} ${height}`} role="img" aria-label={chart.caption}>
+        {[0, 0.5, 1].map((f) => {
+          const value = min + (chart.max - min) * f;
+          return (
+            <g key={f}>
+              <line x1={pad.l} x2={width - pad.r} y1={y(value)} y2={y(value)} className="grid" />
+              <text x={pad.l - 6} y={y(value) + 4} className="axis" textAnchor="end">{fmt(value)}</text>
+            </g>
+          );
+        })}
+        {chart.ticks.map(([i, label]) => <text key={label} x={x(i) + 4} y={height - 6} className="axis">{label}</text>)}
+        <text x={pad.l} y={pad.t - 4} className="axis">{chart.unit}</text>
+        {chart.line && (
+          <g className="ref">
+            <line x1={pad.l} x2={width - pad.r} y1={y(chart.line.value)} y2={y(chart.line.value)} />
+            <text x={width - pad.r - 4} y={y(chart.line.value) - 6} textAnchor="end">{chart.line.label}</text>
+          </g>
+        )}
+        <path d={path} className="line" />
+        {chart.changed && (
+          <g className="changed">
+            <line x1={x(chart.changed.index)} x2={x(chart.changed.index)} y1={y(min)} y2={pad.t} />
+            <circle cx={x(chart.changed.index)} cy={y(chart.values[chart.changed.index]!)} r={7} />
+            <text x={x(chart.changed.index) - 10} y={pad.t + 30} textAnchor={chart.changed.index > chart.values.length * 0.7 ? "end" : "start"}>{chart.changed.note}</text>
+          </g>
+        )}
+        {chart.marks?.map((mark, n) => (
+          <g key={mark.index} className={"flag " + mark.state}>
+            <line x1={x(mark.index)} x2={x(mark.index)} y1={pad.t} y2={height - pad.b} />
+            <circle cx={x(mark.index)} cy={y(chart.values[mark.index]!)} r={8} />
+            <text x={x(mark.index)} y={pad.t + 12} textAnchor="middle">{n + 1}</text>
+          </g>
+        ))}
+      </svg>
+      <figcaption>{chart.caption}</figcaption>
+    </figure>
   );
 }
 
