@@ -18,6 +18,7 @@
 //   as the draft's `mldsa44-jcs-2024`. No W3C suite defines ML-DSA-65, so that proof's cryptosuite name is ours.
 import { canonicalBytes, canonicalize } from "./canonical.js";
 import { anchoredDigest, toHex } from "./anchor.js";
+import { cidFromSha256 } from "./cid.js";
 import type { SignedAttestationBundle } from "./attestation.js";
 import type { CryptoProvider, CryptoSignature, CryptoSuite, KeyMetadata, SigningKeyRef } from "./crypto.js";
 import type { ClimateCaseBundle, ContentDigest } from "./types.js";
@@ -80,7 +81,6 @@ export const GROUNDING_REPO_FILES = "https://github.com/helenkwok/grounding-clim
 // --- encodings -------------------------------------------------------------------------------------------------
 
 const B58 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-const BASE32 = "abcdefghijklmnopqrstuvwxyz234567";
 const ED25519_SPKI = "302a300506032b6570032100";
 const ML_DSA_65_SPKI = "308207b2300b0609608648016503040312038207a100";
 const MULTICODEC = { Ed25519: [0xed, 0x01], "ML-DSA-65": [0x91, 0x24] } as const; // ed25519-pub, mldsa-65-pub (0x1211, draft)
@@ -138,20 +138,6 @@ export function fromBase58btc(text: string): Uint8Array {
   }
   const zeros = text.length - text.replace(/^1+/, "").length;
   return Uint8Array.from([...new Array<number>(zeros).fill(0), ...bytes.reverse()]);
-}
-
-/** CIDv1 (raw codec, sha2-256, base32 "b") of a single-block file whose SHA-256 is recorded. Same as feat/ipfs-cids' cid.ts. */
-export function cidFromSha256(digest: ContentDigest): string {
-  if (digest.algorithm !== "SHA-256") throw new TypeError("Only SHA-256 digests have a raw CID");
-  let bits = 0;
-  let acc = 0;
-  let out = "b";
-  for (const byte of [0x01, 0x55, 0x12, 0x20, ...fromBase64Url(digest.value)]) {
-    acc = ((acc << 8) | byte) & 0xfff;
-    bits += 8;
-    while (bits >= 5) out += BASE32[(acc >>> (bits -= 5)) & 31];
-  }
-  return bits ? out + BASE32[(acc << (5 - bits)) & 31] : out;
 }
 
 // --- the credential --------------------------------------------------------------------------------------------
