@@ -116,26 +116,6 @@ export interface EnvelopeVerificationResult {
   valid: boolean;
 }
 
-export interface LedgerCommitmentRequest {
-  evidenceRoot: ContentDigest;
-  attestationDigest: ContentDigest;
-  attestationRef: string;
-}
-
-export interface LedgerCommitmentReceipt {
-  mechanism: string;
-  network?: string;
-  recordId: string;
-  committedAt: string;
-  status: "pending" | "confirmed" | "failed";
-}
-
-export interface LedgerAdapter {
-  anchor(
-    request: LedgerCommitmentRequest,
-  ): Promise<LedgerCommitmentReceipt>;
-}
-
 function instant(value: string): number | undefined {
   const parsed = Date.parse(value);
   return Number.isNaN(parsed) ? undefined : parsed;
