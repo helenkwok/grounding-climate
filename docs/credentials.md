@@ -17,7 +17,10 @@ committed case and checks all of its signatures.
 
 - **Building, energy, earth, carbon and disclosure**: a UNTP **Digital Conformity Credential**. The
   subject (`ConformityAttestation`) holds the claim, what Grounding rechecked (each check, its outcome,
-  the findings) and the recheck status. It carries findings only. It sets no UNTP `conformance` verdict and
+  the findings) and the recheck status. `recheck.status` is rolled up the way the site shows it: never better
+  than the result the case recorded or any of its checks (`rollUp()` in `packages/core/src/vc.ts`), so earth,
+  carbon and disclosure read "insufficient-evidence" here as on the site. The case's own result is kept beside
+  it as `recheck.recordedResult`. It carries findings only. It sets no UNTP `conformance` verdict and
   is not an assurance or certification opinion.
 - **Battery**: a UNTP **Digital Product Passport** (`ProductPassport`), at **item** level and **dynamic**.
   - It carries the EN 18223 passport header (Table 1): `digitalProductPassportId`,

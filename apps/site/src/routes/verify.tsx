@@ -206,7 +206,7 @@ function CredentialReport({ outcome }: { outcome: { name: string; credential: Ve
   const subject = credential.credentialSubject as {
     id?: string;
     claim?: { statement?: string };
-    recheck?: { status?: string; findings?: string[] };
+    recheck?: { status?: string; recordedResult?: string; findings?: string[] };
   };
   const kind = credential.type.includes("DigitalProductPassport") ? "Digital Product Passport" : "Digital Conformity Credential";
   const anchor = (credential.evidence as Array<{ type?: string[]; chain?: string; statement?: string }> | undefined)?.find((item) =>
@@ -243,6 +243,9 @@ function CredentialReport({ outcome }: { outcome: { name: string; credential: Ve
         ))}
         {proofs.length < 2 && <li><span>Both proofs present</span><State tone="bad">no</State></li>}
         {subject.recheck?.status && <li><span>Recheck result in the credential</span><Result result={subject.recheck.status} /></li>}
+        {subject.recheck?.recordedResult && subject.recheck.recordedResult !== subject.recheck.status && (
+          <li><span>Result the case recorded, before its open checks</span><Result result={subject.recheck.recordedResult} /></li>
+        )}
       </ul>
     </div>
   );
