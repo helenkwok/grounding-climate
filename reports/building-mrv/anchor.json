@@ -1,0 +1,21 @@
+{
+  "version": "grounding.anchor/0.1",
+  "chain": "bitcoin",
+  "format": "opentimestamps",
+  "digest": "aa204e1f91ded51c5e275e0489b77ec3cc9ea50890a3a7bbbce9a8bd3f686727",
+  "calendars": [
+    {
+      "url": "https://alice.btc.calendar.opentimestamps.org",
+      "ok": true
+    },
+    {
+      "url": "https://bob.btc.calendar.opentimestamps.org",
+      "ok": true
+    },
+    {
+      "url": "https://finney.calendar.eternitywall.com",
+      "ok": true
+    }
+  ],
+  "submittedAt": "2026-10-18T02:47:59.168Z"
+}

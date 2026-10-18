@@ -141,7 +141,35 @@ The ledger interface from #18 accepts only:
 
 A future adapter may return a network/record ID and status, but it does not receive raw datasets, PDFs, model weights, or signing private keys.
 
-No testnet adapter is added in this issue because the project has not yet selected a deployment case whose trust assessment passes the ledger decision gate. When a concrete module/case does pass it, the adapter can be added without changing Claim/Evidence types.
+No ledger is used as a shared record keeper, because no case yet passes the ledger decision gate. A public timestamp is a narrower thing and needs no ledger of our own: see [Bitcoin anchor](#bitcoin-anchor).
+
+## Bitcoin anchor
+
+Each case's signed record is timestamped in Bitcoin through [OpenTimestamps](https://opentimestamps.org) calendars, with no wallet, key, fee or account.
+
+What is anchored: SHA-256 over `grounding.anchor` + `grounding.anchor/0.1` + the canonical JSON of `{payload, envelope}`, the signed record including both signatures (`anchoredDigest()` in `packages/core/src/anchor.ts`). Status, lifecycle and challenges are left out because they change after signing. Before submission the digest is extended with a random 16-byte nonce and hashed again, so the calendars never see it.
+
+What it proves: the signed record existed by the time of the block that commits to it. A key stolen later cannot backdate a record to before that block.
+
+What it does not prove:
+
+- that the claim is true; the anchor covers the record, not the evidence behind it
+- when checked offline, that the block header is on Bitcoin's main chain; the check shows the header commits to the record and carries the proof of work its bits declare (at least 10^12 difficulty), which a forger would have to spend; confirming the block hash needs a node or a block explorer
+- an exact time: block timestamps can differ from real time by up to about two hours
+
+The calendars are trusted for liveness only: a calendar that is down, or never commits, leaves a proof pending; it cannot make a false proof verify. Three calendars are asked, and one is enough.
+
+Files per case:
+
+- `reports/<case>/anchor.ots`: the proof, in the OpenTimestamps format (our own reader and writer in `packages/core/src/ots.ts`, using WebCrypto and fetch only)
+- `reports/<case>/anchor.json`: the anchored digest, the calendars asked, when it was submitted and, once confirmed, the block height, hash and time
+- `reports/<case>/headers/<height>.hex`: the 80-byte block header, fetched from blockstream.info and checked against mempool.space
+
+`node scripts/anchor-cases.mjs` stamps any case whose anchor is missing or whose signed record changed. Bitcoin confirms the calendars' commitments within a few hours; `node scripts/anchor-cases.mjs --upgrade` then fetches the finished proofs and headers. `scripts/verify-anchors.mjs` runs in `npm run check:cases`, offline: it recomputes each anchored digest from the committed case, checks the proof commits to it, and for an anchored proof checks the merkle path to the committed header and its proof of work. A pending proof passes and reports when it was submitted.
+
+The design is chain-agnostic. `AnchorAdapter` (`submit`, `upgrade`, `verify`) takes and returns only a 32-byte digest and opaque proof bytes; Bitcoin through OpenTimestamps (`bitcoinOtsAdapter`) is the first adapter, and another chain would be another adapter over the same anchored digest.
+
+Rights: block headers are public chain data. The unit tests use synthetic proof trees and one mainnet header (block 358391); the OpenTimestamps project's example proofs are not vendored, because their licence is not stated.
 
 ## Invariants
 
