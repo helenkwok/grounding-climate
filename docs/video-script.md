@@ -18,7 +18,7 @@ Draft 3 (with its last local edits) is kept, gitignored, at `video/video-script-
 | 8 | Carbon claim: the scoreboard section | Now scale it up. Grounding checks over half a million public carbon credit records across seven registries. In the American Carbon Registry, no project vintage retired more credits than it issued. Eighty retirements are dated before their project's first issuance, all on one day: flagged, not accused. Each check names the integrity principle it rests on. |
 | 9 | Card: Toucan on Polygon (21.89 M t in confirmed batches; 0 overlapping pairs among 834 readable; refusal tested on a local chain) | Tokenised credits too. On Polygon, about twenty two million tonnes of Verra credits sit in Toucan's confirmed batches, and no two readable serial ranges overlap. Our own contract is built to refuse a second retirement of the same range. |
 | 10 | Energy claim, then the burn scar | An illustrative energy request is capped by a policy in code, and allowed only because the forecast's measured accuracy clears it. The satellite detector finds less burned area than the reference labels, and Grounding shows the gap. |
-| 11 | Battery claim: the passport, both state-of-health figures, then a changed cycle (shown, not narrated) | The battery claim is shaped as a digital product passport, which the E U will require for larger batteries from twenty twenty seven. This lab cell keeps ninety point six percent of its first recorded capacity, but seventy seven point six percent of its rating, below the end of first life line, so a person held it for service review. |
+| 11 | Battery claim: capacity and resistance charts, the sign-off, then a changed cycle (shown, not narrated) | The battery claim is shaped as a digital product passport, which the E U will require for larger batteries from twenty twenty seven. This NASA test cell kept seventy one percent of its first recorded capacity, sixty six percent of its rating, and its internal resistance rose twenty eight percent. The policy proposed retirement review, and a person signed it off for recycling. |
 | 12 | Disclosure claim; Needs evidence on the list | A company's own report cannot be recalculated, so Grounding links the source and says what it rests on. Three of the six claims read needs evidence. That is the point. |
 | 13 | Card: two bars, "Ember 2025, lifecycle CO2e; illustration" | Why it matters. The world emitted thirty eight point six billion tonnes of fossil C O two in twenty twenty four, by the Global Carbon Budget. Where electricity is made changes the answer: by Ember's twenty twenty five lifecycle figures, the same electricity would mean about four hundred and fifty tonnes on the average U S grid, and under fifty in France. |
 | 14 | Card: the standards crosswalk | Each check is mapped to the clause it supports, or partly supports, in ISO fourteen oh sixty four, the carbon integrity principles and the E U battery rules. |
@@ -47,9 +47,11 @@ Draft 3 (with its last local edits) is kept, gitignored, at `video/video-script-
   parseable confirmed Verra batches; Polygon blocks 95,727,408 to 95,727,509. This is Toucan's on-chain count, not a
   Verra count (decision B). The `AlreadyRetired` refusal is tested in `forge test` and on anvil, not on Sepolia.
 - 10: 120 to 100 MWh by policy; forecast accuracy 0.647 clears the 0.6 minimum; 11,974 vs 18,664 ha.
-- 11: 0.9055 vs the first recorded cycle, 0.7759 vs nominal 58 Ah; the service-review hold rests on 0.776 < 0.8. The
-  cell (~0.21 kWh) is outside the passport's scope (EU 2023/1542 Art. 77 from 18 Feb 2027); the record is
-  passport-shaped. The tamper leaves the signatures valid over what was signed; the evidence no longer matches and the
+- 11: NASA Ames cell B0005, 168 cycles (`reports/battery-dpp/credential.json`): SoH 71.38% vs the first recorded cycle
+  (1.856 Ah), 0.6625 vs the 2 Ah rating; Re +28.2% (medians of the first and last 5 of 278 sweeps; the base is after
+  cycle 19, not beginning of life). The policy proposes retire-review (0.663 < 0.75); the sign-off is recycle, by the
+  role `person:energy-manager` (`disposition-decisions.json`). A single 2 Ah lab cell is outside the passport's scope
+  (EU 2023/1542 Art. 77 from 18 Feb 2027); the record is passport-shaped. The tamper leaves the signatures valid over what was signed; the evidence no longer matches and the
   sign-off goes stale.
 - 12: site statuses and credentials agree after PR #84: earth, carbon, disclosure insufficient-evidence.
 - 13: GCB 2025 world fossil CO2 38,598.6 Mt (2024); 1,160,425 kWh x Ember 2025 lifecycle intensity: US 446.1 t, France

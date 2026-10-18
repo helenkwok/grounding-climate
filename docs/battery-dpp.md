@@ -13,7 +13,7 @@ Grounding does not claim that a health prediction itself reduces emissions, and 
 ## Evidence flow
 
 ```text
-BatteryLife processed CALB history
+NASA Ames cycle and impedance history (cell B0005)
 → canonical input digest
 → transparent SOH / RUL baseline
 → explicit disposition policy

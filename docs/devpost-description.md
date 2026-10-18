@@ -115,7 +115,7 @@ projected for about 2047.
 - **Credentials:** W3C VC 2.0, UNTP contexts, VC-JOSE-COSE with RFC 9964 for ML-DSA, and a Data Integrity proof set.
 - **Model advice:** a small structured model suggests why a flagged reading looks wrong. Its threshold was calibrated on
   labelled readings from the ASHRAE Great Energy Predictor III data, using aggregates only.
-- **Data:** BDG2 meter data with EPA eGRID 2016, Energy-EVA load forecasts, IBM/NASA HLS burn scars, BatteryLife/CALB,
+- **Data:** BDG2 meter data with EPA eGRID 2016, Energy-EVA load forecasts, IBM/NASA HLS burn scars, the NASA Ames battery data set (with a BatteryLife/CALB benchmark rerun),
   CarbonPlan OffsetsDB, Toucan's contracts on Polygon, Global Carbon Budget 2025 and Ember (both CC BY 4.0), CarbonPlan
   Open Climate Risk and Overture building footprints. Every source's licence is recorded in a machine-checked rights
   manifest; raw third-party data is never redistributed without explicit rights, and registries whose terms on derived
