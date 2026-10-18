@@ -1,13 +1,13 @@
 {
   "format": "openflowkit.scene",
   "schemaVersion": 1,
-  "id": "69d776a3-e2a1-4fad-8609-988dac4a82c0",
+  "id": "70bedb47-0a39-4fca-a7ea-5ae36bf74425",
   "name": "evidence-flow",
-  "createdAt": "2026-10-18T01:10:30.313Z",
-  "updatedAt": "2026-10-18T01:10:30.313Z",
+  "createdAt": "2026-10-18T07:46:07.742Z",
+  "updatedAt": "2026-10-18T07:46:07.742Z",
   "pages": [
     {
-      "id": "69d776a3-e2a1-4fad-8609-988dac4a82c0:page-1",
+      "id": "70bedb47-0a39-4fca-a7ea-5ae36bf74425:page-1",
       "name": "Page 1",
       "diagramKind": "flowchart",
       "layers": [
@@ -20,7 +20,7 @@
       ],
       "nodes": [
         {
-          "id": "dsl-64dlfj",
+          "id": "dsl-n5vyiv",
           "kind": "frame",
           "parentId": null,
           "layerId": "default",
@@ -37,8 +37,8 @@
             }
           },
           "size": {
-            "width": 2401,
-            "height": 422
+            "width": 845,
+            "height": 1628
           },
           "content": {
             "label": "How Grounding rechecks a climate claim"
@@ -49,9 +49,9 @@
             "dsl": {
               "family": "flowchart",
               "version": 1,
-              "source": "flowchart right\ntitle: How Grounding rechecks a climate claim\ngroup Evidence {\n  Claim [doc, gray, desc: \"a figure as published\", link: apps/demo/src/claims-meta.ts:26]\n  Data [cylinder, gray, label: Source data, desc: \"pinned and hashed\", link: packages/building-mrv/src/integrity.ts:13]\n}\ngroup Software checks {\n  Recompute [blue, label: Recompute the figure, link: packages/building-mrv/src/emissions.ts:8]\n  Screen [blue, label: Flag odd readings, desc: \"baseline residuals, zeros, stuck runs, skipped clock hours\", link: packages/building-mrv/src/anomaly.ts:31]\n}\ngroup Judgement {\n  Model [violet, label: Model suggests, desc: \"advice only, threshold 0.97\", link: packages/building-mrv/src/advisory.ts:236]\n  Person [person, green, label: A person decides, desc: \"decision bound to the data's digest\", link: packages/building-mrv/src/decisions.ts:37]\n}\ngroup Record {\n  Sign [hexagon, teal, label: Sign, desc: \"Ed25519 + ML-DSA-65\", link: packages/core/src/attestation.ts:135]\n  Verify [browser, teal, label: Anyone verifies, desc: \"offline, no account\", link: packages/core/src/attestation.ts:203]\n}\nClaim -> Recompute : rebuild from evidence\nData -> Recompute\nData -> Screen\nScreen -> Model : each flag\nModel --> Person : suggestion\nScreen -> Person : needs judgement\nRecompute -> Sign\nPerson -> Sign\nSign -> Verify : signed record\nData --> Person : data changes → decision goes stale [red]\n",
-              "hash": "1w0pp0m",
-              "direction": "right",
+              "source": "flowchart down\ntitle: How Grounding rechecks a climate claim\ngroup Evidence {\n  Claim [doc, gray, desc: \"a figure as published\", link: apps/demo/src/claims-meta.ts:26]\n  Data [cylinder, gray, label: Source data, desc: \"pinned and hashed\", link: packages/building-mrv/src/integrity.ts:13]\n}\ngroup Software checks {\n  Recompute [blue, label: Recompute the figure, link: packages/building-mrv/src/emissions.ts:8]\n  Screen [blue, label: Flag odd readings, desc: \"baseline residuals, zeros, stuck runs, skipped clock hours\", link: packages/building-mrv/src/anomaly.ts:31]\n}\ngroup Judgement {\n  Model [violet, label: Model suggests, desc: \"advice only, threshold 0.97\", link: packages/building-mrv/src/advisory.ts:236]\n  Person [person, green, label: A person decides, desc: \"decision bound to the data's digest\", link: packages/building-mrv/src/decisions.ts:37]\n}\ngroup Record {\n  Sign [hexagon, teal, label: Sign, desc: \"Ed25519 + ML-DSA-65\", link: packages/core/src/attestation.ts:135]\n  Verify [browser, teal, label: Anyone verifies, desc: \"offline, no account\", link: packages/core/src/attestation.ts:203]\n}\nClaim -> Recompute : rebuild from evidence\nData -> Recompute\nData -> Screen\nScreen -> Model : each flag\nModel --> Person : suggestion\nScreen -> Person : needs judgement\nRecompute -> Sign\nPerson -> Sign\nSign -> Verify : signed record\nData --> Person : data changes → decision goes stale [red]\n",
+              "hash": "g42rhx",
+              "direction": "down",
               "title": "How Grounding rechecks a climate claim",
               "autoIcons": true
             }
@@ -61,13 +61,13 @@
         {
           "id": "evidence",
           "kind": "frame",
-          "parentId": "dsl-64dlfj",
+          "parentId": "dsl-n5vyiv",
           "layerId": "default",
           "zIndex": 1,
           "transform": {
             "translation": {
-              "x": 28,
-              "y": 112
+              "x": 385,
+              "y": 72
             },
             "rotationRadians": 0,
             "scale": {
@@ -76,8 +76,8 @@
             }
           },
           "size": {
-            "width": 189,
-            "height": 280
+            "width": 341,
+            "height": 180
           },
           "content": {
             "label": "Evidence"
@@ -95,13 +95,13 @@
         {
           "id": "software-checks",
           "kind": "frame",
-          "parentId": "dsl-64dlfj",
+          "parentId": "dsl-n5vyiv",
           "layerId": "default",
           "zIndex": 2,
           "transform": {
             "translation": {
-              "x": 512,
-              "y": 72
+              "x": 50,
+              "y": 418
             },
             "rotationRadians": 0,
             "scale": {
@@ -110,8 +110,8 @@
             }
           },
           "size": {
-            "width": 364,
-            "height": 228
+            "width": 573,
+            "height": 214
           },
           "content": {
             "label": "Software checks"
@@ -129,13 +129,13 @@
         {
           "id": "judgement",
           "kind": "frame",
-          "parentId": "dsl-64dlfj",
+          "parentId": "dsl-n5vyiv",
           "layerId": "default",
           "zIndex": 3,
           "transform": {
             "translation": {
-              "x": 1142,
-              "y": 121
+              "x": 279,
+              "y": 798
             },
             "rotationRadians": 0,
             "scale": {
@@ -144,8 +144,8 @@
             }
           },
           "size": {
-            "width": 577,
-            "height": 202
+            "width": 306,
+            "height": 334
           },
           "content": {
             "label": "Judgement"
@@ -163,13 +163,13 @@
         {
           "id": "record",
           "kind": "frame",
-          "parentId": "dsl-64dlfj",
+          "parentId": "dsl-n5vyiv",
           "layerId": "default",
           "zIndex": 4,
           "transform": {
             "translation": {
-              "x": 1793,
-              "y": 87
+              "x": 285,
+              "y": 1206
             },
             "rotationRadians": 0,
             "scale": {
@@ -178,8 +178,8 @@
             }
           },
           "size": {
-            "width": 580,
-            "height": 246
+            "width": 284,
+            "height": 394
           },
           "content": {
             "label": "Record"
@@ -253,8 +253,8 @@
           "zIndex": 6,
           "transform": {
             "translation": {
-              "x": 35,
-              "y": 170
+              "x": 187,
+              "y": 62
             },
             "rotationRadians": 0,
             "scale": {
@@ -305,8 +305,8 @@
           "zIndex": 7,
           "transform": {
             "translation": {
-              "x": 66,
-              "y": 54
+              "x": 22,
+              "y": 63
             },
             "rotationRadians": 0,
             "scale": {
@@ -352,8 +352,8 @@
           "zIndex": 8,
           "transform": {
             "translation": {
-              "x": 22,
-              "y": 126
+              "x": 231,
+              "y": 54
             },
             "rotationRadians": 0,
             "scale": {
@@ -419,7 +419,7 @@
           "zIndex": 9,
           "transform": {
             "translation": {
-              "x": 22,
+              "x": 29,
               "y": 54
             },
             "rotationRadians": 0,
@@ -471,8 +471,8 @@
           "zIndex": 10,
           "transform": {
             "translation": {
-              "x": 332,
-              "y": 56
+              "x": 61,
+              "y": 188
             },
             "rotationRadians": 0,
             "scale": {
@@ -546,8 +546,8 @@
           "zIndex": 11,
           "transform": {
             "translation": {
-              "x": 22,
-              "y": 99
+              "x": 70,
+              "y": 54
             },
             "rotationRadians": 0,
             "scale": {
@@ -597,8 +597,8 @@
           "zIndex": 12,
           "transform": {
             "translation": {
-              "x": 318,
-              "y": 54
+              "x": 22,
+              "y": 202
             },
             "rotationRadians": 0,
             "scale": {

@@ -1,4 +1,4 @@
-flowchart right
+flowchart down
 title: How Grounding rechecks a climate claim
 group Evidence {
   Claim [doc, gray, desc: "a figure as published", link: apps/demo/src/claims-meta.ts:26]
