@@ -54,7 +54,7 @@ npm run demo:serve
 
 Open `http://localhost:4173`.
 
-The demo combines measured outputs from Building MRV, Energy-EVA forecasting, HLS Earth observation, BatteryLife DPP, CarbonPlan registry reconciliation, and real CaDI-confirmed public disclosure sources. It also exposes the capability-aware WebMCP surface when `document.modelContext` is available.
+The demo combines measured outputs from Building MRV, Energy-EVA forecasting, HLS Earth observation, a battery passport on NASA Ames cell data, CarbonPlan registry reconciliation, and real CaDI-confirmed public disclosure sources. It also exposes the capability-aware WebMCP surface when `document.modelContext` is available.
 
 See [docs/judging-demo.md](docs/judging-demo.md) for the 3–5 minute presentation flow.
 
@@ -115,7 +115,7 @@ The grid factor is deliberately not guessed from anonymised BDG2 site IDs. The C
 
 ## Battery DPP prototype
 
-The BatteryLife/CALB digital-product-passport slice is documented in [docs/battery-dpp.md](docs/battery-dpp.md). It reruns the CALB Dummy life-prediction baseline from the pinned v1 release (which does **not** exactly reproduce the published summary row; the discrepancy is recorded), builds a traceable SOH/RUL decision-support passport from one processed battery, and demonstrates evidence-root failure after a cycle-capacity tamper.
+The battery digital-product-passport slice is documented in [docs/battery-dpp.md](docs/battery-dpp.md). Its passport case is NASA Ames cell B0005 (168 cycles; state of health 71.4% of the first recorded capacity, 66.3% of the 2 Ah rating; internal resistance +28.2%; signed off for recycling by a person). Separately, it reruns BatteryLife's CALB Dummy life-prediction baseline from the pinned v1 release as a benchmark (it does **not** exactly reproduce the published summary row; the discrepancy is recorded). A cycle-capacity tamper on the NASA cell breaks the evidence root and makes the sign-off stale.
 
 ## Licence
 
