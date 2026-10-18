@@ -48,6 +48,31 @@ Ed25519
 
 for current ecosystem interoperability and local development.
 
+### Parameters that show where they came from
+
+Grounding asks a climate figure to show its work. The same test applies to its own cryptography: a parameter should
+come with the procedure that produced it, so anyone can rederive it instead of trusting it.
+
+- **Ed25519** (RFC 8032) runs over Curve25519, whose parameters RFC 7748 derives by a stated deterministic procedure
+  (Appendix A).
+- **ML-DSA-65** (FIPS 204) uses no elliptic curve; its parameter set is fixed in the standard.
+- **Not chosen: the NIST P-curves** (P-256 and others, FIPS 186). They were published in 2000 with seeds whose origin
+  went unexplained for over two decades. In October 2026 Anthropic's Frontier Red Team reported reconstructing them:
+  - The P-192 to P-521 seeds are outputs of the C library's `lrand48` generator, seeded with Unix timestamps from 1997
+    and 1998, not hash outputs.
+  - Some base points, including P-256's, are still unexplained.
+  - The authors state this is not a weakness in ECDSA, and that the finding makes a hidden backdoor less plausible.
+
+  The work was done by recomputing rather than trusting, which is the method Grounding applies to climate claims. A
+  model proposed the hypothesis, and the published code lets anyone reproduce the seeds.
+- **The chains' own curves are outside Grounding's records.** Bitcoin and Ethereum (Sepolia) sign their transactions
+  with secp256k1, which the report does not cover. The Bitcoin anchor's proof rests on SHA-256 and proof of work, not
+  on secp256k1.
+
+Reference: J. Wood, H. de Valence, A. Howell, Z. Voase, L. Sweet, A. Omidi, P. Crowley, I. McGinniss, N. Carlini and
+S. Weis, "Claude reveals ECDSA curve origins", Anthropic, 16 October 2026,
+<https://www.anthropic.com/research/ecdsa-curve-origins>.
+
 ## Signed bytes
 
 The application does not sign arbitrary JSON serialization.
