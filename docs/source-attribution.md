@@ -8,6 +8,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | --- | --- | --- | --- | --- |
 | Active power load dataset - IEX data | dataset | CC-BY-4.0 | allowed | redistributable |
 | ALDI++ | code | MIT | allowed | code-only |
+| American Carbon Registry public report records (full OffsetsDB export, reduced columns) | registry-data | LicenseRef-ACR-Terms-of-Use | allowed | redistributable |
 | American Carbon Registry public report records (OffsetsDB test subset, reduced columns) | registry-data | LicenseRef-ACR-Terms-of-Use | allowed | redistributable |
 | ASHRAE Great Energy Predictor III competition data | benchmark-data | Subject to Competition Rules | prohibited | download-from-upstream |
 | BatteryLife benchmark code | code | MIT | allowed | code-only |
@@ -48,6 +49,14 @@ ALDI++ / BUDS Lab, MIT License.
 - Source: https://github.com/buds-lab/aldiplusplus
 - Terms/licence: https://github.com/buds-lab/aldiplusplus/blob/main/LICENSE
 - Repository policy: MIT applies to the ALDI++ repository code. It does not grant rights to the ASHRAE/Kaggle input data used by the pipeline.
+
+### American Carbon Registry public report records (full OffsetsDB export, reduced columns) (registry-data)
+
+Registry data via CarbonPlan OffsetsDB, snapshot 2026-06-01: American Carbon Registry public reports. Rows filtered to ACR and columns reduced by Grounding; values unchanged.
+
+- Source: https://carbonplan-offsets-db.s3.us-west-2.amazonaws.com/production/latest/offsets-db.csv.zip
+- Terms/licence: https://acrcarbon.org/term-and-condition/
+- Repository policy: All 13,481 ACR credit rows of the OffsetsDB export generated 2026-06-01 (zip SHA-256 c037be30…), reduced to project, vintage, transaction type, quantity and date; and the 979 ACR projects' issued and retired totals. Beneficiary, account and note fields are not committed. The other registries in the export stay in a gitignored cache and are published as counts only.
 
 ### American Carbon Registry public report records (OffsetsDB test subset, reduced columns) (registry-data)
 
