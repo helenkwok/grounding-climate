@@ -290,6 +290,7 @@ footer p{margin:0}
 
 /* Verify */
 .drop{display:grid;gap:8px;justify-items:start;padding:32px;border:2px dashed var(--ink-2);border-radius:6px;cursor:pointer}
+.drop,.drop>*,.try{max-width:100%;min-width:0;overflow-wrap:anywhere}
 .drop.dragging{border-color:var(--teal);background:var(--teal-wash)}
 .verify{display:grid;gap:28px;max-width:960px}
 .recent h2{font-size:20px}
@@ -380,7 +381,7 @@ body{overflow:hidden}
 .panel .limits h2{font-size:21px}
 
 .app.collapsed .panel-toggle{left:12px}
-@media (max-width:900px){.app .topbar nav{display:flex;gap:14px;font-size:14px}}
+@media (max-width:900px){.app .topbar nav,.app-full .topbar nav{display:flex;gap:14px;font-size:14px}}
 @media (max-width:760px){
   .app .topbar{gap:14px}
   .app .topbar .brand{font-size:16px}
@@ -535,3 +536,14 @@ body:has(.app-full){overflow:auto}
 .judge-limits ul{margin:0;padding-left:20px;max-width:90ch;color:var(--ink-2)}
 .judge-limits li{margin:0 0 6px}
 @media (max-width:900px){.judge-cols{grid-template-columns:1fr}}
+
+/* Phones: charts keep a readable size and scroll sideways in their own box; the home map strip shows the claims, not
+   the legend, while the panel is open (the legend comes back with "Hide panel"). */
+@media (max-width:760px){
+  .ev{overflow-x:auto}
+  .ev .series{min-width:760px}
+  .ev figcaption{position:sticky;left:0;max-width:calc(100vw - 32px)}
+  .app:not(.collapsed) .map-controls.floating{display:none}
+  .app-full .topbar{gap:14px}
+  .app-full .topbar .brand{font-size:16px}
+}

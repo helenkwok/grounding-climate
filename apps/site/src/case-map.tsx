@@ -92,8 +92,8 @@ export function flyToClaim(id: ClaimId | keyof typeof PLACES, duration?: number)
   const frame = sharedMap.getContainer().getBoundingClientRect();
   const legendTop = legend && legend.top < frame.top + frame.height / 2;
   // The top also leaves room for a chip above the place; a phone's bottom sheet has its Hide button above it.
-  const top = (legend && legendTop ? legend.bottom - frame.top + 12 : 70) + 30;
-  const bottom = Math.max(sheet ? frame.bottom - panel!.top + 70 : 40, legend && !legendTop ? frame.bottom - legend.top + 12 : 0);
+  const top = (legend && legendTop ? legend.bottom - frame.top + 12 : sheet ? 10 : 70) + 30;
+  const bottom = Math.max(sheet ? frame.bottom - panel!.top + 50 : 40, legend && !legendTop ? frame.bottom - legend.top + 12 : 0);
   // MapLibre will not move at all if the padding leaves no room, so keep at least 120 px of map (short phone screens).
   sharedMap.fitBounds(target.bounds, {
     maxZoom: target.maxZoom,
