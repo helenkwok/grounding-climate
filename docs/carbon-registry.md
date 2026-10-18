@@ -104,6 +104,30 @@ Limits:
   here is an ICVCM assessment.
 - Registries other than ACR are shown as counts only, and four of them not at all.
 
+## Tokenised credits: Toucan's bridged Verra credits on Polygon
+
+Bridging is where a second ledger can disagree with the registry. Between 2021 and Verra's ban on 25 May 2022,
+Toucan retired Verra credits in the registry and minted one TCO2 token per tonne on Polygon. `npm run carbon:toucan`
+(`scripts/run-toucan-check.mjs`) reads Toucan's contracts with read-only `eth_call`s through Multicall3 over a public
+Polygon RPC; it holds no key and sends no transaction. It writes `reports/carbon-registry/toucan-onchain.json`.
+
+Published, on-chain counts only:
+
+| Check | Rule it rests on | Result |
+| --- | --- | --- |
+| Confirmed batch NFTs whose Verra serial ranges overlap another confirmed batch | ICVCM AF v3 criterion 6.2 (no double use): a credit is tokenised at most once | 0 pairs, over 834 confirmed Verra batches |
+| TCO2 tokens whose supply plus on-chain retirements exceed their confirmed batches | ICVCM CCP A2 (Tracking): each token traces to a credit retired off-chain to back it | 0 of 369 tokens |
+
+Context from the same read (Polygon blocks 95,727,408 to 95,727,509): 21.89 million tonnes bridged in confirmed
+batches, 15.11 million still held as tokens, and 1.07 million retired on chain in 52,953 retirement certificates.
+The factory's own `totalRetired()` (about 307,000 t) is not used: Toucan's source marks that counter deprecated
+(`DEPRECATED_TotalRetired`), and it no longer moves.
+
+**Against Verra, kept local.** The script also compares, per Verra project and vintage year, the tonnes bridged on
+chain with the tonnes Verra records as retired to Toucan in the OffsetsDB snapshot. That comparison goes only to the
+terminal and the gitignored `data/cache/toucan/verra-comparison.json`, like the other Verra counts (see the
+scoreboard). Anyone can run it. OffsetsDB has no serial numbers, so it compares quantities, not serials.
+
 ## Rights
 
 The source-rights manifest already separates:
