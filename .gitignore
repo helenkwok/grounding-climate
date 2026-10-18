@@ -19,3 +19,7 @@ data/cache/
 
 # Agent worktrees
 .claude/worktrees/
+# Pinned Foundry binaries (scripts/install-foundry.sh) and forge build output
+tools/
+contracts/out/
+contracts/cache/

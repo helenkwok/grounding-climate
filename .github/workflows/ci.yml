@@ -39,3 +39,19 @@ jobs:
           key: ${{ runner.os }}-rust-1.85-${{ hashFiles('Cargo.lock') }}
           save-always: true
       - run: cargo test --workspace --locked
+
+  contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # foundry-toolchain v1.9.1, pinned by commit; installs Foundry v1.8.5 (forge, anvil), the version
+      # scripts/install-foundry.sh pins with checksums for local use.
+      - uses: foundry-rs/foundry-toolchain@908c540300062bd5a7e473851cdb4282204cee09
+        with:
+          version: v1.8.5
+          cache: false
+      - run: npm ci
+      - run: npm run contracts:test

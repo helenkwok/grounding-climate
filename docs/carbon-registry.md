@@ -95,7 +95,8 @@ catches a hand edit, not a deliberate forgery; with the snapshot cached it recom
 Limits:
 
 - The export has no serial numbers, so a credit retired twice cannot be checked at this scale; only quantities are
-  compared.
+  compared. Where serials exist, `contracts/src/RetirementRegistry.sol` refuses a second on-chain retirement of
+  overlapping serials ([EVM anchor and double-use guard](evm-anchor.md)).
 - Verra issuance figures in OffsetsDB are inferred by CarbonPlan, not issuance records Verra publishes.
 - ACR's 80 retirements sharing the date 2022-11-01 suggest a migration or pipeline artefact. That is an inference, not
   checked against the registry.
