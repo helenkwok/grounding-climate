@@ -2,7 +2,7 @@
   "version": "grounding.anchor/0.1",
   "chain": "bitcoin",
   "format": "opentimestamps",
-  "digest": "ab141961a3f2b3b9de15e3aeef65768a595eb7597ca05317477987975f04fd33",
+  "digest": "6a130366177116baae3509beb17cc50470d4921ba351d87ec6af75a37f8d3100",
   "calendars": [
     {
       "url": "https://alice.btc.calendar.opentimestamps.org",
@@ -17,8 +17,5 @@
       "ok": true
     }
   ],
-  "submittedAt": "2026-10-18T02:44:59.532Z",
-  "height": 971937,
-  "blockHash": "00000000000000000000d4473e907e4c6d5dc870920f9d0a9153b8b8759eba90",
-  "blockTime": "2026-10-18T02:50:05.000Z"
+  "submittedAt": "2026-10-18T07:10:16.145Z"
 }
