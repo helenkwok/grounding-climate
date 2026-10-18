@@ -171,6 +171,27 @@ The design is chain-agnostic. `AnchorAdapter` (`submit`, `upgrade`, `verify`) ta
 
 Rights: block headers are public chain data. The unit tests use synthetic proof trees and one mainnet header (block 358391); the OpenTimestamps project's example proofs are not vendored, because their licence is not stated.
 
+## Content addresses (IPFS)
+
+Every committed evidence file and signed record also has an IPFS content address. `reports/cid-manifest.json` lists each one with its path, size, SHA-256 and CID; `node scripts/cid-manifest.mjs` rewrites it, and `npm run check:cases` recomputes it offline and fails if it is out of date. `cidFromSha256` and `sha256FromCid` in `packages/core/src/cid.ts` convert between the two with no dependency, and the Verify page shows the CID of a dropped record and of the SHA-256 digests its evidence carries.
+
+The CID is a CIDv1 with the raw codec and a sha2-256 multihash, so its digest is the file's own SHA-256. What that proves: anyone who holds bytes and their CID can check they are the right bytes, wherever the bytes came from. It is the same check as the SHA-256 the records already carry, written in a form IPFS can route on. Two limits:
+
+- Nothing is fetchable over IPFS until someone pins the files. Today nobody does, so the addresses name the bytes but no one serves them.
+- Many evidence digests are over prepared data (a parsed series, a canonical JSON section), not over a committed file. Their CIDs are valid addresses for those prepared bytes, but no file in the repository has them. The Verify page says which digests name a committed file.
+
+The CID equals the SHA-256 only while the file is one IPFS block. Every file listed is at most 1 MiB (the manifest flags any larger file with `"singleBlock": false`; there are none). Publishing with Kubo's defaults would split the four files over 256 KiB into chunks and give them different root CIDs, so publishing needs exactly:
+
+```sh
+ipfs add --cid-version=1 --chunker=size-1048576 <file>
+# or, per file:
+ipfs block put --cid-codec=raw --mhtype=sha2-256 <file>
+```
+
+Files above about 2 MiB cannot keep the SHA-256 as their CID at all; they would need the manifest to record a separate UnixFS root.
+
+Publishing is permanent and public: once pinned and fetched, content cannot be withdrawn. Nothing here publishes or pins. Publishing waits until the repository itself is public, and is Helen's decision.
+
 ## Invariants
 
 - ledger history proves commitment/history, not physical truth
