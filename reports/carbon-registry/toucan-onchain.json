@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "grounding.toucan-onchain/0.1",
+  "question": "Do Toucan's bridged Verra credits on Polygon agree with themselves on chain?",
+  "chain": "eip155:137",
+  "blocks": [
+    95727408,
+    95727509
+  ],
+  "contracts": {
+    "factory": "0x2359677e513bc83106268514c5b2de3c29c849ea",
+    "batches": "0x8a4d7458dde3023a3b24225d62087701a88b09dd",
+    "retirementCertificates": "0x5e377f16e4ec6001652befd737341a28889af002",
+    "source": "https://github.com/ToucanProtocol/contracts"
+  },
+  "finding": "Counts describe on-chain state only. They are not a finding of error or wrongdoing by Toucan or Verra.",
+  "tco2Tokens": 369,
+  "tco2ByStandard": {
+    "VCS": 367,
+    "VCU": 2
+  },
+  "batchNfts": 1719,
+  "batchesByStatus": {
+    "pending": 830,
+    "confirmed": 839,
+    "rejected": 46,
+    "retirementFinalized": 2,
+    "detokenizationFinalized": 2
+  },
+  "verraBatchesConfirmed": 834,
+  "verraBatchSerialsUnparsed": 1,
+  "tonnesBridgedConfirmed": 21889962,
+  "tonnesHeldOnChain": 15106776.168917,
+  "retirementCertificates": 52953,
+  "tonnesRetiredOnChain": 1067383.712967,
+  "checks": {
+    "serialRangeBridgedTwice": {
+      "label": "Confirmed batch NFTs whose Verra serial ranges overlap another confirmed batch",
+      "basis": "ICVCM Assessment Framework v3, criterion 6.2 (no double use): a credit is tokenised at most once",
+      "pairs": 0
+    },
+    "tokensExceedBatches": {
+      "label": "TCO2 tokens whose supply plus on-chain retirements exceed their confirmed batches",
+      "basis": "ICVCM CCP A2 (Tracking): every token traces to a credit retired off-chain to back it",
+      "tokens": 0
+    }
+  },
+  "verraComparison": "Computed locally by node scripts/run-toucan-check.mjs against the OffsetsDB snapshot; not published while Verra's terms on derived data are unclear.",
+  "limitations": [
+    "OffsetsDB has no Verra serial numbers, so the local comparison with Verra is by quantity per project and vintage year, not serial by serial.",
+    "Only the Verra TCO2 factory is read; other Toucan factories (for example Puro) are out of scope.",
+    "Retired tonnes come from the RetirementCertificates records. The factory's totalRetired() is not used: Toucan's source marks that counter deprecated (DEPRECATED_TotalRetired), and it no longer moves.",
+    "Two TCO2 symbols carry no vintage (TCO2-VCU-1764-, TCO2-VCU-92-); they are counted under VCU.",
+    "Verra stopped allowing retired credits to be tokenised on 25 May 2022, so Verra bridging is historical."
+  ]
+}

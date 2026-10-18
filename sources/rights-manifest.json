@@ -1091,6 +1091,40 @@
           "finding": "README, License section: made available under Creative Commons Attribution 4.0 International (CC-BY-4.0) (checked 2026-10-18)."
         }
       ]
+    },
+    {
+      "id": "toucan-polygon-onchain",
+      "name": "Toucan Protocol contract state on Polygon (Verra TCO2 factory, batch NFTs, retirement certificates)",
+      "component": "registry-data",
+      "canonicalUrl": "https://github.com/ToucanProtocol/contracts",
+      "upstreamPublisher": "Toucan Protocol (public Polygon blockchain state)",
+      "retrievedAt": "2026-10-18",
+      "licence": {
+        "status": "source-specific",
+        "name": "Public blockchain state, read with eth_call; no licence attached",
+        "url": "https://github.com/ToucanProtocol/contracts"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "The raw read stays in the gitignored data/cache/toucan. Only aggregate on-chain counts are committed (reports/carbon-registry/toucan-onchain.json); serials and addresses of individual holders are not."
+      },
+      "attribution": "On-chain state of Toucan Protocol's Verra TCO2 contracts on Polygon (eip155:137), read via public JSON-RPC; contract addresses from https://github.com/ToucanProtocol/contracts (deployments/production/matic).",
+      "notes": [
+        "The comparison with Verra's retirements uses the OffsetsDB snapshot and stays local, like the other Verra counts."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/ToucanProtocol/contracts/blob/main/contracts/CarbonOffsetBatchesTypes.sol",
+          "finding": "BatchStatus enum used to read batch states (checked 2026-10-18)."
+        }
+      ]
     }
   ]
 }

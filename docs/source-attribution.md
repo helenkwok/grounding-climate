@@ -32,6 +32,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | Sen1Floods11 | dataset | No licence identified in original repository | unclear | download-from-upstream |
 | SustainBench code | code | MIT | allowed | code-only |
 | SustainBench released raw datasets | dataset | CC-BY-SA-4.0 | allowed | redistributable |
+| Toucan Protocol contract state on Polygon (Verra TCO2 factory, batch NFTs, retirement certificates) | registry-data | Public blockchain state, read with eth_call; no licence attached | unclear | download-from-upstream |
 | U.S. EPA eGRID Summary Tables 2016 | dataset | U.S. federal government publication / EPA site terms | unclear | link-only |
 | World Bank World Development Indicators: total GHG emissions, CO2 per capita, renewable energy share (latest value per economy) | reference-data | LicenseRef-WDI-third-party | unclear | download-from-upstream |
 
@@ -244,6 +245,14 @@ SustainBench, Stanford Sustainability and AI Lab, CC-BY-SA-4.0 for released raw 
 - Source: https://github.com/sustainlab-group/sustainbench
 - Terms/licence: https://github.com/sustainlab-group/sustainbench
 - Repository policy: The project states its released raw data are CC-BY-SA-4.0; still preserve task-specific upstream attribution and keep fixtures small.
+
+### Toucan Protocol contract state on Polygon (Verra TCO2 factory, batch NFTs, retirement certificates) (registry-data)
+
+On-chain state of Toucan Protocol's Verra TCO2 contracts on Polygon (eip155:137), read via public JSON-RPC; contract addresses from https://github.com/ToucanProtocol/contracts (deployments/production/matic).
+
+- Source: https://github.com/ToucanProtocol/contracts
+- Terms/licence: https://github.com/ToucanProtocol/contracts
+- Repository policy: The raw read stays in the gitignored data/cache/toucan. Only aggregate on-chain counts are committed (reports/carbon-registry/toucan-onchain.json); serials and addresses of individual holders are not.
 
 ### U.S. EPA eGRID Summary Tables 2016 (dataset)
 

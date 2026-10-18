@@ -375,6 +375,13 @@
       "singleBlock": true
     },
     {
+      "path": "reports/carbon-registry/toucan-onchain.json",
+      "bytes": 2501,
+      "sha256": "SHA-256:nmg-3mLvaGR8yVpwhAgvYCpHnxJZ5S2BqxDAQnZvquc",
+      "cid": "bafkreie6na7n4yxpnbshzsk2occaql3afjdz6esz4uwydkyqybbhm35k44",
+      "singleBlock": true
+    },
+    {
       "path": "reports/did.json",
       "bytes": 6896,
       "sha256": "SHA-256:9QrJrjfW9-2EDrqzvdp9r-FT9l1vw8XLLIlGoKY197U",
@@ -516,9 +523,9 @@
     },
     {
       "path": "sources/rights-manifest.json",
-      "bytes": 49821,
-      "sha256": "SHA-256:tJ8QjRmUNBINyJVDrEH0kuwxUzQs0uxVeNWZJ_eToXY",
-      "cid": "bafkreifut4ii2gmugqja3seviowed5es5qyvgnbm2lwfk6gvtet7pe5boy",
+      "bytes": 51543,
+      "sha256": "SHA-256:4s-MO3meG1e4XtVqE8b-z7jUFjpkS-_6j9_B4RE_tfg",
+      "cid": "bafkreihcz6gdw6m6dnl3qxwvnij4n7wpxdkbmotejpx7vd67yhqrcp5v7a",
       "singleBlock": true
     }
   ]
