@@ -24,6 +24,10 @@ The texts live in this folder; git ignores everything here except this index. Ea
 | `ghg/` | `BS_ISO_14064-5-2026.pdf` (18 pp) | ISO 14064-5:2026, guidance on activities and techniques used remotely in validation and verification | same |
 | `battery/` | `BS_EN_ISO_14067-2018.pdf` (62 pp), `…_TC.pdf` | ISO 14067:2018, carbon footprint of products | same |
 
+| `dpp/` | `BS_EN_18246-2026.pdf` (32 pp), `BS_EN_18219-2026.pdf` (64 pp), `BS_EN_18221-2026.pdf` (16 pp), `BS_EN_18223-2026.pdf` (30 pp), `BS_EN_18239-2026.pdf` (22 pp) | EN 18246 (DPP data authentication and integrity), EN 18219 (unique identifiers), EN 18221 (data storage), EN 18223 (system interoperability), EN 18239 (access rights), all 2026 | BSI copies, downloaded by Helen 18 Oct 2026. **BSI copyright** |
+| `blockchain/` | `BS_EN_ISO_22739-2025.pdf` (24 pp), `…_TC.pdf`, `BS_ISO_23257-2022.pdf` (62 pp), `PD_ISO-TS_23516-2026.pdf` (34 pp) | ISO 22739 (blockchain and DLT vocabulary), ISO 23257 (reference architecture), ISO/TS 23516 (interoperability framework) | same |
+| `battery/` | `DIN_DKE_SPEC_99100-2025.pdf` (106 pp) | DIN DKE SPEC 99100:2025-02, requirements for battery passport data attributes (English text) | DIN copy, downloaded by Helen 18 Oct 2026. **DIN copyright** |
+
 ## Still to get
 
 | Standard | Why Grounding needs it | Cost |
