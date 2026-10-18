@@ -151,7 +151,7 @@ old key signs at T1
 
 Verification checks validity at the **envelope creation/signing time**, not merely whether the key is active today. That time is signed, so nobody without the key can change it; an attestation's `createdAt` must also equal the `issuedAt` in its signed payload. Signed-log records are checked the same way against their signed timestamp.
 
-What signing the time does not do: whoever holds a key chooses the time they sign with. A stolen key can still sign with a date before its revocation. Ruling that out needs a time the signer does not control, such as an external timestamp or ledger anchor recorded when the signature is made.
+What signing the time does not do: whoever holds a key chooses the time they sign with. A stolen key can still sign with a date before its revocation. Ruling that out needs a time the signer does not control, such as an external timestamp or ledger anchor recorded when the signature is made. Grounding anchors each signed record in Bitcoin for this; see [Bitcoin anchor](provenance-attestation.md#bitcoin-anchor).
 
 ### Signature policy
 

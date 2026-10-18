@@ -9,3 +9,5 @@ export * from "./ledger-decision.js";
 export * from "./signed-log.js";
 export * from "./review.js";
 export * from "./context.js";
+export * from "./anchor.js";
+export * from "./ots.js";
