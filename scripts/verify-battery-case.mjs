@@ -10,7 +10,7 @@ const json = async (path) => JSON.parse(await readFile(new URL("../" + path, imp
 const run = await json("reports/battery-dpp/case-run.json");
 const crypto = new InMemoryNodeCryptoProvider();
 const { caseBundle } = await buildBatteryPassport({
-  history: await json("data/external/batterylife-processed/battery-history.json"),
+  history: await json("data/external/nasa-battery/battery-history.json"),
   provider: crypto,
   observedAt: run.runAt,
   decisions: await json("reports/battery-dpp/disposition-decisions.json"),

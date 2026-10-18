@@ -1,13 +1,13 @@
 [
   {
-    "flagId": "disposition:CALB_0_B182",
-    "decision": "service-review",
-    "reason": "Capacity alone supports repurpose (SoH 0.776), but the cell is already past end of first life (SoH below 0.8, 0 cycles of remaining life), began at only 0.857 of nominal capacity, and its condition and safety are not assessed. Hold for inspection before any second-life use.",
+    "flagId": "disposition:NASA_B0005",
+    "decision": "recycle",
+    "reason": "SoH 0.663 of rated capacity (0.714 of the first recorded cycle) after 168 cycles: below the repurpose threshold, past the test's own end-of-life rule (1.4 Ah), and ohmic resistance up about 28%. Condition and safety not assessed. Route to recycling; no second life.",
     "decidedBy": "person:energy-manager",
-    "decidedAt": "2026-10-05T14:00:39.685Z",
+    "decidedAt": "2026-10-18T07:08:28.000Z",
     "inputDigest": {
       "algorithm": "SHA-256",
-      "value": "ejzMDyWCp2cFb8NtKk194M1YuOEWB0xuNZcnJKARGp0"
+      "value": "1N9IxY1jWE1IO9bswSvQe3vkddCRE9eSU84tyYIARUc"
     }
   }
 ]

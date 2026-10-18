@@ -17,7 +17,7 @@ const readJson = (url) => readFile(url, "utf8").then(JSON.parse, () => undefined
 
 /** The battery's health recomputed from the committed history; it must agree with the signed case run. */
 async function batteryHealth(run) {
-  const history = await readJson(new URL("../data/external/batterylife-processed/battery-history.json", import.meta.url));
+  const history = await readJson(new URL("../data/external/nasa-battery/battery-history.json", import.meta.url));
   const health = estimateBatteryHealth({ history });
   if (history.batteryId !== run.battery.batteryId || health.currentSoh !== run.clean.currentSoh) {
     throw new Error("battery-dpp: the committed history no longer gives the signed case's state of health");

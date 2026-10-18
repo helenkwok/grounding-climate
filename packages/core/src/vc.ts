@@ -58,10 +58,17 @@ export interface DataIntegrityProof {
 export interface CaseRunRecord {
   case: ClimateCaseBundle;
   attestation: SignedAttestationBundle;
-  battery?: { batteryId: string; nominalCapacityAh: number; cycles: number };
+  battery?: { batteryId: string; nominalCapacityAh: number; cycles: number; dataset?: string };
   clean?: { currentSoh?: number; estimatedRulCycles?: number; disposition?: string };
   /** Recomputed by the caller from the committed cycle history (battery-dpp `estimateBatteryHealth`). */
-  health?: { initialCapacityAh: number; currentCapacityAh: number; sohVsInitial: number; currentSoh: number; observedCycle: number };
+  health?: {
+    initialCapacityAh: number;
+    currentCapacityAh: number;
+    sohVsInitial: number;
+    currentSoh: number;
+    observedCycle: number;
+    resistance?: { earliestOhm: number; earliestAfterCycle: number; latestOhm: number; latestAfterCycle: number; increasePercent: number; method: string };
+  };
 }
 /** reports/<module>/anchor.json; `height` and `blockHash` are set once the proof reaches a Bitcoin block. */
 export interface AnchorRecordFile {
@@ -150,12 +157,13 @@ const round = (value: number, places = 2) => Math.round(value * 10 ** places) / 
  * 1.2.1, CC BY 4.0) counterpart where one exists, whether it is static or dynamic, and its information level.
  */
 export function batteryHealthAttributes(
-  battery: { nominalCapacityAh: number; cycles: number },
+  battery: { nominalCapacityAh: number; cycles: number; dataset?: string },
   health: NonNullable<CaseRunRecord["health"]>,
   measuredAt: string,
 ) {
   const method =
-    "Discharge capacity of recorded laboratory cycle " + health.observedCycle + " (" + battery.cycles + " cycles recorded), BatteryLife processed data";
+    "Discharge capacity of recorded laboratory cycle " + health.observedCycle + " (" + battery.cycles + " cycles recorded), " + (battery.dataset ?? "the recorded cycle history");
+  const resistance = health.resistance;
   return {
     stateOfHealth: {
       value: round(health.sohVsInitial * 100), unit: "%", basis: "remaining capacity relative to the first recorded cycle (initial state)",
@@ -177,6 +185,18 @@ export function batteryHealthAttributes(
       value: round(health.currentSoh * 100), unit: "%", basis: "remaining capacity relative to rated capacity; the disposition policy reads this one",
       dynamic: true, level: "item", measuredAt, method,
     },
+    ...(resistance
+      ? {
+          initialInternalResistance: {
+            value: round(resistance.earliestOhm, 4), unit: "Ω", basis: "ohmic resistance Re, earliest recorded sweeps (after cycle " + resistance.earliestAfterCycle + "), not beginning of life",
+            specId: "DIN DKE SPEC 99100 6.7.5.2", batteryPass: "initialInternalResistance", dynamic: false, level: "item", component: "cell", method: resistance.method,
+          },
+          internalResistanceIncrease: {
+            value: round(resistance.increasePercent, 1), unit: "%", basis: "(R(now) - R(earliest)) / R(earliest), Re medians, up to cycle " + resistance.latestAfterCycle,
+            specId: "DIN DKE SPEC 99100 6.7.5.3", batteryPass: "internalResistanceIncrease", dynamic: true, level: "item", component: "cell", measuredAt, method: resistance.method,
+          },
+        }
+      : {}),
   };
 }
 

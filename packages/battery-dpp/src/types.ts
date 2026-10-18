@@ -5,17 +5,32 @@ export interface BatteryCycleCapacity {
   dischargeCapacityAh: number;
 }
 
+/** One impedance sweep (EIS): the ohmic resistance Re and charge-transfer resistance Rct fitted from it. */
+export interface BatteryImpedanceSweep {
+  sweep: number;
+  /** Discharge cycles completed before the sweep. */
+  afterCycle: number;
+  reOhm: number;
+  rctOhm: number;
+}
+
 export interface BatteryHistory {
   batteryId: string;
   chemistry?: string;
   formFactor?: string;
   nominalCapacityAh: number;
   cycles: BatteryCycleCapacity[];
+  impedance?: BatteryImpedanceSweep[];
   source: {
     uri: string;
     sourceManifestId: string;
     dataset: string;
     datasetVersion?: string;
+    /** Who published the data, where it is committed, and its rights; BatteryLife's when absent. */
+    publisher?: string;
+    committedPath?: string;
+    licence?: string;
+    attribution?: string;
   };
 }
 
@@ -33,6 +48,16 @@ export interface BatteryHealthEstimate {
   capacitySlopeAhPerCycle: number;
   estimatedEolCycle: number | null;
   estimatedRulCycles: number | null;
+  /** Ohmic resistance from the impedance sweeps, when the history has them. */
+  resistance?: {
+    earliestOhm: number;
+    earliestAfterCycle: number;
+    latestOhm: number;
+    latestAfterCycle: number;
+    /** (latest - earliest) / earliest, in %. */
+    increasePercent: number;
+    method: string;
+  };
   fit: {
     sampleCount: number;
     rSquared: number | null;

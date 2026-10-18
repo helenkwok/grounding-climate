@@ -100,6 +100,7 @@ export function estimateBatteryHealth(options: {
     );
   }
 
+  const resistance = ohmicResistance(history);
   return {
     batteryId: history.batteryId,
     observedCycle: latest.cycle,
@@ -111,6 +112,7 @@ export function estimateBatteryHealth(options: {
     capacitySlopeAhPerCycle: fit.slope,
     estimatedEolCycle,
     estimatedRulCycles,
+    ...(resistance ? { resistance } : {}),
     fit: {
       sampleCount: fitCycles.length,
       rSquared: fit.rSquared,
@@ -122,5 +124,35 @@ export function estimateBatteryHealth(options: {
       "Future degradation can be nonlinear and operating conditions may change.",
       "Disposition policy must not substitute for electrical, thermal, mechanical, or regulatory safety assessment.",
     ],
+  };
+}
+
+const median = (values: number[]) => {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = sorted.length >> 1;
+  return sorted.length % 2 ? sorted[mid]! : (sorted[mid - 1]! + sorted[mid]!) / 2;
+};
+
+/**
+ * Ohmic resistance (Re) at the start and end of the recorded sweeps, each the median of RESISTANCE_WINDOW sweeps
+ * because single sweeps are noisy. The earliest sweep need not be at beginning of life; the method says when it was.
+ */
+export const RESISTANCE_WINDOW = 5;
+export function ohmicResistance(history: BatteryHistory): BatteryHealthEstimate["resistance"] {
+  const sweeps = (history.impedance ?? []).filter((s) => Number.isFinite(s.reOhm) && s.reOhm > 0).sort((a, b) => a.sweep - b.sweep);
+  if (sweeps.length < 2 * RESISTANCE_WINDOW) return undefined;
+  const first = sweeps.slice(0, RESISTANCE_WINDOW);
+  const last = sweeps.slice(-RESISTANCE_WINDOW);
+  const earliestOhm = median(first.map((s) => s.reOhm));
+  const latestOhm = median(last.map((s) => s.reOhm));
+  return {
+    earliestOhm,
+    earliestAfterCycle: first[0]!.afterCycle,
+    latestOhm,
+    latestAfterCycle: last.at(-1)!.afterCycle,
+    increasePercent: ((latestOhm - earliestOhm) / earliestOhm) * 100,
+    method:
+      "Median ohmic resistance Re of the first and of the last " + RESISTANCE_WINDOW + " impedance sweeps (EIS fits by the data provider); " +
+      "the first sweep followed cycle " + first[0]!.afterCycle + ", so this is not a beginning-of-life value",
   };
 }

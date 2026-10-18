@@ -26,6 +26,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | Energy-EVA standardized energy datasets | benchmark-data | Source-specific upstream terms | unclear | download-from-upstream |
 | Gold Standard Impact Registry reports | registry-data | Gold Standard Registry Terms of Use (copy found; may be outdated) | prohibited | reviewer-supplied |
 | IBM/NASA HLS Burn Scar Scenes | dataset | CC-BY-4.0 | allowed | redistributable |
+| NASA PCoE Battery Data Set, cell B0005 (cycle capacity and impedance fits) | dataset | LicenseRef-US-Government-Work | allowed | redistributable |
 | Open Climate Risk v1.1.0 fire-risk raster (sampled values) | dataset | CC-BY-4.0 | allowed | redistributable |
 | Open Climate Risk v1.1.0 fire-risk vector tiles (regions and building centroids, PMTiles) | map-tiles | ODbL-1.0 | allowed | link-only |
 | OpenFreeMap vector tiles and styles (OpenMapTiles schema, OpenStreetMap data) | map-tiles | OpenFreeMap Terms of Service (last updated 2026-09-09); OpenStreetMap data under ODbL | unclear | link-only |
@@ -197,6 +198,14 @@ HLS Burn Scar Scenes, IBM/NASA Geospatial, CC-BY-4.0; retain dataset citation an
 - Source: https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars
 - Terms/licence: https://huggingface.co/datasets/ibm-nasa-geospatial/hls_burn_scars
 - Repository policy: Small attributed fixtures may be committed; prefer upstream download for full imagery.
+
+### NASA PCoE Battery Data Set, cell B0005 (cycle capacity and impedance fits) (dataset)
+
+B. Saha and K. Goebel (2007), "Battery Data Set", NASA Prognostics Data Repository, NASA Ames Research Center, Moffett Field, CA. Acknowledgement to the NASA Prognostics Data Repository and the data donors, as the repository requests.
+
+- Source: https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/
+- Terms/licence: https://www.usa.gov/government-copyright
+- Repository policy: Derived values only: 168 discharge capacities and 278 Re/Rct impedance fits for B0005. The raw .mat files stay in the gitignored cache; scripts/prepare-nasa-battery.py rebuilds the file from NASA's download and checks its SHA-256.
 
 ### Open Climate Risk v1.1.0 fire-risk raster (sampled values) (dataset)
 

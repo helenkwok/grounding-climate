@@ -157,6 +157,7 @@ export async function buildBatteryPassport(options: {
             included: [
               "Discharge capacity of cycles 1 to " + health.observedCycle + " of cell " + options.history.batteryId,
               "State of health relative to the nominal capacity of " + options.history.nominalCapacityAh + " Ah",
+              ...(health.resistance ? ["Ohmic resistance from " + (options.history.impedance?.length ?? 0) + " impedance sweeps: " + health.resistance.method] : []),
             ],
             excluded: [
               "Cycles after " + health.observedCycle,
@@ -172,7 +173,9 @@ export async function buildBatteryPassport(options: {
             notAssessed: [
               "Electrical, thermal, mechanical and safety condition",
               "The battery's carbon footprint and other EU Battery Regulation passport fields",
-              "BatteryLife's published life-prediction models",
+              ...(options.history.source.publisher && options.history.source.publisher !== "BatteryLife"
+                ? ["Life-prediction models published for this data set"]
+                : ["BatteryLife's published life-prediction models"]),
             ],
           },
         },
@@ -204,19 +207,19 @@ export async function buildBatteryPassport(options: {
         kind: "dataset",
         source: {
           uri: options.history.source.uri,
-          publisher: "BatteryLife",
+          publisher: options.history.source.publisher ?? "BatteryLife",
           retrievedAt: options.observedAt,
         },
         integrity: inputDigest,
-        access: { mode: "committed", instructions: "data/external/batterylife-processed" },
+        access: { mode: "committed", instructions: options.history.source.committedPath ?? "data/external/batterylife-processed" },
         rights: {
           sourceManifestId: options.history.source.sourceManifestId,
-          licence: "MIT",
+          licence: options.history.source.licence ?? "MIT",
           redistribution: "allowed",
           commercialUse: "allowed",
           derivedData: "allowed",
           attribution:
-            "BatteryLife dataset; preserve BatteryLife and original experiment citations.",
+            options.history.source.attribution ?? "BatteryLife dataset; preserve BatteryLife and original experiment citations.",
         },
       },
     ],
@@ -266,7 +269,7 @@ export async function buildBatteryPassport(options: {
           metric: "R² of local linear capacity fit",
           value: health.fit.rSquared ?? 0,
           notes:
-            "This is a transparent passport decision-support baseline, not the published BatteryLife life-prediction model.",
+            "This is a transparent passport decision-support baseline, not a published life-prediction model.",
         },
         executedAt: options.observedAt,
         reproducibility: {

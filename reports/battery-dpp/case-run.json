@@ -1,26 +1,27 @@
 {
   "schemaVersion": "grounding.battery-case-run/0.1",
-  "runAt": "2026-10-18T00:52:40.297Z",
+  "runAt": "2026-10-18T07:10:13.508Z",
   "organisingQuestion": "Is this cell's second-life disposition supported by its measured capacity, and who signed it off?",
   "battery": {
-    "batteryId": "CALB_0_B182",
-    "nominalCapacityAh": 58,
-    "cycles": 100
+    "batteryId": "NASA_B0005",
+    "nominalCapacityAh": 2,
+    "cycles": 168,
+    "dataset": "NASA PCoE Battery Data Set (BatteryAgingARC-FY08Q4)"
   },
   "clean": {
     "inputDigest": {
       "algorithm": "SHA-256",
-      "value": "ejzMDyWCp2cFb8NtKk194M1YuOEWB0xuNZcnJKARGp0"
+      "value": "1N9IxY1jWE1IO9bswSvQe3vkddCRE9eSU84tyYIARUc"
     },
     "result": "reconciled",
-    "currentSoh": 0.7759146551724139,
+    "currentSoh": 0.6625395,
     "estimatedRulCycles": 0,
-    "disposition": "service-review",
+    "disposition": "recycle",
     "signOff": [
       {
-        "flag": "disposition:CALB_0_B182",
+        "flag": "disposition:NASA_B0005",
         "state": "decided",
-        "decision": "service-review"
+        "decision": "recycle"
       }
     ],
     "attestationValidForSignedEvidence": true,
@@ -38,23 +39,23 @@
     ]
   },
   "tamper": {
-    "cycle": 100,
+    "cycle": 168,
     "field": "dischargeCapacityAh",
-    "from": 45.00305,
-    "to": 54.00366,
+    "from": 1.325079,
+    "to": 1.5900948,
     "inputDigest": {
       "algorithm": "SHA-256",
-      "value": "QbVMONccNLQ3lfqHmpMFuo_6V7MN22Xuiv7d1Il-c7I"
+      "value": "8_Jj_8BkBZ9P5dj4GklvymfuA-b_OGX0HFg0Ns_JUxI"
     },
     "result": "insufficient-evidence",
-    "currentSoh": 0.9310975862068966,
+    "currentSoh": 0.7950474,
     "estimatedRulCycles": 0,
     "disposition": "service-review",
     "signOff": [
       {
-        "flag": "disposition:CALB_0_B182",
+        "flag": "disposition:NASA_B0005",
         "state": "stale",
-        "decision": "service-review"
+        "decision": "recycle"
       }
     ],
     "attestationValidForSignedEvidence": true,
@@ -62,23 +63,23 @@
     "changedRefs": [
       {
         "nodeType": "claim",
-        "id": "claim:battery-passport:CALB_0_B182"
+        "id": "claim:battery-passport:NASA_B0005"
       },
       {
         "nodeType": "evidence",
-        "id": "evidence:battery-history:CALB_0_B182"
+        "id": "evidence:battery-history:NASA_B0005"
       },
       {
         "nodeType": "model-run",
-        "id": "model-run:battery-health:CALB_0_B182"
+        "id": "model-run:battery-health:NASA_B0005"
       },
       {
         "nodeType": "verification",
-        "id": "verification:battery-passport:CALB_0_B182"
+        "id": "verification:battery-passport:NASA_B0005"
       },
       {
         "nodeType": "verification",
-        "id": "verification:disposition-sign-off:CALB_0_B182"
+        "id": "verification:disposition-sign-off:NASA_B0005"
       }
     ],
     "signatures": [
@@ -94,129 +95,129 @@
   },
   "publishedKeys": [
     {
-      "keyId": "key:demo-ed25519:2026-10-18T00:52:40.297Z",
+      "keyId": "key:demo-ed25519:2026-10-18T07:10:13.508Z",
       "suite": "classical",
       "algorithm": "Ed25519",
       "controller": "org:grounding-demo",
-      "createdAt": "2026-10-18T00:52:40.297Z",
-      "validFrom": "2026-10-18T00:52:40.297Z",
+      "createdAt": "2026-10-18T07:10:13.508Z",
+      "validFrom": "2026-10-18T07:10:13.508Z",
       "verificationKey": {
-        "keyId": "key:demo-ed25519:2026-10-18T00:52:40.297Z",
+        "keyId": "key:demo-ed25519:2026-10-18T07:10:13.508Z",
         "suite": "classical",
         "algorithm": "Ed25519",
         "encoding": "spki-der-base64url",
-        "publicKey": "MCowBQYDK2VwAyEAeLgrVhxjfbbZTFLVKRraV3pgWZcUUON-m54hLe-HElk"
+        "publicKey": "MCowBQYDK2VwAyEAtAo86RCDOYG3YwZzk0N9hewbOlQYdhvlr6I-y_Bd2SE"
       }
     },
     {
-      "keyId": "key:demo-ml-dsa-65:2026-10-18T00:52:40.297Z",
+      "keyId": "key:demo-ml-dsa-65:2026-10-18T07:10:13.508Z",
       "suite": "post-quantum",
       "algorithm": "ML-DSA-65",
       "controller": "org:grounding-demo",
-      "createdAt": "2026-10-18T00:52:40.297Z",
-      "validFrom": "2026-10-18T00:52:40.297Z",
+      "createdAt": "2026-10-18T07:10:13.508Z",
+      "validFrom": "2026-10-18T07:10:13.508Z",
       "verificationKey": {
-        "keyId": "key:demo-ml-dsa-65:2026-10-18T00:52:40.297Z",
+        "keyId": "key:demo-ml-dsa-65:2026-10-18T07:10:13.508Z",
         "suite": "post-quantum",
         "algorithm": "ML-DSA-65",
         "encoding": "spki-der-base64url",
-        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehACebiEO2KeYcLQBQwjD3fdxgP__3pffwiRwEkhVB2ZrC1MlTvwfAcTMwLy6EYk_7DkNFYHK2v4c5Rsznz9YfRrFCavIcfzwfzc8Dqg_gIyKZvvT5UOTszomHFR48jCPEoTdATJECZR7q5-G5CZ-FT410ludQO5aSI8mrAL4SpiQS_UKg-p2_ScBKOqXsQUISBTOUJQYdA-Npia9kddrOieI08Nrs4FoHry8IzzWNa8Y_MzuS1rrAVSHJ8RUgvceHPyQbnNVjcElYFAXY3mNcIKXOianqny9rfcuSWIUo7ECIIAjEr7T2aiA0FxKUNFs5AwkgLMtox6GUHn9I7KTO-ue4x1wcDfRry0P6a8qSzQof6MB8Uqo6nG2o8PYslFX3m-fdbd0c2f0nBwAvWJ7orvMg166KshaNvja1Blibum4pTnV5nJacM1KjY8lUQcLoq7IQV_ItWLe_RYg90Lxd8llX1hwDH_ULfgV2Nx3wJW5Qr7EBN3CVXpEzJZjQNzfdg8SN6eAsZfS0dL5TFEPiQOuUCGhthx1TIGv5VoQ93uMBITDnMdebAfvLydwh2AAMED4sdNjhmQIUsnKWQE8wNlgccJr-IkxTOhXD_DYvfAbcjNoycWAPp_2fw25Rh4xksWgVN01LhOKu2UQBjb90TlM-FYdYOSjKlSsh2dh9VZWK8o6euVqfK0HVQj50UVeWfAHSMD6ljPCCSGjgJT_Tk2_SbLPr8R2mRFsXFlIQqHty7YJXivmTGjaUbR2MlX63j4nY9EXH40lDNeKJqB5cEdowzT4RrIAVdKMh6ibjDSrmahbAg3dNEChK-R9ang2ouh_dz8x8AvNIOIxMu_sn4V9oxQ3RK89rOC-Kt5Mndxu2sWXIDZwjNKM8Qo2KSmIaCgXIFdz1iLmwNvsyUXSdD9CCwtVR7XIgbzstBrkdn_S-NuTJNEoczOmINYI84_2hu16Yz41X2UzZYjpzt-otX2yfDqIv3VWTUB_tn7GCDrHOGelyGao6MeTUmomN9RXbHWW5FAKNfG83Ec4f2eKhEaRrh-1nX_wAbifGfW9f6wSSADCXLPnXdxj3hsD4w99yCKOjMaFBt6FQOfw87ZIaGvKp2KDAE5xGdhuZhr96Hbvkr-dgrwVpFCNkogN3xG4TiyGBjQTurbibP1oVulgFr-xk71DBwlb26QkTTZcwcdDhPzQ5lG08ejpJt8lHVORTIuxy9GLtCfLdA50k-oCKVHRT8r1AWlVcS2FKJRMxoW0uwYCocxtsqK3e93WOOVFiHCvFIktZrNHJJJduDmL2TgdCDij5STyrOezw0N14A8UkMEvTE49Zesj-H7sNd_sEYEIpQwIIn39DPoo7ZC-5HVEMXrMuTHm1z58_C-gKRkoO6whPVpJsGP61qYj7B52VeN6U46_ZAsEUO3pilU2x6BqJbgUx4AV7AKMPwpcXBOCe9WbgRifi5P99PrJzMJ4XH9vOsJk_qMitKGHb_3jSLgiimz57wkvZ8Nst8T66Rt-PQJFr6a5LpAR-CAuT9atWQEGbJqW_z-vvJmlotlPzqfEnF1jGXL0Ku_nhAShYIVt7UTNtQt39iP8_vs53iTujigeKNdC08rYJQ4lU0nrQQxjIYhi7wy2nlC7dFh0OMt3IxrCm5-bZJb50CR8J9m-le9cu_Ll4jhWWb2GRpKZdsUvU13ixdKVMkjPfFxkjQKlAjXChapxTRGwBLxRncYUCqb_etrs1JBm_Z950VDGauLEu5dtncxHWbHuvQ9l31lN_GuuL6QYLAkhil1xnIf7MW8_wQ4f7WKjvDvCUs6wfZMlJNStU0PvfkrPmV5Ro_iYbWyXYSBvkKX13YRkNyhwV1cSglVPB0Je3XM8k_MMnKYZve0E22En52vf7OIc1_voEuM4o3OjiSSStAJO2ZKFwAbjMJ-PBPqHQXsggZ3yOfZbX8mnEaNmO3o4WNDXFCwt84DzbLIpASP-_HTLfR7N-QYZFPFxpoZ3KWDAMrzF01_-shdbv-hh5xRhDHZ90A0zjatGqT4klJ6WdAjco5p4s8WYJjGTr3gwsTtZDM8Jzg_e_kRGxJgWzLaBmvEhe3IAHbSKsH7NgzhnB-SWoyI53CSTrlRdyqcIUS2T-Quw1nfcrnaBQmYFDgOIiPSaBIGgWJLkeJEO1rRuAXOGODlwdymUP-C13u-v5pvQBl3Mr4yIaoh9V2BIBTyBzG5v4hMbpwEnkumWdt_21d8ZwUUssyVGKwQvs71mNWMUKS5IR3T_cw5776si8NmEnvQDNBhspRXDYp0gP0pKGzOLSgYDpzoHqC7WFxzJX2ZNMP7FaBP7DpKD0gWKZvIn9U8dWAG-TwUYQSzMs7k4uym4heiDppKYPm2pAoAH5gqzW20gOhfGicgRQsOrnlD2GzS4vzeaC8dcTHjjWO5TPGLMl7gNnBHYxD8VT3zZotkyp2BHJmchx65PpaAR1zDm3R-_37oIZWcsiBsbvQAhREhu8bsEPrXdPGQYtiqcgud-lnsidN7Uo5l1BNdBN5CYlD0RfKfmdAccCbHYYv7AtBdUmdIEbuC4SM54NfAudHgRM-0wXlXzvQuQgElVxWKgz2-mO8CsH"
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehANH5wS_9VvfX4zVZKqDBoRkFqKRZo1YC_uJEW_1VNLDibtIs_SuIuqyTpz-99G2DXphteowW1PoKijMGW2z5zhsGEoWee_GcocRGfk8oS8wqTP6Ntf5Rq-EHe-Fh9NOnvXpoufgsXFF0-IbOLyNBIzbKAeOaB3P5FKbp34-NCSeZLPAOzjOihtygu-al8f6UrVMQmr4-8ijd0QG9SaU0i7muHLsAelnKFGWOARscE8tjERphd8c2WsBzAeKHK94XEILHiiKwmbr1wjr_ge7ib98waGF093qk74AbgskvJhuzKcPsYjDSeybcm_i4B5xpyAvqWxgEvYKMweJwjjT90HQhv-1MqfuQQGYm8IF9cEyoyPoBPOqUXtI5C6WdAiHTfDaxwZn1SQhkOMT495By5uL0iU88LX3RqyTQ9MhCphgSS2m6wdXKrRqGlE1-N-krfREHLgS06Q0XqUvlkus_lHWHkEYNJOa_TdXetbuKlyrylfuaoZdB5w34rswyGVj8pzQ8HiPFmY5zx2plliW0kshQVwZ_4PvSGAb0-dBzylwFXe1Kn3jcf87pjkdIqssYDWw7aX0iJ_c8xHG1L6-nDiDzpWGVrpMgPdaLxVHSm_DS5uFzt2wqRuV-Gv7hVJo4eH8hA-U8KUPPdgPDaTm065Ml4fgYjmyrz7Iqkoe9e8tV7JbMr5RTZw5K0GVenwzvtDbGZnWcD-F8WUGz38lFI4mWPHWjruajhFZ7OOYNWlSMzaHjfIDWSXs3mxabu0A4MCiQGFfGtR7L_5pDsKyqvX6KBWT4Bq4xHNKqvO8D5liS15aT0VyU1_peho08V4DG9-G3LLH3PneT2gUcX78k6SrA-zuAMOPzUF3APvzW__uVwir7GV8NV8bdJAI70NA3pQZucMkeKl_0LSVbnBemDz1zgpr68TVwqVtgOer0dNQCC2cQQ_8tWu_dwjk1Ylm_5hZMH1AOrTZigiyqUqN3ntZdlZxwJsXeIKKpzr4csUJv7WARrRLeO7Rn-yipzNBc1lmyOCnxg4XeacLzGdO0vFtLxk3DnaiNisRoSSaVXho72cIB7-o3QmjDdkIeaAUB7ZmhDgaeLOZDWd8EgDVPi_b5cj4Q5Udjdfhk_HEwzV65Qu581e_h5AThsB09G4jZfux_CCQTQb047r-hRB0VHHxgNZ4FLdotIIUUpYiIhEDd_dHUCHFhfZ7l8HCj6Q9RLtHxoFqljqI9C5eMPpD1WaF-hoOn3lpspTfdLh0sEfXRkiblh_hUhzMS1nXjlCdq6oQev7x2cieA8MQAlI7nTDvqQySppgyfghspirbNk0XLmJsVju5ZwxHvGyRepy8B5F2holHoo8eJbBmGYrlkgwdPnNaXm53X8wLiKb52tWpuh1M-YBe-Dyl69wX3ITgs2Uf-ZNZNBAeGWjO8InONZG70D1EZJUGcRAALrRpVsfGcECsF2MKK7awi5EMCAgAAESqk8KjMwiIgKoaJFTSHwf_e-VkSGGylUWdHpMs7RZr3l1kPGGLptPgs_TLuGt77yFee1e8ESfFCaupA5AF5Z8JQZG4ek9sVywwNkcukrLhpn_wg6F6PJBwOV83xUnP_kQuEwoOlB2fY47baod9-GA9bAk3MlVo8dmh10t3WHphe2TbnQxu9CKcGbxch0adjTYR4WRWhd0ygHmy-KSxK1KoFqOGAhGSHz42I9o191I8uCYgkLsceACsxpcBuUJOgNOrjZ1iXhz4t7S3EsuYvffKXbvNb65u_bROkuvor97uEHe-aqBMv6hIt0wId0PSz4l5YezueIEpFnLhlk8KS6KqsLViJeRodlX1uy5Fkl808WMXPjAkRqSZi4A96-tq9lrS-TptqnkafiS7nSnh_-olT1J5eVn-fxKuRphEBi4wU7v8VhESDBvdgKFTdGGeXSd191bFbLyDWFZEaPuoWqw5A1D1QLyLhaEoVD-kxpIEvWr-d5RK41Fs-QfpoQVIc978W-scU0Pt8Zr0HP2cgRtWN9JOMpDc3gpvvcKFEWSpc9Ly6y0Qw-wsEO_URrnvQFgx27ikxNJf-Kw4q5Z2AyZq7GkRO4nIA6h3TogrqqDBpRs3NQoPpYyjFbZcJtfsbn5WDO8wjPab0D89ijR1Ad208pEi-uZ2DqW0vGmZh3zIITW19fWUmEevGPUBIyn44chW2-9a_HjYr9lYGUMQxosvzQnelYCMudKd-IJXSMPYbsqkqL0fDW9dxcAN32XkcnvwpAxAkRHPAqpTQ9tztjQEiFmoFuZ2mu2DTgMnb4cbPO-1grwpneSqOmZrtYvcAluJgxTKxgroJ9BALai0EOTlQggfwFEc4Dczr5HqY_BhY8DA5yPNoUruDrcjHSHILANpbRQ7Il3XPEmI1BOLcybvdCOlPtZ_ujFew6oOgoF3mVkqyDdQyqGMKYV1PL6KG7fhNOvlYn1_qU2NNFW8VN7RcJ6vtH2cC1bn2VcVeBHh7Gdb_zX_wVMv91LoETwBfNB44s3DHuXRGatbg0AVXR_gN_MZggrTcfcWD-WA-KxDG3B4Yp3bCpSiv6xuSfKIw2KPYotBldzK2Z-Cikf03Vj_lcZjo-vyWinvMC1ONr6Va"
       }
     }
   ],
   "attestation": {
     "payload": {
       "version": "grounding.attestation/0.1",
-      "id": "attestation:battery-dpp:2026-10-18T00:52:40.297Z",
+      "id": "attestation:battery-dpp:2026-10-18T07:10:13.508Z",
       "attester": {
         "subjectId": "org:grounding-demo",
         "name": "Grounding demo run"
       },
-      "statement": "Battery passport for CALB_0_B182 recomputed from the BatteryLife cycle history. Verification result at signing: reconciled; disposition service-review, signed off by a person.",
+      "statement": "Battery passport for NASA_B0005 recomputed from the NASA Ames cycle and impedance history. Verification result at signing: reconciled; disposition recycle, signed off by a person.",
       "claimRefs": [
         {
           "nodeType": "claim",
-          "id": "claim:battery-passport:CALB_0_B182"
+          "id": "claim:battery-passport:NASA_B0005"
         }
       ],
       "verificationRef": {
         "nodeType": "verification",
-        "id": "verification:battery-passport:CALB_0_B182"
+        "id": "verification:battery-passport:NASA_B0005"
       },
       "evidenceRoot": {
         "algorithm": "SHA-256",
-        "value": "AaKAebxsYmLaJJcqugp0Wvnc_fYu3DpTl6s9HSGcjyk"
+        "value": "M1lqYbVG2I7TVhI59ELHC62f9f0bJmdjicD8z_GfOKU"
       },
       "manifestVersion": "grounding.evidence-manifest/0.1",
-      "issuedAt": "2026-10-18T00:52:40.297Z"
+      "issuedAt": "2026-10-18T07:10:13.508Z"
     },
     "evidence": {
       "manifest": {
         "version": "grounding.evidence-manifest/0.1",
-        "caseId": "case:battery:CALB_0_B182",
+        "caseId": "case:battery:NASA_B0005",
         "caseSchemaVersion": "grounding.case/0.1",
         "rootRefs": [
           {
             "nodeType": "verification",
-            "id": "verification:battery-passport:CALB_0_B182"
+            "id": "verification:battery-passport:NASA_B0005"
           }
         ],
         "nodes": [
           {
             "ref": {
               "nodeType": "claim",
-              "id": "claim:battery-passport:CALB_0_B182"
+              "id": "claim:battery-passport:NASA_B0005"
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "KXb8cG2n3hK_MDPAKodz6CIOUFBGobeDTxpdCU7tHLo"
+              "value": "FbUVofG3Ksl9PD-ZQk5y3RAG-WxOwvReUqQeVfbZjuY"
             }
           },
           {
             "ref": {
               "nodeType": "evidence",
-              "id": "evidence:battery-history:CALB_0_B182"
+              "id": "evidence:battery-history:NASA_B0005"
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "SWNj211BNfr2YEn-YZOJOKyqm9UfZOvAhr4pybQQjK0"
+              "value": "XZkrgs-n58uk4CzYF-6sE9NQOxnNZUW9W-kwj18RMYc"
             }
           },
           {
             "ref": {
               "nodeType": "model-run",
-              "id": "model-run:battery-health:CALB_0_B182"
+              "id": "model-run:battery-health:NASA_B0005"
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "uAku5WZAi9tWRseJ-Jy3LrvGf5QFPxr8mv1OtsCIbtI"
+              "value": "76wHLtL3RPlIVLFaKCzdZ6UNQoQ6lOfMSG3OvBMx3yY"
             }
           },
           {
             "ref": {
               "nodeType": "verification",
-              "id": "verification:battery-passport:CALB_0_B182"
+              "id": "verification:battery-passport:NASA_B0005"
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "WkbIkjlWDUOq8JaL4UzfiBOiAn8vsmETexh1T2gm15k"
+              "value": "iKjRwRP_A7dueqavRqtlcA1WVt-NfImJyYSQ3yQBRKk"
             }
           },
           {
             "ref": {
               "nodeType": "verification",
-              "id": "verification:disposition-sign-off:CALB_0_B182"
+              "id": "verification:disposition-sign-off:NASA_B0005"
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "r6wkd5rjpmxnAs5xLPRmRZgou1RG3hiNngxJWAuDG8U"
+              "value": "oJg0EfBZtjtXEj0rwAIX6sh2VKD6oqMRC2s3i0iG3FA"
             }
           }
         ]
       },
       "root": {
         "algorithm": "SHA-256",
-        "value": "AaKAebxsYmLaJJcqugp0Wvnc_fYu3DpTl6s9HSGcjyk"
+        "value": "M1lqYbVG2I7TVhI59ELHC62f9f0bJmdjicD8z_GfOKU"
       }
     },
     "envelope": {
@@ -225,23 +226,23 @@
       "schemaVersion": "grounding.attestation/0.1",
       "payloadHash": {
         "algorithm": "SHA-256",
-        "value": "YuuCN7nELuI2lv9K6X7V-FkL8sUShqkfYB2tYvmvLTU"
+        "value": "W19R3ncXMixkP6JHw95UBkbyChTCChIFT7Y-7FWp5fg"
       },
-      "createdAt": "2026-10-18T00:52:40.297Z",
+      "createdAt": "2026-10-18T07:10:13.508Z",
       "signatures": [
         {
           "suite": "classical",
           "algorithm": "Ed25519",
-          "keyId": "key:demo-ed25519:2026-10-18T00:52:40.297Z",
+          "keyId": "key:demo-ed25519:2026-10-18T07:10:13.508Z",
           "encoding": "base64url",
-          "value": "dqfmlw-Nep27y0JXNkp00_3gulvI-QWhjkmDrI-YVtUBiq6ylhk3HwovZOVey-kNZlXNU9vAJGZEAyw7fKBwAw"
+          "value": "u7xoSv6jbG9SzyFxWdPq9mZ195stepiUtS99Vy7P84vhbEOYi_0l9FdIl8rwKbYEef03CWjshNmqJ3XcV-qIDg"
         },
         {
           "suite": "post-quantum",
           "algorithm": "ML-DSA-65",
-          "keyId": "key:demo-ml-dsa-65:2026-10-18T00:52:40.297Z",
+          "keyId": "key:demo-ml-dsa-65:2026-10-18T07:10:13.508Z",
           "encoding": "base64url",
-          "value": "49_c2xfpxra3X2Jh7wo2656-NtSAtg1v1605hibqZkz2OfVsopllopBaTCxwDS0yxmX7bPtc9OmzaJOQ8Krd5Pp95vW94WwaA6sZDeQ-jdTcdDUUDbW_PAaLGAcTaepHlWutNRu2OL6BeXEJm8D_5-JDA56NJrxEPzUVVRF0y9nAUeLfK0kduAXAcixWaiOwzBJM07qnC4jpifNJ6pD_d4viGmrffEg8YdPKpacE_ksIYbnfCy1wn1C0iBV46utEQtBYEXOMAdjJ2lsHmL8L36J0PQ31_MFwxPd9ko5FYPqM_emnqkUo6mXoqgbvr9r9AxCHMf-hw5Bx7heYG2qFeCPoxYNur3v1CXVPdYsDgF_i5Z3s1OoaliIq8_cpx3VI5h0uLgX4zo-KjZnsqVv-HnQ_9BdDKFrUf_l2pVs6AMHHzRlD0v55MEWDNW6DLlhJfHNiJ_1XE-M8Exms77PVTLgDTnb5QqbjutXWGpzGxz4S55SWqzGHBsc8m8z18TMoLpGhwd4ZbYbwLPl-ZpkpBJA3bzBDWhJSMIBhCpYmvg2rxnzQj5De-TqPjX3G7x_mXfQPHjWTt1s8gL95bTFPwuUkprCC-3ccawmAyVx2EgCvQOd_ODYVWZZ8O4q1rvRgqSR5QmK3ZNhgT2t889mJvnjeBrJed3eCybGU25gr2HjaVYYB_ZgbAeQhb4sLa4gVRZJbjlrUGZvoWp9dchkADfZKNSW-bmjTAAD-CaYKEERkYQg92-fo6O8k0edawUZ0V9cnVnJMFHJR6y8N0CU5Z1CH2lJKibN-QzWz30-xEyA1tKmoF_G-9-CEWtyQu2_iPd-0NY88AFQ_bwTE3OH1i_fAEbJtJO32wF61n0XMqgaS1AIEUD39EhgHYagpl4Y2-gwxDt4KuXUmcj5hjPUYaIuHU-vwF5f_vqMdysbzHLqYbgudlCcbBel57nDFjVVW4QiQ8sDVpGR4OwwaVnEiF8JyB19QNozoRor9ptEehFblIvFBLJK48w2OetNCZnMmZIB98bLj9OZU8OIaLwiqW-9sGSJw_YymHm3EZCyUuMbdlWq_wd0XxP4-g8ESi6SIKmuWGQpXB4gcGXHIbg9xUVawH5EDSny9mZ1KQubJhmXMiTgqDeCORBZl-6j6llMD49TzYmVrVOKv5BMS-bgtyw5SeppQNJyH8wvX_ZCv95xhjKHZ5e22oLCDr-t4qNAkrk3abQ4qGANlftPeZnP-D6GnAScsmG_qjHBdiMccT7oBs4fMbCVkW71RzDoWeYQzszFEQxwL5xVJ_mFFNMV-B_N8O5mVIN-1e1B5-DWHkXE5_UlY6GVRI8C8ggxzEFJp351i8EGVhX1mTblXCfYzdZppXS4HphKgoOBnEPxgfMlk_9jmpgThvG0oqSMgCoZyzUGVDzsc3d5y-oZQqIP-zleFXstmpuh0DSHkwefPtLMCcuktweOLj1UysgmVZbBN0_8X1M5c5otm02zE4KtB3JNTPkmSS0oD9oxC5yZ-gY6pj6Q0XfCsZ4XW0AyBSpB7G7J7kZpkK4YSOaF1heSv1JutAkcEc_Xs1cVdGzwP8fuc2hzEQHpJSwfWGi3b1pNr516lkWwTfuCeNWKqgtX-Vz8yRpN7IPt_NVnQOl1mZYgw9EhLWvkyZHQGIsYnArAKpHj3aI2iPq9HlbQ_RNgIdT-JNzNQhCtuQWgyyL2ancgsS-XVlJwCIooDCQAqFGPbsNWwwuYbDoMaNnW1rtRkfFzZdfOMtA6_ffrji1X_oiIPmaxFHStvBOk1DPNgbZqeCrwoxzzdzEAEIJgKiLJhgUSwYC3U3rKI6PAqtzNi_q0VsGzq977gOyXh3JTcfTeprqKJrNstDw3rtXLwh6hkY806UnJJfz5ZDg44gRNhKiwUCv9pr0PEbT5wOYpgKJL9UCDdEVDL-Tyu8Qulp8djSKjwtszGHtIXC8segxaAiRUPwRJPBOeyt-U6AE7pVT6prPW0NTud1l7NVBTvCkjy_pfw5K3e_-T8li1o3155Rv7xFIAwW8U0gM8vQ7PPl_1DvElh05CPr0Rxst1BPRbgvtLlDFQ43HMrkNkO2wfSyzJi1l_x0GO7PTL_i9XxYvmq6xCe0s8xzRYsLnczQ72F6f6vOlka5EtwwxncT6Z4rrt-i03yXqbwQ6UGjon-bA70kHR6aL_fv-k4Eg61h_6Y8MEGLJN918JWioP5iE_Z7zXkOkllfCdQl3tjZOSOvam57kyU5bgJ1ZmenXm-Sm2rQODN-jK9tZ8mYRBlpFRCxRQfHP9aQkHCoIhslM1-povBsMG5JeKINt5myvY8caXXv9rjeqhsLEkF-02dAsdsp_Mbllu5qyCctGjpeOYGW78e_94N6imE8NFy155t6v9F-xR_h8BOFjr3jdZS3gfVK0f8cB0naUWbeDS-VwUZiHqML-lI4zrQrNY7GaUInzfPJJODq36hyGW84jNcNzg7zpzB7kNpiwBqqfVJfTSahtnyaeUs9WagzOx1Ns0fLIoAXR2qjp0ioH-zT6Ne0Q2Xi-geU-3xhP92_Iupkw2cweQwI4VqdNPLReZVf9S98MjW5TQC7R-wjq6k_yfplzGfkthY8sBR_G53b03PHnaxr5MBVV8NR4PiZPvZ1q8mW5GMVC8W1SzxMcJcZIAeftGC2OejlYykAAKyUN-3n4TVqM7PrpdpG-RgL757clAUTyk5n1eNS7zrGEdxfoIigtNmS-XTzoi81sI73UvBX30_iVJ5UzdfL3NpqJOdMWGK2NzcSqWKBrp_nBcLPwqfJqmVsKUxxYSU1v-06kEAOHz-6A7v44QSu0ft-CPTZ5AjVg73XVXVPocIpjeXRnh9YhbOPonPYz05iGrMR7DMx-xjnnXQZEDZeXrpIZuXC6PPjAd0qFULhgBXqWben8Xo2_09FkUqHjzgPnrR9nJsnocYphkOAF5sUv2lv7-YzMyRexEcOs-_UemXeU-WWHPhF0U0hu6au4MSWM4sS4OPBWAm9e_vh7NbGsEW9MZ26PNw8uElepUbLOoIUGZ5F-7SCmfGP_RrxTwn5AhOyt7SDXKeiUgmGihyg712nLGudjlGsXNzNVOJJvvUXs1PskDvHbz-NENeKy0r1CNBvG_yq-Yn-l9tpOeB4bCLp825DNGXjmkoov9bdtLeca7G9IHCmGE4BB2mirrdC93cIJ3rLnQTlKHuIqaWGOJ_fCf8lC-VTjI7uAQ9L22fYi2D4X2Sx6vjnr8PKHF7dIpYIylSoylIqzxcBTLi9N4xx-IhGgXth7QtrgaKJT82qZQ_9DnKbyvnjMcNuVmCrWkyKfHO1WS1RLX9PEw55C8WRmztnzgLn3GABUBUmqb4fwkMhPEul2DLS2xnBAOAdB0Ua8xtY4yMX07Bgr9OivuMt2mmmOh8JSBiSdFfPI3p7PRIwNgTikq8a3jIDk5M3ru1xobkNYYsKporAW0csMXNAFK2vkRH0enlcw5VpYn-Ou0JE6Uu7xs27T_mGE-YJ8-KpZ2VnANPz0FvARF7rQ4CiTK1Yw4xieeqbM4BG-gDW0FWHTsS2G1blub_SY_1d-B92jFuIMC9vWJ3S2dbMA2PjMj097WPugdn_dxEP9FFmO3NDTORlQVghCs1X4x3bkfrlv6bIyLeYt3TUe6SPW5pvu7t0y7uWKOlIdsDyhOG7yk5weEqNy-tI3JMdoLSeu7gyqkisLHtu-8DA05lDYIuYUmTJl9ZfksRGtA7Df-ZfvLB8bPkNMAfMiEjCvuB1C7_wgQsoffk6EDoxDQx3T5YyINbaRkufMystPYpkQhyEatMTP1a7nDXjSoW9Ca7V1nwDc7N1XiXE5Z3kbjifIE0yn_5mZt9IGpVU5dIGLYHy20Y0AwVoAnYrKO6b1Gwv8mdTPP-w-7b7G8ZvMeLVZ1N3rpZ6wnKPwhb07rzWZBu8auDdlV3up3EyEMDfYbCnNFQNlwh2lmwzdGD5gQosHYQQU-hl1OAsF8v_E-gNo45OElVjzxByy0H8AF-YJY7AGvcDbKKww-XexxH5CIgp3U83fmjPrrdrPczwHItkj8XOcV560sul6MePYgfpm9c7ywqEorm3Q1fEVT9_D3dmDHVCkaSclAqxhA93xAHr5omnOAEOfgPYbJCg0eisfvduR8fJTI7pcdQoqMW71I0EpTYnlJYD7JZpe-OtAeI0Vt9ati0tai78k50Uql9Wsu3pQYMEQgDfFcetNV0CNmj20LauC6n0oP-mA-lD-P0GQV0L_B8jj1Mqhiq2ZQysYGeJ9dcfKVP8RMGzAE-yZpzjnwqoi1ARByuVj1uYdK0EamqmQ_yLyNTrtFPNnZEoqOoxdXt7wPBPD9ce3yBrbvK92xyqccWPrv3LlFakPIAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAoUGBwh"
+          "value": "1lX0Q-N7IbzmZo3kcr7Kg9AFkjEWpC6K73Ec1-JCQdqnGNjyyr5r_Sx99EqmZjcUKClD0VSYmR4kVIskq25eoazuqXEfbBhIa9QLUWm3wOT9HAx9tHkA3f6gJRXyan0KAW8x4gP6bNv133AIxzgenLfb2qzA73eu2ckANvW_Gz_z8-3BWr7bLjqWyMnGwI0Uu8ii7fF5BLnSg1R97-pA65_AAemtuy_ymAtWKnxOKLQt9yEtYXa0SYfTj0cfeTbqQ3lOaFDZIJoqeHaI5TlTrtv4fdtWFhCr5-MaP6cbEIIXcjsBVgzX0H-M-No5NZ0P8YD0PZb6DKL4tFphtW9ieQwdBMYR4gIpRwLLSpfZdlGBg7y3tvYb4ZQzjOh9UVbgbM8wrEFtqAMUzmFJj5wEXfv4T9WFFODA-vGvKlAKoXhRz9lSa9joUKBRBuZPoaLeXo5WBIPjzG0fk2mV6rSRafkgKYNwGWQ6VkuxtBIkY3lwSmLaeS8UHAXST3JCIGdkh1E7akuYdiyIitiyYH_SPWO8hKX6wb9i9Pj6-DsFxCE1S_wVRBRycL_3iXyWNtF9ROgpl_9YiGOKOal8F47GDUO0lbEYWll62nk5rqIvAnlr587Yg7TLfLlbFe4VWBIlS2xLR_FgwKR1KInCZ6VpcvMSihnU1GXBYYC76xaFRNalFOAAFd3C8B_HNhGQwcAVUkLBHSt8DANF89rvF6O7ZJweHaGoxz54pxKeA0zh1z5WLEkZUzJjUaNvUC4DAumb55fnQDsDvSvK5RQT9M1BzAlsymllcy0hczaOGCpOHVnuM_qKQ4js-V96AN3u-Eua6x6YKYRrF8JthpSCV2oMaisZuT-0Fm4vhDmawqdfs7kRQoTpfYBOfn1RkMJh9kzB6UWA1LTS-EPCwk3yVARdPwSrFJ1w-PABpI5kJx4KKkILoeNYpwiNzfU8lWx2vTH9Vmax5wXO7wyULHuNGCfjGMfJW2a2HRS7AJaHd4bkhBJsQD40AlB-17G53kfTfjVMc0AeNoRvI2inWqsfLg3IYiwB1hnOxs2_dkY370dolQCu9K_hH1nQe7I9R0P0TExGIMZJrGTmb-mMg8I2Wt_IVE2sNWGBI05XxQpm77buZMunjv7yXfp3VsY2nwXJyCVEAeEcanfgrlKRvAyPk10fq4629bMt7P4XROkerRakcPQ1M-eVX7tadjBT-JeLBJWoQJc6S3TaDJmm5iki7wk-I3iIYQvfvLbFztae8zK4PseIcl-ho0vuW4DAk3ZG-X-gYyZu3LB9JWS894DeH4StSNSucG_dyQHqB50y6Uwx1EFYOmu8Xs2fNrPhyLAiItliyXCogRMWnLnQ5Aujmuh7GNSU8erR-iCmqPE9x8o7BadlLznREReI6RIdxUrfb8RcbNZ5Fzbz5uJkqYDlPQ9QzCnf-QGeNs-7AcFOPtvwj5Xg8l_-520jiimJctUYXbQhQ_o9a2KaAhIjRBMB9kNfGHKzQsuAdFMVqPZOZF4u2JyBov0458OX1iR4AaEidH4A3T6Laiu3ld80uUYIP_G5gBET0ycRyqXGyFdKBs3Iv6X3sNfWiumEsoj3s3zhV7E68CDD6g8T0_uXx82s416KjOiPLhH9LhwwbFYgPQqREcPtJv9jHsAqFLs4hMDn7Ma4hqCv9a8Sx_ImGAsCeNQQhenIo8mmVTC0aJU67hFqGaUW8I4tt7CDQ5LjCMePK_vWGq45RFMsh4-a_SamjfWXdmgvLxYj6Wc_xLjmWIITaSqVuMV6d05xIb_CMRuYUMUq_aWdnIwD212zm1ouI_gLN3LlGW8q7EWn3saBmbeQOfCvXyfl2CF7HaLHqLLPhd57GrA7Y0_q6ObtDcXYO-MO7qRZjQdkBFeCx4AMG_1JfkRvevMhTfMM4EyqH9QQl6v6E0-qt8EqM9Nr8pk8_iZJ4IF2FB5YEeFKn_U-KQKlEs4EgBRLegTkLlJfsaqniGaxQJYBLEdpgG_6vhfxTx02cMEClgR1uko7I8IIPce5VfF34QBDZ8yh2byVhjWet0vAenfPF7xGG_V31u2bFR2Ce7Zi1q1hMo4ODy-M2CdMaokuj2HLUD9zRCibBVWr3zGRS6oTo8ZVN8sc8pAhOlIzPSVXq5rwMq1tz_vssUG2vOHWbctdQ6GC4X2qgnXyq2OJRsm400Pjc-dPrhSiZOHccMM7hdpmXvfIF9w5LF6LioA69u89-EiUEzrpUJ2OOPa0pN_bKtYq0_-_CpDl3ybn5o_kPvKyMqv5J_UXHJb9RSlFhM_7kAaJgrSaA1VzxuVGTJX1mb3VBpPXBLSw6bN-ogob1rwPZ3LysuKcC3I9DuyZo8NyYw621u1Q3ehPAzHIbLRfyIJucUGTs44R4H0VBTmyqtzBIMw5wuR4TIisIxNcXmIhkRAtvSQklerWByKsBQ_txxxZ5Eok-9crN1T7LusrZmDqXV1H0Ob4JAxC_xqbzdo6DCGbuT2QMIegFCjv4MxtZeH0xaVJ3ST2bMXC29sqdYGiBBUB4L5XNF_cqxiRetwSRxow2YlkWjK5Z0yXG3FYCVcYHEwhF99fpWSIeb7hCujHPgef1wJRSpKTUzfdMty5onVZUJY8jfXxZjsysI928ANx5mZxA37JnrJ5uq62CGl3-_IjGPRJsCymq_SgMvBlpcx90noa4yfG6BsFeEXP0qkdzFlO4V9OJ-rKu3mZVFB9xNGJVWbE9J_dTVdmwhNMk5UofgZj-XNxBqXjspMRB8iwmxk29IkW-nKcNjfkCsKIqiFeJJGkoYm-MOlX7JTU2Rt7LQjLzTX8bJ4RvhLP3b7u3eDJeS6xlyZuWyfEvFmT2q8LXY5fEPPDKNGESDZvG3ueD9JrIU3AmnW5brU8rT9FV7pT3Z83cWAln-xqccSdRpGpr0LCRwLGr3MEGRsEQENnxazX93-zQLHen5SHJkKJ8hGCrhkI3ppiev-6zsOjy7ZV5rHQ-N13PeFh95f9SAMQCTIOqxaMD3i7d1cmZjPFT7v-8dlTini1w_qC7KIvBE1K7sbRAETHNx88O52Q-a3BtOhaD2odTLVe1Rtt9YTEtTD02FJSskDKMbv0Q31wyn0y4TTPxBYtxZldXZUuVzKmIIYPVGpmceW7Zgf7ZTp5APcb0W1E_k21vxZpDDJbwvtN6Pz8KfIW2tVGUfDfg4KMhQDVZuhOZdbAZo5NVYZihjUAx3ur_1NnOxrocyULAawQTCWBpnhusb8L4APRzBz79QNipjHUfKBIsWIQMsUN4yfuXbM2cpvaCweDy5fdr38d8dbnJot7drYOZhewUyKcksbtNp8Cdax_7WwBGXWXh2iv7_VMOzcqIsnWxaJHv7QL2qrX5RkG1ZT89bhlfNhQwfwsGWi7ykWlWAbW8MHoQVRSFdUnNPLeLi6oe2QJpJnoRyl4Vad8omZbSjpF1CBNuN_yfo9revI5BZ9qsxp3Mdzc08bxPY4zen3VwEmvlxkvJbqTCRNPEYvUZI2H7YbZxsXSntmLvNGR_QnCKkakd7waKevJzzfvZFKYBwAtmav53pqhIpweH2RCanZJGHRATqBPgUCdnCoijqStHKcF6Ey7rzleRJWqA8zLGL3m10hHuYizwp0MbwbellIrwviRfNkJ-CuJHlXpIaienowRHFfyZbetB9kAH_oRluWeSBJUE0LrROkhrtLepbmDL1TJYezHrrOAXOb3AfTGsMw0GyyRR6IDeJ-Ssugh0-a_N1gSH370KQNj81gpC5GTzW0C5K5PMOUweqbrO7f0TEv9dD9yvtS30v_3-0a8-bdIFH6S0YqWcEPzznGBr1tUQaJ76x5PQTeCppH_jQLKAyB_ykEcMZlWoVMAiOYXWtNubC5az8qn01yN5Ec1W5XkLHIKfkcMFfEBvwH17b677QuGGEYKP0d9AeFyIDsl45oBG-727JIlwMqe_EQXmeqD-7sGVev73e8raaN6UVvgO0eBdul3kUA-KDS3Ndvv1HVYJSHlb76ftKHmYNXVdbTXAf3mHATh5VHIfU0Sxk4tuivoAtqGWxgicMlPzPKY8gQ-EGFXNbpX0WfMT5twQ3vFHo7yASE9ISvRmu-O0pMnixosB1ogMJVEl8w1IIfqEk40b2Pmz7HNMtkBCDtqqbwUQjNo6fZb4Hm6cr3Foi9f7UwGAo93GHb_ptUcnWqO-ENlIo9rTAytAOiGnXSfmS1OJsk3VtdHd9NcQ6l2AfBWy02vSwMtjq6oGpiOHWd-FHdOr317WegKWG8TGgZpBt1cQ3AL41kfVtJxzgzCt_ioD3lpco_H_nPTBFYWlOOoMMSJb2YreTYwQePGCDsEGSlVeJSipOH9XHaEzyxVWmrHMWJrgpfL8vYDBiRjkLvmBRI1SFRxfq7G1tvg8fgAAAAAAAAACg4TGyIw"
         }
       ]
     },
@@ -251,12 +252,12 @@
         "from": "pending",
         "to": "attested",
         "actor": "org:grounding-demo",
-        "at": "2026-10-18T00:52:40.297Z",
+        "at": "2026-10-18T07:10:13.508Z",
         "reason": "Signed attestation issued.",
         "evidenceRefs": [
           {
             "nodeType": "verification",
-            "id": "verification:battery-passport:CALB_0_B182"
+            "id": "verification:battery-passport:NASA_B0005"
           }
         ]
       }
@@ -265,43 +266,44 @@
   },
   "case": {
     "schemaVersion": "grounding.case/0.1",
-    "caseId": "case:battery:CALB_0_B182",
-    "title": "Battery passport — CALB_0_B182",
+    "caseId": "case:battery:NASA_B0005",
+    "title": "Battery passport — NASA_B0005",
     "capabilities": [
       "battery-dpp",
       "pq-attestation"
     ],
-    "createdAt": "2026-10-18T00:52:40.297Z",
+    "createdAt": "2026-10-18T07:10:13.508Z",
     "claims": [
       {
         "nodeType": "claim",
-        "id": "claim:battery-passport:CALB_0_B182",
-        "createdAt": "2026-10-18T00:52:40.297Z",
+        "id": "claim:battery-passport:NASA_B0005",
+        "createdAt": "2026-10-18T07:10:13.508Z",
         "provenance": [
           {
             "nodeType": "model-run",
-            "id": "model-run:battery-health:CALB_0_B182",
+            "id": "model-run:battery-health:NASA_B0005",
             "role": "derived-by"
           }
         ],
         "subject": {
-          "id": "battery:CALB_0_B182",
+          "id": "battery:NASA_B0005",
           "kind": "asset",
-          "name": "CALB_0_B182"
+          "name": "NASA_B0005"
         },
         "assertion": {
           "kind": "qualitative",
-          "statement": "Battery disposition: service-review (policy proposed repurpose; signed off by person:energy-manager); SOH=0.7759 of nominal capacity, 0.9055 of the first recorded cycle; estimated RUL=0.0 cycles"
+          "statement": "Battery disposition: recycle (policy proposed retire-review; signed off by person:energy-manager); SOH=0.6625 of nominal capacity, 0.7138 of the first recorded cycle; estimated RUL=0.0 cycles"
         },
         "boundary": {
           "methodology": "Linear capacity trend over the recorded cycles; disposition by a fixed policy, signed off by a person.",
           "accounting": {
             "included": [
-              "Discharge capacity of cycles 1 to 100 of cell CALB_0_B182",
-              "State of health relative to the nominal capacity of 58 Ah"
+              "Discharge capacity of cycles 1 to 168 of cell NASA_B0005",
+              "State of health relative to the nominal capacity of 2 Ah",
+              "Ohmic resistance from 278 impedance sweeps: Median ohmic resistance Re of the first and of the last 5 impedance sweeps (EIS fits by the data provider); the first sweep followed cycle 19, so this is not a beginning-of-life value"
             ],
             "excluded": [
-              "Cycles after 100",
+              "Cycles after 168",
               "Calendar ageing between recorded cycles"
             ],
             "policyChoices": [
@@ -313,7 +315,7 @@
             "notAssessed": [
               "Electrical, thermal, mechanical and safety condition",
               "The battery's carbon footprint and other EU Battery Regulation passport fields",
-              "BatteryLife's published life-prediction models"
+              "Life-prediction models published for this data set"
             ]
           }
         },
@@ -321,17 +323,17 @@
           {
             "dimension": "source-found",
             "state": "confirmed",
-            "assessedAt": "2026-10-18T00:52:40.297Z"
+            "assessedAt": "2026-10-18T07:10:13.508Z"
           },
           {
             "dimension": "calculation-reproduced",
             "state": "confirmed",
-            "assessedAt": "2026-10-18T00:52:40.297Z"
+            "assessedAt": "2026-10-18T07:10:13.508Z"
           },
           {
             "dimension": "evidence-integrity-confirmed",
             "state": "confirmed",
-            "assessedAt": "2026-10-18T00:52:40.297Z"
+            "assessedAt": "2026-10-18T07:10:13.508Z"
           }
         ]
       }
@@ -339,30 +341,30 @@
     "evidence": [
       {
         "nodeType": "evidence",
-        "id": "evidence:battery-history:CALB_0_B182",
-        "createdAt": "2026-10-18T00:52:40.297Z",
+        "id": "evidence:battery-history:NASA_B0005",
+        "createdAt": "2026-10-18T07:10:13.508Z",
         "provenance": [],
         "kind": "dataset",
         "source": {
-          "uri": "https://zenodo.org/records/19688272",
-          "publisher": "BatteryLife",
-          "retrievedAt": "2026-10-18T00:52:40.297Z"
+          "uri": "https://phm-datasets.s3.amazonaws.com/NASA/5.+Battery+Data+Set.zip",
+          "publisher": "NASA Ames Research Center, Prognostics Center of Excellence",
+          "retrievedAt": "2026-10-18T07:10:13.508Z"
         },
         "integrity": {
           "algorithm": "SHA-256",
-          "value": "ejzMDyWCp2cFb8NtKk194M1YuOEWB0xuNZcnJKARGp0"
+          "value": "1N9IxY1jWE1IO9bswSvQe3vkddCRE9eSU84tyYIARUc"
         },
         "access": {
           "mode": "committed",
-          "instructions": "data/external/batterylife-processed"
+          "instructions": "data/external/nasa-battery"
         },
         "rights": {
-          "sourceManifestId": "batterylife-processed",
-          "licence": "MIT",
+          "sourceManifestId": "nasa-battery",
+          "licence": "US federal government work (17 U.S.C. 105); no licence stated by the repository",
           "redistribution": "allowed",
           "commercialUse": "allowed",
           "derivedData": "allowed",
-          "attribution": "BatteryLife dataset; preserve BatteryLife and original experiment citations."
+          "attribution": "B. Saha and K. Goebel (2007), Battery Data Set, NASA Prognostics Data Repository, NASA Ames Research Center, Moffett Field, CA"
         }
       }
     ],
@@ -371,12 +373,12 @@
     "modelRuns": [
       {
         "nodeType": "model-run",
-        "id": "model-run:battery-health:CALB_0_B182",
-        "createdAt": "2026-10-18T00:52:40.297Z",
+        "id": "model-run:battery-health:NASA_B0005",
+        "createdAt": "2026-10-18T07:10:13.508Z",
         "provenance": [
           {
             "nodeType": "evidence",
-            "id": "evidence:battery-history:CALB_0_B182",
+            "id": "evidence:battery-history:NASA_B0005",
             "role": "cycle-capacity-history"
           }
         ],
@@ -387,7 +389,7 @@
         },
         "inputDigest": {
           "algorithm": "SHA-256",
-          "value": "ejzMDyWCp2cFb8NtKk194M1YuOEWB0xuNZcnJKARGp0"
+          "value": "1N9IxY1jWE1IO9bswSvQe3vkddCRE9eSU84tyYIARUc"
         },
         "preprocessingVersion": "battery-dpp/0.1",
         "inferenceParameters": {
@@ -402,13 +404,13 @@
             "unit": "cycles"
           }
         },
-        "confidence": 0.8981361761643544,
+        "confidence": 0.8889702399507108,
         "benchmark": {
           "metric": "R² of local linear capacity fit",
-          "value": 0.8981361761643544,
-          "notes": "This is a transparent passport decision-support baseline, not the published BatteryLife life-prediction model."
+          "value": 0.8889702399507108,
+          "notes": "This is a transparent passport decision-support baseline, not a published life-prediction model."
         },
-        "executedAt": "2026-10-18T00:52:40.297Z",
+        "executedAt": "2026-10-18T07:10:13.508Z",
         "reproducibility": {
           "codeVersion": "battery-dpp/0.1"
         }
@@ -417,22 +419,22 @@
     "verifications": [
       {
         "nodeType": "verification",
-        "id": "verification:battery-passport:CALB_0_B182",
-        "createdAt": "2026-10-18T00:52:40.297Z",
+        "id": "verification:battery-passport:NASA_B0005",
+        "createdAt": "2026-10-18T07:10:13.508Z",
         "provenance": [
           {
             "nodeType": "claim",
-            "id": "claim:battery-passport:CALB_0_B182",
+            "id": "claim:battery-passport:NASA_B0005",
             "role": "claim-under-review"
           },
           {
             "nodeType": "evidence",
-            "id": "evidence:battery-history:CALB_0_B182",
+            "id": "evidence:battery-history:NASA_B0005",
             "role": "input-evidence"
           },
           {
             "nodeType": "verification",
-            "id": "verification:disposition-sign-off:CALB_0_B182",
+            "id": "verification:disposition-sign-off:NASA_B0005",
             "role": "human-decisions"
           }
         ],
@@ -453,13 +455,13 @@
             "id": "policy-decision",
             "name": "Disposition rule evaluated",
             "outcome": "pass",
-            "detail": "SOH clears the repurpose threshold but the reuse rule is not satisfied."
+            "detail": "SOH is below the configured repurpose threshold; route to retirement/recycling review."
           },
           {
             "id": "disposition-sign-off",
             "name": "Proposed disposition signed off by a person",
             "outcome": "pass",
-            "detail": "service-review by person:energy-manager: Capacity alone supports repurpose (SoH 0.776), but the cell is already past end of first life (SoH below 0.8, 0 cycles of remaining life), began at only 0.857 of nominal capacity, and its condition and safety are not assessed. Hold for inspection before any second-life use."
+            "detail": "recycle by person:energy-manager: SoH 0.663 of rated capacity (0.714 of the first recorded cycle) after 168 cycles: below the repurpose threshold, past the test's own end-of-life rule (1.4 Ah), and ohmic resistance up about 28%. Condition and safety not assessed. Route to recycling; no second life."
           }
         ],
         "findings": [
@@ -467,16 +469,16 @@
           "Future degradation can be nonlinear and operating conditions may change.",
           "Disposition policy must not substitute for electrical, thermal, mechanical, or regulatory safety assessment."
         ],
-        "verifiedAt": "2026-10-18T00:52:40.297Z"
+        "verifiedAt": "2026-10-18T07:10:13.508Z"
       },
       {
         "nodeType": "verification",
-        "id": "verification:disposition-sign-off:CALB_0_B182",
-        "createdAt": "2026-10-18T00:52:40.297Z",
+        "id": "verification:disposition-sign-off:NASA_B0005",
+        "createdAt": "2026-10-18T07:10:13.508Z",
         "provenance": [
           {
             "nodeType": "model-run",
-            "id": "model-run:battery-health:CALB_0_B182",
+            "id": "model-run:battery-health:NASA_B0005",
             "role": "flag-source"
           }
         ],
@@ -488,16 +490,16 @@
         "result": "reconciled",
         "checks": [
           {
-            "id": "disposition:CALB_0_B182",
-            "name": "Sign-off of the proposed disposition for CALB_0_B182",
+            "id": "disposition:NASA_B0005",
+            "name": "Sign-off of the proposed disposition for NASA_B0005",
             "outcome": "pass",
-            "detail": "service-review: Capacity alone supports repurpose (SoH 0.776), but the cell is already past end of first life (SoH below 0.8, 0 cycles of remaining life), began at only 0.857 of nominal capacity, and its condition and safety are not assessed. Hold for inspection before any second-life use. (person:energy-manager, 2026-10-05T14:00:39.685Z)"
+            "detail": "recycle: SoH 0.663 of rated capacity (0.714 of the first recorded cycle) after 168 cycles: below the repurpose threshold, past the test's own end-of-life rule (1.4 Ah), and ohmic resistance up about 28%. Condition and safety not assessed. Route to recycling; no second life. (person:energy-manager, 2026-10-18T07:08:28.000Z)"
           }
         ],
         "findings": [
           "A sign-off records a person's decision on the proposed disposition; it does not replace the safety and condition assessments the claim lists as not assessed."
         ],
-        "verifiedAt": "2026-10-05T14:00:39.685Z"
+        "verifiedAt": "2026-10-18T07:08:28.000Z"
       }
     ],
     "attestations": [],
@@ -506,6 +508,7 @@
   "limitations": [
     "Signing keys are generated for each run; they identify the run, not a person or an organisation.",
     "The disposition is decision support; the claim lists the condition and safety assessments it does not cover.",
-    "Remaining life comes from a straight-line capacity trend, not BatteryLife's published models."
+    "Remaining life comes from a straight-line capacity trend, not a published life-prediction model.",
+    "Internal resistance is the ohmic resistance Re fitted by the data provider from impedance sweeps; the first sweep came after cycle 19, so it is not a beginning-of-life value."
   ]
 }

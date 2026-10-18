@@ -1,4 +1,4 @@
-// The battery passport case, recomputed in the browser from the committed BatteryLife cycle history with
+// The battery passport case, recomputed in the browser from the committed NASA Ames cycle and impedance history with
 // the same battery-dpp code as the offline run, and the committed signed attestation checked against it.
 import {
   HYBRID_SIGNATURE_POLICY,
@@ -11,7 +11,7 @@ import {
 } from "@grounding-climate/core";
 import { BatteryDppService, type BatteryHistory } from "@grounding-climate/battery-dpp";
 
-import history from "../../../data/external/batterylife-processed/battery-history.json";
+import history from "../../../data/external/nasa-battery/battery-history.json";
 import caseRunReport from "../../../reports/battery-dpp/case-run.json";
 import decisions from "../../../reports/battery-dpp/disposition-decisions.json";
 import { WebCryptoProvider } from "./web-crypto.js";

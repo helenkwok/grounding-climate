@@ -1,0 +1,2359 @@
+{
+ "batteryId": "NASA_B0005",
+ "chemistry": "Li-ion",
+ "nominalCapacityAh": 2.0,
+ "cycles": [
+  {
+   "cycle": 1,
+   "dischargeCapacityAh": 1.856487
+  },
+  {
+   "cycle": 2,
+   "dischargeCapacityAh": 1.846327
+  },
+  {
+   "cycle": 3,
+   "dischargeCapacityAh": 1.835349
+  },
+  {
+   "cycle": 4,
+   "dischargeCapacityAh": 1.835263
+  },
+  {
+   "cycle": 5,
+   "dischargeCapacityAh": 1.834646
+  },
+  {
+   "cycle": 6,
+   "dischargeCapacityAh": 1.835662
+  },
+  {
+   "cycle": 7,
+   "dischargeCapacityAh": 1.835146
+  },
+  {
+   "cycle": 8,
+   "dischargeCapacityAh": 1.825757
+  },
+  {
+   "cycle": 9,
+   "dischargeCapacityAh": 1.824774
+  },
+  {
+   "cycle": 10,
+   "dischargeCapacityAh": 1.824613
+  },
+  {
+   "cycle": 11,
+   "dischargeCapacityAh": 1.82462
+  },
+  {
+   "cycle": 12,
+   "dischargeCapacityAh": 1.814202
+  },
+  {
+   "cycle": 13,
+   "dischargeCapacityAh": 1.813752
+  },
+  {
+   "cycle": 14,
+   "dischargeCapacityAh": 1.81344
+  },
+  {
+   "cycle": 15,
+   "dischargeCapacityAh": 1.802598
+  },
+  {
+   "cycle": 16,
+   "dischargeCapacityAh": 1.802107
+  },
+  {
+   "cycle": 17,
+   "dischargeCapacityAh": 1.80258
+  },
+  {
+   "cycle": 18,
+   "dischargeCapacityAh": 1.803068
+  },
+  {
+   "cycle": 19,
+   "dischargeCapacityAh": 1.802778
+  },
+  {
+   "cycle": 20,
+   "dischargeCapacityAh": 1.847026
+  },
+  {
+   "cycle": 21,
+   "dischargeCapacityAh": 1.847417
+  },
+  {
+   "cycle": 22,
+   "dischargeCapacityAh": 1.836177
+  },
+  {
+   "cycle": 23,
+   "dischargeCapacityAh": 1.825781
+  },
+  {
+   "cycle": 24,
+   "dischargeCapacityAh": 1.825114
+  },
+  {
+   "cycle": 25,
+   "dischargeCapacityAh": 1.825582
+  },
+  {
+   "cycle": 26,
+   "dischargeCapacityAh": 1.814031
+  },
+  {
+   "cycle": 27,
+   "dischargeCapacityAh": 1.814769
+  },
+  {
+   "cycle": 28,
+   "dischargeCapacityAh": 1.813969
+  },
+  {
+   "cycle": 29,
+   "dischargeCapacityAh": 1.802766
+  },
+  {
+   "cycle": 30,
+   "dischargeCapacityAh": 1.804077
+  },
+  {
+   "cycle": 31,
+   "dischargeCapacityAh": 1.851803
+  },
+  {
+   "cycle": 32,
+   "dischargeCapacityAh": 1.830704
+  },
+  {
+   "cycle": 33,
+   "dischargeCapacityAh": 1.819904
+  },
+  {
+   "cycle": 34,
+   "dischargeCapacityAh": 1.809308
+  },
+  {
+   "cycle": 35,
+   "dischargeCapacityAh": 1.80461
+  },
+  {
+   "cycle": 36,
+   "dischargeCapacityAh": 1.799377
+  },
+  {
+   "cycle": 37,
+   "dischargeCapacityAh": 1.788443
+  },
+  {
+   "cycle": 38,
+   "dischargeCapacityAh": 1.782923
+  },
+  {
+   "cycle": 39,
+   "dischargeCapacityAh": 1.773034
+  },
+  {
+   "cycle": 40,
+   "dischargeCapacityAh": 1.773038
+  },
+  {
+   "cycle": 41,
+   "dischargeCapacityAh": 1.767872
+  },
+  {
+   "cycle": 42,
+   "dischargeCapacityAh": 1.762315
+  },
+  {
+   "cycle": 43,
+   "dischargeCapacityAh": 1.767617
+  },
+  {
+   "cycle": 44,
+   "dischargeCapacityAh": 1.762668
+  },
+  {
+   "cycle": 45,
+   "dischargeCapacityAh": 1.75173
+  },
+  {
+   "cycle": 46,
+   "dischargeCapacityAh": 1.74185
+  },
+  {
+   "cycle": 47,
+   "dischargeCapacityAh": 1.736091
+  },
+  {
+   "cycle": 48,
+   "dischargeCapacityAh": 1.793624
+  },
+  {
+   "cycle": 49,
+   "dischargeCapacityAh": 1.783189
+  },
+  {
+   "cycle": 50,
+   "dischargeCapacityAh": 1.767364
+  },
+  {
+   "cycle": 51,
+   "dischargeCapacityAh": 1.757018
+  },
+  {
+   "cycle": 52,
+   "dischargeCapacityAh": 1.746871
+  },
+  {
+   "cycle": 53,
+   "dischargeCapacityAh": 1.741717
+  },
+  {
+   "cycle": 54,
+   "dischargeCapacityAh": 1.736423
+  },
+  {
+   "cycle": 55,
+   "dischargeCapacityAh": 1.726322
+  },
+  {
+   "cycle": 56,
+   "dischargeCapacityAh": 1.715807
+  },
+  {
+   "cycle": 57,
+   "dischargeCapacityAh": 1.710533
+  },
+  {
+   "cycle": 58,
+   "dischargeCapacityAh": 1.706014
+  },
+  {
+   "cycle": 59,
+   "dischargeCapacityAh": 1.700311
+  },
+  {
+   "cycle": 60,
+   "dischargeCapacityAh": 1.69458
+  },
+  {
+   "cycle": 61,
+   "dischargeCapacityAh": 1.684903
+  },
+  {
+   "cycle": 62,
+   "dischargeCapacityAh": 1.674474
+  },
+  {
+   "cycle": 63,
+   "dischargeCapacityAh": 1.674569
+  },
+  {
+   "cycle": 64,
+   "dischargeCapacityAh": 1.663716
+  },
+  {
+   "cycle": 65,
+   "dischargeCapacityAh": 1.659014
+  },
+  {
+   "cycle": 66,
+   "dischargeCapacityAh": 1.653854
+  },
+  {
+   "cycle": 67,
+   "dischargeCapacityAh": 1.642654
+  },
+  {
+   "cycle": 68,
+   "dischargeCapacityAh": 1.637858
+  },
+  {
+   "cycle": 69,
+   "dischargeCapacityAh": 1.632735
+  },
+  {
+   "cycle": 70,
+   "dischargeCapacityAh": 1.627753
+  },
+  {
+   "cycle": 71,
+   "dischargeCapacityAh": 1.622125
+  },
+  {
+   "cycle": 72,
+   "dischargeCapacityAh": 1.611326
+  },
+  {
+   "cycle": 73,
+   "dischargeCapacityAh": 1.606563
+  },
+  {
+   "cycle": 74,
+   "dischargeCapacityAh": 1.601514
+  },
+  {
+   "cycle": 75,
+   "dischargeCapacityAh": 1.590369
+  },
+  {
+   "cycle": 76,
+   "dischargeCapacityAh": 1.585789
+  },
+  {
+   "cycle": 77,
+   "dischargeCapacityAh": 1.584943
+  },
+  {
+   "cycle": 78,
+   "dischargeCapacityAh": 1.595526
+  },
+  {
+   "cycle": 79,
+   "dischargeCapacityAh": 1.57473
+  },
+  {
+   "cycle": 80,
+   "dischargeCapacityAh": 1.564902
+  },
+  {
+   "cycle": 81,
+   "dischargeCapacityAh": 1.559766
+  },
+  {
+   "cycle": 82,
+   "dischargeCapacityAh": 1.559482
+  },
+  {
+   "cycle": 83,
+   "dischargeCapacityAh": 1.554689
+  },
+  {
+   "cycle": 84,
+   "dischargeCapacityAh": 1.548874
+  },
+  {
+   "cycle": 85,
+   "dischargeCapacityAh": 1.538237
+  },
+  {
+   "cycle": 86,
+   "dischargeCapacityAh": 1.527914
+  },
+  {
+   "cycle": 87,
+   "dischargeCapacityAh": 1.528525
+  },
+  {
+   "cycle": 88,
+   "dischargeCapacityAh": 1.522647
+  },
+  {
+   "cycle": 89,
+   "dischargeCapacityAh": 1.517486
+  },
+  {
+   "cycle": 90,
+   "dischargeCapacityAh": 1.605819
+  },
+  {
+   "cycle": 91,
+   "dischargeCapacityAh": 1.563849
+  },
+  {
+   "cycle": 92,
+   "dischargeCapacityAh": 1.548092
+  },
+  {
+   "cycle": 93,
+   "dischargeCapacityAh": 1.532376
+  },
+  {
+   "cycle": 94,
+   "dischargeCapacityAh": 1.526953
+  },
+  {
+   "cycle": 95,
+   "dischargeCapacityAh": 1.516957
+  },
+  {
+   "cycle": 96,
+   "dischargeCapacityAh": 1.511898
+  },
+  {
+   "cycle": 97,
+   "dischargeCapacityAh": 1.506564
+  },
+  {
+   "cycle": 98,
+   "dischargeCapacityAh": 1.501545
+  },
+  {
+   "cycle": 99,
+   "dischargeCapacityAh": 1.490844
+  },
+  {
+   "cycle": 100,
+   "dischargeCapacityAh": 1.485868
+  },
+  {
+   "cycle": 101,
+   "dischargeCapacityAh": 1.480414
+  },
+  {
+   "cycle": 102,
+   "dischargeCapacityAh": 1.47521
+  },
+  {
+   "cycle": 103,
+   "dischargeCapacityAh": 1.485904
+  },
+  {
+   "cycle": 104,
+   "dischargeCapacityAh": 1.496092
+  },
+  {
+   "cycle": 105,
+   "dischargeCapacityAh": 1.480801
+  },
+  {
+   "cycle": 106,
+   "dischargeCapacityAh": 1.469754
+  },
+  {
+   "cycle": 107,
+   "dischargeCapacityAh": 1.453901
+  },
+  {
+   "cycle": 108,
+   "dischargeCapacityAh": 1.454146
+  },
+  {
+   "cycle": 109,
+   "dischargeCapacityAh": 1.455024
+  },
+  {
+   "cycle": 110,
+   "dischargeCapacityAh": 1.449042
+  },
+  {
+   "cycle": 111,
+   "dischargeCapacityAh": 1.438671
+  },
+  {
+   "cycle": 112,
+   "dischargeCapacityAh": 1.433445
+  },
+  {
+   "cycle": 113,
+   "dischargeCapacityAh": 1.433396
+  },
+  {
+   "cycle": 114,
+   "dischargeCapacityAh": 1.428065
+  },
+  {
+   "cycle": 115,
+   "dischargeCapacityAh": 1.42292
+  },
+  {
+   "cycle": 116,
+   "dischargeCapacityAh": 1.417429
+  },
+  {
+   "cycle": 117,
+   "dischargeCapacityAh": 1.412409
+  },
+  {
+   "cycle": 118,
+   "dischargeCapacityAh": 1.412579
+  },
+  {
+   "cycle": 119,
+   "dischargeCapacityAh": 1.407598
+  },
+  {
+   "cycle": 120,
+   "dischargeCapacityAh": 1.433392
+  },
+  {
+   "cycle": 121,
+   "dischargeCapacityAh": 1.438255
+  },
+  {
+   "cycle": 122,
+   "dischargeCapacityAh": 1.417355
+  },
+  {
+   "cycle": 123,
+   "dischargeCapacityAh": 1.406982
+  },
+  {
+   "cycle": 124,
+   "dischargeCapacityAh": 1.401204
+  },
+  {
+   "cycle": 125,
+   "dischargeCapacityAh": 1.396701
+  },
+  {
+   "cycle": 126,
+   "dischargeCapacityAh": 1.391285
+  },
+  {
+   "cycle": 127,
+   "dischargeCapacityAh": 1.386229
+  },
+  {
+   "cycle": 128,
+   "dischargeCapacityAh": 1.380437
+  },
+  {
+   "cycle": 129,
+   "dischargeCapacityAh": 1.375236
+  },
+  {
+   "cycle": 130,
+   "dischargeCapacityAh": 1.370513
+  },
+  {
+   "cycle": 131,
+   "dischargeCapacityAh": 1.370509
+  },
+  {
+   "cycle": 132,
+   "dischargeCapacityAh": 1.364736
+  },
+  {
+   "cycle": 133,
+   "dischargeCapacityAh": 1.375392
+  },
+  {
+   "cycle": 134,
+   "dischargeCapacityAh": 1.386112
+  },
+  {
+   "cycle": 135,
+   "dischargeCapacityAh": 1.36985
+  },
+  {
+   "cycle": 136,
+   "dischargeCapacityAh": 1.364783
+  },
+  {
+   "cycle": 137,
+   "dischargeCapacityAh": 1.354322
+  },
+  {
+   "cycle": 138,
+   "dischargeCapacityAh": 1.354642
+  },
+  {
+   "cycle": 139,
+   "dischargeCapacityAh": 1.354704
+  },
+  {
+   "cycle": 140,
+   "dischargeCapacityAh": 1.349315
+  },
+  {
+   "cycle": 141,
+   "dischargeCapacityAh": 1.344189
+  },
+  {
+   "cycle": 142,
+   "dischargeCapacityAh": 1.338991
+  },
+  {
+   "cycle": 143,
+   "dischargeCapacityAh": 1.338915
+  },
+  {
+   "cycle": 144,
+   "dischargeCapacityAh": 1.334007
+  },
+  {
+   "cycle": 145,
+   "dischargeCapacityAh": 1.328644
+  },
+  {
+   "cycle": 146,
+   "dischargeCapacityAh": 1.323171
+  },
+  {
+   "cycle": 147,
+   "dischargeCapacityAh": 1.318169
+  },
+  {
+   "cycle": 148,
+   "dischargeCapacityAh": 1.318466
+  },
+  {
+   "cycle": 149,
+   "dischargeCapacityAh": 1.318293
+  },
+  {
+   "cycle": 150,
+   "dischargeCapacityAh": 1.323872
+  },
+  {
+   "cycle": 151,
+   "dischargeCapacityAh": 1.360122
+  },
+  {
+   "cycle": 152,
+   "dischargeCapacityAh": 1.339531
+  },
+  {
+   "cycle": 153,
+   "dischargeCapacityAh": 1.329029
+  },
+  {
+   "cycle": 154,
+   "dischargeCapacityAh": 1.323674
+  },
+  {
+   "cycle": 155,
+   "dischargeCapacityAh": 1.318634
+  },
+  {
+   "cycle": 156,
+   "dischargeCapacityAh": 1.313475
+  },
+  {
+   "cycle": 157,
+   "dischargeCapacityAh": 1.313202
+  },
+  {
+   "cycle": 158,
+   "dischargeCapacityAh": 1.307796
+  },
+  {
+   "cycle": 159,
+   "dischargeCapacityAh": 1.303033
+  },
+  {
+   "cycle": 160,
+   "dischargeCapacityAh": 1.303357
+  },
+  {
+   "cycle": 161,
+   "dischargeCapacityAh": 1.30341
+  },
+  {
+   "cycle": 162,
+   "dischargeCapacityAh": 1.297887
+  },
+  {
+   "cycle": 163,
+   "dischargeCapacityAh": 1.298074
+  },
+  {
+   "cycle": 164,
+   "dischargeCapacityAh": 1.293464
+  },
+  {
+   "cycle": 165,
+   "dischargeCapacityAh": 1.288003
+  },
+  {
+   "cycle": 166,
+   "dischargeCapacityAh": 1.287453
+  },
+  {
+   "cycle": 167,
+   "dischargeCapacityAh": 1.309015
+  },
+  {
+   "cycle": 168,
+   "dischargeCapacityAh": 1.325079
+  }
+ ],
+ "impedance": [
+  {
+   "sweep": 1,
+   "afterCycle": 19,
+   "reOhm": 0.044669,
+   "rctOhm": 0.069456
+  },
+  {
+   "sweep": 2,
+   "afterCycle": 20,
+   "reOhm": 0.046687,
+   "rctOhm": 0.076275
+  },
+  {
+   "sweep": 3,
+   "afterCycle": 20,
+   "reOhm": 0.044843,
+   "rctOhm": 0.067972
+  },
+  {
+   "sweep": 4,
+   "afterCycle": 21,
+   "reOhm": 0.046195,
+   "rctOhm": 0.074534
+  },
+  {
+   "sweep": 5,
+   "afterCycle": 21,
+   "reOhm": 0.045101,
+   "rctOhm": 0.068528
+  },
+  {
+   "sweep": 6,
+   "afterCycle": 22,
+   "reOhm": 0.045991,
+   "rctOhm": 0.073427
+  },
+  {
+   "sweep": 7,
+   "afterCycle": 22,
+   "reOhm": 0.044172,
+   "rctOhm": 0.068044
+  },
+  {
+   "sweep": 8,
+   "afterCycle": 23,
+   "reOhm": 0.045217,
+   "rctOhm": 0.074648
+  },
+  {
+   "sweep": 9,
+   "afterCycle": 23,
+   "reOhm": 0.043787,
+   "rctOhm": 0.06845
+  },
+  {
+   "sweep": 10,
+   "afterCycle": 24,
+   "reOhm": 0.04491,
+   "rctOhm": 0.073957
+  },
+  {
+   "sweep": 11,
+   "afterCycle": 24,
+   "reOhm": 0.044639,
+   "rctOhm": 0.068341
+  },
+  {
+   "sweep": 12,
+   "afterCycle": 25,
+   "reOhm": 0.04717,
+   "rctOhm": 0.072081
+  },
+  {
+   "sweep": 13,
+   "afterCycle": 25,
+   "reOhm": 0.043559,
+   "rctOhm": 0.068682
+  },
+  {
+   "sweep": 14,
+   "afterCycle": 26,
+   "reOhm": 0.04649,
+   "rctOhm": 0.071029
+  },
+  {
+   "sweep": 15,
+   "afterCycle": 26,
+   "reOhm": 0.045265,
+   "rctOhm": 0.068144
+  },
+  {
+   "sweep": 16,
+   "afterCycle": 27,
+   "reOhm": 0.046362,
+   "rctOhm": 0.07193
+  },
+  {
+   "sweep": 17,
+   "afterCycle": 27,
+   "reOhm": 0.044484,
+   "rctOhm": 0.067826
+  },
+  {
+   "sweep": 18,
+   "afterCycle": 28,
+   "reOhm": 0.044828,
+   "rctOhm": 0.072888
+  },
+  {
+   "sweep": 19,
+   "afterCycle": 28,
+   "reOhm": 0.044414,
+   "rctOhm": 0.068858
+  },
+  {
+   "sweep": 20,
+   "afterCycle": 29,
+   "reOhm": 0.044665,
+   "rctOhm": 0.072787
+  },
+  {
+   "sweep": 21,
+   "afterCycle": 29,
+   "reOhm": 0.044535,
+   "rctOhm": 0.067794
+  },
+  {
+   "sweep": 22,
+   "afterCycle": 30,
+   "reOhm": 0.045021,
+   "rctOhm": 0.069404
+  },
+  {
+   "sweep": 23,
+   "afterCycle": 31,
+   "reOhm": 0.046106,
+   "rctOhm": 0.070411
+  },
+  {
+   "sweep": 24,
+   "afterCycle": 31,
+   "reOhm": 0.046463,
+   "rctOhm": 0.069938
+  },
+  {
+   "sweep": 25,
+   "afterCycle": 32,
+   "reOhm": 0.047667,
+   "rctOhm": 0.068701
+  },
+  {
+   "sweep": 26,
+   "afterCycle": 32,
+   "reOhm": 0.047724,
+   "rctOhm": 0.069504
+  },
+  {
+   "sweep": 27,
+   "afterCycle": 33,
+   "reOhm": 0.047868,
+   "rctOhm": 0.067829
+  },
+  {
+   "sweep": 28,
+   "afterCycle": 33,
+   "reOhm": 0.04694,
+   "rctOhm": 0.069661
+  },
+  {
+   "sweep": 29,
+   "afterCycle": 34,
+   "reOhm": 0.045613,
+   "rctOhm": 0.069039
+  },
+  {
+   "sweep": 30,
+   "afterCycle": 34,
+   "reOhm": 0.047028,
+   "rctOhm": 0.071129
+  },
+  {
+   "sweep": 31,
+   "afterCycle": 35,
+   "reOhm": 0.046729,
+   "rctOhm": 0.069711
+  },
+  {
+   "sweep": 32,
+   "afterCycle": 35,
+   "reOhm": 0.047755,
+   "rctOhm": 0.071671
+  },
+  {
+   "sweep": 33,
+   "afterCycle": 36,
+   "reOhm": 0.046916,
+   "rctOhm": 0.069133
+  },
+  {
+   "sweep": 34,
+   "afterCycle": 36,
+   "reOhm": 0.047023,
+   "rctOhm": 0.069767
+  },
+  {
+   "sweep": 35,
+   "afterCycle": 37,
+   "reOhm": 0.046605,
+   "rctOhm": 0.068522
+  },
+  {
+   "sweep": 36,
+   "afterCycle": 37,
+   "reOhm": 0.046245,
+   "rctOhm": 0.071925
+  },
+  {
+   "sweep": 37,
+   "afterCycle": 38,
+   "reOhm": 0.046833,
+   "rctOhm": 0.069469
+  },
+  {
+   "sweep": 38,
+   "afterCycle": 38,
+   "reOhm": 0.046186,
+   "rctOhm": 0.071938
+  },
+  {
+   "sweep": 39,
+   "afterCycle": 39,
+   "reOhm": 0.046241,
+   "rctOhm": 0.069349
+  },
+  {
+   "sweep": 40,
+   "afterCycle": 39,
+   "reOhm": 0.047737,
+   "rctOhm": 0.07034
+  },
+  {
+   "sweep": 41,
+   "afterCycle": 40,
+   "reOhm": 0.049427,
+   "rctOhm": 0.06955
+  },
+  {
+   "sweep": 42,
+   "afterCycle": 40,
+   "reOhm": 0.048383,
+   "rctOhm": 0.069738
+  },
+  {
+   "sweep": 43,
+   "afterCycle": 41,
+   "reOhm": 0.047478,
+   "rctOhm": 0.064883
+  },
+  {
+   "sweep": 44,
+   "afterCycle": 41,
+   "reOhm": 0.048038,
+   "rctOhm": 0.070125
+  },
+  {
+   "sweep": 45,
+   "afterCycle": 42,
+   "reOhm": 0.047704,
+   "rctOhm": 0.068598
+  },
+  {
+   "sweep": 46,
+   "afterCycle": 42,
+   "reOhm": 0.048087,
+   "rctOhm": 0.069713
+  },
+  {
+   "sweep": 47,
+   "afterCycle": 44,
+   "reOhm": 0.048151,
+   "rctOhm": 0.067722
+  },
+  {
+   "sweep": 48,
+   "afterCycle": 44,
+   "reOhm": 0.047547,
+   "rctOhm": 0.07318
+  },
+  {
+   "sweep": 49,
+   "afterCycle": 45,
+   "reOhm": 0.04759,
+   "rctOhm": 0.069143
+  },
+  {
+   "sweep": 50,
+   "afterCycle": 45,
+   "reOhm": 0.047641,
+   "rctOhm": 0.071652
+  },
+  {
+   "sweep": 51,
+   "afterCycle": 46,
+   "reOhm": 0.04764,
+   "rctOhm": 0.068983
+  },
+  {
+   "sweep": 52,
+   "afterCycle": 46,
+   "reOhm": 0.048424,
+   "rctOhm": 0.0725
+  },
+  {
+   "sweep": 53,
+   "afterCycle": 48,
+   "reOhm": 0.048934,
+   "rctOhm": 0.06796
+  },
+  {
+   "sweep": 54,
+   "afterCycle": 48,
+   "reOhm": 0.049431,
+   "rctOhm": 0.070141
+  },
+  {
+   "sweep": 55,
+   "afterCycle": 49,
+   "reOhm": 0.049323,
+   "rctOhm": 0.068956
+  },
+  {
+   "sweep": 56,
+   "afterCycle": 49,
+   "reOhm": 0.049748,
+   "rctOhm": 0.07113
+  },
+  {
+   "sweep": 57,
+   "afterCycle": 50,
+   "reOhm": 0.049122,
+   "rctOhm": 0.06891
+  },
+  {
+   "sweep": 58,
+   "afterCycle": 50,
+   "reOhm": 0.049885,
+   "rctOhm": 0.071983
+  },
+  {
+   "sweep": 59,
+   "afterCycle": 51,
+   "reOhm": 0.047859,
+   "rctOhm": 0.069773
+  },
+  {
+   "sweep": 60,
+   "afterCycle": 51,
+   "reOhm": 0.049216,
+   "rctOhm": 0.071464
+  },
+  {
+   "sweep": 61,
+   "afterCycle": 52,
+   "reOhm": 0.048872,
+   "rctOhm": 0.068768
+  },
+  {
+   "sweep": 62,
+   "afterCycle": 52,
+   "reOhm": 0.049946,
+   "rctOhm": 0.070887
+  },
+  {
+   "sweep": 63,
+   "afterCycle": 53,
+   "reOhm": 0.048296,
+   "rctOhm": 0.067315
+  },
+  {
+   "sweep": 64,
+   "afterCycle": 53,
+   "reOhm": 0.04897,
+   "rctOhm": 0.071782
+  },
+  {
+   "sweep": 65,
+   "afterCycle": 54,
+   "reOhm": 0.048147,
+   "rctOhm": 0.068416
+  },
+  {
+   "sweep": 66,
+   "afterCycle": 54,
+   "reOhm": 0.050229,
+   "rctOhm": 0.071832
+  },
+  {
+   "sweep": 67,
+   "afterCycle": 55,
+   "reOhm": 0.048454,
+   "rctOhm": 0.067779
+  },
+  {
+   "sweep": 68,
+   "afterCycle": 55,
+   "reOhm": 0.049715,
+   "rctOhm": 0.07139
+  },
+  {
+   "sweep": 69,
+   "afterCycle": 56,
+   "reOhm": 0.04868,
+   "rctOhm": 0.065834
+  },
+  {
+   "sweep": 70,
+   "afterCycle": 56,
+   "reOhm": 0.049132,
+   "rctOhm": 0.072452
+  },
+  {
+   "sweep": 71,
+   "afterCycle": 57,
+   "reOhm": 0.049919,
+   "rctOhm": 0.068765
+  },
+  {
+   "sweep": 72,
+   "afterCycle": 57,
+   "reOhm": 0.04921,
+   "rctOhm": 0.07304
+  },
+  {
+   "sweep": 73,
+   "afterCycle": 58,
+   "reOhm": 0.049437,
+   "rctOhm": 0.068923
+  },
+  {
+   "sweep": 74,
+   "afterCycle": 58,
+   "reOhm": 0.049506,
+   "rctOhm": 0.072511
+  },
+  {
+   "sweep": 75,
+   "afterCycle": 59,
+   "reOhm": 0.049403,
+   "rctOhm": 0.068648
+  },
+  {
+   "sweep": 76,
+   "afterCycle": 59,
+   "reOhm": 0.048652,
+   "rctOhm": 0.072018
+  },
+  {
+   "sweep": 77,
+   "afterCycle": 60,
+   "reOhm": 0.049155,
+   "rctOhm": 0.069131
+  },
+  {
+   "sweep": 78,
+   "afterCycle": 60,
+   "reOhm": 0.049166,
+   "rctOhm": 0.07317
+  },
+  {
+   "sweep": 79,
+   "afterCycle": 61,
+   "reOhm": 0.048702,
+   "rctOhm": 0.068595
+  },
+  {
+   "sweep": 80,
+   "afterCycle": 61,
+   "reOhm": 0.049234,
+   "rctOhm": 0.072771
+  },
+  {
+   "sweep": 81,
+   "afterCycle": 62,
+   "reOhm": 0.048857,
+   "rctOhm": 0.068716
+  },
+  {
+   "sweep": 82,
+   "afterCycle": 62,
+   "reOhm": 0.050548,
+   "rctOhm": 0.072709
+  },
+  {
+   "sweep": 83,
+   "afterCycle": 63,
+   "reOhm": 0.05065,
+   "rctOhm": 0.068535
+  },
+  {
+   "sweep": 84,
+   "afterCycle": 63,
+   "reOhm": 0.050119,
+   "rctOhm": 0.07301
+  },
+  {
+   "sweep": 85,
+   "afterCycle": 65,
+   "reOhm": 0.049132,
+   "rctOhm": 0.06933
+  },
+  {
+   "sweep": 86,
+   "afterCycle": 65,
+   "reOhm": 0.049793,
+   "rctOhm": 0.073437
+  },
+  {
+   "sweep": 87,
+   "afterCycle": 66,
+   "reOhm": 0.049633,
+   "rctOhm": 0.068814
+  },
+  {
+   "sweep": 88,
+   "afterCycle": 66,
+   "reOhm": 0.049865,
+   "rctOhm": 0.073213
+  },
+  {
+   "sweep": 89,
+   "afterCycle": 67,
+   "reOhm": 0.048921,
+   "rctOhm": 0.068839
+  },
+  {
+   "sweep": 90,
+   "afterCycle": 67,
+   "reOhm": 0.049812,
+   "rctOhm": 0.074596
+  },
+  {
+   "sweep": 91,
+   "afterCycle": 68,
+   "reOhm": 0.049751,
+   "rctOhm": 0.068639
+  },
+  {
+   "sweep": 92,
+   "afterCycle": 68,
+   "reOhm": 0.048507,
+   "rctOhm": 0.074583
+  },
+  {
+   "sweep": 93,
+   "afterCycle": 69,
+   "reOhm": 0.049159,
+   "rctOhm": 0.069067
+  },
+  {
+   "sweep": 94,
+   "afterCycle": 69,
+   "reOhm": 0.050023,
+   "rctOhm": 0.073664
+  },
+  {
+   "sweep": 95,
+   "afterCycle": 70,
+   "reOhm": 0.049708,
+   "rctOhm": 0.0683
+  },
+  {
+   "sweep": 96,
+   "afterCycle": 70,
+   "reOhm": 0.050205,
+   "rctOhm": 0.073719
+  },
+  {
+   "sweep": 97,
+   "afterCycle": 71,
+   "reOhm": 0.048951,
+   "rctOhm": 0.069633
+  },
+  {
+   "sweep": 98,
+   "afterCycle": 71,
+   "reOhm": 0.049759,
+   "rctOhm": 0.074656
+  },
+  {
+   "sweep": 99,
+   "afterCycle": 72,
+   "reOhm": 0.049808,
+   "rctOhm": 0.069023
+  },
+  {
+   "sweep": 100,
+   "afterCycle": 72,
+   "reOhm": 0.049687,
+   "rctOhm": 0.073554
+  },
+  {
+   "sweep": 101,
+   "afterCycle": 73,
+   "reOhm": 0.050594,
+   "rctOhm": 0.068583
+  },
+  {
+   "sweep": 102,
+   "afterCycle": 73,
+   "reOhm": 0.04995,
+   "rctOhm": 0.074623
+  },
+  {
+   "sweep": 103,
+   "afterCycle": 74,
+   "reOhm": 0.049844,
+   "rctOhm": 0.070141
+  },
+  {
+   "sweep": 104,
+   "afterCycle": 74,
+   "reOhm": 0.050283,
+   "rctOhm": 0.073604
+  },
+  {
+   "sweep": 105,
+   "afterCycle": 75,
+   "reOhm": 0.050063,
+   "rctOhm": 0.069791
+  },
+  {
+   "sweep": 106,
+   "afterCycle": 75,
+   "reOhm": 0.04992,
+   "rctOhm": 0.074642
+  },
+  {
+   "sweep": 107,
+   "afterCycle": 76,
+   "reOhm": 0.049214,
+   "rctOhm": 0.069908
+  },
+  {
+   "sweep": 108,
+   "afterCycle": 76,
+   "reOhm": 0.05008,
+   "rctOhm": 0.075477
+  },
+  {
+   "sweep": 109,
+   "afterCycle": 78,
+   "reOhm": 0.054692,
+   "rctOhm": 0.074646
+  },
+  {
+   "sweep": 110,
+   "afterCycle": 78,
+   "reOhm": 0.054873,
+   "rctOhm": 0.079344
+  },
+  {
+   "sweep": 111,
+   "afterCycle": 79,
+   "reOhm": 0.054157,
+   "rctOhm": 0.075058
+  },
+  {
+   "sweep": 112,
+   "afterCycle": 79,
+   "reOhm": 0.05524,
+   "rctOhm": 0.080024
+  },
+  {
+   "sweep": 113,
+   "afterCycle": 80,
+   "reOhm": 0.054543,
+   "rctOhm": 0.075924
+  },
+  {
+   "sweep": 114,
+   "afterCycle": 80,
+   "reOhm": 0.05508,
+   "rctOhm": 0.08045
+  },
+  {
+   "sweep": 115,
+   "afterCycle": 81,
+   "reOhm": 0.053399,
+   "rctOhm": 0.075629
+  },
+  {
+   "sweep": 116,
+   "afterCycle": 81,
+   "reOhm": 0.054846,
+   "rctOhm": 0.080995
+  },
+  {
+   "sweep": 117,
+   "afterCycle": 82,
+   "reOhm": 0.055453,
+   "rctOhm": 0.074839
+  },
+  {
+   "sweep": 118,
+   "afterCycle": 82,
+   "reOhm": 0.058089,
+   "rctOhm": 0.079006
+  },
+  {
+   "sweep": 119,
+   "afterCycle": 83,
+   "reOhm": 0.057038,
+   "rctOhm": 0.074454
+  },
+  {
+   "sweep": 120,
+   "afterCycle": 83,
+   "reOhm": 0.0564,
+   "rctOhm": 0.081815
+  },
+  {
+   "sweep": 121,
+   "afterCycle": 84,
+   "reOhm": 0.056952,
+   "rctOhm": 0.077069
+  },
+  {
+   "sweep": 122,
+   "afterCycle": 84,
+   "reOhm": 0.057159,
+   "rctOhm": 0.080867
+  },
+  {
+   "sweep": 123,
+   "afterCycle": 85,
+   "reOhm": 0.055959,
+   "rctOhm": 0.076096
+  },
+  {
+   "sweep": 124,
+   "afterCycle": 85,
+   "reOhm": 0.056999,
+   "rctOhm": 0.082501
+  },
+  {
+   "sweep": 125,
+   "afterCycle": 86,
+   "reOhm": 0.05699,
+   "rctOhm": 0.076483
+  },
+  {
+   "sweep": 126,
+   "afterCycle": 86,
+   "reOhm": 0.057916,
+   "rctOhm": 0.081751
+  },
+  {
+   "sweep": 127,
+   "afterCycle": 87,
+   "reOhm": 0.057001,
+   "rctOhm": 0.077411
+  },
+  {
+   "sweep": 128,
+   "afterCycle": 87,
+   "reOhm": 0.058583,
+   "rctOhm": 0.082694
+  },
+  {
+   "sweep": 129,
+   "afterCycle": 88,
+   "reOhm": 0.057283,
+   "rctOhm": 0.07692
+  },
+  {
+   "sweep": 130,
+   "afterCycle": 88,
+   "reOhm": 0.056844,
+   "rctOhm": 0.082273
+  },
+  {
+   "sweep": 131,
+   "afterCycle": 89,
+   "reOhm": 0.058953,
+   "rctOhm": 0.077352
+  },
+  {
+   "sweep": 132,
+   "afterCycle": 89,
+   "reOhm": 0.056672,
+   "rctOhm": 0.082916
+  },
+  {
+   "sweep": 133,
+   "afterCycle": 90,
+   "reOhm": 0.058223,
+   "rctOhm": 0.076151
+  },
+  {
+   "sweep": 134,
+   "afterCycle": 91,
+   "reOhm": 0.057798,
+   "rctOhm": 0.07519
+  },
+  {
+   "sweep": 135,
+   "afterCycle": 91,
+   "reOhm": 0.058694,
+   "rctOhm": 0.080997
+  },
+  {
+   "sweep": 136,
+   "afterCycle": 92,
+   "reOhm": 0.058101,
+   "rctOhm": 0.076046
+  },
+  {
+   "sweep": 137,
+   "afterCycle": 92,
+   "reOhm": 0.056874,
+   "rctOhm": 0.080792
+  },
+  {
+   "sweep": 138,
+   "afterCycle": 93,
+   "reOhm": 0.057819,
+   "rctOhm": 0.076208
+  },
+  {
+   "sweep": 139,
+   "afterCycle": 93,
+   "reOhm": 0.058401,
+   "rctOhm": 0.081617
+  },
+  {
+   "sweep": 140,
+   "afterCycle": 94,
+   "reOhm": 0.057296,
+   "rctOhm": 0.076031
+  },
+  {
+   "sweep": 141,
+   "afterCycle": 94,
+   "reOhm": 0.057139,
+   "rctOhm": 0.08203
+  },
+  {
+   "sweep": 142,
+   "afterCycle": 95,
+   "reOhm": 0.057012,
+   "rctOhm": 0.077938
+  },
+  {
+   "sweep": 143,
+   "afterCycle": 95,
+   "reOhm": 0.056847,
+   "rctOhm": 0.084309
+  },
+  {
+   "sweep": 144,
+   "afterCycle": 96,
+   "reOhm": 0.057392,
+   "rctOhm": 0.077321
+  },
+  {
+   "sweep": 145,
+   "afterCycle": 96,
+   "reOhm": 0.059715,
+   "rctOhm": 0.081281
+  },
+  {
+   "sweep": 146,
+   "afterCycle": 97,
+   "reOhm": 0.056694,
+   "rctOhm": 0.077563
+  },
+  {
+   "sweep": 147,
+   "afterCycle": 97,
+   "reOhm": 0.057876,
+   "rctOhm": 0.082762
+  },
+  {
+   "sweep": 148,
+   "afterCycle": 98,
+   "reOhm": 0.057114,
+   "rctOhm": 0.0789
+  },
+  {
+   "sweep": 149,
+   "afterCycle": 98,
+   "reOhm": 0.057106,
+   "rctOhm": 0.083893
+  },
+  {
+   "sweep": 150,
+   "afterCycle": 99,
+   "reOhm": 0.058411,
+   "rctOhm": 0.077879
+  },
+  {
+   "sweep": 151,
+   "afterCycle": 99,
+   "reOhm": 0.058324,
+   "rctOhm": 0.082336
+  },
+  {
+   "sweep": 152,
+   "afterCycle": 100,
+   "reOhm": 0.057207,
+   "rctOhm": 0.078142
+  },
+  {
+   "sweep": 153,
+   "afterCycle": 100,
+   "reOhm": 0.05854,
+   "rctOhm": 0.0826
+  },
+  {
+   "sweep": 154,
+   "afterCycle": 101,
+   "reOhm": 0.05687,
+   "rctOhm": 0.07852
+  },
+  {
+   "sweep": 155,
+   "afterCycle": 101,
+   "reOhm": 0.05761,
+   "rctOhm": 0.083618
+  },
+  {
+   "sweep": 156,
+   "afterCycle": 102,
+   "reOhm": 0.057589,
+   "rctOhm": 0.078585
+  },
+  {
+   "sweep": 157,
+   "afterCycle": 102,
+   "reOhm": 0.056877,
+   "rctOhm": 0.084536
+  },
+  {
+   "sweep": 158,
+   "afterCycle": 103,
+   "reOhm": 0.058412,
+   "rctOhm": 0.078166
+  },
+  {
+   "sweep": 159,
+   "afterCycle": 104,
+   "reOhm": 0.058983,
+   "rctOhm": 0.078409
+  },
+  {
+   "sweep": 160,
+   "afterCycle": 104,
+   "reOhm": 0.060198,
+   "rctOhm": 0.083773
+  },
+  {
+   "sweep": 161,
+   "afterCycle": 105,
+   "reOhm": 0.058433,
+   "rctOhm": 0.078786
+  },
+  {
+   "sweep": 162,
+   "afterCycle": 105,
+   "reOhm": 0.059884,
+   "rctOhm": 0.083612
+  },
+  {
+   "sweep": 163,
+   "afterCycle": 106,
+   "reOhm": 0.060817,
+   "rctOhm": 0.080384
+  },
+  {
+   "sweep": 164,
+   "afterCycle": 106,
+   "reOhm": 0.058875,
+   "rctOhm": 0.083706
+  },
+  {
+   "sweep": 165,
+   "afterCycle": 107,
+   "reOhm": 0.058641,
+   "rctOhm": 0.078563
+  },
+  {
+   "sweep": 166,
+   "afterCycle": 107,
+   "reOhm": 0.058445,
+   "rctOhm": 0.084351
+  },
+  {
+   "sweep": 167,
+   "afterCycle": 108,
+   "reOhm": 0.059257,
+   "rctOhm": 0.080027
+  },
+  {
+   "sweep": 168,
+   "afterCycle": 108,
+   "reOhm": 0.060551,
+   "rctOhm": 0.083281
+  },
+  {
+   "sweep": 169,
+   "afterCycle": 109,
+   "reOhm": 0.058778,
+   "rctOhm": 0.079183
+  },
+  {
+   "sweep": 170,
+   "afterCycle": 109,
+   "reOhm": 0.05995,
+   "rctOhm": 0.08319
+  },
+  {
+   "sweep": 171,
+   "afterCycle": 110,
+   "reOhm": 0.058352,
+   "rctOhm": 0.079647
+  },
+  {
+   "sweep": 172,
+   "afterCycle": 110,
+   "reOhm": 0.059565,
+   "rctOhm": 0.08487
+  },
+  {
+   "sweep": 173,
+   "afterCycle": 111,
+   "reOhm": 0.058938,
+   "rctOhm": 0.079538
+  },
+  {
+   "sweep": 174,
+   "afterCycle": 111,
+   "reOhm": 0.059853,
+   "rctOhm": 0.084739
+  },
+  {
+   "sweep": 175,
+   "afterCycle": 112,
+   "reOhm": 0.05849,
+   "rctOhm": 0.079644
+  },
+  {
+   "sweep": 176,
+   "afterCycle": 112,
+   "reOhm": 0.058745,
+   "rctOhm": 0.087117
+  },
+  {
+   "sweep": 177,
+   "afterCycle": 113,
+   "reOhm": 0.061341,
+   "rctOhm": 0.077337
+  },
+  {
+   "sweep": 178,
+   "afterCycle": 113,
+   "reOhm": 0.060838,
+   "rctOhm": 0.084909
+  },
+  {
+   "sweep": 179,
+   "afterCycle": 114,
+   "reOhm": 0.058343,
+   "rctOhm": 0.079942
+  },
+  {
+   "sweep": 180,
+   "afterCycle": 114,
+   "reOhm": 0.059938,
+   "rctOhm": 0.0848
+  },
+  {
+   "sweep": 181,
+   "afterCycle": 115,
+   "reOhm": 0.059795,
+   "rctOhm": 0.079647
+  },
+  {
+   "sweep": 182,
+   "afterCycle": 115,
+   "reOhm": 0.059596,
+   "rctOhm": 0.085188
+  },
+  {
+   "sweep": 183,
+   "afterCycle": 116,
+   "reOhm": 0.059204,
+   "rctOhm": 0.080072
+  },
+  {
+   "sweep": 184,
+   "afterCycle": 116,
+   "reOhm": 0.058401,
+   "rctOhm": 0.086329
+  },
+  {
+   "sweep": 185,
+   "afterCycle": 117,
+   "reOhm": 0.061344,
+   "rctOhm": 0.079893
+  },
+  {
+   "sweep": 186,
+   "afterCycle": 117,
+   "reOhm": 0.062605,
+   "rctOhm": 0.085021
+  },
+  {
+   "sweep": 187,
+   "afterCycle": 118,
+   "reOhm": 0.05882,
+   "rctOhm": 0.079149
+  },
+  {
+   "sweep": 188,
+   "afterCycle": 118,
+   "reOhm": 0.061152,
+   "rctOhm": 0.084856
+  },
+  {
+   "sweep": 189,
+   "afterCycle": 119,
+   "reOhm": 0.060462,
+   "rctOhm": 0.080927
+  },
+  {
+   "sweep": 190,
+   "afterCycle": 119,
+   "reOhm": 0.059631,
+   "rctOhm": 0.085035
+  },
+  {
+   "sweep": 191,
+   "afterCycle": 121,
+   "reOhm": 0.061607,
+   "rctOhm": 0.080201
+  },
+  {
+   "sweep": 192,
+   "afterCycle": 121,
+   "reOhm": 0.060987,
+   "rctOhm": 0.08584
+  },
+  {
+   "sweep": 193,
+   "afterCycle": 122,
+   "reOhm": 0.060803,
+   "rctOhm": 0.081853
+  },
+  {
+   "sweep": 194,
+   "afterCycle": 122,
+   "reOhm": 0.061004,
+   "rctOhm": 0.085884
+  },
+  {
+   "sweep": 195,
+   "afterCycle": 123,
+   "reOhm": 0.061471,
+   "rctOhm": 0.081708
+  },
+  {
+   "sweep": 196,
+   "afterCycle": 123,
+   "reOhm": 0.062329,
+   "rctOhm": 0.088222
+  },
+  {
+   "sweep": 197,
+   "afterCycle": 124,
+   "reOhm": 0.062141,
+   "rctOhm": 0.081771
+  },
+  {
+   "sweep": 198,
+   "afterCycle": 124,
+   "reOhm": 0.061503,
+   "rctOhm": 0.08727
+  },
+  {
+   "sweep": 199,
+   "afterCycle": 125,
+   "reOhm": 0.059631,
+   "rctOhm": 0.082576
+  },
+  {
+   "sweep": 200,
+   "afterCycle": 125,
+   "reOhm": 0.061419,
+   "rctOhm": 0.087204
+  },
+  {
+   "sweep": 201,
+   "afterCycle": 126,
+   "reOhm": 0.061084,
+   "rctOhm": 0.0824
+  },
+  {
+   "sweep": 202,
+   "afterCycle": 126,
+   "reOhm": 0.061217,
+   "rctOhm": 0.087282
+  },
+  {
+   "sweep": 203,
+   "afterCycle": 127,
+   "reOhm": 0.061484,
+   "rctOhm": 0.082696
+  },
+  {
+   "sweep": 204,
+   "afterCycle": 127,
+   "reOhm": 0.062704,
+   "rctOhm": 0.086791
+  },
+  {
+   "sweep": 205,
+   "afterCycle": 128,
+   "reOhm": 0.061709,
+   "rctOhm": 0.083292
+  },
+  {
+   "sweep": 206,
+   "afterCycle": 128,
+   "reOhm": 0.061726,
+   "rctOhm": 0.088378
+  },
+  {
+   "sweep": 207,
+   "afterCycle": 129,
+   "reOhm": 0.060889,
+   "rctOhm": 0.08311
+  },
+  {
+   "sweep": 208,
+   "afterCycle": 129,
+   "reOhm": 0.061852,
+   "rctOhm": 0.086979
+  },
+  {
+   "sweep": 209,
+   "afterCycle": 130,
+   "reOhm": 0.061067,
+   "rctOhm": 0.083754
+  },
+  {
+   "sweep": 210,
+   "afterCycle": 130,
+   "reOhm": 0.063104,
+   "rctOhm": 0.088522
+  },
+  {
+   "sweep": 211,
+   "afterCycle": 131,
+   "reOhm": 0.060844,
+   "rctOhm": 0.083082
+  },
+  {
+   "sweep": 212,
+   "afterCycle": 131,
+   "reOhm": 0.062287,
+   "rctOhm": 0.089231
+  },
+  {
+   "sweep": 213,
+   "afterCycle": 132,
+   "reOhm": 0.063516,
+   "rctOhm": 0.084118
+  },
+  {
+   "sweep": 214,
+   "afterCycle": 132,
+   "reOhm": 0.062705,
+   "rctOhm": 0.088387
+  },
+  {
+   "sweep": 215,
+   "afterCycle": 135,
+   "reOhm": 0.056099,
+   "rctOhm": 0.07518
+  },
+  {
+   "sweep": 216,
+   "afterCycle": 135,
+   "reOhm": 0.053286,
+   "rctOhm": 0.081569
+  },
+  {
+   "sweep": 217,
+   "afterCycle": 136,
+   "reOhm": 0.054388,
+   "rctOhm": 0.076042
+  },
+  {
+   "sweep": 218,
+   "afterCycle": 136,
+   "reOhm": 0.052931,
+   "rctOhm": 0.082757
+  },
+  {
+   "sweep": 219,
+   "afterCycle": 137,
+   "reOhm": 0.054476,
+   "rctOhm": 0.076731
+  },
+  {
+   "sweep": 220,
+   "afterCycle": 137,
+   "reOhm": 0.055889,
+   "rctOhm": 0.082263
+  },
+  {
+   "sweep": 221,
+   "afterCycle": 138,
+   "reOhm": 0.055996,
+   "rctOhm": 0.076514
+  },
+  {
+   "sweep": 222,
+   "afterCycle": 138,
+   "reOhm": 0.058418,
+   "rctOhm": 0.080298
+  },
+  {
+   "sweep": 223,
+   "afterCycle": 139,
+   "reOhm": 0.05228,
+   "rctOhm": 0.074866
+  },
+  {
+   "sweep": 224,
+   "afterCycle": 139,
+   "reOhm": 0.056411,
+   "rctOhm": 0.081922
+  },
+  {
+   "sweep": 225,
+   "afterCycle": 140,
+   "reOhm": 0.053508,
+   "rctOhm": 0.076104
+  },
+  {
+   "sweep": 226,
+   "afterCycle": 140,
+   "reOhm": 0.05568,
+   "rctOhm": 0.081774
+  },
+  {
+   "sweep": 227,
+   "afterCycle": 141,
+   "reOhm": 0.053893,
+   "rctOhm": 0.077783
+  },
+  {
+   "sweep": 228,
+   "afterCycle": 141,
+   "reOhm": 0.05621,
+   "rctOhm": 0.083281
+  },
+  {
+   "sweep": 229,
+   "afterCycle": 142,
+   "reOhm": 0.055003,
+   "rctOhm": 0.077055
+  },
+  {
+   "sweep": 230,
+   "afterCycle": 142,
+   "reOhm": 0.055795,
+   "rctOhm": 0.08295
+  },
+  {
+   "sweep": 231,
+   "afterCycle": 143,
+   "reOhm": 0.055478,
+   "rctOhm": 0.077002
+  },
+  {
+   "sweep": 232,
+   "afterCycle": 143,
+   "reOhm": 0.0578,
+   "rctOhm": 0.081903
+  },
+  {
+   "sweep": 233,
+   "afterCycle": 144,
+   "reOhm": 0.055132,
+   "rctOhm": 0.077056
+  },
+  {
+   "sweep": 234,
+   "afterCycle": 144,
+   "reOhm": 0.055775,
+   "rctOhm": 0.082947
+  },
+  {
+   "sweep": 235,
+   "afterCycle": 145,
+   "reOhm": 0.055811,
+   "rctOhm": 0.076552
+  },
+  {
+   "sweep": 236,
+   "afterCycle": 145,
+   "reOhm": 0.056559,
+   "rctOhm": 0.082375
+  },
+  {
+   "sweep": 237,
+   "afterCycle": 146,
+   "reOhm": 0.055173,
+   "rctOhm": 0.077302
+  },
+  {
+   "sweep": 238,
+   "afterCycle": 146,
+   "reOhm": 0.053344,
+   "rctOhm": 0.084486
+  },
+  {
+   "sweep": 239,
+   "afterCycle": 147,
+   "reOhm": 0.056203,
+   "rctOhm": 0.078436
+  },
+  {
+   "sweep": 240,
+   "afterCycle": 147,
+   "reOhm": 0.056262,
+   "rctOhm": 0.083066
+  },
+  {
+   "sweep": 241,
+   "afterCycle": 148,
+   "reOhm": 0.054123,
+   "rctOhm": 0.078534
+  },
+  {
+   "sweep": 242,
+   "afterCycle": 148,
+   "reOhm": 0.053394,
+   "rctOhm": 0.083356
+  },
+  {
+   "sweep": 243,
+   "afterCycle": 149,
+   "reOhm": 0.055458,
+   "rctOhm": 0.078661
+  },
+  {
+   "sweep": 244,
+   "afterCycle": 149,
+   "reOhm": 0.058545,
+   "rctOhm": 0.088369
+  },
+  {
+   "sweep": 245,
+   "afterCycle": 150,
+   "reOhm": 0.057849,
+   "rctOhm": 0.080788
+  },
+  {
+   "sweep": 246,
+   "afterCycle": 151,
+   "reOhm": 0.058615,
+   "rctOhm": 0.081547
+  },
+  {
+   "sweep": 247,
+   "afterCycle": 151,
+   "reOhm": 0.061424,
+   "rctOhm": 0.084964
+  },
+  {
+   "sweep": 248,
+   "afterCycle": 152,
+   "reOhm": 0.055146,
+   "rctOhm": 0.081319
+  },
+  {
+   "sweep": 249,
+   "afterCycle": 152,
+   "reOhm": 0.059523,
+   "rctOhm": 0.087208
+  },
+  {
+   "sweep": 250,
+   "afterCycle": 153,
+   "reOhm": 0.060395,
+   "rctOhm": 0.081186
+  },
+  {
+   "sweep": 251,
+   "afterCycle": 153,
+   "reOhm": 0.059262,
+   "rctOhm": 0.087779
+  },
+  {
+   "sweep": 252,
+   "afterCycle": 154,
+   "reOhm": 0.058373,
+   "rctOhm": 0.081687
+  },
+  {
+   "sweep": 253,
+   "afterCycle": 154,
+   "reOhm": 0.059524,
+   "rctOhm": 0.08843
+  },
+  {
+   "sweep": 254,
+   "afterCycle": 155,
+   "reOhm": 0.058915,
+   "rctOhm": 0.082429
+  },
+  {
+   "sweep": 255,
+   "afterCycle": 155,
+   "reOhm": 0.059677,
+   "rctOhm": 0.085844
+  },
+  {
+   "sweep": 256,
+   "afterCycle": 156,
+   "reOhm": 0.056793,
+   "rctOhm": 0.082772
+  },
+  {
+   "sweep": 257,
+   "afterCycle": 156,
+   "reOhm": 0.05976,
+   "rctOhm": 0.086625
+  },
+  {
+   "sweep": 258,
+   "afterCycle": 157,
+   "reOhm": 0.061549,
+   "rctOhm": 0.081667
+  },
+  {
+   "sweep": 259,
+   "afterCycle": 157,
+   "reOhm": 0.059503,
+   "rctOhm": 0.086369
+  },
+  {
+   "sweep": 260,
+   "afterCycle": 158,
+   "reOhm": 0.058158,
+   "rctOhm": 0.080766
+  },
+  {
+   "sweep": 261,
+   "afterCycle": 158,
+   "reOhm": 0.059556,
+   "rctOhm": 0.088218
+  },
+  {
+   "sweep": 262,
+   "afterCycle": 159,
+   "reOhm": 0.059982,
+   "rctOhm": 0.080408
+  },
+  {
+   "sweep": 263,
+   "afterCycle": 159,
+   "reOhm": 0.059491,
+   "rctOhm": 0.08873
+  },
+  {
+   "sweep": 264,
+   "afterCycle": 160,
+   "reOhm": 0.060321,
+   "rctOhm": 0.080341
+  },
+  {
+   "sweep": 265,
+   "afterCycle": 160,
+   "reOhm": 0.060521,
+   "rctOhm": 0.087536
+  },
+  {
+   "sweep": 266,
+   "afterCycle": 161,
+   "reOhm": 0.059607,
+   "rctOhm": 0.082195
+  },
+  {
+   "sweep": 267,
+   "afterCycle": 161,
+   "reOhm": 0.059827,
+   "rctOhm": 0.088538
+  },
+  {
+   "sweep": 268,
+   "afterCycle": 162,
+   "reOhm": 0.061155,
+   "rctOhm": 0.0813
+  },
+  {
+   "sweep": 269,
+   "afterCycle": 162,
+   "reOhm": 0.057944,
+   "rctOhm": 0.088905
+  },
+  {
+   "sweep": 270,
+   "afterCycle": 163,
+   "reOhm": 0.054995,
+   "rctOhm": 0.083253
+  },
+  {
+   "sweep": 271,
+   "afterCycle": 163,
+   "reOhm": 0.061759,
+   "rctOhm": 0.084721
+  },
+  {
+   "sweep": 272,
+   "afterCycle": 164,
+   "reOhm": 0.058456,
+   "rctOhm": 0.082702
+  },
+  {
+   "sweep": 273,
+   "afterCycle": 164,
+   "reOhm": 0.058989,
+   "rctOhm": 0.085736
+  },
+  {
+   "sweep": 274,
+   "afterCycle": 165,
+   "reOhm": 0.058801,
+   "rctOhm": 0.08237
+  },
+  {
+   "sweep": 275,
+   "afterCycle": 165,
+   "reOhm": 0.05763,
+   "rctOhm": 0.087424
+  },
+  {
+   "sweep": 276,
+   "afterCycle": 166,
+   "reOhm": 0.058984,
+   "rctOhm": 0.082522
+  },
+  {
+   "sweep": 277,
+   "afterCycle": 166,
+   "reOhm": 0.057824,
+   "rctOhm": 0.089757
+  },
+  {
+   "sweep": 278,
+   "afterCycle": 168,
+   "reOhm": 0.050036,
+   "rctOhm": 0.074792
+  }
+ ],
+ "source": {
+  "uri": "https://phm-datasets.s3.amazonaws.com/NASA/5.+Battery+Data+Set.zip",
+  "sourceManifestId": "nasa-battery",
+  "dataset": "NASA PCoE Battery Data Set (BatteryAgingARC-FY08Q4)",
+  "datasetVersion": "sha256:82302a7db4fc1b34e0b6676326610438d43b816bdf11a69d1d012a464ef2f92e",
+  "publisher": "NASA Ames Research Center, Prognostics Center of Excellence",
+  "committedPath": "data/external/nasa-battery",
+  "licence": "US federal government work (17 U.S.C. 105); no licence stated by the repository",
+  "attribution": "B. Saha and K. Goebel (2007), Battery Data Set, NASA Prognostics Data Repository, NASA Ames Research Center, Moffett Field, CA"
+ }
+}
