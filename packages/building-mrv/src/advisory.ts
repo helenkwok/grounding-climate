@@ -7,7 +7,8 @@ import type { CryptoProvider, JsonObject, ModelRun } from "@grounding-climate/co
 import type { AnomalyResult, BuildingMetadata, MeterPoint } from "./types.js";
 
 export const JEV_URL = "https://api.typesafe.ai/v1/systemone";
-export const JEV_MODEL = "jev-latest";
+/** Pinned to the version the 0.97 hand-off threshold was calibrated on; advice from any other version is refused. */
+export const JEV_MODEL = "jev-1.13.0";
 export const QUESTION_SET = "building-triage@2";
 /** Records made before question sets were stored on each record used this one. */
 const FIRST_QUESTION_SET = "building-triage@1";
@@ -203,7 +204,10 @@ export async function callJev(deps: JevDeps, key: string, state: FlagState): Pro
       } catch {
         throw new JevError("bad_response", res.status, "body is not JSON");
       }
-      return { ...parseJevResponse(json), latencyMs: Math.max(0, deps.now() - started) };
+      const advice = parseJevResponse(json);
+      // A different version may answer differently from the one the threshold was measured on.
+      if (advice.model !== JEV_MODEL) throw new JevError("bad_response", res.status, "served " + advice.model + ", pinned " + JEV_MODEL);
+      return { ...advice, latencyMs: Math.max(0, deps.now() - started) };
     }
     if ((res.status === 429 || res.status === 529) && attempt === 1) {
       const retryAfter = Number(res.headers?.get("retry-after"));
