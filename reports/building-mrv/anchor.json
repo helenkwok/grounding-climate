@@ -2,7 +2,7 @@
   "version": "grounding.anchor/0.1",
   "chain": "bitcoin",
   "format": "opentimestamps",
-  "digest": "6a923221d75205ae438fe9a2de30ced39baf1d7a416c4e6cb7a6f2b89b89726f",
+  "digest": "aa204e1f91ded51c5e275e0489b77ec3cc9ea50890a3a7bbbce9a8bd3f686727",
   "calendars": [
     {
       "url": "https://alice.btc.calendar.opentimestamps.org",
@@ -17,5 +17,5 @@
       "ok": true
     }
   ],
-  "submittedAt": "2026-10-18T02:45:00.528Z"
+  "submittedAt": "2026-10-18T02:47:59.168Z"
 }
