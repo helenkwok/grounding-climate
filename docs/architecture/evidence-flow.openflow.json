@@ -1,13 +1,13 @@
 {
   "format": "openflowkit.scene",
   "schemaVersion": 1,
-  "id": "70bedb47-0a39-4fca-a7ea-5ae36bf74425",
+  "id": "db19d900-0842-47ed-80b0-16e78e6854ee",
   "name": "evidence-flow",
-  "createdAt": "2026-10-18T07:46:07.742Z",
-  "updatedAt": "2026-10-18T07:46:07.742Z",
+  "createdAt": "2026-10-18T08:07:34.785Z",
+  "updatedAt": "2026-10-18T08:07:34.785Z",
   "pages": [
     {
-      "id": "70bedb47-0a39-4fca-a7ea-5ae36bf74425:page-1",
+      "id": "db19d900-0842-47ed-80b0-16e78e6854ee:page-1",
       "name": "Page 1",
       "diagramKind": "flowchart",
       "layers": [
@@ -20,7 +20,7 @@
       ],
       "nodes": [
         {
-          "id": "dsl-n5vyiv",
+          "id": "dsl-uu3y6o",
           "kind": "frame",
           "parentId": null,
           "layerId": "default",
@@ -37,8 +37,8 @@
             }
           },
           "size": {
-            "width": 845,
-            "height": 1628
+            "width": 897,
+            "height": 1854
           },
           "content": {
             "label": "How Grounding rechecks a climate claim"
@@ -49,8 +49,8 @@
             "dsl": {
               "family": "flowchart",
               "version": 1,
-              "source": "flowchart down\ntitle: How Grounding rechecks a climate claim\ngroup Evidence {\n  Claim [doc, gray, desc: \"a figure as published\", link: apps/demo/src/claims-meta.ts:26]\n  Data [cylinder, gray, label: Source data, desc: \"pinned and hashed\", link: packages/building-mrv/src/integrity.ts:13]\n}\ngroup Software checks {\n  Recompute [blue, label: Recompute the figure, link: packages/building-mrv/src/emissions.ts:8]\n  Screen [blue, label: Flag odd readings, desc: \"baseline residuals, zeros, stuck runs, skipped clock hours\", link: packages/building-mrv/src/anomaly.ts:31]\n}\ngroup Judgement {\n  Model [violet, label: Model suggests, desc: \"advice only, threshold 0.97\", link: packages/building-mrv/src/advisory.ts:236]\n  Person [person, green, label: A person decides, desc: \"decision bound to the data's digest\", link: packages/building-mrv/src/decisions.ts:37]\n}\ngroup Record {\n  Sign [hexagon, teal, label: Sign, desc: \"Ed25519 + ML-DSA-65\", link: packages/core/src/attestation.ts:135]\n  Verify [browser, teal, label: Anyone verifies, desc: \"offline, no account\", link: packages/core/src/attestation.ts:203]\n}\nClaim -> Recompute : rebuild from evidence\nData -> Recompute\nData -> Screen\nScreen -> Model : each flag\nModel --> Person : suggestion\nScreen -> Person : needs judgement\nRecompute -> Sign\nPerson -> Sign\nSign -> Verify : signed record\nData --> Person : data changes → decision goes stale [red]\n",
-              "hash": "g42rhx",
+              "source": "flowchart down\ntitle: How Grounding rechecks a climate claim\ngroup Evidence {\n  Claim [doc, gray, desc: \"a figure as published\", link: apps/demo/src/claims-meta.ts:26]\n  Data [cylinder, gray, label: Source data, desc: \"pinned and hashed\", link: packages/building-mrv/src/integrity.ts:13]\n}\ngroup Software checks {\n  Recompute [blue, label: Recompute the figure, link: packages/building-mrv/src/emissions.ts:8]\n  Screen [blue, label: Flag odd readings, desc: \"baseline residuals, zeros, stuck runs, skipped clock hours\", link: packages/building-mrv/src/anomaly.ts:31]\n}\ngroup Judgement {\n  Model [violet, label: Model suggests, desc: \"advice only, threshold 0.97\", link: packages/building-mrv/src/advisory.ts:236]\n  Person [person, green, label: A person decides, desc: \"decision bound to the data's digest\", link: packages/building-mrv/src/decisions.ts:37]\n}\ngroup Record {\n  Sign [hexagon, teal, label: Sign, desc: \"Ed25519 + ML-DSA-65\", link: packages/core/src/attestation.ts:135]\n  Anchor [hexagon, teal, label: Anchor the digest, desc: \"Bitcoin + Sepolia; digest only\", link: packages/core/src/anchor.ts:72]\n  Credential [doc, teal, label: W3C credential, desc: \"VC 2.0, UNTP shape; IPFS address per file\", link: packages/core/src/vc.ts:197]\n  Verify [browser, teal, label: Anyone verifies, desc: \"offline, no account\", link: packages/core/src/attestation.ts:203]\n}\nClaim -> Recompute : rebuild from evidence\nData -> Recompute\nData -> Screen\nScreen -> Model : each flag\nModel --> Person : suggestion\nScreen -> Person : needs judgement\nRecompute -> Sign\nPerson -> Sign\nSign -> Verify : signed record\nSign -> Anchor : record digest\nSign -> Credential\nAnchor -> Verify : existed by block\nCredential -> Verify\nData --> Person : data changes → decision goes stale [red]\n",
+              "hash": "8cwclt",
               "direction": "down",
               "title": "How Grounding rechecks a climate claim",
               "autoIcons": true
@@ -61,12 +61,12 @@
         {
           "id": "evidence",
           "kind": "frame",
-          "parentId": "dsl-n5vyiv",
+          "parentId": "dsl-uu3y6o",
           "layerId": "default",
           "zIndex": 1,
           "transform": {
             "translation": {
-              "x": 385,
+              "x": 30,
               "y": 72
             },
             "rotationRadians": 0,
@@ -95,12 +95,12 @@
         {
           "id": "software-checks",
           "kind": "frame",
-          "parentId": "dsl-n5vyiv",
+          "parentId": "dsl-uu3y6o",
           "layerId": "default",
           "zIndex": 2,
           "transform": {
             "translation": {
-              "x": 50,
+              "x": 102,
               "y": 418
             },
             "rotationRadians": 0,
@@ -129,12 +129,12 @@
         {
           "id": "judgement",
           "kind": "frame",
-          "parentId": "dsl-n5vyiv",
+          "parentId": "dsl-uu3y6o",
           "layerId": "default",
           "zIndex": 3,
           "transform": {
             "translation": {
-              "x": 279,
+              "x": 323,
               "y": 798
             },
             "rotationRadians": 0,
@@ -163,12 +163,12 @@
         {
           "id": "record",
           "kind": "frame",
-          "parentId": "dsl-n5vyiv",
+          "parentId": "dsl-uu3y6o",
           "layerId": "default",
           "zIndex": 4,
           "transform": {
             "translation": {
-              "x": 285,
+              "x": 165,
               "y": 1206
             },
             "rotationRadians": 0,
@@ -178,8 +178,8 @@
             }
           },
           "size": {
-            "width": 284,
-            "height": 394
+            "width": 681,
+            "height": 620
           },
           "content": {
             "label": "Record"
@@ -546,7 +546,7 @@
           "zIndex": 11,
           "transform": {
             "translation": {
-              "x": 70,
+              "x": 99,
               "y": 54
             },
             "rotationRadians": 0,
@@ -590,15 +590,119 @@
           "extensions": {}
         },
         {
-          "id": "verify",
-          "kind": "browser",
+          "id": "anchor",
+          "kind": "process",
           "parentId": "record",
           "layerId": "default",
           "zIndex": 12,
           "transform": {
             "translation": {
-              "x": 22,
-              "y": 202
+              "x": 164,
+              "y": 212
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 190,
+            "height": 80
+          },
+          "content": {
+            "label": "Anchor the digest",
+            "shape": "hexagon",
+            "subLabel": "Bitcoin + Sepolia; digest only"
+          },
+          "appearance": {
+            "fill": "#ecfeff",
+            "stroke": "#22d3ee",
+            "textColor": "#0e7490"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "anchor",
+              "line": 17,
+              "name": "Anchor",
+              "color": "teal",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "Bitcoin + Sepolia; digest only"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/core/src/anchor.ts : 72"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "credential",
+          "kind": "process",
+          "parentId": "record",
+          "layerId": "default",
+          "zIndex": 13,
+          "transform": {
+            "translation": {
+              "x": 407,
+              "y": 312
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 252,
+            "height": 96
+          },
+          "content": {
+            "label": "W3C credential",
+            "shape": "document",
+            "subLabel": "VC 2.0, UNTP shape; IPFS address per file"
+          },
+          "appearance": {
+            "fill": "#ecfeff",
+            "stroke": "#22d3ee",
+            "textColor": "#0e7490"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "credential",
+              "line": 18,
+              "name": "Credential",
+              "color": "teal",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "VC 2.0, UNTP shape; IPFS address per file"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/core/src/vc.ts : 197"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "verify",
+          "kind": "browser",
+          "parentId": "record",
+          "layerId": "default",
+          "zIndex": 14,
+          "transform": {
+            "translation": {
+              "x": 139,
+              "y": 428
             },
             "rotationRadians": 0,
             "scale": {
@@ -623,7 +727,7 @@
           "metadata": {
             "dsl": {
               "id": "verify",
-              "line": 17,
+              "line": 19,
               "name": "Verify",
               "color": "teal",
               "attrs": [
@@ -679,7 +783,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 19
+              "line": 21
             }
           },
           "extensions": {}
@@ -710,7 +814,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 20
+              "line": 22
             }
           },
           "extensions": {}
@@ -741,7 +845,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 21
+              "line": 23
             }
           },
           "extensions": {}
@@ -783,7 +887,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 22
+              "line": 24
             }
           },
           "extensions": {}
@@ -826,7 +930,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 23
+              "line": 25
             }
           },
           "extensions": {}
@@ -868,7 +972,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 24
+              "line": 26
             }
           },
           "extensions": {}
@@ -899,7 +1003,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 25
+              "line": 27
             }
           },
           "extensions": {}
@@ -930,7 +1034,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 26
+              "line": 28
             }
           },
           "extensions": {}
@@ -972,7 +1076,153 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 27
+              "line": 29
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:sign->anchor:1",
+          "source": {
+            "nodeId": "sign",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "anchor",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "sign->anchor:1:label",
+              "text": "record digest",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 30
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:sign->credential:1",
+          "source": {
+            "nodeId": "sign",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "credential",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 31
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:anchor->verify:1",
+          "source": {
+            "nodeId": "anchor",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "verify",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "anchor->verify:1:label",
+              "text": "existed by block",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 32
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:credential->verify:1",
+          "source": {
+            "nodeId": "credential",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "verify",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 33
             }
           },
           "extensions": {}
@@ -1015,7 +1265,7 @@
           "semantics": {},
           "metadata": {
             "dsl": {
-              "line": 28
+              "line": 34
             }
           },
           "extensions": {}
