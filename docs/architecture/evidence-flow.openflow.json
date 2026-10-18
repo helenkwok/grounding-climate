@@ -1,0 +1,1030 @@
+{
+  "format": "openflowkit.scene",
+  "schemaVersion": 1,
+  "id": "69d776a3-e2a1-4fad-8609-988dac4a82c0",
+  "name": "evidence-flow",
+  "createdAt": "2026-10-18T01:10:30.313Z",
+  "updatedAt": "2026-10-18T01:10:30.313Z",
+  "pages": [
+    {
+      "id": "69d776a3-e2a1-4fad-8609-988dac4a82c0:page-1",
+      "name": "Page 1",
+      "diagramKind": "flowchart",
+      "layers": [
+        {
+          "id": "default",
+          "name": "Default",
+          "visible": true,
+          "locked": false
+        }
+      ],
+      "nodes": [
+        {
+          "id": "dsl-64dlfj",
+          "kind": "frame",
+          "parentId": null,
+          "layerId": "default",
+          "zIndex": 0,
+          "transform": {
+            "translation": {
+              "x": 160,
+              "y": 80
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 2401,
+            "height": 422
+          },
+          "content": {
+            "label": "How Grounding rechecks a climate claim"
+          },
+          "appearance": {},
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "family": "flowchart",
+              "version": 1,
+              "source": "flowchart right\ntitle: How Grounding rechecks a climate claim\ngroup Evidence {\n  Claim [doc, gray, desc: \"a figure as published\", link: apps/demo/src/claims-meta.ts:26]\n  Data [cylinder, gray, label: Source data, desc: \"pinned and hashed\", link: packages/building-mrv/src/integrity.ts:13]\n}\ngroup Software checks {\n  Recompute [blue, label: Recompute the figure, link: packages/building-mrv/src/emissions.ts:8]\n  Screen [blue, label: Flag odd readings, desc: \"baseline residuals, zeros, stuck runs, skipped clock hours\", link: packages/building-mrv/src/anomaly.ts:31]\n}\ngroup Judgement {\n  Model [violet, label: Model suggests, desc: \"advice only, threshold 0.97\", link: packages/building-mrv/src/advisory.ts:236]\n  Person [person, green, label: A person decides, desc: \"decision bound to the data's digest\", link: packages/building-mrv/src/decisions.ts:37]\n}\ngroup Record {\n  Sign [hexagon, teal, label: Sign, desc: \"Ed25519 + ML-DSA-65\", link: packages/core/src/attestation.ts:135]\n  Verify [browser, teal, label: Anyone verifies, desc: \"offline, no account\", link: packages/core/src/attestation.ts:203]\n}\nClaim -> Recompute : rebuild from evidence\nData -> Recompute\nData -> Screen\nScreen -> Model : each flag\nModel --> Person : suggestion\nScreen -> Person : needs judgement\nRecompute -> Sign\nPerson -> Sign\nSign -> Verify : signed record\nData --> Person : data changes → decision goes stale [red]\n",
+              "hash": "1w0pp0m",
+              "direction": "right",
+              "title": "How Grounding rechecks a climate claim",
+              "autoIcons": true
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "evidence",
+          "kind": "frame",
+          "parentId": "dsl-64dlfj",
+          "layerId": "default",
+          "zIndex": 1,
+          "transform": {
+            "translation": {
+              "x": 28,
+              "y": 112
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 189,
+            "height": 280
+          },
+          "content": {
+            "label": "Evidence"
+          },
+          "appearance": {},
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "evidence",
+              "line": 3
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "software-checks",
+          "kind": "frame",
+          "parentId": "dsl-64dlfj",
+          "layerId": "default",
+          "zIndex": 2,
+          "transform": {
+            "translation": {
+              "x": 512,
+              "y": 72
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 364,
+            "height": 228
+          },
+          "content": {
+            "label": "Software checks"
+          },
+          "appearance": {},
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "software-checks",
+              "line": 7
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "judgement",
+          "kind": "frame",
+          "parentId": "dsl-64dlfj",
+          "layerId": "default",
+          "zIndex": 3,
+          "transform": {
+            "translation": {
+              "x": 1142,
+              "y": 121
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 577,
+            "height": 202
+          },
+          "content": {
+            "label": "Judgement"
+          },
+          "appearance": {},
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "judgement",
+              "line": 11
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "record",
+          "kind": "frame",
+          "parentId": "dsl-64dlfj",
+          "layerId": "default",
+          "zIndex": 4,
+          "transform": {
+            "translation": {
+              "x": 1793,
+              "y": 87
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 580,
+            "height": 246
+          },
+          "content": {
+            "label": "Record"
+          },
+          "appearance": {},
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "record",
+              "line": 15
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "claim",
+          "kind": "process",
+          "parentId": "evidence",
+          "layerId": "default",
+          "zIndex": 5,
+          "transform": {
+            "translation": {
+              "x": 22,
+              "y": 54
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 145,
+            "height": 96
+          },
+          "content": {
+            "label": "Claim",
+            "shape": "document",
+            "subLabel": "a figure as published"
+          },
+          "appearance": {
+            "fill": "#f8fafc",
+            "stroke": "#94a3b8",
+            "textColor": "#1e293b"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "claim",
+              "line": 4,
+              "color": "gray",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "a figure as published"
+                },
+                {
+                  "key": "link",
+                  "value": "apps/demo/src/claims-meta.ts : 26"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "data",
+          "kind": "process",
+          "parentId": "evidence",
+          "layerId": "default",
+          "zIndex": 6,
+          "transform": {
+            "translation": {
+              "x": 35,
+              "y": 170
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 132,
+            "height": 88
+          },
+          "content": {
+            "label": "Source data",
+            "shape": "cylinder",
+            "subLabel": "pinned and hashed"
+          },
+          "appearance": {
+            "fill": "#f8fafc",
+            "stroke": "#94a3b8",
+            "textColor": "#1e293b"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "data",
+              "line": 5,
+              "name": "Data",
+              "color": "gray",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "pinned and hashed"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/building-mrv/src/integrity.ts : 13"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "recompute",
+          "kind": "process",
+          "parentId": "software-checks",
+          "layerId": "default",
+          "zIndex": 7,
+          "transform": {
+            "translation": {
+              "x": 66,
+              "y": 54
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 189,
+            "height": 52
+          },
+          "content": {
+            "label": "Recompute the figure",
+            "shape": "rectangle"
+          },
+          "appearance": {
+            "fill": "#eff6ff",
+            "stroke": "#60a5fa",
+            "textColor": "#1e293b"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "recompute",
+              "line": 8,
+              "name": "Recompute",
+              "color": "blue",
+              "attrs": [
+                {
+                  "key": "link",
+                  "value": "packages/building-mrv/src/emissions.ts : 8"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "screen",
+          "kind": "process",
+          "parentId": "software-checks",
+          "layerId": "default",
+          "zIndex": 8,
+          "transform": {
+            "translation": {
+              "x": 22,
+              "y": 126
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 320,
+            "height": 80
+          },
+          "content": {
+            "label": "Flag odd readings",
+            "shape": "rectangle",
+            "subLabel": "baseline residuals, zeros, stuck runs, skipped clock hours",
+            "sizingPolicy": {
+              "version": 1,
+              "mode": "fixed",
+              "minSize": {
+                "width": 24,
+                "height": 24
+              },
+              "maxSize": {
+                "width": 1600,
+                "height": 1200
+              },
+              "overflow": "wrap",
+              "clipContent": false,
+              "maxLines": 4
+            }
+          },
+          "appearance": {
+            "fill": "#eff6ff",
+            "stroke": "#60a5fa",
+            "textColor": "#1e293b"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "screen",
+              "line": 9,
+              "name": "Screen",
+              "color": "blue",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "baseline residuals, zeros, stuck runs, skipped clock hours"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/building-mrv/src/anomaly.ts : 31"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "model",
+          "kind": "process",
+          "parentId": "judgement",
+          "layerId": "default",
+          "zIndex": 9,
+          "transform": {
+            "translation": {
+              "x": 22,
+              "y": 54
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 177,
+            "height": 66
+          },
+          "content": {
+            "label": "Model suggests",
+            "shape": "rectangle",
+            "subLabel": "advice only, threshold 0.97"
+          },
+          "appearance": {
+            "fill": "#f5f3ff",
+            "stroke": "#8b5cf6",
+            "textColor": "#5b21b6"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "model",
+              "line": 12,
+              "name": "Model",
+              "color": "violet",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "advice only, threshold 0.97"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/building-mrv/src/advisory.ts : 236"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "person",
+          "kind": "architecture",
+          "parentId": "judgement",
+          "layerId": "default",
+          "zIndex": 10,
+          "transform": {
+            "translation": {
+              "x": 332,
+              "y": 56
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 223,
+            "height": 124
+          },
+          "content": {
+            "label": "A person decides",
+            "contentLayout": {
+              "version": 1,
+              "horizontal": "center",
+              "vertical": "end",
+              "iconPlacement": "top",
+              "labelAlignment": "center",
+              "padding": {
+                "top": 10,
+                "right": 10,
+                "bottom": 10,
+                "left": 10
+              },
+              "gap": 8,
+              "iconScale": 1,
+              "freeIconPosition": {
+                "x": 0.5,
+                "y": 0.5
+              }
+            },
+            "subLabel": "decision bound to the data's digest",
+            "color": "emerald",
+            "icon": "tabler/user",
+            "archProvider": "tabler",
+            "archResourceType": "user",
+            "archIconPackId": "tabler-outline-v3",
+            "archIconShapeId": "user",
+            "assetPresentation": "icon"
+          },
+          "appearance": {},
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "person",
+              "line": 13,
+              "name": "Person",
+              "shape": "person",
+              "color": "green",
+              "autoIcon": "tabler/user",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "decision bound to the data's digest"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/building-mrv/src/decisions.ts : 37"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "sign",
+          "kind": "process",
+          "parentId": "record",
+          "layerId": "default",
+          "zIndex": 11,
+          "transform": {
+            "translation": {
+              "x": 22,
+              "y": 99
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 145,
+            "height": 80
+          },
+          "content": {
+            "label": "Sign",
+            "shape": "hexagon",
+            "subLabel": "Ed25519 + ML-DSA-65"
+          },
+          "appearance": {
+            "fill": "#ecfeff",
+            "stroke": "#22d3ee",
+            "textColor": "#0e7490"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "sign",
+              "line": 16,
+              "color": "teal",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "Ed25519 + ML-DSA-65"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/core/src/attestation.ts : 135"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "verify",
+          "kind": "browser",
+          "parentId": "record",
+          "layerId": "default",
+          "zIndex": 12,
+          "transform": {
+            "translation": {
+              "x": 318,
+              "y": 54
+            },
+            "rotationRadians": 0,
+            "scale": {
+              "x": 1,
+              "y": 1
+            }
+          },
+          "size": {
+            "width": 240,
+            "height": 170
+          },
+          "content": {
+            "label": "Anyone verifies",
+            "subLabel": "offline, no account"
+          },
+          "appearance": {
+            "fill": "#ecfeff",
+            "stroke": "#22d3ee",
+            "textColor": "#0e7490"
+          },
+          "ports": [],
+          "metadata": {
+            "dsl": {
+              "id": "verify",
+              "line": 17,
+              "name": "Verify",
+              "color": "teal",
+              "attrs": [
+                {
+                  "key": "desc",
+                  "value": "offline, no account"
+                },
+                {
+                  "key": "link",
+                  "value": "packages/core/src/attestation.ts : 203"
+                }
+              ]
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "connectors": [
+        {
+          "id": "edge:claim->recompute:1",
+          "source": {
+            "nodeId": "claim",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "recompute",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "claim->recompute:1:label",
+              "text": "rebuild from evidence",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 19
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:data->recompute:1",
+          "source": {
+            "nodeId": "data",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "recompute",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 20
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:data->screen:1",
+          "source": {
+            "nodeId": "data",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "screen",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 21
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:screen->model:1",
+          "source": {
+            "nodeId": "screen",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "model",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "screen->model:1:label",
+              "text": "each flag",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 22
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:model->person:1",
+          "source": {
+            "nodeId": "model",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "person",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "model->person:1:label",
+              "text": "suggestion",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "dashPattern": "dashed",
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 23
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:screen->person:1",
+          "source": {
+            "nodeId": "screen",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "person",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "screen->person:1:label",
+              "text": "needs judgement",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 24
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:recompute->sign:1",
+          "source": {
+            "nodeId": "recompute",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "sign",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 25
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:person->sign:1",
+          "source": {
+            "nodeId": "person",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "sign",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 26
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:sign->verify:1",
+          "source": {
+            "nodeId": "sign",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "verify",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "sign->verify:1:label",
+              "text": "signed record",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 27
+            }
+          },
+          "extensions": {}
+        },
+        {
+          "id": "edge:data->person:1",
+          "source": {
+            "nodeId": "data",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "target": {
+            "nodeId": "person",
+            "portId": null,
+            "anchor": null,
+            "point": null
+          },
+          "route": {
+            "kind": "orthogonal",
+            "ownership": "automatic"
+          },
+          "waypoints": [],
+          "labels": [
+            {
+              "id": "data->person:1:label",
+              "text": "data changes → decision goes stale",
+              "pathRatio": 0.5,
+              "offset": {
+                "x": 0,
+                "y": 0
+              },
+              "metadata": {}
+            }
+          ],
+          "appearance": {
+            "dashPattern": "dashed",
+            "markerEnd": "arrow"
+          },
+          "semantics": {},
+          "metadata": {
+            "dsl": {
+              "line": 28
+            }
+          },
+          "extensions": {}
+        }
+      ],
+      "metadata": {},
+      "extensions": {}
+    }
+  ],
+  "metadata": {},
+  "extensions": {}
+}

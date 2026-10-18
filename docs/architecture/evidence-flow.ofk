@@ -1,0 +1,28 @@
+flowchart right
+title: How Grounding rechecks a climate claim
+group Evidence {
+  Claim [doc, gray, desc: "a figure as published", link: apps/demo/src/claims-meta.ts:26]
+  Data [cylinder, gray, label: Source data, desc: "pinned and hashed", link: packages/building-mrv/src/integrity.ts:13]
+}
+group Software checks {
+  Recompute [blue, label: Recompute the figure, link: packages/building-mrv/src/emissions.ts:8]
+  Screen [blue, label: Flag odd readings, desc: "baseline residuals, zeros, stuck runs, skipped clock hours", link: packages/building-mrv/src/anomaly.ts:31]
+}
+group Judgement {
+  Model [violet, label: Model suggests, desc: "advice only, threshold 0.97", link: packages/building-mrv/src/advisory.ts:236]
+  Person [person, green, label: A person decides, desc: "decision bound to the data's digest", link: packages/building-mrv/src/decisions.ts:37]
+}
+group Record {
+  Sign [hexagon, teal, label: Sign, desc: "Ed25519 + ML-DSA-65", link: packages/core/src/attestation.ts:135]
+  Verify [browser, teal, label: Anyone verifies, desc: "offline, no account", link: packages/core/src/attestation.ts:203]
+}
+Claim -> Recompute : rebuild from evidence
+Data -> Recompute
+Data -> Screen
+Screen -> Model : each flag
+Model --> Person : suggestion
+Screen -> Person : needs judgement
+Recompute -> Sign
+Person -> Sign
+Sign -> Verify : signed record
+Data --> Person : data changes → decision goes stale [red]

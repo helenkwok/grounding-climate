@@ -6,3 +6,10 @@ target/
 .env.*
 .env
 apps/site/src/routeTree.gen.ts
+
+# Demo video work files (narration, captures, renders)
+/video/
+
+# Standards texts: kept for reference, never redistributed; only the README index is tracked
+docs/standards/*
+!docs/standards/README.md
