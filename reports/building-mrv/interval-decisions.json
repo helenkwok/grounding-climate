@@ -50,9 +50,9 @@
   {
     "timestamp": "2016-03-13 02:00:00",
     "decision": "exclude",
-    "reason": "isolated zero reading between normal hours, treated as a meter dropout",
+    "reason": "no such hour: US/Pacific clocks moved from 02:00 to 03:00 on 2016-03-13 for daylight saving, so the zero is a clock artefact and no use is missing",
     "decidedBy": "person:energy-manager",
-    "decidedAt": "2026-10-05T12:30:34.795Z",
+    "decidedAt": "2026-10-18T00:51:21.000Z",
     "meterSeriesDigest": {
       "algorithm": "SHA-256",
       "value": "w0vVZd_G422vqMSwkWY4LuLy4gLKzNNIfLc_dfv3MAc"

@@ -22,6 +22,25 @@ import type {
   PreparedBuildingDataset,
 } from "./types.js";
 
+/**
+ * True when a local "YYYY-MM-DD HH:MM:SS" reading names a clock time the zone skips (clocks moving forward
+ * for daylight saving). A zero there is a clock artefact, not missing use.
+ */
+export function isSkippedLocalTime(timestamp: string, timeZone: string): boolean {
+  const format = new Intl.DateTimeFormat("en-CA", {
+    timeZone, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", second: "2-digit",
+  });
+  const local = (utcMs: number) => {
+    const part = Object.fromEntries(format.formatToParts(utcMs).map((item) => [item.type, item.value]));
+    return `${part.year}-${part.month}-${part.day} ${part.hour}:${part.minute}:${part.second}`;
+  };
+  const asUtc = (text: string) => Date.parse(text.replace(" ", "T") + "Z");
+  const wall = asUtc(timestamp);
+  // The offset a day either side covers both sides of any change; the time exists if either maps back to it.
+  return ![wall - 86_400_000, wall + 86_400_000].some((probe) => local(wall - (asUtc(local(probe)) - probe)) === timestamp);
+}
+
 export interface BuildBuildingCaseOptions {
   caseId: string;
   title?: string;
@@ -116,6 +135,17 @@ export function buildBuildingMrvCase(
   const open = statuses.filter((status) => status.state !== "decided");
   const needsReview = open.length > 0;
   const kept = statuses.filter((status) => status.decision?.decision === "keep" && status.state === "decided").length;
+  // Excluded readings are not replaced; say how much use the baseline expects there, except at skipped clock hours.
+  const keptAt = new Set(
+    statuses.filter((status) => status.state === "decided" && status.decision?.decision === "keep").map((s) => s.timestamp),
+  );
+  const excludedPoints = analysis.anomalies.points.filter((point) => point.flagged && !keptAt.has(point.timestamp));
+  const timeZone = dataset.metadata.timezone;
+  const skipped = timeZone ? excludedPoints.filter((point) => isSkippedLocalTime(point.timestamp, timeZone)) : [];
+  const expectedKWh = excludedPoints
+    .filter((point) => !skipped.includes(point))
+    .reduce((sum, point) => sum + Math.max(point.predicted, 0), 0);
+  const expectedTCo2e = (expectedKWh * factor.valueKgCo2ePerKwh) / 1000;
   const advice = options.advice ?? [];
   const decisions = flagged > 0 ? [decisionVerification(statuses, advice, createdAt)] : [];
   const firstMeter = dataset.meter[0];
@@ -223,7 +253,14 @@ export function buildBuildingMrvCase(
                 (factor.effectivePeriod?.label ?? factor.sourceDocument ?? factor.sourceUri) + ")",
             ],
             excluded: [
-              "Excluded readings (" + analysis.emissions.excludedEnergyKWh.toFixed(3) + " kWh), which are not replaced by an estimate",
+              "Excluded readings (" + analysis.emissions.excludedEnergyKWh.toFixed(3) + " kWh), which are not replaced by an estimate: " +
+                "the hour-of-week baseline expects about " + expectedKWh.toFixed(0) + " kWh (" + expectedTCo2e.toFixed(2) +
+                " tCO2e) at the " + (excludedPoints.length - skipped.length) + " excluded hours, so the figure may be low by that much" +
+                (skipped.length > 0
+                  ? "; " + skipped.length + " excluded reading" + (skipped.length === 1 ? " falls" : "s fall") + " in a clock hour " +
+                    timeZone + " skipped for daylight saving (" + skipped.map((point) => point.timestamp).join(", ") +
+                    "), where no use is missing"
+                  : ""),
               "Other meters (gas, steam, chilled water) and on-site generation",
               "Scope 1 and Scope 3 emissions",
             ],
