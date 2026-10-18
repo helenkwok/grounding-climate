@@ -34,7 +34,7 @@ for (const source of manifest.sources) {
 const provider = new InMemoryNodeCryptoProvider();
 provider.generateEd25519Key({
   keyId: "key:carbon-registry-smoke",
-  controller: "service:climatechain:carbon-registry",
+  controller: "service:grounding:carbon-registry",
   createdAt: "2026-09-30T00:00:00Z",
 });
 
@@ -126,7 +126,7 @@ const cleanVerification =
   clean.caseBundle.verifications[0]?.result ?? null;
 
 const result = {
-  schemaVersion: "climatechain.carbon-registry-smoke/0.1",
+  schemaVersion: "grounding.carbon-registry-smoke/0.1",
   source: {
     repository: manifest.repository,
     commit: manifest.commit,
@@ -178,6 +178,6 @@ const result = {
 };
 
 console.log(
-  "CLIMATECHAIN_CARBON_REGISTRY_SMOKE=" +
+  "GROUNDING_CARBON_REGISTRY_SMOKE=" +
     JSON.stringify(result),
 );

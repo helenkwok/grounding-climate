@@ -1,5 +1,5 @@
 {
-  "name": "@climatechain/building-mrv",
+  "name": "@grounding-climate/building-mrv",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
@@ -16,9 +16,9 @@
     "analyze": "npm run build && node dist/src/cli.js"
   },
   "dependencies": {
-    "@climatechain/core": "*",
-    "@climatechain/webmcp": "*",
-    "@climatechain/crypto-node": "*"
+    "@grounding-climate/core": "*",
+    "@grounding-climate/webmcp": "*",
+    "@grounding-climate/crypto-node": "*"
   },
   "devDependencies": {
     "@types/node": "^22.0.0",

@@ -8,7 +8,7 @@ import {
   type SignedAttestationBundle,
   type SignedAttestationVerification,
   openClimateRiskContext,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   adviceModelRun,
   BuildingMrvService,
@@ -16,7 +16,7 @@ import {
   verifyPreparedArtifactDigests,
   type DecidedCase,
   type IntervalDecision,
-} from "@climatechain/building-mrv";
+} from "@grounding-climate/building-mrv";
 
 import { WebCryptoProvider } from "./web-crypto.js";
 

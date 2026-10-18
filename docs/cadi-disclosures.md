@@ -2,7 +2,7 @@
 
 Issue: #5
 
-ClimateChain treats a public CaDI record as a **disclosure claim**, not automatic physical ground truth.
+Grounding treats a public CaDI record as a **disclosure claim**, not automatic physical ground truth.
 
 The working state model is:
 
@@ -21,7 +21,7 @@ These states are independent. A source can confirm that a company publishes on C
 
 The source-rights policy for CaDI remains `link-only`.
 
-ClimateChain stores:
+Grounding stores:
 
 - organisation/source identifiers
 - original URLs
@@ -87,9 +87,9 @@ Important wording:
 - `source-found = confirmed`
 - `calculation-reproduced = not-assessed`
 - `factor-traced = not-assessed`
-- `third-party-assured = not-assessed` in ClimateChain
+- `third-party-assured = not-assessed` in Grounding
 
-The last item remains not-assessed because the first-party page attributes external verification to Carbon Footprint Ltd, but ClimateChain has not independently inspected that assurance engagement.
+The last item remains not-assessed because the first-party page attributes external verification to Carbon Footprint Ltd, but Grounding has not independently inspected that assurance engagement.
 
 ### Venn
 
@@ -127,7 +127,7 @@ The direct CaDI application URL is currently:
 
 `https://carbon.knack.com/cadi`
 
-ClimateChain keeps the link rather than scraping/mirroring the application.
+Grounding keeps the link rather than scraping/mirroring the application.
 
 ## First executable case: LPL 2025 Scope 1
 

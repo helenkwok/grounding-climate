@@ -1,11 +1,11 @@
 import {
   canonicalBytes,
   domainSeparatedBytes,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   ContentDigest,
   CryptoProvider,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import type {
   BurnScarDetectionResult,
@@ -18,7 +18,7 @@ export async function digestBurnScarImage(
 ): Promise<ContentDigest> {
   return provider.hash(
     domainSeparatedBytes(
-      "climatechain.earth-observation.image",
+      "grounding.earth-observation.image",
       "earth-observation/0.1",
       {
         sceneId: scene.sceneId,
@@ -39,7 +39,7 @@ export async function digestBurnScarGroundTruth(
 ): Promise<ContentDigest> {
   return provider.hash(
     domainSeparatedBytes(
-      "climatechain.earth-observation.ground-truth",
+      "grounding.earth-observation.ground-truth",
       "earth-observation/0.1",
       {
         sceneId: scene.sceneId,
@@ -58,7 +58,7 @@ export async function digestBurnScarScene(
 ): Promise<ContentDigest> {
   return provider.hash(
     domainSeparatedBytes(
-      "climatechain.earth-observation.scene-bundle",
+      "grounding.earth-observation.scene-bundle",
       "earth-observation/0.1",
       scene,
     ),

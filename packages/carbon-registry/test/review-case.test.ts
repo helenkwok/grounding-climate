@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 
-import { validateBundle } from "@climatechain/core";
-import type { ReviewDecision } from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+import { validateBundle } from "@grounding-climate/core";
+import type { ReviewDecision } from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 
 import { CarbonRegistryService, coverageFlags, normalizeRegistryCsv, registryTime } from "../src/index.js";
 import type { CommittedRegistrySource, RegistryTransactionKind } from "../src/index.js";

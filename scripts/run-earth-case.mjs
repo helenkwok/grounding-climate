@@ -9,9 +9,9 @@
 // template when the area flag has no current decision.
 import { readFile, writeFile } from "node:fs/promises";
 
-import { openClimateRiskContext } from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
-import { buildEarthReviewCase } from "@climatechain/earth-observation";
+import { openClimateRiskContext } from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
+import { buildEarthReviewCase } from "@grounding-climate/earth-observation";
 
 import { loadHlsScene } from "./lib/hls-scene.mjs";
 import { signCase, verificationSummary } from "./lib/attest.mjs";
@@ -94,7 +94,7 @@ const summary = (built, someVerification) => ({
 });
 
 const report = {
-  schemaVersion: "climatechain.earth-case-run/0.1",
+  schemaVersion: "grounding.earth-case-run/0.1",
   runAt: createdAt,
   organisingQuestion: "How much of this scene burned, and who decided which area the claim may report?",
   scene: { id: SCENE, files: manifest.files, sourceFiles: manifest.sourceFiles },

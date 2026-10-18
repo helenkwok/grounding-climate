@@ -4,7 +4,7 @@ import test from "node:test";
 import {
   createSignatureEnvelope,
   verifySignatureEnvelope,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { InMemoryNodeCryptoProvider } from "../src/index.js";
 
@@ -22,7 +22,7 @@ test("Ed25519 provider signs and verifies an envelope", async () => {
   };
 
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "climatechain.attestation",
+    domain: "grounding.attestation",
     schemaVersion: "0.1",
     createdAt: "2026-09-29T00:00:00Z",
     hashProvider: provider,
@@ -56,7 +56,7 @@ test("hybrid envelope needs both the Ed25519 and the ML-DSA-65 signature", async
 
   const payload = { claimId: "claim:scope2" };
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "climatechain.attestation",
+    domain: "grounding.attestation",
     schemaVersion: "0.1",
     createdAt: "2026-09-29T00:00:00Z",
     hashProvider: provider,
@@ -98,7 +98,7 @@ test("one-byte-equivalent payload change fails signature and digest", async () =
   const envelope = await createSignatureEnvelope(
     { value: "A" },
     {
-      domain: "climatechain.attestation",
+      domain: "grounding.attestation",
       schemaVersion: "0.1",
       createdAt: "2026-09-29T00:00:00Z",
       hashProvider: provider,
@@ -139,7 +139,7 @@ test("rotation preserves historical verification but disables old signing key", 
 
   const payload = { statement: "historical attestation" };
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "climatechain.attestation",
+    domain: "grounding.attestation",
     schemaVersion: "0.1",
     createdAt: "2026-09-29T00:00:00Z",
     hashProvider: provider,
@@ -189,7 +189,7 @@ test("noble-post-quantum, used by the demo page, verifies Node's ML-DSA-65 signa
   const { ml_dsa65 } = await import("@noble/post-quantum/ml-dsa.js");
   const provider = new InMemoryNodeCryptoProvider();
   const pair = provider.generateMlDsa65Key({ keyId: "key:pq", controller: "org:test", createdAt: "2026-09-01T00:00:00Z" });
-  const message = new TextEncoder().encode("climatechain interop");
+  const message = new TextEncoder().encode("grounding interop");
   const signature = await provider.sign(message, pair.signingKey);
 
   const spki = Buffer.from(pair.verificationKey.publicKey, "base64url");
@@ -199,7 +199,7 @@ test("noble-post-quantum, used by the demo page, verifies Node's ML-DSA-65 signa
   const sig = Buffer.from(signature.value, "base64url");
 
   assert.equal(ml_dsa65.verify(sig, message, raw), true);
-  assert.equal(ml_dsa65.verify(sig, new TextEncoder().encode("climatechain interop!"), raw), false);
+  assert.equal(ml_dsa65.verify(sig, new TextEncoder().encode("grounding interop!"), raw), false);
   const flipped = Buffer.from(sig);
   flipped[10] = flipped[10]! ^ 1;
   assert.equal(ml_dsa65.verify(flipped, message, raw), false);

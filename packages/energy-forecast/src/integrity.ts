@@ -1,5 +1,5 @@
-import { canonicalBytes } from "@climatechain/core";
-import type { ContentDigest, CryptoProvider } from "@climatechain/core";
+import { canonicalBytes } from "@grounding-climate/core";
+import type { ContentDigest, CryptoProvider } from "@grounding-climate/core";
 
 import type { EnergySeries } from "./types.js";
 

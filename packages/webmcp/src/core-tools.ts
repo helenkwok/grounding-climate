@@ -1,10 +1,10 @@
-import { traceProvenance } from "@climatechain/core";
+import { traceProvenance } from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   Claim,
   Evidence,
   NodeRef,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import type {
   ClimateToolDefinition,
@@ -48,7 +48,7 @@ function evidenceById(
 export const CORE_TOOLS: ClimateToolDefinition[] = [
   {
     name: "climate_list_capabilities",
-    title: "List ClimateChain capabilities",
+    title: "List Grounding capabilities",
     description:
       "List capabilities advertised by the active case. Use this before assuming an analysis module is available.",
     inputSchema: objectSchema({
@@ -72,7 +72,7 @@ export const CORE_TOOLS: ClimateToolDefinition[] = [
     name: "climate_get_case",
     title: "Get climate case",
     description:
-      "Return the selected ClimateChain case including its declared capabilities and evidence graph.",
+      "Return the selected Grounding case including its declared capabilities and evidence graph.",
     inputSchema: objectSchema(
       { caseId: { type: "string" } },
       ["caseId"],

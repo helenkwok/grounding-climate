@@ -1,16 +1,16 @@
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   createEvidenceRoot,
   reviewStatuses,
   reviewVerification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   CryptoProvider,
   ReviewDecision,
   ReviewFlag,
   ReviewStatus,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { estimateBatteryHealth } from "./health.js";
 import { digestBatteryHistory } from "./integrity.js";
@@ -71,7 +71,7 @@ export async function buildBatteryPassport(options: {
     signOff && signOff.decision !== "approve" ? signOff.decision : decision.disposition;
 
   const passport: BatteryPassportClaim = {
-    version: "climatechain.battery-passport/0.1",
+    version: "grounding.battery-passport/0.1",
     batteryId: options.history.batteryId,
     sourceDataset: options.history.source.dataset,
     ...(options.history.chemistry
@@ -110,7 +110,7 @@ export async function buildBatteryPassport(options: {
   const signedOff = review.every((status) => status.state === "decided");
 
   const caseBundle: ClimateCaseBundle = {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId,
     title: "Battery passport — " + options.history.batteryId,
     capabilities: ["battery-dpp", "pq-attestation"],
@@ -289,9 +289,9 @@ export async function buildBatteryPassport(options: {
           { nodeType: "verification", id: reviewId, role: "human-decisions" },
         ],
         verifier: {
-          id: "service:climatechain:battery-dpp",
+          id: "service:grounding:battery-dpp",
           kind: "service",
-          name: "ClimateChain Battery DPP",
+          name: "Grounding Battery DPP",
         },
         profile: "battery-passport/0.1",
         result: signedOff ? "reconciled" : "insufficient-evidence",

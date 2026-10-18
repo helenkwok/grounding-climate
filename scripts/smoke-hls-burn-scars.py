@@ -135,7 +135,7 @@ def main():
 
     scene_id = args.scene_id or args.image.name.replace("_merged.tif", "")
     report = {
-        "schemaVersion": "climatechain.hls-burn-scar-smoke/0.1",
+        "schemaVersion": "grounding.hls-burn-scar-smoke/0.1",
         "sceneId": scene_id,
         "source": {
             "dataset": "ibm-nasa-geospatial/hls_burn_scars",
@@ -212,7 +212,7 @@ def main():
     if args.output_json:
         args.output_json.parent.mkdir(parents=True, exist_ok=True)
         args.output_json.write_text(rendered + "\n")
-    print("CLIMATECHAIN_HLS_BURN_SCAR=" + json.dumps(report))
+    print("GROUNDING_HLS_BURN_SCAR=" + json.dumps(report))
 
 
 if __name__ == "__main__":

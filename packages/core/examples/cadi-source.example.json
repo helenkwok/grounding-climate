@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.case/0.1",
+  "schemaVersion": "grounding.case/0.1",
   "caseId": "case:cadi-carbon-footprint-ltd-source",
   "title": "CaDI public disclosure source discovery",
   "capabilities": [
@@ -100,9 +100,9 @@
         }
       ],
       "verifier": {
-        "id": "service:climatechain",
+        "id": "service:grounding",
         "kind": "service",
-        "name": "ClimateChain"
+        "name": "Grounding"
       },
       "profile": "source-discovery/0.1",
       "result": "insufficient-evidence",

@@ -2,9 +2,9 @@
 // and checks the committed signed attestation against it with only the published public keys.
 import { readFile } from "node:fs/promises";
 
-import { HYBRID_SIGNATURE_POLICY, publishedKeyResolver, verifySignedAttestation } from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
-import { buildBatteryPassport } from "@climatechain/battery-dpp";
+import { HYBRID_SIGNATURE_POLICY, publishedKeyResolver, verifySignedAttestation } from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
+import { buildBatteryPassport } from "@grounding-climate/battery-dpp";
 
 const json = async (path) => JSON.parse(await readFile(new URL("../" + path, import.meta.url), "utf8"));
 const run = await json("reports/battery-dpp/case-run.json");

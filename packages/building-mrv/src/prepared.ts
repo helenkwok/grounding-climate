@@ -1,7 +1,7 @@
 import type {
   ContentDigest,
   CryptoProvider,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import {
   parseMeterCsv,

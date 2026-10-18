@@ -117,6 +117,6 @@
     "stdMape": 0.6060759892181009,
     "meanAccuracyWithin15Percent": 0.20000000000000004,
     "stdAccuracyWithin15Percent": 2.7755575615628914e-17,
-    "note": "Measured by ClimateChain from immutable BatteryLife v1 CALB_labels.json using the paper-era Dummy semantics and the pinned 42/2021/2024 splits. This does not equal the published summary row."
+    "note": "Measured by Grounding from immutable BatteryLife v1 CALB_labels.json using the paper-era Dummy semantics and the pinned 42/2021/2024 splits. This does not equal the published summary row."
   }
 }

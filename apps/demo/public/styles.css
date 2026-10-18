@@ -31,7 +31,7 @@ code,.mono{font-family:var(--mono)}
 .skip{position:absolute;left:-999px}
 .skip:focus{left:var(--gutter);top:8px;z-index:30;background:var(--ink);color:var(--paper);padding:8px 12px}
 
-.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:32px;padding:14px var(--gutter);background:color-mix(in oklch,var(--paper) 92%,transparent);border-bottom:1px solid var(--rule)}
+.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:32px;padding:14px var(--gutter);background:var(--paper);border-bottom:1px solid var(--rule)}
 .brand{font-weight:800;font-size:19px;letter-spacing:-.01em;text-decoration:none}
 .topbar nav{display:flex;gap:24px;font-size:15px}
 .topbar nav a{text-decoration:none;color:var(--ink-2)}
@@ -108,7 +108,7 @@ main{max-width:1240px;margin:auto}
 .verdict{margin:0 0 12px;font-size:21px;font-weight:800;letter-spacing:-.01em}
 .verdict.good{color:var(--teal)}
 .verdict.bad{color:var(--red)}
-.tamper-line{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:4px 16px;padding:6px 0;border-top:1px solid color-mix(in oklch,var(--ink) 12%,transparent);font-size:15px}
+.tamper-line{display:grid;grid-template-columns:minmax(120px,190px) 1fr;gap:4px 16px;padding:6px 0;border-top:1px solid var(--rule);font-size:15px}
 .tamper-line .label{color:var(--ink-2)}
 .tamper-line>span:last-child{overflow-wrap:anywhere}
 .tamper-line .good{color:var(--teal);font-weight:600}

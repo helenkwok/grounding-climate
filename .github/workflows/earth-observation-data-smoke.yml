@@ -25,7 +25,7 @@ jobs:
       - name: Cache pinned upstream archive
         uses: actions/cache@v4
         with:
-          path: /tmp/climatechain-hls-cache
+          path: /tmp/grounding-hls-cache
           key: hls-burn-scars-1864285e25010d346a842e4f068b1a1d4248ed6d
 
       - name: Fetch and verify one pinned test pair

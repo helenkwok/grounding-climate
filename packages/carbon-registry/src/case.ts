@@ -1,8 +1,8 @@
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   canonicalBytes,
   createEvidenceRoot,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   Claim,
   ClimateCaseBundle,
@@ -10,7 +10,7 @@ import type {
   CryptoProvider,
   Evidence,
   Verification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { reconcileRegistryTransactions } from "./reconcile.js";
 import type {
@@ -147,9 +147,9 @@ export async function buildRegistryVerification(input: {
       })),
     ],
     verifier: {
-      id: "service:climatechain:carbon-registry",
+      id: "service:grounding:carbon-registry",
       kind: "service",
-      name: "ClimateChain Carbon Registry",
+      name: "Grounding Carbon Registry",
     },
     profile: "carbon-registry-reconciliation/0.1",
     result: verificationResult,
@@ -193,7 +193,7 @@ export async function buildRegistryVerification(input: {
   };
 
   const caseBundle: ClimateCaseBundle = {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: input.caseId ?? "case:carbon-registry",
     title: "Carbon registry reconciliation",
     capabilities: ["carbon-registry", "claim-reconciliation"],

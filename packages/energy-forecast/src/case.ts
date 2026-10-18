@@ -1,10 +1,10 @@
 import {
-  CLIMATECHAIN_SCHEMA_VERSION,
-} from "@climatechain/core";
+  GROUNDING_SCHEMA_VERSION,
+} from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   ContentDigest,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import type {
   BoundedActionDecision,
@@ -41,7 +41,7 @@ export function buildEnergyForecastCase(options: {
   const actionFailed = action ? !action.permitted : false;
 
   return {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: options.caseId,
     title: "Energy forecast — " + series.itemId,
     capabilities: [
@@ -192,9 +192,9 @@ export function buildEnergyForecastCase(options: {
           },
         ],
         verifier: {
-          id: "service:climatechain-energy-forecast",
+          id: "service:grounding-energy-forecast",
           kind: "service",
-          name: "ClimateChain Energy Forecast",
+          name: "Grounding Energy Forecast",
         },
         profile: "energy-forecast/0.1",
         result: actionFailed ? "mismatch" : "reconciled",

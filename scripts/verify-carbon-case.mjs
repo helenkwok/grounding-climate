@@ -4,8 +4,8 @@
 //   node scripts/verify-carbon-case.mjs [--run <run.json>] [--import <registry>:<kind>:<file>:<page URL>]...
 import { readFile } from "node:fs/promises";
 
-import { HYBRID_SIGNATURE_POLICY, publishedKeyResolver, verifySignedAttestation } from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+import { HYBRID_SIGNATURE_POLICY, publishedKeyResolver, verifySignedAttestation } from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 
 import { applyImports, loadCarbonCase } from "./lib/carbon-case.mjs";
 

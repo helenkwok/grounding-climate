@@ -1,10 +1,10 @@
 import {
   domainSeparatedBytes,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   ContentDigest,
   CryptoProvider,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import type {
   MeterPoint,
@@ -16,7 +16,7 @@ export async function digestMeterSeries(
 ): Promise<ContentDigest> {
   return provider.hash(
     domainSeparatedBytes(
-      "climatechain.building-meter-series",
+      "grounding.building-meter-series",
       "0.1",
       series,
     ),

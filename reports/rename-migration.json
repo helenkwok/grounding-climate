@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "grounding.rename-migration/0.1",
+  "date": "2026-10-07",
+  "reason": "The project was renamed from ClimateChain (the competition's name) to Grounding. Two input fingerprints are computed with a label, and the labels were renamed, so the same data now has a different fingerprint. No data changed.",
+  "method": "For each decision, the pre-rename code (commit 70362e5) was run on the committed data and reproduced the fingerprint the decision stores, which shows the decision was made on exactly this data. The renamed code was run on the same data, and the stored fingerprint was replaced with its result. No decision, reason, person or time was changed.",
+  "migrations": [
+    {
+      "file": "reports/building-mrv/interval-decisions.json",
+      "label": "grounding.building-meter-series",
+      "previousLabel": "climatechain.building-meter-series",
+      "decisions": 5,
+      "from": {
+        "algorithm": "SHA-256",
+        "value": "5WkUmBIgwiXOiGPe4hOtcIGLCpjFF6Fawum99aEUQ28"
+      },
+      "to": {
+        "algorithm": "SHA-256",
+        "value": "w0vVZd_G422vqMSwkWY4LuLy4gLKzNNIfLc_dfv3MAc"
+      }
+    },
+    {
+      "file": "reports/battery-dpp/disposition-decisions.json",
+      "label": "grounding.battery-history",
+      "previousLabel": "climatechain.battery-history",
+      "decisions": 1,
+      "from": {
+        "algorithm": "SHA-256",
+        "value": "W9o1KG15CxACBhRCYFDJafYBUlAUd7AXqPkejRoPfcw"
+      },
+      "to": {
+        "algorithm": "SHA-256",
+        "value": "ejzMDyWCp2cFb8NtKk194M1YuOEWB0xuNZcnJKARGp0"
+      }
+    }
+  ]
+}

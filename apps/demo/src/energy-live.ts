@@ -8,8 +8,8 @@ import {
   type ReviewDecision,
   type SignedAttestationBundle,
   type SignedAttestationVerification,
-} from "@climatechain/core";
-import { EnergyCaseService, type EnergySeries, type PublishedCutoff } from "@climatechain/energy-forecast";
+} from "@grounding-climate/core";
+import { EnergyCaseService, type EnergySeries, type PublishedCutoff } from "@grounding-climate/energy-forecast";
 
 import data from "../../../data/external/energy-eva-active-power-load/series.json";
 import reference from "../../../packages/energy-forecast/references/energy-eva-active-power-load.json";

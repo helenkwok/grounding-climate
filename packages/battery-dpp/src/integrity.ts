@@ -1,8 +1,8 @@
-import { domainSeparatedBytes } from "@climatechain/core";
+import { domainSeparatedBytes } from "@grounding-climate/core";
 import type {
   ContentDigest,
   CryptoProvider,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import type { BatteryHistory } from "./types.js";
 
@@ -12,7 +12,7 @@ export async function digestBatteryHistory(
 ): Promise<ContentDigest> {
   return provider.hash(
     domainSeparatedBytes(
-      "climatechain.battery-history",
+      "grounding.battery-history",
       "battery-dpp/0.1",
       history,
     ),

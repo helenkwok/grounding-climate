@@ -1,11 +1,11 @@
-import type { CaseContext, CryptoProvider, ReviewDecision } from "@climatechain/core";
+import type { CaseContext, CryptoProvider, ReviewDecision } from "@grounding-climate/core";
 import {
   createRoutedModule,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 import type {
   ClimateModule,
   ModuleCommandRouter,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 
 import { buildBurnScarCase } from "./case.js";
 import { runNbrBurnScarDetector } from "./detector.js";

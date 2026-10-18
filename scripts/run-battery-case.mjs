@@ -8,8 +8,8 @@
 // prints a template when the disposition has no current sign-off.
 import { readFile, writeFile } from "node:fs/promises";
 
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
-import { buildBatteryPassport } from "@climatechain/battery-dpp";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
+import { buildBatteryPassport } from "@grounding-climate/battery-dpp";
 
 import { signCase, verificationSummary } from "./lib/attest.mjs";
 
@@ -83,7 +83,7 @@ const summary = (built, verification) => ({
 });
 
 const report = {
-  schemaVersion: "climatechain.battery-case-run/0.1",
+  schemaVersion: "grounding.battery-case-run/0.1",
   runAt: createdAt,
   organisingQuestion: "Is this cell's second-life disposition supported by its measured capacity, and who signed it off?",
   battery: { batteryId: history.batteryId, nominalCapacityAh: history.nominalCapacityAh, cycles: history.cycles.length },

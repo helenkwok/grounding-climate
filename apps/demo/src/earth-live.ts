@@ -10,8 +10,8 @@ import {
   type ReviewDecision,
   type SignedAttestationBundle,
   type SignedAttestationVerification,
-} from "@climatechain/core";
-import { EarthCaseService, type BurnScarMetrics } from "@climatechain/earth-observation";
+} from "@grounding-climate/core";
+import { EarthCaseService, type BurnScarMetrics } from "@grounding-climate/earth-observation";
 
 import manifest from "../../../data/external/hls-burn-scars/T10SEH.2018190.v1/manifest.json";
 import ocr from "../../../data/external/open-climate-risk/ocr-context.json";
@@ -32,7 +32,9 @@ export const earthRun = caseRunReport as unknown as {
 };
 
 const bytes = async (name: string) => {
-  const response = await fetch("data/hls-burn-scars/" + manifest.sceneId + "/" + name);
+  // Pages below the site root set the data folder's base before importing this module.
+  const base = (globalThis as { groundingDataBase?: string }).groundingDataBase ?? "";
+  const response = await fetch(base + "data/hls-burn-scars/" + manifest.sceneId + "/" + name);
   if (!response.ok) throw new Error("Could not load " + name + ": HTTP " + response.status);
   return response.arrayBuffer();
 };

@@ -2,7 +2,7 @@
 
 Issue: #7
 
-ClimateChain exposes application capabilities to browser agents through a small, dynamically selected WebMCP surface.
+Grounding exposes application capabilities to browser agents through a small, dynamically selected WebMCP surface.
 
 The architectural rule is:
 
@@ -17,7 +17,7 @@ WebMCP is not the domain layer and does not implement signing, evidence roots, m
 
 ## Current browser API
 
-ClimateChain targets:
+Grounding targets:
 
 ```ts
 document.modelContext
@@ -195,7 +195,7 @@ There is no separate unsafe fallback handler.
 
 ## Multi-app composition
 
-If ClimateChain later becomes a shell containing multiple same-origin apps, use the Chisel pattern:
+If Grounding later becomes a shell containing multiple same-origin apps, use the Chisel pattern:
 
 ```text
 top-level shell

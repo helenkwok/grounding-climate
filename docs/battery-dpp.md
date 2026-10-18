@@ -8,7 +8,7 @@ The operational question is deliberately narrow:
 
 > Given a traceable battery cycle history and a transparent health estimate, should this asset proceed to reuse, repurpose, service review, or retirement/recycling review?
 
-ClimateChain does not claim that a health prediction itself reduces emissions, and the passport is not a battery-safety certification.
+Grounding does not claim that a health prediction itself reduces emissions, and the passport is not a battery-safety certification.
 
 ## Evidence flow
 
@@ -67,11 +67,11 @@ The exact file lists are pinned in:
 
 `packages/battery-dpp/references/batterylife-calb.json`
 
-ClimateChain's evaluator intentionally mirrors one upstream implementation detail: BatteryLife's 15%-accuracy check divides absolute error by the **dummy prediction / training mean**, not by the ground-truth life label. That convention is preserved only for reproduction of the published benchmark.
+Grounding's evaluator intentionally mirrors one upstream implementation detail: BatteryLife's 15%-accuracy check divides absolute error by the **dummy prediction / training mean**, not by the ground-truth life label. That convention is preserved only for reproduction of the published benchmark.
 
-Using the immutable v1 labels, the paper-era Dummy semantics, and the pinned 42/2021/2024 split definitions, ClimateChain measures:
+Using the immutable v1 labels, the paper-era Dummy semantics, and the pinned 42/2021/2024 split definitions, Grounding measures:
 
-| Metric | ClimateChain v1 rerun | Published Dummy |
+| Metric | Grounding v1 rerun | Published Dummy |
 | --- | ---: | ---: |
 | MAPE mean | 1.8760243941 | 1.811 |
 | MAPE population std. | 0.6060759892 | 0.550 |
@@ -142,7 +142,7 @@ The thresholds are explicit policy inputs. They are not universal battery-indust
 
 ## Sign-off by a person
 
-The policy only proposes a disposition. A person signs it off (`approve`) or chooses another (`reuse`, `repurpose`, `recycle`, `service-review`), with a reason, using the shared review step in `@climatechain/core`. The decision is bound to the digest of the cycle history: if the history changes, the sign-off is stale and the case returns to `insufficient-evidence`. The case result is derived from these checks; it is `reconciled` only with a current sign-off.
+The policy only proposes a disposition. A person signs it off (`approve`) or chooses another (`reuse`, `repurpose`, `recycle`, `service-review`), with a reason, using the shared review step in `@grounding-climate/core`. The decision is bound to the digest of the cycle history: if the history changes, the sign-off is stale and the case returns to `insufficient-evidence`. The case result is derived from these checks; it is `reconciled` only with a current sign-off.
 
 For CALB_0_B182 the policy proposes `repurpose` (SoH 0.776, above 0.75, below 0.85 for reuse). The recorded sign-off (`reports/battery-dpp/disposition-decisions.json`) is `service-review`: the cell is already past end of first life, began at 0.857 of nominal capacity, and its condition and safety are not assessed.
 
@@ -152,7 +152,7 @@ The claim states its accounting boundary separately from the measurement: what i
 
 ## Shared provenance
 
-`buildBatteryPassport()` emits normal ClimateChain objects:
+`buildBatteryPassport()` emits normal Grounding objects:
 
 - Evidence — exact cycle-history digest and source
 - ModelRun — model/version/input/fit metadata

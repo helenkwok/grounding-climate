@@ -75,7 +75,7 @@ python3 scripts/build-submission.py
 Output:
 
 ```text
-dist/submission/climatechain-submission.zip
+dist/submission/grounding-climate-submission.zip
 ```
 
 The generator:

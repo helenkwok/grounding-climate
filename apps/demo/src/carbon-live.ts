@@ -9,13 +9,13 @@ import {
   type ReviewDecision,
   type SignedAttestationBundle,
   type SignedAttestationVerification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import {
   CarbonRegistryService,
   normalizeRegistryCsv,
   type CommittedRegistrySource,
   type NormalizedRegistryTransaction,
-} from "@climatechain/carbon-registry";
+} from "@grounding-climate/carbon-registry";
 
 import manifest from "../../../data/external/acr-offsetsdb/manifest.json";
 import issuancesCsv from "../../../data/external/acr-offsetsdb/issuances.csv";
@@ -34,7 +34,7 @@ export const carbonRun = caseRunReport as unknown as {
 };
 
 const csvOf: Record<string, string> = { "issuances.csv": issuancesCsv, "retirements.csv": retirementsCsv };
-const committedSources: CommittedRegistrySource[] = manifest.files.map((file) => ({
+const committedSources: CommittedRegistrySource[] = manifest.files.filter((file) => file.kind === "issuance" || file.kind === "retirement").map((file) => ({
   registry: file.registry as CommittedRegistrySource["registry"],
   kind: file.kind as CommittedRegistrySource["kind"],
   path: "data/external/acr-offsetsdb/" + file.path,
@@ -42,8 +42,8 @@ const committedSources: CommittedRegistrySource[] = manifest.files.map((file) =>
   rightsManifestId: manifest.rightsManifestId,
   citation: manifest.citation,
 }));
-const records: NormalizedRegistryTransaction[] = committedSources.flatMap((source, index) =>
-  normalizeRegistryCsv({ ...source, sourcePath: source.path, csv: csvOf[manifest.files[index]!.path]! }),
+const records: NormalizedRegistryTransaction[] = committedSources.flatMap((source) =>
+  normalizeRegistryCsv({ ...source, sourcePath: source.path, csv: csvOf[source.path.split("/").pop()!]! }),
 );
 
 const web = new WebCryptoProvider();

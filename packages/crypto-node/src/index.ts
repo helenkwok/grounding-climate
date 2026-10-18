@@ -15,7 +15,7 @@ import type {
   KeyMetadata,
   SigningKeyRef,
   VerificationKey,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 const ED25519 = "Ed25519" as const;
 const ML_DSA_65 = "ML-DSA-65" as const;

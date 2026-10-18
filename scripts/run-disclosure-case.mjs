@@ -8,8 +8,8 @@
 // when the claim has no current decision.
 import { readFile, writeFile } from "node:fs/promises";
 
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
-import { DisclosureService } from "@climatechain/disclosure";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
+import { DisclosureService } from "@grounding-climate/disclosure";
 
 import { signCase, verificationSummary } from "./lib/attest.mjs";
 
@@ -73,7 +73,7 @@ const summary = (built, someVerification) => ({
 });
 
 const report = {
-  schemaVersion: "climatechain.disclosure-case-run/0.1",
+  schemaVersion: "grounding.disclosure-case-run/0.1",
   runAt: createdAt,
   organisingQuestion: "What may a public emissions figure rest on when nobody outside the company can recalculate it?",
   input,

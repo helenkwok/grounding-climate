@@ -6,7 +6,7 @@ Primary user: **wildfire / land-management analyst** deciding which mapped burn 
 
 ## Selected dataset
 
-ClimateChain selects the IBM/NASA **HLS Burn Scar Scenes** dataset for the first environmental-monitoring slice.
+Grounding selects the IBM/NASA **HLS Burn Scar Scenes** dataset for the first environmental-monitoring slice.
 
 - dataset: `ibm-nasa-geospatial/hls_burn_scars`
 - DOI: `10.57967/hf/0956`
@@ -17,7 +17,7 @@ ClimateChain selects the IBM/NASA **HLS Burn Scar Scenes** dataset for the first
 - imagery source: Harmonized Landsat/Sentinel-2
 - burn labels originate from MTBS source data and manual verification/cleaning described by the dataset authors
 
-The Hugging Face viewer currently cannot stream the original TAR-based loader. ClimateChain therefore treats local TIFF pairs as the reproducible execution boundary rather than making the browser/data-viewer API part of the evidence chain.
+The Hugging Face viewer currently cannot stream the original TAR-based loader. Grounding therefore treats local TIFF pairs as the reproducible execution boundary rather than making the browser/data-viewer API part of the evidence chain.
 
 ## CPU baseline
 
@@ -32,7 +32,7 @@ The default threshold is 0.0.
 
 This is a **baseline**, not a claim to reproduce Prithvi.
 
-For every scene ClimateChain reports:
+For every scene Grounding reports:
 
 - burn-class IoU
 - precision
@@ -59,7 +59,7 @@ Its model card reports:
 - overall accuracy: 0.96
 - 50-epoch fine-tuning experiment
 
-ClimateChain records those as **published reference values** with `locallyReproduced: false`.
+Grounding records those as **published reference values** with `locallyReproduced: false`.
 
 A future GPU path can run Prithvi or Prithvi-EO-2.0 through the same scene/service contract. The current CI does not download large model weights.
 
@@ -151,7 +151,7 @@ Therefore a good validation IoU on this dataset does **not** by itself establish
 - performance on different sensors/resolutions
 - calibrated uncertainty for operational response
 
-ClimateChain records this limitation in each verification bundle rather than converting a local metric into a global claim.
+Grounding records this limitation in each verification bundle rather than converting a local metric into a global claim.
 
 ## Climate-impact boundary
 
@@ -201,6 +201,6 @@ The published Prithvi IoU of 0.73 remains a separately attributed reference and 
 
 ## Wildfire context from Open Climate Risk
 
-The case carries Open Climate Risk (OCR) v1.1.0 wildfire values as context: `evidence:open-climate-risk`, committed in `data/external/open-climate-risk/ocr-context.json` (CC BY 4.0, sampled by `scripts/sample-open-climate-risk.py` at a pinned snapshot), plus one finding in the main verification. OCR's values are modelled, for national or relative comparison, and no check reads them: they do not change the result. ClimateChain is not affiliated with or endorsed by CarbonPlan.
+The case carries Open Climate Risk (OCR) v1.1.0 wildfire values as context: `evidence:open-climate-risk`, committed in `data/external/open-climate-risk/ocr-context.json` (CC BY 4.0, sampled by `scripts/sample-open-climate-risk.py` at a pinned snapshot), plus one finding in the main verification. OCR's values are modelled, for national or relative comparison, and no check reads them: they do not change the result. Grounding is not affiliated with or endorsed by CarbonPlan.
 
 Over the scene footprint (257,592 OCR cells, all burnable) the mean modelled annual burn probability is 1.36% for ~2011 conditions and 2.01% for ~2047 (90th percentile 2.09% and 3.09%). That sits next to the burn observed in July 2018; one scene cannot test the model, so it is context, not evidence.

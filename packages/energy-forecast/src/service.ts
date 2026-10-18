@@ -1,11 +1,11 @@
 import {
   createRoutedModule,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 import type {
   ClimateModule,
   ModuleCommandRouter,
-} from "@climatechain/webmcp";
-import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
+} from "@grounding-climate/webmcp";
+import type { CryptoProvider, ReviewDecision } from "@grounding-climate/core";
 
 import { buildEnergyActionCase } from "./action-case.js";
 import type { EnergyActionInput, PublishedCutoff } from "./action-case.js";

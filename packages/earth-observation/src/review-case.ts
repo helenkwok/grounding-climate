@@ -3,10 +3,10 @@
 // the policy's tolerance, a person decides which area the claim may rest on.
 import {
   canonicalBytes,
-  CLIMATECHAIN_SCHEMA_VERSION,
+  GROUNDING_SCHEMA_VERSION,
   reviewStatuses,
   reviewVerification,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import type {
   CaseContext,
   ClimateCaseBundle,
@@ -15,7 +15,7 @@ import type {
   ReviewDecision,
   ReviewFlag,
   ReviewStatus,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { runNbrBurnScarDetector } from "./detector.js";
 import type { BurnScarDetectionResult, BurnScarMetrics } from "./types.js";
@@ -155,7 +155,7 @@ export async function buildEarthReviewCase(options: {
   });
 
   const caseBundle: ClimateCaseBundle = {
-    schemaVersion: CLIMATECHAIN_SCHEMA_VERSION,
+    schemaVersion: GROUNDING_SCHEMA_VERSION,
     caseId: options.caseId,
     title: "HLS burn-scar area — " + scene.sceneId,
     capabilities: ["earth-observation", "claim-reconciliation", "pq-attestation"],
@@ -222,7 +222,7 @@ export async function buildEarthReviewCase(options: {
         createdAt,
         provenance: [],
         kind: "report",
-        source: { localRef: "reports/earth-observation/t10seh-2018190-nbr.json", publisher: "ClimateChain CI (Python, rasterio)", retrievedAt: createdAt },
+        source: { localRef: "reports/earth-observation/t10seh-2018190-nbr.json", publisher: "Grounding CI (Python, rasterio)", retrievedAt: createdAt },
         integrity: await provider.hash(canonicalBytes(options.pinned as unknown as Record<string, number>), "SHA-256"),
         access: { mode: "committed", instructions: "reports/earth-observation/t10seh-2018190-nbr.json" },
       },
@@ -273,7 +273,7 @@ export async function buildEarthReviewCase(options: {
           { nodeType: "evidence", id: ids.pinned, role: "pinned-run" },
           { nodeType: "verification", id: ids.review, role: "human-decisions" },
         ],
-        verifier: { id: "service:climatechain-earth-observation", kind: "service", name: "ClimateChain Earth Observation" },
+        verifier: { id: "service:grounding-earth-observation", kind: "service", name: "Grounding Earth Observation" },
         profile: "earth-observation/0.2",
         result: result_,
         checks: [

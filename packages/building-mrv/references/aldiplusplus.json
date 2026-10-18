@@ -1,7 +1,7 @@
 {
   "source": "https://github.com/buds-lab/aldiplusplus",
   "sourceType": "upstream-published-reference",
-  "reproducedByClimateChain": false,
+  "reproducedByGrounding": false,
   "dataset": "ASHRAE Great Energy Predictor III / BDG2 competition subset",
   "metric": "RMSLE",
   "results": [
@@ -31,5 +31,5 @@
       "computationTimeMinutes": 8
     }
   ],
-  "note": "These are upstream ALDI++ README results. They are comparison targets, not ClimateChain-measured results."
+  "note": "These are upstream ALDI++ README results. They are comparison targets, not Grounding-measured results."
 }

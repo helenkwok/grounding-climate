@@ -31,7 +31,7 @@ jobs:
           node-version: 24
       - name: Prepare pinned CarbonPlan registry fixtures
         run: node scripts/prepare-carbonplan-registry-fixtures.mjs /tmp/carbonplan-registry
-      - name: Build ClimateChain workspaces
+      - name: Build Grounding workspaces
         run: |
           npm ci
           npm run build

@@ -24,6 +24,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | Gold Standard Impact Registry reports | registry-data | Gold Standard Registry Terms of Use (copy found; may be outdated) | prohibited | reviewer-supplied |
 | IBM/NASA HLS Burn Scar Scenes | dataset | CC-BY-4.0 | allowed | redistributable |
 | Open Climate Risk v1.1.0 fire-risk raster (sampled values) | dataset | CC-BY-4.0 | allowed | redistributable |
+| Open Climate Risk v1.1.0 fire-risk vector tiles (regions and building centroids, PMTiles) | map-tiles | ODbL-1.0 | allowed | link-only |
 | OpenFreeMap vector tiles and styles (OpenMapTiles schema, OpenStreetMap data) | map-tiles | OpenFreeMap Terms of Service (last updated 2026-09-09); OpenStreetMap data under ODbL | unclear | link-only |
 | Sen1Floods11 | dataset | No licence identified in original repository | unclear | download-from-upstream |
 | SustainBench code | code | MIT | allowed | code-only |
@@ -50,11 +51,11 @@ ALDI++ / BUDS Lab, MIT License.
 
 ### American Carbon Registry public report records (OffsetsDB test subset, reduced columns) (registry-data)
 
-American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by ClimateChain; values unchanged.
+American Carbon Registry public reports, via CarbonPlan OffsetsDB (commit c34ec955). Columns reduced by Grounding; values unchanged.
 
 - Source: https://github.com/carbonplan/offsets-db-data/tree/c34ec955df0988009ac14e8abd91013f3b03e4f5/tests/data/american-carbon-registry
 - Terms/licence: https://acrcarbon.org/term-and-condition/
-- Repository policy: 100 issuances and 100 retirements, reduced to project, vintage, quantity, date and serial range. Beneficiary and account-holder names are not committed.
+- Repository policy: 100 issuances and 100 retirements, reduced to project, vintage, quantity, date and serial range; and the 14 sample projects the fixture's project list names, reduced to ID, name, type, state and country. Beneficiary and account-holder names are not committed.
 
 ### ASHRAE Great Energy Predictor III competition data (benchmark-data)
 
@@ -74,7 +75,7 @@ BatteryLife benchmark code, Ruifeng Tan et al., MIT License.
 
 ### BatteryLife Processed dataset (dataset)
 
-BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. ClimateChain pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.
+BatteryLife Processed dataset, Battery-Life project, MIT; cite BatteryLife and the original experiment source. Grounding pins Zenodo v11 DOI 10.5281/zenodo.19688272 for the CALB smoke.
 
 - Source: https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed
 - Terms/licence: https://huggingface.co/datasets/Battery-Life/BatteryLife_Processed
@@ -126,7 +127,7 @@ Climate Action Reserve registry, report downloaded by the reviewer.
 
 - Source: https://thereserve2.apx.com/
 - Terms/licence: https://climateactionreserve.org/wp-content/uploads/2023/07/Final-TOU-7.26-redline.pdf
-- Repository policy: Never fetched or committed by ClimateChain. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept.
+- Repository policy: Never fetched or committed by Grounding. A reviewer downloads a report with the registry's own CSV button and brings it; only a digest of the normalised records is kept.
 
 ### Cloudflare boring (code)
 
@@ -134,7 +135,7 @@ Cloudflare boring Rust bindings, Apache-2.0 as declared by the boring crate.
 
 - Source: https://github.com/cloudflare/boring
 - Terms/licence: https://github.com/cloudflare/boring/blob/master/boring/Cargo.toml
-- Repository policy: Consumed as the pinned boring 5.2.0 Cargo dependency; no upstream source is vendored into ClimateChain.
+- Repository policy: Consumed as the pinned boring 5.2.0 Cargo dependency; no upstream source is vendored into Grounding.
 
 ### Energy-EVA benchmark code (code)
 
@@ -170,11 +171,19 @@ HLS Burn Scar Scenes, IBM/NASA Geospatial, CC-BY-4.0; retain dataset citation an
 
 ### Open Climate Risk v1.1.0 fire-risk raster (sampled values) (dataset)
 
-Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by ClimateChain. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).
+Open Climate Risk v1.1.0, CarbonPlan, CC BY 4.0; values sampled by Grounding. Inputs: Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F).
 
 - Source: https://source.coop/carbonplan/carbonplan-ocr
 - Terms/licence: https://docs.carbonplan.org/ocr/en/latest/terms-of-data-access.html
 - Repository policy: Only sampled values are committed: one site value and statistics over one scene footprint.
+
+### Open Climate Risk v1.1.0 fire-risk vector tiles (regions and building centroids, PMTiles) (map-tiles)
+
+Open Climate Risk v1.1.0, CarbonPlan, ODbL; contains information from the Overture Maps Foundation buildings dataset (ODbL, © OpenStreetMap contributors); Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F). Shown in the map's attribution.
+
+- Source: https://source.coop/carbonplan/carbonplan-ocr
+- Terms/licence: https://data.source.coop/carbonplan/carbonplan-ocr/output/fire-risk/vector/LICENSE.txt
+- Repository policy: regions.pmtiles and building_centroids.pmtiles are streamed by viewers' browsers from Source Cooperative with HTTP range requests and drawn on the map (a Produced Work under the ODbL). Nothing is committed.
 
 ### OpenFreeMap vector tiles and styles (OpenMapTiles schema, OpenStreetMap data) (map-tiles)
 
@@ -214,5 +223,5 @@ U.S. EPA, eGRID Summary Tables 2016, Table 1 Subregion Output Emission Rates.
 
 - Source: https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt
 - Terms/licence: https://www.epa.gov/web-policies-and-procedures
-- Repository policy: Use the published factor values with source attribution; do not mirror the EPA publication into ClimateChain.
+- Repository policy: Use the published factor values with source attribution; do not mirror the EPA publication into Grounding.
 

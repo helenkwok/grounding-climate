@@ -1,8 +1,8 @@
 // Advice from a decision model on each flagged meter interval, ported from the TOP project's Jev lane.
 // Advice only: nothing here sets a status, excludes a reading or changes a check. A person decides
 // (see decisions.ts); the advice is recorded as a model-run so the decision can show what it was shown.
-import { domainSeparatedBytes } from "@climatechain/core";
-import type { CryptoProvider, JsonObject, ModelRun } from "@climatechain/core";
+import { domainSeparatedBytes } from "@grounding-climate/core";
+import type { CryptoProvider, JsonObject, ModelRun } from "@grounding-climate/core";
 
 import type { AnomalyResult, BuildingMetadata, MeterPoint } from "./types.js";
 
@@ -264,7 +264,7 @@ export async function adviceModelRun(input: {
     ],
     model: { id: "typesafe-jev", name: "Typesafe AI System One (Jev)", version: advice.model },
     inputDigest: await input.hashProvider.hash(
-      domainSeparatedBytes("climatechain.triage-advice-state", questionSet, state),
+      domainSeparatedBytes("grounding.triage-advice-state", questionSet, state),
       "SHA-256",
     ),
     inferenceParameters: {

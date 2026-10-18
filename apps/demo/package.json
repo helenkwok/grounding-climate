@@ -1,5 +1,5 @@
 {
-  "name": "@climatechain/demo",
+  "name": "@grounding-climate/demo",
   "version": "0.1.0",
   "license": "Apache-2.0",
   "private": true,
@@ -8,14 +8,14 @@
     "build": "node build.mjs"
   },
   "dependencies": {
-    "@climatechain/battery-dpp": "*",
-    "@climatechain/building-mrv": "*",
-    "@climatechain/carbon-registry": "*",
-    "@climatechain/core": "*",
-    "@climatechain/disclosure": "*",
-    "@climatechain/earth-observation": "*",
-    "@climatechain/energy-forecast": "*",
-    "@climatechain/webmcp": "*",
+    "@grounding-climate/battery-dpp": "*",
+    "@grounding-climate/building-mrv": "*",
+    "@grounding-climate/carbon-registry": "*",
+    "@grounding-climate/core": "*",
+    "@grounding-climate/disclosure": "*",
+    "@grounding-climate/earth-observation": "*",
+    "@grounding-climate/energy-forecast": "*",
+    "@grounding-climate/webmcp": "*",
     "@noble/post-quantum": "0.7.1",
     "maplibre-gl": "6.12.0"
   },

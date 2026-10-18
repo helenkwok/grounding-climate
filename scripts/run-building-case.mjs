@@ -7,11 +7,11 @@
 //
 // Advice is cached in reports/building-mrv/triage-advice.json; decisions are written by a person in
 // reports/building-mrv/interval-decisions.json (run prints a template when a flag has no decision).
-import { openClimateRiskContext } from "@climatechain/core";
+import { openClimateRiskContext } from "@grounding-climate/core";
 import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 import {
   adviceModelRun,
   buildDecidedBuildingCase,
@@ -23,7 +23,7 @@ import {
   loadPreparedBuildingDataset,
   runBuildingMrv,
   verifyPreparedArtifactDigests,
-} from "@climatechain/building-mrv";
+} from "@grounding-climate/building-mrv";
 
 import { signCase, verificationSummary } from "./lib/attest.mjs";
 
@@ -164,7 +164,7 @@ const summary = (built, verification) => ({
 });
 
 const report = {
-  schemaVersion: "climatechain.building-case-run/0.1",
+  schemaVersion: "grounding.building-case-run/0.1",
   runAt: createdAt,
   organisingQuestion:
     "Can this building's Scope 2 number be trusted, and who decided what about each flagged reading?",

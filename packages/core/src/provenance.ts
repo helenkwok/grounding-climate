@@ -9,7 +9,7 @@ import type {
 } from "./types.js";
 
 export const EVIDENCE_MANIFEST_VERSION =
-  "climatechain.evidence-manifest/0.1" as const;
+  "grounding.evidence-manifest/0.1" as const;
 
 export interface EvidenceManifestNode {
   ref: NodeRef;
@@ -63,7 +63,7 @@ async function digestNode(
   hashProvider: CryptoProvider,
 ): Promise<ContentDigest> {
   const bytes = domainSeparatedBytes(
-    "climatechain.evidence-node",
+    "grounding.evidence-node",
     caseSchemaVersion,
     node,
   );
@@ -75,7 +75,7 @@ async function digestManifest(
   hashProvider: CryptoProvider,
 ): Promise<ContentDigest> {
   const bytes = domainSeparatedBytes(
-    "climatechain.evidence-manifest",
+    "grounding.evidence-manifest",
     manifest.version,
     manifest,
   );

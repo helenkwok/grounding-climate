@@ -75,7 +75,7 @@ const benchmarkMatchesPinnedV1 =
 
 if (!benchmarkMatchesPinnedV1) {
   throw new Error(
-    "BatteryLife CALB v1 Dummy rerun drifted from ClimateChain's pinned measured result: " +
+    "BatteryLife CALB v1 Dummy rerun drifted from Grounding's pinned measured result: " +
       JSON.stringify({ benchmark, measured }),
   );
 }
@@ -83,7 +83,7 @@ if (!benchmarkMatchesPinnedV1) {
 const provider = new InMemoryNodeCryptoProvider();
 provider.generateEd25519Key({
   keyId: "key:battery-smoke",
-  controller: "service:climatechain:battery-dpp",
+  controller: "service:grounding:battery-dpp",
   createdAt: "2026-09-29T00:00:00Z",
 });
 
@@ -110,7 +110,7 @@ if (clean.evidenceRoot.root.value === tampered.evidenceRoot.root.value) {
 }
 
 const result = {
-  schemaVersion: "climatechain.batterylife-smoke/0.1",
+  schemaVersion: "grounding.batterylife-smoke/0.1",
   source: {
     paperBenchmarkRelease: paperManifest.source,
     currentPassportRelease: currentManifest.source,
@@ -181,4 +181,4 @@ const result = {
   },
 };
 
-console.log("CLIMATECHAIN_BATTERYLIFE_SMOKE=" + JSON.stringify(result));
+console.log("GROUNDING_BATTERYLIFE_SMOKE=" + JSON.stringify(result));

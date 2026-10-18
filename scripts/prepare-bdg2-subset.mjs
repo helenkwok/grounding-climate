@@ -108,7 +108,7 @@ async function fetchMember(member) {
   const response = await fetch(url, {
     redirect: "follow",
     headers: {
-      "User-Agent": "ClimateChain/0.1 BDG2 subset preparation",
+      "User-Agent": "Grounding/0.1 BDG2 subset preparation",
       Accept: "text/csv,text/plain,*/*",
     },
   });

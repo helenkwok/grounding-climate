@@ -44,12 +44,12 @@ jobs:
 
       - name: Validate ZIP and manifest
         run: |
-          test -s dist/submission/climatechain-submission.zip
-          test -s dist/submission/climatechain/MANIFEST.json
+          test -s dist/submission/grounding-climate-submission.zip
+          test -s dist/submission/grounding-climate/MANIFEST.json
           python3 - <<'PY'
           import json
           from pathlib import Path
-          p = Path("dist/submission/climatechain/MANIFEST.json")
+          p = Path("dist/submission/grounding-climate/MANIFEST.json")
           m = json.loads(p.read_text())
           assert m["thirdPartyRawDataIncluded"] is False
           assert m["fileCount"] > 10
@@ -67,7 +67,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: climatechain-submission-bundle
-          path: dist/submission/climatechain-submission.zip
+          name: grounding-climate-submission-bundle
+          path: dist/submission/grounding-climate-submission.zip
           if-no-files-found: error
           retention-days: 30

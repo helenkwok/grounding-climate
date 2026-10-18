@@ -6,18 +6,18 @@ import {
   HYBRID_SIGNATURE_POLICY,
   publishedKeyResolver,
   verifySignedAttestation,
-} from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+} from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 
 /** Signs `climateCase` and returns the attestation, the published keys and a verify function for any case. */
 export async function signCase({ climateCase, module, statement, claimRef, verificationRef, createdAt }) {
   const signer = new InMemoryNodeCryptoProvider();
-  const keyOptions = { controller: "org:climatechain-demo", createdAt };
+  const keyOptions = { controller: "org:grounding-demo", createdAt };
   const ed = signer.generateEd25519Key({ keyId: "key:demo-ed25519:" + createdAt, ...keyOptions });
   const pq = signer.generateMlDsa65Key({ keyId: "key:demo-ml-dsa-65:" + createdAt, ...keyOptions });
   const attestation = await createSignedAttestation(climateCase, {
     id: "attestation:" + module + ":" + createdAt,
-    attester: { subjectId: "org:climatechain-demo", name: "ClimateChain demo run" },
+    attester: { subjectId: "org:grounding-demo", name: "Grounding demo run" },
     statement,
     claimRefs: [claimRef],
     verificationRef,

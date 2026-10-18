@@ -5,8 +5,8 @@ import {
   createSignedAttestation,
   validateBundle,
   verifySignedAttestation,
-} from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+} from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 
 import {
   adviceModelRun,

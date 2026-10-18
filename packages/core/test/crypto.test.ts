@@ -90,7 +90,7 @@ test("dual-suite policy requires both valid signatures", async () => {
   const payload = { claimId: "claim:1", evidenceRoot: "abc" };
 
   const envelope = await createSignatureEnvelope(payload, {
-    domain: "climatechain.attestation",
+    domain: "grounding.attestation",
     schemaVersion: "0.1",
     createdAt: "2026-09-29T00:00:00Z",
     hashProvider: provider,
@@ -129,7 +129,7 @@ test("changing one payload value fails the envelope", async () => {
   const envelope = await createSignatureEnvelope(
     { amount: 10 },
     {
-      domain: "climatechain.attestation",
+      domain: "grounding.attestation",
       schemaVersion: "0.1",
       createdAt: "2026-09-29T00:00:00Z",
       hashProvider: provider,

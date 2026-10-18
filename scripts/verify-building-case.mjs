@@ -8,13 +8,13 @@ import {
   openClimateRiskContext,
   publishedKeyResolver,
   verifySignedAttestation,
-} from "@climatechain/core";
-import { InMemoryNodeCryptoProvider } from "@climatechain/crypto-node";
+} from "@grounding-climate/core";
+import { InMemoryNodeCryptoProvider } from "@grounding-climate/crypto-node";
 import {
   adviceModelRun,
   buildDecidedBuildingCase,
   loadPreparedBuildingDataset,
-} from "@climatechain/building-mrv";
+} from "@grounding-climate/building-mrv";
 
 const read = (path) => readFile(new URL("../" + path, import.meta.url), "utf8");
 const json = async (path) => JSON.parse(await read(path));

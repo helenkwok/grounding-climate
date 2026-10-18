@@ -37,7 +37,7 @@ with open(dst, "w", encoding="utf-8") as handle:
     json.dump({"series": series}, handle)
 
 print(
-    "CLIMATECHAIN_ENERGY_EVA_EXPORT=" +
+    "GROUNDING_ENERGY_EVA_EXPORT=" +
     json.dumps({
         "items": len(series),
         "lengths": [len(item["points"]) for item in series],

@@ -3,7 +3,7 @@
 ## Product overview
 
 - **One line:** Climate claims that can show their work.
-- **What it does:** ClimateChain takes a reported climate figure and shows what it rests on: the source data, the
+- **What it does:** Grounding takes a reported climate figure and shows what it rests on: the source data, the
   analysis rerun in the reader's browser, each decision a person made, and a signature that breaks if anything changes.
 - **Category:** climate data verification (MRV and claim assurance), not a token or a trading platform.
 - **Type:** open-source workspace and library; hackathon entry (IEEE ClimateChain Global Hackathon 2026, primary track

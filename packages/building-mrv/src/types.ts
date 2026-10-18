@@ -1,4 +1,4 @@
-import type { ContentDigest } from "@climatechain/core";
+import type { ContentDigest } from "@grounding-climate/core";
 
 export interface MeterPoint {
   timestamp: string;

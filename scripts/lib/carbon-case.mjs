@@ -1,8 +1,8 @@
 // Loads what the carbon case is built from: the committed ACR records, the person's decisions, and any reports the
-// reviewer brings with --import <registry>:<kind>:<file>:<page URL>. ClimateChain never fetches from a registry.
+// reviewer brings with --import <registry>:<kind>:<file>:<page URL>. Grounding never fetches from a registry.
 import { readFile } from "node:fs/promises";
 
-import { CarbonRegistryService, normalizeRegistryCsv } from "@climatechain/carbon-registry";
+import { CarbonRegistryService, normalizeRegistryCsv } from "@grounding-climate/carbon-registry";
 
 export const DECISIONS = "reports/carbon-registry/coverage-decisions.json";
 const root = new URL("../../", import.meta.url);
@@ -10,7 +10,7 @@ const read = (path) => readFile(new URL(path, root), "utf8");
 
 export async function loadCarbonCase({ provider, observedAt, caseId = "case:carbon-registry:acr" }) {
   const manifest = JSON.parse(await read("data/external/acr-offsetsdb/manifest.json"));
-  const committedSources = manifest.files.map((file) => ({
+  const committedSources = manifest.files.filter((file) => file.kind === "issuance" || file.kind === "retirement").map((file) => ({
     registry: file.registry,
     kind: file.kind,
     path: "data/external/acr-offsetsdb/" + file.path,

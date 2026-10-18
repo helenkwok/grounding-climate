@@ -2,7 +2,7 @@
 
 Issue: #8
 
-ClimateChain treats blockchain as downstream of evidence and verification.
+Grounding treats blockchain as downstream of evidence and verification.
 
 ```text
 source evidence
@@ -127,7 +127,7 @@ This provides a useful local/server audit mechanism even when a blockchain is no
 3. outsiders must later verify historical state
 4. the shared state fits a compact commitment
 
-If any condition is unmet, ClimateChain returns `defer-ledger` and continues with signed evidence, attestations, and append-only provenance.
+If any condition is unmet, Grounding returns `defer-ledger` and continues with signed evidence, attestations, and append-only provenance.
 
 This is deliberate: adding a chain is not itself evidence of climate impact or truth.
 

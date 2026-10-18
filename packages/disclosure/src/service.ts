@@ -1,10 +1,10 @@
-import { createRoutedModule } from "@climatechain/webmcp";
+import { createRoutedModule } from "@grounding-climate/webmcp";
 import type {
   ClimateModule,
   ModuleCommandRouter,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 
-import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
+import type { CryptoProvider, ReviewDecision } from "@grounding-climate/core";
 
 import { reconcileDisclosureClaim } from "./reconcile.js";
 import { buildDisclosureReviewCase } from "./review-case.js";

@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.carbon-registry-smoke/0.1",
+  "schemaVersion": "grounding.carbon-registry-smoke/0.1",
   "source": {
     "repository": "https://github.com/carbonplan/offsets-db-data",
     "commit": "c34ec955df0988009ac14e8abd91013f3b03e4f5",

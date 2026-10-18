@@ -6,7 +6,7 @@ import type {
   CryptoSignature,
   KeyMetadata,
   VerificationKey,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 import { ml_dsa65 } from "@noble/post-quantum/ml-dsa.js";
 
 const toBase64Url = (bytes: ArrayBuffer) =>

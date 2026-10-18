@@ -1,11 +1,11 @@
 import {
   createRoutedModule,
-} from "@climatechain/webmcp";
+} from "@grounding-climate/webmcp";
 import type {
   ClimateModule,
   ModuleCommandRouter,
-} from "@climatechain/webmcp";
-import type { CryptoProvider, ReviewDecision } from "@climatechain/core";
+} from "@grounding-climate/webmcp";
+import type { CryptoProvider, ReviewDecision } from "@grounding-climate/core";
 
 import { runCalbDummyBenchmark } from "./benchmark.js";
 import { estimateBatteryHealth } from "./health.js";
@@ -95,7 +95,7 @@ export class BatteryDppService implements ModuleCommandRouter {
               benchmark: "BatteryLife Dummy",
               mape: "1.811±0.550",
               accuracyWithin15Percent: "0.267±0.094",
-              reproducedByClimateChain: false,
+              reproducedByGrounding: false,
             },
           };
         }

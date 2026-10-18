@@ -58,7 +58,7 @@ def download(record: str, name: str, destination: Path) -> None:
     print("Downloading", url)
     request = urllib.request.Request(
         url,
-        headers={"User-Agent": "ClimateChain/0.1 BatteryLife reproducibility smoke"},
+        headers={"User-Agent": "Grounding/0.1 BatteryLife reproducibility smoke"},
     )
     with urllib.request.urlopen(request, timeout=180) as response:
         with destination.open("wb") as out:
@@ -189,7 +189,7 @@ def main():
         )
 
     manifest = {
-        "schemaVersion": "climatechain.batterylife-prepared/0.1",
+        "schemaVersion": "grounding.batterylife-prepared/0.1",
         "source": {
             "zenodoRecord": "https://zenodo.org/records/" + release["record"],
             "doi": release["doi"],
@@ -208,7 +208,7 @@ def main():
         json.dumps(manifest, indent=2) + "\n",
         encoding="utf-8",
     )
-    print("CLIMATECHAIN_BATTERYLIFE_PREPARED=" + json.dumps(manifest))
+    print("GROUNDING_BATTERYLIFE_PREPARED=" + json.dumps(manifest))
 
 if __name__ == "__main__":
     main()

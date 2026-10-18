@@ -8,8 +8,8 @@ import {
   type ReviewDecision,
   type SignedAttestationBundle,
   type SignedAttestationVerification,
-} from "@climatechain/core";
-import { DisclosureService, type DisclosureCandidate } from "@climatechain/disclosure";
+} from "@grounding-climate/core";
+import { DisclosureService, type DisclosureCandidate } from "@grounding-climate/disclosure";
 
 import cadi from "../../../sources/cadi-candidates.json";
 import reviewInput from "../../../reports/disclosure/review-input.json";

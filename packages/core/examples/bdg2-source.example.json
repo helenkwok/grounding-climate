@@ -1,5 +1,5 @@
 {
-  "schemaVersion": "climatechain.case/0.1",
+  "schemaVersion": "grounding.case/0.1",
   "caseId": "case:bdg2-benchmark-source",
   "title": "Building Data Genome 2 benchmark source graph",
   "capabilities": [
@@ -25,7 +25,7 @@
       },
       "assertion": {
         "kind": "qualitative",
-        "statement": "Building Data Genome 2 is a source dataset selected for the ClimateChain building-MRV benchmark path."
+        "statement": "Building Data Genome 2 is a source dataset selected for the Grounding building-MRV benchmark path."
       },
       "assessments": [
         {

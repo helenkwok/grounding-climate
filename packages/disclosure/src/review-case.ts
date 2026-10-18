@@ -2,7 +2,7 @@
 // company's activity data and factors, so a person decides what the claim may rest on: the company's own statement
 // (accept as attributed), a request for the underlying evidence (needs source), or rejection. The decision is bound
 // to the digest of the extracted figure and its source links, so a changed figure makes it stale.
-import { canonicalBytes, reviewStatuses, reviewVerification } from "@climatechain/core";
+import { canonicalBytes, reviewStatuses, reviewVerification } from "@grounding-climate/core";
 import type {
   ClimateCaseBundle,
   ContentDigest,
@@ -10,7 +10,7 @@ import type {
   ReviewDecision,
   ReviewStatus,
   ReviewFlag,
-} from "@climatechain/core";
+} from "@grounding-climate/core";
 
 import { buildDisclosureCase } from "./case.js";
 import type { DisclosureCandidate, ExtractedDisclosureClaim } from "./types.js";
@@ -80,7 +80,7 @@ export async function buildDisclosureReviewCase(options: {
       ],
       policyChoices: [
         "A reported figure that cannot be recalculated needs a person's decision before the claim is accepted",
-        "The organisational boundary and the method are the company's (the page cites the GHG Protocol), not ClimateChain's",
+        "The organisational boundary and the method are the company's (the page cites the GHG Protocol), not Grounding's",
       ],
       notAssessed: [
         "The activity data and emission factors behind the figure",

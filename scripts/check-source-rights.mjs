@@ -7,7 +7,7 @@ const manifestPath = path.join(root, "sources", "rights-manifest.json");
 const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
 const errors = [];
 
-if (manifest.schemaVersion !== "climatechain.source-rights/0.1") {
+if (manifest.schemaVersion !== "grounding.source-rights/0.1") {
   errors.push("Unsupported source-rights schemaVersion: " + manifest.schemaVersion);
 }
 

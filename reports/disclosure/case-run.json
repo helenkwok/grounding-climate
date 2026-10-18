@@ -1,6 +1,6 @@
 {
-  "schemaVersion": "climatechain.disclosure-case-run/0.1",
-  "runAt": "2026-10-06T05:22:47.313Z",
+  "schemaVersion": "grounding.disclosure-case-run/0.1",
+  "runAt": "2026-10-06T14:00:58.035Z",
   "organisingQuestion": "What may a public emissions figure rest on when nobody outside the company can recalculate it?",
   "input": {
     "candidateId": "lpl-construction",
@@ -81,43 +81,43 @@
   },
   "publishedKeys": [
     {
-      "keyId": "key:demo-ed25519:2026-10-06T05:22:47.313Z",
+      "keyId": "key:demo-ed25519:2026-10-06T14:00:58.035Z",
       "suite": "classical",
       "algorithm": "Ed25519",
-      "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-06T05:22:47.313Z",
-      "validFrom": "2026-10-06T05:22:47.313Z",
+      "controller": "org:grounding-demo",
+      "createdAt": "2026-10-06T14:00:58.035Z",
+      "validFrom": "2026-10-06T14:00:58.035Z",
       "verificationKey": {
-        "keyId": "key:demo-ed25519:2026-10-06T05:22:47.313Z",
+        "keyId": "key:demo-ed25519:2026-10-06T14:00:58.035Z",
         "suite": "classical",
         "algorithm": "Ed25519",
         "encoding": "spki-der-base64url",
-        "publicKey": "MCowBQYDK2VwAyEA0IbHsx4RtdKy1rXLAxQtG3yIihczFwx6rYxG5-yoWdw"
+        "publicKey": "MCowBQYDK2VwAyEA7ZTQrPWYVDuok7e0xzFVqtsLJ8Mk5nvUkXy1e_fnxss"
       }
     },
     {
-      "keyId": "key:demo-ml-dsa-65:2026-10-06T05:22:47.313Z",
+      "keyId": "key:demo-ml-dsa-65:2026-10-06T14:00:58.035Z",
       "suite": "post-quantum",
       "algorithm": "ML-DSA-65",
-      "controller": "org:climatechain-demo",
-      "createdAt": "2026-10-06T05:22:47.313Z",
-      "validFrom": "2026-10-06T05:22:47.313Z",
+      "controller": "org:grounding-demo",
+      "createdAt": "2026-10-06T14:00:58.035Z",
+      "validFrom": "2026-10-06T14:00:58.035Z",
       "verificationKey": {
-        "keyId": "key:demo-ml-dsa-65:2026-10-06T05:22:47.313Z",
+        "keyId": "key:demo-ml-dsa-65:2026-10-06T14:00:58.035Z",
         "suite": "post-quantum",
         "algorithm": "ML-DSA-65",
         "encoding": "spki-der-base64url",
-        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAPXV53YYJAvdg5IVYGPONymVtRw3cjp8WuHXDgFXZ_L_DYF6s6x-1i-YZGAOLIPoh1yA0jYzEDF6GtXuHgcdSa-NUUzKGO45fvliyv7fk4fcUQqeZQuVy8EnQIo2tssDU8-AMknsw8ycJ686wBW7h1jWUmkzsjemAQ3Y72QoPnryhJZZZlI3Yp6GSAUp_8uwLPPpGEBPStcwejoGLeP25lMyxMNIQ3dtOIx_mNvSOIPucODwvT0BDL3zj8b_5ZmvC3vfnFaRkUSJW9-dpjLhMHrcVPQpYX2Y_w0pkOGQ2Q-M1ujRUaaedpVmok2MWS6_PeymcfF3w_MrsR2sYZUw9qghuTxbU8F9a0jhUXADPTzlD6iU86axOg8ab9MPxDvXuNiSl51Pig-YvixpeYyuUFhCVL3C7R9K7u-XJ7gASGxFdvUaG30CQBiIxep8UxmEkyn4FqLIYzfmEkBs18WNpJa4bG0HofkAjNURQOpa2ZjWZ6FqV3cQPtNK52a6JmErY0b6stCxJSlvhbi7OSAF1suZKa8y3_o4p2jKU2IV74qpXuD0gyB1-ZM22UP6UO15ksGwyxYMxy8TBY3iyZXDwWvEnu_xCeaKqi1Bvvky4O-y60rOY8FjaPnTpGGGtpm0E-DXSzXXYNLJEN8slzdW5FRSbwDarBpekDM0_Ia9_5YlS56xPLvrro0kHXXZt8K-_2AgHNZQQ85Vwokt8PbdQiX0oSnYNbFkseXZOu9m6C-yM7blmriURvGHQQAFoQnW6rIcgYUWEevTynz7LYUqUMBcviIJrDED5YhHcwj-kFb3CgCKd-pqBKL7JIvxuWLaWU6NW70CraEhvXicJF6B-Uyq8TVRmN58M_FG5nU6lLSqN_8illryLtYUdr3WNxZRxwXOxwEFty7X0-gRuUJessoddzMhsDeBIqQM6mIiLwnbam-lPRSHu3Z1cxr9hbd8gBEoD_GnkbDUT2-x97xxD6UoNT4T_8KYzj7tVcJsjuduQEDLt_TBo_l1bVKPhb8GD0dzkMpXWJIzTzQngT60vnGTONvZsgNhBoYXbi0khv2KJOJM_eZ3KSoaMC3b5Eqmd5UR06RKynmwNEwVdtEv0Aj91TKKkNsLeT654eegGqP6ZNa_56G9mh811lCAGvFt9BaYuEMgh2Er9FG_sRSkI3Fjnw_sPDlHV1BPOPSfy6XgrDmThFnkYbNtC7KvMuM4EKWYxnWQf-dPg9tI3TgoPh2Fdnbt4lcY44pfLiNvE62S2npqeTjyMEZqDiUPtDqsmZup5IWX-VzpFK39BIaQ3v3FMn1bk4XdHPKFqQCoSdjAP5ybnxFU4sDkhlcVoPxklz71z_RL-hkyuVaw4gllQfJ8hmAs3Z_2fU_wg1EWMGcZdh4-7JP3yoBmIxG5Gt84Rueu43gOZjU2vt7z7MIjBnAspY2yxezpSzvELzAevZ3srd1gSuPLS4CQPHLViNQj3sTfcDwwIICnna4ad0xUamkgrSLBu8SiGAj_bAiFM_l1urG0-13kv1726JK530MMQnGLgFliXX0sWSqqMY1JS4_i7fN7uYk32PJYmnW38SiLtqXFvxzM7b__s8Db2jRTmb7nf0Ixw3kSa7JvDroyGbconryRJe6lXgfPZ4_WCjqiYg5RIWhmPKzTbjTzeEdHMHe7gNb7xwUB8gaR2ZrEDBVt8EV20Y8O5DQc0kRdSiRtW3ewKCGlI_Z0NCnjDZTuuTF_NFyA3AzhfZe-taunjEate_rpXOhpRsE1Y4rYq1LTT8KHpo8NWqcz9Q37S17vuO5EXtdVb6W4b6Bi4D6jpUyhxgbh3n6KZMNuIAF1se9b2hg7BBuAKUeS9o9Yi9WRXQ2rZiUYdCmrz5ZMYEdDOqGIYkFI7gNY6GUAXSPqzmiV3HN6mlJsaC9Ao0_4v0pedEQnfNfH86y5gfE8Thn3Yeydc9oodrQwg_NSj4bZ_bUn4I-c0E2VAvSJIgxtM6HLKvSt46-0Qm-qara7gq73N8l68Nv8uKVDrCegYcOssksEIecvUgtUeqUPa9Nwk6QS3mlTMP2Lfa9W7d132OUGzGi0NlQVjye1fIX8f2lPaz14c9GRihNp0FL6cJBroIe4XCIL_y7R_1fftygpapNJmM8bdEdOkupCwaNLNa850zjpW_HDeP0EN6vpUV90ZiQv9BFFckITVjrfEWHh6cq9nOYUKoUksknfRTXM4qu9ecL8qunvUbwTLqkX26bH-KRtz_lrVKdEytUctUr7hZPDaYi-Ld1rBx57MgpFGPxVlwHnIO3E7J9jJ3EzmOcdkXJs6BmM3v5bYi661dhb9uNWpuPGhb4badYXOLq11yCoAS0F1kXOVS0iNOsZb9KvKeBlcl7XqrVC3VrB_BzJdbWWDJR3VFBvbpzCsxM2tcDO89dDM9uQthDH_uF8AkqHpzRAyUfYwKcqaDEJZZaqRZmFgFHz4_7UbOkTkmJ8jcLFr_l_4fsI1s2xsgf0h6YhsVw8jMsniyxj1v_UTwz8fRj2ADz7ichpBPzMauaBHEXUXZH-BNZcbcYgf9RXU5kl3q1xEx420EyVukODA3dcl_xxsdh9vjTaCcl_ufGUuyowPpVC"
+        "publicKey": "MIIHsjALBglghkgBZQMEAxIDggehAHoxZodqXXjlxVS8seWXt_NuwIdKXIfY0vJnafIaQ239e_PV6ogY5ujaekfNt3mR5ONqNvd4L6pyeTQ6TaL8u82MZp_CGXngnLsfKcVCD-rmUlwijW8CgMFMfh7k5UE1VGouvb3Q2lk8z_rvm1atvid24mRjKvbWy5Nnk3nfXbHu2SQ_8_RB2SWCIL8gmJhtm6YPiE0pN7Swfg3N6XSou-Rs5WDq118m_hD-KkeLNG-5e-3HKNe4CCFrMU8-GPSps52y6uZNRwzAyftsBDEgbER0tGOBtieKORG4hjhqcf0F_H-Cf9GdBQv77wD8HgbGzJAy3wadlWkXXK6t9yrTl1QNGGkkuQ1PMkvkCy3Mhyi69CuyD3bb4zQHgg3WK_YOEBlIBxw7ssk-5PhCR2sfbkULcbvwInpFMbJCx3A6HfkPrJGPnsiGPfnBsEtJwLb9vhdxn9ZcxBMibOFm3xwctk7Tlty3tZLWgTP4eBVQFzDvc-_JwItbOI8Vyjt5wNPNntQZXlAnckGGuDFltOPLpvuCDwkeUY1rsD4jHwC420FcDXOjrOWsptOihHCGsD8b2pZSSv9pqoOXXDWmN8AcTKC0q2nCIeHVO_R7G7zz7bQlTRd41393ELroWdsnb6g7mO-85SzFuyITtEJ-g3Z09X69Sm3NvR8VOegKKagdxK52wyu26Oz-Ils4c0j_F_cBt3AhPRQFW6Uprnxt_2UhhCfdqetwXL9Im6p8oc1yGfYmqtAN-whHIHxF_QUgvfV0lrOGmSUqwNNMv1dRnBUmh9vNo3IcqUPkcKvV-9R09KUJ90pFQzYLw0BkXwcNEHg6Qt9KU2BKHo6BJP6GQmJuu0sYJopf1ew0eFQWXsa9bz1Ffh209ZOButgw0zUNe9LRkGCRf_L5mbetNXGZzqzuUziLnb7vBSB-8evKplZbaltaSdOVUxZnur0yfH_QF0_q07sMqYoFT9meWtBS8chZA4j_VoaYO-mJD_Hff55Vl-cjTk_t2siH1DESw-uSb32mcIRvmQMd_wv1cMvnMlKsfygCXegFUu5cA7iRL3n28Vc7DdFu0K6or3Mesxojk4zfhwnjXwZB4FGAPLmdDtuLB6bTpccJbC1iujV3hZP1CnehSBks6-ygeJEQgPHbL_caHRQEulO770jN6_lVFXmPednEzax6FC-HlnT3Gb-1EXnFqRGK7rg6PUVBaEPvWotQ0YfJiEi_Ww_Yvpc15FuLGnrXoDK0p7s0gRFjbqaSoWdIFq8GhStMpJs7097CcC3JsYW3rmw9mr7BulPY9EVuY0qIfFb8iEn_fKDqlrUyJ76UaIxnmHePnEoXmuA-weClM1-Hiry0XiJ9TP_V7Djhp_2g6Yyr6svfIT4H1x5FpDq_OTK_SPupxqwDFeK1fZf9TF39UmdwJXhRdWUD4cVdEibyngtiqNieXvxha4hBaUT82uBfzaGWRTPdr05QfnjmMBierCsNZ3OglnfmMZl_ilrBq6yYlbcr0MDdeLW6Rs6T3VtvUOVRKe3YoHTtfjT2exNn50DoM25081_kQ06ROeI1GwDjPK5s42wCV6reEJ99fM-8AqC9fRvP5gi4JiU0H4g5_rr0ppzALukYjfx8JP2ypWNvDxK3O4tMGy2ngBE5eimRUg43gkFtY6r8C212hy86Qy3egnSV1lYU7IPOYWKUWWxaNz1sks5hc3fK3fZO1g6omz0kwSyUniR4sPFmgsccBbk5Hmoy8K4zfloOHWeOQSEPxXzN8i7Xn01qNu2PP65s-ZULMVTFFTP6BCmp-7n4zCLJreAgUFtLnAQ6cySmDwUU20t8a5fIlRo_sU8YlgOjDiAaY2Ga4Dm8ogBqS7gy3-_U_7YUs_rYgv3ZN49bRvokOlI1O54ksY9FJTvRB3w4vrjww2Eym-y8e5gua28pCstbk6gFs1AQet2IOTYDlvNggxiur5v2MoQcJHdJJScquoY0IIpnUpxX4NKHon2H17UX5exX7kASsv70CJiXoShqJEDJvPCS0pcXegZ-tPHnaLBwx-pjT6vEAf-akibPNTijwpBqOWRvxjfLjwHxXBNb9WVf0ouq3q29IzhuCZqebZAnLUwHiII_PBT0uJ6AwPSQyN7awnzepUXdlU1gAhybj3nHVltJhvpR-HcbD7YJ5zvuZFm7JPKl3DEOgWKR_SVlAuLvkxXz2vHhODrF7G2WCXzhZ3Uu4NC55zdH1UVdU9ilRkkgHJ0ks6PqYnrf6nrE_6u04xaFAfRRPxRsyWKdNFPbndTXkvgC_azsNOfiXuyfIhE-dVZCa3Ofn1ACIQE5KPYP9QTaOXNqkqOy2o6UVYxQ6Wt5_nXO1YnwLmaNUAr7ZqHP9QxvRzJBLOeT_1zlBWQcHqtdskf5Otq_SLbcy8rZv75mHibvaQHcXCDNAJJ1MXlfOBPTjn0cPkGtwARUxIF0Y-sqoSBSCTO5Zqb3EpyvLacAWWaD8mG8kAFuwjl6LPgGZYyriEZez0bwvr6SMfirlIu4IP28DiR_O-AlHBXUV11RLiYl2aENumMhZERdIf3s7wRLgEDH0FgKHZwhJzW0X1jEmZXAtO3KTtzqDUZSptZKC6-PNqSe"
       }
     }
   ],
   "attestation": {
     "payload": {
-      "version": "climatechain.attestation/0.1",
-      "id": "attestation:disclosure:2026-10-06T05:22:47.313Z",
+      "version": "grounding.attestation/0.1",
+      "id": "attestation:disclosure:2026-10-06T14:00:58.035Z",
       "attester": {
-        "subjectId": "org:climatechain-demo",
-        "name": "ClimateChain demo run"
+        "subjectId": "org:grounding-demo",
+        "name": "Grounding demo run"
       },
       "statement": "Public figure extracted from the company's own page, with a person's decision on what the claim rests on. Not recalculated. Verification result at signing: reconciled.",
       "claimRefs": [
@@ -132,16 +132,16 @@
       },
       "evidenceRoot": {
         "algorithm": "SHA-256",
-        "value": "fPvYqOOCeYe0gI-xXiQOE23F4pklUImYbqAcSk3XhCs"
+        "value": "VcppPMz3fPVuJE_BPYPvfdYx_wAH3ytpz7rBr4S0jH4"
       },
-      "manifestVersion": "climatechain.evidence-manifest/0.1",
-      "issuedAt": "2026-10-06T05:22:47.313Z"
+      "manifestVersion": "grounding.evidence-manifest/0.1",
+      "issuedAt": "2026-10-06T14:00:58.035Z"
     },
     "evidence": {
       "manifest": {
-        "version": "climatechain.evidence-manifest/0.1",
+        "version": "grounding.evidence-manifest/0.1",
         "caseId": "case:disclosure:lpl-construction",
-        "caseSchemaVersion": "climatechain.case/0.1",
+        "caseSchemaVersion": "grounding.case/0.1",
         "rootRefs": [
           {
             "nodeType": "verification",
@@ -156,7 +156,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "qgBKK6pdU9x-8ycY1Y6J8F83YYUTOu1DiFZ6iK7aTV4"
+              "value": "BcWRvGswZl9Z7u5MYbjaVvR9k93F2uMtaJl46ps25ss"
             }
           },
           {
@@ -166,7 +166,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "dDi9v-p4q6p1v43vKRRs_r9TEP7iDlf6QZ8YV9X-t38"
+              "value": "z5bYbhxTa_SNKXPBpsfx9Eoen8cUZukOaSpGcMdSjIw"
             }
           },
           {
@@ -176,7 +176,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "AuI1veU7aqXmKuc10wPRRgv0efveVWoNWUD6l4ZXA78"
+              "value": "eu2XrTtUtfc67ZCQM1wKKyy-PlKGrRV0remo0gSlluw"
             }
           },
           {
@@ -186,7 +186,7 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "0453g8ojDAlx_b6hzP6vT7nC0jmIhybUGXmtTVuywk0"
+              "value": "Lv8EaQwHkMItRbVWMaBAwPQSxSNIWfAbRxT9cy1OqTs"
             }
           },
           {
@@ -196,39 +196,39 @@
             },
             "digest": {
               "algorithm": "SHA-256",
-              "value": "8MyN3WiJQu_C9setS9v1P2F0nNMt9Rjq3mVLChBLXX4"
+              "value": "wjOWQHGgfYetPkiH5mvTvaW1-B1ZIigr8ksroqXHEkg"
             }
           }
         ]
       },
       "root": {
         "algorithm": "SHA-256",
-        "value": "fPvYqOOCeYe0gI-xXiQOE23F4pklUImYbqAcSk3XhCs"
+        "value": "VcppPMz3fPVuJE_BPYPvfdYx_wAH3ytpz7rBr4S0jH4"
       }
     },
     "envelope": {
-      "version": "climatechain.signature-envelope/0.2",
-      "domain": "climatechain.attestation",
-      "schemaVersion": "climatechain.attestation/0.1",
+      "version": "grounding.signature-envelope/0.2",
+      "domain": "grounding.attestation",
+      "schemaVersion": "grounding.attestation/0.1",
       "payloadHash": {
         "algorithm": "SHA-256",
-        "value": "zFklqTuqACcvyLvdBwgyC8wDzkRYXKYSJlJHxhrcMzc"
+        "value": "Mdn7JMH9AFD3Ciy0cO5p59-F6x47feTfI1heH0V0r7s"
       },
-      "createdAt": "2026-10-06T05:22:47.313Z",
+      "createdAt": "2026-10-06T14:00:58.035Z",
       "signatures": [
         {
           "suite": "classical",
           "algorithm": "Ed25519",
-          "keyId": "key:demo-ed25519:2026-10-06T05:22:47.313Z",
+          "keyId": "key:demo-ed25519:2026-10-06T14:00:58.035Z",
           "encoding": "base64url",
-          "value": "_oIX2p2CRHyrhetcQOU13qXweT_JgvknLa1yASdYEXfApCttxOWFQE5d2I3EeJ_9kcNFN8bPZA1L2r1v-rGhCQ"
+          "value": "FEMplO_Q27WckOskuFLf5vbXM6cGo41KpQLLWVmCrGekDpGq6dlDF44KRx-ErgwBZYvC6Gzy2VwGd4t2v-q9Dw"
         },
         {
           "suite": "post-quantum",
           "algorithm": "ML-DSA-65",
-          "keyId": "key:demo-ml-dsa-65:2026-10-06T05:22:47.313Z",
+          "keyId": "key:demo-ml-dsa-65:2026-10-06T14:00:58.035Z",
           "encoding": "base64url",
-          "value": "kHwIT9Id0JBq-W63HbJFMUt7KaZ11EftY7OGG-uPukXz770qC0cF5PWuDDYagJdkspSqCukvUsBnsZDuRl2N7M-T5cx-SZJcdCZiazx3I7z-84RQSsDkI8-dirjXkgqicbMIilOdgX6fLBwf0wag7HL1a_GIJm9R6_tA4XXljVzIM70EuKaxg54fi_38QKbJhmpXYU2wxGgS2NF8mqmWMMSkO-NFqlFYo6rDSCPegDCD3nc_ArqqaSAKd7PCyU1XBKqAga0wcUVzI3FIGGH1IJwUvf3qPWNfWdTl-RwFvlUQV3OTYhJ0Y8BsvRkSIC2F4L80cbA_l7OKb0h4U6GWWEIAdAXtNfPukwF8WOs4TD1XkLzMdXhxjQyOyzvUHZ8MLNaP9ugPvD2r-n3vW1WJWd5dIXE0haXkZ5pUgD0I1diBzFK5jcnl1cxEzcnaDw3NdUDR-jQ7M0l4U6J6HlaagTMiFj9K7mXcTXrpR_uGiG5z4g33vLiHZHo1wpERrMDi6tJNTDiqJLOax6-FT3jRkXDntIX28w_Ca-Xb8OB7IcHlobHFHlhm_0Jjtk6x10Wr6dIUG0CvOiWsACozb0GyZKKdUD545VYzvl70SjqOOswZ9FUH3brGViDJGrT3xEWQ3LLGxu2r16PaRoMaNW8hPtHVi7CTfgFzO33qpFjncerHox2Ib2xCh0JbQyNCOP2-ysmNYYleSB7e0z67j1xLer8lq6O6X_9oaATEhjFjmmI-gNM2rgdelCy8f_t-8eFMG6qwHrddGIAnBoZTNm1vdGLrgq8XQqf2mg9GR4CTZW3lG4o29JhQI_UMrjo9QN6E1cUfRHrpheFFBZS4CnKC-nar0K0_s2RVCRu1g3NfQgz8ca-0Pfd3eaxLDAWR80EUDNL-OJR1Wze5B0gBt-NhUSg67RRUdk3eOStPRcwlYkK7nfhMQ98k-IPfV18TCrkbj9-3ACWShuMMgYfPGnCKQ27ekVXd-6LLzekpid2s6TZ5NNXwFrXwKGWPtjDE9ExScHC9e5b9pjP_HuKGeK--WEvMcrjdfjaoE8Dx5BC5P13zYdfgxU02yW1FypjK5N_ioabxopXEOFy7Z8WSuXeYePcY5-DJDzlF4DDf9sJu-w2LujT9xgOzWC7i3sG6HFYZAin-lPHOjLD2VRwSzUUc_YAHofbgAffLVWKXLU0jGQ-hz6Ebj8vnhX5GXkv4eX3X3aSd73eMCj_pqYxcMU8sBzUdFNl2U9KWqU1Gwe8hyjVKnJLpSiZp2PAxohLu5RaJccpp6JTd1atv6slQNUVlKFQcEQyByURCQG7WyukcLMX27Uv9rhMIP7Cbh7Kj3bjdZ0eu4vO_QGNkpjL6qoQyZR17PN_mojjmqIayiG0r1vLKUfsjldhqHzdLhY60UFxJ8r3ky-1MBphsRufTcwhztDLC8iIayre8LzRE-70x5aV96NmBndw0uraKy6dCsrt3Rp7G_x3v0Tl9ubAZsXVCX860w_-iU91WnYI1dfMiaF5qqjNJOjLH9p3EIEEpy6lQFjmFlzvr0s8mN3TwG9zEwCULFzEJP5LUzgLdXXptfM4tOYVbHYF7-crZD9B7GlZZqo7S6-NoBnjzaRHu19T1ZLTZ-gn69eWYQWEs47-3pojdr4CgxCW94J-JaNjK2aKYhSY22RSecVTrNToNW0nUu5mbaNhIzF6M0mF0MCh8IgHjf8R4oAzOkt_aprx4gYUqU8kre-aRicuJLZno55l50vjKHgijkymsWy32zbgITtc693x80bpgvT8MJeoZs4C7Qdwj-dptUnnbpVxRBjDSivmJv2sPMNtQhmTXglMmocr_OSUnCgfcNSiMMM80PogNoZkZnDaJ5IodAfaDr9KMqUA-s6FZpMhrK_qf3TbtitdgTL51GN8x8X_pQagWTpK9DZzhEc3QvloEyBUhoPTIvtPud0revtLoAkQSYh4COKdwaUS3LPVJ8626LCeAHq5pBJocOj2R9KhgUfSvRQBdU2cbOIemVZpiVO7tPqKavSDYYiynA3tRU7KFFeXuLnDQBIcqoBpwcLGGTydF7z9xTg1DR6SYRslpJAPMTo9XsTctbwUSIgze74Y-N93UXH7mNG9CW2qxYh4jbiazYamRaDfhqIAH3sb76m880p3O3GM_b9Kl6M6Dk2R6czGTyTiZtWhEBmX3LOhW7aNtj-6gFRNqVRJQ6HpcpMmyXECOVARecNJGjx7GfHlpll2nmFE77GpHLhzz7I_diYjzR99F7DWuDprtST0BCEcdUMNKjgJ7DJNJdfWeqpbRQ4ajOAgkHCBZGtEwoTlGw9iv9oNjH2rsEnSo42-896Ja83rdUVIH4fn-rL1YaN46Nmykm0D4HHfGNEt2Yk19K1Tet_rpQ0zrSPdo3OjLiYxu7BNufXnjyayHxYCCtsq5PIO6EhAyx0_3MaL9q4kgSf8YBowhyzw0gLGwI12qzRAmtg0L7wd0I80B1SzIWCiAeqfosmsW0-oldH8BGP2I0mJuMmfgFVHgaCThCSDCbuwCPWF7ziA3Vr07wiKb4T_lbwFuuJzxbY916GJkUMOgCywFhS570GckVzCw9aTnDCcgfVQlyZEx1zd7g8Pjlu-CM7NX1L18tTDTDpR784bzo86jePE47JBA_Cl5_Fm2l077GzzinKZE-Q1K_buzmk4F-xhhcOOLM2JLPppAPAGt0Ep0fmb8j-0-daFvT3OX5y7liQ17xmwvekckKZZHJRAnjFKGi1106h4onSn_Z56nbspXj__NbP9MqR1Zi-rVaLe31-LSvNDiyRyNIEj_orQ-9iRHlADq_1whXN2BmvYhhjxNotctn2mmyBs1kNDIWIL25LHzoKGp77zVGStvPPv92F9Z-uahUwrwmtp9Tv0oMVcdTlofTceCGbFUZQ4-aZGtPvqRLdWnatfC0iuuNUPWmeS6FkUR2OyfyXIYTQRROilphKK3fd69d31LQ9LLIvunbK7I9RSdD6Ap9luKat-YXTXt1KTRNS9y4t6SifqxcGS6Kloz6yZkVPiBOSITsZ76xEvk6sRakmRcpInn1HUPvCgEvs1WOMr7U6rRoPv-FY1BFqPhE_ajLe40oUIA7Pyzmo4Y7HX9eG_nJuWmnIfmVITBm7QZmZFBaAaB2uM7dhpaq6GblxyRMkBrJdPtDkzKnPJin9u9NJe_IppVRzVPiZX_nmxWXI6iMrGw-4X2NQ727khsLzud0qomr-3zjc0CYqA3ZLQvCrw4mOrZBzZxCyL8ilY7vtDOkZ_txGHxaMfo4s9ZRXI-bGJKz2UGz2VW3S5W7Qn0xFNdBF_iPiEl5widIuhmgqprQqzteQzdtf7AFXlg-dmh_iengaSYpCkzgcG7L6ABt9M2xFhmAVmYnYG7ySX-9_A9TCVs56YI_YlM5U-0Dy9y9O22vXTmptASk6MVCOWXPHFl4XzbHM3ADXIdJ6XD0uyRxJv4M072Lwz0GdDF-KhvfUxb0GhAMAv3LThy7Pec9T5MP97NWytEsiLzBnTi8f6rBOMrWxn_ghyPXG8eOy50gfHV3BtrDIS42nIHJZnHOFOTJ6H9SaRjyRptEPWhK0nq8BD4Li3fHLVWZaezpuBK1_7LHBo7aeSXw19CGaiPFp8KNdYmrY6gi17wf_ayY2Vl6v8rUldr-l91tIkl8SVIaUMC-AEmQxlZU9hFhV8_rJgdUBZvYO94FjKCbcMOZbruuB_1VQSDKkGo2lo5s_nU-k8-oEUynJNHx60_JO-rLlXFg0gi95bOOnovdAE2kZ3wRs-_P-GEmnuFV8kfYRsq1hGRH9VTsShGDlG9IOSxssJhVH7V_ZTTJ8IAQk8HqtIBHA1NGm89J9s_Qbzl-vz9FWHVR9UvVIvCm5Inu9aYipjHjOk7Ck3RX9JcLAfCSjOUlGY9FMcCVX-r_w3yW2JHyPxM13Stv17Dn_zKyl6p_k85Ksi02_Wd6m_s-tNTGgRHSH4FEMV23NY1qt4rOdtRSncHeKuUnxnzEnA75NVUUgnIwZMv57pZysbMf4qQamdGy5MqUvIkX6E_HKr5Mme70CbFoTaTr4QR6dfm8C-xNk2kHPShtvYaUZfNPKWOv9e1V6dJ4ecciEfmjOI5uRNUJrTi7z-nq5qUg6l0kkX54YeGhwnpDP166peJ4rVPpOcCjjGaZG4s2x4CZG37Rxp2x877ON0i3HNDRbTIlkGWHplR5T1mIZqUrcrCNi0X116TAp8lTKSpfc1GRKhf1pQp7DynecWhztuBe5lzlUDL3rbtdq_wDsmBamy9n4Js_IJOCi30fazFO7YQwEwhIwvp3JEtw1k9o-rzgQLc7pwdMF1vn6y-3eXn_xIbarHJNuQmb3CIliAuQGnXQmu-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACxASFxwf"
+          "value": "8-_dBtKdTibiNp0G15pfMtpzAeEIQaAFuu8aNzJn2qMyGUqT8yxJu-0yOSHu2zqI1yWbHsxEJaGtoLm4PK9pgBWF9nsLSSBsWCfqQXF8p_i4X-NfDXom5BSzBdumr2oNSQehR-6AX_myinfx1M6qVYoxs74T4ls3cAJhcbfmT7KQ1Z4sEMN0ZLpec3i2M3u3aencK0mQfiJPlXkUz0bZMV-d_Zo3tEXZp6qIcUuaXFoHPxdicQ18wZe2MYJuSh9mdJSzgmk0LvFz4souRRg2OxgLtU8E3hIQem6GDsvoM2JPfO1fULZHkarLDypFzJpRjCGxsbZGtY6C2d680hpAC3AEMUYxUb1XVLzMX62rF9j4hLuq_kvvA3L5LBuqZ6BVIVbXX3E1B1LBnd6vZtqQ1e18GUckU_Y6FXFcupZyQurSGJF2_qb2-EdXRHX1yu6uRYVzO_W5QxLtads7fb9WpGR_WNShyz3DfapKmISBjFcO9ABMdsRDbt7FcMssoZ4BD5q4qK84OdlRHf50dWo3J9b8r8CHmQMbFBctFd0mx_8jgh7jo0A_Qx1J5XjGGEYiO4OlHvm-IWwXBd7BdTRcRI_ejm7yFDhkMjCptcG23YOjCQSZd6WjecZHJsw9CAhUWVLTkaaKOVQekVtySCsdwrRYhBAXlZpC0yGckmrMwoHIC92tCjUfbFi2MgkPBpWr5LP9umZn3_Z8EqZm-CSsuptXVzXDkT-OXzOEYxMGHlR9iNqy5TVgfMEQKG3uX_jCykHWk6d3Pxxp-eDJnvaOjuxZ5VzAtnDOj2ChfQ7Neak19Ihyzlbp1oEEEdtJyWBqsSzCO9bheYEP4t3el_TzX-piuXTujt-wvt1MIYGiON5GiMdzkiqA3td1wTvNuzmqc4WDQNS1PLwlm1_dPHnxUCuGB3pZs-KqOZ7yghD0F4JOy770N1-m8ljZo8BKXe812EBGRpfv0vQ-sqnAY6IXjgzaUcD5UyI6GZdEP-RyJKBe7bGQyzpGiRmm0e9VYs4Ea92K3yfUSyKhTef5Uf11PsA409_Z00p6WUQB2cIC6IQVATbvok2jRh729FjRJUg2yp08YB-t4gVRl9Cx_XmFQFAo521MehnqLlRD1OO1GUj2xuJcYGSJL6zkusKkQZ99u-kkY2BnZ0aQKIiWmwdUkupkWLrI6xmNEZatfTj52BYtDt_g6xFuRqmlJCgGJ-y39YxJdjuQFXESR_D6Br2W9Zb3YqV9bPS7b4WDTR3lBpPOdZb9lubWK3fh7ZlSuREfCxontU4pnwfo4zQGScAIsmkt_pbdj64lKL1IsDMTO67SHvqZGMchYrRPG_6jcUqiKhS-DQ0XR_kOH7tAz_FxamO9GsQRUviIOndFRmnFM8AzoYTtBD8xqQNjI6A-z4akFfhEqqabG6Zxda8iZqB9tF9fAZkB-Bjs1Jt4-MWascURQBFlbEeEHXvuZ8i1NzkWFQbttG6-z7ppnAFUt45aHIlSdsXmZ2UcBNJI2M2yzKm1ZU-2NyYDbXxzPlj9HgvFHf3osjbBghWLbEtjvYhMOw9PZMyP9xWrFGaf5X5Uogk9B9_XU3q_9faXgwnycVX_MM4xmKP_ZtDyLDr3si_HbXJOc3M5k0Ca7fiGaQXzqTgd7l3zoGpLU6FUC2oRRZGFCnypBM-Vk8PfIXbxaOTCOCGyb-gc-tJW-l-UvrkWXG7Ji4COiPJWYHKGLqbIEQ1PBLwOyX77fjtgib8t0c0ytb1JScCI1ggllrkGsAT8U3rzFsO-OqRPTSfi9jgfgVkO7yBVHIyp8h-1rcn9VVHGOQytoQO9XXlkpFJeD79PSpMVNkJt9zSaio1lIRL_NSwquoMwEaeoehOHNP5BqD1SvU69k89tdAppKSiIqv9qk8cYPNcy5gXzBDDjEJoCu1ijESBBiDXye5crvsHDcMPy5CzGq9BVAZCpyTaVorPcNNWaP9G4GflhGv3yDC2kQvazqaHSWi-mVNf7650pvB7XY-U2_csOu_n7vTasMC-ySlspWvIQTVPinbcV-Vtw_ynFtJrQoT5ihqoI0BrGlKnPzn__4ygPZEsZkUk3UYzHhu-npgFsrXwmMERgw9nNvJGHtXeaM5Q1IX9lK7lCRpQ9zAmuIUEYMUxt5PtO_TjofwlKQYoPLJyfPD3a9IzocfRNehLsSeP3jcxk00QqSc6AoJ8toJGJk9tzLPy3EqvXlDzJSfgJyieOkmC3Luepqz-rDyEh4vEsScFpYV4oP4WKxwg5PApfFGvuFyQ6oc33EPbJuMcqwkFJ6enZINqetRZVq6aJHBO2Vj8TpecG9SUCbXcSCQj7yyAHATqTW1z1cGb-NLO2DpppDghpx7eMVDVBSI-ox7LAek0DpaVb0_CG-hAcyehSZDmU6iP7vyE2k3weaZ-cMTjBeAb57EXtxfD2tM8H7DmQ7c9mTH0xWnQjBCfbKV3QjdHvEwXhK834eEMhV1hCE2KcIG0HEYMTtx2WxKRr3S0HqkGj5Lk9_AiQK8vXE_1HW552U72dYBH3wwkzJj3kPva42v3pb1hKdzj8Gka8zqt1c10ESjIMCjr7GXs5SoO0pNWsfLsNemQjW5rFuPbfXIu-ESun3m8lps3xLmbhfI_I1HHpRzFKVyK5rexb5IiIgsY4tM8b1LSYN8JayTfkgjchIynnQ8FZ0NfKFr0yf8DEPNoe3b7Pqr5r-4s4rma2IOnFU1VQML78ydhbUP_Lo3C_R_zUwGkPFea2mH1_hcZQB9HTDZd5kM_H9jSQhr3NJbuk-5mdysxDAcIh3qUNJsfI1H5Kv_6h-VTAacywFewft2LmDBI5UaAANltgUrc_DRsrtTN_wN4Kbopt8bQIzkcrXvI7WwTov3s1vGKjNo4DFXYJMRgQN3VnlkwzYCauPIwY7COy5545W2NnNtYxwmpe54X7i0HbpiqlreQNnasV1XBqbkZD2VXjNkBAg8XvcrCHVITxfVMFxfQCru_fuXtqwrOqfT8jrcbhOnCniMZvL1tYhHtZjpLcUlspvHi7k5dV2rujJuCMLr_9adJThBzHJYNTNO3M4vKfPtJiSCnN4yCcXrpNcltC2zWVUSmGmqi7XqPGRZCn_wqzki4bcI8F70R2I_9YEe5G8TR2_akL5tMZLaBtEQkZP-dP2T1p-tTTqJ7d-Fb2APJ51TBO7CP9w1e1tBUBv-OJn1n4Ac4hdrmj-dt1VeW5yXSXBR2dOv4uJhD6aIgm5t4OMmpIrWT7EZ-aVkXDYSyTYeXjF4HIAGHM38mm7lZUz9ZAgGCeM8-sfEo8Z2P3Awr6odk18WIL3Z8SH_cZVHyEM79EmXA75kKB9Dldyvq7CAj-_vG7txijno4vdrTrVW8LZKAwuroO-qVQugW2VZKIQ1_TfkTN4pWVtT2NwI4P92slIbjWXqpoHSRoKV5RgEvRFsF4FH7yHS4WesfggFt-fIB1vVOPvNJNgZiYNc3OKctooGt_J1pFSC59b8p0LOp9v5L1W9Xjn0ASbOUlKOxazRlUyIAdKfe97tT1Oq2MFndoOYYvHo0h7oH4sVl97gu-Y8YfwbLRrgmrgXKRSXzGbjPPzIbs5GaTbAt4Y-8fkwc_c0oAoBVSTOgtX1DjV-t4KghDslN_43J1JBosD38Hpm7-NfEPzP4WREokFoMnPLtk4T8MN6Gs1LdTvBv8FksgnelTb6fNS6ZFIjDGNTGyhc_5BMvHIhm5E3qYM1IPVVpR6qjurWXFdkTXK1-IXEH0rNeONtgUFVlkykArxFzPximaWB5uQB0jK0nBccAQotBYVv6m9LobHPplZZUeSoBjRz_zE9pxnRdX3LYfHijFlKiTZYIGpTOvk6ZEcwwu27BSPxfHeuODyjpXd2qn8oDtLfkfsGzZBJEVzHo5s6CWtlkwnWD9L3v8zM1btJ9ku2xIXZP_1_Lqu4hTnRsZ1BzN2Bpxt6jKf1tBqzq6mkhi4VQGaEn77-cJaPZCzndhoSMENVRA00MC25lC2W5qvPRuepCv0KTh_tRgaV4XFbp4z8Y8uDfQmZtVMJIbij6oamQx-Nt302C8XDluEyx8B1sPwLGLedpXS60yQD9gUYX5UbcTOHGn0JJS5j-8iMeSmgI9VtjFwBqfi1EIhkvn-aCy3r7wcLJhA-2HmCqq6qDH2ISbXr909_O8-qapco4_Dz5KjYM_16l54AREwIZeDw3D8Dbxk60J02H3WYd-NzPwJyl2WfXUEIn4bBajQuV8tqEC0hs51UMMizdxy0J_zis_rmdJIK6WS6_nfIc8UsPktz4PDb59PX-CL4Isc_1ptelDQE64UMCsQWiF55E9roMUOFReb4CPlq69y9HeSmadwis_XF_P4HXN2-EiREdkcrbKDz9FVaap9AAAAAAAAAAAAAAAAAAADREXGyIp"
         }
       ]
     },
@@ -237,8 +237,8 @@
       {
         "from": "pending",
         "to": "attested",
-        "actor": "org:climatechain-demo",
-        "at": "2026-10-06T05:22:47.313Z",
+        "actor": "org:grounding-demo",
+        "at": "2026-10-06T14:00:58.035Z",
         "reason": "Signed attestation issued.",
         "evidenceRefs": [
           {
@@ -251,19 +251,19 @@
     "challenges": []
   },
   "case": {
-    "schemaVersion": "climatechain.case/0.1",
+    "schemaVersion": "grounding.case/0.1",
     "caseId": "case:disclosure:lpl-construction",
     "title": "LPL Construction public carbon disclosure",
     "capabilities": [
       "public-disclosure",
       "claim-reconciliation"
     ],
-    "createdAt": "2026-10-06T05:22:47.313Z",
+    "createdAt": "2026-10-06T14:00:58.035Z",
     "claims": [
       {
         "nodeType": "claim",
         "id": "claim:lpl:2025:scope1",
-        "createdAt": "2026-10-06T05:22:47.313Z",
+        "createdAt": "2026-10-06T14:00:58.035Z",
         "provenance": [
           {
             "nodeType": "evidence",
@@ -317,7 +317,7 @@
           {
             "dimension": "third-party-assured",
             "state": "not-assessed",
-            "note": "The source attributes assurance to a third party: First-party page states external verification through Carbon Footprint Ltd. ClimateChain has not independently audited that assurance engagement."
+            "note": "The source attributes assurance to a third party: First-party page states external verification through Carbon Footprint Ltd. Grounding has not independently audited that assurance engagement."
           }
         ],
         "boundary": {
@@ -336,7 +336,7 @@
             ],
             "policyChoices": [
               "A reported figure that cannot be recalculated needs a person's decision before the claim is accepted",
-              "The organisational boundary and the method are the company's (the page cites the GHG Protocol), not ClimateChain's"
+              "The organisational boundary and the method are the company's (the page cites the GHG Protocol), not Grounding's"
             ],
             "notAssessed": [
               "The activity data and emission factors behind the figure",
@@ -351,13 +351,13 @@
       {
         "nodeType": "evidence",
         "id": "evidence:disclosure:lpl-construction:cadi-confirmation",
-        "createdAt": "2026-10-06T05:22:47.313Z",
+        "createdAt": "2026-10-06T14:00:58.035Z",
         "provenance": [],
         "kind": "public-disclosure",
         "source": {
           "uri": "https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/",
           "publisher": "LPL Construction",
-          "retrievedAt": "2026-10-06T05:22:47.313Z"
+          "retrievedAt": "2026-10-06T14:00:58.035Z"
         },
         "rights": {
           "sourceManifestId": "cadi-public-web",
@@ -375,19 +375,19 @@
       {
         "nodeType": "evidence",
         "id": "evidence:disclosure:lpl-construction:source",
-        "createdAt": "2026-10-06T05:22:47.313Z",
+        "createdAt": "2026-10-06T14:00:58.035Z",
         "provenance": [],
         "kind": "report",
         "source": {
           "uri": "https://lplconstruction.com/2026/09/25/from-ambition-to-action-lpl-construction-and-the-journey-to-net-zero/",
           "publisher": "LPL Construction",
-          "retrievedAt": "2026-10-06T05:22:47.313Z"
+          "retrievedAt": "2026-10-06T14:00:58.035Z"
         },
         "rights": {
           "redistribution": "unclear",
           "commercialUse": "unclear",
           "derivedData": "unclear",
-          "attribution": "Preserve the original public source URL. ClimateChain stores extracted factual claims, not the source document bytes."
+          "attribution": "Preserve the original public source URL. Grounding stores extracted factual claims, not the source document bytes."
         },
         "access": {
           "mode": "link-only",
@@ -402,7 +402,7 @@
       {
         "nodeType": "verification",
         "id": "verification:disclosure",
-        "createdAt": "2026-10-06T05:22:47.313Z",
+        "createdAt": "2026-10-06T14:00:58.035Z",
         "provenance": [
           {
             "nodeType": "claim",
@@ -453,7 +453,7 @@
       {
         "nodeType": "verification",
         "id": "verification:disclosure-decision",
-        "createdAt": "2026-10-06T05:22:47.313Z",
+        "createdAt": "2026-10-06T14:00:58.035Z",
         "provenance": [
           {
             "nodeType": "claim",

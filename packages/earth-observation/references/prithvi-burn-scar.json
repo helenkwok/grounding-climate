@@ -10,5 +10,5 @@
   },
   "source": "https://huggingface.co/ibm-nasa-geospatial/Prithvi-EO-1.0-100M-burn-scar",
   "locallyReproduced": false,
-  "note": "Published reference only. The ClimateChain CPU baseline is NBR thresholding and must not be described as Prithvi inference."
+  "note": "Published reference only. The Grounding CPU baseline is NBR thresholding and must not be described as Prithvi inference."
 }

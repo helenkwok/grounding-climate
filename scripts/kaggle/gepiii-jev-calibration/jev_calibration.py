@@ -53,7 +53,7 @@ WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "S
 
 
 def fetch(url: str) -> bytes:
-    request = urllib.request.Request(url, headers={"User-Agent": "climatechain-research/0.1"})
+    request = urllib.request.Request(url, headers={"User-Agent": "grounding-research/0.1"})
     return urllib.request.urlopen(request, timeout=600).read()
 
 
@@ -265,7 +265,7 @@ for name, by in (("overall", None), ("byFlagReason", "flag_reason")):
         thresholds[name]["file"] = yaml.safe_load(out_path.read_text())
 
 result = {
-    "schemaVersion": "climatechain.gepiii-jev-calibration/0.1",
+    "schemaVersion": "grounding.gepiii-jev-calibration/0.1",
     "sentToModel": "states built from BDG2 v1.0 raw electricity (CC BY-SA 4.0) only; no competition data",
     "questionSet": QUESTION_SET,
     "window": list(WINDOW),

@@ -8,7 +8,7 @@ Secondary consumers are sustainability managers and carbon auditors/verifiers wh
 
 ## Purpose
 
-The first Building MRV slice connects a real public building-energy dataset to ClimateChain's shared evidence, calculation, verification, attestation, and WebMCP layers.
+The first Building MRV slice connects a real public building-energy dataset to Grounding's shared evidence, calculation, verification, attestation, and WebMCP layers.
 
 It does **not** claim that better data quality reduces emissions. The measured outputs are:
 
@@ -20,7 +20,7 @@ It does **not** claim that better data quality reduces emissions. The measured o
 
 ## Data source
 
-ClimateChain pins Building Data Genome Project 2 v1.0:
+Grounding pins Building Data Genome Project 2 v1.0:
 
 - Zenodo record: https://zenodo.org/records/3887306
 - DOI: `10.5281/zenodo.3887306`
@@ -86,7 +86,7 @@ This prevents an accidental file edit from being presented as if it were the int
 
 ## Baseline
 
-The first ClimateChain baseline is intentionally transparent:
+The first Grounding baseline is intentionally transparent:
 
 ```text
 training period
@@ -101,7 +101,7 @@ Default split:
 - final 20%: test
 - no random shuffling
 
-This is a local ClimateChain benchmark. It is not labelled ALDI++ and does not reuse ALDI++'s published score as if ClimateChain had reproduced it.
+This is a local Grounding benchmark. It is not labelled ALDI++ and does not reuse ALDI++'s published score as if Grounding had reproduced it.
 
 ## Measured real-data smoke
 
@@ -146,7 +146,7 @@ Machine-readable measured record:
 
 - `reports/building-mrv/bdg2-v1-smoke.json`
 
-This is now a ClimateChain-measured result. It remains separate from the ALDI++ publication numbers below.
+This is now a Grounding-measured result. It remains separate from the ALDI++ publication numbers below.
 
 ## ALDI++ reference
 
@@ -164,7 +164,7 @@ Machine-readable reference:
 
 - `packages/building-mrv/references/aldiplusplus.json`
 
-It explicitly records `reproducedByClimateChain: false`.
+It explicitly records `reproducedByGrounding: false`.
 
 A later #9 slice can run the ALDI++ labelled-outlier benchmark itself. Until then, these numbers remain an upstream comparison target.
 
@@ -291,7 +291,7 @@ accepted kWh × location-based kgCO₂e/kWh
 
 The grid factor is intentionally required at runtime.
 
-ClimateChain does **not** infer a factor from an anonymised BDG2 site label. The real smoke applies CAMX only after checking the pinned metadata coordinates remain within the expected Berkeley location; if those coordinates change, the smoke refuses the factor.
+Grounding does **not** infer a factor from an anonymised BDG2 site label. The real smoke applies CAMX only after checking the pinned metadata coordinates remain within the expected Berkeley location; if those coordinates change, the smoke refuses the factor.
 
 Run analysis with an explicitly sourced factor:
 
@@ -347,7 +347,7 @@ Expected behavior:
 8. the evidence root differs from the clean run
 9. an attestation created for the clean root remains attributable only to the clean root through #8
 
-## Shared ClimateChain graph
+## Shared Grounding graph
 
 The Building MRV result maps to:
 
@@ -391,7 +391,7 @@ The disclosure path uses the already selected real CaDI example for **Carbon Foo
 - https://www.carbonfootprint.com/our_cadi_data.html
 - https://www.carbondi.com/
 
-ClimateChain deliberately does **not** pretend the anonymised BDG2 building belongs to Carbon Footprint Ltd.
+Grounding deliberately does **not** pretend the anonymised BDG2 building belongs to Carbon Footprint Ltd.
 
 Therefore the current Building MRV claim and the Carbon Footprint Ltd disclosure are different subjects and must not be numerically labelled “reconciled”.
 
@@ -410,6 +410,6 @@ The foundation does not manufacture those results.
 
 ## Wildfire context from Open Climate Risk
 
-The case carries Open Climate Risk (OCR) v1.1.0 wildfire values as context: `evidence:open-climate-risk`, committed in `data/external/open-climate-risk/ocr-context.json` (CC BY 4.0, sampled by `scripts/sample-open-climate-risk.py` at a pinned snapshot), plus one finding in the main verification. OCR's values are modelled, for national or relative comparison, and no check reads them: they do not change the result. ClimateChain is not affiliated with or endorsed by CarbonPlan.
+The case carries Open Climate Risk (OCR) v1.1.0 wildfire values as context: `evidence:open-climate-risk`, committed in `data/external/open-climate-risk/ocr-context.json` (CC BY 4.0, sampled by `scripts/sample-open-climate-risk.py` at a pinned snapshot), plus one finding in the main verification. OCR's values are modelled, for national or relative comparison, and no check reads them: they do not change the result. Grounding is not affiliated with or endorsed by CarbonPlan.
 
 At the BDG2 coordinates of site Bear (site-level, not the building) the modelled annual burn probability is 0.016% for ~2011 conditions and 0.015% for ~2047, and the relative risk to potential structures is 0. The number sits next to the measured Scope 2 total as forward-looking physical-risk context, as a climate disclosure would; with one site it says nothing about other buildings.

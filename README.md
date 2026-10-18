@@ -1,4 +1,4 @@
-# ClimateChain
+# Grounding
 
 Evidence-first climate verification workspace for the IEEE ClimateChain Global Hackathon 2026.
 
@@ -18,7 +18,7 @@ The demo combines measured outputs from Building MRV, Energy-EVA forecasting, HL
 
 See [docs/judging-demo.md](docs/judging-demo.md) for the 3–5 minute presentation flow.
 
-> Submission blocker: this repository is currently private. The hackathon requirements tracked in [#1](https://github.com/helenkwok/climatechain/issues/1) require a public GitHub (or equivalent) repository before final submission.
+> Submission blocker: this repository is currently private. The hackathon requirements tracked in [#1](https://github.com/helenkwok/grounding-climate/issues/1) require a public GitHub (or equivalent) repository before final submission.
 
 The project is organised around verifiable climate claims rather than tokens:
 
@@ -31,15 +31,15 @@ evidence
 → optional commitment/ledger anchor
 ```
 
-Development roadmap: see [#17](https://github.com/helenkwok/climatechain/issues/17).
+Development roadmap: see [#17](https://github.com/helenkwok/grounding-climate/issues/17).
 
 ## Current work
 
-- [#6](https://github.com/helenkwok/climatechain/issues/6) — evidence-first domain model
-- [#14](https://github.com/helenkwok/climatechain/issues/14) — source rights manifest
-- [#18](https://github.com/helenkwok/climatechain/issues/18) — crypto-agile trust layer
-- [#8](https://github.com/helenkwok/climatechain/issues/8) — provenance/attestation lifecycle
-- [#7](https://github.com/helenkwok/climatechain/issues/7) — capability-aware WebMCP surface
+- [#6](https://github.com/helenkwok/grounding-climate/issues/6) — evidence-first domain model
+- [#14](https://github.com/helenkwok/grounding-climate/issues/14) — source rights manifest
+- [#18](https://github.com/helenkwok/grounding-climate/issues/18) — crypto-agile trust layer
+- [#8](https://github.com/helenkwok/grounding-climate/issues/8) — provenance/attestation lifecycle
+- [#7](https://github.com/helenkwok/grounding-climate/issues/7) — capability-aware WebMCP surface
 
 ## External data policy
 
@@ -71,7 +71,7 @@ npm run building:analyze -- \
   --factor-source "<original source URL>"
 ```
 
-The grid factor is deliberately not guessed from anonymised BDG2 site IDs. The CLI records the supplied factor source as provenance and produces a ClimateChain case, report, and evidence root.
+The grid factor is deliberately not guessed from anonymised BDG2 site IDs. The CLI records the supplied factor source as provenance and produces a Grounding case, report, and evidence root.
 
 ## Battery DPP prototype
 
