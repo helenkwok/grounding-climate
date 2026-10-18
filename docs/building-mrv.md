@@ -260,7 +260,7 @@ The case uses 5 reviews, so advice is shown as "suggested" at P(meter_fault) of 
 The claim records its accounting boundary apart from the numbers (`claim.boundary.accounting`), so a reviewer can see which parts are measured and which are policy choices another reviewer could make differently. It is signed with the rest of the case.
 
 - **Counts:** the building's metered electricity over the case period, less the flagged readings a person decided to exclude, times the location-based eGRID2016 CAMX factor.
-- **Leaves out:** the excluded readings, which are not replaced by an estimate; other meters and on-site generation; Scope 1 and Scope 3.
+- **Leaves out:** the excluded readings, which are not replaced by an estimate. The hour-of-week baseline expects about 2,425 kWh (0.58 tCO₂e) at the four excluded hours that are real dropouts, so the figure may be low by that much, and the case says so. The fifth, 2016-03-13 02:00, is the hour US/Pacific clocks skipped for daylight saving: its zero is a clock artefact and no use is missing. Also left out: other meters and on-site generation; Scope 1 and Scope 3.
 - **Policy choices:** location-based rather than market-based accounting; the flag rules (robust z of 6, exact zeros, runs of 168 identical hourly values); a flagged reading counts only when a person keeps it; the 5-review cost ratio behind the advice hand-off.
 - **Not assessed:** the cause of each flagged reading; transmission and distribution losses; hourly change in the grid's carbon intensity; physical climate risk, including wildfire (the Open Climate Risk values are context only).
 

@@ -20,6 +20,7 @@ import {
   flagStatuses,
   handOff,
   injectTamper,
+  isSkippedLocalTime,
   JevError,
   runBuildingMrv,
   runLengths,
@@ -323,4 +324,14 @@ test("advice is a suggestion only at or above the measured hand-off threshold", 
   assert.equal(handOff({ choice: "meter_fault", probabilities: p(0.97) }), "suggested");
   assert.equal(handOff({ choice: "meter_fault", probabilities: p(0.96) }), "needs a person");
   assert.equal(handOff({ choice: "real_consumption", probabilities: p(0.99) }), "needs a person");
+});
+
+test("a clock hour skipped for daylight saving is recognised, and ordinary hours are not", () => {
+  assert.equal(isSkippedLocalTime("2016-03-13 02:00:00", "US/Pacific"), true);
+  assert.equal(isSkippedLocalTime("2016-03-13 01:00:00", "US/Pacific"), false);
+  assert.equal(isSkippedLocalTime("2016-03-13 03:00:00", "US/Pacific"), false);
+  // The repeated hour when clocks go back exists (twice), so it is not skipped.
+  assert.equal(isSkippedLocalTime("2016-11-06 01:00:00", "US/Pacific"), false);
+  assert.equal(isSkippedLocalTime("2016-03-27 01:30:00", "Europe/London"), true);
+  assert.equal(isSkippedLocalTime("2016-03-13 02:00:00", "UTC"), false);
 });
