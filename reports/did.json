@@ -1,0 +1,48 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1",
+    "https://w3id.org/security/jwk/v1",
+    "https://w3id.org/security/multikey/v1"
+  ],
+  "id": "did:web:helenkwok.github.io:grounding-climate",
+  "verificationMethod": [
+    {
+      "id": "did:web:helenkwok.github.io:grounding-climate#ed25519-jwk",
+      "type": "JsonWebKey",
+      "controller": "did:web:helenkwok.github.io:grounding-climate",
+      "publicKeyJwk": {
+        "kty": "OKP",
+        "crv": "Ed25519",
+        "x": "rbxgG1KskaGCPymSsF63jH71FNPbCAchp0SrC08aK2A"
+      }
+    },
+    {
+      "id": "did:web:helenkwok.github.io:grounding-climate#ed25519-multikey",
+      "type": "Multikey",
+      "controller": "did:web:helenkwok.github.io:grounding-climate",
+      "publicKeyMultibase": "z6Mkr9TBEurvkwqZTLFrM9E6YfKRc9wmktYUkwViTWCwLU5u"
+    },
+    {
+      "id": "did:web:helenkwok.github.io:grounding-climate#ml-dsa-65-jwk",
+      "type": "JsonWebKey",
+      "controller": "did:web:helenkwok.github.io:grounding-climate",
+      "publicKeyJwk": {
+        "kty": "AKP",
+        "alg": "ML-DSA-65",
+        "pub": "I-Gs3_uPtfgUzgb22wRcYWHbihQ5eANc48Ez0ATBCuEv4GgROeg6qlnFthyPHkaPHkmqU58YaJaxu2n10koBn--S8DqsPl-rf83Tz9PT8A6TYYjk9U-FOAjH9EG2C1bNkBR_qccnz0hR15BYiIestsNVNvLRcHEfTtYOet2wjLrvHGr3AjkRood9430khI-kmA_G7On4YCN8AteEIdjQOO6M7NBMnHDSJY5CEUHhORBVK5q94fbK-jiyvCpcMVNSxYniqgvsVo14A1qpjS2f7fFmGXkBhv8TiXsWBdm9qZ7xzvi6KTJCriOmBC6El4mRZs1k6XRxmFa1oSNf7snwWGYzW0g21zndFPavDaxAd2SL-yP0_QYn_izQOWnHgXKB_AaziyDO_6oAg8DY1Zm3KzICWjabuTHzzvmurZbcK4dVLwLQSsYu5pfToB9v7g5qNCQOjYSvAUzhR7ajm4moowOvBWQNUo96AXaer45wLqEzCj7Xq-vNvthR44uST2vHiS6rFEplrYrkRhGGCswsFNeGkabnVUbcTlXWKbf_UohkbyVErZY4gEVb9kUgWYnEWL8MxsfamOnwqls9XHqsr7cGDkZG4CAatvcC2fdDyskb7qBZp02aKcyrSMPn3CI5MzpfvTrePaIRAZp9ePUIYIZ_JUyxWkDsbnEaaqqM-FhefBeZKluznVOCSNGM2V250oKQyEF6dS9CbZV2fWqtIBTJ9FC7op4l3Yq0b8DS33KX1g_x1DTSZpcp17YYkikOQ-GscSVRMJT5q5wrCJVzN8L65mLix_q6GRy-yXkj-DPwdgQP1yIjMs7Msh4UlPS9wOAP2urWJwawLz9EN9gJDSG1q7xWCNuGLx4TW8FqA4m3py7SB4Z8WjmVXON0MRm7_WOfeIHtxxkZ7ci-WVh-idpyQdwtiUIeiwLx3aBg9mse6hLq4MXjuEducKxzZX4KZAQnUbA-XJsoh-r0kmZSSPSTsGsbCzfoU9gNUGEjlYmsmxIdV6ZYby10vr0brUP3VpU56mnaBR4JkFkhXO3Bhq5VKwp7oOTXo3Fjai_iI_0orIWW82MEXWuw16GEvV6JaimMfxyOo5JeV9bdcqlrudzJ6cIxNFdbd6OaJ6XTgDoqCMBKiA_HSGEdaK41vX4lHsEKGP8uPlNXTPVQ36LVQ_3Lc6SoLwjsQMPdDAW9AXaZHda9dV7NHPsZm56Z3k3ICLQIysZINfwUEOXldwkjmHgXWLmcCflPG4rRadzbCXjIDMndutVxJSnUSYA_zLxRjRNh8BNO06OI2_0wiCfDbgJS2l_Ehee0mGTvRpBJ5kBZ1vdColhU0nqvkzcy7KtxwMCEhNVPgbdu1-IL1c7v2LInrgQkf5mGXNuj92AVTfTgz6stCihBkX2gQ9cBHLjeTHd-LJl1cGRDfG5P0GbR-vwkZQGfq4RddKsv2RXh_vyJPjbBaNcII2CxzjG4KRnuIoOB3-fF8zvcnt6qgINxoP6S0X_DUoMWSU_PPN2jy1w3v2Ke2B49GnSgOk6NKF_MPZpy2EJZmlWMjAKgOKVcomR6JFi3UyKNVakXsa7BOqDuZtsAarSfbQwU9eLFC8aoVD-WncwzNoo_3gQCFSQ9my0oyCMcSB25ssKaq4Sx20Mmcmoj8cg50a4REo8R-9G8GASBSw5KYiiTjHDG-edvktnAx3ir1e0_0d8wL_Vcs1sRR4R-2bv_j8nC5svpEUQUhlo4ERNscaSudHMlZiFyUPkqtrMtEryQ-RDHWjF3-ZDRkcPS9wrtXWciyqt6S-cpzDkwWQeJVBGSSlRS_A7WULCkwwn7sOAl77rannhVGsN2PTCl5IVVsWqeJmxt51T5wN7I1w7B91tHH0GlPoRZCjGYJMFlY0CMNdd17bWLtKPbML5Epy4yz6VGhGpKwDAuPKqeufyhoCORnIgK1GYhlglroSpvyrvovJEZ2p91zGClqHUvDv14VoPSlbuC4nH7GZ5e1Aht469cMp0aEFtaxvLy2Idf2YNVYYbyulUiqb0IZo5uu-brvRe9pu7JtGVI1MvO3PA0Dyz0uBpX3G-19bePiSiqRHR-79szYOyXgfRtvJvd5JvvNPGGnB9WQSwFsL4EAx7dUdtwLzs9xnxerlzt59DdgNLZIRagiQg_B4D8c3e0wLcF4plh-p1S-C4h81Rx7-aPYajKsZEdMHVI2aPg7tNYeI_7r2UGtjrOkthZnL4srKwphgKahsE_GQKuWV4iY_TQ0WniEyC05Ff_Ln-38mIppt4cDsRAqyIEJ4txcqsd3On1ekQnc8K-QQccCfzbsz38TyovYPfzbZatuWvX504SEU2QDJerJE4W0LJVEjWjHGRLvOOazUmrfI_iQg4nCB52WbCU0p30Z3LwpevCmulMgotCv-7Gk8lC-ZkATIozt7QzcGDP93igQsbsP3TOnLMJQvFaS-ZdSamqk78sPpNLdG4yGOxcBsMQlz1Sn5ra4IVoigyW6plEFjqn9e9TxzkqZbba1kt29n5TKnMnmZo03eNpx6YKjIRszSckijYCsV1FT7_tpSzev3bdgkV6Dy3WCxAjiqDHLnRNuP0xcEOXcbdyEW5oxxFoHbw"
+      }
+    },
+    {
+      "id": "did:web:helenkwok.github.io:grounding-climate#ml-dsa-65-multikey",
+      "type": "Multikey",
+      "controller": "did:web:helenkwok.github.io:grounding-climate",
+      "publicKeyMultibase": "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"
+    }
+  ],
+  "assertionMethod": [
+    "did:web:helenkwok.github.io:grounding-climate#ed25519-jwk",
+    "did:web:helenkwok.github.io:grounding-climate#ed25519-multikey",
+    "did:web:helenkwok.github.io:grounding-climate#ml-dsa-65-jwk",
+    "did:web:helenkwok.github.io:grounding-climate#ml-dsa-65-multikey"
+  ]
+}

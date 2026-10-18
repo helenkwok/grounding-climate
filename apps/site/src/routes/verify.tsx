@@ -1,8 +1,16 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { cidFromSha256, type SignedAttestationVerification } from "@grounding-climate/core";
+import {
+  cidFromSha256,
+  type DidDocument,
+  type ProofCheck,
+  type SignedAttestationVerification,
+  type VerifiableCredential,
+} from "@grounding-climate/core";
 import { useState, type DragEvent } from "react";
 
 import cidManifest from "../../../../reports/cid-manifest.json";
+// The issuer's DID document as committed with the credentials; the page checks credentials against it.
+import issuerDid from "../../../../reports/did.json";
 import { claimMeta } from "../../../demo/src/claims-meta";
 import { Result, Rows, State } from "../components";
 import { signedRecords } from "../live";
@@ -15,7 +23,12 @@ export const Route = createFileRoute("/verify")({
 
 type Outcome =
   | { name: string; record: SignedRecord; result: SignedAttestationVerification; cid: string }
+  | { name: string; credential: VerifiableCredential; proofs: ProofCheck[]; valid: boolean; cid: string }
   | { name: string; error: string };
+
+const isCredential = (value: unknown): value is VerifiableCredential =>
+  typeof value === "object" && value !== null && Array.isArray((value as { type?: unknown }).type) &&
+  ((value as { type: unknown[] }).type).includes("VerifiableCredential");
 
 // Committed files by SHA-256, so an evidence digest that is a whole file's digest can name that file.
 const committedFiles = new Map(cidManifest.files.map((file) => [file.sha256, file.path]));
@@ -38,10 +51,20 @@ function VerifyPage() {
 
   async function check(name: string, text: string) {
     try {
-      const record = JSON.parse(text) as SignedRecord;
-      const [{ verifyRecord }, { WebCryptoProvider }] = await Promise.all([import("../signing"), import("../../../demo/src/web-crypto")]);
+      const parsed: unknown = JSON.parse(text);
+      const [{ verifyRecord }, { WebCryptoProvider }, core] = await Promise.all([
+        import("../signing"),
+        import("../../../demo/src/web-crypto"),
+        import("@grounding-climate/core"),
+      ]);
       const provider = new WebCryptoProvider();
       const cid = cidFromSha256(await provider.hash(new TextEncoder().encode(text), "SHA-256"));
+      if (isCredential(parsed)) {
+        const proofs = await core.verifyProofSet(parsed, issuerDid as DidDocument, provider);
+        setOutcome({ name, credential: parsed, proofs, valid: core.hybridSatisfied(proofs), cid });
+        return;
+      }
+      const record = parsed as SignedRecord;
       setOutcome({ name, record, result: await verifyRecord(record, provider), cid });
     } catch (error) {
       setOutcome({ name, error: error instanceof SyntaxError ? "This file is not JSON." : error instanceof Error ? error.message : String(error) });
@@ -74,7 +97,10 @@ function VerifyPage() {
           onDrop={drop}
         >
           <strong>Drop a record here, or choose a file</strong>
-          <span className="note">A .json file downloaded from any claim's “Your verdict” step.</span>
+          <span className="note">
+            A .json file downloaded from any claim's “Your verdict” step, or a case's <code>credential.json</code> (W3C
+            Verifiable Credential) from the repository's <code>reports/</code> folder.
+          </span>
           <input
             type="file"
             accept=".json,application/json"
@@ -120,6 +146,7 @@ function Report({ outcome }: { outcome: Outcome }) {
       </div>
     );
   }
+  if ("credential" in outcome) return <CredentialReport outcome={outcome} />;
   const { record, result } = outcome;
   const valid = result.validForCurrentEvidence;
   const review = record.case.verifications.find((node) => node.id === record.attestation.payload.verificationRef?.id);
@@ -169,6 +196,53 @@ function Report({ outcome }: { outcome: Outcome }) {
             </li>
           );
         })}
+      </ul>
+    </div>
+  );
+}
+
+function CredentialReport({ outcome }: { outcome: { name: string; credential: VerifiableCredential; proofs: ProofCheck[]; valid: boolean; cid: string } }) {
+  const { credential, proofs, valid } = outcome;
+  const subject = credential.credentialSubject as {
+    id?: string;
+    claim?: { statement?: string };
+    recheck?: { status?: string; findings?: string[] };
+  };
+  const kind = credential.type.includes("DigitalProductPassport") ? "Digital Product Passport" : "Digital Conformity Credential";
+  const anchor = (credential.evidence as Array<{ type?: string[]; chain?: string; statement?: string }> | undefined)?.find((item) =>
+    item.type?.includes("TimestampAnchor"),
+  );
+  const label = (suite: string) => (suite === "eddsa-jcs-2022" ? "Ed25519 (eddsa-jcs-2022)" : "ML-DSA-65 (" + suite + ", experimental)");
+  return (
+    <div className={"step-figure tamper-output " + (valid ? "is-good" : "is-bad")} aria-live="polite">
+      <p className={"verdict " + (valid ? "good" : "bad")}>
+        {valid
+          ? "Valid: nothing in this credential has changed since the issuer signed it."
+          : "Broken: the credential doesn't match what the issuer signed."}
+      </p>
+      <Rows
+        className="boundary tamper-rows"
+        rows={[
+          ["File", outcome.name],
+          ["Content address", outcome.cid],
+          ["Format", "W3C Verifiable Credential 2.0 (UNTP 0.6.0 " + kind + ")"],
+          ["Issuer", credential.issuer.id + " (placeholder, not yet hosted: it does not prove who issued it)"],
+          ["Issued", credential.validFrom],
+          ["Subject", subject.id ?? ""],
+          ["Claim", subject.claim?.statement ?? ""],
+          ["Findings", (subject.recheck?.findings ?? []).join(" ")],
+          ...(anchor ? [["Anchor", (anchor.chain ?? "") + ": " + (anchor.statement ?? "")] as [string, string]] : []),
+        ]}
+      />
+      <ul className="checks">
+        {proofs.map((proof) => (
+          <li key={proof.cryptosuite}>
+            <span>{label(proof.cryptosuite)} proof</span>
+            <State tone={proof.valid ? "good" : "bad"}>{proof.valid ? "valid" : "invalid"}</State>
+          </li>
+        ))}
+        {proofs.length < 2 && <li><span>Both proofs present</span><State tone="bad">no</State></li>}
+        {subject.recheck?.status && <li><span>Recheck result in the credential</span><Result result={subject.recheck.status} /></li>}
       </ul>
     </div>
   );

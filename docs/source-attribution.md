@@ -11,6 +11,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | American Carbon Registry public report records (full OffsetsDB export, reduced columns) | registry-data | LicenseRef-ACR-Terms-of-Use | allowed | redistributable |
 | American Carbon Registry public report records (OffsetsDB test subset, reduced columns) | registry-data | LicenseRef-ACR-Terms-of-Use | allowed | redistributable |
 | ASHRAE Great Energy Predictor III competition data | benchmark-data | Subject to Competition Rules | prohibited | download-from-upstream |
+| Battery Pass Data Model (io.BatteryPass.Performance 1.2.1) | vocabulary | CC-BY-4.0 | allowed | link-only |
 | BatteryLife benchmark code | code | MIT | allowed | code-only |
 | BatteryLife Processed dataset | dataset | MIT | allowed | redistributable |
 | BatteryLife Raw dataset | dataset | MIT | allowed | redistributable |
@@ -75,6 +76,14 @@ ASHRAE Great Energy Predictor III, hosted on Kaggle. Users must obtain competiti
 - Source: https://www.kaggle.com/competitions/ashrae-energy-prediction/data
 - Terms/licence: https://www.kaggle.com/competitions/ashrae-energy-prediction/rules
 - Repository policy: Never commit Kaggle competition files. Users must obtain them through Kaggle under the competition rules.
+
+### Battery Pass Data Model (io.BatteryPass.Performance 1.2.1) (vocabulary)
+
+Battery Pass Data Model, io.BatteryPass.Performance 1.2.1, Battery Pass consortium, CC BY 4.0, https://github.com/batterypass/BatteryPassDataModel. Attribute names reused; no content copied.
+
+- Source: https://github.com/batterypass/BatteryPassDataModel
+- Terms/licence: https://creativecommons.org/licenses/by/4.0/
+- Repository policy: Three attribute names only (ratedCapacity, remainingCapacity, capacityFade) and the model name, cited beside the DIN DKE SPEC 99100 names in the battery passport credential (packages/core/src/vc.ts). No file from the model is copied.
 
 ### BatteryLife benchmark code (code)
 

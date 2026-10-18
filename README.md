@@ -36,6 +36,7 @@ Each box links to the code that does it ([`evidence-flow.ofk`](docs/architecture
 **What it does not prove.** Rechecking is not assurance: Grounding reports findings from rechecking the evidence, close to the agreed-upon procedures of ISO 14064-3 Annex C, and gives no assurance opinion of the kind ISSA 5000 governs. Signing keys are made in the browser for one record, so a signature does not prove who signed. A company's own disclosure can be linked to its source and what it rests on, but it cannot be recalculated.
 
 The [standards crosswalk](docs/standards-crosswalk.md) maps each check to the clause it supports, and lists the open gaps.
+Each signed case is also exported as a [W3C Verifiable Credential in the UNTP shape](docs/credentials.md), signed with Ed25519 and ML-DSA-65.
 
 **The experiment.** How much of a climate claim can software check before a person has to decide? On six real claims: three rechecked, three needing evidence, and each record says which is which.
 

@@ -1056,6 +1056,41 @@
           "finding": "EDGAR GHG 2024, the source named in the WDI metadata of EN.GHG.ALL.MT.CE.AR5 and EN.GHG.CO2.PC.CE.AR5; its fossil CO2 incorporates IEA data (checked 2026-10-18)."
         }
       ]
+    },
+    {
+      "id": "batterypass-data-model",
+      "name": "Battery Pass Data Model (io.BatteryPass.Performance 1.2.1)",
+      "component": "vocabulary",
+      "canonicalUrl": "https://github.com/batterypass/BatteryPassDataModel",
+      "upstreamPublisher": "Battery Pass consortium",
+      "retrievedAt": "2026-10-18",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0 International",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "link-only",
+        "note": "Three attribute names only (ratedCapacity, remainingCapacity, capacityFade) and the model name, cited beside the DIN DKE SPEC 99100 names in the battery passport credential (packages/core/src/vc.ts). No file from the model is copied."
+      },
+      "attribution": "Battery Pass Data Model, io.BatteryPass.Performance 1.2.1, Battery Pass consortium, CC BY 4.0, https://github.com/batterypass/BatteryPassDataModel. Attribute names reused; no content copied.",
+      "notes": [
+        "Grounding names the attributes as DIN DKE SPEC 99100 does and records the Battery Pass name as a crosswalk."
+      ],
+      "evidence": [
+        {
+          "url": "https://github.com/batterypass/BatteryPassDataModel/blob/main/README.md",
+          "finding": "README, License section: made available under Creative Commons Attribution 4.0 International (CC-BY-4.0) (checked 2026-10-18)."
+        }
+      ]
     }
   ]
 }
