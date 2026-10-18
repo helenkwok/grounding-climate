@@ -1,0 +1,37 @@
+{
+  "version": "grounding.evm-anchor/0.1",
+  "chain": "eip155:11155111",
+  "contract": "0xd2bd4b4ca2326c80225c04e8ff953f128423984b",
+  "deployTx": "0x9f5997e25dfc2a2a8f82cddd76c796879281a9ad640ec6ff99cee60df8178c55",
+  "build": {
+    "solc": "0.8.37",
+    "foundry": "v1.8.5",
+    "source": "contracts/src/RetirementRegistry.sol"
+  },
+  "anchors": {
+    "building-mrv": {
+      "digest": "0xaa204e1f91ded51c5e275e0489b77ec3cc9ea50890a3a7bbbce9a8bd3f686727",
+      "txHash": "0xb324b7673dbf48cf8ff09127ed420123ee6bea3461a026329e2e24105a5a2415"
+    },
+    "carbon-registry": {
+      "digest": "0x3453ee589720f180449c2eb599719e154c84c35c2fbc1d294f17f5cf02e474b5",
+      "txHash": "0xc1d0d162abf1da6ca55d63545439ca7eaba151c46fabca8e3a7f3e9901deaa8c"
+    },
+    "disclosure": {
+      "digest": "0x0424f75c31e47d8f63ad24a8568e7b4c780f0495cd340d4a9f234523e951e26b",
+      "txHash": "0xfffc7f87a3af561e7af0d64e28ad62c80b479b4a8b111ef1ff8d2bf9a2f1081f"
+    },
+    "earth-observation": {
+      "digest": "0xfb9a8db8545552d8fa0c80003e5d4919b78a81179d1c66cb3afb59fbbb6e6a66",
+      "txHash": "0x9c63582d9d6a2ebf634218e7eff353ec8361920d8d10dbb5d7ef6681f8db9fcb"
+    },
+    "energy-forecast": {
+      "digest": "0x3a2ffe04d810bbb46036d26de0d492d0cb4675761ab3fe837ddd759642c55e92",
+      "txHash": "0xaf49ce52416685673eb13f14da822bbff9af82904d9351181e0ab77edb1133a7"
+    },
+    "battery-dpp": {
+      "digest": "0xab141961a3f2b3b9de15e3aeef65768a595eb7597ca05317477987975f04fd33",
+      "txHash": "0xb16b4b22abf65b314b8679a71d4846d72d0ac6b3f800ef443a1421f5e711a83f"
+    }
+  }
+}
