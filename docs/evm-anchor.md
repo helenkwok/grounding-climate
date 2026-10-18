@@ -10,7 +10,7 @@
 `packages/core/src/evm.ts` is the matching `AnchorAdapter`, over raw JSON-RPC with `fetch` and hand-written ABI
 encoding. It has no runtime dependency and never holds a key.
 
-It runs on a local dev chain (anvil) in the tests, and is ready for Sepolia through MetaMask (below; not deployed yet).
+It runs on a local dev chain (anvil) in the tests, and on Sepolia, deployed and anchored through MetaMask (below).
 
 ## What the contract enforces
 
@@ -98,6 +98,10 @@ need are declared in the test file.
 - CI runs `contracts:test` in the `contracts` job.
 
 ## Sepolia, through MetaMask
+
+**Deployed 18 Oct 2026:** `RetirementRegistry` at `0xd2bd4b4ca2326c80225c04e8ff953f128423984b` on Sepolia
+(`eip155:11155111`); its code matches the build of the pinned source. All six cases are anchored in blocks 11,938,791
+to 11,938,797. The record is `reports/evm-sepolia.json`; `npm run evm:verify` re-checks it.
 
 Nothing in the repo holds a key or signs a transaction. `npm run sepolia:page` starts a local page on
 `http://127.0.0.1:8547/` (after `tools/foundry/forge build --root contracts`). Open it in the browser that has
