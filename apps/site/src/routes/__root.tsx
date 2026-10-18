@@ -36,7 +36,7 @@ function App() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const wide = /\/(verify|how-it-fits)\/?$/.test(pathname);
   // A claim page draws its own evidence full width, with its own map of where the evidence comes from.
-  const full = /\/claims\/[a-z]+\/?$/.test(pathname);
+  const full = /\/(claims\/[a-z]+|judge)\/?$/.test(pathname);
   const [collapsed, setCollapsed] = useState(false);
   const panel = useRef<HTMLElement>(null);
   // A new page opens the panel at its top.
