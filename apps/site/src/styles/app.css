@@ -398,3 +398,106 @@ body{overflow:hidden}
   .panel-toggle,.app.collapsed .panel-toggle{top:auto;left:50%;transform:translateX(-50%);bottom:calc(58vh + 10px)}
   .app.collapsed .panel-toggle{bottom:20px}
 }
+
+/* Claim pages: each claim drawn from its own evidence, full width, with its own map */
+/* The page itself scrolls here (the map pages keep the body fixed). */
+body:has(.app-full){overflow:auto}
+.app-full .topbar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--rule)}
+.page-full{padding:28px var(--gutter) 64px;max-width:1480px;margin:0 auto}
+.lab h1{font-size:clamp(28px,3vw,42px);letter-spacing:-.02em;max-width:34ch;margin-bottom:10px}
+.lab h2{font-size:17px;margin:0 0 10px;letter-spacing:.01em}
+.lab-wait{padding:48px var(--gutter);color:var(--ink-2)}
+.figure-line{margin:6px 0 0;font-size:17px;color:var(--ink-2)}
+.figure-line .big{font-size:clamp(36px,4vw,56px);font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.figure-line .sub{display:block;font-size:15px;margin-top:2px}
+.lab-chart{margin:20px 0 8px}
+.series{width:100%;height:auto;display:block}
+.series .line{fill:none;stroke:var(--ink);stroke-width:1;stroke-linejoin:round}
+.series .grid{stroke:var(--rule);stroke-width:1}
+.series .axis{font:12px var(--mono);fill:var(--ink-2)}
+.series .flag line{stroke:var(--teal);stroke-width:1;stroke-dasharray:3 4}
+.series .flag circle{fill:none;stroke:var(--teal);stroke-width:2.5}
+.series .flag text{font:600 13px var(--mono);fill:var(--teal)}
+.series .flag.stale line,.series .flag.stale circle{stroke:var(--amber)}
+.series .flag.stale text{fill:var(--amber)}
+.series .flag.undecided line,.series .flag.undecided circle{stroke:var(--red)}
+.series .flag.undecided text{fill:var(--red)}
+.series .changed line{stroke:var(--red);stroke-width:3}
+.series .changed text{font:600 14px var(--mono);fill:var(--red)}
+.flags{list-style:none;margin:0;padding:0}
+.flags li{display:grid;grid-template-columns:28px 108px minmax(0,1fr);gap:2px 12px;padding:10px 0;border-top:1px solid var(--rule);align-items:baseline}
+.flags .n{font:600 14px var(--mono);color:var(--teal)}
+.flags .when{font:14px var(--mono);color:var(--ink-2)}
+.flags .what{font-weight:600}
+.flags .who{grid-column:3;font-size:14px;color:var(--ink-2)}
+.flags li.stale .n,.flags li.stale .what{color:var(--amber)}
+.flags li.undecided .n,.flags li.undecided .what{color:var(--red)}
+.prov{margin:0 0 24px}
+.prov>div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:12px;padding:8px 0;border-top:1px solid var(--rule);font-size:15px}
+.prov dt{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--teal);padding-top:2px}
+.prov dd{margin:0;color:var(--ink-2)}
+.seals{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 16px}
+.seal{border:1.5px solid var(--teal);border-radius:6px;padding:12px 14px;background:var(--teal-wash);display:grid;gap:2px}
+.seal strong{font:600 15px var(--mono)}
+.seal span{font-size:14px}
+.seals.broken .seal{border-color:var(--red);background:var(--red-wash);color:var(--red)}
+.lab-row{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);margin-top:20px}
+.split{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(320px,1fr);gap:clamp(24px,3vw,48px)}
+.record{border:1.5px solid var(--ink);border-radius:6px;padding:20px 22px;align-self:start;position:sticky;top:76px;background:var(--paper)}
+.stepper{list-style:none;display:flex;gap:0;margin:22px 0 0;padding:0;border-top:1.5px solid var(--ink)}
+.stepper li{flex:1}
+.stepper button{width:100%;text-align:left;padding:12px 10px 10px 0;border:0;background:none;font:600 15px var(--sans);color:var(--ink-2);cursor:pointer;border-top:3px solid transparent;margin-top:-1.5px}
+.stepper button span{font-family:var(--mono);margin-right:8px}
+.stepper button[aria-current]{color:var(--ink);border-top-color:var(--teal)}
+.step-body{max-width:760px;margin-top:8px}
+@media (max-width:900px){.lab-row,.split{grid-template-columns:1fr}.record{position:static}.stepper{flex-wrap:wrap}.stepper li{flex:1 1 45%}}
+
+/* Claim layout: claim and map, five steps, the evidence, the decisions beside the signed record */
+.combined .c-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,1fr);gap:32px;align-items:stretch}
+.lab-map{margin:0;display:flex;flex-direction:column;min-height:300px}
+.lab-map .map-app{position:relative;inset:auto;flex:1;min-height:270px;border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.lab-map .map-controls.floating{display:none}
+.lab-map figcaption{font-size:13px;color:var(--ink-2);margin-top:6px}
+.combined .c-figure{margin-top:14px}
+.combined .c-head h1{margin-bottom:0}
+.combined .c-figure .figure-line{margin:0}
+.combined .stepper button small{display:block;font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--teal);margin-top:3px;padding-left:22px}
+.combined .lab-chart{margin:12px 0 4px}
+.combined .c-row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:clamp(24px,3vw,48px)}
+.combined .flags li{grid-template-columns:24px 104px minmax(0,1fr) auto;padding:7px 0}
+.combined .flags .who{grid-column:auto;text-align:right}
+.combined .record{position:static}
+.combined .record .kicker{margin-bottom:10px}
+.combined .not-checked{margin:14px 0 0;font-size:14px;color:var(--ink-2)}
+/* The chosen step is highlighted; the rest stays visible, only quieter. */
+.combined [class*="part-"]{transition:opacity .3s var(--ease)}
+.combined.focus-0 [class*="part-"]:not(.part-0),.combined.focus-1 [class*="part-"]:not(.part-1),.combined.focus-2 [class*="part-"]:not(.part-2),.combined.focus-3 [class*="part-"]:not(.part-3),.combined.focus-4 [class*="part-"]:not(.part-4){opacity:.5}
+.combined.focus-4 .record{border-color:var(--red)}
+@media (prefers-reduced-motion:reduce){.combined [class*="part-"]{transition:none}}
+@media (max-width:900px){.combined .c-head,.combined .c-row{grid-template-columns:1fr}.combined .flags li{grid-template-columns:24px 96px minmax(0,1fr)}.combined .flags .who{grid-column:3;text-align:left}}
+.combined .c-head.no-map{grid-template-columns:minmax(0,1fr)}
+.combined .no-place{margin:12px 0 0;font-size:14px}
+.combined .c-row h2{font-size:17px;margin:0 0 10px}
+.combined .c-decide{margin-top:28px}
+.combined .c-verdict{margin-top:36px}
+.combined .c-verdict h2{font-size:19px}
+.combined .record .verdict{margin:12px 0 0}
+.ev{margin:0 0 18px}
+.ev figcaption{font-size:14px;color:var(--ink-2);margin-top:4px;max-width:90ch}
+.series .ref line{stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:8 5}
+.series .ref text{font:600 12px var(--mono);fill:var(--ink-2)}
+.series .changed circle{fill:none;stroke:var(--red);stroke-width:2.5}
+.bars{display:grid;gap:10px;max-width:980px}
+.bar{display:grid;grid-template-columns:minmax(150px,240px) minmax(0,1fr) minmax(130px,auto);gap:14px;align-items:center}
+.bar-label{font-weight:600}
+.bar-track{height:26px;background:var(--paper-2);border-radius:3px;overflow:hidden}
+.bar-fill{display:block;height:100%;background:var(--ink)}
+.bar.tone-claim .bar-fill{background:var(--ink-2)}
+.bar.tone-measured .bar-fill{background:var(--teal)}
+.bar.tone-limit .bar-fill{background:transparent;border:2px dashed var(--ink-2);box-sizing:border-box}
+.bar.tone-flag .bar-fill{background:var(--red)}
+.bar.tone-flag .bar-value{color:var(--red)}
+.bar.none .bar-fill{background:repeating-linear-gradient(135deg,transparent 0 8px,var(--rule) 8px 10px);border:0}
+.bar-value{font:600 15px var(--mono);font-variant-numeric:tabular-nums}
+.bar-value small{display:block;font:13px var(--sans);color:var(--ink-2)}
+@media (max-width:640px){.bar{grid-template-columns:1fr;gap:4px}}

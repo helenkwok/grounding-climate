@@ -10,6 +10,7 @@ import {
   type Verification,
   type VerificationCheck,
   type VerificationResult,
+  type SignedAttestationVerification,
 } from "@grounding-climate/core";
 import {
   ActivityLog,
@@ -21,10 +22,12 @@ import {
 } from "@grounding-climate/webmcp";
 
 import {
+  adviceByTimestamp,
   adviceRuns,
   buildingCaseId,
   caseRun,
   checkBuilding,
+  meterSeries,
   mlDsaVerifier,
   service as buildingService,
   setTampered,
@@ -33,6 +36,7 @@ import {
 import {
   batteryCaseId,
   batteryRun,
+  batteryHistory,
   batteryService,
   checkBattery,
   setBatteryTampered,
@@ -65,7 +69,7 @@ import {
   type DisclosureCheck,
 } from "./disclosure-live.js";
 import { checkEarth, earthCaseId, earthRun, earthService, setEarthTampered, type EarthCheck } from "./earth-live.js";
-import batteryReport from "../../../reports/battery-dpp/batterylife-calb-smoke.json";
+import energyAction from "../../../reports/energy-forecast/action-request.json";
 import cadi from "../../../sources/cadi-candidates.json";
 
 import { claimMeta, deriveResult } from "./claims-meta.js";
@@ -73,6 +77,35 @@ import { claimMeta, deriveResult } from "./claims-meta.js";
 export { deriveResult };
 
 type JsonObject = Record<string, any>;
+
+/** One flagged item and what happened to it: the model's or policy's suggestion, then a person's decision. */
+export type DecisionFlag = { when: string; what: string; who: string; state: "decided" | "stale" | "undecided" | "none" };
+
+/** A drawing of the claim's own evidence, from the live data, so a change shows on the page. */
+export type EvidenceChart =
+  | {
+      kind: "series";
+      caption: string;
+      unit: string;
+      values: number[];
+      /** Index and label of each x-axis tick. */
+      ticks: Array<[number, string]>;
+      /** The y scale's top, fixed to the recorded data so a changed value shows as a clipped spike. */
+      max: number;
+      /** The y scale's bottom; 0 when absent. */
+      min?: number;
+      marks?: Array<{ index: number; state: DecisionFlag["state"] }>;
+      changed?: { index: number; note: string };
+      line?: { value: number; label: string };
+    }
+  | {
+      kind: "bars";
+      caption: string;
+      unit: string;
+      /** `value: null` is a figure nobody can recompute; tone says what the bar is. */
+      bars: Array<{ label: string; value: number | null; tone: "claim" | "measured" | "limit" | "flag"; note?: string }>;
+      link?: { href: string; text: string };
+    };
 
 export type DemoModule = {
   id: string;
@@ -88,6 +121,12 @@ export type DemoModule = {
   decisionCopy: string;
   limitation: string;
   metrics: Array<[string, string]>;
+  /** The claim's evidence, drawn. */
+  evidence: EvidenceChart[];
+  /** Each flagged item and who decided it. */
+  flags: DecisionFlag[];
+  /** Each signature on the committed record, checked against the current evidence. */
+  seals: Array<{ algorithm: string; valid: boolean }>;
   /** One row per flagged reading: what the model advised and what a person decided. */
   decisions?: Array<[string, string]>;
   provenance: Array<[string, string]>;
@@ -104,8 +143,27 @@ export type DemoModule = {
   };
 };
 
-const battery = batteryReport as JsonObject;
 const cadiData = cadi as JsonObject;
+
+const sealsOf = (attestation: SignedAttestationVerification): DemoModule["seals"] =>
+  attestation.signature.signatures.map((item) => ({ algorithm: item.signature.algorithm, valid: item.signatureValid && attestation.validForCurrentEvidence }));
+const role = (decidedBy?: string) => (decidedBy ?? "a person").replace(/^person:/, "").replace(/-/g, " ");
+/** A review status as a flag row: who decided what, or that nobody has yet. */
+const flagOf = (
+  when: string,
+  what: string,
+  status?: { state: "decided" | "stale" | "undecided"; decision?: { decision: string; decidedBy: string } },
+): DecisionFlag => ({
+  when,
+  what,
+  state: status?.state ?? "none",
+  who: !status
+    ? "No decision needed under the policy"
+    : status.state === "undecided" || !status.decision
+      ? "No one has decided"
+      : (status.state === "stale" ? "Stale (data changed): " : "") + status.decision.decision + ", by the " + role(status.decision.decidedBy),
+});
+const n = (value: number) => value.toLocaleString("en-US");
 
 export const short = (digest: ContentDigest) => digest.value.slice(0, 16) + "…";
 
@@ -120,6 +178,62 @@ export function caseCheck(verification: Verification): VerificationCheck {
   };
 }
 
+/** The hourly readings with every flagged reading marked; the scale ignores the reading the tamper changes. */
+function buildingChart(flags: LiveCheck["decided"]["statuses"]): EvidenceChart {
+  const series = meterSeries();
+  const { index: changedIndex, multiplier } = caseRun.tamper;
+  const values = series.map((point) => point.value);
+  const max = Math.max(...values.filter((_, i) => i !== changedIndex));
+  const at = new Map(series.map((point, i) => [point.timestamp, i]));
+  const changed = values[changedIndex]!;
+  return {
+    kind: "series",
+    caption: n(values.length) + " hourly electricity readings, January to March 2016. Each flagged reading is numbered.",
+    unit: "kWh / hour",
+    values,
+    ticks: [[0, "Jan 2016"], [744, "Feb"], [1440, "Mar"]],
+    max,
+    marks: flags.flatMap((flag) => (at.has(flag.timestamp) ? [{ index: at.get(flag.timestamp)!, state: flag.state }] : [])),
+    ...(changed > max ? { changed: { index: changedIndex, note: "changed: " + n(Math.round(changed)) + " kWh, ×" + multiplier } } : {}),
+  };
+}
+
+/** Capacity over the cycles, against the policy's second-life line, and the ohmic resistance over the sweeps. */
+function batteryCharts(tampered: boolean): EvidenceChart[] {
+  const history = batteryHistory();
+  const rated = history.nominalCapacityAh ?? 2;
+  const capacity = history.cycles.map((cycle) => cycle.dischargeCapacityAh);
+  const sweeps = history.impedance ?? [];
+  // Single sweeps are noisy, so the line is the running median of 5, the window the resistance rise is measured with.
+  const re = sweeps.map((_, i) => {
+    const window = sweeps.slice(Math.max(0, i - 2), i + 3).map((sweep) => sweep.reOhm).sort((a, b) => a - b);
+    return window[Math.floor(window.length / 2)]!;
+  });
+  const tick = (cycle: number) => sweeps.findIndex((sweep) => sweep.afterCycle >= cycle);
+  return [
+    {
+      kind: "series",
+      caption: "Discharge capacity in each of " + capacity.length + " cycles. A second life needs 75% of the " + rated + " Ah rating under the policy.",
+      unit: "Ah",
+      values: capacity,
+      ticks: [[0, "cycle 1"], [49, "50"], [99, "100"], [149, "150"]],
+      min: 1.2,
+      max: rated,
+      line: { value: 0.75 * rated, label: "75% of rating" },
+      ...(tampered ? { changed: { index: capacity.length - 1, note: "changed: cycle " + batteryRun.tamper.cycle + ", " + batteryRun.tamper.to.toFixed(3) + " Ah" } } : {}),
+    },
+    {
+      kind: "series",
+      caption: "Ohmic resistance Re over " + re.length + " impedance sweeps (NASA's fitted values), as a running median of 5 sweeps.",
+      unit: "Ω",
+      values: re,
+      ticks: [[0, "after cycle " + sweeps[0]?.afterCycle], ...[50, 100, 150].map((cycle): [number, string] => [tick(cycle), String(cycle)]).filter(([i]) => i > 0)],
+      min: Math.min(...re) * 0.98,
+      max: Math.max(...re) * 1.02,
+    },
+  ];
+}
+
 export function buildingModule(live: LiveCheck): DemoModule {
   const { decided, attestation } = live;
   const verification = decided.climateCase.verifications[0]!;
@@ -131,6 +245,18 @@ export function buildingModule(live: LiveCheck): DemoModule {
   return {
     id: "building",
     climateCase: decided.climateCase,
+    evidence: [buildingChart(flags)],
+    flags: flags.map((flag) => {
+      const advice = adviceByTimestamp.get(flag.timestamp);
+      const what =
+        flag.state === "undecided" ? "New flag" : flag.decision?.reason.startsWith("no such hour") ? "An hour that never existed" : "Read zero: meter dropout?";
+      return flagOf(
+        flag.timestamp.slice(5, 16).replace("-", "/"),
+        what + (advice?.probability === undefined ? "" : " · model: " + advice.choice + ", " + Math.round(advice.probability * 100) + "%"),
+        flag,
+      );
+    }),
+    seals: sealsOf(attestation),
     title: claimMeta("building").title,
     icon: "▦",
     kicker: claimMeta("building").what,
@@ -216,6 +342,9 @@ export function batteryModule(live: BatteryCheck): DemoModule {
   return {
     id: "battery",
     climateCase: built.caseBundle,
+    evidence: batteryCharts(live.tampered),
+    flags: [flagOf("Disposition", "Policy proposed " + passport.disposition + (passport.decisionReasons.length ? ": " + passport.decisionReasons.join(" ") : ""), signOff)],
+    seals: sealsOf(attestation),
     title: claimMeta("battery").title,
     icon: "▣",
     kicker: claimMeta("battery").what,
@@ -246,9 +375,8 @@ export function batteryModule(live: BatteryCheck): DemoModule {
         : []),
     ],
     limitation:
-      "Decision support only, not a safety certification. Signing keys are per-run demo keys. " +
-      "BatteryLife's published Dummy baseline is not reproduced exactly from the pinned v1 release (recorded smoke run: MAPE " +
-      battery.benchmark.reproduced.meanMape.toFixed(3) + " vs published 1.811).",
+      "Decision support only, not a safety certification. One lab cell. The first impedance sweep came after cycle 19, so the " +
+      "resistance base is not beginning of life, and Re is NASA's fitted value. Signing keys are per-run demo keys.",
     metrics: [
       ["Battery", passport.batteryId],
       ["Observed cycles", String(passport.observedCycle)],
@@ -258,7 +386,7 @@ export function batteryModule(live: BatteryCheck): DemoModule {
       ["Disposition", passport.disposition],
     ],
     provenance: [
-      ["Dataset", "doi:10.5281/zenodo.19688272 (committed subset, MIT)"],
+      ["Dataset", "NASA PCoE Battery Data Set, cell B0005 (Saha and Goebel, 2007; a US government work)"],
       ["Cycle history (now)", short(passport.inputDigest!)],
       ["Evidence root (now)", short(attestation.currentRoot)],
       ["Evidence root (signed)", short(batteryRun.attestation.payload.evidenceRoot)],
@@ -299,6 +427,22 @@ export function energyModule(live: EnergyCheck): DemoModule {
   return {
     id: "energy",
     climateCase: built.caseBundle,
+    evidence: [
+      {
+        kind: "bars",
+        caption:
+          "The load shift asked for, the policy's cap, and what it allows. The forecast behind it scores " + built.confidence.toFixed(3) +
+          " on Energy-EVA's benchmark (the policy needs " + energyAction.policy.minimumConfidence + ").",
+        unit: "MWh",
+        bars: [
+          { label: "Asked for", value: energyAction.request.requestedMWh, tone: "claim" },
+          { label: "Policy cap", value: energyAction.policy.maxActionMWh, tone: "limit" },
+          { label: "Allowed", value: built.action.approvedMWh, tone: "measured", note: "a person approves above " + energyAction.policy.humanApprovalAboveMWh + " MWh" },
+        ],
+      },
+    ],
+    flags: [flagOf("Load shift", "Policy allows " + built.action.approvedMWh + " of " + energyAction.request.requestedMWh + " MWh", approval)],
+    seals: sealsOf(attestation),
     title: claimMeta("energy").title,
     icon: "↯",
     kicker: claimMeta("energy").what,
@@ -408,6 +552,19 @@ export function earthModule(live: EarthCheck): DemoModule {
   return {
     id: "earth",
     climateCase: built.caseBundle,
+    evidence: [
+      {
+        kind: "bars",
+        caption: "Burned area in scene T10SEH: found by the detector pixel by pixel, against the dataset's reference labels.",
+        unit: "ha",
+        bars: [
+          { label: "Detected", value: Math.round(m.predictedHectares), tone: "measured", note: "what the claim reports, as a lower bound" },
+          { label: "Reference labels", value: Math.round(m.groundTruthHectares), tone: "limit", note: "the detector finds " + Math.abs(built.areaGap * 100).toFixed(1) + "% less" },
+        ],
+      },
+    ],
+    flags: [flagOf("Area gap", "Detected area " + Math.abs(built.areaGap * 100).toFixed(1) + "% below the labelled area, past the tolerance", status)],
+    seals: sealsOf(attestation),
     title: claimMeta("earth").title,
     icon: "◉",
     kicker: claimMeta("earth").what,
@@ -490,6 +647,20 @@ export function disclosureModule(live: DisclosureCheck): DemoModule {
   return {
     id: "disclosure",
     climateCase: built.caseBundle,
+    evidence: [
+      {
+        kind: "bars",
+        caption: "Scope 1 for 2025: the company's own figure, from its own page (linked, never copied). Nothing public recalculates it.",
+        unit: "tCO₂e",
+        bars: [
+          { label: "Reported", value: value?.value ?? null, tone: "claim" },
+          { label: "Recalculated", value: null, tone: "limit", note: "not possible from public data" },
+        ],
+        link: { href: source, text: "The company's page" },
+      },
+    ],
+    flags: [flagOf("Reported figure", (claim.subject.name ?? "") + (value ? " " + value.value + " " + value.unit : ""), status)],
+    seals: sealsOf(attestation),
     title: claimMeta("disclosure").title,
     icon: "◫",
     kicker: claimMeta("disclosure").what,
@@ -561,6 +732,21 @@ export function carbonModule(live: CarbonCheck): DemoModule {
   return {
     id: "carbon",
     climateCase: built.caseBundle,
+    evidence: [
+      {
+        kind: "bars",
+        caption: n(report.recordCount) + " ACR issuance and retirement records, reconciled in this browser. Red is a count that should be zero.",
+        unit: "",
+        bars: [
+          { label: "Retirements within issuance", value: report.supportedCount, tone: "measured" },
+          { label: "Issued, not retired", value: report.issuedNotRetiredCount, tone: "measured" },
+          { label: "Retirements with no issuance in the records", value: report.unresolvedMissingIssuanceCount, tone: "limit", note: "a gap a person decides" },
+          { label: "Duplicate serial ranges", value: report.duplicateExcessCount, tone: report.duplicateExcessCount ? "flag" : "measured" },
+        ],
+      },
+    ],
+    flags: built.review.map((status) => flagOf("Record gap", status.flag.label, status)),
+    seals: sealsOf(attestation),
     title: claimMeta("carbon").title,
     icon: "◎",
     kicker: claimMeta("carbon").what,

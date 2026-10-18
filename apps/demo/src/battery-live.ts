@@ -36,6 +36,14 @@ export const batteryService = new BatteryDppService({
 });
 
 let tampered = false;
+
+/** The cycle and impedance history the passport is rebuilt from, with the tamper applied when it is on. */
+export function batteryHistory(): BatteryHistory {
+  const base = history as BatteryHistory;
+  if (!tampered) return base;
+  const cycles = base.cycles.map((cycle, i) => (i === base.cycles.length - 1 ? { ...cycle, dischargeCapacityAh: batteryRun.tamper.to } : cycle));
+  return { ...base, cycles };
+}
 export function setBatteryTampered(on: boolean): void {
   if (on && !tampered) batteryService.tamperLastCycle(batteryRun.tamper.to / batteryRun.tamper.from);
   if (!on) batteryService.resetHistory();
