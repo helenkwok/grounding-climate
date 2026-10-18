@@ -1,4 +1,4 @@
-flowchart right
+flowchart down
 title: How Grounding rechecks a climate claim
 group Evidence {
   Claim [doc, gray, desc: "a figure as published", link: apps/demo/src/claims-meta.ts:26]
@@ -14,6 +14,8 @@ group Judgement {
 }
 group Record {
   Sign [hexagon, teal, label: Sign, desc: "Ed25519 + ML-DSA-65", link: packages/core/src/attestation.ts:135]
+  Anchor [hexagon, teal, label: Anchor the digest, desc: "Bitcoin + Sepolia; digest only", link: packages/core/src/anchor.ts:72]
+  Credential [doc, teal, label: W3C credential, desc: "VC 2.0, UNTP shape; IPFS address per file", link: packages/core/src/vc.ts:197]
   Verify [browser, teal, label: Anyone verifies, desc: "offline, no account", link: packages/core/src/attestation.ts:203]
 }
 Claim -> Recompute : rebuild from evidence
@@ -25,4 +27,8 @@ Screen -> Person : needs judgement
 Recompute -> Sign
 Person -> Sign
 Sign -> Verify : signed record
+Sign -> Anchor : record digest
+Sign -> Credential
+Anchor -> Verify : existed by block
+Credential -> Verify
 Data --> Person : data changes → decision goes stale [red]
