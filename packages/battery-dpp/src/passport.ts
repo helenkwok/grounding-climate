@@ -83,6 +83,7 @@ export async function buildBatteryPassport(options: {
     nominalCapacityAh: options.history.nominalCapacityAh,
     observedCycle: health.observedCycle,
     currentSoh: health.currentSoh,
+    sohVsInitial: health.sohVsInitial,
     estimatedRulCycles: health.estimatedRulCycles,
     disposition: finalDisposition as BatteryPassportClaim["disposition"],
     decisionReasons: decision.reasons,
@@ -142,6 +143,9 @@ export async function buildBatteryPassport(options: {
               : " (proposed by policy; not signed off)") +
             "; SOH=" +
             passport.currentSoh.toFixed(4) +
+            " of nominal capacity, " +
+            passport.sohVsInitial.toFixed(4) +
+            " of the first recorded cycle" +
             "; estimated RUL=" +
             (passport.estimatedRulCycles === null
               ? "unavailable"

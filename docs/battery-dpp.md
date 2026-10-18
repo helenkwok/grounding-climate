@@ -92,7 +92,7 @@ For the current v11 passport sample `CALB_0_B182`:
 
 - 100 usable cycles
 - nominal capacity: 58 Ah
-- observed-cycle SOH: 0.7759146552
+- observed-cycle SOH: 0.7759146552 against nominal capacity (58 Ah); 0.9055 against the first recorded cycle, the initial-condition basis of Regulation (EU) 2023/1542 Art. 3(28). Both are in the claim; the thresholds below use the nominal basis.
 - transparent linear-fit R²: 0.8981361762
 - estimated RUL at the configured 80% SOH threshold: 0 cycles
 - disposition under the demo policy: `repurpose`
