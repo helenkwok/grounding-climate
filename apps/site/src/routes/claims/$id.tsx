@@ -6,6 +6,7 @@ import { CLAIMS, claimMeta, deriveResult, type ClaimId } from "../../../../demo/
 import type { DemoModule } from "../../../../demo/src/modules";
 import { Pending, Result, Rows, State, STATUS_NOTE, outcomeTone } from "../../components";
 import { loadClaim, setTampered, signedRecords } from "../../live";
+import scoreboard from "../../../../../reports/carbon-registry/scoreboard.json";
 import type { SignedRecord } from "../../signing";
 
 export const Route = createFileRoute("/claims/$id")({
@@ -137,6 +138,8 @@ function ClaimPage() {
         </li>
       </ol>
 
+      {id === "carbon" && <Scoreboard />}
+
       {ready && (
         <details className="more case-more">
           <summary>Technical detail: sources and digests</summary>
@@ -150,6 +153,64 @@ function ClaimPage() {
         {next ? <Link to="/claims/$id" params={{ id: next.id }}>{next.title} →</Link> : <Link to="/">All claims →</Link>}
       </nav>
     </>
+  );
+}
+
+type Check = { label: string; basis: string } & Record<string, unknown>;
+type Board = { registry: string; name: string; countsPublished?: boolean; checks?: Record<string, Check> };
+
+/** The figure each check counts, in the order the checks are listed. */
+const CHECK_COUNTS: Array<[key: string, count: string, unit: string]> = [
+  ["overRetired", "projectVintages", "project-vintages"],
+  ["retiredBeforeIssuance", "rows", "retirements"],
+  ["issuedBeforeVintage", "rows", "issuances"],
+  ["projectTotals", "mismatches", "projects"],
+];
+
+/** The same four checks over every registry in the OffsetsDB snapshot; counts are shown only where we may publish them. */
+function Scoreboard() {
+  const boards = scoreboard.registries as Board[];
+  const shown = boards.filter((board) => board.checks);
+  const withheld = boards.filter((board) => board.countsPublished === false).map((board) => board.name);
+  const first = shown[0]!.checks!;
+  return (
+    <section className="scoreboard case-steps" aria-labelledby="scoreboard-h">
+      <h2 id="scoreboard-h">The same checks over whole registries</h2>
+      <p className="note">
+        {scoreboard.question} {scoreboard.creditRows.toLocaleString("en-US")} credit rows from {boards.length} registries.{" "}
+        {scoreboard.finding} {scoreboard.order}
+      </p>
+      <div className="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Check, and the rule it rests on</th>
+              {shown.map((board) => (
+                <th scope="col" key={board.registry}>
+                  {board.registry === "american-carbon-registry" ? <abbr title={board.name}>ACR</abbr> : board.name}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {CHECK_COUNTS.map(([key, count, unit]) => (
+              <tr key={key}>
+                <th scope="row">{first[key]!.label}<small>{first[key]!.basis}</small></th>
+                {shown.map((board) => {
+                  const value = board.checks![key]![count] as number;
+                  return <td key={board.registry} className={value ? "flagged" : undefined}>{value.toLocaleString("en-US")} <small>{unit}</small></td>;
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="limit">
+        <strong>Not shown.</strong> {withheld.join(", ")} are checked by the same code, but their counts stay unpublished
+        while their terms on derived data are unclear. <code>{"node scripts/run-carbon-scoreboard.mjs"}</code> computes them for anyone.
+      </p>
+      <p className="detail-source">{scoreboard.attribution}</p>
+    </section>
   );
 }
 

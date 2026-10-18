@@ -266,6 +266,19 @@ footer p{margin:0}
 .case-step>h2{display:flex;align-items:baseline;gap:14px;font-size:clamp(22px,2.4vw,30px);margin-bottom:22px}
 .case-step h3{font-size:18px;margin:0 0 8px}
 .case-more{margin:0 var(--gutter)}
+.scoreboard{padding-top:clamp(28px,4vw,48px);padding-bottom:clamp(28px,4vw,48px);border-bottom:1px solid var(--rule)}
+.scoreboard>h2{font-size:clamp(22px,2.4vw,30px);margin-bottom:12px}
+.scoreboard>.note{max-width:75ch}
+.table-scroll{overflow-x:auto;margin:20px 0}
+.scoreboard table{border-collapse:collapse;width:100%;min-width:340px;font-size:15px}
+.scoreboard th,.scoreboard td{padding:10px 10px 10px 0;border-top:1px solid var(--rule);text-align:left;vertical-align:top}
+.scoreboard thead th{border-top:1.5px solid var(--ink);font-weight:600}
+.scoreboard tbody th{font-weight:400;max-width:44ch}
+.scoreboard tbody th small{display:block;color:var(--ink-2);font-size:13px;margin-top:4px}
+.scoreboard td{font-weight:600;font-variant-numeric:tabular-nums}
+.scoreboard td small{display:block;font-weight:400;font-size:13px;color:var(--ink-2)}
+.scoreboard abbr{text-decoration:none}
+.scoreboard td.flagged{color:var(--amber)}
 .review{display:grid;gap:16px;max-width:640px}
 .review fieldset{border:0;margin:0;padding:0;display:grid;gap:8px}
 .review legend{font-weight:600;margin-bottom:6px}
