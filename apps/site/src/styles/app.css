@@ -505,3 +505,33 @@ body:has(.app-full){overflow:auto}
 .bar-value{font:600 15px var(--mono);font-variant-numeric:tabular-nums}
 .bar-value small{display:block;font:13px var(--sans);color:var(--ink-2)}
 @media (max-width:640px){.bar{grid-template-columns:1fr;gap:4px}}
+
+/* The judge page: numbers first, the receipt, then how each part is known and how to rerun it */
+.judge h1{font-size:clamp(28px,3.2vw,44px);letter-spacing:-.02em;max-width:30ch;margin:6px 0 18px}
+.judge h2{font-size:19px;margin:0 0 10px}
+.judge-numbers{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;margin:0;border-top:1.5px solid var(--ink)}
+.judge-numbers div{padding:12px 16px 14px 0;border-bottom:1px solid var(--rule)}
+.judge-numbers dt{font:600 12px var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--teal)}
+.judge-numbers dd{margin:4px 0 0;font-size:clamp(26px,2.6vw,36px);font-weight:800;font-variant-numeric:tabular-nums}
+.judge-numbers dd small{display:block;font-size:14px;font-weight:400;color:var(--ink-2)}
+.judge-numbers dd.bad{color:var(--red)}
+.judge-try{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 32px;margin:28px 0;padding:18px 20px;border:1.5px solid var(--ink);border-radius:6px}
+.judge-try .note{margin:0;max-width:70ch}
+.receipt{width:100%;border-collapse:collapse;font-size:15px}
+.receipt th,.receipt td{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.receipt thead th{font-size:13px;border-bottom:1.5px solid var(--ink)}
+.receipt thead small{display:block;font:600 11px var(--mono);text-transform:uppercase;letter-spacing:.05em;color:var(--teal)}
+.receipt td small{color:var(--ink-2)}
+.receipt tr.broken td,.receipt tr.broken th{background:var(--red-wash)}
+.receipt .sig{display:inline-block;margin-right:10px;font:600 13px var(--mono);white-space:nowrap}
+.receipt .sig.ok{color:var(--teal)}
+.receipt .sig.bad{color:var(--red)}
+.judge-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,56px);margin-top:36px}
+.judge-run{margin:0;padding-left:20px}
+.judge-run li{margin:0 0 12px}
+.judge-run code{display:block;font:14px var(--mono);overflow-wrap:anywhere}
+.judge-run span{font-size:14px;color:var(--ink-2)}
+.judge-limits{margin-top:28px}
+.judge-limits ul{margin:0;padding-left:20px;max-width:90ch;color:var(--ink-2)}
+.judge-limits li{margin:0 0 6px}
+@media (max-width:900px){.judge-cols{grid-template-columns:1fr}}

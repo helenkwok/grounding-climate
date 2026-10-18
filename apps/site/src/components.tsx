@@ -109,6 +109,7 @@ export function SiteHeader() {
       <Link className="brand" to="/">Grounding</Link>
       <nav aria-label="Sections">
         <Link to="/">Claims</Link>
+        <Link to="/judge">For judges</Link>
         <Link to="/verify">Verify<span className="long"> a record</span></Link>
         <Link to="/how-it-fits">How it fits<span className="long"> your work</span></Link>
       </nav>
