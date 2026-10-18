@@ -116,6 +116,8 @@ export type DemoModule = {
   kicker: string;
   kpi: string;
   kpiLabel: string;
+  /** How the headline figure is known, when it is not rechecked (a company's own reported figure). */
+  kpiLead?: string;
   source: string;
   decisionTitle: string;
   decisionCopy: string;
@@ -665,7 +667,8 @@ export function disclosureModule(live: DisclosureCheck): DemoModule {
     icon: "◫",
     kicker: claimMeta("disclosure").what,
     kpi: value ? String(value.value) : "—",
-    kpiLabel: value ? value.unit + " Scope 1, as reported" : "source-only",
+    kpiLabel: value ? value.unit + " Scope 1, as the company reports it" : "source-only",
+    kpiLead: "Reported, not recalculated:",
     source: claimMeta("disclosure").source,
     decisionTitle:
       "Sustainability reviewer: " +
