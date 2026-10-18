@@ -12,6 +12,8 @@ export default defineConfig({
       { from: "../../node_modules/maplibre-gl/dist/maplibre-gl-shared.mjs", to: "maplibre" },
       // The HLS scene arrays (2.3 MB of binary) are fetched by the earth claim, not bundled.
       { from: "../../data/external/hls-burn-scars", to: "data/hls-burn-scars" },
+      // The issuer's DID document, where did:web would look for it if the site were hosted at that path.
+      { from: "../../reports/did.json", to: "did.json" },
     ],
   },
   plugins: [pluginReact(), tanstackStart({ prerender: { enabled: true, crawlLinks: true } })],

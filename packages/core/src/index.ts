@@ -13,3 +13,4 @@ export * from "./anchor.js";
 export * from "./ots.js";
 export * from "./cid.js";
 export * from "./evm.js";
+export * from "./vc.js";
