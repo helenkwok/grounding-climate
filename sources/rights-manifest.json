@@ -380,6 +380,49 @@
       ]
     },
     {
+      "id": "acr-offsetsdb-full",
+      "name": "American Carbon Registry public report records (full OffsetsDB export, reduced columns)",
+      "component": "registry-data",
+      "canonicalUrl": "https://carbonplan-offsets-db.s3.us-west-2.amazonaws.com/production/latest/offsets-db.csv.zip",
+      "upstreamPublisher": "American Carbon Registry (Winrock International); collected by CarbonPlan OffsetsDB",
+      "retrievedAt": "2026-10-18",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "LicenseRef-ACR-Terms-of-Use",
+        "name": "ACR Website Terms of Use, clause on ACR public reports",
+        "url": "https://acrcarbon.org/term-and-condition/"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "unclear",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/acr-offsetsdb-full",
+        "note": "All 13,481 ACR credit rows of the OffsetsDB export generated 2026-06-01 (zip SHA-256 c037be30…), reduced to project, vintage, transaction type, quantity and date; and the 979 ACR projects' issued and retired totals. Beneficiary, account and note fields are not committed. The other registries in the export stay in a gitignored cache and are published as counts only."
+      },
+      "attribution": "Registry data via CarbonPlan OffsetsDB, snapshot 2026-06-01: American Carbon Registry public reports. Rows filtered to ACR and columns reduced by Grounding; values unchanged.",
+      "notes": [
+        "ACR's terms allow information and data from ACR public reports to be used for adaptation, reproduction or derivative works if it is accurately represented and cited, and not used or presented in an unfair, misleading or discriminatory manner.",
+        "ACR's terms forbid competitive benchmarking, so Grounding does not rank or compare registries.",
+        "CarbonPlan's terms of data access (GitHub copy) list the registries in the export and note that registries may claim rights; CarbonPlan claims no copyright in the factual data (carbonplan-offsets-data).",
+        "OffsetsDB updates are paused upstream; the snapshot is pinned by SHA-256."
+      ],
+      "evidence": [
+        {
+          "url": "https://acrcarbon.org/term-and-condition/",
+          "finding": "Data from ACR public reports may be reproduced if accurately represented and cited (checked 2026-10-06)."
+        },
+        {
+          "url": "https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS",
+          "finding": "CarbonPlan's data access terms, current GitHub copy, listing the registries in OffsetsDB."
+        }
+      ]
+    },
+    {
       "id": "car-registry-reports",
       "name": "Climate Action Reserve registry reports",
       "component": "registry-data",

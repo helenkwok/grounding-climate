@@ -46,6 +46,63 @@ No upstream registry bytes are committed to Grounding.
 
 ACR's registry has moved to ICE GreenTrace (`https://greentrace.ice.com/acr`); looking up the 10 groups there would need GreenTrace's own terms reviewed first.
 
+## Scoreboard: each registry's published records, checked against themselves
+
+`node scripts/run-carbon-scoreboard.mjs` runs four checks over CarbonPlan OffsetsDB's whole export (532,799 credit rows,
+seven registries) and writes `reports/carbon-registry/scoreboard.json`. The export was generated on 2026-06-01; OffsetsDB
+updates are paused upstream, so the zip is pinned by SHA-256 (`scripts/prepare-offsetsdb-snapshot.mjs`). Every count is
+registry data via CarbonPlan OffsetsDB, snapshot 2026-06-01
+([terms of data access](https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS)).
+
+Each registry's counts stand on their own. Registries are listed alphabetically and are never ranked or compared:
+ACR's and ART's terms forbid competitive benchmarking. A flagged item is an inconsistency in the published data (may
+come from OffsetsDB processing or the registry), never a finding of error by the registry.
+
+| Check | ICVCM basis |
+| --- | --- |
+| Retired plus cancelled credits above issued credits, per project-vintage. Split into coverage gaps (no issuance rows for that vintage) and excess over recorded issuance; also per project | Criterion 6.2: once retired or cancelled, a credit cannot be used again; one credit per tonne |
+| Retirements dated before the first issuance of their project-vintage, with the number of distinct dates | Tracking principle (A2) and the definitions of a carbon credit and a retirement: a credit is issued, then tracked, then retired |
+| Issuances dated before their vintage year starts | Criterion 5.3: only ex-post issuance is eligible; the vintage is the year the reduction happened |
+| Project-table issued and retired totals against the sums of the credit rows | Tracking (A2) and Transparency (A3) |
+
+Measured counts (`scoreboard.json`, `packages/carbon-registry/src/scoreboard.ts`):
+
+| Registry | Issuance / retirement / cancellation rows | Project-vintages | Retired + cancelled above issued (gaps / excess / projects) | Retired before first issuance (rows, distinct dates) | Issued before vintage year | Project totals differing |
+| --- | --- | --- | --- | --- | --- | --- |
+| American Carbon Registry | 2,247 / 11,177 / 57 | 1,993 | 0 / 0 / 0 | 80 (3,488,231 credits, 60 projects), 1 date | 0 | 0 |
+| ART TREES | 13 / 14 / 4 | 11 | 0 / 0 / 0 | 0 | 0 | 0 |
+| Cercarbono | checked; counts not published | | | | | |
+| Climate Action Reserve | checked; counts not published | | | | | |
+| Gold Standard | 16,075 / 162,180 / 0 | 11,247 | 0 / 3 / 1 | 0 | 674 | 0 |
+| Isometric | checked; counts not published | | | | | |
+| Verra | checked; counts not published | | | | | |
+
+Only ACR's rows are committed (`data/external/acr-offsetsdb-full`, under ACR's reproduction-with-citation terms), and
+only ACR's flagged items are listed in the report. All 80 ACR retirements dated before their first issuance carry the
+same date, 2022-11-01.
+
+ART TREES and Gold Standard are published as counts. Climate Action Reserve, Cercarbono, Isometric and Verra are checked
+by the same code, but their counts are not published: their terms claim rights over analyses of, or data derived from,
+their records, and whether that reaches counts computed from OffsetsDB is unclear. Anyone can compute all seven with
+`node scripts/prepare-offsetsdb-snapshot.mjs` and `node scripts/run-carbon-scoreboard.mjs`, which writes them to the
+gitignored `data/cache/offsetsdb/scoreboard-all-registries.json`.
+
+`scripts/verify-carbon-scoreboard.mjs` (part of `npm run check:cases`) runs without the network: it recomputes ACR's
+counts and flagged items from the committed files, checks the ART TREES and Gold Standard counts against the digest the
+run recorded with the pinned snapshot, and fails if the four unpublished registries carry any counts. The digest check
+catches a hand edit, not a deliberate forgery; with the snapshot cached it recomputes the published registries.
+
+Limits:
+
+- The export has no serial numbers, so a credit retired twice cannot be checked at this scale; only quantities are
+  compared.
+- Verra issuance figures in OffsetsDB are inferred by CarbonPlan, not issuance records Verra publishes.
+- ACR's 80 retirements sharing the date 2022-11-01 suggest a migration or pipeline artefact. That is an inference, not
+  checked against the registry.
+- These are checks of published data. They do not show that a program meets, or fails, any ICVCM criterion, and nothing
+  here is an ICVCM assessment.
+- Registries other than ACR are shown as counts only, and four of them not at all.
+
 ## Rights
 
 The source-rights manifest already separates:

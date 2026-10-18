@@ -1,0 +1,840 @@
+{
+  "schemaVersion": "grounding.carbon-scoreboard/0.1",
+  "question": "Do each registry's published records agree with themselves?",
+  "snapshot": {
+    "url": "https://carbonplan-offsets-db.s3.us-west-2.amazonaws.com/production/latest/offsets-db.csv.zip",
+    "generatedAt": "2026-06-01T20:33:13.820968+00:00",
+    "zipSha256": "c037be30f54fac47b625b8fdebc02ca459e49d627d3214a90eb90ce0a45bb61e",
+    "termsUrl": "https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS",
+    "attribution": "Registry data via CarbonPlan OffsetsDB, snapshot 2026-06-01"
+  },
+  "attribution": "Registry data via CarbonPlan OffsetsDB, snapshot 2026-06-01. Terms: https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS",
+  "finding": "Every flagged item is an inconsistency in the published data (may come from OffsetsDB processing or the registry), never a finding of error or wrongdoing.",
+  "order": "Registries are listed alphabetically by name. They are not ranked or compared with each other.",
+  "creditRows": 532799,
+  "registries": [
+    {
+      "registry": "american-carbon-registry",
+      "name": "American Carbon Registry",
+      "totals": {
+        "rows": 13481,
+        "rowsByKind": {
+          "issuance": 2247,
+          "retirement": 11177,
+          "cancellation": 57
+        },
+        "creditsByKind": {
+          "issuance": 369472197,
+          "retirement": 169955601,
+          "cancellation": 13334159
+        },
+        "projects": 781,
+        "projectVintages": 1993
+      },
+      "checks": {
+        "overRetired": {
+          "label": "Project-vintages where retired plus cancelled credits exceed issued credits",
+          "basis": "ICVCM Assessment Framework v3, criterion 6.2 (no double use); one credit per tonne",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "projectVintages": 0,
+          "coverageGaps": 0,
+          "excessOverIssued": 0,
+          "projectsOverIssued": 0
+        },
+        "retiredBeforeIssuance": {
+          "label": "Retirements dated before the first issuance of their project-vintage",
+          "basis": "ICVCM CCP A2 (Tracking); definitions of carbon credit and retirement (issue, then track, then retire)",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "rows": 80,
+          "credits": 3488231,
+          "projects": 60,
+          "distinctDates": 1
+        },
+        "issuedBeforeVintage": {
+          "label": "Issuances dated before their vintage year starts",
+          "basis": "ICVCM Assessment Framework v3, criterion 5.3 (ex-post issuance); definition of vintage",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "rows": 0,
+          "credits": 0,
+          "projects": 0,
+          "distinctDates": 0
+        },
+        "projectTotals": {
+          "label": "Projects whose project-table totals differ from the sum of their credit rows",
+          "basis": "ICVCM CCP A2 (Tracking) and A3 (Transparency)",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "projectsCompared": 979,
+          "mismatches": 0
+        }
+      }
+    },
+    {
+      "registry": "art-trees",
+      "name": "ART TREES",
+      "totals": {
+        "rows": 31,
+        "rowsByKind": {
+          "issuance": 13,
+          "retirement": 14,
+          "cancellation": 4
+        },
+        "creditsByKind": {
+          "issuance": 58963403,
+          "retirement": 12979590,
+          "cancellation": 71100
+        },
+        "projects": 3,
+        "projectVintages": 11
+      },
+      "checks": {
+        "overRetired": {
+          "label": "Project-vintages where retired plus cancelled credits exceed issued credits",
+          "basis": "ICVCM Assessment Framework v3, criterion 6.2 (no double use); one credit per tonne",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "projectVintages": 0,
+          "coverageGaps": 0,
+          "excessOverIssued": 0,
+          "projectsOverIssued": 0
+        },
+        "retiredBeforeIssuance": {
+          "label": "Retirements dated before the first issuance of their project-vintage",
+          "basis": "ICVCM CCP A2 (Tracking); definitions of carbon credit and retirement (issue, then track, then retire)",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "rows": 0,
+          "credits": 0,
+          "projects": 0,
+          "distinctDates": 0
+        },
+        "issuedBeforeVintage": {
+          "label": "Issuances dated before their vintage year starts",
+          "basis": "ICVCM Assessment Framework v3, criterion 5.3 (ex-post issuance); definition of vintage",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "rows": 0,
+          "credits": 0,
+          "projects": 0,
+          "distinctDates": 0
+        },
+        "projectTotals": {
+          "label": "Projects whose project-table totals differ from the sum of their credit rows",
+          "basis": "ICVCM CCP A2 (Tracking) and A3 (Transparency)",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "projectsCompared": 28,
+          "mismatches": 0
+        }
+      }
+    },
+    {
+      "registry": "cercarbono",
+      "name": "Cercarbono",
+      "countsPublished": false,
+      "run": "node scripts/run-carbon-scoreboard.mjs"
+    },
+    {
+      "registry": "climate-action-reserve",
+      "name": "Climate Action Reserve",
+      "countsPublished": false,
+      "run": "node scripts/run-carbon-scoreboard.mjs"
+    },
+    {
+      "registry": "gold-standard",
+      "name": "Gold Standard",
+      "totals": {
+        "rows": 178255,
+        "rowsByKind": {
+          "issuance": 16075,
+          "retirement": 162180,
+          "cancellation": 0
+        },
+        "creditsByKind": {
+          "issuance": 491314720,
+          "retirement": 247381699,
+          "cancellation": 0
+        },
+        "projects": 2143,
+        "projectVintages": 11247
+      },
+      "checks": {
+        "overRetired": {
+          "label": "Project-vintages where retired plus cancelled credits exceed issued credits",
+          "basis": "ICVCM Assessment Framework v3, criterion 6.2 (no double use); one credit per tonne",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "projectVintages": 3,
+          "coverageGaps": 0,
+          "excessOverIssued": 3,
+          "projectsOverIssued": 1
+        },
+        "retiredBeforeIssuance": {
+          "label": "Retirements dated before the first issuance of their project-vintage",
+          "basis": "ICVCM CCP A2 (Tracking); definitions of carbon credit and retirement (issue, then track, then retire)",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "rows": 0,
+          "credits": 0,
+          "projects": 0,
+          "distinctDates": 0
+        },
+        "issuedBeforeVintage": {
+          "label": "Issuances dated before their vintage year starts",
+          "basis": "ICVCM Assessment Framework v3, criterion 5.3 (ex-post issuance); definition of vintage",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "rows": 674,
+          "credits": 4068859,
+          "projects": 23,
+          "distinctDates": 40
+        },
+        "projectTotals": {
+          "label": "Projects whose project-table totals differ from the sum of their credit rows",
+          "basis": "ICVCM CCP A2 (Tracking) and A3 (Transparency)",
+          "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+          "projectsCompared": 4105,
+          "mismatches": 0
+        }
+      }
+    },
+    {
+      "registry": "isometric",
+      "name": "Isometric",
+      "countsPublished": false,
+      "run": "node scripts/run-carbon-scoreboard.mjs"
+    },
+    {
+      "registry": "verra",
+      "name": "Verra",
+      "countsPublished": false,
+      "run": "node scripts/run-carbon-scoreboard.mjs"
+    }
+  ],
+  "countsDigest": "8694234ab6477a748f6b05615eb4e5c5315d3521f81ecc1d4e4c092b329ce7e8",
+  "americanCarbonRegistry": {
+    "data": "data/external/acr-offsetsdb-full",
+    "registry": "american-carbon-registry",
+    "name": "American Carbon Registry",
+    "totals": {
+      "rows": 13481,
+      "rowsByKind": {
+        "issuance": 2247,
+        "retirement": 11177,
+        "cancellation": 57
+      },
+      "creditsByKind": {
+        "issuance": 369472197,
+        "retirement": 169955601,
+        "cancellation": 13334159
+      },
+      "projects": 781,
+      "projectVintages": 1993
+    },
+    "checks": {
+      "overRetired": {
+        "label": "Project-vintages where retired plus cancelled credits exceed issued credits",
+        "basis": "ICVCM Assessment Framework v3, criterion 6.2 (no double use); one credit per tonne",
+        "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+        "projectVintages": 0,
+        "coverageGaps": 0,
+        "excessOverIssued": 0,
+        "projectsOverIssued": 0,
+        "items": {
+          "coverageGaps": [],
+          "excess": [],
+          "projects": []
+        }
+      },
+      "retiredBeforeIssuance": {
+        "label": "Retirements dated before the first issuance of their project-vintage",
+        "basis": "ICVCM CCP A2 (Tracking); definitions of carbon credit and retirement (issue, then track, then retire)",
+        "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+        "rows": 80,
+        "credits": 3488231,
+        "projects": 60,
+        "distinctDates": 1,
+        "items": [
+          {
+            "projectId": "ACR1007",
+            "vintage": 2024,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 79565,
+            "firstIssuance": "2024-06-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR1040",
+            "vintage": 2024,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 42649,
+            "firstIssuance": "2024-10-08T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR200",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 6872,
+            "firstIssuance": "2023-03-07T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR210",
+            "vintage": 2017,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 22683,
+            "firstIssuance": "2024-03-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR210",
+            "vintage": 2018,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 26876,
+            "firstIssuance": "2024-03-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR210",
+            "vintage": 2021,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 5228,
+            "firstIssuance": "2024-03-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR210",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 10301,
+            "firstIssuance": "2024-03-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR226",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 40026,
+            "firstIssuance": "2023-08-22T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR259",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 7810,
+            "firstIssuance": "2023-06-13T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR265",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 20906,
+            "firstIssuance": "2023-07-25T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR268",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 226271,
+            "firstIssuance": "2023-02-21T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR276",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 73429,
+            "firstIssuance": "2023-09-12T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR355",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 7419,
+            "firstIssuance": "2023-12-12T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR388",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 95603,
+            "firstIssuance": "2023-08-22T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR388",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 43946,
+            "firstIssuance": "2024-07-09T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR403",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 14429,
+            "firstIssuance": "2023-08-08T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR403",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 3498,
+            "firstIssuance": "2024-08-27T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR407",
+            "vintage": 2024,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 6753,
+            "firstIssuance": "2024-06-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR437",
+            "vintage": 2020,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 320546,
+            "firstIssuance": "2024-05-07T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR437",
+            "vintage": 2021,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 1500,
+            "firstIssuance": "2024-05-07T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR439",
+            "vintage": 2020,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 27192,
+            "firstIssuance": "2022-12-13T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR439",
+            "vintage": 2021,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 31498,
+            "firstIssuance": "2022-12-13T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR470",
+            "vintage": 2020,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 5956,
+            "firstIssuance": "2022-11-22T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR470",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 13254,
+            "firstIssuance": "2023-03-21T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR493",
+            "vintage": 2021,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 6056,
+            "firstIssuance": "2022-12-27T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR493",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 75651,
+            "firstIssuance": "2023-09-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR537",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 1100,
+            "firstIssuance": "2023-12-12T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR542",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 9381,
+            "firstIssuance": "2024-02-13T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR544",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 33053,
+            "firstIssuance": "2023-07-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR546",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 16484,
+            "firstIssuance": "2022-12-27T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR546",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 5535,
+            "firstIssuance": "2024-01-23T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR554",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 29778,
+            "firstIssuance": "2023-06-13T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR560",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 23519,
+            "firstIssuance": "2024-01-23T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR572",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 28025,
+            "firstIssuance": "2023-04-25T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR607",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 28722,
+            "firstIssuance": "2023-07-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR607",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 13585,
+            "firstIssuance": "2024-06-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR609",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 3892,
+            "firstIssuance": "2023-08-22T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR611",
+            "vintage": 2021,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 36700,
+            "firstIssuance": "2023-01-24T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR611",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 45985,
+            "firstIssuance": "2023-12-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR638",
+            "vintage": 2021,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 348118,
+            "firstIssuance": "2023-08-08T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR644",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 53684,
+            "firstIssuance": "2023-04-25T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR650",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 945,
+            "firstIssuance": "2023-06-13T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR651",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 15450,
+            "firstIssuance": "2024-05-21T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR669",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 49560,
+            "firstIssuance": "2024-03-12T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR674",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 6517,
+            "firstIssuance": "2023-02-21T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR674",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 32075,
+            "firstIssuance": "2024-05-21T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR675",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 24028,
+            "firstIssuance": "2023-03-07T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR694",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 14745,
+            "firstIssuance": "2023-05-23T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR694",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 10202,
+            "firstIssuance": "2024-07-09T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR695",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 16644,
+            "firstIssuance": "2023-05-23T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR695",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 14186,
+            "firstIssuance": "2024-07-09T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR743",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 9378,
+            "firstIssuance": "2023-08-22T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR751",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 154903,
+            "firstIssuance": "2023-03-07T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR751",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 29409,
+            "firstIssuance": "2023-10-10T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR752",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 19902,
+            "firstIssuance": "2023-09-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR752",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 36637,
+            "firstIssuance": "2024-05-21T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR761",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 115313,
+            "firstIssuance": "2023-01-10T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR761",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 269110,
+            "firstIssuance": "2023-12-12T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR771",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 13892,
+            "firstIssuance": "2023-01-10T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR771",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 9083,
+            "firstIssuance": "2023-11-07T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR778",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 73600,
+            "firstIssuance": "2023-11-07T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR780",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 129471,
+            "firstIssuance": "2023-01-10T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR800",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 3824,
+            "firstIssuance": "2024-07-09T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR806",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 49803,
+            "firstIssuance": "2023-04-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR806",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 52614,
+            "firstIssuance": "2024-06-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR807",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 50171,
+            "firstIssuance": "2024-01-23T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR808",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 13200,
+            "firstIssuance": "2024-07-09T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR810",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 20262,
+            "firstIssuance": "2023-04-11T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR811",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 46286,
+            "firstIssuance": "2024-03-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR820",
+            "vintage": 2022,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 26898,
+            "firstIssuance": "2023-08-22T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR826",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 128004,
+            "firstIssuance": "2023-03-21T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR841",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 13844,
+            "firstIssuance": "2023-12-12T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR842",
+            "vintage": 2024,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 2182,
+            "firstIssuance": "2024-08-27T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR845",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 31128,
+            "firstIssuance": "2024-02-27T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR872",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 1629,
+            "firstIssuance": "2023-07-25T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR877",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 16328,
+            "firstIssuance": "2023-10-10T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR884",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 42364,
+            "firstIssuance": "2023-09-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR899",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 27306,
+            "firstIssuance": "2024-03-26T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR908",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 207,
+            "firstIssuance": "2024-08-27T00:00:00.000Z"
+          },
+          {
+            "projectId": "ACR911",
+            "vintage": 2023,
+            "date": "2022-11-01T00:00:00.000Z",
+            "quantity": 23653,
+            "firstIssuance": "2024-03-26T00:00:00.000Z"
+          }
+        ]
+      },
+      "issuedBeforeVintage": {
+        "label": "Issuances dated before their vintage year starts",
+        "basis": "ICVCM Assessment Framework v3, criterion 5.3 (ex-post issuance); definition of vintage",
+        "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+        "rows": 0,
+        "credits": 0,
+        "projects": 0,
+        "distinctDates": 0,
+        "items": []
+      },
+      "projectTotals": {
+        "label": "Projects whose project-table totals differ from the sum of their credit rows",
+        "basis": "ICVCM CCP A2 (Tracking) and A3 (Transparency)",
+        "finding": "inconsistency in the published data (may come from OffsetsDB processing or the registry)",
+        "projectsCompared": 979,
+        "mismatches": 0,
+        "items": []
+      }
+    }
+  },
+  "limitations": [
+    "The export has no serial numbers, so credits retired twice cannot be checked at this scale; only quantities are compared.",
+    "Verra issuance figures in OffsetsDB are inferred by CarbonPlan, not published by Verra as issuance records.",
+    "ACR's retirements dated before their first issuance all share the date 2022-11-01, which suggests a migration or pipeline artefact. That is an inference, not checked against the registry.",
+    "Counts show inconsistencies in published data. They do not show that a program meets, or fails, any ICVCM criterion.",
+    "ACR is shown in full; ART TREES and Gold Standard as counts. Climate Action Reserve, Cercarbono, Isometric and Verra are checked by the same code, but their counts are not published while their terms on derived data are unclear; the two scripts compute them locally for anyone.",
+    "OffsetsDB updates are paused upstream; the snapshot is from 2026-06-01."
+  ]
+}
