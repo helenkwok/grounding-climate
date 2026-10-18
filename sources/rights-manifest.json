@@ -965,6 +965,56 @@
           "finding": "OpenStreetMap data is available under the ODbL; attribution required."
         }
       ]
+    },
+    {
+      "id": "climate-reference",
+      "name": "Climate reference tables: Ember Yearly Electricity Data and Global Carbon Budget 2025 fossil CO2",
+      "component": "reference-data",
+      "canonicalUrl": "https://ember-energy.org/data/yearly-electricity-data/ and https://doi.org/10.5281/zenodo.17417124",
+      "upstreamPublisher": "Ember; Global Carbon Project (Friedlingstein et al.)",
+      "retrievedAt": "2026-10-18",
+      "licence": {
+        "status": "verified-open",
+        "identifier": "CC-BY-4.0",
+        "name": "Creative Commons Attribution 4.0 International (both sources)",
+        "url": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "allowed",
+        "commercialUse": "allowed",
+        "derivedData": "allowed",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "redistributable",
+        "path": "data/external/climate-reference",
+        "note": "Two derived tables only: per country, Ember's latest total-generation emissions intensity (gCO2e/kWh; raw CSV SHA-256 b2ac49fa…) and GCB 2025's latest total fossil CO2 (MtCO2; GCB2025v15_MtCO2_flat.csv, SHA-256 20650c19…), plus the world total and international bunkers. The raw CSVs stay in the gitignored cache. Context for the write-up; no check reads them."
+      },
+      "attribution": "Ember (2026), Yearly Electricity Data, CC BY 4.0. Global Carbon Budget 2025 (Friedlingstein et al.), fossil CO2 emissions dataset, CC BY 4.0, doi:10.5281/zenodo.17417124. Rows filtered and latest year per country selected by Grounding; values unchanged.",
+      "notes": [
+        "Ember's emissions intensity is lifecycle (upstream methane, supply chain and manufacturing included), all gases as CO2e over 100 years, per kWh generated.",
+        "The GCB file is already in MtCO2; no carbon-to-CO2 conversion is applied.",
+        "Ember republishes the same download URL; the raw files are pinned by SHA-256 (and the GCB file also by Zenodo's MD5)."
+      ],
+      "evidence": [
+        {
+          "url": "https://ember-energy.org/data/yearly-electricity-data/",
+          "finding": "Page footer: all content is released under a Creative Commons Attribution Licence (CC-BY-4.0) (checked 2026-10-18)."
+        },
+        {
+          "url": "https://files.ember-energy.org/public-downloads/ember_electricity_data_methodology.pdf",
+          "finding": "Emissions figures aim to include full lifecycle emissions, all gases, CO2e over a 100-year timescale (checked 2026-10-18)."
+        },
+        {
+          "url": "https://zenodo.org/api/records/17417124",
+          "finding": "Zenodo record: licence cc-by-4.0, published 2025-10-22, DOI 10.5281/zenodo.17417124 (checked 2026-10-18)."
+        },
+        {
+          "url": "https://zenodo.org/records/17417124/files/GCB2025v15_MtCO2_flat_metadata.json",
+          "finding": "Field metadata: units millions of tonnes of CO2, Global Carbon Budget 2025 v2025v15, CC BY 4.0 (checked 2026-10-18)."
+        }
+      ]
     }
   ]
 }
