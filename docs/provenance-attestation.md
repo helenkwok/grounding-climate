@@ -167,7 +167,7 @@ Files per case:
 
 `node scripts/anchor-cases.mjs` stamps any case whose anchor is missing or whose signed record changed. Bitcoin confirms the calendars' commitments within a few hours; `node scripts/anchor-cases.mjs --upgrade` then fetches the finished proofs and headers. `scripts/verify-anchors.mjs` runs in `npm run check:cases`, offline: it recomputes each anchored digest from the committed case, checks the proof commits to it, and for an anchored proof checks the merkle path to the committed header and its proof of work. A pending proof passes and reports when it was submitted.
 
-The design is chain-agnostic. `AnchorAdapter` (`submit`, `upgrade`, `verify`) takes and returns only a 32-byte digest and opaque proof bytes; Bitcoin through OpenTimestamps (`bitcoinOtsAdapter`) is the first adapter, and another chain would be another adapter over the same anchored digest.
+The design is chain-agnostic. `AnchorAdapter` (`submit`, `upgrade`, `verify`) takes and returns only a 32-byte digest and opaque proof bytes; Bitcoin through OpenTimestamps (`bitcoinOtsAdapter`) is the first adapter, and another chain would be another adapter over the same anchored digest. The second is an EVM adapter (`evmAnchorAdapter`, CAIP-2 `eip155:<chainId>`), tested on a local chain so far: see [EVM anchor and double-use guard](evm-anchor.md).
 
 Rights: block headers are public chain data. The unit tests use synthetic proof trees and one mainnet header (block 358391); the OpenTimestamps project's example proofs are not vendored, because their licence is not stated.
 

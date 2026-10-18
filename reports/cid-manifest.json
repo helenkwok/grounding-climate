@@ -467,9 +467,9 @@
     },
     {
       "path": "sources/rights-manifest.json",
-      "bytes": 45613,
-      "sha256": "SHA-256:fxnEl6iovBerFg1ewL0Em0BdeBQ6gvDxuXV0-bVeirk",
-      "cid": "bafkreid7dhcjpkfixql2wfqnl3al2be3iboxqfb2qlypdolvot43kxukxe",
+      "bytes": 48107,
+      "sha256": "SHA-256:R6XYfxigFBAcrrVT1Qbf1PX4dgWt4eIeu1r7sLUNpoI",
+      "cid": "bafkreichuxmh6gfacqibzlvvkpkqnx6u6x4hmbnn4hrb5o227oylkdngqi",
       "singleBlock": true
     }
   ]
