@@ -21,7 +21,7 @@ import { anchoredDigest, toHex } from "./anchor.js";
 import { cidFromSha256 } from "./cid.js";
 import type { SignedAttestationBundle } from "./attestation.js";
 import type { CryptoProvider, CryptoSignature, CryptoSuite, KeyMetadata, SigningKeyRef } from "./crypto.js";
-import type { ClimateCaseBundle, ContentDigest } from "./types.js";
+import type { ClimateCaseBundle, ContentDigest, Verification, VerificationResult } from "./types.js";
 
 export const VC_V2_CONTEXT = "https://www.w3.org/ns/credentials/v2";
 /** UNTP 0.6.0 contexts; both resolved (HTTP 200, application/ld+json) on 2026-10-18. 0.7.0's did not (403). */
@@ -180,6 +180,19 @@ export function batteryHealthAttributes(
   };
 }
 
+/**
+ * The worst of a verification's recorded result and its checks, as the site rolls it up (caseCheck and deriveResult in
+ * apps/demo/src): a failed check or a result other than reconciled or insufficient-evidence is a mismatch; any other
+ * non-pass needs evidence.
+ */
+export function rollUp(verification: Verification): VerificationResult {
+  const outcomes = verification.checks.map((check) => check.outcome);
+  const recorded = verification.result;
+  if (outcomes.includes("fail") || (recorded !== "reconciled" && recorded !== "insufficient-evidence")) return "mismatch";
+  if (recorded !== "reconciled" || outcomes.some((outcome) => outcome !== "pass")) return "insufficient-evidence";
+  return "reconciled";
+}
+
 /** Maps a signed case to a W3C VC 2.0 credential (unsecured). Deterministic: the same files give the same credential. */
 export async function caseCredential(
   module: string,
@@ -207,7 +220,9 @@ export async function caseCredential(
     recheck: {
       by: recheck.verifier.name ?? recheck.verifier.id,
       at: recheck.verifiedAt,
-      status: recheck.result,
+      // The same roll-up the site shows: never better than the recorded result or any of its checks.
+      status: rollUp(recheck),
+      recordedResult: recheck.result,
       checks: recheck.checks.map((check) => ({ id: check.id, name: check.name, outcome: check.outcome, ...(check.detail ? { detail: check.detail } : {}) })),
       findings: recheck.findings,
     },

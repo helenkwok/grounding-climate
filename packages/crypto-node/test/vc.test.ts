@@ -119,6 +119,26 @@ test("the battery passport maps state of health to DIN DKE SPEC 99100 names in %
   await assert.rejects(caseCredential("battery-dpp", run), /health/);
 });
 
+test("each credential's status matches the claim's status on the site, and keeps the recorded result beside it", async () => {
+  // The site: building, energy and battery Rechecked; earth, carbon and disclosure Needs evidence.
+  const expected: Record<string, [status: string, recorded: string]> = {
+    "building-mrv": ["reconciled", "reconciled"],
+    "energy-forecast": ["reconciled", "reconciled"],
+    "battery-dpp": ["reconciled", "reconciled"],
+    "earth-observation": ["insufficient-evidence", "reconciled"],
+    "carbon-registry": ["insufficient-evidence", "insufficient-evidence"],
+    disclosure: ["insufficient-evidence", "reconciled"],
+  };
+  for (const [module, [status, recorded]] of Object.entries(expected)) {
+    const run = await readJson(module + "/case-run.json");
+    // The passport needs recomputed health; the status does not depend on it.
+    const health = { initialCapacityAh: 50, currentCapacityAh: 45, sohVsInitial: 0.9, currentSoh: 45 / 58, observedCycle: 100 };
+    const credential = await caseCredential(module, module === "battery-dpp" ? { ...run, health } : run);
+    const recheck = (credential.credentialSubject as { recheck: { status: string; recordedResult: string } }).recheck;
+    assert.deepEqual([recheck.status, recheck.recordedResult], [status, recorded], module);
+  }
+});
+
 test("base58btc round-trips, leading zeros included", () => {
   for (const bytes of [new Uint8Array([0, 0, 1, 2, 255]), new Uint8Array(0), crypto.getRandomValues(new Uint8Array(3309))]) {
     assert.deepEqual(fromBase58btc(base58btc(bytes)), bytes);
