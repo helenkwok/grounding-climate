@@ -147,6 +147,10 @@ test("Jev caller retries once after 429 and validates the answer", async () => {
   outside.answers.triage.choice = "delete_it";
   await assert.rejects(callJev(fakeJev([{ status: 200, body: outside }]), "k", state), /criteria/);
 
+  // Advice from a version other than the pinned one is refused, not silently used.
+  const newer = { ...structuredClone(ANSWER), model: "jev-1.14.0" };
+  await assert.rejects(callJev(fakeJev([{ status: 200, body: newer }]), "k", state), /served jev-1\.14\.0, pinned jev-1\.13\.0/);
+
   await assert.rejects(
     callJev(fakeJev([{ status: 401 }]), "secret-key", state),
     (error: unknown) =>
