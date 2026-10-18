@@ -222,14 +222,11 @@ remain human-approved operations in #7.
 
 ## Ledger boundary
 
-A ledger adapter receives only compact commitment material:
+An anchor adapter (`AnchorAdapter` in `packages/core/src/anchor.ts`) receives only a 32-byte digest of the
+signed record, never the record itself:
 
 ```ts
-interface LedgerCommitmentRequest {
-  evidenceRoot: ContentDigest
-  attestationDigest: ContentDigest
-  attestationRef: string
-}
+submit(digest: Uint8Array): Promise<AnchorSubmission>
 ```
 
 It does not receive signing private keys and the domain model has no wallet field.
@@ -246,7 +243,8 @@ and the evidence/verification layer remains responsible for:
 
 > what the source evidence supports
 
-Issue #8 will implement the evidence-root, challenge lifecycle, signed log, and optional ledger adapter against this boundary.
+The anchors that exist today (Bitcoin via OpenTimestamps, and the EVM contract) implement this boundary; see
+`docs/evm-anchor.md`.
 
 ## What PQ does not solve
 
