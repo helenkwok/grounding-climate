@@ -23,6 +23,9 @@ export const Route = createRootRoute({
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: fonts },
+      // The map's hosts: open the connections while the page loads, before MapLibre asks for its first tile.
+      { rel: "preconnect", href: "https://tiles.openfreemap.org", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://data.source.coop", crossOrigin: "anonymous" },
     ],
   }),
   component: App,
