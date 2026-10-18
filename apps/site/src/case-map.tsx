@@ -314,7 +314,7 @@ export function CaseMap() {
         }
         // Named chips for the claims, so the map says what each mark is at any zoom.
         // On phones the chips show their short name (the existing .long/.short rule at 760 px).
-        const chip = (id: ClaimId, text: string, short: string, at: [number, number], anchor: "top-left" | "bottom-left" | "center") => {
+        const chip = (id: ClaimId, text: string, short: string, at: [number, number], anchor: "top-left" | "bottom-left" | "center", drop = 0) => {
           const button = document.createElement("button");
           button.type = "button";
           button.className = "map-chip";
@@ -329,11 +329,12 @@ export function CaseMap() {
             event.stopPropagation();
             void navigate({ to: "/claims/$id", params: { id } });
           });
-          new maplibre.Marker({ element: button, anchor, offset: anchor === "center" ? [0, 0] : [8, anchor === "top-left" ? 6 : -6] }).setLngLat(at).addTo(m);
+          new maplibre.Marker({ element: button, anchor, offset: anchor === "center" ? [0, 0] : [8, (anchor === "top-left" ? 6 : -6) + drop] }).setLngLat(at).addTo(m);
         };
         chip("building", claimMeta("building").title, "Building", [site.longitude, site.latitude], "top-left");
         chip("earth", claimMeta("earth").title, "Burn scar", [Math.min(...sceneLons), Math.max(...sceneLats)], "bottom-left");
-        chip("battery", claimMeta("battery").title + ": NASA Ames", "Battery", AMES, "top-left");
+        // NASA Ames is about 50 km from the building site, so its label sits one row lower, clear of the building's.
+        chip("battery", claimMeta("battery").title + ": NASA Ames", "Battery", AMES, "top-left", 30);
         chip("energy", claimMeta("energy").title + ": Indian Energy Exchange, all of India", "Energy: India", [79, 22.5], "center");
         // One chip per state holding carbon projects, at the middle of the state's shape in the loaded tiles.
         m.once("idle", () => {
