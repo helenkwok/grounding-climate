@@ -1,4 +1,4 @@
-# Devpost description (draft 2)
+# Devpost description (draft 3)
 
 Paste each section into the matching Devpost field. Every figure is traced in `docs/video-script.md` (Facts) or named
 inline.
@@ -58,6 +58,18 @@ Each case is also:
 The anchors are chain-agnostic by design (`AnchorAdapter`, chains named by CAIP-2); Bitcoin and EVM are the two adapters
 today.
 
+**Every claim, the same page.** Each claim page walks the same five steps (recompute, check, decide, sign, change one
+input) over its own evidence, drawn from the data in your browser: the building's hourly readings with each flagged
+reading numbered; the battery's capacity per cycle against the policy's second-life line, and its resistance trend; the
+energy request asked, capped and allowed; the burned area detected against the reference labels; the carbon records'
+reconciliation counts; and the company's reported figure beside the recalculation nobody can do. Change one input and the
+drawing, the decisions and the signed record all show it at once.
+
+**A page for judges.** `/judge` rebuilds all six claims in the browser and puts them on one receipt: each claim's figure,
+result, both signatures, Bitcoin block and Sepolia transaction. One button changes an input in all six, and every row
+turns red. Below it: how each part is known, the offline commands to rerun everything with no account or key, and what
+it does not prove.
+
 **Who it is for.**
 - Verifiers who recheck a figure before giving an opinion: they get the recomputation, the decisions and the gaps in one
   record.
@@ -81,8 +93,11 @@ different basis from the claim's own 2016 factor). Grounding does not cut emissi
 behind those decisions checkable: anyone can see what was recomputed, what a person decided and what is still missing,
 and any later change to a signed record shows.
 
-A map places each claim where it happened, over open wildfire-risk data for the United States around 2011 and as
-projected for about 2047.
+Each claim's page has a map of where its data comes from: the building's site in Berkeley, the satellite scene in
+northern California, NASA Ames where the battery cell was tested, the states the carbon projects are in, and the whole of
+India for the energy market. The company's page names no site, so its claim says so instead of guessing one. In the
+United States the map is shaded with open wildfire-risk data for around 2011 and as projected for about 2047, as context,
+not evidence.
 
 ## Principles
 
@@ -180,4 +195,11 @@ OpenTimestamps, IPFS CIDs, W3C VC 2.0, UNTP, MetaMask.
 
 ## Try it out
 
-Site URL, repo URL and the Verify page URL (to fill in once the repo is public and the site is hosted).
+To fill in once the repository is public and the site is hosted:
+
+- **For judges, about 30 seconds:** [site URL]/judge/
+- **The site:** [site URL]
+- **Verify a record, no account or server:** [site URL]/verify/
+- **Code, and an offline rerun:** https://github.com/helenkwok/grounding-climate, then
+  `npm ci && npm run build && npm run check:cases`
+- **Video:** [video URL]
