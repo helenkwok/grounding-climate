@@ -1,0 +1,64 @@
+%% ofk 1
+architecture
+title: Grounding
+
+// discovered by openflowkit — 12 units, 39 relations, 83 evidence lines
+// heuristics read manifests, imports and line matches; review names, tech and grouping before committing
+model {
+  system climatechain [tags: discovered] {
+    container demo [tech: Node, tags: discovered]
+    container site [tech: React, tags: discovered]
+    container grounding-climate [tech: Node, tags: discovered]
+    container battery-dpp [tech: Node, tags: discovered]
+    container building-mrv [tech: Node, tags: discovered]
+    container carbon-registry [tech: Node, tags: discovered]
+    container core [tech: Node, tags: discovered]
+    container crypto-node [tech: Node, tags: discovered]
+    container disclosure [tech: Node, tags: discovered]
+    container earth-observation [tech: Node, tags: discovered]
+    container energy-forecast [tech: Node, tags: discovered]
+    container webmcp [tech: Node, tags: discovered]
+    demo -> battery-dpp : imports [link: apps/demo/package.json:11]
+    demo -> building-mrv : imports [link: apps/demo/package.json:12]
+    demo -> carbon-registry : imports [link: apps/demo/package.json:13]
+    demo -> core : imports [link: apps/demo/package.json:14]
+    demo -> disclosure : imports [link: apps/demo/package.json:15]
+    demo -> earth-observation : imports [link: apps/demo/package.json:16]
+    demo -> energy-forecast : imports [link: apps/demo/package.json:17]
+    demo -> webmcp : imports [link: apps/demo/package.json:18]
+    site -> battery-dpp : imports [link: apps/site/package.json:13]
+    site -> building-mrv : imports [link: apps/site/package.json:14]
+    site -> carbon-registry : imports [link: apps/site/package.json:15]
+    site -> core : imports [link: apps/site/package.json:16]
+    site -> disclosure : imports [link: apps/site/package.json:17]
+    site -> earth-observation : imports [link: apps/site/package.json:18]
+    site -> energy-forecast : imports [link: apps/site/package.json:19]
+    site -> webmcp : imports [link: apps/site/package.json:20]
+    battery-dpp -> core : imports [link: packages/battery-dpp/package.json:18]
+    battery-dpp -> webmcp : imports [link: packages/battery-dpp/package.json:19]
+    building-mrv -> core : imports [link: packages/building-mrv/package.json:19]
+    building-mrv -> webmcp : imports [link: packages/building-mrv/package.json:20]
+    building-mrv -> crypto-node : imports [link: packages/building-mrv/package.json:21]
+    carbon-registry -> core : imports [link: packages/carbon-registry/package.json:18]
+    carbon-registry -> webmcp : imports [link: packages/carbon-registry/package.json:19]
+    crypto-node -> core : imports [link: packages/crypto-node/package.json:18]
+    disclosure -> core : imports [link: packages/disclosure/package.json:18]
+    disclosure -> webmcp : imports [link: packages/disclosure/package.json:19]
+    earth-observation -> core : imports [link: packages/earth-observation/package.json:18]
+    earth-observation -> webmcp : imports [link: packages/earth-observation/package.json:19]
+    energy-forecast -> core : imports [link: packages/energy-forecast/package.json:18]
+    energy-forecast -> webmcp : imports [link: packages/energy-forecast/package.json:19]
+    webmcp -> core : imports [link: packages/webmcp/package.json:18]
+    grounding-climate -> core : imports [link: scripts/lib/attest.mjs:9]
+    grounding-climate -> crypto-node : imports [link: scripts/lib/attest.mjs:10]
+    grounding-climate -> carbon-registry : imports [link: scripts/lib/carbon-case.mjs:5]
+    grounding-climate -> battery-dpp : imports [link: scripts/run-battery-case.mjs:12]
+    grounding-climate -> building-mrv : imports [link: scripts/run-building-case.mjs:26]
+    grounding-climate -> disclosure : imports [link: scripts/run-disclosure-case.mjs:12]
+    grounding-climate -> earth-observation : imports [link: scripts/run-earth-case.mjs:14]
+    grounding-climate -> energy-forecast : imports [link: scripts/run-energy-case.mjs:13]
+  }
+}
+views {
+  view container of climatechain
+}

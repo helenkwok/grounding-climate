@@ -2,6 +2,43 @@
 
 Evidence-first climate verification workspace for the IEEE ClimateChain Global Hackathon 2026.
 
+> **A figure is only as good as the work it can show.**
+
+## Why Grounding exists
+
+A climate figure is asked to carry a lot: the meter readings, the emission factor, the readings someone dropped and why, the model that flagged them, the person who decided, what could not be checked, and whether anything changed since. It arrives as one number, and none of that travels with it.
+
+Most of that work can be recorded, recomputed or checked by software. Grounding makes it travel with the number.
+
+```text
+Can software recompute or check this?
+   ├─ yes             → rechecked in your browser, from the evidence
+   ├─ needs judgement → a model may suggest; a named person decides,
+   │                    and the decision is bound to the exact data
+   └─ cannot be checked → the claim says so: "Needs evidence"
+```
+
+![How Grounding rechecks a climate claim: evidence, software checks, a model's suggestion and a person's decision, then a signed record anyone can verify](docs/architecture/evidence-flow.svg)
+
+Each box links to the code that does it ([`evidence-flow.ofk`](docs/architecture/evidence-flow.ofk); open [`evidence-flow.openflow.json`](docs/architecture/evidence-flow.openflow.json) in OpenFlowKit to edit). The module model in [`grounding.ofk`](docs/architecture/grounding.ofk) cites the file and line behind every dependency; `openflowkit drift . --model docs/architecture/grounding.ofk` reports when the code moves away from it.
+
+## Principles
+
+1. **Recompute, don't restate.** The building figure is rebuilt from 2,160 hourly meter readings and the EPA grid factor.
+2. **A model suggests; a person decides.** The model's advice never changes a claim's status.
+3. **Software enforces the policy.** The advice threshold (0.97) and the energy cap (120 MWh asked, 100 MWh allowed) are set in code.
+4. **A decision is tied to the data it was made on.** Change one reading and the decision goes stale.
+5. **Say what could not be checked.** Three of the six claims read "Needs evidence".
+6. **Show a gap rather than hide it.** The satellite detector finds 11,974 ha burned against 18,664 ha in the reference labels.
+7. **Anyone can verify a record,** with no account and no server.
+8. **Every check is measured.** The advice threshold was set on 296 labelled readings: at 0.97, 88% of suggestions were labelled bad.
+
+**What it does not prove.** Rechecking is not assurance: Grounding reports findings from rechecking the evidence, close to the agreed-upon procedures of ISO 14064-3 Annex C, and gives no assurance opinion of the kind ISSA 5000 governs. Signing keys are made in the browser for one record, so a signature does not prove who signed. A company's own disclosure can be linked to its source and what it rests on, but it cannot be recalculated.
+
+**The experiment.** How much of a climate claim can software check before a person has to decide? On six real claims: three rechecked, three needing evidence, and each record says which is which.
+
+**Climate claims that show their work.**
+
 ## Demo
 
 The integrated judging demo is the fastest way to see the product:
