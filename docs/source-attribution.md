@@ -32,6 +32,7 @@ This table records the repository's current reuse decision; it is not legal advi
 | SustainBench code | code | MIT | allowed | code-only |
 | SustainBench released raw datasets | dataset | CC-BY-SA-4.0 | allowed | redistributable |
 | U.S. EPA eGRID Summary Tables 2016 | dataset | U.S. federal government publication / EPA site terms | unclear | link-only |
+| World Bank World Development Indicators: total GHG emissions, CO2 per capita, renewable energy share (latest value per economy) | reference-data | LicenseRef-WDI-third-party | unclear | download-from-upstream |
 
 ## Attributions
 
@@ -242,4 +243,12 @@ U.S. EPA, eGRID Summary Tables 2016, Table 1 Subregion Output Emission Rates.
 - Source: https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P101BGM6.txt
 - Terms/licence: https://www.epa.gov/web-policies-and-procedures
 - Repository policy: Use the published factor values with source attribution; do not mirror the EPA publication into Grounding.
+
+### World Bank World Development Indicators: total GHG emissions, CO2 per capita, renewable energy share (latest value per economy) (reference-data)
+
+World Bank, World Development Indicators; underlying sources EDGAR (European Commission JRC) and the IEA.
+
+- Source: https://api.worldbank.org/v2/country/all/indicator/EN.GHG.ALL.MT.CE.AR5?format=json&mrnev=1&per_page=400
+- Terms/licence: https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets
+- Repository policy: scripts/prepare-world-bank-indicators.mjs downloads the series to the gitignored cache with each response's URL, lastupdated date and SHA-256. Nothing is committed; the docs cite single figures with their source and year.
 

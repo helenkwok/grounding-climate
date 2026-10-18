@@ -402,7 +402,7 @@
       "repository": {
         "mode": "redistributable",
         "path": "data/external/acr-offsetsdb-full",
-        "note": "All 13,481 ACR credit rows of the OffsetsDB export generated 2026-06-01 (zip SHA-256 c037be30…), reduced to project, vintage, transaction type, quantity and date; and the 979 ACR projects' issued and retired totals. Beneficiary, account and note fields are not committed. The other registries in the export stay in a gitignored cache and are published as counts only."
+        "note": "All 13,481 ACR credit rows of the OffsetsDB export generated 2026-06-01 (zip SHA-256 c037be30\u2026), reduced to project, vintage, transaction type, quantity and date; and the 979 ACR projects' issued and retired totals. Beneficiary, account and note fields are not committed. The other registries in the export stay in a gitignored cache and are published as counts only."
       },
       "attribution": "Registry data via CarbonPlan OffsetsDB, snapshot 2026-06-01: American Carbon Registry public reports. Rows filtered to ACR and columns reduced by Grounding; values unchanged.",
       "notes": [
@@ -794,7 +794,7 @@
         "mode": "link-only",
         "note": "regions.pmtiles and building_centroids.pmtiles are streamed by viewers' browsers from Source Cooperative with HTTP range requests and drawn on the map (a Produced Work under the ODbL). Nothing is committed."
       },
-      "attribution": "Open Climate Risk v1.1.0, CarbonPlan, ODbL; contains information from the Overture Maps Foundation buildings dataset (ODbL, © OpenStreetMap contributors); Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F). Shown in the map's attribution.",
+      "attribution": "Open Climate Risk v1.1.0, CarbonPlan, ODbL; contains information from the Overture Maps Foundation buildings dataset (ODbL, \u00a9 OpenStreetMap contributors); Riley et al. 2025 (RDS-2025-0006), Scott et al. 2024 (RDS-2020-0016-2), CONUS404 (doi:10.5066/P9PHPK4F). Shown in the map's attribution.",
       "notes": [
         "Region tiles store fields under numbered keys; Grounding matched them against CarbonPlan's published states/stats.csv (California: building count, mean RPS ~2011 and ~2047).",
         "RPS is annual risk to potential structures, in percent: burn probability times conditional risk to a structure (OCR data schema).",
@@ -928,7 +928,7 @@
       "name": "OpenFreeMap vector tiles and styles (OpenMapTiles schema, OpenStreetMap data)",
       "component": "map-tiles",
       "canonicalUrl": "https://openfreemap.org/",
-      "upstreamPublisher": "OpenFreeMap (Hyperknot Software Kft.); data © OpenStreetMap contributors",
+      "upstreamPublisher": "OpenFreeMap (Hyperknot Software Kft.); data \u00a9 OpenStreetMap contributors",
       "retrievedAt": "2026-10-06",
       "licence": {
         "status": "terms-restricted",
@@ -946,7 +946,7 @@
         "mode": "link-only",
         "note": "Tiles, glyphs and sprites are loaded by viewers' browsers from the public instance at view time. Nothing is committed or harvested."
       },
-      "attribution": "OpenFreeMap © OpenMapTiles, Data from OpenStreetMap (shown on the map, as the style specifies).",
+      "attribution": "OpenFreeMap \u00a9 OpenMapTiles, Data from OpenStreetMap (shown on the map, as the style specifies).",
       "notes": [
         "The public instance is free with no API keys, registration, cookies or view limits.",
         "The terms forbid collecting data from the service in automated ways without permission; the demo only displays it."
@@ -989,7 +989,7 @@
       "repository": {
         "mode": "redistributable",
         "path": "data/external/climate-reference",
-        "note": "Two derived tables only: per country, Ember's latest total-generation emissions intensity (gCO2e/kWh; raw CSV SHA-256 b2ac49fa…) and GCB 2025's latest total fossil CO2 (MtCO2; GCB2025v15_MtCO2_flat.csv, SHA-256 20650c19…), plus the world total and international bunkers. The raw CSVs stay in the gitignored cache. Context for the write-up; no check reads them."
+        "note": "Two derived tables only: per country, Ember's latest total-generation emissions intensity (gCO2e/kWh; raw CSV SHA-256 b2ac49fa\u2026) and GCB 2025's latest total fossil CO2 (MtCO2; GCB2025v15_MtCO2_flat.csv, SHA-256 20650c19\u2026), plus the world total and international bunkers. The raw CSVs stay in the gitignored cache. Context for the write-up; no check reads them."
       },
       "attribution": "Ember (2026), Yearly Electricity Data, CC BY 4.0. Global Carbon Budget 2025 (Friedlingstein et al.), fossil CO2 emissions dataset, CC BY 4.0, doi:10.5281/zenodo.17417124. Rows filtered and latest year per country selected by Grounding; values unchanged.",
       "notes": [
@@ -1013,6 +1013,47 @@
         {
           "url": "https://zenodo.org/records/17417124/files/GCB2025v15_MtCO2_flat_metadata.json",
           "finding": "Field metadata: units millions of tonnes of CO2, Global Carbon Budget 2025 v2025v15, CC BY 4.0 (checked 2026-10-18)."
+        }
+      ]
+    },
+    {
+      "id": "world-bank-wdi",
+      "name": "World Bank World Development Indicators: total GHG emissions, CO2 per capita, renewable energy share (latest value per economy)",
+      "component": "reference-data",
+      "canonicalUrl": "https://api.worldbank.org/v2/country/all/indicator/EN.GHG.ALL.MT.CE.AR5?format=json&mrnev=1&per_page=400",
+      "upstreamPublisher": "The World Bank",
+      "retrievedAt": "2026-10-18",
+      "licence": {
+        "status": "source-specific",
+        "identifier": "LicenseRef-WDI-third-party",
+        "name": "World Bank dataset terms (CC BY 4.0 by default) with third-party sources: EDGAR (JRC; IEA-derived fossil CO2 under CC BY-NC-ND 4.0) and the IEA",
+        "url": "https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets"
+      },
+      "permissions": {
+        "use": "allowed",
+        "redistribution": "unclear",
+        "commercialUse": "unclear",
+        "derivedData": "unclear",
+        "attributionRequired": true
+      },
+      "repository": {
+        "mode": "download-from-upstream",
+        "note": "scripts/prepare-world-bank-indicators.mjs downloads the series to the gitignored cache with each response's URL, lastupdated date and SHA-256. Nothing is committed; the docs cite single figures with their source and year."
+      },
+      "attribution": "World Bank, World Development Indicators; underlying sources EDGAR (European Commission JRC) and the IEA.",
+      "notes": [
+        "Used to state the scale Grounding's claims sit in (world and US totals); not used by any check.",
+        "The World Bank lists third-party indicators as subject to their providers' terms; EDGAR's fossil CO2 is IEA-derived and licensed CC BY-NC-ND 4.0, and the renewables share is IEA data, so the series are not redistributed.",
+        "The World Bank's Building Green dataset is not used: its terms allow non-commercial reuse only."
+      ],
+      "evidence": [
+        {
+          "url": "https://www.worldbank.org/en/about/legal/terms-of-use-for-datasets",
+          "finding": "Datasets are CC BY 4.0 unless labelled otherwise; third-party indicators may carry their providers' terms (checked 2026-10-18)."
+        },
+        {
+          "url": "https://edgar.jrc.ec.europa.eu/dataset_ghg2024",
+          "finding": "EDGAR GHG 2024, the source named in the WDI metadata of EN.GHG.ALL.MT.CE.AR5 and EN.GHG.CO2.PC.CE.AR5; its fossil CO2 incorporates IEA data (checked 2026-10-18)."
         }
       ]
     }

@@ -16,3 +16,6 @@ docs/standards/*
 
 # Downloaded upstream snapshots (CarbonPlan OffsetsDB); only the ACR part is committed, under data/external
 data/cache/
+
+# Agent worktrees
+.claude/worktrees/
