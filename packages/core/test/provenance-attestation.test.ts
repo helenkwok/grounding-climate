@@ -6,6 +6,7 @@ import {
   assessLedgerNeed,
   challengeAttestation,
   createEvidenceRoot,
+  createSignatureEnvelope,
   createSignedAttestation,
   resolveChallenge,
   verifyEvidenceRoot,
@@ -381,4 +382,37 @@ test("ledger gate defers until every trust criterion is met", () => {
   });
   assert.equal(useLedger.decision, "use-ledger");
   assert.equal(useLedger.unmet.length, 0);
+});
+
+test("an envelope signed for another domain does not verify as an attestation", async () => {
+  const provider = new TestProvider();
+  const signed = await createSignedAttestation(bundle(), {
+    id: "attestation:scope2",
+    attester: { subjectId: "org:test" },
+    statement: "Claim reconciled.",
+    claimRefs: [{ nodeType: "claim", id: "claim:scope2" }],
+    issuedAt: "2026-09-29T01:00:00Z",
+    hashProvider: provider,
+    signers: [{ provider, key: provider.signingKey() }],
+  });
+  // The same payload, validly signed, but for a different kind of message.
+  const envelope = await createSignatureEnvelope(signed.payload, {
+    domain: "grounding.other",
+    schemaVersion: signed.payload.version,
+    createdAt: signed.envelope.createdAt,
+    hashProvider: provider,
+    signers: [{ provider, key: provider.signingKey() }],
+  });
+  const verified = await verifySignedAttestation(bundle(), { ...signed, envelope }, {
+    hashProvider: provider,
+    resolveKey: async () => {
+      const metadata = await provider.describeKey("key:test");
+      assert.ok(metadata);
+      return { provider, key: provider.verificationKey(), metadata };
+    },
+    policy: { requiredSuites: ["classical"] },
+  });
+  assert.equal(verified.signature.valid, true);
+  assert.equal(verified.domainMatches, false);
+  assert.equal(verified.validForSignedEvidence, false);
 });

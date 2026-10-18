@@ -204,3 +204,22 @@ test("noble-post-quantum, used by the demo page, verifies Node's ML-DSA-65 signa
   flipped[10] = flipped[10]! ^ 1;
   assert.equal(ml_dsa65.verify(flipped, message, raw), false);
 });
+
+test("a fixed ML-DSA-65 vector verifies with Node and noble, and fails after a one-byte change", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const { createPublicKey, verify } = await import("node:crypto");
+  const { ml_dsa65 } = await import("@noble/post-quantum/ml-dsa.js");
+  // The same vector is checked by the BoringSSL crate (crates/crypto-boring/src/lib.rs).
+  const vector = JSON.parse(await readFile(new URL("../../../../test-vectors/ml-dsa-65.json", import.meta.url), "utf8"));
+  const spki = Buffer.from(vector.publicKeySpkiHex, "hex");
+  const message = Buffer.from(vector.messageHex, "hex");
+  const signature = Buffer.from(vector.signatureHex, "hex");
+  const key = createPublicKey({ key: spki, format: "der", type: "spki" });
+  const flipped = Buffer.from(signature);
+  flipped[0]! ^= 1;
+
+  assert.equal(verify(null, message, key, signature), true);
+  assert.equal(verify(null, message, key, flipped), false);
+  assert.equal(ml_dsa65.verify(signature, message, spki.subarray(22)), true);
+  assert.equal(ml_dsa65.verify(flipped, message, spki.subarray(22)), false);
+});
