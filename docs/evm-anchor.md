@@ -10,7 +10,7 @@
 `packages/core/src/evm.ts` is the matching `AnchorAdapter`, over raw JSON-RPC with `fetch` and hand-written ABI
 encoding. It has no runtime dependency and never holds a key.
 
-It runs only on a local dev chain (anvil) so far.
+It runs on a local dev chain (anvil) in the tests, and is ready for Sepolia through MetaMask (below; not deployed yet).
 
 ## What the contract enforces
 
@@ -97,18 +97,32 @@ need are declared in the test file.
   Under `npm run check` it skips when Foundry is not installed.
 - CI runs `contracts:test` in the `contracts` job.
 
-## Planned: Sepolia, through MetaMask
+## Sepolia, through MetaMask
 
-Not done yet. Nothing in the repo holds a key or sends a transaction to a public network. The plan:
+Nothing in the repo holds a key or signs a transaction. `npm run sepolia:page` starts a local page on
+`http://127.0.0.1:8547/` (after `tools/foundry/forge build --root contracts`). Open it in the browser that has
+MetaMask, with a test-only account funded from a Sepolia faucet:
 
-1. Helen deploys `RetirementRegistry` to Sepolia (`eip155:11155111`) from her own MetaMask, approving the
-   transaction there. The bytecode is `contracts/out/RetirementRegistry.sol/RetirementRegistry.json` after `forge
-   build`. The site would send it through EIP-1193 (`eth_sendTransaction` with no `to`).
-2. The deployed address and the transaction hash are committed, so anyone can check the bytecode against a build of
-   the pinned source.
-3. Each case's anchored digest is sent with `submit()`'s request, and each transaction is approved in MetaMask. The
-   proofs (`{chain, contract, digest, txHash}`) are committed next to the Bitcoin ones.
-4. `verify()` runs against any public Sepolia RPC.
+1. **Connect.** The page asks MetaMask for the account and switches it to Sepolia (`eip155:11155111`).
+2. **Deploy.** It sends the forge-built `RetirementRegistry` bytecode with `eth_sendTransaction` and no `to`; you
+   approve it in MetaMask.
+3. **Anchor.** One `anchor(bytes32)` transaction per case, with the same anchored digest as the case's Bitcoin
+   anchor; each one is approved in MetaMask.
+
+The local server (`scripts/sepolia-anchor.mjs`, listening on 127.0.0.1 only) writes the contract address and the
+transaction hashes to `reports/evm-sepolia.json`. It accepts a result only from its own page's origin, only for a
+case whose current anchored digest matches, and only after a deploy. Commit that file, then regenerate the CID
+manifest (`node scripts/cid-manifest.mjs`).
+
+`npm run evm:verify` checks the file against a public Sepolia RPC (`SEPOLIA_RPC` to use another):
+
+- the deployed code equals the build of the pinned source, so anyone can check the bytecode;
+- each case's transaction succeeded and carries an `Anchored` log from the contract with the case's current
+  anchored digest. A re-signed case fails until it is anchored again.
+
+It needs the network, so it is not part of `npm run check`. With `CHAIN_ID=31337` the page and the verifier work
+against a local anvil chain instead (`reports/evm-31337.json`); that is how the page was rehearsed, with a stand-in
+EIP-1193 provider forwarding to anvil's unlocked dev account.
 
 ## Limits
 

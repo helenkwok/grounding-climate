@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sepolia anchor · Grounding</title>
+<style>
+  :root { color-scheme: light dark; font-family: ui-sans-serif, system-ui, sans-serif; }
+  body { max-width: 760px; margin: 40px auto; padding: 0 16px; line-height: 1.5; }
+  code, .mono { font-family: ui-monospace, Menlo, monospace; font-size: 13px; word-break: break-all; }
+  button { font: inherit; padding: 8px 14px; cursor: pointer; }
+  button:disabled { cursor: default; opacity: .5; }
+  table { border-collapse: collapse; width: 100%; margin-top: 12px; }
+  td, th { text-align: left; padding: 8px 8px 8px 0; border-top: 1px solid #8884; vertical-align: top; }
+  .bad { color: #b3261e; } .good { color: #1b6e5a; }
+  section { margin-top: 28px; }
+</style>
+</head>
+<body>
+<h1>Anchor the cases on Sepolia</h1>
+<p>Every transaction is sent and approved in your MetaMask. This page never sees a key. Use a test-only account
+  funded from a Sepolia faucet; Sepolia ether has no value.</p>
+
+<section>
+  <h2>1. Connect</h2>
+  <button id="connect">Connect MetaMask</button>
+  <p id="account" class="mono"></p>
+</section>
+
+<section>
+  <h2>2. Deploy RetirementRegistry</h2>
+  <p>Bytecode from <code>contracts/out</code> (forge v1.8.5, solc 0.8.37). No constructor, no owner, nothing payable.</p>
+  <button id="deploy" disabled>Deploy</button>
+  <p id="contract" class="mono"></p>
+</section>
+
+<section>
+  <h2>3. Anchor each case's digest</h2>
+  <p>One <code>anchor(bytes32)</code> transaction per case, carrying the same digest as its Bitcoin anchor.</p>
+  <table><thead><tr><th>Case</th><th>Digest</th><th>Transaction</th></tr></thead><tbody id="cases"></tbody></table>
+</section>
+
+<p id="status" aria-live="polite"></p>
+
+<script type="module">
+const eth = window.ethereum;
+const $ = (id) => document.getElementById(id);
+const say = (text, bad) => { $("status").textContent = text; $("status").className = bad ? "bad" : ""; };
+let bundle, from;
+
+const explorer = (kind, value) => {
+  if (bundle.chainId !== 11155111) return null;
+  const a = document.createElement("a");
+  a.href = `https://sepolia.etherscan.io/${kind}/${value}`;
+  a.textContent = value;
+  a.target = "_blank";
+  a.rel = "noopener";
+  return a;
+};
+const show = (el, label, kind, value) => {
+  el.textContent = label;
+  el.append(explorer(kind, value) ?? value);
+};
+
+async function receipt(hash) {
+  for (;;) {
+    const r = await eth.request({ method: "eth_getTransactionReceipt", params: [hash] });
+    if (r) return r;
+    await new Promise((done) => setTimeout(done, 3000));
+  }
+}
+
+async function record(result) {
+  const res = await fetch("/record", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(result) });
+  if (!res.ok) throw new Error(await res.text());
+  bundle.record = await res.json();
+  render();
+}
+
+function render() {
+  const contract = bundle.record?.contract;
+  $("deploy").disabled = !from || Boolean(contract);
+  if (contract) show($("contract"), "Deployed at ", "address", contract);
+  const rows = Object.entries(bundle.cases).map(([name, digest]) => {
+    const tr = document.createElement("tr");
+    const done = bundle.record?.anchors?.[name];
+    const cells = [name, digest].map((text) => {
+      const td = document.createElement("td");
+      td.textContent = text;
+      if (text === digest) td.className = "mono";
+      return td;
+    });
+    const action = document.createElement("td");
+    if (done) {
+      action.className = "good mono";
+      show(action, "", "tx", done.txHash);
+    } else {
+      const button = document.createElement("button");
+      button.textContent = "Anchor";
+      button.disabled = !from || !contract;
+      button.onclick = () => anchor(name, digest, button);
+      action.append(button);
+    }
+    tr.append(...cells, action);
+    return tr;
+  });
+  $("cases").replaceChildren(...rows);
+}
+
+async function send(tx, what) {
+  say(`Approve the ${what} in MetaMask…`);
+  const hash = await eth.request({ method: "eth_sendTransaction", params: [{ from, ...tx }] });
+  say(`Sent ${hash}; waiting for it to be mined…`);
+  const r = await receipt(hash);
+  if (BigInt(r.status) !== 1n) throw new Error(`${hash} reverted`);
+  return { hash, r };
+}
+
+$("connect").onclick = async () => {
+  try {
+    if (!eth) throw new Error("No EIP-1193 wallet found: open this page in the browser that has MetaMask.");
+    [from] = await eth.request({ method: "eth_requestAccounts" });
+    const want = "0x" + bundle.chainId.toString(16);
+    if ((await eth.request({ method: "eth_chainId" })) !== want) {
+      await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: want }] });
+    }
+    const balance = BigInt(await eth.request({ method: "eth_getBalance", params: [from, "latest"] }));
+    $("account").textContent = `${from} · ${(Number(balance) / 1e18).toFixed(4)} ETH on eip155:${bundle.chainId}`;
+    say("");
+    render();
+  } catch (error) { say(error.message, true); }
+};
+
+$("deploy").onclick = async () => {
+  try {
+    $("deploy").disabled = true;
+    const { hash, r } = await send({ data: bundle.bytecode }, "deployment");
+    await record({ kind: "deploy", contract: r.contractAddress, txHash: hash });
+    say("Deployed.");
+  } catch (error) { say(error.message, true); render(); }
+};
+
+async function anchor(name, digest, button) {
+  try {
+    button.disabled = true;
+    const { hash } = await send({ to: bundle.record.contract, data: "0xeecdf927" + digest.slice(2) }, `anchor for ${name}`);
+    await record({ kind: "anchor", case: name, digest, txHash: hash });
+    say(`${name} anchored.`);
+  } catch (error) { say(error.message, true); button.disabled = false; }
+}
+
+try {
+  bundle = await (await fetch("/bundle.json")).json();
+  render();
+} catch (error) { say(String(error), true); }
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "npm run build --workspace @grounding-climate/core && npm run build --workspace @grounding-climate/crypto-node && npm run build --workspace @grounding-climate/webmcp && npm run build --workspace @grounding-climate/building-mrv && npm run build --workspace @grounding-climate/energy-forecast && npm run build --workspace @grounding-climate/battery-dpp && npm run build --workspace @grounding-climate/carbon-registry && npm run build --workspace @grounding-climate/disclosure && npm run build --workspace @grounding-climate/earth-observation && npm run build --workspace @grounding-climate/demo && npm run build --workspace @grounding-climate/site",
-    "test": "npm run test --workspace @grounding-climate/core && npm run test --workspace @grounding-climate/crypto-node && npm run test --workspace @grounding-climate/webmcp && npm run test --workspace @grounding-climate/building-mrv && npm run test --workspace @grounding-climate/energy-forecast && npm run test --workspace @grounding-climate/battery-dpp && npm run test --workspace @grounding-climate/carbon-registry && npm run test --workspace @grounding-climate/disclosure && npm run test --workspace @grounding-climate/earth-observation && npm run test --workspace @grounding-climate/site",
+    "test": "npm run test --workspace @grounding-climate/core && npm run test --workspace @grounding-climate/crypto-node && npm run test --workspace @grounding-climate/webmcp && npm run test --workspace @grounding-climate/building-mrv && npm run test --workspace @grounding-climate/energy-forecast && npm run test --workspace @grounding-climate/battery-dpp && npm run test --workspace @grounding-climate/carbon-registry && npm run test --workspace @grounding-climate/disclosure && npm run test --workspace @grounding-climate/earth-observation && npm run test --workspace @grounding-climate/site && node --test scripts/sepolia-anchor.test.mjs",
     "check:rights": "node scripts/check-source-rights.mjs",
     "sources:attribution": "node scripts/render-source-attribution.mjs",
     "sources:attribution:check": "node scripts/render-source-attribution.mjs --check",
@@ -38,6 +38,8 @@
     "submission:build": "python3 scripts/build-submission.py",
     "site:serve": "python3 -m http.server 4173 --directory apps/site/dist/client",
     "contracts:install": "sh scripts/install-foundry.sh",
-    "contracts:test": "sh scripts/contracts-test.sh"
+    "contracts:test": "sh scripts/contracts-test.sh",
+    "sepolia:page": "node scripts/sepolia-anchor.mjs",
+    "evm:verify": "node scripts/verify-evm-anchors.mjs"
   }
 }
