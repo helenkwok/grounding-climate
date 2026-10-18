@@ -74,7 +74,7 @@ function ClaimPage() {
           <div className="page-result part-0 part-4">
             {ready ? (
               <>
-                <span>Rechecked in your browser:</span>
+                <span>{ready.kpiLead ?? "Rechecked in your browser:"}</span>
                 <span className="figure">{ready.kpi}</span>
                 <span className="note">{ready.kpiLabel}</span>
                 <Result result={deriveResult(ready.checks)} />
@@ -87,9 +87,9 @@ function ClaimPage() {
           {!hasPlace(id) && <p className="note no-place">{meta.place}</p>}
         </div>
         {hasPlace(id) && (
-          <figure className="lab-map part-0">
+          <figure className={"lab-map part-0" + (id === "energy" ? " no-shading" : "")}>
             <CaseMap />
-            <figcaption>{meta.place}{id !== "energy" && " Shading: annual wildfire risk to US buildings, ~2047 (Open Climate Risk v1.1.0, CarbonPlan); context, not evidence."}</figcaption>
+            <figcaption>{meta.place}{id !== "energy" && " Shading: annual wildfire risk to US buildings (Open Climate Risk v1.1.0, CarbonPlan); context, not evidence."}</figcaption>
           </figure>
         )}
       </header>
