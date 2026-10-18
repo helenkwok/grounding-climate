@@ -410,7 +410,7 @@ function escapeHtml(value: unknown): string {
 }
 
 const RESULT_WORDS: Record<string, string> = {
-  reconciled: "Verified",
+  reconciled: "Rechecked",
   "insufficient-evidence": "Needs evidence",
   mismatch: "Mismatch",
   "source-changed": "Source changed",

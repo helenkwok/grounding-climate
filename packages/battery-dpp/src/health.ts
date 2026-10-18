@@ -86,6 +86,7 @@ export function estimateBatteryHealth(options: {
   if (!latest) throw new Error("Battery history unexpectedly empty.");
 
   const currentSoh = latest.dischargeCapacityAh / history.nominalCapacityAh;
+  const initialCapacityAh = cycles[0]!.dischargeCapacityAh;
   const eolCapacity = history.nominalCapacityAh * eolSohThreshold;
 
   let estimatedEolCycle: number | null = null;
@@ -104,6 +105,8 @@ export function estimateBatteryHealth(options: {
     observedCycle: latest.cycle,
     currentCapacityAh: latest.dischargeCapacityAh,
     currentSoh,
+    initialCapacityAh,
+    sohVsInitial: latest.dischargeCapacityAh / initialCapacityAh,
     eolSohThreshold,
     capacitySlopeAhPerCycle: fit.slope,
     estimatedEolCycle,

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "grounding.acr-offsetsdb-full/0.1",
+  "rightsManifestId": "acr-offsetsdb-full",
+  "citation": "American Carbon Registry public reports, via CarbonPlan OffsetsDB (export generated 2026-06-01T20:33:13.820968+00:00). Rows filtered to ACR and columns reduced by Grounding; values unchanged.",
+  "source": {
+    "url": "https://carbonplan-offsets-db.s3.us-west-2.amazonaws.com/production/latest/offsets-db.csv.zip",
+    "generatedAt": "2026-06-01T20:33:13.820968+00:00",
+    "zipSha256": "c037be30f54fac47b625b8fdebc02ca459e49d627d3214a90eb90ce0a45bb61e",
+    "termsUrl": "https://github.com/carbonplan/offsets-db-data/blob/main/TERMS_OF_DATA_ACCESS",
+    "attribution": "Registry data via CarbonPlan OffsetsDB, snapshot 2026-06-01"
+  },
+  "files": [
+    {
+      "path": "credits.csv",
+      "rows": 13481,
+      "columns": [
+        "project_id",
+        "vintage",
+        "transaction_type",
+        "quantity",
+        "transaction_date"
+      ],
+      "sha256": "01c4c31817a618a0e0082aba282dbefa6510702dde0a3df48589fbc1a88530b5"
+    },
+    {
+      "path": "projects.csv",
+      "rows": 979,
+      "columns": [
+        "project_id",
+        "issued",
+        "retired"
+      ],
+      "sha256": "5958b4d058cc0ffff9dfdcfb589c6cf0681500d43b56a74839bcb3b2961e61da"
+    }
+  ]
+}

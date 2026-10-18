@@ -13,3 +13,6 @@ apps/site/src/routeTree.gen.ts
 # Standards texts: kept for reference, never redistributed; only the README index is tracked
 docs/standards/*
 !docs/standards/README.md
+
+# Downloaded upstream snapshots (CarbonPlan OffsetsDB); only the ACR part is committed, under data/external
+data/cache/

@@ -4,7 +4,7 @@ import { useEffect, useState, type FormEvent } from "react";
 
 import { CLAIMS, claimMeta, deriveResult, type ClaimId } from "../../../../demo/src/claims-meta";
 import type { DemoModule } from "../../../../demo/src/modules";
-import { Pending, Result, Rows, State, outcomeTone } from "../../components";
+import { Pending, Result, Rows, State, STATUS_NOTE, outcomeTone } from "../../components";
 import { loadClaim, setTampered, signedRecords } from "../../live";
 import type { SignedRecord } from "../../signing";
 
@@ -62,6 +62,7 @@ function ClaimPage() {
               <span className="figure">{ready.kpi}</span>
               <span className="note">{ready.kpiLabel}</span>
               <Result result={deriveResult(ready.checks)} />
+              <span className="note status-note">{STATUS_NOTE}</span>
             </>
           ) : (
             <Pending value={item} />

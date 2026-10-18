@@ -54,7 +54,7 @@ export const CLAIMS: readonly ClaimMeta[] = [
   {
     id: "battery",
     title: "Battery passport",
-    claim: "Battery cell CALB_0_B182 is at 77.6% state of health after 100 cycles, and is held for service review before any second life.",
+    claim: "Battery cell CALB_0_B182 is at 77.6% state of health against its nominal capacity after 100 cycles (90.6% against its first recorded cycle), and is held for service review before any second life.",
     claimant: "A second-life battery operator",
     what: "Cycle history rebuilt into state of health; reuse signed off by a person",
     question: "Is this battery cell fit for a second life, and who signed that off?",

@@ -100,6 +100,10 @@ test("transparent health baseline estimates SOH and finite RUL", () => {
   assert.equal(result.observedCycle, 60);
   assert.ok(result.currentSoh < 1);
   assert.ok(result.currentSoh > 0.8);
+  // The initial-condition basis divides by the first recorded cycle, not by nominal capacity.
+  const cycles = history().cycles;
+  assert.equal(result.initialCapacityAh, cycles[0]!.dischargeCapacityAh);
+  assert.equal(result.sohVsInitial, cycles.at(-1)!.dischargeCapacityAh / cycles[0]!.dischargeCapacityAh);
   assert.ok(result.capacitySlopeAhPerCycle < 0);
   assert.ok((result.estimatedRulCycles ?? 0) > 0);
   assert.ok((result.fit.rSquared ?? 0) > 0.99);
