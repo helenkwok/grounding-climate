@@ -195,11 +195,9 @@ OpenTimestamps, IPFS CIDs, W3C VC 2.0, UNTP, MetaMask.
 
 ## Try it out
 
-To fill in once the repository is public and the site is hosted:
-
-- **For judges, about 30 seconds:** [site URL]/judge/
-- **The site:** [site URL]
-- **Verify a record, no account or server:** [site URL]/verify/
+- **For judges, about 30 seconds:** https://helenkwok.github.io/grounding-climate/judge/
+- **The site:** https://helenkwok.github.io/grounding-climate/
+- **Verify a record, no account or server:** https://helenkwok.github.io/grounding-climate/verify/
 - **Code, and an offline rerun:** https://github.com/helenkwok/grounding-climate, then
   `npm ci && npm run build && npm run check:cases`
-- **Video:** [video URL]
+- **Video:** https://youtu.be/UvnaIW0SFvY
