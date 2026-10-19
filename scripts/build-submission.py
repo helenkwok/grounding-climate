@@ -15,7 +15,6 @@ STAGE = OUT_ROOT / "grounding-climate"
 ZIP_PATH = OUT_ROOT / "grounding-climate-submission.zip"
 
 DOCS = [
-    "docs/judging-demo.md",
     "docs/domain-model.md",
     "docs/crypto-trust.md",
     "docs/provenance-attestation.md",
