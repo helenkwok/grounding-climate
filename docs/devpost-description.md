@@ -5,6 +5,20 @@ inline.
 
 **Tagline:** Climate claims that show their work.
 
+## Track: Climate Data & Environmental Monitoring
+
+Grounding is built for this track's first theme, **climate data verification**: it takes reported climate figures back
+to the data they rest on and rechecks them in the reader's browser.
+
+- **Climate data verification:** six real claims are recomputed from their evidence, every result is signed twice, and
+  changing one input breaks the signature.
+- **Environmental monitoring data:** the evidence is monitoring data itself: hourly building meter readings, a
+  satellite burn-scar scene, a battery cell's cycle tests and a grid load forecast.
+- **Research and insight tools:** the same checks run over 532,799 public carbon credit records from seven registries.
+
+It also touches the carbon-market and supply-chain tracks (double-retirement checks, a battery passport), but its job is
+the one this track names: making climate data verifiable.
+
 ## Inspiration
 
 > A figure is only as good as the work it can show.
@@ -19,7 +33,7 @@ Most of that work does not need trust. It can be recorded, recomputed or checked
 
 ## What it does
 
-**Track: Climate Data & Environmental Monitoring.** Grounding checks climate data where it is reported: hourly meter
+Grounding checks climate data where it is reported: hourly meter
 readings, a satellite burn-scar map, a battery's capacity tests, a grid load forecast, carbon registry records and a
 company's own emissions report. For each, it recomputes what software can recompute, records what a person decided and
 on which exact data, and states what could not be checked. Blockchain does one narrow job: proving that a signed record
@@ -29,7 +43,7 @@ data is stored on chain.
 ```text
 Can software recompute or check this?
    ├─ yes             → rechecked in your browser, from the evidence
-   ├─ needs judgement → a model may suggest; a named person decides,
+   ├─ needs judgement → a model may suggest; a person decides,
    │                    and the decision is bound to the exact data
    └─ cannot be checked → the claim says so: "Needs evidence"
 ```
