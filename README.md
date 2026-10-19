@@ -1,6 +1,6 @@
 # Grounding
 
-Evidence-first climate verification workspace for the IEEE ClimateChain Global Hackathon 2026.
+Evidence-first climate verification workspace for the IEEE ClimateChain Global Hackathon 2026, track Climate Data & Environmental Monitoring.
 
 > **A figure is only as good as the work it can show.**
 
@@ -13,7 +13,7 @@ Most of that work can be recorded, recomputed or checked by software. Grounding 
 ```text
 Can software recompute or check this?
    ├─ yes             → rechecked in your browser, from the evidence
-   ├─ needs judgement → a model may suggest; a named person decides,
+   ├─ needs judgement → a model may suggest; a person decides,
    │                    and the decision is bound to the exact data
    └─ cannot be checked → the claim says so: "Needs evidence"
 ```
@@ -47,19 +47,17 @@ Each signed case is also exported as a [W3C Verifiable Credential in the UNTP sh
 - **Live site:** https://helenkwok.github.io/grounding-climate/ (for judges, about 30 seconds: [/judge/](https://helenkwok.github.io/grounding-climate/judge/))
 - **Demo video (4:22):** https://youtu.be/UvnaIW0SFvY
 
-To run the integrated judging demo locally:
+To run the site locally (Node 24 or later):
 
 ```bash
-npm install
-npm run demo:build
-npm run demo:serve
+npm ci
+npm run build
+npm run site:serve
 ```
 
-Open `http://localhost:4173`.
+Open `http://127.0.0.1:4180`. The site (`apps/site`) rebuilds six real claims in the browser: building emissions from BDG2 meter readings, an Energy-EVA load forecast, an HLS satellite burn scar, a battery passport on NASA Ames cell data, carbon registry records via CarbonPlan OffsetsDB, and a company's CaDI-confirmed disclosure. `/judge/` checks all six at once, and `/verify/` checks a downloaded record.
 
-The demo combines measured outputs from Building MRV, Energy-EVA forecasting, HLS Earth observation, a battery passport on NASA Ames cell data, CarbonPlan registry reconciliation, and real CaDI-confirmed public disclosure sources. It also exposes the capability-aware WebMCP surface when `document.modelContext` is available.
-
-See [docs/judging-demo.md](docs/judging-demo.md) for the 3–5 minute presentation flow.
+To rerun everything offline, `npm run check:cases` rebuilds all six claims and checks every signature, Bitcoin proof and IPFS address.
 
 The project is organised around verifiable climate claims rather than tokens:
 
@@ -74,7 +72,9 @@ evidence
 
 Development roadmap: see [#17](https://github.com/helenkwok/grounding-climate/issues/17).
 
-## Current work
+## Design records
+
+Closed issues that hold the design decisions:
 
 - [#6](https://github.com/helenkwok/grounding-climate/issues/6) — evidence-first domain model
 - [#14](https://github.com/helenkwok/grounding-climate/issues/14) — source rights manifest
@@ -97,7 +97,7 @@ Run:
 npm run check
 ```
 
-This builds/tests the core domain model, validates the source-rights manifest, rejects unauthorized content under `data/external/`, and checks that generated attribution is current.
+This builds and tests every package, validates the source-rights manifest, rejects unauthorized content under `data/external/`, checks that generated attribution is current, and reruns `check:cases`.
 
 ## Building MRV prototype
 
