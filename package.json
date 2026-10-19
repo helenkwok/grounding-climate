@@ -36,7 +36,7 @@
     "demo:build": "npm run build",
     "demo:serve": "python3 -m http.server 4173 --directory apps/demo/dist",
     "submission:build": "python3 scripts/build-submission.py",
-    "site:serve": "python3 -m http.server 4173 --directory apps/site/dist/client",
+    "site:serve": "npm exec --workspace @grounding-climate/site -- rsbuild preview",
     "contracts:install": "sh scripts/install-foundry.sh",
     "contracts:test": "sh scripts/contracts-test.sh",
     "sepolia:page": "node scripts/sepolia-anchor.mjs",
