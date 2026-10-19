@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - "apps/demo/**"
+      - "apps/site/**"
       - "docs/**"
       - "reports/**"
       - "sources/**"
@@ -16,6 +17,7 @@ on:
     branches: [main]
     paths:
       - "apps/demo/**"
+      - "apps/site/**"
       - "docs/**"
       - "reports/**"
       - "sources/**"
@@ -51,7 +53,10 @@ jobs:
           from pathlib import Path
           p = Path("dist/submission/grounding-climate/MANIFEST.json")
           m = json.loads(p.read_text())
-          assert m["thirdPartyRawDataIncluded"] is False
+          # The site carries open data so its claims rebuild; each dataset must be declared with its licence.
+          assert m["thirdPartyRawDataIncluded"] is True
+          assert all(d["id"] and d["licence"] for d in m["thirdPartyData"])
+          assert any(row["path"] == "site/index.html" for row in m["files"])
           assert m["fileCount"] > 10
           forbidden = [
               "data/external/",
