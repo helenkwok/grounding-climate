@@ -44,7 +44,10 @@ Each signed case is also exported as a [W3C Verifiable Credential in the UNTP sh
 
 ## Demo
 
-The integrated judging demo is the fastest way to see the product:
+- **Live site:** https://helenkwok.github.io/grounding-climate/ (for judges, about 30 seconds: [/judge/](https://helenkwok.github.io/grounding-climate/judge/))
+- **Demo video (4:22):** https://youtu.be/UvnaIW0SFvY
+
+To run the integrated judging demo locally:
 
 ```bash
 npm install
@@ -57,8 +60,6 @@ Open `http://localhost:4173`.
 The demo combines measured outputs from Building MRV, Energy-EVA forecasting, HLS Earth observation, a battery passport on NASA Ames cell data, CarbonPlan registry reconciliation, and real CaDI-confirmed public disclosure sources. It also exposes the capability-aware WebMCP surface when `document.modelContext` is available.
 
 See [docs/judging-demo.md](docs/judging-demo.md) for the 3–5 minute presentation flow.
-
-> Submission blocker: this repository is currently private. The hackathon requirements tracked in [#1](https://github.com/helenkwok/grounding-climate/issues/1) require a public GitHub (or equivalent) repository before final submission.
 
 The project is organised around verifiable climate claims rather than tokens:
 
