@@ -13,6 +13,8 @@ import footprint from "../../../reports/earth-observation/scene-footprint.json";
 import { claimMeta, type ClaimId } from "../../demo/src/claims-meta";
 import { base } from "./live";
 
+let protocol: import("pmtiles").Protocol | undefined;
+const tiles = new Map<string, ReturnType<import("pmtiles").Protocol["tilev4"]>>();
 const OCR = "https://data.source.coop/carbonplan/carbonplan-ocr/output/fire-risk/vector/production/v1.1.0/pmtiles/";
 const OCR_ATTRIBUTION =
   '<a href="https://source.coop/carbonplan/carbonplan-ocr">Open Climate Risk v1.1.0</a>, CarbonPlan (ODbL; contains Overture Maps data, © OpenStreetMap contributors); USFS RDS-2025-0006, RDS-2020-0016-2; CONUS404';
@@ -167,7 +169,11 @@ const sampleProjects = new Set(
 export function CaseMap() {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<import("maplibre-gl").Map>();
-  const navigate = useNavigate();
+  // The map is built once per mount; `navigate` changes identity on every route change, so it is read through a ref
+  // (as an effect dependency it rebuilt the map after each navigation, losing the framing and the loaded tiles).
+  const latestNavigate = useNavigate();
+  const navigate = useRef(latestNavigate);
+  navigate.current = latestNavigate;
   const [year, setYear] = useState<Period>(2047);
   const period = useRef(year);
   period.current = year;
@@ -178,10 +184,26 @@ export function CaseMap() {
 
   useEffect(() => {
     let map: import("maplibre-gl").Map | undefined;
+    let gone = false;
     void Promise.all([import("maplibre-gl"), import("pmtiles"), import("maplibre-gl/dist/maplibre-gl.css")]).then(([maplibre, pmtiles]) => {
-      if (!container.current) return;
+      if (gone || !container.current) return;
       maplibre.setWorkerUrl(new URL(base + "maplibre/maplibre-gl-worker.mjs", location.href).toString());
-      maplibre.addProtocol("pmtiles", new pmtiles.Protocol().tile);
+      // One reader for the whole visit: it keeps the archives' headers and directories, so a page that mounts the map
+      // again (after a full-width page) shades at once instead of fetching them anew.
+      protocol ??= new pmtiles.Protocol();
+      // The browser does not cache the tiles' range requests, so the tiles are kept here for the visit too
+      // (a few hundred small vector tiles at the zooms this map shows).
+      const reader = protocol;
+      maplibre.addProtocol("pmtiles", ((params, abort) => {
+        let tile = tiles.get(params.url);
+        if (!tile) {
+          tile = reader.tilev4(params, abort);
+          tiles.set(params.url, tile);
+          tile.catch(() => tiles.delete(params.url));
+        }
+        // MapLibre hands the buffer to its worker, which empties it, so each request gets its own copy.
+        return tile.then((result) => ({ ...result, data: result.data instanceof Uint8Array ? result.data.slice() : result.data }));
+      }) as Parameters<typeof maplibre.addProtocol>[1]);
       // The home page and the video tour open on all of North America, then fly in (see the framing effect below).
       const flyIn = intro();
       map = new maplibre.Map({
@@ -268,7 +290,7 @@ export function CaseMap() {
             open.type = "button";
             open.className = "button";
             open.textContent = "Review this claim";
-            open.addEventListener("click", () => void navigate({ to: "/claims/$id", params: { id: claim } }));
+            open.addEventListener("click", () => void navigate.current({ to: "/claims/$id", params: { id: claim } }));
             body.append(open);
           }
           new maplibre.Popup({ maxWidth: "320px" }).setLngLat(lngLat).setDOMContent(body).addTo(m);
@@ -327,7 +349,7 @@ export function CaseMap() {
           }
           button.addEventListener("click", (event) => {
             event.stopPropagation();
-            void navigate({ to: "/claims/$id", params: { id } });
+            void navigate.current({ to: "/claims/$id", params: { id } });
           });
           new maplibre.Marker({ element: button, anchor, offset: anchor === "center" ? [0, 0] : [8, (anchor === "top-left" ? 6 : -6) + drop] }).setLngLat(at).addTo(m);
         };
@@ -352,15 +374,19 @@ export function CaseMap() {
         showUnit();
         // Start with the credits folded behind the (i) button, so they don't cover the map.
         container.current?.querySelector(".maplibregl-ctrl-attrib")?.classList.remove("maplibregl-compact-show");
+        sharedMap = m; // a second mount from the same route change may have taken, then dropped, the handle
         setLoaded(true);
         (window as unknown as { __mapReady?: boolean }).__mapReady = true;
       });
     });
     return () => {
+      // A route change can unmount and remount the map before its imports resolve: skip building a map for a
+      // mount that has gone, and leave the shared handle alone if a newer mount already owns it.
+      gone = true;
       map?.remove();
-      sharedMap = undefined;
+      if (sharedMap === map) sharedMap = undefined;
     };
-  }, [navigate]);
+  }, []);
 
   // Switching the climate period recolours every risk layer.
   useEffect(() => {
@@ -379,9 +405,10 @@ export function CaseMap() {
     const opening = framed.current ? false : intro();
     if (opening === "tour") void tour(setYear);
     else if (focus) flyToClaim(focus);
-    else if (!framed.current) flyToClaim("us", opening === "home" ? 3500 : 0);
+    // Pages differ in panel width, so each page without a claim fits the US again (Verify, then home, used to keep Verify's view).
+    else flyToClaim("us", opening === "home" ? 3500 : framed.current ? 600 : 0);
     framed.current = true;
-  }, [loaded, focus]);
+  }, [loaded, focus, pathname]);
 
   const change = year === "change";
   const colours = change ? CHANGE_COLOURS : COLOURS;
