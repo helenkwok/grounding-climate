@@ -70,8 +70,6 @@ evidence
 → optional commitment/ledger anchor
 ```
 
-Development roadmap: see [#17](https://github.com/helenkwok/grounding-climate/issues/17).
-
 ## Design records
 
 Closed issues that hold the design decisions:
